@@ -6,6 +6,9 @@ using System.Windows;
 using Windows.UI.Xaml;
 using System;
 using com.aurora.auweather.ViewModels;
+using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Effects;
+using System.Numerics;
 
 namespace com.aurora.auweather
 {
@@ -27,7 +30,25 @@ namespace com.aurora.auweather
             Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        Random rnd = new Random();
+        private Vector2 RndPosition()
+        {
+            double x = rnd.NextDouble() * 500f;
+            double y = rnd.NextDouble() * 500f;
+            return new Vector2((float)x, (float)y);
+        }
+
+        private float RndRadius()
+        {
+            return (float)rnd.NextDouble() * 150f;
+        }
+
+        private byte RndByte()
+        {
+            return (byte)rnd.Next(256);
+        }
+
+        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
         {
             //SettingsModel origin = new SettingsModel();
             //origin.AllowLocation = false;
@@ -41,7 +62,52 @@ namespace com.aurora.auweather
             //}) };
             //origin.SaveSettings();
             //var actual = SettingsModel.ReadSettings();
-            MainPageViewModel view = new MainPageViewModel();
+        }
+
+        private void MainCanvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
+        {
+            float radius = (float)(1 + Math.Sin(args.Timing.TotalTime.TotalSeconds)) * 10f;
+            blur.BlurAmount = radius;
+            args.DrawingSession.DrawImage(blur);
+        }
+        GaussianBlurEffect blur;
+        private void MainCanvas_CreateResources(
+            Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender,
+            Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+        {
+            CanvasCommandList cl = new CanvasCommandList(sender);
+            using (CanvasDrawingSession clds = cl.CreateDrawingSession())
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    clds.DrawText("Hello, World!", RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+                    clds.DrawCircle(RndPosition(), RndRadius(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+                    clds.DrawLine(RndPosition(), RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+                }
+            }
+
+            blur = new GaussianBlurEffect()
+            {
+                Source = cl,
+                BlurAmount = 10.0f
+            };
+        }
+
+        private void RelativePanel_LayoutUpdated(object sender, object e)
+        {
+            var width = Root.ActualWidth;
+            BezierControl1.Point2 = new Windows.Foundation.Point(width / 8, BezierControl1.Point2.Y);
+            BezierControl1.Point3 = new Windows.Foundation.Point(width * 2 / 8, BezierControl1.Point3.Y);
+            BezierControl2.Point1 = new Windows.Foundation.Point(width * 2 / 8, BezierControl2.Point1.Y);
+            BezierControl2.Point2 = new Windows.Foundation.Point(width * 3 / 8, BezierControl2.Point2.Y);
+            BezierControl2.Point3 = new Windows.Foundation.Point(width * 4 / 8, BezierControl2.Point3.Y);
+            BezierControl3.Point1 = new Windows.Foundation.Point(width * 4 / 8, BezierControl3.Point1.Y);
+            BezierControl3.Point2 = new Windows.Foundation.Point(width * 5 / 8, BezierControl3.Point2.Y);
+            BezierControl3.Point3 = new Windows.Foundation.Point(width * 6 / 8, BezierControl3.Point3.Y);
+            BezierControl4.Point1 = new Windows.Foundation.Point(width * 6 / 8, BezierControl3.Point1.Y);
+            BezierControl4.Point2 = new Windows.Foundation.Point(width * 7 / 8, BezierControl3.Point2.Y);
+            BezierControl4.Point3 = new Windows.Foundation.Point(width, BezierControl3.Point3.Y);
+            endPoint1.Point = new Windows.Foundation.Point(width, endPoint1.Point.Y);
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

@@ -8,20 +8,20 @@ namespace com.aurora.auweather.Models
 {
     public enum WeatherCondition : byte
     {
-        sunny, cloudy, few_clouds, partly_cloudy, overcast, windy, calm, light_breeze,
+        unknown, sunny, cloudy, few_clouds, partly_cloudy, overcast, windy, calm, light_breeze,
         moderate, fresh_breeze, strong_breeze, high_wind, gale, strong_gale, storm, violent_storm, hurricane, tornado,
         tropical_storm, shower_rain, heavy_shower_rain, thundershower, heavy_thunderstorm, hail, light_rain, moderate_rain,
         heavy_rain, extreme_rain, drizzle_rain, storm_rain, heavy_storm_rain, severe_storm_rain, freezing_rain,
         light_snow, moderate_snow, heavy_snow, snowstorm, sleet, rain_snow, shower_snow, snow_flurry, mist,
-        foggy, haze, sand, dust, volcanic_ash, duststorm, sandstorm, hot, cold, unknown
+        foggy, haze, sand, dust, volcanic_ash, duststorm, sandstorm, hot, cold
     }
-    public enum WindDirection : byte { north, east, west, south, northeast, northwest, southeast, southwest, unknown }
+    public enum WindDirection : byte { unknown, north, east, west, south, northeast, northwest, southeast, southwest }
     public enum WindScale : byte
     {
-        zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen,
-        fifteen, sixteen, seventeen, unknown
+        unknown, zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen,
+        fifteen, sixteen, seventeen
     }
-    public enum AQIQuality : byte { one, two, three, four, five, six, unknown }; //one 为优，six 为严重污染
+    public enum AQIQuality : byte { unknown, one, two, three, four, five, six }; //one 为优，six 为严重污染
     public enum WeatherAlarmType : byte
     {
         typhoon, rain_storm, snow_storm, cold_wave, gale, sand_storm, heat_wave,

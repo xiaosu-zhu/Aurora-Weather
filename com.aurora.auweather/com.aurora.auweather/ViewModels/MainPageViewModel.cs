@@ -4,6 +4,7 @@ using com.aurora.auweather.Models.HeWeather.JsonContract;
 using com.aurora.shared.Helpers;
 using com.aurora.shared.MVVM;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
@@ -19,6 +20,7 @@ namespace com.aurora.auweather.ViewModels
         private string city;
         private string id;
         private HeWeatherModel fetchresult;
+        private double[] tempraturePath = new double[] { 0, 0, 0, 0, 0, 0, 0 };
 
 
         public Temprature Temprature
@@ -73,6 +75,19 @@ namespace com.aurora.auweather.ViewModels
             }
         }
 
+        public double[] TempraturePath
+        {
+            get
+            {
+                return tempraturePath;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath, value);
+            }
+        }
+
         public MainPageViewModel()
         {
             var task = ThreadPool.RunAsync(async (work) =>
@@ -87,10 +102,10 @@ namespace com.aurora.auweather.ViewModels
                 {
                     return;
                 }
-                CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
-                 {
-                     InitialViewModel();
-                 }));
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                  {
+                      InitialViewModel();
+                  }));
             });
         }
 
@@ -113,6 +128,31 @@ namespace com.aurora.auweather.ViewModels
             Temprature = fetchresult.NowWeather.Temprature;
             Wind = fetchresult.NowWeather.Wind;
             Condition = fetchresult.NowWeather.Now.Condition;
+            List<double> pathResults = new List<double>();
+            for (int i = 0; i < 7; i++)
+            {
+                pathResults.Add(fetchresult.HourlyForecast[i].Temprature.Celsius);
+            }
+            var min = 0d;
+            var max = min;
+            foreach (var data in pathResults)
+            {
+                if (data < min)
+                {
+                    min = data;
+                    continue;
+                }
+                if (data > max)
+                {
+                    max = data;
+                }
+            }
+            var avg = (max + min) / 2;
+            for (int j = 0; j < pathResults.Count; j++)
+            {
+                pathResults[j] -= avg;
+            }
+            TempraturePath = pathResults.ToArray();
         }
 
         private void ReadSettings()

@@ -59,7 +59,7 @@ namespace UnitTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public async Task ApiRequestTest()
+        public void ApiRequestTest()
         {
             //string[] param = { "search=allworld" };
             //await FileIOHelper.SaveFile("actual", "cityid.txt");

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:com.aurora.auweather.ViewModels"
     xmlns:Converters="using:com.aurora.auweather.Converters"
+    xmlns:Canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     x:Class="com.aurora.auweather.MainPage"
     mc:Ignorable="d">
 
@@ -16,12 +17,42 @@
     <Page.Resources>
         <Converters:TempratureConverter x:Key="TempratureConverter" />
         <Converters:WindConverter x:Key="WindConverter" />
+        <Converters:DoubletoPointConverter x:Key="PointConverter" />
     </Page.Resources>
 
-    <StackPanel Background="White">
-        <TextBlock Text="{Binding City}" />
-        <TextBlock Text="{Binding Condition}" />
-        <TextBlock Text="{Binding Temprature,Converter={StaticResource TempratureConverter},ConverterParameter=Kelvin}" />
-        <TextBlock Text="{Binding Wind,Converter={StaticResource WindConverter},FallbackValue=fuck}" />
-    </StackPanel>
+    <RelativePanel x:Name="Root" LayoutUpdated="RelativePanel_LayoutUpdated">
+        <Canvas:CanvasAnimatedControl Background="Red" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="480" x:Name="MainCanvas" Draw="MainCanvas_Draw" CreateResources="MainCanvas_CreateResources" />
+        <Grid Height="32" x:Name="TitleBar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+        <TextBlock RelativePanel.Below="TitleBar" x:Name="CurrentCity" Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" RelativePanel.AlignHorizontalCenterWithPanel="True"  />
+        <StackPanel x:Name="ConditionPanel" Orientation="Horizontal" RelativePanel.Below="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <TextBlock x:Name="NowCondition" Text="{Binding Condition}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock x:Name="NowTemp" Text="{Binding Temprature, ConverterParameter=Celsius, Converter={StaticResource TempratureConverter}}" Style="{StaticResource TitleTextBlockStyle}" />
+        </StackPanel>
+        <TextBlock x:Name="NowWind" Text="{Binding Wind, Converter={StaticResource WindConverter}, FallbackValue=fuck}" RelativePanel.Below="ConditionPanel" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+
+        <Path RelativePanel.Below="NowWind" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Fill="#FFFFFFFF">
+            <Path.Data>
+                <GeometryGroup>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection>
+                                <PathFigure IsClosed="true" StartPoint="0,0">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <BezierSegment x:Name="BezierControl1" Point1="0,0" Point2="32,-2.5" Point3="64,-3" />
+                                            <BezierSegment x:Name="BezierControl2" Point1="64,-3" Point2="96,-2.5"  Point3="128,-0.5"/>
+                                            <BezierSegment x:Name="BezierControl3" Point1="128,-0.5" Point2="160,2" Point3="192,2.5"/>
+                                            <BezierSegment x:Name="BezierControl4" Point1="192,2.5" Point2="224,3" Point3="256,0"/>
+                                            <LineSegment x:Name="endPoint1" Point="256,128" />
+                                            <LineSegment Point="0,128" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+    </RelativePanel>
 </Page>
