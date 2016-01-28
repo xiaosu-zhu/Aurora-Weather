@@ -1,0 +1,27 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:com.aurora.auweather"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:com.aurora.auweather.ViewModels"
+    xmlns:Converters="using:com.aurora.auweather.Converters"
+    x:Class="com.aurora.auweather.MainPage"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModels:MainPageViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Converters:TempratureConverter x:Key="TempratureConverter" />
+        <Converters:WindConverter x:Key="WindConverter" />
+    </Page.Resources>
+
+    <StackPanel Background="White">
+        <TextBlock Text="{Binding City}" />
+        <TextBlock Text="{Binding Condition}" />
+        <TextBlock Text="{Binding Temprature,Converter={StaticResource TempratureConverter},ConverterParameter=Kelvin}" />
+        <TextBlock Text="{Binding Wind,Converter={StaticResource WindConverter},FallbackValue=fuck}" />
+    </StackPanel>
+</Page>
