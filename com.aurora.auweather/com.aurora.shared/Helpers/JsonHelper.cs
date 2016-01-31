@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.shared.Helpers
+namespace Com.Aurora.Shared.Helpers
 {
     public static class JsonHelper
     {

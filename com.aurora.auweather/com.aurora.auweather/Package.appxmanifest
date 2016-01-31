@@ -3,7 +3,7 @@
   <Identity Name="964ee7f4-3a32-4ebd-a727-1c804e72b477" Publisher="CN=Xiaos" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="964ee7f4-3a32-4ebd-a727-1c804e72b477" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>com.aurora.auweather</DisplayName>
+    <DisplayName>Com.Aurora.AuWeather</DisplayName>
     <PublisherDisplayName>Xiaos</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="com.aurora.auweather.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Com.Aurora.AuWeather.App">
       <uap:VisualElements DisplayName="Aurora Weather" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="极光天气" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>

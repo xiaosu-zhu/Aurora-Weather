@@ -1,4 +1,4 @@
-﻿using com.aurora.shared.Helpers;
+﻿using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace com.aurora.shared.Helpers
+namespace Com.Aurora.Shared.Helpers
 {
 
     public static class RoamingSettingsHelper

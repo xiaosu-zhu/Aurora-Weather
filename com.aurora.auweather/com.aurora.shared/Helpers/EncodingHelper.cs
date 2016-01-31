@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
-namespace com.aurora.shared.Helpers
+namespace Com.Aurora.Shared.Helpers
 {
     /*
      * ****************************************************

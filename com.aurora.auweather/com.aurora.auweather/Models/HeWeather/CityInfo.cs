@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using com.aurora.auweather.Models.HeWeather.JsonContract;
+using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 
-namespace com.aurora.auweather.Models.HeWeather
+namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public class CityInfo
     {

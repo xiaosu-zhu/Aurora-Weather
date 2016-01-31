@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
-namespace com.aurora.auweather.Converters
+namespace Com.Aurora.Shared.Converters
 {
-    class DoubletoPointConverter : IValueConverter
+    public class TimeSpanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is double)
-            {
-                return new Point(0, (double)value);
-            }
-            return new Point(0, 0);
+            throw new NotImplementedException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

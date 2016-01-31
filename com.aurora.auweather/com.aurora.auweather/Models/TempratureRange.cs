@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.auweather.Models
+namespace Com.Aurora.AuWeather.Models
 {
     internal class TempratureRange
     {

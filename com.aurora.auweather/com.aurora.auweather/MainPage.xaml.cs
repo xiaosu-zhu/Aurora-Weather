@@ -1,33 +1,24 @@
-﻿using com.aurora.auweather.Models;
+﻿using Com.Aurora.AuWeather.Models;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using System.Windows;
 using Windows.UI.Xaml;
 using System;
-using com.aurora.auweather.ViewModels;
+using Com.Aurora.AuWeather.ViewModels;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using System.Numerics;
+using Windows.UI.Xaml.Media;
 
-namespace com.aurora.auweather
+namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             this.InitializeComponent();
-            var view = ApplicationView.GetForCurrentView();
-            view.TitleBar.ForegroundColor = Colors.White;
-            view.TitleBar.InactiveForegroundColor = Colors.White;
 
-            // button
-            view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-            view.TitleBar.ButtonForegroundColor = Colors.White;
-            view.TitleBar.ButtonHoverForegroundColor = Colors.White;
-            view.TitleBar.ButtonPressedForegroundColor = Colors.White;
-            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
         }
 
         Random rnd = new Random();
@@ -95,19 +86,44 @@ namespace com.aurora.auweather
 
         private void RelativePanel_LayoutUpdated(object sender, object e)
         {
-            var width = Root.ActualWidth;
-            BezierControl1.Point2 = new Windows.Foundation.Point(width / 8, BezierControl1.Point2.Y);
-            BezierControl1.Point3 = new Windows.Foundation.Point(width * 2 / 8, BezierControl1.Point3.Y);
-            BezierControl2.Point1 = new Windows.Foundation.Point(width * 2 / 8, BezierControl2.Point1.Y);
-            BezierControl2.Point2 = new Windows.Foundation.Point(width * 3 / 8, BezierControl2.Point2.Y);
-            BezierControl2.Point3 = new Windows.Foundation.Point(width * 4 / 8, BezierControl2.Point3.Y);
-            BezierControl3.Point1 = new Windows.Foundation.Point(width * 4 / 8, BezierControl3.Point1.Y);
-            BezierControl3.Point2 = new Windows.Foundation.Point(width * 5 / 8, BezierControl3.Point2.Y);
-            BezierControl3.Point3 = new Windows.Foundation.Point(width * 6 / 8, BezierControl3.Point3.Y);
-            BezierControl4.Point1 = new Windows.Foundation.Point(width * 6 / 8, BezierControl3.Point1.Y);
-            BezierControl4.Point2 = new Windows.Foundation.Point(width * 7 / 8, BezierControl3.Point2.Y);
-            BezierControl4.Point3 = new Windows.Foundation.Point(width, BezierControl3.Point3.Y);
-            endPoint1.Point = new Windows.Foundation.Point(width, endPoint1.Point.Y);
+            SetPathPoint2(BezierControl1, Root.ActualWidth, 1f / 8f);
+            SetPathPoint3(BezierControl1, Root.ActualWidth, 2f / 8f);
+            SetPathPoint1(BezierControl2, Root.ActualWidth, 2f / 8f);
+            SetPathPoint2(BezierControl2, Root.ActualWidth, 3f / 8f);
+            SetPathPoint3(BezierControl2, Root.ActualWidth, 4f / 8f);
+            SetPathPoint1(BezierControl3, Root.ActualWidth, 4f / 8f);
+            SetPathPoint2(BezierControl3, Root.ActualWidth, 5f / 8f);
+            SetPathPoint3(BezierControl3, Root.ActualWidth, 6f / 8f);
+            SetPathPoint1(BezierControl4, Root.ActualWidth, 6f / 8f);
+            SetPathPoint2(BezierControl4, Root.ActualWidth, 7f / 8f);
+            SetPathPoint3(BezierControl4, Root.ActualWidth, 1);
+            SetEndPoint(endPoint1, Root.ActualWidth);
+        }
+
+        private void SetEndPoint(LineSegment endPoint1, double actualWidth)
+        {
+            var p = endPoint1.Point;
+            p.X = actualWidth;
+            endPoint1.Point = p;
+        }
+
+        private void SetPathPoint1(BezierSegment control, double actualWidth, float v)
+        {
+            var p = control.Point1;
+            p.X = actualWidth * v;
+            control.Point1 = p;
+        }
+        private void SetPathPoint2(BezierSegment control, double actualWidth, float v)
+        {
+            var p = control.Point2;
+            p.X = actualWidth * v;
+            control.Point2 = p;
+        }
+        private void SetPathPoint3(BezierSegment control, double actualWidth, float v)
+        {
+            var p = control.Point3;
+            p.X = actualWidth * v;
+            control.Point3 = p;
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

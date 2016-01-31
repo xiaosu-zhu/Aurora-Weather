@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using com.aurora.shared.Helpers;
+using Com.Aurora.Shared.Helpers;
 
-namespace com.aurora.auweather.Models.HeWeather.JsonContract
+namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
 {
     [DataContract]
     class HeWeatherContract

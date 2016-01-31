@@ -125,13 +125,13 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.aurora.auweather\com.aurora.auweather.csproj">
+    <ProjectReference Include="..\com.aurora.auweather\Com.Aurora.AuWeather.csproj">
       <Project>{bd2d8a98-2620-491b-8c82-7f7425ae6cb3}</Project>
-      <Name>com.aurora.auweather</Name>
+      <Name>Com.Aurora.AuWeather</Name>
     </ProjectReference>
-    <ProjectReference Include="..\com.aurora.shared\com.aurora.shared.csproj">
+    <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
-      <Name>com.aurora.shared</Name>
+      <Name>Com.Aurora.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

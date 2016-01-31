@@ -1,7 +1,7 @@
-﻿using com.aurora.auweather.Models;
-using com.aurora.shared.MVVM;
+﻿using Com.Aurora.AuWeather.Models;
+using Com.Aurora.Shared.MVVM;
 
-namespace com.aurora.auweather.ViewModels
+namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class WeatherViewModel : ViewModelBase
     {

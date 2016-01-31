@@ -1,11 +1,13 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace com.aurora.auweather
+namespace Com.Aurora.AuWeather
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -39,7 +41,20 @@ namespace com.aurora.auweather
                 //this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            
+            {
+                var view = ApplicationView.GetForCurrentView();
+                view.TitleBar.ForegroundColor = Colors.White;
+                view.TitleBar.InactiveForegroundColor = Colors.White;
+                view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+                // button
+                view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+                view.TitleBar.ButtonForegroundColor = Colors.White;
+                view.TitleBar.ButtonHoverForegroundColor = Colors.White;
+                view.TitleBar.ButtonPressedForegroundColor = Colors.White;
+                view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+                Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            }
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

@@ -42,7 +42,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace com.aurora.shared.Helpers
+namespace Com.Aurora.Shared.Helpers
 {
     public static class PinYinHelper
     {

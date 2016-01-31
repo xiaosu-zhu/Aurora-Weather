@@ -1,12 +1,12 @@
-﻿using com.aurora.auweather.Models.HeWeather;
-using com.aurora.shared.Helpers;
+﻿using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.auweather.Models
+namespace Com.Aurora.AuWeather.Models
 {
     public class SettingsModel
     {

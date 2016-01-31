@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.aurora.auweather", "com.aurora.auweather\com.aurora.auweather.csproj", "{BD2D8A98-2620-491B-8C82-7F7425AE6CB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Aurora.AuWeather", "com.aurora.auweather\Com.Aurora.AuWeather.csproj", "{BD2D8A98-2620-491B-8C82-7F7425AE6CB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.aurora.shared", "com.aurora.shared\com.aurora.shared.csproj", "{026D99CF-1C25-4DCF-AD95-1070BBA9F8A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Aurora.Shared", "com.aurora.shared\Com.Aurora.Shared.csproj", "{026D99CF-1C25-4DCF-AD95-1070BBA9F8A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{3E18E978-DE20-4E99-84E9-9FD0282E67A2}"
 EndProject

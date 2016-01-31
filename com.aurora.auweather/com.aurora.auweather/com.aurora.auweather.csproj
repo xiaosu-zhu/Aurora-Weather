@@ -7,8 +7,8 @@
     <ProjectGuid>{BD2D8A98-2620-491B-8C82-7F7425AE6CB3}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>com.aurora.auweather</RootNamespace>
-    <AssemblyName>com.aurora.auweather</AssemblyName>
+    <RootNamespace>Com.Aurora.AuWeather</RootNamespace>
+    <AssemblyName>Com.Aurora.AuWeather</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -100,10 +100,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ConditionConverter.cs" />
-    <Compile Include="Converters\DoubletoPointConverter.cs" />
-    <Compile Include="Converters\TempratureConverter.cs" />
-    <Compile Include="Converters\WindConverter.cs" />
+    <Compile Include="Converters\Converters.cs" />
+    <Compile Include="CustomControls\TempraturePath.xaml.cs">
+      <DependentUpon>TempraturePath.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -165,15 +165,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomControls\TempraturePath.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.aurora.shared\com.aurora.shared.csproj">
+    <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
-      <Name>com.aurora.shared</Name>
+      <Name>Com.Aurora.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

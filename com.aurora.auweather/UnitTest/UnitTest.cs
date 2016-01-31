@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using com.aurora.shared.Helpers;
+using Com.Aurora.Shared.Helpers;
 using System.Threading.Tasks;
 using System.Globalization;
-using com.aurora.auweather.Models;
+using Com.Aurora.AuWeather.Models;
 
 namespace UnitTest
 {

@@ -1,11 +1,11 @@
-﻿using com.aurora.auweather.Models;
+﻿using Com.Aurora.AuWeather.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.auweather.ViewModels
+namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class HourlyForecastViewModel : List<ForecastViewModel>
     {

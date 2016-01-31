@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.shared.MVVM
+namespace Com.Aurora.Shared.MVVM
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
@@ -27,7 +27,6 @@ namespace com.aurora.shared.MVVM
         protected bool SetProperty<T>(ref T backingField, T Value, [CallerMemberName] string propertyName = null)
         {
             var changed = !EqualityComparer<T>.Default.Equals(backingField, Value);
-
             if (changed)
             {
                 backingField = Value;

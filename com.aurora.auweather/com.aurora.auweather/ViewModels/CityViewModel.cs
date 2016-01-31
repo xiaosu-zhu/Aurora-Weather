@@ -1,5 +1,5 @@
-﻿using com.aurora.auweather.Models;
-using com.aurora.shared.MVVM;
+﻿using Com.Aurora.AuWeather.Models;
+using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.auweather.ViewModels
+namespace Com.Aurora.AuWeather.ViewModels
 {
     public class CityViewModel : ViewModelBase
     {

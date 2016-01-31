@@ -1,8 +1,8 @@
-﻿using com.aurora.auweather.Models;
-using com.aurora.auweather.Models.HeWeather;
-using com.aurora.auweather.Models.HeWeather.JsonContract;
-using com.aurora.shared.Helpers;
-using com.aurora.shared.MVVM;
+﻿using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.Shared.Helpers;
+using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
 using Windows.UI.Core;
 
-namespace com.aurora.auweather.ViewModels
+namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class MainPageViewModel : ViewModelBase
     {
@@ -20,8 +20,13 @@ namespace com.aurora.auweather.ViewModels
         private string city;
         private string id;
         private HeWeatherModel fetchresult;
-        private double[] tempraturePath = new double[] { 0, 0, 0, 0, 0, 0, 0 };
-
+        private double tempraturePath0;
+        private double tempraturePath1;
+        private double tempraturePath2;
+        private double tempraturePath3;
+        private double tempraturePath4;
+        private double tempraturePath5;
+        private double tempraturePath6;
 
         public Temprature Temprature
         {
@@ -75,16 +80,94 @@ namespace com.aurora.auweather.ViewModels
             }
         }
 
-        public double[] TempraturePath
+        public double TempraturePath0
         {
             get
             {
-                return tempraturePath;
+                return tempraturePath0;
             }
 
             set
             {
-                SetProperty(ref tempraturePath, value);
+                SetProperty(ref tempraturePath0, value);
+            }
+        }
+
+        public double TempraturePath1
+        {
+            get
+            {
+                return tempraturePath1;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath1, value);
+            }
+        }
+
+        public double TempraturePath2
+        {
+            get
+            {
+                return tempraturePath2;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath2, value);
+            }
+        }
+
+        public double TempraturePath3
+        {
+            get
+            {
+                return tempraturePath3;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath3, value);
+            }
+        }
+
+        public double TempraturePath4
+        {
+            get
+            {
+                return tempraturePath4;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath4, value);
+            }
+        }
+
+        public double TempraturePath5
+        {
+            get
+            {
+                return tempraturePath5;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath5, value);
+            }
+        }
+
+        public double TempraturePath6
+        {
+            get
+            {
+                return tempraturePath6;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePath6, value);
             }
         }
 
@@ -152,13 +235,19 @@ namespace com.aurora.auweather.ViewModels
             {
                 pathResults[j] -= avg;
             }
-            TempraturePath = pathResults.ToArray();
+            TempraturePath0 = pathResults[0];
+            TempraturePath1 = pathResults[1];
+            TempraturePath2 = pathResults[2];
+            TempraturePath3 = pathResults[3];
+            TempraturePath4 = pathResults[4];
+            TempraturePath5 = pathResults[5];
+            TempraturePath6 = pathResults[6];
         }
 
         private void ReadSettings()
         {
             var settings = SettingsModel.ReadSettings();
-            City = settings.SavedCities[0].City;
+            city = settings.SavedCities[0].City;
             id = settings.SavedCities[0].Id;
         }
     }

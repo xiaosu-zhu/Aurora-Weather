@@ -8,7 +8,7 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace com.aurora.shared.Helpers
+namespace Com.Aurora.Shared.Helpers
 {
     public class FileIOHelper
     {

@@ -8,7 +8,7 @@ using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-namespace com.aurora.shared.MVVM
+namespace Com.Aurora.Shared.MVVM
 {
     //public class DelegateCommand<T> : ICommand
     //{

@@ -1,4 +1,4 @@
-﻿namespace com.aurora.auweather.Models.HeWeather
+﻿namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     internal class NowWeather
     {

@@ -1,8 +1,8 @@
-﻿using com.aurora.auweather.Models;
+﻿using Com.Aurora.AuWeather.Models;
 using System;
 using System.ComponentModel;
 
-namespace com.aurora.auweather.ViewModels
+namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class ForecastViewModel : WeatherViewModel
     {

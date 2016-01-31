@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace com.aurora.auweather.Models
+namespace Com.Aurora.AuWeather.Models
 {
 
     internal class AQI

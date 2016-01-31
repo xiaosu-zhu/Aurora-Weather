@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace com.aurora.auweather.Models.HeWeather
+namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
     internal class HeWeatherModel : WeatherModel, IWeather

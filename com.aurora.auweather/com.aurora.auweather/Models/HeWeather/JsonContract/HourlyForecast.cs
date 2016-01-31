@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace com.aurora.auweather.Models.HeWeather.JsonContract
+namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
 {
     [DataContract]
     public class HourlyForecastContract
