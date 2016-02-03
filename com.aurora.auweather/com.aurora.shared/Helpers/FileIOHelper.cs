@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -65,6 +66,20 @@ namespace Com.Aurora.Shared.Helpers
                 }
             }
             flow.Dispose();
+        }
+
+        /// <summary>
+        /// 从安装目录读取文件，返回 byte[]
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public static async Task<byte[]> ReadAllBytes(string filename)
+        {
+            var uri = new Uri("ms-appx:///" + filename);
+            var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            var buffer = await FileIO.ReadBufferAsync(file);
+
+            return buffer.ToArray();
         }
     }
 }

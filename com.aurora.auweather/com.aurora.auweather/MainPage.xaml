@@ -7,53 +7,65 @@
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
     xmlns:Converters="using:Com.Aurora.Shared.Converters"
     xmlns:Canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:Controls="using:Com.Aurora.AuWeather.CustomControls"
     x:Class="Com.Aurora.AuWeather.MainPage"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Unloaded="Page_Unloaded">
 
     <Page.DataContext>
         <ViewModels:MainPageViewModel />
     </Page.DataContext>
 
-    <Page.Resources>
-        <Converters:TempratureConverter x:Key="TempratureConverter" />
-        <Converters:WindConverter x:Key="WindConverter" />
-        <Converters:TemraturePathConverter x:Key="TempraturePathConverter" />
-        <Converters:TempraturePathEndConverter x:Key="EndPointConverter" />
-    </Page.Resources>
+    <SplitView x:Name="Root" >
+        <SplitView.Pane>
+            <ListView />
+        </SplitView.Pane>
+        <SplitView.Content>
+            <RelativePanel >
+            <Frame x:Name="MainFrame" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF005CC1" Offset="0"/>
+                            <GradientStop Color="#FF00317A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                </Frame>
+                <Canvas:CanvasAnimatedControl x:Name="canvas" 
+                                              CreateResources="canvas_CreateResources" 
+                                              Update="canvas_Update" 
+                                              Draw="canvas_Draw" 
+                                              RelativePanel.AlignBottomWithPanel="True" 
+                                              RelativePanel.AlignLeftWithPanel="True" 
+                                              RelativePanel.AlignRightWithPanel="True" 
+                                              RelativePanel.AlignTopWithPanel="True" />
+                <CommandBar x:Name="ActionBar" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <AppBarButton Icon="Back" Label="Back" />
+                <AppBarButton Icon="Stop" Label="Stop" />
+                <AppBarButton Icon="Play" Label="Play" />
+                <AppBarButton Width="68" >
+                    <AppBarButton.Icon>
+                            <PathIcon Data="F1 M 39.7971,
+                                      9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,
+                                      6.79795 39.7971,9.99986 Z M 34,2.60895C 33.5201,2.60895 33.1301,2.21995 33.1301,1.73914L 33.1301,0.870157C 33.1301,0.390177 33.5201,0.000204086 34,0.000204086C 34.48,0.000204086 34.87,
+                                      0.390177 34.87,0.870157L 34.87,1.73914C 34.87,2.21995 34.48,2.60895 34,2.60895 Z M 26.609,10C 26.609,10.48 26.22,10.87 25.739,10.87L 24.87,10.87C 24.3901,10.87 24.0001,10.48 24.0001,
+                                      10C 24.0001,9.52002 24.3901,9.13002 24.87,9.13002L 25.739,9.13002C 26.22,9.13002 26.609,9.52002 26.609,10 Z M 34.0001,17.3911C 34.4801,17.3911 34.8701,17.78 34.8701,18.261L 34.8701,
+                                      19.13C 34.8701,19.61 34.4801,20 34.0001,20C 33.5201,20 33.1301,19.61 33.1301,19.13L 33.1301,18.261C 33.1301,17.78 33.5201,17.3911 34.0001,17.3911 Z M 41.3912,9.99996C 41.3912,9.51998 41.7802,
+                                      9.12998 42.261,9.12998L 43.13,9.12998C 43.61,9.12998 44,9.51998 44,9.99996C 44,10.4799 43.61,10.8699 43.13,10.8699L 42.261,10.8699C 41.7802,10.8699 41.3912,10.4799 41.3912,9.99996 Z M 28.3481,
+                                      3.47843C 28.3481,3.95844 27.9591,4.34841 27.4781,4.34841C 26.9982,4.34841 26.6092,3.95844 26.6092,3.47843C 26.6092,2.99845 26.9982,2.60848 27.4781,2.60848C 27.9591,2.60848 28.3481,2.99845 28.3481,
+                                      3.47843 Z M 27.4786,15.652C 27.9586,15.652 28.3486,16.0409 28.3486,16.5219C 28.3486,17.0019 27.9586,17.3909 27.4786,17.3909C 26.9987,17.3909 26.6087,17.0019 26.6087,16.5219C 26.6087,16.0409 26.9987,
+                                      15.652 27.4786,15.652 Z M 39.6522,16.5214C 39.6522,16.0414 40.0412,15.6514 40.5222,15.6514C 41.0021,15.6514 41.3911,16.0414 41.3911,16.5214C 41.3911,17.0014 41.0021,17.3914 40.5222,17.3914C 40.0412,
+                                      17.3914 39.6522,17.0014 39.6522,16.5214 Z M 40.5217,4.34784C 40.0417,4.34784 39.6517,3.95886 39.6517,3.47788C 39.6517,2.9979 40.0417,2.60891 40.5217,2.60891C 41.0017,2.60891 41.3916,2.9979 41.3916,
+                                      3.47788C 41.3916,3.95886 41.0017,4.34784 40.5217,4.34784 Z "/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
 
-    <RelativePanel x:Name="Root" LayoutUpdated="RelativePanel_LayoutUpdated">
-        <Canvas:CanvasAnimatedControl Background="Red" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="480" x:Name="MainCanvas" Draw="MainCanvas_Draw" CreateResources="MainCanvas_CreateResources" />
-        <Grid Height="32" x:Name="TitleBar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-        <TextBlock RelativePanel.Below="TitleBar" x:Name="CurrentCity" Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" RelativePanel.AlignHorizontalCenterWithPanel="True"  />
-        <StackPanel x:Name="ConditionPanel" Orientation="Horizontal" RelativePanel.Below="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True">
-            <TextBlock x:Name="NowCondition" Text="{Binding Condition}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
-            <TextBlock x:Name="NowTemp" Text="{Binding Temprature, ConverterParameter=Celsius, Converter={StaticResource TempratureConverter}}" Style="{StaticResource TitleTextBlockStyle}" />
-        </StackPanel>
-        <TextBlock x:Name="NowWind" Text="{Binding Wind, Converter={StaticResource WindConverter}, FallbackValue=fuck}" RelativePanel.Below="ConditionPanel" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Icon="Like" Label="Like" />
+                    <AppBarButton Icon="Dislike" Label="Dislike" />
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
+        </RelativePanel>
+        </SplitView.Content>
+    </SplitView>
 
-        <Path x:Name="TempraturePath" Height="120" RelativePanel.Below="NowWind" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Fill="Red">
-            <Path.Data>
-                <GeometryGroup>
-                    <PathGeometry>
-                        <PathGeometry.Figures>
-                            <PathFigureCollection>
-                                <PathFigure IsClosed="true" StartPoint="0,0">
-                                    <PathFigure.Segments>
-                                        <PathSegmentCollection>
-                                            <BezierSegment x:Name="BezierControl1" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                            <BezierSegment x:Name="BezierControl2" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                            <BezierSegment x:Name="BezierControl3" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                            <BezierSegment x:Name="BezierControl4" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                            <LineSegment x:Name="endPoint1" Point="0,120" />
-                                            <LineSegment Point="0,120" />
-                                        </PathSegmentCollection>
-                                    </PathFigure.Segments>
-                                </PathFigure>
-                            </PathFigureCollection>
-                        </PathGeometry.Figures>
-                    </PathGeometry>
-                </GeometryGroup>
-            </Path.Data>
-        </Path>
-    </RelativePanel>
 </Page>

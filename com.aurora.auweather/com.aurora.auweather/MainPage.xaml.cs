@@ -10,121 +10,126 @@ using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using System.Numerics;
 using Windows.UI.Xaml.Media;
+using System.Threading.Tasks;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using Com.Aurora.AuWeather.Effects;
 
 namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
+        RainParticleSystem rain = new RainParticleSystem(RainLevel.light);
+        private bool useSpriteBatch = false;
+
         public MainPage()
         {
             this.InitializeComponent();
 
         }
 
-        Random rnd = new Random();
-        private Vector2 RndPosition()
+        private void canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            double x = rnd.NextDouble() * 500f;
-            double y = rnd.NextDouble() * 500f;
-            return new Vector2((float)x, (float)y);
+            useSpriteBatch = CanvasSpriteBatch.IsSupported(sender.Device);
+            args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }
 
-        private float RndRadius()
+        async Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
-            return (float)rnd.NextDouble() * 150f;
+            await rain.CreateResourcesAsync(sender);
         }
 
-        private byte RndByte()
+        private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            return (byte)rnd.Next(256);
+            var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
+            CreateRain();
+            rain.Update(elapsedTime, canvas.Size.ToVector2());
         }
 
-        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
+        private void CreateRain()
         {
-            //SettingsModel origin = new SettingsModel();
-            //origin.AllowLocation = false;
-            //origin.RefreshState = RefreshState.none;
-            //origin.SavedCities = new CitySettingsModel[] {new CitySettingsModel(new Models.HeWeather.CityInfo
-            //{
-            //    City = "北京", Id = "CN101010100"
-            //}),new CitySettingsModel(new Models.HeWeather.CityInfo
-            //{
-            //    City = "郑州", Id = "CN101180101"
-            //}) };
-            //origin.SaveSettings();
-            //var actual = SettingsModel.ReadSettings();
+            Vector2 size = canvas.Size.ToVector2();
+            rain.AddRainDrop(size);
         }
 
-        private void MainCanvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
+        private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            float radius = (float)(1 + Math.Sin(args.Timing.TotalTime.TotalSeconds)) * 10f;
-            blur.BlurAmount = radius;
-            args.DrawingSession.DrawImage(blur);
-        }
-        GaussianBlurEffect blur;
-        private void MainCanvas_CreateResources(
-            Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender,
-            Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
-        {
-            CanvasCommandList cl = new CanvasCommandList(sender);
-            using (CanvasDrawingSession clds = cl.CreateDrawingSession())
-            {
-                for (int i = 0; i < 100; i++)
-                {
-                    clds.DrawText("Hello, World!", RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
-                    clds.DrawCircle(RndPosition(), RndRadius(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
-                    clds.DrawLine(RndPosition(), RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
-                }
-            }
-
-            blur = new GaussianBlurEffect()
-            {
-                Source = cl,
-                BlurAmount = 10.0f
-            };
+            var ds = args.DrawingSession;
+            rain.Draw(ds, useSpriteBatch);
+            GC.Collect();
         }
 
-        private void RelativePanel_LayoutUpdated(object sender, object e)
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            SetPathPoint2(BezierControl1, Root.ActualWidth, 1f / 8f);
-            SetPathPoint3(BezierControl1, Root.ActualWidth, 2f / 8f);
-            SetPathPoint1(BezierControl2, Root.ActualWidth, 2f / 8f);
-            SetPathPoint2(BezierControl2, Root.ActualWidth, 3f / 8f);
-            SetPathPoint3(BezierControl2, Root.ActualWidth, 4f / 8f);
-            SetPathPoint1(BezierControl3, Root.ActualWidth, 4f / 8f);
-            SetPathPoint2(BezierControl3, Root.ActualWidth, 5f / 8f);
-            SetPathPoint3(BezierControl3, Root.ActualWidth, 6f / 8f);
-            SetPathPoint1(BezierControl4, Root.ActualWidth, 6f / 8f);
-            SetPathPoint2(BezierControl4, Root.ActualWidth, 7f / 8f);
-            SetPathPoint3(BezierControl4, Root.ActualWidth, 1);
-            SetEndPoint(endPoint1, Root.ActualWidth);
+            canvas.RemoveFromVisualTree();
+            canvas = null;
         }
 
-        private void SetEndPoint(LineSegment endPoint1, double actualWidth)
-        {
-            var p = endPoint1.Point;
-            p.X = actualWidth;
-            endPoint1.Point = p;
-        }
+        //Random rnd = new Random();
+        //private Vector2 RndPosition()
+        //{
+        //    double x = rnd.NextDouble() * 500f;
+        //    double y = rnd.NextDouble() * 500f;
+        //    return new Vector2((float)x, (float)y);
+        //}
 
-        private void SetPathPoint1(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point1;
-            p.X = actualWidth * v;
-            control.Point1 = p;
-        }
-        private void SetPathPoint2(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point2;
-            p.X = actualWidth * v;
-            control.Point2 = p;
-        }
-        private void SetPathPoint3(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point3;
-            p.X = actualWidth * v;
-            control.Point3 = p;
-        }
+        //private float RndRadius()
+        //{
+        //    return (float)rnd.NextDouble() * 150f;
+        //}
+
+        //private byte RndByte()
+        //{
+        //    return (byte)rnd.Next(256);
+        //}
+
+        //private void TitleBar_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    SettingsModel origin = new SettingsModel();
+        //    origin.AllowLocation = false;
+        //    origin.RefreshState = RefreshState.none;
+        //    origin.SavedCities = new CitySettingsModel[] {new CitySettingsModel(new Models.HeWeather.CityInfo
+        //    {
+        //        City = "北京", Id = "CN101010100"
+        //    }),new CitySettingsModel(new Models.HeWeather.CityInfo
+        //    {
+        //        City = "郑州", Id = "CN101180101"
+        //    }) };
+        //    origin.SaveSettings();
+        //    var actual = SettingsModel.ReadSettings();
+        //}
+
+        //private void MainCanvas_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
+        //{
+        //    float radius = (float)(1 + Math.Sin(args.Timing.TotalTime.TotalSeconds)) * 10f;
+        //    blur.BlurAmount = radius;
+        //    args.DrawingSession.DrawImage(blur);
+        //}
+        //GaussianBlurEffect blur;
+        //private double width;
+
+        //private void MainCanvas_CreateResources(
+        //    Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender,
+        //    Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+        //{
+        //    CanvasCommandList cl = new CanvasCommandList(sender);
+        //    using (CanvasDrawingSession clds = cl.CreateDrawingSession())
+        //    {
+        //        for (int i = 0; i < 100; i++)
+        //        {
+        //            clds.DrawText("Hello, World!", RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+        //            clds.DrawCircle(RndPosition(), RndRadius(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+        //            clds.DrawLine(RndPosition(), RndPosition(), Color.FromArgb(255, RndByte(), RndByte(), RndByte()));
+        //        }
+        //    }
+
+        //    blur = new GaussianBlurEffect()
+        //    {
+        //        Source = cl,
+        //        BlurAmount = 10.0f
+        //    };
+        //}
+
+
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)
         //{
