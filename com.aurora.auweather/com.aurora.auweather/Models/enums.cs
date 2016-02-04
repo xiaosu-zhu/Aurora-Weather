@@ -31,5 +31,5 @@ namespace Com.Aurora.AuWeather.Models
 
     public enum RefreshState : byte { none, daily, six_hour, twelve_hour };
 
-    public enum RainLevel : byte { light, moderate, heavy, extreme };
+    public enum RainLevel : byte { light, moderate, heavy, extreme, snow };
 }

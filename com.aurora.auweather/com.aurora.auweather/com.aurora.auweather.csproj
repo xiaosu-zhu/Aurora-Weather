@@ -96,6 +96,14 @@
     </Content>
     <Content Include="Assets\Key" />
     <Content Include="Assets\rain.png" />
+    <Content Include="Assets\smoke1.png" />
+    <Content Include="Assets\smoke2.png" />
+    <Content Include="Assets\smoke3.png" />
+    <Content Include="Assets\smoke4.png" />
+    <Content Include="Assets\smoke5.png" />
+    <Content Include="Assets\smoke6.png" />
+    <Content Include="Assets\snow.png" />
+    <Content Include="Assets\star.png" />
     <Content Include="Assets\testdata" />
     <None Include="project.json" />
   </ItemGroup>
@@ -108,6 +116,8 @@
     <Compile Include="Effects\Particle.cs" />
     <Compile Include="Effects\ParticleSystem.cs" />
     <Compile Include="Effects\RainParticleSystem.cs" />
+    <Compile Include="Effects\SmokeParticleSystem.cs" />
+    <Compile Include="Effects\StarParticleSystem.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

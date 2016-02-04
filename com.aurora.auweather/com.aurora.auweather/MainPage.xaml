@@ -25,8 +25,8 @@
             <Frame x:Name="MainFrame" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
                     <Frame.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF005CC1" Offset="0"/>
-                            <GradientStop Color="#FF00317A" Offset="1"/>
+                            <GradientStop Color="#FF757678" Offset="0"/>
+                            <GradientStop Color="#FF444444" Offset="1"/>
                         </LinearGradientBrush>
                     </Frame.Background>
                 </Frame>

@@ -15,8 +15,8 @@ namespace Com.Aurora.AuWeather.Effects
         protected CanvasBitmap bitmap;
 
         // 纹理中心及边界
-        Vector2 bitmapCenter;
-        Rect bitmapBounds;
+        protected Vector2 bitmapCenter;
+        protected Rect bitmapBounds;
 
         // 当前激活的粒子，它们将会被循环利用
         List<Particle> activeParticles = new List<Particle>();
@@ -24,7 +24,7 @@ namespace Com.Aurora.AuWeather.Effects
         // 当前释放的粒子，画布上需要新粒子时，首先从这里调用，粒子到达生命周期/不在画布内，就会被回收到这里
         static Stack<Particle> freeParticles = new Stack<Particle>();
 
-        protected List<Particle> ActiveParticles
+        public List<Particle> ActiveParticles
         {
             get { return activeParticles; }
         }
@@ -70,8 +70,10 @@ namespace Com.Aurora.AuWeather.Effects
         protected float maxLifetime;
 
         // 粒子的缩放可以让粒子的样式更加多变(大小不一)，缩放倍率将会随机在 minScale 和 maxScale 之间取值
-        protected float minScale;
-        protected float maxScale;
+        protected float minScaleX;
+        protected float maxScaleX;
+        protected float minScaleY;
+        protected float maxScaleY;
 
         // 绘制的混合模式。火焰、烟雾在叠加模式下效果较好
         protected CanvasBlend blendState;
@@ -129,12 +131,13 @@ namespace Com.Aurora.AuWeather.Effects
             float velocity = Tools.RandomBetween(minInitialSpeed, maxInitialSpeed);
             float acceleration = Tools.RandomBetween(minAcceleration, maxAcceleration);
             float lifetime = Tools.RandomBetween(minLifetime, maxLifetime);
-            float scale = Tools.RandomBetween(minScale, maxScale);
+            float scaleX = Tools.RandomBetween(minScaleX, maxScaleX);
+            float scaleY = Tools.RandomBetween(minScaleY, maxScaleY);
             float rotationSpeed = Tools.RandomBetween(minRotationSpeed, maxRotationSpeed);
             float rotation = Tools.RandomBetween(minRotationAngle, maxRotationAngle);
 
             // 调用粒子的初始化方法
-            particle.Initialize(where, velocity * direction, acceleration * direction, lifetime, scale, rotation, rotationSpeed);
+            particle.Initialize(where, velocity * direction, acceleration * direction, lifetime, scaleX, scaleY, rotation, rotationSpeed);
         }
 
 
@@ -172,7 +175,7 @@ namespace Com.Aurora.AuWeather.Effects
 
 
         // 绘制所有粒子
-        public void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
+        public virtual void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
             // 保护原先画布的混合模式
             var previousBlend = drawingSession.Blend;
@@ -200,7 +203,7 @@ namespace Com.Aurora.AuWeather.Effects
         }
 
 
-        void Draw(CanvasDrawingSession drawingSession
+        protected virtual void Draw(CanvasDrawingSession drawingSession
 #if WINDOWS_UWP
             , CanvasSpriteBatch spriteBatch
 #endif
@@ -233,14 +236,15 @@ namespace Com.Aurora.AuWeather.Effects
 #if WINDOWS_UWP
                 if (spriteBatch != null)
                 {
-                    spriteBatch.Draw(bitmap, particle.Position, new Vector4(1, 1, 1, 1/*alpha*/), bitmapCenter, 1.5708f - particle.Rotation, new Vector2(1/*scale*/), CanvasSpriteFlip.None);
+                    spriteBatch.Draw(bitmap, particle.Position, new Vector4(1, 1, 1, 1/*alpha*/), bitmapCenter,
+                        particle.Rotation - 1.5708f, new Vector2(particle.ScaleX, particle.ScaleY/*scale*/), CanvasSpriteFlip.None);
                 }
                 else
 #endif
                 {
                     // Compute a transform matrix for this particle.
-                    var transform = Matrix3x2.CreateRotation(particle.Rotation, bitmapCenter) *
-                                    Matrix3x2.CreateScale(/*scale*/1, bitmapCenter) *
+                    var transform = Matrix3x2.CreateRotation(particle.Rotation - 1.5708f, bitmapCenter) *
+                                    Matrix3x2.CreateScale(/*scale*/particle.ScaleX, particle.ScaleY, bitmapCenter) *
                                     Matrix3x2.CreateTranslation(particle.Position - bitmapCenter);
 
                     // Draw the particle.

@@ -20,7 +20,8 @@ namespace Com.Aurora.AuWeather.Effects
         public float TimeSinceStart;
 
         // 缩放倍率
-        public float Scale;
+        public float ScaleX;
+        public float ScaleY;
 
         // 旋转弧度
         public float Rotation;
@@ -28,15 +29,19 @@ namespace Com.Aurora.AuWeather.Effects
         // 旋转速度
         public float RotationSpeed;
 
+        // 如果使用了多个贴图，这是与贴图关联的 key
+        public int Key;
+
 
         // 初始化方法被粒子系统调用，用来准备合适的粒子
-        public void Initialize(Vector2 position, Vector2 velocity, Vector2 acceleration, float lifetime, float scale, float rotation, float rotationSpeed)
+        public void Initialize(Vector2 position, Vector2 velocity, Vector2 acceleration, float lifetime, float scaleX, float scaleY, float rotation, float rotationSpeed)
         {
             this.Position = position;
             this.Velocity = velocity;
             this.Acceleration = acceleration;
             this.Lifetime = lifetime;
-            this.Scale = scale;
+            this.ScaleX = scaleX;
+            this.ScaleY = scaleY;
             this.RotationSpeed = rotationSpeed;
 
             // 重置生成时间

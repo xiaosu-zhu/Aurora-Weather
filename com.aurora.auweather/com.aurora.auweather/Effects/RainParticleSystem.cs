@@ -45,10 +45,35 @@ namespace Com.Aurora.AuWeather.Effects
                 case RainLevel.extreme:
                     Initializeextreme();
                     break;
+                case RainLevel.snow:
+                    Initializesnow();
+                    break;
                 default:
                     break;
             }
-            blendState = Microsoft.Graphics.Canvas.CanvasBlend.SourceOver;
+            blendState = Microsoft.Graphics.Canvas.CanvasBlend.Add;
+        }
+
+        private void Initializesnow()
+        {
+            bitmapFilename = "Assets/snow.png";
+            minRotationAngle = 1;
+            maxRotationAngle = 2;
+
+            minInitialSpeed = 50;
+            maxInitialSpeed = 150;
+
+            minAcceleration = 0;
+            maxAcceleration = 25;
+
+            minScaleX = 0.2f;
+            maxScaleX = 0.4f;
+
+            minScaleY = 0.2f;
+            maxScaleY = 0.4f;
+
+            minNumParticles = 0;
+            maxNumParticles = 2;
         }
 
         private void Initializeextreme()
@@ -56,16 +81,19 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1.5708f;
             maxRotationAngle = 1.5708f;
 
-            minInitialSpeed = 1200;
+            minInitialSpeed = 1800;
             maxInitialSpeed = 2000;
 
-            minAcceleration = 800;
+            minAcceleration = 1200;
             maxAcceleration = 1500;
 
-            minScale = 0.9f;
-            maxScale = 6;
+            minScaleX = 0.6f;
+            maxScaleX = 0.9f;
 
-            minNumParticles = 0;
+            minScaleY = 0.9f;
+            maxScaleY = 4;
+
+            minNumParticles = 9;
             maxNumParticles = 12;
         }
 
@@ -74,16 +102,19 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1.54f;
             maxRotationAngle = 1.57f;
 
-            minInitialSpeed = 900;
+            minInitialSpeed = 1400;
             maxInitialSpeed = 1600;
 
-            minAcceleration = 600;
+            minAcceleration = 900;
             maxAcceleration = 1000;
 
-            minScale = 0.9f;
-            maxScale = 4;
+            minScaleX = 0.6f;
+            maxScaleX = 0.9f;
 
-            minNumParticles = 0;
+            minScaleY = 0.9f;
+            maxScaleY = 2;
+
+            minNumParticles = 4;
             maxNumParticles = 8;
         }
 
@@ -92,16 +123,19 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1.45f;
             maxRotationAngle = 1.52f;
 
-            minInitialSpeed = 700;
+            minInitialSpeed = 900;
             maxInitialSpeed = 1200;
 
-            minAcceleration = 400;
+            minAcceleration = 600;
             maxAcceleration = 800;
 
-            minScale = 0.8f;
-            maxScale = 3;
+            minScaleX = 0.6f;
+            maxScaleX = 0.9f;
 
-            minNumParticles = 0;
+            minScaleY = 0.9f;
+            maxScaleY = 1.3f;
+
+            minNumParticles = 1;
             maxNumParticles = 4;
         }
 
@@ -110,14 +144,17 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1.404f;
             maxRotationAngle = 1.484f;
 
-            minInitialSpeed = 400;
+            minInitialSpeed = 600;
             maxInitialSpeed = 950;
 
-            minAcceleration = 100;
+            minAcceleration = 400;
             maxAcceleration = 600;
 
-            minScale = 0.8f;
-            maxScale = 2;
+            minScaleX = 0.6f;
+            maxScaleX = 0.9f;
+
+            minScaleY = 0.7f;
+            maxScaleY = 1;
 
             minNumParticles = 0;
             maxNumParticles = 2;
@@ -142,7 +179,7 @@ namespace Com.Aurora.AuWeather.Effects
             for (int i = ActiveParticles.Count - 1; i >= 0; i--)
             {
                 var p = ActiveParticles[i];
-                if (p.Position.X <= size.X && p.Position.Y <= size.Y)
+                if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
                 {
                     p.Update(elapsedTime);
                 }
@@ -157,14 +194,14 @@ namespace Com.Aurora.AuWeather.Effects
         /// <summary>
         /// 获得画布尺寸，在画布顶部生成粒子
         /// </summary>
-        /// <param name="Size"></param>
-        public void AddRainDrop(Vector2 Size)
+        /// <param name="size"></param>
+        public void AddRainDrop(Vector2 size)
         {
             int numParticles = Tools.Random.Next(minNumParticles, maxNumParticles);
-            float x = Tools.RandomBetween(0 - Size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), Size.X);
             for (int i = 0; i < numParticles; i++)
             {
                 Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
+                float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
                 InitializeParticle(particle, new Vector2(x, -5));
                 ActiveParticles.Add(particle);
             }
@@ -175,11 +212,12 @@ namespace Com.Aurora.AuWeather.Effects
             float velocity = Tools.RandomBetween(minInitialSpeed, maxInitialSpeed);
             float acceleration = Tools.RandomBetween(minAcceleration, maxAcceleration);
             float lifetime = Tools.RandomBetween(minLifetime, maxLifetime);
-            float scale = Tools.RandomBetween(minScale, maxScale);
+            float scaleX = Tools.RandomBetween(minScaleX, maxScaleX);
+            float scaleY = Tools.RandomBetween(minScaleY, maxScaleY);
             float rotationSpeed = Tools.RandomBetween(minRotationSpeed, maxRotationSpeed);
             float rotation = Tools.RandomBetween(minRotationAngle, maxRotationAngle);
             Vector2 direction = PickDirection(rotation);
-            particle.Initialize(where, velocity * direction, acceleration * direction, lifetime, scale, rotation, rotationSpeed);
+            particle.Initialize(where, velocity * direction, acceleration * direction, lifetime, scaleX, scaleY, rotation, rotationSpeed);
         }
     }
 }
