@@ -30,14 +30,8 @@
                         </LinearGradientBrush>
                     </Frame.Background>
                 </Frame>
-                <Canvas:CanvasAnimatedControl x:Name="canvas" 
-                                              CreateResources="canvas_CreateResources" 
-                                              Update="canvas_Update" 
-                                              Draw="canvas_Draw" 
-                                              RelativePanel.AlignBottomWithPanel="True" 
-                                              RelativePanel.AlignLeftWithPanel="True" 
-                                              RelativePanel.AlignRightWithPanel="True" 
-                                              RelativePanel.AlignTopWithPanel="True" />
+                <Canvas:CanvasAnimatedControl x:Name="canvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                              CreateResources="canvas_CreateResources" Draw="canvas_Draw" Update="canvas_Update" />
                 <CommandBar x:Name="ActionBar" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                 <AppBarButton Icon="Back" Label="Back" />
                 <AppBarButton Icon="Stop" Label="Stop" />

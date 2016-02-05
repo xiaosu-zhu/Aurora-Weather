@@ -118,6 +118,8 @@
     <Compile Include="Effects\RainParticleSystem.cs" />
     <Compile Include="Effects\SmokeParticleSystem.cs" />
     <Compile Include="Effects\StarParticleSystem.cs" />
+    <Compile Include="Effects\Thunder.cs" />
+    <Compile Include="Effects\ThunderGenerator.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

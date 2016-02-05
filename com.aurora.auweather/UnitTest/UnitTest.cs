@@ -4,6 +4,7 @@ using Com.Aurora.Shared.Helpers;
 using System.Threading.Tasks;
 using System.Globalization;
 using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.Effects;
 
 namespace UnitTest
 {
@@ -93,6 +94,11 @@ namespace UnitTest
             origin.SaveSettings();
             var actual = SettingsModel.ReadSettings();
             Assert.AreEqual(origin, actual);
+        }
+        [TestMethod]
+        public void ThunderPathTest()
+        {
+            Thunder t = new Thunder(2.5f,new System.Numerics.Vector2(150,700));
         }
     }
 }

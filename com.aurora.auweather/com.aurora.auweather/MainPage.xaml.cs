@@ -19,86 +19,34 @@ namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
-        RainParticleSystem rain = new RainParticleSystem(RainLevel.light);
-        //StarParticleSystem star = new StarParticleSystem();
-        private bool useSpriteBatch = false;
-        SmokeParticleSystem smoke = new SmokeParticleSystem();
-        private float timeToCreate = 0;
+        ThunderGenerator thunderGen;
 
         public MainPage()
         {
             this.InitializeComponent();
-
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            useSpriteBatch = CanvasSpriteBatch.IsSupported(sender.Device);
-            args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-        }
-
-        async Task CreateResourcesAsync(CanvasAnimatedControl sender)
-        {
-            await rain.CreateResourcesAsync(sender);
-            //await star.CreateResourcesAsync(sender);
-            await smoke.CreateResourcesAsync(sender);
+            thunderGen = new ThunderGenerator();
+            thunderGen.GenerateThunder(canvas.Size.ToVector2());
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
-            timeToCreate -= elapsedTime;
-            CreateRain();
-            rain.Update(elapsedTime, canvas.Size.ToVector2());
-            var k = canvas.Size.Height * canvas.Size.Width;
-            //if (star.ActiveParticles.Count < 1e-4 * k)
-            //{
-            //    CreateStar();
-            //}
-            if (timeToCreate < 0)
-            {
-                timeToCreate = Tools.RandomBetween(10, 20);
-                timeToCreate += elapsedTime;
-                CreateSmoke();
-            }
-            //star.Update(elapsedTime);
-            smoke.Update(elapsedTime);
-        }
-
-        private void CreateSmoke()
-        {
-            Vector2 size = canvas.Size.ToVector2();
-            // 在左侧生成
-            var where = new Vector2(size.X * 0.5f, size.Y);
-            smoke.AddParticles(where);
-        }
-
-        private void CreateRain()
-        {
-            Vector2 size = canvas.Size.ToVector2();
-            rain.AddRainDrop(size);
-        }
-
-        private void CreateStar()
-        {
-            Vector2 size = canvas.Size.ToVector2();
-            var where = new Vector2(Tools.RandomBetween(0, size.X), Tools.RandomBetween(0, size.Y * 0.65f));
-            //star.AddParticles(where);
+            thunderGen.Update((float)args.Timing.ElapsedTime.TotalSeconds, canvas.Size.ToVector2());
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var ds = args.DrawingSession;
-            rain.Draw(ds, useSpriteBatch);
-            //star.Draw(ds, useSpriteBatch);
-            smoke.Draw(ds, useSpriteBatch);
+            thunderGen.Draw(sender, args.DrawingSession);
             //GC.Collect();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            canvas.RemoveFromVisualTree();
-            canvas = null;
+            //canvas.RemoveFromVisualTree();
+            //canvas = null;
         }
 
         //Random rnd = new Random();
