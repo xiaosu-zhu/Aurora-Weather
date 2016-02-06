@@ -23,6 +23,8 @@ namespace Com.Aurora.AuWeather.Effects
 
         public List<Vector2> Path { get; private set; }
         public Vector2 Position { get; private set; }
+        public int LifeLong { get; private set; }
+        public float TimeSinceStart { get; private set; }
 
         public Thunder(float duration, Vector2 size)
         {
@@ -38,7 +40,7 @@ namespace Com.Aurora.AuWeather.Effects
             List<Vector2> points = new List<Vector2>();
             var start = new Vector2(0, 0);
             points.Add(start);
-            var end = new Vector2(0, Tools.RandomBetween(size.Y * 0.5f, size.Y * 0.8f));
+            var end = new Vector2(Tools.RandomBetween(size.X * -0.5f, size.X * 0.5f), Tools.RandomBetween(size.Y * 0.5f, size.Y));
             points.Add(end);
             List<Vector2> midPoints = new List<Vector2>();
             var mscale = scale;
@@ -67,6 +69,19 @@ namespace Com.Aurora.AuWeather.Effects
             this.Path = points;
         }
 
+        internal void Update(float elapsedTime)
+        {
+            if (LifeLong < Path.Count)
+            {
+                LifeLong += 25;
+                if (LifeLong > Path.Count)
+                {
+                    LifeLong = Path.Count;
+                }
+            }
+            TimeSinceStart += elapsedTime;
+        }
+
         /// <summary>
         /// 在画布的某一位置布置元素
         /// </summary>
@@ -74,6 +89,8 @@ namespace Com.Aurora.AuWeather.Effects
         internal void Generate(Vector2 size)
         {
             this.Position = new Vector2((float)Tools.RandomBetween(size.X * 0.2f, size.X * 0.8f), 0);
+            this.LifeLong = 0;
+            TimeSinceStart = 0;
         }
     }
 }

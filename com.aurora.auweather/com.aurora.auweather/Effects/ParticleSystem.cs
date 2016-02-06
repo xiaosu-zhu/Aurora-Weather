@@ -177,6 +177,8 @@ namespace Com.Aurora.AuWeather.Effects
         // 绘制所有粒子
         public virtual void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
+            if (bitmap == null)
+                return;
             // 保护原先画布的混合模式
             var previousBlend = drawingSession.Blend;
 

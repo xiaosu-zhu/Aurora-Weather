@@ -19,7 +19,6 @@ namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
-        ThunderGenerator thunderGen;
 
         public MainPage()
         {
@@ -28,18 +27,16 @@ namespace Com.Aurora.AuWeather
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            thunderGen = new ThunderGenerator();
-            thunderGen.GenerateThunder(canvas.Size.ToVector2());
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            thunderGen.Update((float)args.Timing.ElapsedTime.TotalSeconds, canvas.Size.ToVector2());
+
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            thunderGen.Draw(sender, args.DrawingSession);
+
             //GC.Collect();
         }
 
@@ -47,6 +44,12 @@ namespace Com.Aurora.AuWeather
         {
             //canvas.RemoveFromVisualTree();
             //canvas = null;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            WeatherCondition c = (WeatherCondition)Tools.Random.Next(52);
+            WeatherCanvas.ChangeCondition(c, Tools.RandomBool(), Tools.RandomBool());
         }
 
         //Random rnd = new Random();

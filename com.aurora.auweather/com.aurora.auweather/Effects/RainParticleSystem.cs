@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 using Com.Aurora.Shared.Helpers;
+using Microsoft.Graphics.Canvas;
+using Windows.Foundation;
 
 namespace Com.Aurora.AuWeather.Effects
 {
@@ -14,6 +16,12 @@ namespace Com.Aurora.AuWeather.Effects
     public class RainParticleSystem : ParticleSystem
     {
         private RainLevel rainLevel;
+        private CanvasBitmap snowbitmap;
+        private CanvasBitmap rainbitmap;
+        private Vector2 snowCenter;
+        private Rect snowBounds;
+        private Rect rainBounds;
+        private Vector2 rainCenter;
 
         /// <summary>
         /// 根据雨的规模设置初始化参数
@@ -26,7 +34,9 @@ namespace Com.Aurora.AuWeather.Effects
         }
         protected override void InitializeConstants()
         {
-            bitmapFilename = "Assets/rain.png";
+            bitmap = rainbitmap;
+            bitmapCenter = rainCenter;
+            bitmapBounds = rainBounds;
             minLifetime = 0;
             maxLifetime = 0;
             minRotationSpeed = 0;
@@ -45,18 +55,48 @@ namespace Com.Aurora.AuWeather.Effects
                 case RainLevel.extreme:
                     Initializeextreme();
                     break;
-                case RainLevel.snow:
-                    Initializesnow();
+                case RainLevel.sSnow:
+                    InitializesSnow();
+                    break;
+                case RainLevel.lSnow:
+                    InitializelSnow();
                     break;
                 default:
+                    InitializeLight();
                     break;
             }
-            blendState = Microsoft.Graphics.Canvas.CanvasBlend.Add;
+            blendState = CanvasBlend.Add;
         }
 
-        private void Initializesnow()
+        private void InitializelSnow()
         {
-            bitmapFilename = "Assets/snow.png";
+            bitmap = snowbitmap;
+            bitmapCenter = snowCenter;
+            bitmapBounds = snowBounds;
+            minRotationAngle = 1;
+            maxRotationAngle = 2;
+
+            minInitialSpeed = 80;
+            maxInitialSpeed = 120;
+
+            minAcceleration = 0;
+            maxAcceleration = 40;
+
+            minScaleX = 0.3f;
+            maxScaleX = 0.6f;
+
+            minScaleY = 0.3f;
+            maxScaleY = 0.6f;
+
+            minNumParticles = 0;
+            maxNumParticles = 4;
+        }
+
+        private void InitializesSnow()
+        {
+            bitmap = snowbitmap;
+            bitmapCenter = snowCenter;
+            bitmapBounds = snowBounds;
             minRotationAngle = 1;
             maxRotationAngle = 2;
 
@@ -160,6 +200,17 @@ namespace Com.Aurora.AuWeather.Effects
             maxNumParticles = 2;
         }
 
+        public override async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
+        {
+            snowbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/snow.png");
+            rainbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/rain.png");
+            snowCenter = snowbitmap.Size.ToVector2() / 2;
+            snowBounds = snowbitmap.Bounds;
+            rainCenter = rainbitmap.Size.ToVector2() / 2;
+            rainBounds = rainbitmap.Bounds;
+            ChangeConstants(this.rainLevel);
+        }
+
         /// <summary>
         /// 根据旋转角度确定下落角度
         /// </summary>
@@ -218,6 +269,37 @@ namespace Com.Aurora.AuWeather.Effects
             float rotation = Tools.RandomBetween(minRotationAngle, maxRotationAngle);
             Vector2 direction = PickDirection(rotation);
             particle.Initialize(where, velocity * direction, acceleration * direction, lifetime, scaleX, scaleY, rotation, rotationSpeed);
+        }
+
+        internal void ChangeConstants(RainLevel rainLevel)
+        {
+            bitmap = rainbitmap;
+            bitmapCenter = rainCenter;
+            bitmapBounds = rainBounds;
+            switch (rainLevel)
+            {
+                case RainLevel.light:
+                    InitializeLight();
+                    break;
+                case RainLevel.moderate:
+                    Initializemoderate();
+                    break;
+                case RainLevel.heavy:
+                    Initializeheavy();
+                    break;
+                case RainLevel.extreme:
+                    Initializeextreme();
+                    break;
+                case RainLevel.sSnow:
+                    InitializesSnow();
+                    break;
+                case RainLevel.lSnow:
+                    InitializelSnow();
+                    break;
+                default:
+                    InitializeLight();
+                    break;
+            }
         }
     }
 }

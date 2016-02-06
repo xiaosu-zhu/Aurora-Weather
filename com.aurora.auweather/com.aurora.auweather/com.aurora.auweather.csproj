@@ -96,6 +96,8 @@
     </Content>
     <Content Include="Assets\Key" />
     <Content Include="Assets\rain.png" />
+    <Content Include="Assets\rain_cloud.mp4" />
+    <Content Include="Assets\rain_cloud.png" />
     <Content Include="Assets\smoke1.png" />
     <Content Include="Assets\smoke2.png" />
     <Content Include="Assets\smoke3.png" />
@@ -112,7 +114,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\Converters.cs" />
-    <Compile Include="CustomControls\WeatherCanvas.cs" />
+    <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
+      <DependentUpon>WeatherCanvas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Effects\Particle.cs" />
     <Compile Include="Effects\ParticleSystem.cs" />
     <Compile Include="Effects\RainParticleSystem.cs" />
@@ -186,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomControls\WeatherCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

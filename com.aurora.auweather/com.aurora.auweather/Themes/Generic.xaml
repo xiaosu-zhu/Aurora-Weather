@@ -5,28 +5,5 @@
     xmlns:Controls="using:Com.Aurora.AuWeather.CustomControls"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml">
 
-    <Style TargetType="Controls:WeatherCanvas">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Controls:WeatherCanvas">
-                    <RelativePanel x:Name="Root">
-                        <RelativePanel.Resources>
-                            <Storyboard x:Name="SunAnimation">
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Overlay" Storyboard.TargetProperty="Source">
-
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </RelativePanel.Resources>
-                        <Image x:Name="Background" Stretch="UniformToFill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"
-                               RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                        <canvas:CanvasAnimatedControl x:Name="Canvas" RelativePanel.AlignBottomWithPanel="True"
-                                                      RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                                                      RelativePanel.AlignTopWithPanel="True"/>
-                        <Image x:Name="Overlay" Stretch="UniformToFill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"
-                               RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                    </RelativePanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+   
 </ResourceDictionary>

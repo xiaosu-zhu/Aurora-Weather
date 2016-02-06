@@ -56,5 +56,10 @@ namespace Com.Aurora.Shared.Helpers
         {
             return min == max ? min : min + (float)random.NextDouble() * (max - min);
         }
+
+        public static bool RandomBool()
+        {
+            return random.NextDouble() > 0.5;
+        }
     }
 }

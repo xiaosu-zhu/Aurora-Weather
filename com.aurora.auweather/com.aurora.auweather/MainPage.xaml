@@ -22,7 +22,7 @@
         </SplitView.Pane>
         <SplitView.Content>
             <RelativePanel >
-            <Frame x:Name="MainFrame" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+                <Frame x:Name="MainFrame" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
                     <Frame.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF757678" Offset="0"/>
@@ -30,14 +30,16 @@
                         </LinearGradientBrush>
                     </Frame.Background>
                 </Frame>
-                <Canvas:CanvasAnimatedControl x:Name="canvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                              CreateResources="canvas_CreateResources" Draw="canvas_Draw" Update="canvas_Update" />
+                <!--Canvas:CanvasAnimatedControl x:Name="canvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                              CreateResources="canvas_CreateResources" Draw="canvas_Draw" Update="canvas_Update" /-->
+                <Controls:WeatherCanvas x:Name="WeatherCanvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                                        />
                 <CommandBar x:Name="ActionBar" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <AppBarButton Icon="Back" Label="Back" />
-                <AppBarButton Icon="Stop" Label="Stop" />
-                <AppBarButton Icon="Play" Label="Play" />
-                <AppBarButton Width="68" >
-                    <AppBarButton.Icon>
+                    <AppBarButton Icon="Back" Label="Back" />
+                    <AppBarButton Icon="Stop" Label="Stop" />
+                    <AppBarButton Icon="Play" Label="Play" />
+                    <AppBarButton Width="68" Click="AppBarButton_Click" >
+                        <AppBarButton.Icon>
                             <PathIcon Data="F1 M 39.7971,
                                       9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,
                                       6.79795 39.7971,9.99986 Z M 34,2.60895C 33.5201,2.60895 33.1301,2.21995 33.1301,1.73914L 33.1301,0.870157C 33.1301,0.390177 33.5201,0.000204086 34,0.000204086C 34.48,0.000204086 34.87,
@@ -50,15 +52,15 @@
                                       15.652 27.4786,15.652 Z M 39.6522,16.5214C 39.6522,16.0414 40.0412,15.6514 40.5222,15.6514C 41.0021,15.6514 41.3911,16.0414 41.3911,16.5214C 41.3911,17.0014 41.0021,17.3914 40.5222,17.3914C 40.0412,
                                       17.3914 39.6522,17.0014 39.6522,16.5214 Z M 40.5217,4.34784C 40.0417,4.34784 39.6517,3.95886 39.6517,3.47788C 39.6517,2.9979 40.0417,2.60891 40.5217,2.60891C 41.0017,2.60891 41.3916,2.9979 41.3916,
                                       3.47788C 41.3916,3.95886 41.0017,4.34784 40.5217,4.34784 Z "/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                        </AppBarButton.Icon>
+                    </AppBarButton>
 
-                <CommandBar.SecondaryCommands>
-                    <AppBarButton Icon="Like" Label="Like" />
-                    <AppBarButton Icon="Dislike" Label="Dislike" />
-                </CommandBar.SecondaryCommands>
-            </CommandBar>
-        </RelativePanel>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton Icon="Like" Label="Like" />
+                        <AppBarButton Icon="Dislike" Label="Dislike" />
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </RelativePanel>
         </SplitView.Content>
     </SplitView>
 

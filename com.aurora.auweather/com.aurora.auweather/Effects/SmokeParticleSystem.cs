@@ -31,8 +31,8 @@ namespace Com.Aurora.AuWeather.Effects
         {
             smokeSurfaceName = new string[] {"Assets/smoke1.png", "Assets/smoke2.png",
             "Assets/smoke3.png","Assets/smoke4.png","Assets/smoke5.png","Assets/smoke6.png"};
-            minLifetime = 10;
-            maxLifetime = 20;
+            minLifetime = 5;
+            maxLifetime = 7;
             minRotationAngle = -1.5708f;
             maxRotationAngle = 1.5708f;
             minRotationSpeed = 0;
@@ -41,8 +41,8 @@ namespace Com.Aurora.AuWeather.Effects
             maxScaleX = 4;
             minScaleY = 1;
             maxScaleY = 4;
-            minNumParticles = 7;
-            maxNumParticles = 10;
+            minNumParticles = 10;
+            maxNumParticles = 15;
             blendState = CanvasBlend.Add;
             minInitialSpeed = 100;
             maxInitialSpeed = 150;
@@ -79,7 +79,7 @@ namespace Com.Aurora.AuWeather.Effects
             {
                 // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                 Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                var where = new Vector2((float)Tools.RandomBetween(-size.X * 0.5f, size.X), (float)Tools.RandomBetween(0, size.Y));
+                var where = new Vector2(Tools.RandomBetween(-size.X * 0.5f, size.X * 0.5f), Tools.RandomBetween(0, size.Y));
                 // 初始化粒子参数
                 InitializeParticle(particle, where);
                 particle.Key = Tools.Random.Next(0, 6);

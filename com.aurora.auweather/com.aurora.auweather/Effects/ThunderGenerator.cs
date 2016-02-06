@@ -20,13 +20,9 @@ namespace Com.Aurora.AuWeather.Effects
     public class ThunderGenerator
     {
         private float maxDuration;
-        private float maxSpan;
         private float minDuration;
-        private float minSpan;
-        private Thunder[] thunders;
         private CanvasBlend blendState;
         private Thunder currentThunder;
-        private float timeToCreate = 0;
         GaussianBlurEffect blur = new GaussianBlurEffect();
 
         public ThunderGenerator()
@@ -36,22 +32,9 @@ namespace Com.Aurora.AuWeather.Effects
 
         private void InitializeConstants()
         {
-            minDuration = 0.2f;
-            maxDuration = 1.0f;
-            minSpan = 1.5f;
-            maxSpan = 8f;
+            minDuration = 0.5f;
+            maxDuration = 0.8f;
             blendState = CanvasBlend.Add;
-        }
-
-        public void GenerateThunder(Vector2 size)
-        {
-            // store 16 thunders
-            List<Thunder> t = new List<Thunder>();
-            for (int i = 0; i < 16; i++)
-            {
-                t.Add(new Thunder(Tools.RandomBetween(minDuration, maxDuration), size));
-            }
-            this.thunders = t.ToArray();
         }
 
 
@@ -60,18 +43,18 @@ namespace Com.Aurora.AuWeather.Effects
         /// </summary>
         public void Update(float elapsedTime, Vector2 size)
         {
-            timeToCreate -= elapsedTime;
-            if (timeToCreate < 0)
-            {
-                timeToCreate = Tools.RandomBetween(minSpan, maxSpan);
-                timeToCreate += elapsedTime;
-                SelectThunder(size);
-            }
+            if (currentThunder != null)
+                currentThunder.Update(elapsedTime);
         }
 
-        public void SelectThunder(Vector2 size)
+        /// <summary>
+        /// 在任意位置，生成一道闪电
+        /// </summary>
+        /// <param name="size"></param>
+        public void Generate(Vector2 size)
         {
-            currentThunder = thunders[Tools.Random.Next(16)];
+            currentThunder = //thunders[Tools.Random.Next(16)];
+                new Thunder(Tools.RandomBetween(minDuration, maxDuration), size);
             currentThunder.Generate(size);
         }
 
@@ -86,27 +69,35 @@ namespace Com.Aurora.AuWeather.Effects
             drawingSession.Blend = blendState;
             var builder = new CanvasPathBuilder(sender);
             builder.BeginFigure(0, 0);
-            foreach (var point in currentThunder.Path)
+            for (int i = 0; i < currentThunder.LifeLong; i++)
             {
-                builder.AddLine(point.X, point.Y);
+                builder.AddLine(currentThunder.Path[i].X, currentThunder.Path[i].Y);
             }
             builder.EndFigure(CanvasFigureLoop.Open);
+            builder.SetSegmentOptions(CanvasFigureSegmentOptions.ForceRoundLineJoin);
             //var transform = Matrix3x2.CreateRotation(particle.Rotation - 1.5708f, bitmapCenter) *
             //                       Matrix3x2.CreateScale(/*scale*/particle.ScaleX, particle.ScaleY, bitmapCenter) *
             //                       Matrix3x2.CreateTranslation(particle.Position - bitmapCenter);
 
             // Draw the particle.
+            var path = CanvasGeometry.CreatePath(builder);
+            var NormalizeLifeTime = currentThunder.TimeSinceStart / currentThunder.Duration;
+            byte opacity = (byte)((NormalizeLifeTime - 1) * (NormalizeLifeTime - 1) * 255);
             CanvasCommandList cl = new CanvasCommandList(sender);
             using (CanvasDrawingSession clds = cl.CreateDrawingSession())
             {
-                var path = CanvasGeometry.CreatePath(builder);
-                clds.DrawGeometry(path, currentThunder.Position, Color.FromArgb(150, 255, 240, 180), 2);
+                clds.DrawGeometry(path, currentThunder.Position, Color.FromArgb((byte)(0.75f * opacity), 255, 255, 255), 6);
             }
+            var lightAmount = 20.6f * currentThunder.Luminace * (NormalizeLifeTime - 1) * (NormalizeLifeTime - 1);
             blur.Source = cl;
-            blur.BlurAmount = 4;
+            blur.BlurAmount = lightAmount;
             drawingSession.DrawImage(blur);
-            drawingSession.DrawImage(cl);
+            drawingSession.DrawGeometry(path, currentThunder.Position, Color.FromArgb(opacity, 255, 240, 180), 2);
             drawingSession.Blend = previousBlend;
+            if (NormalizeLifeTime > 1)
+            {
+                currentThunder = null;
+            }
         }
     }
 }
