@@ -19,7 +19,7 @@
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
         </RelativePanel.Resources>
-        <MediaElement x:Name="BG" AutoPlay="True" IsLooping="True" Stretch="UniformToFill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"
+        <Image x:Name="BG" Stretch="UniformToFill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"
                                RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
         <canvas:CanvasAnimatedControl x:Name="Canvas" RelativePanel.AlignBottomWithPanel="True"
                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"

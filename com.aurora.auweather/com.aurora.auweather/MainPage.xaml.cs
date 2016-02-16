@@ -1,18 +1,7 @@
 ﻿using Com.Aurora.AuWeather.Models;
-using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
-using System.Windows;
 using Windows.UI.Xaml;
-using System;
-using Com.Aurora.AuWeather.ViewModels;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Effects;
-using System.Numerics;
-using Windows.UI.Xaml.Media;
-using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using Com.Aurora.AuWeather.Effects;
 using Com.Aurora.Shared.Helpers;
 
 namespace Com.Aurora.AuWeather
@@ -25,32 +14,17 @@ namespace Com.Aurora.AuWeather
             this.InitializeComponent();
         }
 
-        private void canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
-        {
-        }
-
-        private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
-        {
-
-        }
-
-        private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
-
-            //GC.Collect();
-        }
-
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             //canvas.RemoveFromVisualTree();
             //canvas = null;
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            WeatherCondition c = (WeatherCondition)Tools.Random.Next(52);
-            WeatherCanvas.ChangeCondition(c, Tools.RandomBool(), Tools.RandomBool());
+            MainFrame.Navigate(typeof(NowWeatherPage));
         }
+
 
         //Random rnd = new Random();
         //private Vector2 RndPosition()

@@ -271,7 +271,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void SetSnow(int v)
         {
             isRain = true;
-            BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
             switch (v)
             {
                 default:
@@ -289,7 +289,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void SetRain(int v)
         {
             isRain = true;
-            BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
             switch (v)
             {
                 default:
@@ -323,7 +323,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void SetCloudy(int v)
         {
-            BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
             isCloudy = true;
         }
 

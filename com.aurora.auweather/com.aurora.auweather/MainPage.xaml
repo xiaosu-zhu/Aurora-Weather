@@ -16,29 +16,25 @@
         <ViewModels:MainPageViewModel />
     </Page.DataContext>
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition />
+            <NavigationThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+
     <SplitView x:Name="Root" >
         <SplitView.Pane>
             <ListView />
         </SplitView.Pane>
         <SplitView.Content>
             <RelativePanel >
-                <Frame x:Name="MainFrame" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
-                    <Frame.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF757678" Offset="0"/>
-                            <GradientStop Color="#FF444444" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Frame.Background>
-                </Frame>
-                <!--Canvas:CanvasAnimatedControl x:Name="canvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                              CreateResources="canvas_CreateResources" Draw="canvas_Draw" Update="canvas_Update" /-->
-                <Controls:WeatherCanvas x:Name="WeatherCanvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                                        />
+                <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
                 <CommandBar x:Name="ActionBar" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                    <AppBarButton Icon="Back" Label="Back" />
-                    <AppBarButton Icon="Stop" Label="Stop" />
-                    <AppBarButton Icon="Play" Label="Play" />
-                    <AppBarButton Width="68" Click="AppBarButton_Click" >
+                    <AppBarButton Icon="Setting" Label="Settings" />
+                    <AppBarButton Icon="Refresh" Label="Refresh" />
+                    <AppBarButton Icon="Play" Label="AQI" />
+                    <AppBarButton Width="68" Label="Weather" >
                         <AppBarButton.Icon>
                             <PathIcon Data="F1 M 39.7971,
                                       9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,
@@ -56,8 +52,8 @@
                     </AppBarButton>
 
                     <CommandBar.SecondaryCommands>
-                        <AppBarButton Icon="Like" Label="Like" />
-                        <AppBarButton Icon="Dislike" Label="Dislike" />
+                        <AppBarButton Icon="Find" Label="Detail" />
+                        <AppBarButton Icon="Like" Label="Feedback" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
             </RelativePanel>

@@ -42,11 +42,20 @@ namespace Com.Aurora.AuWeather
             }
 #endif
             {
+                /* mobile 设置状态栏 */
+                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    StatusBar statusBar = StatusBar.GetForCurrentView();
+                    ApplicationView.GetForCurrentView()
+    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                }
+                /* 桌面设置 */
                 var view = ApplicationView.GetForCurrentView();
                 view.TitleBar.ForegroundColor = Colors.White;
                 view.TitleBar.InactiveForegroundColor = Colors.White;
                 view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
                 view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+                view.TitleBar.BackgroundColor = Colors.Transparent;
                 // button
                 view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
                 view.TitleBar.ButtonForegroundColor = Colors.White;

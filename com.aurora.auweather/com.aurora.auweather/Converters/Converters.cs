@@ -65,7 +65,7 @@ namespace Com.Aurora.Shared.Converters
     }
     class TemraturePathConverter : IValueConverter
     {
-        private const double _factor = 32;
+        private const double _factor = 64;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is double)

@@ -196,6 +196,9 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private async Task FetchData()
         {
+
+
+
             if (id != null)
             {
                 var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
@@ -203,12 +206,13 @@ namespace Com.Aurora.AuWeather.ViewModels
 #if DEBUG
                 var resstr = await FileIOHelper.ReadStringFromAssets("testdata");
 #else
-                var resstr = await BaiduRequestHelper.RequestWithKey("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                var resstr = await BaiduRequestHelper.RequestWithKey("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);    
 #endif
                 var resjson = HeWeatherContract.Generate(resstr);
                 fetchresult = new HeWeatherModel(resjson);
             }
             else throw new NullReferenceException();
+
         }
 
         private void NotifyFetchDataComplete()
@@ -222,6 +226,9 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
+            var c = city;
+            city = null;
+            City = c;
             Temprature = fetchresult.NowWeather.Temprature;
             Wind = fetchresult.NowWeather.Wind;
             Condition = fetchresult.NowWeather.Now.Condition;
@@ -256,15 +263,20 @@ namespace Com.Aurora.AuWeather.ViewModels
             TempraturePath4 = pathResults[4] / (max - min);
             TempraturePath5 = pathResults[5] / (max - min);
             TempraturePath6 = pathResults[6] / (max - min);
-            City = city;
+
             this.NotifyFetchDataComplete();
         }
 
         private void ReadSettings()
         {
+#if DEBUG
+            city = "beijing";
+            id = "CA1000011";
+#else
             var settings = SettingsModel.ReadSettings();
             city = settings.SavedCities[0].City;
             id = settings.SavedCities[0].Id;
+#endif
         }
     }
 }
