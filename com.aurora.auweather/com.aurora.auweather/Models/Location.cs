@@ -8,13 +8,13 @@ namespace Com.Aurora.AuWeather.Models
 {
     class Location
     {
-        private double latitude;
-        private double longitude;
+        private float latitude;
+        private float longitude;
 
         /// <summary>
         /// -90.0°~90.0°, negative-south, positive-north
         /// </summary>
-        public double Latitude
+        public float Latitude
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Com.Aurora.AuWeather.Models
         /// <summary>
         /// -180.0°~180.0°, any input will be converted into this range. negative-west, poitive-east
         /// </summary>
-        public double Longitude
+        public float Longitude
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public Location(double lat, double lon)
+        public Location(float lat, float lon)
         {
             this.Latitude = lat;
             this.Longitude = lon;

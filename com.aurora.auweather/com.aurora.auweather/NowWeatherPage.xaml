@@ -11,10 +11,17 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Converters:TempratureConverter x:Key="TempratureConverter" />
-        <Converters:WindConverter x:Key="WindConverter" />
-        <Converters:TemraturePathConverter x:Key="TempraturePathConverter" />
-        <Converters:TempraturePathEndConverter x:Key="EndPointConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+            <Converters:TempratureConverter x:Key="TempratureConverter" />
+            <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverter1" />
+            <Converters:WindConverter x:Key="WindConverter" />
+            <Converters:TemraturePathConverter x:Key="TempraturePathConverter" />
+            <Converters:TempraturePathEndConverter x:Key="EndPointConverter" />
+        </ResourceDictionary>
     </Page.Resources>
 
     <Page.Transitions>
@@ -28,104 +35,249 @@
         <RelativePanel.Resources>
             <Storyboard x:Name="TempraturePathAnimation">
                 <PointAnimation Storyboard.TargetName="PathFigure" Storyboard.TargetProperty="StartPoint" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePathTransition0, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePathTransition1, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePathTransition2, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath6, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath6, Converter={StaticResource TempraturePathConverter}}" Duration="0:0:1.5" EnableDependentAnimation="True">
+                                To="{Binding TempraturePathTransition3, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <CircleEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point1" 
+                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point2" 
+                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point3" 
+                                To="{Binding TempraturePathTransition4, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point1" 
+                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point2" 
+                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point3" 
+                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                Duration="0:0:1" EnableDependentAnimation="True">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp0" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp1" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp2" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp3" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp4" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HourlyTemp5" Storyboard.TargetProperty="Opacity" 
+                                 To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="TitleAniTrans" Storyboard.TargetProperty="Y" 
+                                 To="0" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="ConditionAniTrans" Storyboard.TargetProperty="Y" 
+                                 To="0" BeginTime="0:0:0.1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="WindAniTrans" Storyboard.TargetProperty="Y" 
+                                 To="0" BeginTime="0:0:0.1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="TempAniTrans" Storyboard.TargetProperty="Y" 
+                                 To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
             </Storyboard>
         </RelativePanel.Resources>
         <!--Canvas:CanvasAnimatedControl Background="Red" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="480" x:Name="MainCanvas" Draw="MainCanvas_Draw" CreateResources="MainCanvas_CreateResources" /-->
-        <RelativePanel x:Name="MainCanvas" Height="480" RelativePanel.AlignRightWithPanel="True" MaxWidth="640" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+        <RelativePanel x:Name="MainCanvas" MaxHeight="480" 
+                       RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
             <RelativePanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF6E6E6E" Offset="0"/>
                     <GradientStop Color="#FFBDBDBD" Offset="1"/>
                 </LinearGradientBrush>
             </RelativePanel.Background>
-            <CustomControls:WeatherCanvas x:Name="WeatherCanvas" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-            <Grid Height="32" x:Name="TitleBar" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-            <TextBlock RelativePanel.Below="TitleBar" Foreground="White" x:Name="CurrentCity" Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" RelativePanel.AlignHorizontalCenterWithPanel="True"  />
-            <StackPanel x:Name="ConditionPanel" Orientation="Horizontal" RelativePanel.Below="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True">
-                <TextBlock x:Name="NowCondition" Foreground="White" Text="{Binding Condition}" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
-                <TextBlock x:Name="NowWind" Foreground="White" Text="{Binding Wind, Converter={StaticResource WindConverter}}" Style="{StaticResource TitleTextBlockStyle}" />
+            <CustomControls:WeatherCanvas x:Name="WeatherCanvas" 
+                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+            <TextBlock RelativePanel.Above="ConditionPanel" Foreground="White" x:Name="CurrentCity" 
+                       Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                <TextBlock.RenderTransform>
+                    <TranslateTransform x:Name="TitleAniTrans" Y="480" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <StackPanel x:Name="ConditionPanel" Orientation="Horizontal" 
+                        RelativePanel.Above="NowTemp" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <TextBlock x:Name="NowCondition" Foreground="White" Text="{Binding Condition}" 
+                           HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform x:Name="ConditionAniTrans" Y="480" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock x:Name="NowWind" Foreground="White" Text="{Binding Wind, Converter={StaticResource WindConverter}}" 
+                           Style="{StaticResource TitleTextBlockStyle}" >
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform x:Name="WindAniTrans" Y="480" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
             </StackPanel>
-            <TextBlock x:Name="NowTemp" Foreground="White" RelativePanel.Below="ConditionPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{Binding Temprature, ConverterParameter=Celsius, Converter={StaticResource TempratureConverter}}" Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="NowTemp" Foreground="White" 
+                       RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                       Text="{Binding Temprature, ConverterParameter=Celsius, Converter={StaticResource TempratureConverter}}" 
+                       Style="{StaticResource HeaderTextBlockStyle}" >
+                <TextBlock.RenderTransform>
+                    <TranslateTransform x:Name="TempAniTrans" Y="480" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
         </RelativePanel>
 
-        <Path x:Name="TempraturePath" RelativePanel.AlignBottomWith="MainCanvas" Stroke="Transparent" StrokeThickness="0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Fill="White">
+        <Path x:Name="TempraturePath" 
+              RelativePanel.AlignBottomWith="MainCanvas" 
+              Stroke="Transparent" StrokeThickness="0" 
+              RelativePanel.AlignHorizontalCenterWithPanel="True" 
+              RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+              Fill="{ThemeResource SystemControlForegroundHighBrush}">
             <Path.Data>
                 <GeometryGroup>
                     <PathGeometry>
@@ -138,6 +290,8 @@
                                             <BezierSegment x:Name="BezierControl2" Point1="0,0" Point2="0,0" Point3="0,0" />
                                             <BezierSegment x:Name="BezierControl3" Point1="0,0" Point2="0,0" Point3="0,0" />
                                             <BezierSegment x:Name="BezierControl4" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                            <BezierSegment x:Name="BezierControl5" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                            <BezierSegment x:Name="BezierControl6" Point1="0,0" Point2="0,0" Point3="0,0" />
                                             <LineSegment x:Name="endPoint1" Point="0,32" />
                                             <LineSegment Point="0,32" />
                                         </PathSegmentCollection>
@@ -150,7 +304,10 @@
             </Path.Data>
         </Path>
 
-        <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWith="TempraturePath" Margin="0,-32,0,0">
+        <Grid RelativePanel.AlignLeftWithPanel="True" 
+              RelativePanel.AlignRightWithPanel="True" 
+              RelativePanel.AlignVerticalCenterWith="TempraturePath" 
+              Margin="0,16,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -165,43 +322,54 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Background="Red" Height="32" Width="4" Grid.Column="1" HorizontalAlignment="Center" >
+            <Grid Grid.Column="1" HorizontalAlignment="Center" >
                 <Grid.RenderTransform>
                     <TranslateTransform Y="{Binding ElementName=BezierControl1, Path=Point2.Y}" />
                 </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp0" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
             </Grid>
-            <Grid Background="Orange" Height="32" Width="4" Grid.Column="3" HorizontalAlignment="Center" >
-                <Grid.RenderTransform>
-                    <TranslateTransform Y="{Binding ElementName=BezierControl1, Path=Point3.Y}" />
-                </Grid.RenderTransform>
-            </Grid>
-            <Grid Background="Yellow" Height="32" Width="4" Grid.Column="5" HorizontalAlignment="Center" >
+            <Grid Grid.Column="3" HorizontalAlignment="Center" >
                 <Grid.RenderTransform>
                     <TranslateTransform Y="{Binding ElementName=BezierControl2, Path=Point2.Y}" />
                 </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp1" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
             </Grid>
-            <Grid Background="Green" Height="32" Width="4" Grid.Column="7" HorizontalAlignment="Center" >
-                <Grid.RenderTransform>
-                    <TranslateTransform Y="{Binding ElementName=BezierControl2, Path=Point3.Y}" />
-                </Grid.RenderTransform>
-            </Grid>
-            <Grid Background="Cyan" Height="32" Width="4" Grid.Column="9" HorizontalAlignment="Center" >
+            <Grid Grid.Column="5" HorizontalAlignment="Center" >
                 <Grid.RenderTransform>
                     <TranslateTransform Y="{Binding ElementName=BezierControl3, Path=Point2.Y}" />
                 </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp2" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
             </Grid>
-            <Grid Background="Blue" Height="32" Width="4" Grid.Column="11" HorizontalAlignment="Center" >
-                <Grid.RenderTransform>
-                    <TranslateTransform Y="{Binding ElementName=BezierControl3, Path=Point3.Y}" />
-                </Grid.RenderTransform>
-            </Grid>
-            <Grid Background="Purple" Height="32" Width="4" Grid.Column="13" HorizontalAlignment="Center" >
+            <Grid Grid.Column="7" HorizontalAlignment="Center" >
                 <Grid.RenderTransform>
                     <TranslateTransform Y="{Binding ElementName=BezierControl4, Path=Point2.Y}" />
                 </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp3" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
+            </Grid>
+            <Grid Grid.Column="9" HorizontalAlignment="Center" >
+                <Grid.RenderTransform>
+                    <TranslateTransform Y="{Binding ElementName=BezierControl5, Path=Point2.Y}" />
+                </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp4" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
+            </Grid>
+            <Grid Grid.Column="11" HorizontalAlignment="Center" >
+                <Grid.RenderTransform>
+                    <TranslateTransform Y="{Binding ElementName=BezierControl6, Path=Point2.Y}" />
+                </Grid.RenderTransform>
+                <TextBlock x:Name="HourlyTemp5" Opacity="0" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverter1}, ConverterParameter=Celsius}" />
             </Grid>
         </Grid>
     </RelativePanel>

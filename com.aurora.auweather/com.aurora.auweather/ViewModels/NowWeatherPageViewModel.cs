@@ -20,13 +20,28 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string city;
         private string id;
         private HeWeatherModel fetchresult;
-        private double tempraturePath0;
-        private double tempraturePath1;
-        private double tempraturePath2;
-        private double tempraturePath3;
-        private double tempraturePath4;
-        private double tempraturePath5;
-        private double tempraturePath6;
+        private float tempraturePath0;
+        private float tempraturePath1;
+        private float tempraturePath2;
+        private float tempraturePath3;
+        private float tempraturePath4;
+        private float tempraturePath5;
+        private float tempraturePath6;
+
+        private float tempraturePathTransition0;
+        private float tempraturePathTransition1;
+        private float tempraturePathTransition2;
+        private float tempraturePathTransition3;
+        private float tempraturePathTransition4;
+        private float tempraturePathTransition5;
+
+        private Temprature hourlyTemp0;
+        private Temprature hourlyTemp1;
+        private Temprature hourlyTemp2;
+        private Temprature hourlyTemp3;
+        private Temprature hourlyTemp4;
+        private Temprature hourlyTemp5;
+        private Temprature hourlyTemp6;
 
         public Temprature Temprature
         {
@@ -80,7 +95,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath0
+        public float TempraturePath0
         {
             get
             {
@@ -93,7 +108,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath1
+        public float TempraturePath1
         {
             get
             {
@@ -106,7 +121,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath2
+        public float TempraturePath2
         {
             get
             {
@@ -119,7 +134,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath3
+        public float TempraturePath3
         {
             get
             {
@@ -132,7 +147,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath4
+        public float TempraturePath4
         {
             get
             {
@@ -145,7 +160,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath5
+        public float TempraturePath5
         {
             get
             {
@@ -158,7 +173,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double TempraturePath6
+        public float TempraturePath6
         {
             get
             {
@@ -168,6 +183,175 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref tempraturePath6, value);
+            }
+        }
+
+        public Temprature HourlyTemp0
+        {
+            get
+            {
+                return hourlyTemp0;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp0, value);
+            }
+        }
+
+        public Temprature HourlyTemp1
+        {
+            get
+            {
+                return hourlyTemp1;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp1, value);
+            }
+        }
+
+        public Temprature HourlyTemp2
+        {
+            get
+            {
+                return hourlyTemp2;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp2, value);
+            }
+        }
+
+        public Temprature HourlyTemp3
+        {
+            get
+            {
+                return hourlyTemp3;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp3, value);
+            }
+        }
+
+        public Temprature HourlyTemp4
+        {
+            get
+            {
+                return hourlyTemp4;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp4, value);
+            }
+        }
+
+        public Temprature HourlyTemp5
+        {
+            get
+            {
+                return hourlyTemp5;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp5, value);
+            }
+        }
+
+        public Temprature HourlyTemp6
+        {
+            get
+            {
+                return hourlyTemp6;
+            }
+
+            set
+            {
+                SetProperty(ref hourlyTemp6, value);
+            }
+        }
+
+        public float TempraturePathTransition0
+        {
+            get
+            {
+                return tempraturePathTransition0;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition0, value);
+            }
+        }
+
+        public float TempraturePathTransition1
+        {
+            get
+            {
+                return tempraturePathTransition1;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition1, value);
+            }
+        }
+
+        public float TempraturePathTransition2
+        {
+            get
+            {
+                return tempraturePathTransition2;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition2, value);
+            }
+        }
+
+        public float TempraturePathTransition3
+        {
+            get
+            {
+                return tempraturePathTransition3;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition3, value);
+            }
+        }
+
+        public float TempraturePathTransition4
+        {
+            get
+            {
+                return tempraturePathTransition4;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition4, value);
+            }
+        }
+
+        public float TempraturePathTransition5
+        {
+            get
+            {
+                return tempraturePathTransition5;
+            }
+
+            set
+            {
+                SetProperty(ref tempraturePathTransition5, value);
             }
         }
 
@@ -232,12 +416,12 @@ namespace Com.Aurora.AuWeather.ViewModels
             Temprature = fetchresult.NowWeather.Temprature;
             Wind = fetchresult.NowWeather.Wind;
             Condition = fetchresult.NowWeather.Now.Condition;
-            List<double> pathResults = new List<double>();
+            List<float> pathResults = new List<float>();
             for (int i = 0; i < 7; i++)
             {
                 pathResults.Add(fetchresult.HourlyForecast[i].Temprature.Celsius);
             }
-            var min = 0d;
+            var min = 0f;
             var max = min;
             foreach (var data in pathResults)
             {
@@ -262,7 +446,20 @@ namespace Com.Aurora.AuWeather.ViewModels
             TempraturePath3 = pathResults[3] / (max - min);
             TempraturePath4 = pathResults[4] / (max - min);
             TempraturePath5 = pathResults[5] / (max - min);
-            TempraturePath6 = pathResults[6] / (max - min);
+
+            TempraturePathTransition0 = (TempraturePath0 + TempraturePath1) / 2;
+            TempraturePathTransition1 = (TempraturePath2 + TempraturePath1) / 2;
+            TempraturePathTransition2 = (TempraturePath2 + TempraturePath3) / 2;
+            TempraturePathTransition3 = (TempraturePath3 + TempraturePath4) / 2;
+            TempraturePathTransition4 = (TempraturePath4 + TempraturePath5) / 2;
+
+            HourlyTemp0 = fetchresult.HourlyForecast[0].Temprature;
+            HourlyTemp1 = fetchresult.HourlyForecast[1].Temprature;
+            HourlyTemp2 = fetchresult.HourlyForecast[2].Temprature;
+            HourlyTemp3 = fetchresult.HourlyForecast[3].Temprature;
+            HourlyTemp4 = fetchresult.HourlyForecast[4].Temprature;
+            HourlyTemp5 = fetchresult.HourlyForecast[5].Temprature;
+            HourlyTemp6 = fetchresult.HourlyForecast[6].Temprature;
 
             this.NotifyFetchDataComplete();
         }

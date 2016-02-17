@@ -8,8 +8,8 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private string city;
         private string country;
         private string cityId;
-        private double latitude;
-        private double longitude;
+        private float latitude;
+        private float longitude;
         private DateTime updateTime;
 
         public string City
@@ -51,7 +51,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        public double Latitude
+        public float Latitude
         {
             get
             {
@@ -64,7 +64,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        public double Longitude
+        public float Longitude
         {
             get
             {
@@ -96,8 +96,8 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             City = basic.city;
             Country = basic.cnty;
             CityId = basic.id;
-            Latitude = double.Parse(basic.lat);
-            Longitude = double.Parse(basic.lon);
+            Latitude = float.Parse(basic.lat);
+            Longitude = float.Parse(basic.lon);
             UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd HH:mm", provider);
         }
     }

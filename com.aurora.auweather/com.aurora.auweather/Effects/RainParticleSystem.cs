@@ -88,8 +88,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.3f;
             maxScaleY = 0.6f;
 
-            minNumParticles = 0;
-            maxNumParticles = 4;
+            minNumParticles = 2;
+            maxNumParticles = 3;
         }
 
         private void InitializesSnow()
@@ -133,7 +133,7 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 4;
 
-            minNumParticles = 9;
+            minNumParticles = 11;
             maxNumParticles = 12;
         }
 
@@ -154,8 +154,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 2;
 
-            minNumParticles = 4;
-            maxNumParticles = 8;
+            minNumParticles = 6;
+            maxNumParticles = 7;
         }
 
         private void Initializemoderate()
@@ -175,8 +175,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 1.3f;
 
-            minNumParticles = 1;
-            maxNumParticles = 4;
+            minNumParticles = 2;
+            maxNumParticles = 3;
         }
 
         private void InitializeLight()

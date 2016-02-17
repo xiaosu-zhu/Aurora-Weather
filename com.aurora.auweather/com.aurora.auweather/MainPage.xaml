@@ -16,6 +16,15 @@
         <ViewModels:MainPageViewModel />
     </Page.DataContext>
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Page.Transitions>
         <TransitionCollection>
             <EntranceThemeTransition />
@@ -29,12 +38,62 @@
         </SplitView.Pane>
         <SplitView.Content>
             <RelativePanel >
-                <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-                <CommandBar x:Name="ActionBar" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                    <AppBarButton Icon="Setting" Label="Settings" />
-                    <AppBarButton Icon="Refresh" Label="Refresh" />
-                    <AppBarButton Icon="Play" Label="AQI" />
-                    <AppBarButton Width="68" Label="Weather" >
+                <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" 
+                       RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
+                       RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
+                <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" 
+                            Foreground="{ThemeResource SystemThemeMainBrush}" 
+                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
+                            RelativePanel.AlignRightWithPanel="True">
+                    <CommandBar.CommandBarOverflowPresenterStyle>
+                        <Style TargetType="CommandBarOverflowPresenter">
+                            <Setter Property="Background" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="MaxWidth" Value="{ThemeResource CommandBarOverflowMaxWidth}"/>
+                            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+                            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
+                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="CommandBarOverflowPresenter">
+                                        <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+              BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" >
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="DisplayModeStates">
+                                                    <VisualState x:Name="DisplayModeDefault" />
+                                                    <VisualState x:Name="FullWidthOpenDown" >
+                                                        <VisualState.Setters>
+                                                            <Setter Target="LayoutRoot.BorderThickness" Value="0" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="FullWidthOpenUp" >
+                                                        <VisualState.Setters>
+                                                            <Setter Target="LayoutRoot.BorderThickness" Value="0" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <ScrollViewer
+              HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+              HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+              VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+              VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+              ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+              AutomationProperties.AccessibilityView="Raw">
+                                                <ItemsPresenter x:Name="ItemsPresenter" Margin="0,7,0,7"/>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </CommandBar.CommandBarOverflowPresenterStyle>
+                    <AppBarButton Foreground="{ThemeResource SystemThemeMainBrush}" Icon="Setting" Label="Settings" />
+                    <AppBarButton Foreground="{ThemeResource SystemThemeMainBrush}" Icon="Refresh" Label="Refresh" />
+                    <AppBarButton Foreground="{ThemeResource SystemThemeMainBrush}" Icon="Play" Label="AQI" />
+                    <AppBarButton Foreground="{ThemeResource SystemThemeMainBrush}" Width="68" Label="Weather" >
                         <AppBarButton.Icon>
                             <PathIcon Data="F1 M 39.7971,
                                       9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,

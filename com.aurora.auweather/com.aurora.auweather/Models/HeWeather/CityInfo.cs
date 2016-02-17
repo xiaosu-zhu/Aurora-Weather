@@ -105,11 +105,11 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Country = info.cnty;
             Province = info.prov;
             Id = info.id;
-            double lat;
-            if (double.TryParse(info.lat, out lat))
+            float lat;
+            if (float.TryParse(info.lat, out lat))
             {
-                double lon;
-                if (double.TryParse(info.lon, out lon))
+                float lon;
+                if (float.TryParse(info.lon, out lon))
                 {
                     FuckingshitLocation(ref lat, ref lon, Country);
                     this.Location = new Models.Location(lat, lon);
@@ -118,7 +118,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         }
 
-        private void FuckingshitLocation(ref double lat, ref double lon, string country)
+        private void FuckingshitLocation(ref float lat, ref float lon, string country)
         {
             if (lat > lon && country == "中国")
             {

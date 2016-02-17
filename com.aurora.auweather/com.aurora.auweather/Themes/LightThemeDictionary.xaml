@@ -1,0 +1,44 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Com.Aurora.AuWeather">
+
+    <SolidColorBrush x:Key="SystemBackgroundHighBrush" Color="#FFF0F0F0"/>
+    <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FF101010"/>
+    
+    <SolidColorBrush x:Key="SystemTranslucentHighBrush" Color="#CCF0F0F0" />
+    <SolidColorBrush x:Key="SystemTranslucentBaseHighBrush" Color="#CC000000" />
+    <SolidColorBrush x:Key="SystemTranslucentAltHighBrush" Color="#44F0F0F0" />
+    
+    <SolidColorBrush x:Key="SystemControlForegroundHighBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlBackgroundHighBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="SystemControlAltHighBrush" Color="#FFF0F0F0" />
+    <SolidColorBrush x:Key="SystemControlAltLowBrush" Color="#FF171717" />
+    <SolidColorBrush x:Key="SystemControlAltMediumBrush" Color="#FFCCCCCC" />
+    
+    <SolidColorBrush x:Key="SystemControlTranslucentBaseHighBrush" Color="#CC000000" />
+    <SolidColorBrush x:Key="SystemControlTranslucentAltHighBrush" Color="#44FFFFFF" />
+    <SolidColorBrush x:Key="SystemControlTranslucentHighBrush" Color="#CCF0F0F0" />
+    <SolidColorBrush x:Key="SystemControlTranslucentAltAltHighBrush" Color="#44F0F0F0" />
+    <SolidColorBrush x:Key="SystemControlTranslucentAltBaseLowBrush" Color="#33000000" />
+    <SolidColorBrush x:Key="SystemControlTranslucentHighLightBrush" Color="#44DFDFDF" />
+    <SolidColorBrush x:Key="SystemControlTranslucentBaseLightBrush" Color="#44232323" />
+
+    <SolidColorBrush x:Key="SystemThemeMainBrush" Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemTransparentBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="FixedWhiteBrush" Color="White"/>
+    <SolidColorBrush x:Key="FixedTranslucentBrush" Color="#44FFFFFF"/>
+    
+    <Color x:Key="SystemBackgroundHighColor" >#FFF0F0F0</Color>
+    <Color x:Key="SystemBackgroundTranslucentHighColor" >#77F0F0F0</Color>
+    <Color x:Key="SystemAltHighColor">#FFFFFFFF</Color>
+    <Color x:Key="SystemTranslucentHighColor">#DDFFFFFF</Color>
+    <Color x:Key="SystemTranslucentLowColor">#44FFFFFF</Color>
+    <Color x:Key="SystemTranslucentMediumColor">#99FFFFFF</Color>
+    <Color x:Key="SystemTranslucentMediumHighColor">#BBFFFFFF</Color>
+    <Color x:Key="SystemTranslucentBaseMediumColor">#DD000000</Color>
+    <Color x:Key="SystemTranslucentBaseLowColor">#44000000</Color>
+    <Color x:Key="SystemTranslucentBaseHighColor">#FF000000</Color>
+
+</ResourceDictionary>

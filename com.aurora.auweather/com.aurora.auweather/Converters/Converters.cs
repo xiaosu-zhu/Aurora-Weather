@@ -25,6 +25,30 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
+    class TempratureConverterWithoutDecoration : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is Temprature)
+            {
+                switch ((string)parameter)
+                {
+                    default: return (value as Temprature).Celsius;
+                    case "Celsius": return (value as Temprature).Celsius;
+                    case "Fahrenheit": return (value as Temprature).Fahrenheit;
+                    case "Kelvin": return (value as Temprature).Kelvin;
+                }
+            }
+            return "X";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     class TempratureConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -47,6 +71,7 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
     class WindConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -63,14 +88,15 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
     class TemraturePathConverter : IValueConverter
     {
-        private const double _factor = 64;
+        private const float _factor = -64;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is double)
+            if (value is float)
             {
-                Nullable<Point> point = new Point(0, (double)value * _factor);
+                Nullable<Point> point = new Point(0, (float)value * _factor);
                 return point;
             }
             return new Point(0, 0);
@@ -81,6 +107,7 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
     class TempraturePathEndConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

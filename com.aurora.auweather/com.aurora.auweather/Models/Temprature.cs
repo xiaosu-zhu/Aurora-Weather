@@ -4,7 +4,7 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Temprature
     {
-        private double temprature;
+        private float temprature;
 
         public int Celsius
         {
@@ -14,7 +14,7 @@ namespace Com.Aurora.AuWeather.Models
             }
             set
             {
-                temprature = value + 273.15 > 0 ? value + 273.15 : 0;
+                temprature = value + 273.15f > 0 ? value + 273.15f : 0;
             }
         }
         public int Fahrenheit
@@ -25,7 +25,7 @@ namespace Com.Aurora.AuWeather.Models
             }
             set
             {
-                temprature = ((value - 32) * 5 / 9 + 273.15) > 0 ? ((value - 32) * 5 / 9 + 273.15) : 0;
+                temprature = ((value - 32) * 5 / 9 + 273.15f) > 0 ? ((value - 32) * 5 / 9 + 273.15f) : 0;
             }
         }
         public int Kelvin
