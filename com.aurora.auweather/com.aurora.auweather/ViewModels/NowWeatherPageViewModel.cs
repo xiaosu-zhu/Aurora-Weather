@@ -26,14 +26,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         private float tempraturePath3;
         private float tempraturePath4;
         private float tempraturePath5;
-        private float tempraturePath6;
-
-        private float tempraturePathTransition0;
-        private float tempraturePathTransition1;
-        private float tempraturePathTransition2;
-        private float tempraturePathTransition3;
-        private float tempraturePathTransition4;
-        private float tempraturePathTransition5;
 
         private Temprature hourlyTemp0;
         private Temprature hourlyTemp1;
@@ -41,7 +33,20 @@ namespace Com.Aurora.AuWeather.ViewModels
         private Temprature hourlyTemp3;
         private Temprature hourlyTemp4;
         private Temprature hourlyTemp5;
-        private Temprature hourlyTemp6;
+
+        private DateTime hour0;
+        private DateTime hour1;
+        private DateTime hour2;
+        private DateTime hour3;
+        private DateTime hour4;
+        private DateTime hour5;
+
+        private float pop0;
+        private float pop1;
+        private float pop2;
+        private float pop3;
+        private float pop4;
+        private float pop5;
 
         public Temprature Temprature
         {
@@ -173,19 +178,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public float TempraturePath6
-        {
-            get
-            {
-                return tempraturePath6;
-            }
-
-            set
-            {
-                SetProperty(ref tempraturePath6, value);
-            }
-        }
-
         public Temprature HourlyTemp0
         {
             get
@@ -264,94 +256,159 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp6
+        public DateTime Hour0
         {
             get
             {
-                return hourlyTemp6;
+                return hour0;
             }
 
             set
             {
-                SetProperty(ref hourlyTemp6, value);
+                SetProperty(ref hour0, value);
             }
         }
 
-        public float TempraturePathTransition0
+        public DateTime Hour1
         {
             get
             {
-                return tempraturePathTransition0;
+                return hour1;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition0, value);
+                SetProperty(ref hour1, value);
             }
         }
 
-        public float TempraturePathTransition1
+        public DateTime Hour2
         {
             get
             {
-                return tempraturePathTransition1;
+                return hour2;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition1, value);
+                SetProperty(ref hour2, value);
             }
         }
 
-        public float TempraturePathTransition2
+        public DateTime Hour3
         {
             get
             {
-                return tempraturePathTransition2;
+                return hour3;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition2, value);
+                SetProperty(ref hour3, value);
             }
         }
 
-        public float TempraturePathTransition3
+        public DateTime Hour4
         {
             get
             {
-                return tempraturePathTransition3;
+                return hour4;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition3, value);
+                SetProperty(ref hour4, value);
             }
         }
 
-        public float TempraturePathTransition4
+        public DateTime Hour5
         {
             get
             {
-                return tempraturePathTransition4;
+                return hour5;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition4, value);
+                SetProperty(ref hour5, value);
             }
         }
 
-        public float TempraturePathTransition5
+        public float Pop0
         {
             get
             {
-                return tempraturePathTransition5;
+                return pop0;
             }
 
             set
             {
-                SetProperty(ref tempraturePathTransition5, value);
+                SetProperty(ref pop0, value);
+            }
+        }
+
+        public float Pop1
+        {
+            get
+            {
+                return pop1;
+            }
+
+            set
+            {
+                SetProperty(ref pop1, value);
+            }
+        }
+
+        public float Pop2
+        {
+            get
+            {
+                return pop2;
+            }
+
+            set
+            {
+                SetProperty(ref pop2, value);
+            }
+        }
+
+        public float Pop3
+        {
+            get
+            {
+                return pop3;
+            }
+
+            set
+            {
+                SetProperty(ref pop3, value);
+            }
+        }
+
+        public float Pop4
+        {
+            get
+            {
+                return pop4;
+            }
+
+            set
+            {
+                SetProperty(ref pop4, value);
+            }
+        }
+
+        public float Pop5
+        {
+            get
+            {
+                return pop5;
+            }
+
+            set
+            {
+                SetProperty(ref pop5, value);
             }
         }
 
@@ -417,7 +474,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             Wind = fetchresult.NowWeather.Wind;
             Condition = fetchresult.NowWeather.Now.Condition;
             List<float> pathResults = new List<float>();
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {
                 pathResults.Add(fetchresult.HourlyForecast[i].Temprature.Celsius);
             }
@@ -440,6 +497,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 pathResults[j] -= avg;
             }
+
             TempraturePath0 = pathResults[0] / (max - min);
             TempraturePath1 = pathResults[1] / (max - min);
             TempraturePath2 = pathResults[2] / (max - min);
@@ -447,19 +505,26 @@ namespace Com.Aurora.AuWeather.ViewModels
             TempraturePath4 = pathResults[4] / (max - min);
             TempraturePath5 = pathResults[5] / (max - min);
 
-            TempraturePathTransition0 = (TempraturePath0 + TempraturePath1) / 2;
-            TempraturePathTransition1 = (TempraturePath2 + TempraturePath1) / 2;
-            TempraturePathTransition2 = (TempraturePath2 + TempraturePath3) / 2;
-            TempraturePathTransition3 = (TempraturePath3 + TempraturePath4) / 2;
-            TempraturePathTransition4 = (TempraturePath4 + TempraturePath5) / 2;
-
             HourlyTemp0 = fetchresult.HourlyForecast[0].Temprature;
             HourlyTemp1 = fetchresult.HourlyForecast[1].Temprature;
             HourlyTemp2 = fetchresult.HourlyForecast[2].Temprature;
             HourlyTemp3 = fetchresult.HourlyForecast[3].Temprature;
             HourlyTemp4 = fetchresult.HourlyForecast[4].Temprature;
             HourlyTemp5 = fetchresult.HourlyForecast[5].Temprature;
-            HourlyTemp6 = fetchresult.HourlyForecast[6].Temprature;
+
+            Hour0 = fetchresult.HourlyForecast[0].DateTime;
+            Hour1 = fetchresult.HourlyForecast[1].DateTime;
+            Hour2 = fetchresult.HourlyForecast[2].DateTime;
+            Hour3 = fetchresult.HourlyForecast[3].DateTime;
+            Hour4 = fetchresult.HourlyForecast[4].DateTime;
+            Hour5 = fetchresult.HourlyForecast[5].DateTime;
+
+            Pop0 = fetchresult.HourlyForecast[0].Pop / 100f;
+            Pop1 = fetchresult.HourlyForecast[1].Pop / 100f;
+            Pop2 = fetchresult.HourlyForecast[2].Pop / 100f;
+            Pop3 = fetchresult.HourlyForecast[3].Pop / 100f;
+            Pop4 = fetchresult.HourlyForecast[4].Pop / 100f;
+            Pop5 = fetchresult.HourlyForecast[5].Pop / 100f;
 
             this.NotifyFetchDataComplete();
         }

@@ -38,7 +38,10 @@ namespace Com.Aurora.AuWeather
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
+                //this.DebugSettings.IsTextPerformanceVisualizationEnabled = true;
                 //this.DebugSettings.EnableFrameRateCounter = true;
+                //this.DebugSettings.IsOverdrawHeatMapEnabled = true;
+                //this.DebugSettings.EnableRedrawRegions = true;
             }
 #endif
             {
@@ -46,6 +49,7 @@ namespace Com.Aurora.AuWeather
                 if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {
                     StatusBar statusBar = StatusBar.GetForCurrentView();
+                    statusBar.ForegroundColor = Colors.White;
                     ApplicationView.GetForCurrentView()
     .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                 }

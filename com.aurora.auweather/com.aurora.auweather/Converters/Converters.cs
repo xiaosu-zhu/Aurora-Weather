@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace Com.Aurora.Shared.Converters
@@ -32,12 +33,12 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value is Temprature)
             {
-                switch ((string)parameter)
+                switch (TempratureConverter.Parameter)
                 {
-                    default: return (value as Temprature).Celsius;
-                    case "Celsius": return (value as Temprature).Celsius;
-                    case "Fahrenheit": return (value as Temprature).Fahrenheit;
-                    case "Kelvin": return (value as Temprature).Kelvin;
+                    default: return (value as Temprature).Celsius + "°";
+                    case 0: return (value as Temprature).Celsius + "°";
+                    case 1: return (value as Temprature).Fahrenheit + "°";
+                    case 2: return (value as Temprature).Kelvin;
                 }
             }
             return "X";
@@ -51,19 +52,16 @@ namespace Com.Aurora.Shared.Converters
 
     class TempratureConverter : IValueConverter
     {
+        public static int Parameter = 1;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is Temprature)
+            switch (Parameter)
             {
-                switch ((string)parameter)
-                {
-                    default: return (value as Temprature).Celsius + "°C";
-                    case "Celsius": return (value as Temprature).Celsius + "°C";
-                    case "Fahrenheit": return (value as Temprature).Fahrenheit + "°F";
-                    case "Kelvin": return (value as Temprature).Kelvin + "K";
-                }
+                default: return "C";
+                case 0: return "C";
+                case 1: return "F";
+                case 2: return "K";
             }
-            return "X";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -118,6 +116,53 @@ namespace Com.Aurora.Shared.Converters
                 case "1": return new Point(((Size)value).Width, ((Size)value).Height);
                 default: return new Point(0, 0);
             }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class DateTimeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is DateTime)
+            {
+                return ((DateTime)value).ToString("HH:mm");
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class PoptoThicknessConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is float)
+            {
+                return 2 + ((float)value) * 4;
+            }
+            return 2;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class ScrollViewerConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return 480 - (double)value < 112 ? 112 : 480 - (double)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

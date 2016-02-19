@@ -25,7 +25,6 @@ namespace Com.Aurora.AuWeather
             MainFrame.Navigate(typeof(NowWeatherPage));
         }
 
-
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)
         //{
         //    #region
