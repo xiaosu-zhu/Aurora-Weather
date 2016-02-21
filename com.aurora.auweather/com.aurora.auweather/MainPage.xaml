@@ -41,6 +41,8 @@
                 <Frame x:Name="MainFrame" Loaded="MainFrame_Loaded" 
                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
+                <Controls:ConditionPath />
+
                 <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" 
                             RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                             RelativePanel.AlignRightWithPanel="True">

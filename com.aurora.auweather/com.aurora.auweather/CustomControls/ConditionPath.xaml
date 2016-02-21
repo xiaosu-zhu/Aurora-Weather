@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="Com.Aurora.AuWeather.CustomControls.ConditionPath"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Com.Aurora.AuWeather.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
+    xmlns:Converters="using:Com.Aurora.Shared.Converters"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <ViewModels:ConditionPathViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Converters:StringtoPathConverter x:Key="StringtoPathConverter" />
+    </UserControl.Resources>
+    
+    <Path x:Name="Root" Width="64" Height="64" Stroke="Black" StrokeThickness="1"
+          StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round"
+          Data="{Binding Result, Converter={StaticResource StringtoPathConverter}}">
+    </Path>
+    
+</UserControl>

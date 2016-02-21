@@ -114,6 +114,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\Converters.cs" />
+    <Compile Include="CustomControls\ConditionPath.xaml.cs">
+      <DependentUpon>ConditionPath.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ForecastControl.xaml.cs">
+      <DependentUpon>ForecastControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
       <DependentUpon>WeatherCanvas.xaml</DependentUpon>
     </Compile>
@@ -162,6 +168,7 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CityViewModel.cs" />
+    <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\DailyForecastViewModel.cs" />
     <Compile Include="ViewModels\FetchDataCompleteEventHandler.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
@@ -193,6 +200,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomControls\ConditionPath.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\ForecastControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\WeatherCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
