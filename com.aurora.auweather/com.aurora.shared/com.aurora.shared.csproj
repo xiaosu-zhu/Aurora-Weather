@@ -111,9 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Converters.cs" />
+    <Compile Include="Converters\MultiValueConverterBase.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\FileIOHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\MultiBinding\DependencyObjectCollection.cs" />
+    <Compile Include="Helpers\MultiBinding\MultiBindingBehaviors.cs" />
+    <Compile Include="Helpers\MultiBinding\MultiBindingItem.cs" />
+    <Compile Include="Helpers\MultiBinding\MultiBindingItemCollection.cs" />
     <Compile Include="Helpers\PinYinHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\Tools.cs" />

@@ -117,9 +117,6 @@
     <Compile Include="CustomControls\ConditionPath.xaml.cs">
       <DependentUpon>ConditionPath.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\ForecastControl.xaml.cs">
-      <DependentUpon>ForecastControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
       <DependentUpon>WeatherCanvas.xaml</DependentUpon>
     </Compile>
@@ -201,10 +198,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CustomControls\ConditionPath.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\ForecastControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

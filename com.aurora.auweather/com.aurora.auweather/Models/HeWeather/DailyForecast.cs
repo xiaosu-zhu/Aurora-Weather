@@ -20,6 +20,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private uint visibility;
         private Wind wind;
 
+        /// <summary>
+        /// 预报的日期 yyyy-MM-dd
+        /// </summary>
         public DateTime Date
         {
             get
@@ -33,6 +36,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        /// <summary>
+        /// 日出时刻 HH:mm
+        /// </summary>
         public TimeSpan SunRise
         {
             get
@@ -46,6 +52,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        /// <summary>
+        /// 日落时刻 HH:mm
+        /// </summary>
         public TimeSpan SunSet
         {
             get

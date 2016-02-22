@@ -77,6 +77,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        /// <summary>
+        /// 更新时间 yyyy-MM-dd HH:mm (当地时间)
+        /// </summary>
         public DateTime UpdateTime
         {
             get

@@ -41,6 +41,11 @@ namespace Com.Aurora.AuWeather.ViewModels
         private DateTime hour4;
         private DateTime hour5;
 
+        private DateTime forecastDate1;
+        private DateTime forecastDate2;
+        private DateTime forecastDate3;
+        private DateTime forecastDate4;
+
         private float pop0;
         private float pop1;
         private float pop2;
@@ -412,6 +417,202 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public WeatherCondition Forecast0
+        {
+            get
+            {
+                return forecast0;
+            }
+
+            set
+            {
+                SetProperty(ref forecast0, value);
+            }
+        }
+
+        public WeatherCondition Forecast1
+        {
+            get
+            {
+                return forecast1;
+            }
+
+            set
+            {
+                SetProperty(ref forecast1, value);
+            }
+        }
+
+        public WeatherCondition Forecast2
+        {
+            get
+            {
+                return forecast2;
+            }
+
+            set
+            {
+                SetProperty(ref forecast2, value);
+            }
+        }
+
+        public WeatherCondition Forecast3
+        {
+            get
+            {
+                return forecast3;
+            }
+
+            set
+            {
+                SetProperty(ref forecast3, value);
+            }
+        }
+
+        public WeatherCondition Forecast4
+        {
+            get
+            {
+                return forecast4;
+            }
+
+            set
+            {
+                SetProperty(ref forecast4, value);
+            }
+        }
+
+        public DateTime UpdateTime
+        {
+            get
+            {
+                return updateTime;
+            }
+
+            set
+            {
+                SetProperty(ref updateTime, value);
+            }
+        }
+
+        public TimeSpan SunRise
+        {
+            get
+            {
+                return sunRise;
+            }
+
+            set
+            {
+                SetProperty(ref sunRise, value);
+            }
+        }
+
+        public TimeSpan SunSet
+        {
+            get
+            {
+                return sunSet;
+            }
+
+            set
+            {
+                SetProperty(ref sunSet, value);
+            }
+        }
+
+        public bool IsNight
+        {
+            get
+            {
+                return isNight;
+            }
+
+            set
+            {
+                SetProperty(ref isNight, value);
+            }
+        }
+
+        public bool IsSummer
+        {
+            get
+            {
+                return isSummer;
+            }
+
+            set
+            {
+                SetProperty(ref isSummer, value);
+            }
+        }
+
+        public DateTime ForecastDate1
+        {
+            get
+            {
+                return forecastDate1;
+            }
+
+            set
+            {
+                SetProperty(ref forecastDate1, value);
+            }
+        }
+
+        public DateTime ForecastDate2
+        {
+            get
+            {
+                return forecastDate2;
+            }
+
+            set
+            {
+                SetProperty(ref forecastDate2, value);
+            }
+        }
+
+        public DateTime ForecastDate3
+        {
+            get
+            {
+                return forecastDate3;
+            }
+
+            set
+            {
+                SetProperty(ref forecastDate3, value);
+            }
+        }
+
+        public DateTime ForecastDate4
+        {
+            get
+            {
+                return forecastDate4;
+            }
+
+            set
+            {
+                SetProperty(ref forecastDate4, value);
+            }
+        }
+
+        private WeatherCondition forecast0;
+        private WeatherCondition forecast1;
+        private WeatherCondition forecast2;
+        private WeatherCondition forecast3;
+        private WeatherCondition forecast4;
+
+        private DateTime updateTime;
+
+        private TimeSpan sunRise;
+        private TimeSpan sunSet;
+
+        private bool isNight;
+        private bool isSummer;
+
         public NowWeatherPageViewModel()
         {
             var task = ThreadPool.RunAsync(async (work) =>
@@ -471,8 +672,27 @@ namespace Com.Aurora.AuWeather.ViewModels
             city = null;
             City = c;
             Temprature = fetchresult.NowWeather.Temprature;
+            if (Temprature.Celsius > 22)
+            {
+                IsSummer = true;
+            }
+            else
+            {
+                IsSummer = false;
+            }
             Wind = fetchresult.NowWeather.Wind;
             Condition = fetchresult.NowWeather.Now.Condition;
+            UpdateTime = fetchresult.Location.UpdateTime;
+            SunRise = fetchresult.DailyForecast[0].SunRise;
+            SunSet = fetchresult.DailyForecast[0].SunSet;
+            if (CalculateIsNight(UpdateTime, SunRise, SunSet))
+            {
+                IsNight = true;
+            }
+            else
+            {
+                IsNight = false;
+            }
             List<float> pathResults = new List<float>();
             for (int i = 0; i < 6; i++)
             {
@@ -526,7 +746,29 @@ namespace Com.Aurora.AuWeather.ViewModels
             Pop4 = fetchresult.HourlyForecast[4].Pop / 100f;
             Pop5 = fetchresult.HourlyForecast[5].Pop / 100f;
 
+            //json 中第一个dailyforecast 是今天的
+            Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
+            Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
+            Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
+            Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
+            Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
+
+            ForecastDate1 = fetchresult.DailyForecast[1].Date;
+            ForecastDate2 = fetchresult.DailyForecast[2].Date;
+            ForecastDate3 = fetchresult.DailyForecast[3].Date;
+            ForecastDate4 = fetchresult.DailyForecast[4].Date;
+
             this.NotifyFetchDataComplete();
+        }
+
+        private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
+        {
+            var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
+            if (updateMinutes > sunRise.TotalMinutes && updateMinutes < sunSet.TotalMinutes)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void ReadSettings()

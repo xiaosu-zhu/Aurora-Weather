@@ -124,7 +124,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class DateTimeConverter : IValueConverter
+    class HourMinuteConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

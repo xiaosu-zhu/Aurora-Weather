@@ -14,9 +14,10 @@
 
     <UserControl.Resources>
         <Converters:StringtoPathConverter x:Key="StringtoPathConverter" />
+        <Converters:ColortoSolidColorBrushConverter x:Key="ColortoBrushConverter" />
     </UserControl.Resources>
-    
-    <Path x:Name="Root" Width="64" Height="64" Stroke="Black" StrokeThickness="1"
+
+    <Path x:Name="Root" Width="64" Height="64" Stroke="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}" StrokeThickness="1" Fill="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}"
           StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round"
           Data="{Binding Result, Converter={StaticResource StringtoPathConverter}}">
     </Path>

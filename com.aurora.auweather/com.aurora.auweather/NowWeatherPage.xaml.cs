@@ -33,6 +33,11 @@ namespace Com.Aurora.AuWeather
              {
                  isAnimating = true;
                  TempraturePathAnimation.Begin();
+                 Forecast0.SetCondition(mModel.Forecast0, mModel.IsNight);
+                 Forecast1.SetCondition(mModel.Forecast1, mModel.IsNight);
+                 Forecast2.SetCondition(mModel.Forecast2, mModel.IsNight);
+                 Forecast3.SetCondition(mModel.Forecast3, mModel.IsNight);
+                 Forecast4.SetCondition(mModel.Forecast4, mModel.IsNight);
                  await Task.Delay(3000);
                  isAnimating = false;
              }));
@@ -86,7 +91,7 @@ namespace Com.Aurora.AuWeather
                     isFadeOut = false;
                     TempratureIn.Begin();
                 }
-                
+
             }
         }
 

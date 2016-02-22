@@ -22,7 +22,7 @@ namespace Com.Aurora.AuWeather
 
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Navigate(typeof(NowWeatherPage));
+            MainFrame.Navigate(typeof(NowWeatherPage));
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)
