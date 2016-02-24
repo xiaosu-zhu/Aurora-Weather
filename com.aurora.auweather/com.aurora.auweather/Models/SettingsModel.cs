@@ -10,48 +10,15 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class SettingsModel
     {
-        private bool allowLocation = true;
-        private CitySettingsModel[] savedCities;
-        private RefreshState refreshState = RefreshState.daily;
+        public bool AllowLocation { get; set; } = true;
 
-        public bool AllowLocation
-        {
-            get
-            {
-                return allowLocation;
-            }
+        public CitySettingsModel[] SavedCities { get; set; }
 
-            set
-            {
-                allowLocation = value;
-            }
-        }
+        public RefreshState RefreshState { get; set; } = RefreshState.daily;
 
-        public CitySettingsModel[] SavedCities
-        {
-            get
-            {
-                return savedCities;
-            }
+        public int TempratureParameter { get; set; } = 0;
 
-            set
-            {
-                savedCities = value;
-            }
-        }
-
-        public RefreshState RefreshState
-        {
-            get
-            {
-                return refreshState;
-            }
-
-            set
-            {
-                refreshState = value;
-            }
-        }
+        public string ForecastDateParameter { get; set; } = "MM-dd";
 
         public void SaveSettings()
         {
@@ -101,34 +68,9 @@ namespace Com.Aurora.AuWeather.Models
 
 public class CitySettingsModel
 {
-    private string city;
-    private string id;
+    public string City { get; set; }
 
-    public string City
-    {
-        get
-        {
-            return city;
-        }
-
-        set
-        {
-            city = value;
-        }
-    }
-
-    public string Id
-    {
-        get
-        {
-            return id;
-        }
-
-        set
-        {
-            id = value;
-        }
-    }
+    public string Id { get; set; }
 
     public CitySettingsModel(CityInfo info)
     {

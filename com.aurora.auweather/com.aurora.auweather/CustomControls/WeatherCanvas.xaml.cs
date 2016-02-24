@@ -6,8 +6,10 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -232,11 +234,13 @@ namespace Com.Aurora.AuWeather.CustomControls
                     break;
             }
             rain.ChangeConstants(rainLevel);
+            BGAnimation.Begin();
         }
 
         private void SetWind()
         {
             SetRain(2);
+            SetSunnyBG();
         }
 
         private void ResetCondition()
@@ -251,23 +255,27 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void SetCold()
         {
             isSummer = false;
+            SetSunnyBG();
         }
 
         private void SetHot()
         {
             isSummer = true;
+            SetSunnyBG();
         }
 
         private void SetHaze()
         {
             isHaze = true;
+            SetHazeBG();
         }
-
+        
         private void SetFog()
         {
             isFog = true;
+            SetFogBG();
         }
-
+        
         private void SetSnow(int v)
         {
             isRain = true;
@@ -284,6 +292,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                     rainLevel = RainLevel.lSnow;
                     break;
             }
+            SetCloudyBG();
         }
 
         private void SetRain(int v)
@@ -305,7 +314,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                     rainLevel = RainLevel.heavy;
                     break;
             }
-
+            SetCloudyBG();
         }
 
         private void SetThunderShower()
@@ -313,24 +322,107 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = true;
             isThunder = true;
             rainLevel = RainLevel.moderate;
+            SetCloudyBG();
         }
 
         private void SetShower()
         {
             isRain = true;
             rainLevel = RainLevel.moderate;
+            SetCloudyBG();
         }
 
         private void SetCloudy(int v)
         {
             //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
             isCloudy = true;
-        }
+            SetCloudyBG();
+        }        
 
         private void SetSunny()
         {
             if (!isNight)
                 SunAnimation.Begin();
+            SetSunnyBG();
+        }
+
+        private void SetSunnyBG()
+        {
+            if (isSummer)
+            {
+                if (isNight)
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0, 0, 0);
+                    GradientAni1.To = Color.FromArgb(255, 0x24, 0x08, 0);
+                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                }
+                else
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0xe2, 0xce, 0x60);
+                    GradientAni1.To = Color.FromArgb(255, 0xd5, 0x60, 0x28);
+                    BGPointAni0.To = new Windows.Foundation.Point(0, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(1, 1);
+                }
+            }
+            else
+            {
+                if (isNight)
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0x37, 0x4e, 0x80);
+                    GradientAni1.To = Color.FromArgb(255, 0x17, 0x2e, 0x44);
+                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                }
+                else
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0x4b, 0x9a, 0xdc);
+                    GradientAni1.To = Color.FromArgb(255, 0x20, 0x6d, 0xcb);
+                    BGPointAni0.To = new Windows.Foundation.Point(0, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(1, 1);
+                }
+            }
+        }
+        private void SetFogBG()
+        {
+            if (isNight)
+            {
+                if (isSummer)
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0x0d, 0x00, 0x00);
+                    GradientAni1.To = Color.FromArgb(255, 0x2a, 0x00, 0x00);
+                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                }
+                else
+                {
+                    GradientAni0.To = Color.FromArgb(255, 0x50, 0x50, 0x50);
+                    GradientAni1.To = Color.FromArgb(255, 0x20, 0x20, 0x20);
+                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                }
+            }
+            else
+            {
+                GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
+                GradientAni1.To = Color.FromArgb(255, 0x5a, 0x50, 0x50);
+                BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+                BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+            }
+        }
+        private void SetHazeBG()
+        {
+            GradientAni0.To = Color.FromArgb(255, 0x94, 0x8b, 0x62);
+            GradientAni1.To = Color.FromArgb(255, 0x70, 0x5a, 0x41);
+            BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+            BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+        }
+        private void SetCloudyBG()
+        {
+            GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
+            GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
+            BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
+            BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
         }
     }
 }

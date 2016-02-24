@@ -172,7 +172,7 @@
     <Compile Include="ViewModels\HourlyForecastViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />
-    <Compile Include="ViewModels\NowWeatherViewModel.cs" />
+    <Compile Include="ViewModels\ParameterChangedEventHandler.cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +224,11 @@
     <Page Include="Themes\LightThemeDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
   <ItemGroup>

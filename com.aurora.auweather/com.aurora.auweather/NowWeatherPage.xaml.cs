@@ -1,10 +1,13 @@
 ﻿using Com.Aurora.AuWeather.ViewModels;
+using Com.Aurora.Shared.Converters;
+using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -18,13 +21,27 @@ namespace Com.Aurora.AuWeather
         private bool isAnimating = false;
         private bool isFadeOut = false;
 
+        public bool DetailsPanelIsNormalState { get; private set; }
+
         public NowWeatherPage()
         {
             this.InitializeComponent();
             mModel = new NowWeatherPageViewModel();
             this.DataContext = mModel;
             mModel.FetchDataComplete += MModel_FetchDataComplete;
-            WeatherCanvas.ChangeCondition(Models.WeatherCondition.moderate_rain, false, false);
+            mModel.ParameterChanged += MModel_ParameterChanged;
+        }
+
+        private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
+        {
+            if (e.Parameter is int)
+            {
+                TempratureConverter.ChangeParameter((int)e.Parameter);
+            }
+            if (e.Parameter is string)
+            {
+                DateTimeConverter.ChangeParameter((string)e.Parameter);
+            }
         }
 
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
@@ -32,7 +49,9 @@ namespace Com.Aurora.AuWeather
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
              {
                  isAnimating = true;
+                 WeatherCanvas.ChangeCondition(mModel.Condition, mModel.IsNight, mModel.IsSummer);
                  TempraturePathAnimation.Begin();
+                 DetailTempratureIn.Begin();
                  Forecast0.SetCondition(mModel.Forecast0, mModel.IsNight);
                  Forecast1.SetCondition(mModel.Forecast1, mModel.IsNight);
                  Forecast2.SetCondition(mModel.Forecast2, mModel.IsNight);
@@ -176,5 +195,69 @@ namespace Com.Aurora.AuWeather
             p.Y = result2;
             control.Point3 = p;
         }
+
+        private void Page_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            mModel.FetchDataComplete -= MModel_FetchDataComplete;
+            mModel.ParameterChanged -= MModel_ParameterChanged;
+        }
+
+        private void Grid_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        {
+            if (DetailsPanel.ActualWidth < 720)
+            {
+                this.DetailsPanelGotoNormalState();
+            }
+            else
+            {
+                this.DetailsPanelGotoWideState();
+            }
+        }
+
+        private void DetailsPanelGotoNormalState()
+        {
+            if (!DetailsPanelIsNormalState)
+            {
+                return;
+            }
+            else
+            {
+                DetailsPanelIsNormalState = false;
+                var length = GridLength.Auto;
+                Column2.Width = length;
+                UIHelper.SetControlPositioninGrid(DetailGrid2, 1, 0);
+                UIHelper.SetControlPositioninGrid(DetailGrid3, 1, 1);
+                UIHelper.SetControlPositioninGrid(DetailGrid4, 2, 0);
+                UIHelper.SetControlPositioninGrid(DetailGrid5, 2, 1);
+                UIHelper.SetControlPositioninGrid(DetailGrid6, 3, 0);
+                UIHelper.SetControlPositioninGrid(DetailGrid7, 3, 1);
+                UIHelper.SetControlPositioninGrid(DetailGrid8, 3, 2);
+                UIHelper.ReverseVisibility(DetailGrid8);
+            }
+        }
+
+        private void DetailsPanelGotoWideState()
+        {
+            if (DetailsPanelIsNormalState)
+            {
+                return;
+            }
+            else
+            {
+                DetailsPanelIsNormalState = true;
+                var length = new GridLength(1, GridUnitType.Star);
+                Column2.Width = length;
+                UIHelper.SetControlPositioninGrid(DetailGrid2, 0, 2);
+                UIHelper.SetControlPositioninGrid(DetailGrid3, 1, 0);
+                UIHelper.SetControlPositioninGrid(DetailGrid4, 1, 1);
+                UIHelper.SetControlPositioninGrid(DetailGrid5, 1, 2);
+                UIHelper.SetControlPositioninGrid(DetailGrid6, 2, 0);
+                UIHelper.SetControlPositioninGrid(DetailGrid7, 2, 1);
+                UIHelper.SetControlPositioninGrid(DetailGrid8, 2, 2);
+                UIHelper.ReverseVisibility(DetailGrid8);
+            }
+        }
+
+
     }
 }

@@ -57,20 +57,22 @@ namespace Com.Aurora.Shared.Converters
 
     public class DateTimeConverter : IValueConverter
     {
+        public static string Parameter { get; private set; } = "MM-dd";
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var dateTime = (DateTime)value;
-            var format = "MM-dd";
-            if (parameter != null)
-            {
-                format = (string)parameter;
-            }
-            return dateTime.ToString(format);
+            var dateTime = (DateTime)(value);
+            return dateTime.ToString(Parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+
+        public static void ChangeParameter(string newPar)
+        {
+            Parameter = newPar;
         }
     }
 }

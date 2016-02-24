@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Com.Aurora.Shared.Helpers;
+using System;
 
 namespace Com.Aurora.AuWeather
 {
@@ -12,6 +13,11 @@ namespace Com.Aurora.AuWeather
         public MainPage()
         {
             this.InitializeComponent();
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                TitleBlock.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

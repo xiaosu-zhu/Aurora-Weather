@@ -53,7 +53,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private static readonly Color[] pallete = new Color[]
         {
             //moon,sun 0
-            Color.FromArgb(255,0xef,0xef,0x00),
+            Color.FromArgb(255,0xff,0xef,0x00),
             //cloud 1
             Color.FromArgb(255,0xe0,0xe0,0xe0),
             //rain,small rain 2

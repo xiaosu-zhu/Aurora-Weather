@@ -116,6 +116,9 @@
                         <AppBarButton Icon="Like" Label="Feedback" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
+                <Grid Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                    <TextBlock x:Name="TitleBlock" Text="极光天气" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
+                </Grid>
             </RelativePanel>
         </SplitView.Content>
     </SplitView>

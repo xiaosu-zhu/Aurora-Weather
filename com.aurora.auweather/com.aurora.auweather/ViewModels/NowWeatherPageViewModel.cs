@@ -1,6 +1,7 @@
 ﻿using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Helpers;
 using Com.Aurora.Shared.MVVM;
 using System;
@@ -15,11 +16,13 @@ namespace Com.Aurora.AuWeather.ViewModels
     internal class NowWeatherPageViewModel : ViewModelBase
     {
         private Temprature temprature;
+        private Temprature bodyTemprature;
         private Wind wind;
         private WeatherCondition condition;
         private string city;
         private string id;
         private HeWeatherModel fetchresult;
+
         private float tempraturePath0;
         private float tempraturePath1;
         private float tempraturePath2;
@@ -45,6 +48,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private DateTime forecastDate2;
         private DateTime forecastDate3;
         private DateTime forecastDate4;
+        private string forecastDateConverterParameter;
 
         private float pop0;
         private float pop1;
@@ -52,6 +56,30 @@ namespace Com.Aurora.AuWeather.ViewModels
         private float pop3;
         private float pop4;
         private float pop5;
+
+        private WeatherCondition forecast0;
+        private WeatherCondition forecast1;
+        private WeatherCondition forecast2;
+        private WeatherCondition forecast3;
+        private WeatherCondition forecast4;
+        private Temprature forecast0H;
+        private Temprature forecast0L;
+        private Temprature forecast1H;
+        private Temprature forecast1L;
+        private Temprature forecast2H;
+        private Temprature forecast2L;
+        private Temprature forecast3H;
+        private Temprature forecast3L;
+        private Temprature forecast4H;
+        private Temprature forecast4L;
+
+        private DateTime updateTime;
+
+        private TimeSpan sunRise;
+        private TimeSpan sunSet;
+
+        private bool isNight;
+        private bool isSummer;
 
         public Temprature Temprature
         {
@@ -599,20 +627,165 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        private WeatherCondition forecast0;
-        private WeatherCondition forecast1;
-        private WeatherCondition forecast2;
-        private WeatherCondition forecast3;
-        private WeatherCondition forecast4;
+        public string ForecastDateConverterParameter
+        {
+            get
+            {
+                return forecastDateConverterParameter;
+            }
 
-        private DateTime updateTime;
+            set
+            {
+                SetProperty(ref forecastDateConverterParameter, value);
+            }
+        }
 
-        private TimeSpan sunRise;
-        private TimeSpan sunSet;
+        public Temprature Forecast0H
+        {
+            get
+            {
+                return forecast0H;
+            }
 
-        private bool isNight;
-        private bool isSummer;
+            set
+            {
+                SetProperty(ref forecast0H, value);
+            }
+        }
 
+        public Temprature Forecast0L
+        {
+            get
+            {
+                return forecast0L;
+            }
+
+            set
+            {
+                SetProperty(ref forecast0L, value);
+            }
+        }
+
+        public Temprature Forecast1H
+        {
+            get
+            {
+                return forecast1H;
+            }
+
+            set
+            {
+                SetProperty(ref forecast1H, value);
+            }
+        }
+
+        public Temprature Forecast1L
+        {
+            get
+            {
+                return forecast1L;
+            }
+
+            set
+            {
+                SetProperty(ref forecast1L, value);
+            }
+        }
+
+        public Temprature Forecast2H
+        {
+            get
+            {
+                return forecast2H;
+            }
+
+            set
+            {
+                SetProperty(ref forecast2H, value);
+            }
+        }
+
+        public Temprature Forecast2L
+        {
+            get
+            {
+                return forecast2L;
+            }
+
+            set
+            {
+                SetProperty(ref forecast2L, value);
+            }
+        }
+
+        public Temprature Forecast3H
+        {
+            get
+            {
+                return forecast3H;
+            }
+
+            set
+            {
+                SetProperty(ref forecast3H, value);
+            }
+        }
+
+        public Temprature Forecast3L
+        {
+            get
+            {
+                return forecast3L;
+            }
+
+            set
+            {
+                SetProperty(ref forecast3L, value);
+            }
+        }
+
+        public Temprature Forecast4H
+        {
+            get
+            {
+                return forecast4H;
+            }
+
+            set
+            {
+                SetProperty(ref forecast4H, value);
+            }
+        }
+
+        public Temprature Forecast4L
+        {
+            get
+            {
+                return forecast4L;
+            }
+
+            set
+            {
+                SetProperty(ref forecast4L, value);
+            }
+        }
+
+        public Temprature BodyTemprature
+        {
+            get
+            {
+                return bodyTemprature;
+            }
+
+            set
+            {
+                SetProperty(ref bodyTemprature, value);
+            }
+        }
+
+        public event FetchDataCompleteEventHandler FetchDataComplete;
+        public event ParameterChangedEventHandler ParameterChanged;
+        
         public NowWeatherPageViewModel()
         {
             var task = ThreadPool.RunAsync(async (work) =>
@@ -633,8 +806,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                   }));
             });
         }
-
-        public event FetchDataCompleteEventHandler FetchDataComplete;
 
         private async Task FetchData()
         {
@@ -657,6 +828,14 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         }
 
+        private void NotifyParameterChanged(object parameter)
+        {
+            var h = ParameterChanged;
+            if (h != null)
+            {
+                ParameterChanged(this, new ParameterChangedEventArgs(parameter));
+            }
+        }
         private void NotifyFetchDataComplete()
         {
             var h = FetchDataComplete;
@@ -668,31 +847,83 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
+
             var c = city;
             city = null;
             City = c;
-            Temprature = fetchresult.NowWeather.Temprature;
-            if (Temprature.Celsius > 22)
-            {
-                IsSummer = true;
-            }
-            else
-            {
-                IsSummer = false;
-            }
-            Wind = fetchresult.NowWeather.Wind;
-            Condition = fetchresult.NowWeather.Now.Condition;
-            UpdateTime = fetchresult.Location.UpdateTime;
-            SunRise = fetchresult.DailyForecast[0].SunRise;
-            SunSet = fetchresult.DailyForecast[0].SunSet;
-            if (CalculateIsNight(UpdateTime, SunRise, SunSet))
-            {
-                IsNight = true;
-            }
-            else
-            {
-                IsNight = false;
-            }
+            SetNow();
+            SetTime();
+            CalculatePath();
+            SetHourlyTemp();
+            SetHour();
+            SetProportion();
+            SetDailyForecast();
+
+            this.NotifyFetchDataComplete();
+        }
+
+        private void InitialConverterParameter(SettingsModel settings)
+        {
+            TempratureConverter.ChangeParameter(settings.TempratureParameter);
+            DateTimeConverter.ChangeParameter(settings.ForecastDateParameter);
+        }
+
+        private void SetDailyForecast()
+        {
+            //json 中第一个dailyforecast 是今天的
+            Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
+            Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
+            Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
+            Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
+            Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
+            ForecastDate1 = fetchresult.DailyForecast[2].Date;
+            ForecastDate2 = fetchresult.DailyForecast[3].Date;
+            ForecastDate3 = fetchresult.DailyForecast[4].Date;
+            ForecastDate4 = fetchresult.DailyForecast[5].Date;
+            Forecast0H = fetchresult.DailyForecast[1].HighTemp;
+            Forecast0L = fetchresult.DailyForecast[1].LowTemp;
+            Forecast1H = fetchresult.DailyForecast[2].HighTemp;
+            Forecast1L = fetchresult.DailyForecast[2].LowTemp;
+            Forecast2H = fetchresult.DailyForecast[3].HighTemp;
+            Forecast2L = fetchresult.DailyForecast[3].LowTemp;
+            Forecast3H = fetchresult.DailyForecast[4].HighTemp;
+            Forecast3L = fetchresult.DailyForecast[4].LowTemp;
+            Forecast4H = fetchresult.DailyForecast[5].HighTemp;
+            Forecast4L = fetchresult.DailyForecast[5].LowTemp;
+        }
+
+        private void SetProportion()
+        {
+            Pop0 = fetchresult.HourlyForecast[0].Pop / 100f;
+            Pop1 = fetchresult.HourlyForecast[1].Pop / 100f;
+            Pop2 = fetchresult.HourlyForecast[2].Pop / 100f;
+            Pop3 = fetchresult.HourlyForecast[3].Pop / 100f;
+            Pop4 = fetchresult.HourlyForecast[4].Pop / 100f;
+            Pop5 = fetchresult.HourlyForecast[5].Pop / 100f;
+        }
+
+        private void SetHour()
+        {
+            Hour0 = fetchresult.HourlyForecast[0].DateTime;
+            Hour1 = fetchresult.HourlyForecast[1].DateTime;
+            Hour2 = fetchresult.HourlyForecast[2].DateTime;
+            Hour3 = fetchresult.HourlyForecast[3].DateTime;
+            Hour4 = fetchresult.HourlyForecast[4].DateTime;
+            Hour5 = fetchresult.HourlyForecast[5].DateTime;
+        }
+
+        private void SetHourlyTemp()
+        {
+            HourlyTemp0 = fetchresult.HourlyForecast[0].Temprature;
+            HourlyTemp1 = fetchresult.HourlyForecast[1].Temprature;
+            HourlyTemp2 = fetchresult.HourlyForecast[2].Temprature;
+            HourlyTemp3 = fetchresult.HourlyForecast[3].Temprature;
+            HourlyTemp4 = fetchresult.HourlyForecast[4].Temprature;
+            HourlyTemp5 = fetchresult.HourlyForecast[5].Temprature;
+        }
+
+        private void CalculatePath()
+        {
             List<float> pathResults = new List<float>();
             for (int i = 0; i < 6; i++)
             {
@@ -724,41 +955,37 @@ namespace Com.Aurora.AuWeather.ViewModels
             TempraturePath3 = pathResults[3] / (max - min);
             TempraturePath4 = pathResults[4] / (max - min);
             TempraturePath5 = pathResults[5] / (max - min);
+        }
 
-            HourlyTemp0 = fetchresult.HourlyForecast[0].Temprature;
-            HourlyTemp1 = fetchresult.HourlyForecast[1].Temprature;
-            HourlyTemp2 = fetchresult.HourlyForecast[2].Temprature;
-            HourlyTemp3 = fetchresult.HourlyForecast[3].Temprature;
-            HourlyTemp4 = fetchresult.HourlyForecast[4].Temprature;
-            HourlyTemp5 = fetchresult.HourlyForecast[5].Temprature;
+        private void SetNow()
+        {
+            Temprature = fetchresult.NowWeather.Temprature;
+            BodyTemprature = fetchresult.NowWeather.BodyTemprature;
+            if (Temprature.Celsius > 20)
+            {
+                IsSummer = true;
+            }
+            else
+            {
+                IsSummer = false;
+            }
+            Wind = fetchresult.NowWeather.Wind;
+            Condition = fetchresult.NowWeather.Now.Condition;
+        }
 
-            Hour0 = fetchresult.HourlyForecast[0].DateTime;
-            Hour1 = fetchresult.HourlyForecast[1].DateTime;
-            Hour2 = fetchresult.HourlyForecast[2].DateTime;
-            Hour3 = fetchresult.HourlyForecast[3].DateTime;
-            Hour4 = fetchresult.HourlyForecast[4].DateTime;
-            Hour5 = fetchresult.HourlyForecast[5].DateTime;
-
-            Pop0 = fetchresult.HourlyForecast[0].Pop / 100f;
-            Pop1 = fetchresult.HourlyForecast[1].Pop / 100f;
-            Pop2 = fetchresult.HourlyForecast[2].Pop / 100f;
-            Pop3 = fetchresult.HourlyForecast[3].Pop / 100f;
-            Pop4 = fetchresult.HourlyForecast[4].Pop / 100f;
-            Pop5 = fetchresult.HourlyForecast[5].Pop / 100f;
-
-            //json 中第一个dailyforecast 是今天的
-            Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
-            Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
-            Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
-            Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
-            Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
-
-            ForecastDate1 = fetchresult.DailyForecast[1].Date;
-            ForecastDate2 = fetchresult.DailyForecast[2].Date;
-            ForecastDate3 = fetchresult.DailyForecast[3].Date;
-            ForecastDate4 = fetchresult.DailyForecast[4].Date;
-
-            this.NotifyFetchDataComplete();
+        private void SetTime()
+        {
+            UpdateTime = fetchresult.Location.UpdateTime;
+            SunRise = fetchresult.DailyForecast[0].SunRise;
+            SunSet = fetchresult.DailyForecast[0].SunSet;
+            if (CalculateIsNight(UpdateTime, SunRise, SunSet))
+            {
+                IsNight = true;
+            }
+            else
+            {
+                IsNight = false;
+            }
         }
 
         private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
@@ -774,13 +1001,15 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void ReadSettings()
         {
 #if DEBUG
-            city = "beijing";
+            city = "北京";
             id = "CA1000011";
 #else
             var settings = SettingsModel.ReadSettings();
             city = settings.SavedCities[0].City;
             id = settings.SavedCities[0].Id;
+            InitialConverterParameter(settings);
 #endif
+
         }
     }
 }

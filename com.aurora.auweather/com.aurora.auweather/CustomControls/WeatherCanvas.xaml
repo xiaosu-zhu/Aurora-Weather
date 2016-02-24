@@ -18,9 +18,35 @@
 
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
+            <Storyboard x:Name="BGAnimation">
+                <ColorAnimation x:Name="GradientAni0" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="Gradient0" Storyboard.TargetProperty="Color" >
+                    <ColorAnimation.EasingFunction>
+                        <CircleEase />
+                    </ColorAnimation.EasingFunction>
+                </ColorAnimation>
+                <ColorAnimation x:Name="GradientAni1" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Color" >
+                    <ColorAnimation.EasingFunction>
+                        <CircleEase />
+                    </ColorAnimation.EasingFunction>
+                </ColorAnimation>
+                <PointAnimation x:Name="BGPointAni0" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="BGGradient" Storyboard.TargetProperty="StartPoint">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+                <PointAnimation x:Name="BGPointAni1" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="BGGradient" Storyboard.TargetProperty="EndPoint">
+                    <PointAnimation.EasingFunction>
+                        <CircleEase />
+                    </PointAnimation.EasingFunction>
+                </PointAnimation>
+            </Storyboard>
         </RelativePanel.Resources>
-        <Image x:Name="BG" Stretch="UniformToFill" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"
-                               RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+        <RelativePanel.Background>
+            <LinearGradientBrush x:Name="BGGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop x:Name="Gradient0" Color="#FF4090E0" Offset="0"/>
+                <GradientStop x:Name="Gradient1" Color="#FF3060A0" Offset="1"/>
+            </LinearGradientBrush>
+        </RelativePanel.Background>
         <canvas:CanvasAnimatedControl x:Name="Canvas" RelativePanel.AlignBottomWithPanel="True"
                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                                                       RelativePanel.AlignTopWithPanel="True" CreateResources="Canvas_CreateResources"
