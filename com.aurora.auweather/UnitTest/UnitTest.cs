@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using System.Globalization;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Effects;
+using Windows.Security.Cryptography.Core;
+using Com.Aurora.Shared.Helpers.Crypto;
+using Windows.Storage.Streams;
+using Windows.Security.Cryptography;
 
 namespace UnitTest
 {
@@ -21,6 +25,7 @@ namespace UnitTest
             string notexpected = null;
             Assert.AreNotEqual(notexpected, actual);
         }
+
         [TestMethod]
         public void DateTimeParseTest1()
         {
@@ -29,6 +34,7 @@ namespace UnitTest
             var expected = new DateTime(2016, 1, 31);
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void DateTimeParseTest2()
         {
@@ -37,6 +43,7 @@ namespace UnitTest
             var expected = new DateTime(2016, 1, 25, 13, 00, 00);
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void TempratureTest1()
         {
@@ -44,6 +51,7 @@ namespace UnitTest
             var expected = 77;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void TempratureTest2()
         {
@@ -51,6 +59,7 @@ namespace UnitTest
             var expected = 15;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void TempratureTest3()
         {
@@ -59,17 +68,20 @@ namespace UnitTest
             var expected = 43;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void ApiRequestTest()
         {
             //string[] param = { "search=allworld" };
             //await FileIOHelper.SaveFile("actual", "cityid.txt");
         }
+
         [TestMethod]
         public async Task ReadCityTest()
         {
             var str = await FileIOHelper.ReadStringFromAssets("cityid.txt");
         }
+
         [TestMethod]
         public void StringStreamText()
         {
@@ -77,6 +89,7 @@ namespace UnitTest
             string actual = FileIOHelper.StreamToString(FileIOHelper.StringToStream(origin));
             Assert.AreEqual(origin, actual);
         }
+
         [TestMethod]
         public void PinYinTest()
         {
@@ -85,6 +98,7 @@ namespace UnitTest
             string expected = "gouliguojiashengsiyi，qiyinhuofubiquzhi, hello thank you,nihao//";
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SettingsModelTest1()
         {
@@ -95,10 +109,30 @@ namespace UnitTest
             var actual = SettingsModel.ReadSettings();
             Assert.AreEqual(origin, actual);
         }
+
         [TestMethod]
         public void ThunderPathTest()
         {
-            Thunder t = new Thunder(2.5f,new System.Numerics.Vector2(150,700));
+            Thunder t = new Thunder(2.5f, new System.Numerics.Vector2(150, 700));
+        }
+
+        [TestMethod]
+        public void EncryptTest()
+        {
+            string strMsg = string.Empty;           // Message string
+            string strAlgName = string.Empty;       // Algorithm name
+            uint keyLength = 0;                   // Length of key
+            BinaryStringEncoding encoding = BinaryStringEncoding.Utf8;          // Binary encoding type
+            strAlgName = SymmetricAlgorithmNames.AesCbc;
+            keyLength = 32;
+            IBuffer iv;                             // Initialization vector
+            CryptographicKey key = CryptoHelper.GenerateKey(strAlgName, keyLength);                   // Symmetric Key
+            strMsg = "1234567812345678";
+
+
+            IBuffer buffEncrypted = CryptoHelper.CipherEncryption(strMsg, strAlgName, encoding, key);
+            var actual = CryptoHelper.CipherDecryption(strAlgName, buffEncrypted, encoding, key);
+            Assert.AreEqual(strMsg, actual);
         }
     }
 }

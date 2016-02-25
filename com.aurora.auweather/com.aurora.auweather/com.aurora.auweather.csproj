@@ -96,7 +96,6 @@
     </Content>
     <Content Include="Assets\Key" />
     <Content Include="Assets\rain.png" />
-    <Content Include="Assets\rain_cloud.mp4" />
     <Content Include="Assets\rain_cloud.png" />
     <Content Include="Assets\smoke1.png" />
     <Content Include="Assets\smoke2.png" />

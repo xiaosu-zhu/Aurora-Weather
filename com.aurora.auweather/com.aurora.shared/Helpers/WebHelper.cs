@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Com.Aurora.Shared.Extensions;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +18,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<string> RequestWithKey(string url, string[] pars, string apikey)
         {
             var strURL = url;
-            if (pars != null && pars.Length > 0)
+            if (!pars.IsNullorEmpty())
             {
                 strURL += '?';
                 foreach (var param in pars)
@@ -61,7 +59,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<string> RequestIncludeKey(string url, string[] pars, string apikey)
         {
             var strURL = url;
-            if (pars != null && pars.Length > 0)
+            if (!pars.IsNullorEmpty())
             {
                 strURL += '?';
                 foreach (var param in pars)

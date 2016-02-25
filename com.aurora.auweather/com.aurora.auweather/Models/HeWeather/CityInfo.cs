@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.Shared.Extensions;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -82,7 +79,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         internal static List<CityInfo> CreateList(CityIdContract citys)
         {
-            if (citys != null && citys.city_info != null & citys.city_info.Length > 0)
+            if (citys != null && !citys.city_info.IsNullorEmpty())
             {
                 List<CityInfo> c = new List<CityInfo>();
                 foreach (var city in citys.city_info)

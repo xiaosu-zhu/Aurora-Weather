@@ -47,39 +47,89 @@ namespace Com.Aurora.Shared.Helpers
         {
             if (fileName == null)
                 throw new ArgumentException();
-            StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/"+fileName));
+            StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" + fileName));
             return await FileIO.ReadTextAsync(sFile);
-        }
-
-        public static async Task SaveFile(string sLine, string fileName)
-        {
-            StorageFolder cacheFolder = ApplicationData.Current.LocalFolder;
-            StorageFile cacheFile = await cacheFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-            var flow = await cacheFile.OpenAsync(FileAccessMode.ReadWrite);
-            using (var outputStream = flow.GetOutputStreamAt(0))
-            {
-                using (var dataWriter = new DataWriter(outputStream))
-                {
-                    dataWriter.WriteString(sLine);
-                    await dataWriter.StoreAsync();
-                    await outputStream.FlushAsync();
-                }
-            }
-            flow.Dispose();
         }
 
         /// <summary>
         /// 从安装目录读取文件，返回 byte[]
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="fileName"></param>
         /// <returns></returns>
-        public static async Task<byte[]> ReadAllBytes(string filename)
+        public static async Task<byte[]> ReadAllBytesFromInstall(string fileName)
         {
-            var uri = new Uri("ms-appx:///" + filename);
+            var uri = new Uri("ms-appx:///" + fileName);
             var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
             var buffer = await FileIO.ReadBufferAsync(file);
 
             return buffer.ToArray();
+        }
+
+        /// <summary>
+        /// 将缓冲区写入存储目录（覆盖）
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <param name="buffer">要存储的缓冲区</param>
+        public static async Task SaveBuffertoStorage(string fileName, IBuffer buffer)
+        {
+            if (fileName == null)
+                throw new ArgumentException();
+            var storeFolder = ApplicationData.Current.LocalFolder;
+            var file = await storeFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+            await FileIO.WriteBufferAsync(file, buffer);
+        }
+
+        /// <summary>
+        /// 将文本写入存储目录（覆盖）
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static async Task SaveStringtoStorage(string fileName, string content)
+        {
+            if (fileName == null)
+                throw new ArgumentException();
+            var storeFolder = ApplicationData.Current.LocalFolder;
+            var file = await storeFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, content);
+        }
+
+        /// <summary>
+        /// 从存储目录读取文本
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static async Task<IBuffer> ReadBufferFromStorage(string fileName)
+        {
+            if (fileName == null)
+                throw new ArgumentException();
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile file = await storageFolder.GetFileAsync(fileName);
+
+            return await FileIO.ReadBufferAsync(file);
+        }
+
+        public static async Task<string> ReadStringFromStorage(string fileName)
+        {
+            if (fileName == null)
+                throw new ArgumentException();
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile file = await storageFolder.GetFileAsync(fileName);
+            return await FileIO.ReadTextAsync(file);
+        }
+
+        /// <summary>
+        /// 从Assets读取Buffer
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static async Task<IBuffer> ReadBufferFromAssets(string fileName)
+        {
+            if (fileName == null)
+                throw new ArgumentException();
+            StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" + fileName));
+            return await FileIO.ReadBufferAsync(sFile);
         }
     }
 }

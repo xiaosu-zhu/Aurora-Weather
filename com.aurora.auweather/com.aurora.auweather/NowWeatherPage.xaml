@@ -301,6 +301,18 @@
                         <CircleEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="NowHAniTrans" Storyboard.TargetProperty="Y"
+                                 To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="NowLAniTrans" Storyboard.TargetProperty="Y"
+                                 To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <CircleEase />
@@ -317,6 +329,11 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <CircleEase />
                     </DoubleAnimation.EasingFunction>
@@ -362,11 +379,13 @@
                 <FadeOutThemeAnimation Storyboard.TargetName="NowCondition" />
                 <FadeOutThemeAnimation Storyboard.TargetName="CurrentCity" />
                 <FadeOutThemeAnimation Storyboard.TargetName="TempDeg" />
+                <FadeOutThemeAnimation Storyboard.TargetName="HighLowPanel" />
             </Storyboard>
             <Storyboard x:Name="TempratureIn">
                 <FadeInThemeAnimation Storyboard.TargetName="NowCondition" />
                 <FadeInThemeAnimation Storyboard.TargetName="CurrentCity" />
                 <FadeInThemeAnimation Storyboard.TargetName="TempDeg" />
+                <FadeInThemeAnimation Storyboard.TargetName="HighLowPanel" />
             </Storyboard>
             <Storyboard x:Name="DetailTempratureIn">
                 <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{Binding BodyTemprature, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
@@ -389,12 +408,26 @@
                     <TranslateTransform x:Name="TitleAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" Text="{Binding Condition, Converter={StaticResource ConditiontoTextConverter}}" 
+            <TextBlock x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" 
+                       Text="{Binding Condition, Converter={StaticResource ConditiontoTextConverter}}" 
                            HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" FontWeight="Light">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="ConditionAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
+            <StackPanel Margin="12" x:Name="HighLowPanel" Orientation="Vertical" Opacity="0" RelativePanel.RightOf="NowCondition" RelativePanel.AlignVerticalCenterWith="NowCondition">
+                <TextBlock x:Name="NowH" Text="{Binding NowH,Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
+                    <TextBlock.RenderTransform >
+                        <TranslateTransform x:Name="NowHAniTrans" Y="480" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock x:Name="NowL" Text="{Binding NowL,Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Foreground="#CCF0F0F0}">
+                    <TextBlock.RenderTransform >
+                        <TranslateTransform x:Name="NowLAniTrans" Y="480" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </StackPanel>
             <TextBlock Opacity="0" x:Name="NowTemp" Foreground="White" FontSize="96" Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}"
                        RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Style="{ThemeResource HeaderTextBlockStyle}" >
                 <TextBlock.RenderTransform>
@@ -403,7 +436,7 @@
             </TextBlock>
             <TextBlock x:Name="TempDeg" FontSize="48" RelativePanel.RightOf="NowTemp" RelativePanel.AlignBottomWith="NowTemp" Margin="0,0,0,12"
                        Text="{Binding Temprature, Converter={StaticResource TempratureConverter}}" Style="{ThemeResource HeaderTextBlockStyle}"
-                       Foreground="{ThemeResource SystemControlTranslucentHighBrush}">
+                       Foreground="#CCF0F0F0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempDegAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
@@ -620,7 +653,7 @@
                                 <ColumnDefinition x:Name="Column2" Width="auto" />
                             </Grid.ColumnDefinitions>
                             <RelativePanel x:Name="DetailGrid0" Grid.Row="0" Height="200" >
-                                <TextBlock Text="Body Temperature" Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                                <TextBlock Text="Body Temp." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                                 <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="48" >
                                     <Grid>
                                         <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -656,6 +689,9 @@
                                         <Path.Data>
                                             M 30.5597,31.177L 30.5597,4.15459L 33.4405,7.06972L 33.4403,7.03515L 33.4403,31.177L 56.7236,44.6196L 52.7544,45.6739L 31.9314,33.6717L 31.9314,33.646L 8.68241,47.0886L 9.75397,43.1538L 30.5512,31.1513L 30.5597,31.177 Z M 33.646,32C 33.646,32.909 32.909,33.646 32,33.646C 31.091,33.646 30.354,32.909 30.354,32C 30.354,31.091 31.091,30.354 32,30.354C 32.909,30.354 33.646,31.091 33.646,32 Z
                                         </Path.Data>
+                                        <Path.RenderTransform>
+                                            <RotateTransform x:Name="fengchezhuan" CenterX="32" CenterY="32" Angle="0" />
+                                        </Path.RenderTransform>
                                     </Path>
                                 </Viewbox>
                             </RelativePanel>

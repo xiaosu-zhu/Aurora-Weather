@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
+using Windows.System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -47,19 +48,31 @@ namespace Com.Aurora.AuWeather
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
-             {
-                 isAnimating = true;
-                 WeatherCanvas.ChangeCondition(mModel.Condition, mModel.IsNight, mModel.IsSummer);
-                 TempraturePathAnimation.Begin();
-                 DetailTempratureIn.Begin();
-                 Forecast0.SetCondition(mModel.Forecast0, mModel.IsNight);
-                 Forecast1.SetCondition(mModel.Forecast1, mModel.IsNight);
-                 Forecast2.SetCondition(mModel.Forecast2, mModel.IsNight);
-                 Forecast3.SetCondition(mModel.Forecast3, mModel.IsNight);
-                 Forecast4.SetCondition(mModel.Forecast4, mModel.IsNight);
-                 await Task.Delay(3000);
-                 isAnimating = false;
-             }));
+            {
+                isAnimating = true;
+                WeatherCanvas.ChangeCondition(mModel.Condition, mModel.IsNight, mModel.IsSummer);
+                TempraturePathAnimation.Begin();
+                DetialGrid0Play();
+                Forecast0.SetCondition(mModel.Forecast0, mModel.IsNight);
+                Forecast1.SetCondition(mModel.Forecast1, mModel.IsNight);
+                Forecast2.SetCondition(mModel.Forecast2, mModel.IsNight);
+                Forecast3.SetCondition(mModel.Forecast3, mModel.IsNight);
+                Forecast4.SetCondition(mModel.Forecast4, mModel.IsNight);
+                await Task.Delay(3000);
+                isAnimating = false;
+            }));
+        }
+
+        private void DetialGrid0Play()
+        {
+            DetailTempratureIn.Begin();
+            ThreadPoolTimer.CreatePeriodicTimer((work) => 
+            {
+                this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
+                 {
+                     fengchezhuan.Angle += 0.1396263377777778;
+                 }));
+            }, TimeSpan.FromMilliseconds(16));
         }
 
         private void RelativePanel_LayoutUpdated(object sender, object e)

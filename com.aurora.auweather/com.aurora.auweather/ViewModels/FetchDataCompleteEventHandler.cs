@@ -5,4 +5,16 @@
     public class FetchDataCompleteEventArgs
     {
     }
+
+    public delegate void FetchDataFailedEventHandler(object sender, FetchDataFailedEventArgs e);
+
+    public class FetchDataFailedEventArgs
+    {
+        public string Message { get; private set; }
+
+        public FetchDataFailedEventArgs(string message)
+        {
+            this.Message = message;
+        }
+    }
 }

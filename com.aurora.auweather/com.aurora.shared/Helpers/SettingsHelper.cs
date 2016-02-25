@@ -270,7 +270,16 @@ namespace Com.Aurora.Shared.Helpers
             foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 var value = mainContainer.Values[member.Name];
-                member.SetValue(obj, value);
+                if (member.PropertyType == typeof(DateTime))
+                {
+                    var time = DateTime.FromBinary((long)value);
+                    member.SetValue(obj, time);
+                }
+                else
+                {
+                    member.SetValue(obj, value);
+                }
+
             }
             source = (T)obj;
         }
@@ -287,7 +296,14 @@ namespace Com.Aurora.Shared.Helpers
             foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 var value = member.GetValue(source, null);
-                mainContainer.Values[member.Name] = value;
+                if (value is DateTime)
+                {
+                    mainContainer.Values[member.Name] = ((DateTime)value).ToBinary();
+                }
+                else
+                {
+                    mainContainer.Values[member.Name] = value;
+                }
             }
         }
     }

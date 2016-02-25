@@ -2,6 +2,7 @@
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.Shared.Converters;
+using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using Com.Aurora.Shared.MVVM;
 using System;
@@ -17,10 +18,12 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         private Temprature temprature;
         private Temprature bodyTemprature;
+        private Temprature nowH;
+        private Temprature nowL;
         private Wind wind;
         private WeatherCondition condition;
-        private string city;
-        private string id;
+        private string currentCity;
+        private string currentId;
         private HeWeatherModel fetchresult;
 
         private float tempraturePath0;
@@ -80,6 +83,10 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private bool isNight;
         private bool isSummer;
+        private CitySettingsModel[] citys;
+        private List<KeyValuePair<string, string>> storedDatas;
+        private SettingsModel settings;
+        private CitySettingsModel currentCityModel;
 
         public Temprature Temprature
         {
@@ -124,12 +131,12 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             get
             {
-                return city;
+                return currentCity;
             }
 
             set
             {
-                SetProperty(ref city, value);
+                SetProperty(ref currentCity, value);
             }
         }
 
@@ -783,9 +790,36 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public Temprature NowH
+        {
+            get
+            {
+                return nowH;
+            }
+
+            set
+            {
+                SetProperty(ref nowH, value);
+            }
+        }
+
+        public Temprature NowL
+        {
+            get
+            {
+                return nowL;
+            }
+
+            set
+            {
+                SetProperty(ref nowL, value);
+            }
+        }
+
         public event FetchDataCompleteEventHandler FetchDataComplete;
         public event ParameterChangedEventHandler ParameterChanged;
-        
+        public event FetchDataFailedEventHandler FetchDataFailed;
+
         public NowWeatherPageViewModel()
         {
             var task = ThreadPool.RunAsync(async (work) =>
@@ -794,10 +828,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     ReadSettings();
                     await FetchData();
-
                 }
                 catch (ArgumentNullException)
                 {
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
                     return;
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
@@ -807,22 +841,51 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+        private void OnFetchDataFailed(object sender, FetchDataFailedEventArgs e)
+        {
+            var h = this.FetchDataFailed;
+            if (h != null)
+            {
+                h(sender, e);
+            }
+        }
+
         private async Task FetchData()
         {
-
-
-
-            if (id != null)
+            await SearchExistingData();
+            string resstr;
+            if (currentId != null)
             {
-                var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + id };
+                if (!storedDatas.IsNullorEmpty())
+                {
+                    var lastFetchedData = storedDatas.Find(x =>
+                     {
+                         return x.Key == currentId;
+                     });
+                    if (!lastFetchedData.Equals(default(KeyValuePair<string, string>)))
+                    {
+                        resstr = lastFetchedData.Value;
+                        var resjson = HeWeatherContract.Generate(resstr);
+                        fetchresult = new HeWeatherModel(resjson);
+                        return;
+                    }
+                }
 #if DEBUG
-                var resstr = await FileIOHelper.ReadStringFromAssets("testdata");
+                resstr = await FileIOHelper.ReadStringFromAssets("testdata");
 #else
-                var resstr = await BaiduRequestHelper.RequestWithKey("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);    
+                var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                var param = new string[] { "cityid=" + currentId };
+                resstr = await BaiduRequestHelper.RequestWithKey("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);    
 #endif
-                var resjson = HeWeatherContract.Generate(resstr);
-                fetchresult = new HeWeatherModel(resjson);
+                var resjson1 = HeWeatherContract.Generate(resstr);
+                fetchresult = new HeWeatherModel(resjson1);
+                ThreadPool.RunAsync((work) =>
+                {
+                    settings.SaveData(currentId, resstr);
+                });
+                currentCityModel.Update();
+                citys[settings.CurrentCityIndex] = currentCityModel;
+                settings.UpdateCity(citys);
             }
             else throw new NullReferenceException();
 
@@ -847,9 +910,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
-
-            var c = city;
-            city = null;
+            var c = currentCity;
+            currentCity = null;
             City = c;
             SetNow();
             SetTime();
@@ -860,6 +922,33 @@ namespace Com.Aurora.AuWeather.ViewModels
             SetDailyForecast();
 
             this.NotifyFetchDataComplete();
+        }
+
+        private async Task SearchExistingData()
+        {
+            if (!citys.IsNullorEmpty())
+            {
+                var currentTime = DateTime.Now;
+                storedDatas = new List<KeyValuePair<string, string>>();
+                foreach (var c in citys)
+                {
+
+                    if ((currentTime - c.LastUpdate).TotalMinutes > 15)
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        var data = await FileIOHelper.ReadStringFromStorage(c.Id);
+                        if (data != null)
+                            storedDatas.Add(new KeyValuePair<string, string>(c.Id, data));
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+            }
         }
 
         private void InitialConverterParameter(SettingsModel settings)
@@ -960,6 +1049,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void SetNow()
         {
             Temprature = fetchresult.NowWeather.Temprature;
+            NowH = fetchresult.DailyForecast[0].HighTemp;
+            NowL = fetchresult.DailyForecast[0].LowTemp;
             BodyTemprature = fetchresult.NowWeather.BodyTemprature;
             if (Temprature.Celsius > 20)
             {
@@ -1001,13 +1092,47 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void ReadSettings()
         {
 #if DEBUG
-            city = "北京";
-            id = "CA1000011";
-#else
-            var settings = SettingsModel.ReadSettings();
-            city = settings.SavedCities[0].City;
-            id = settings.SavedCities[0].Id;
+            settings = SettingsModel.ReadSettings();
+            if (settings.SavedCities.IsNullorEmpty())
+            {
+                currentCityModel = new CitySettingsModel();
+                currentCityModel.City = "北京";
+                currentCityModel.Id = "CA1000011";
+                currentCityModel.LastUpdate = DateTime.Now;
+                currentCity = "北京";
+                currentId = "CA1000011";
+                citys = new CitySettingsModel[] { new CitySettingsModel() };
+                citys[0].City = "北京";
+                citys[0].Id = "CA1000011";
+                citys[0].LastUpdate = DateTime.Now;
+                settings.CurrentCityIndex = 0;
+                settings.SavedCities = citys;
+                settings.AllowLocation = true;
+                settings.ForecastDateParameter = "dddd";
+                settings.TempratureParameter = 1;
+                settings.SaveSettings();
+            }
+            else
+            {
+                currentCityModel = settings.SavedCities[settings.CurrentCityIndex];
+                currentCity = currentCityModel.City;
+                citys = settings.SavedCities;
+                currentId = currentCityModel.Id;
+            }
             InitialConverterParameter(settings);
+#else
+            settings = SettingsModel.ReadSettings();
+            if (!settings.SavedCities.IsNullorEmpty())
+            {
+            currentCity = settings.CurrentCity.City;
+            citys = settings.SavedCities;
+            currentId = settings.CurrentCity.Id;
+            InitialConverterParameter(settings);
+            }
+            else
+            {
+            throw new ArgumentNullException();
+            }
 #endif
 
         }

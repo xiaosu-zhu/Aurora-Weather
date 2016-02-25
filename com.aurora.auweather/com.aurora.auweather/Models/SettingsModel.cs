@@ -1,9 +1,8 @@
 ﻿using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models
@@ -11,6 +10,8 @@ namespace Com.Aurora.AuWeather.Models
     public class SettingsModel
     {
         public bool AllowLocation { get; set; } = true;
+
+        public uint CurrentCityIndex { get; set; } = 0;
 
         public CitySettingsModel[] SavedCities { get; set; }
 
@@ -24,15 +25,23 @@ namespace Com.Aurora.AuWeather.Models
         {
             RoamingSettingsHelper.WriteSettingsValue("AllowLocation", AllowLocation);
             RoamingSettingsHelper.WriteSettingsValue("RefreshState", (byte)RefreshState);
-            if (SavedCities != null && SavedCities.Length > 0)
+            RoamingSettingsHelper.WriteSettingsValue("CurrentIndex", CurrentCityIndex);
+            RoamingSettingsHelper.WriteSettingsValue("TempratureParameter", TempratureParameter);
+            RoamingSettingsHelper.WriteSettingsValue("ForecastDateParameter", ForecastDateParameter);
+            if (!SavedCities.IsNullorEmpty())
             {
-                int i = 0;
-                RoamingSettingsHelper.WriteSettingsValue("CityNumber", SavedCities.Length);
-                foreach (var item in SavedCities)
-                {
-                    RoamingSettingsHelper.GetContainer("City" + i).WriteGroupSettings(item);
-                    i++;
-                }
+                SaveCities();
+            }
+        }
+
+        private void SaveCities()
+        {
+            int i = 0;
+            RoamingSettingsHelper.WriteSettingsValue("CityNumber", SavedCities.Length);
+            foreach (var item in SavedCities)
+            {
+                RoamingSettingsHelper.GetContainer("City" + i).WriteGroupSettings(item);
+                i++;
             }
         }
 
@@ -41,9 +50,12 @@ namespace Com.Aurora.AuWeather.Models
             SettingsModel set = new SettingsModel();
             try
             {
+                set.TempratureParameter = (int)RoamingSettingsHelper.ReadSettingsValue("TempratureParameter");
+                set.ForecastDateParameter = (string)RoamingSettingsHelper.ReadSettingsValue("ForecastDateParameter");
                 set.AllowLocation = (bool)RoamingSettingsHelper.ReadSettingsValue("AllowLocation");
                 set.RefreshState = (RefreshState)Enum.Parse(typeof(RefreshState),
                     RoamingSettingsHelper.ReadSettingsValue("RefreshState").ToString());
+                set.CurrentCityIndex = (uint)RoamingSettingsHelper.ReadSettingsValue("CurrentIndex");
                 int? i = (int?)RoamingSettingsHelper.ReadSettingsValue("CityNumber");
                 if (i != null)
                 {
@@ -60,8 +72,22 @@ namespace Com.Aurora.AuWeather.Models
             }
             catch (Exception)
             {
-                return new SettingsModel();
+                return set;
             }
+        }
+        public void UpdateCity(CitySettingsModel[] city)
+        {
+            if (!city.IsNullorEmpty())
+            {
+                this.SavedCities = city;
+                SaveCities();
+            }
+
+        }
+
+        public async Task SaveData(string currentId, string fetchresult)
+        {
+            await FileIOHelper.SaveStringtoStorage(currentId, fetchresult);
         }
     }
 }
@@ -72,6 +98,8 @@ public class CitySettingsModel
 
     public string Id { get; set; }
 
+    public DateTime LastUpdate { get; set; } = new DateTime(1970, 1, 1);
+
     public CitySettingsModel(CityInfo info)
     {
         City = info.City;
@@ -80,5 +108,10 @@ public class CitySettingsModel
     public CitySettingsModel()
     {
 
+    }
+
+    internal void Update()
+    {
+        this.LastUpdate = DateTime.Now;
     }
 }

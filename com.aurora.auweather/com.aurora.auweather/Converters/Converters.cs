@@ -104,7 +104,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value is float)
             {
-                Nullable<Point> point = new Point(0, (float)value * _factor);
+                Point? point = new Point(0, (float)value * _factor);
                 return point;
             }
             return new Point(0, 0);

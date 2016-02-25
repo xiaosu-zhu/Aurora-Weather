@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Com.Aurora.Shared.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -153,7 +151,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         private WeatherAlarm[] GenerateWeatherAlarms(JsonContract.WeatherAlarmContract[] alarms)
         {
-            if (alarms != null && alarms.Length > 0)
+            if (!alarms.IsNullorEmpty())
             {
                 try
                 {
@@ -174,7 +172,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         private HourlyForecast[] GenerateHourlyForecast(JsonContract.HourlyForecastContract[] hourly_forecast)
         {
-            if (hourly_forecast != null && hourly_forecast.Length > 0)
+            if (!hourly_forecast.IsNullorEmpty())
             {
                 List<HourlyForecast> hours = new List<HourlyForecast>();
                 foreach (var hour in hourly_forecast)
@@ -188,7 +186,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         private DailyForecast[] GenerateDailyForecast(JsonContract.DailyForecastContract[] daily_forecast)
         {
-            if (daily_forecast != null && daily_forecast.Length > 0)
+            if (!daily_forecast.IsNullorEmpty())
             {
                 List<DailyForecast> dailys = new List<DailyForecast>();
                 foreach (var daily in daily_forecast)
