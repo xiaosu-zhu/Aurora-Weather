@@ -152,6 +152,7 @@
     <Compile Include="Models\IWeather.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\Speed.cs" />
     <Compile Include="Models\Temprature.cs" />
     <Compile Include="Models\TempratureRange.cs" />
     <Compile Include="Models\WeatherModel.cs" />

@@ -17,7 +17,7 @@
         <Converters:ColortoSolidColorBrushConverter x:Key="ColortoBrushConverter" />
     </UserControl.Resources>
 
-    <Path x:Name="Root" Width="64" Height="64" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Stroke="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}" StrokeThickness="1" Fill="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}"
+    <Path x:Name="Root" Width="64" Height="64" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Stroke="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}" StrokeThickness="1" Fill="{Binding ResultFillColor, Converter={StaticResource ColortoBrushConverter}}"
           StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round"
           Data="{Binding Result, Converter={StaticResource StringtoPathConverter}}">
     </Path>

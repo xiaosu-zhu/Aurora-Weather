@@ -43,6 +43,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         public WeatherCanvas()
         {
             this.InitializeComponent();
+            timeToCreate = Tools.RandomBetween(0, 2);
         }
 
         private void WeatherCanvas_Unloaded(object sender, RoutedEventArgs e)
@@ -74,9 +75,12 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     timeToCreate = Tools.RandomBetween(5, 7);
                     CreateSmoke();
+                    if (isThunder)
+                    {
+                        thunderGen.Generate(Canvas.Size.ToVector2());
+                    }
                 }
             }
-
             star.Update(elapsedTime);
             smoke.Update(elapsedTime);
             rain.Update(elapsedTime, Canvas.Size.ToVector2());
@@ -269,13 +273,13 @@ namespace Com.Aurora.AuWeather.CustomControls
             isHaze = true;
             SetHazeBG();
         }
-        
+
         private void SetFog()
         {
             isFog = true;
             SetFogBG();
         }
-        
+
         private void SetSnow(int v)
         {
             isRain = true;
@@ -337,7 +341,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
             isCloudy = true;
             SetCloudyBG();
-        }        
+        }
 
         private void SetSunny()
         {

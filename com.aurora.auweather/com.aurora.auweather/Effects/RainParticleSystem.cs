@@ -127,8 +127,8 @@ namespace Com.Aurora.AuWeather.Effects
             minAcceleration = 1200;
             maxAcceleration = 1500;
 
-            minScaleX = 0.6f;
-            maxScaleX = 0.9f;
+            minScaleX = 0.4f;
+            maxScaleX = 0.7f;
 
             minScaleY = 0.9f;
             maxScaleY = 4;
@@ -148,8 +148,8 @@ namespace Com.Aurora.AuWeather.Effects
             minAcceleration = 900;
             maxAcceleration = 1000;
 
-            minScaleX = 0.6f;
-            maxScaleX = 0.9f;
+            minScaleX = 0.3f;
+            maxScaleX = 0.6f;
 
             minScaleY = 0.9f;
             maxScaleY = 2;
@@ -169,8 +169,8 @@ namespace Com.Aurora.AuWeather.Effects
             minAcceleration = 600;
             maxAcceleration = 800;
 
-            minScaleX = 0.6f;
-            maxScaleX = 0.9f;
+            minScaleX = 0.2f;
+            maxScaleX = 0.5f;
 
             minScaleY = 0.9f;
             maxScaleY = 1.3f;
@@ -190,8 +190,8 @@ namespace Com.Aurora.AuWeather.Effects
             minAcceleration = 400;
             maxAcceleration = 600;
 
-            minScaleX = 0.6f;
-            maxScaleX = 0.9f;
+            minScaleX = 0.1f;
+            maxScaleX = 0.4f;
 
             minScaleY = 0.7f;
             maxScaleY = 1;

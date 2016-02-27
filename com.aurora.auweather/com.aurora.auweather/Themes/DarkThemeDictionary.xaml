@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="SystemTranslucentAltHighBrush" Color="#441A1C37" />
 
     <SolidColorBrush x:Key="SystemControlForegroundHighBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlForegroundLowBrush" Color="#FFb0b0b0"/>
     <SolidColorBrush x:Key="SystemControlBackgroundHighBrush" Color="#FF000000"/>
     <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FFF0F0F0" />
     <SolidColorBrush x:Key="SystemControlAltHighBrush" Color="#FF444444" />

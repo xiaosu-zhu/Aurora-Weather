@@ -66,11 +66,11 @@ namespace Com.Aurora.AuWeather
         private void DetialGrid0Play()
         {
             DetailTempratureIn.Begin();
-            ThreadPoolTimer.CreatePeriodicTimer((work) => 
+            ThreadPoolTimer.CreatePeriodicTimer((work) =>
             {
                 this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
                  {
-                     fengchezhuan.Angle += 0.1396263377777778;
+                     fengchezhuan.Angle += 0.1396263377777778 * mModel.Wind.Speed.MPS;
                  }));
             }, TimeSpan.FromMilliseconds(16));
         }

@@ -110,11 +110,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PulltoRefresh.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="Extensions\EnumrableExtesion.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\Crypto\CryptoHelper.cs" />
+    <Compile Include="Helpers\EasingHelper.cs" />
     <Compile Include="Helpers\FileIOHelper.cs" />
+    <Compile Include="Helpers\InteractionHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\PinYinHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
@@ -127,7 +130,12 @@
     <Compile Include="Helpers\WebHelper.cs" />
     <EmbeddedResource Include="Properties\com.aurora.shared.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

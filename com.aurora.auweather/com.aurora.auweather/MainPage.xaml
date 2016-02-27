@@ -43,12 +43,12 @@
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
                 <Controls:ConditionPath Height="64" Width="64"/>
 
-                <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" 
+                <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentHighBrush}" 
                             RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                             RelativePanel.AlignRightWithPanel="True">
                     <CommandBar.CommandBarOverflowPresenterStyle>
                         <Style TargetType="CommandBarOverflowPresenter">
-                            <Setter Property="Background" Value="{ThemeResource SystemControlTranslucentAltAltHighBrush}" />
+                            <Setter Property="Background" Value="{ThemeResource SystemControlTranslucentHighBrush}" />
                             <Setter Property="BorderBrush" Value="Transparent" />
                             <Setter Property="MaxWidth" Value="{ThemeResource CommandBarOverflowMaxWidth}"/>
                             <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />

@@ -75,4 +75,50 @@ namespace Com.Aurora.Shared.Converters
             Parameter = newPar;
         }
     }
+
+    public class PercentageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is int)
+            {
+                return value.ToString() + "%";
+            }
+            else if (value is uint)
+            {
+                return value.ToString() + "%";
+            }
+            else if (value is double)
+            {
+                return ((double)value).ToString("P");
+            }
+            else if (value is float)
+            {
+                return ((float)value).ToString("P");
+            }
+            else if (value is long)
+            {
+                return value.ToString() + "%";
+            }
+            else if (value is short)
+            {
+                return value.ToString() + "%";
+            }
+            else if (value is ushort)
+            {
+                return value.ToString() + "%";
+            }
+            else if (value is ulong)
+            {
+                return value.ToString() + "%";
+            }
+
+            else return value.ToString() + "%";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

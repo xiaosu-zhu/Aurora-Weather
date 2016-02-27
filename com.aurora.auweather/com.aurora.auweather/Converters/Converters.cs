@@ -79,16 +79,115 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class WindConverter : IValueConverter
+    class WindSpeedConverter : IValueConverter
     {
+        public static WindParameter windParameter = WindParameter.BeaufortandText;
+        private static SpeedParameter speedParameter = SpeedParameter.KMPH;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //TODO
-            if (value is Wind)
+            if (value != default(Wind))
             {
-                return (value as Wind).Direction.ToString();
+                var wind = value as Wind;
+                StringBuilder sb = new StringBuilder();
+                switch (windParameter)
+                {
+                    case WindParameter.BeaufortandText:
+                    case WindParameter.BeaufortandDegree:
+                        sb = SetBeaufort(wind.Scale, sb);
+                        break;
+                    case WindParameter.SpeedandText:
+                    case WindParameter.SpeedandDegree:
+                        sb = SetSpeed(wind.Speed, sb);
+                        break;
+                    default:
+                        break;
+                }
+                return sb.ToString();
             }
             return null;
+        }
+        private StringBuilder SetSpeed(Speed speed, StringBuilder sb)
+        {
+            switch (speedParameter)
+            {
+                case SpeedParameter.KMPH:
+                    sb.Append(speed.KMPH.ToString("0.0") + " km/h");
+                    break;
+                case SpeedParameter.MPS:
+                    sb.Append(speed.MPS.ToString("0.0") + " m/s");
+                    break;
+                case SpeedParameter.Knot:
+                    sb.Append(speed.Knot.ToString("0.0") + " kn");
+                    break;
+                default:
+                    break;
+            }
+            return sb;
+        }
+        private StringBuilder SetBeaufort(WindScale scale, StringBuilder sb)
+        {
+            switch (scale)
+            {
+                case WindScale.unknown:
+                    sb.Append("...");
+                    break;
+                case WindScale.zero:
+                    sb.Append("无风");
+                    break;
+                case WindScale.one:
+                    sb.Append("平静");
+                    break;
+                case WindScale.two:
+                    sb.Append("微风");
+                    break;
+                case WindScale.three:
+                    sb.Append("轻风");
+                    break;
+                case WindScale.four:
+                    sb.Append("和风");
+                    break;
+                case WindScale.five:
+                    sb.Append("清风");
+                    break;
+                case WindScale.six:
+                    sb.Append("强风");
+                    break;
+                case WindScale.seven:
+                    sb.Append("疾风");
+                    break;
+                case WindScale.eight:
+                    sb.Append("大风");
+                    break;
+                case WindScale.nine:
+                    sb.Append("烈风");
+                    break;
+                case WindScale.ten:
+                    sb.Append("狂风");
+                    break;
+                case WindScale.eleven:
+                    sb.Append("暴风");
+                    break;
+                case WindScale.twelve:
+                    sb.Append("飓风");
+                    break;
+                case WindScale.thirteen:
+                    sb.Append("台风");
+                    break;
+                case WindScale.fourteen:
+                case WindScale.fifteen:
+                    sb.Append("强台飓风");
+                    break;
+                case WindScale.sixteen:
+                case WindScale.seventeen:
+                    sb.Append("超强台飓风");
+                    break;
+                case WindScale.eighteen:
+                    sb.Append("极强台飓风");
+                    break;
+                default:
+                    break;
+            }
+            return sb;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -97,6 +196,81 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
+    class WindDirectionConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value != default(Wind))
+            {
+                var wind = value as Wind;
+                StringBuilder sb = new StringBuilder();
+                switch (WindSpeedConverter.windParameter)
+                {
+                    case WindParameter.BeaufortandText:
+                    case WindParameter.SpeedandText:
+                        sb = SetText(wind.Direction, sb);
+                        break;
+                    case WindParameter.BeaufortandDegree:
+                    case WindParameter.SpeedandDegree:
+                        sb = SetDegree(wind.Degree, sb);
+                        break;
+                    default:
+                        break;
+                }
+                return sb.ToString();
+            }
+            return null;
+        }
+        private StringBuilder SetDegree(uint degree, StringBuilder sb)
+        {
+            sb.Append(degree);
+            sb.Append('°');
+            return sb;
+        }
+
+        private StringBuilder SetText(WindDirection direction, StringBuilder sb)
+        {
+            switch (direction)
+            {
+                case WindDirection.unknown:
+                    sb.Append("...");
+                    break;
+                case WindDirection.north:
+                    sb.Append("北风");
+                    break;
+                case WindDirection.east:
+                    sb.Append("东风");
+                    break;
+                case WindDirection.west:
+                    sb.Append("西风");
+                    break;
+                case WindDirection.south:
+                    sb.Append("南风");
+                    break;
+                case WindDirection.northeast:
+                    sb.Append("东北风");
+                    break;
+                case WindDirection.northwest:
+                    sb.Append("西北风");
+                    break;
+                case WindDirection.southeast:
+                    sb.Append("东南风");
+                    break;
+                case WindDirection.southwest:
+                    sb.Append("西南风");
+                    break;
+                default:
+                    sb.Append("...");
+                    break;
+            }
+            return sb;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
     class TemraturePathConverter : IValueConverter
     {
         private const float _factor = -64;
@@ -312,8 +486,9 @@ namespace Com.Aurora.Shared.Converters
                 return 0;
             float temp = ((Temprature)value).Celsius;
             temp = temp < -15 ? -15 : temp;
-            temp = temp > 45 ? 45 : temp;
-            temp /= 60;
+            temp = temp > 40 ? 40 : temp;
+            temp += 15;
+            temp /= 55;
             return 56 * (1 - temp);
         }
 

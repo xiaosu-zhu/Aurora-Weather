@@ -25,6 +25,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string currentCity;
         private string currentId;
         private HeWeatherModel fetchresult;
+        private uint humidity;
 
         private float tempraturePath0;
         private float tempraturePath1;
@@ -816,6 +817,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public uint Humidity
+        {
+            get
+            {
+                return humidity;
+            }
+
+            set
+            {
+                SetProperty(ref humidity, value);
+            }
+        }
+
         public event FetchDataCompleteEventHandler FetchDataComplete;
         public event ParameterChangedEventHandler ParameterChanged;
         public event FetchDataFailedEventHandler FetchDataFailed;
@@ -960,11 +974,22 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void SetDailyForecast()
         {
             //json 中第一个dailyforecast 是今天的
-            Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
-            Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
-            Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
-            Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
-            Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
+            if (!IsNight)
+            {
+                Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
+                Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
+                Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
+                Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
+                Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
+            }
+            else
+            {
+                Forecast0 = fetchresult.DailyForecast[1].Condition.NightCond;
+                Forecast1 = fetchresult.DailyForecast[2].Condition.NightCond;
+                Forecast2 = fetchresult.DailyForecast[3].Condition.NightCond;
+                Forecast3 = fetchresult.DailyForecast[4].Condition.NightCond;
+                Forecast4 = fetchresult.DailyForecast[5].Condition.NightCond;
+            }
             ForecastDate1 = fetchresult.DailyForecast[2].Date;
             ForecastDate2 = fetchresult.DailyForecast[3].Date;
             ForecastDate3 = fetchresult.DailyForecast[4].Date;
@@ -1052,6 +1077,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             NowH = fetchresult.DailyForecast[0].HighTemp;
             NowL = fetchresult.DailyForecast[0].LowTemp;
             BodyTemprature = fetchresult.NowWeather.BodyTemprature;
+            Humidity = fetchresult.DailyForecast[0].Humidity;
             if (Temprature.Celsius > 20)
             {
                 IsSummer = true;

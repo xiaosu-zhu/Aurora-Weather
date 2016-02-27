@@ -19,7 +19,7 @@ namespace Com.Aurora.AuWeather.Models
     public enum WindScale : byte
     {
         unknown, zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen,
-        fifteen, sixteen, seventeen
+        fifteen, sixteen, seventeen, eighteen
     }
     public enum AQIQuality : byte { unknown, one, two, three, four, five, six }; //one 为优，six 为严重污染
     public enum WeatherAlarmType : byte
@@ -32,4 +32,8 @@ namespace Com.Aurora.AuWeather.Models
     public enum RefreshState : byte { none, daily, six_hour, twelve_hour };
 
     public enum RainLevel : byte { light, moderate, heavy, extreme, sSnow, lSnow };
+
+    public enum WindParameter : byte { BeaufortandText, BeaufortandDegree, SpeedandText, SpeedandDegree }
+
+    public enum SpeedParameter : byte { KMPH, MPS, Knot };
 }

@@ -6,6 +6,7 @@
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
     xmlns:Converters="using:Com.Aurora.Shared.Converters"
     xmlns:CustomControls="using:Com.Aurora.AuWeather.CustomControls"
+    xmlns:ptr ="using:Com.Aurora.Shared.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -22,7 +23,8 @@
             </ResourceDictionary.MergedDictionaries>
             <Converters:TempratureConverter x:Key="TempratureConverter" />
             <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverter1" />
-            <Converters:WindConverter x:Key="WindConverter" />
+            <Converters:WindSpeedConverter x:Key="WindSpeedConverter" />
+            <Converters:WindDirectionConverter x:Key="WindDirectionConverter" />
             <Converters:TemraturePathConverter x:Key="TempraturePathConverter" />
             <Converters:TempraturePathEndConverter x:Key="EndPointConverter" />
             <Converters:HourMinuteConverter x:Key="HourMinuteConverter" />
@@ -31,6 +33,7 @@
             <Converters:ScrollViewerConverter x:Key="ScrollViewerConverter" />
             <Converters:ConditiontoTextConverter x:Key="ConditiontoTextConverter" />
             <Converters:BodyTempratureAniConverter x:Key="BodyTempratureAniConverter" />
+            <Converters:PercentageConverter x:Key="PercentageConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -442,250 +445,251 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </RelativePanel>
-        <ScrollViewer x:Name="ScrollableRoot" Padding="0,112,0,0" 
-                      RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  
-                      VerticalScrollBarVisibility="Hidden" ZoomMode="Disabled">
-            <ScrollViewer.Content>
-                <RelativePanel>
-                    <Grid Height="332" x:Name="Header" />
-                    <Path x:Name="TempraturePath" RelativePanel.Below="Header" 
+        <ptr:PulltoRefresh x:Name="ScrollableRoot" Padding="0,112,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
+                      RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+            <RelativePanel>
+                <Grid Height="332" x:Name="Header" />
+                <Path x:Name="TempraturePath" RelativePanel.Below="Header" 
                           RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                           Stroke="Transparent" StrokeThickness="0"
                           Fill="{ThemeResource SystemControlForegroundHighBrush}">
-                        <Path.Data>
-                            <GeometryGroup>
-                                <PathGeometry>
-                                    <PathGeometry.Figures>
-                                        <PathFigureCollection>
-                                            <PathFigure x:Name="PathFigure" IsClosed="true" StartPoint="0,0">
-                                                <PathFigure.Segments>
-                                                    <PathSegmentCollection>
-                                                        <BezierSegment x:Name="BezierControl1" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl2" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl3" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl4" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl5" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl6" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <BezierSegment x:Name="BezierControl7" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                                        <LineSegment x:Name="endPoint1" Point="0,36" />
-                                                        <LineSegment Point="0,36" />
-                                                    </PathSegmentCollection>
-                                                </PathFigure.Segments>
-                                            </PathFigure>
-                                        </PathFigureCollection>
-                                    </PathGeometry.Figures>
-                                </PathGeometry>
-                            </GeometryGroup>
-                        </Path.Data>
-                    </Path>
+                    <Path.Data>
+                        <GeometryGroup>
+                            <PathGeometry>
+                                <PathGeometry.Figures>
+                                    <PathFigureCollection>
+                                        <PathFigure x:Name="PathFigure" IsClosed="true" StartPoint="0,0">
+                                            <PathFigure.Segments>
+                                                <PathSegmentCollection>
+                                                    <BezierSegment x:Name="BezierControl1" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl2" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl3" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl4" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl5" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl6" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <BezierSegment x:Name="BezierControl7" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                                    <LineSegment x:Name="endPoint1" Point="0,36" />
+                                                    <LineSegment Point="0,36" />
+                                                </PathSegmentCollection>
+                                            </PathFigure.Segments>
+                                        </PathFigure>
+                                    </PathFigureCollection>
+                                </PathGeometry.Figures>
+                            </PathGeometry>
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
 
-                    <Grid RelativePanel.AlignLeftWithPanel="True" 
+                <Grid RelativePanel.AlignLeftWithPanel="True" 
               RelativePanel.AlignRightWithPanel="True" 
               RelativePanel.AlignVerticalCenterWith="TempraturePath"  Canvas.ZIndex="3" Margin="0,-36,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="HourGrid0" Opacity="0" Height="36" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl1, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour0, Converter={StaticResource HourMinuteConverter}}"/>
+                        <Ellipse x:Name="TempratureEllipse0" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp0" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+
+                    <Grid x:Name="HourGrid1" Opacity="0" Height="36" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl2, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour1" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour1, Converter={StaticResource HourMinuteConverter}}" />
+                        <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp1" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+
+                    <Grid x:Name="HourGrid2" Opacity="0" Height="36" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl3, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour2" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour2, Converter={StaticResource HourMinuteConverter}}" />
+                        <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp2" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+
+                    <Grid x:Name="HourGrid3" Opacity="0" Height="36" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl4, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour3" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour3, Converter={StaticResource HourMinuteConverter}}" />
+                        <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp3" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+
+                    <Grid x:Name="HourGrid4" Opacity="0" Height="36" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl5, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour4" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour4, Converter={StaticResource HourMinuteConverter}}" />
+                        <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp4" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+
+                    <Grid x:Name="HourGrid5" Opacity="0" Height="36" Grid.Column="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform Y="{Binding ElementName=BezierControl6, Path=Point2.Y}" />
+                        </Grid.RenderTransform>
+                        <TextBlock x:Name="Hour5" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
+                                       Foreground="White" Text="{Binding Hour5, Converter={StaticResource HourMinuteConverter}}" />
+                        <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="HourlyTemp5" Style="{ThemeResource NormalTextBlockStyle}"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverter1}}" />
+                    </Grid>
+                </Grid>
+
+                <RelativePanel RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                      Height="2000" Margin="0,-4,0,0" Background="White">
+
+                    <Grid x:Name="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                              Margin="0,48,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid x:Name="HourGrid0" Opacity="0" Height="36" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl1, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour0, Converter={StaticResource HourMinuteConverter}}"/>
-                            <Ellipse x:Name="TempratureEllipse0" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp0" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-
-                        <Grid x:Name="HourGrid1" Opacity="0" Height="36" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl2, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour1" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour1, Converter={StaticResource HourMinuteConverter}}" />
-                            <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp1" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-
-                        <Grid x:Name="HourGrid2" Opacity="0" Height="36" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl3, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour2" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour2, Converter={StaticResource HourMinuteConverter}}" />
-                            <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp2" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-
-                        <Grid x:Name="HourGrid3" Opacity="0" Height="36" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl4, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour3" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour3, Converter={StaticResource HourMinuteConverter}}" />
-                            <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp3" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-
-                        <Grid x:Name="HourGrid4" Opacity="0" Height="36" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl5, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour4" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour4, Converter={StaticResource HourMinuteConverter}}" />
-                            <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp4" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-
-                        <Grid x:Name="HourGrid5" Opacity="0" Height="36" Grid.Column="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-                            <Grid.RenderTransform>
-                                <TranslateTransform Y="{Binding ElementName=BezierControl6, Path=Point2.Y}" />
-                            </Grid.RenderTransform>
-                            <TextBlock x:Name="Hour5" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour5, Converter={StaticResource HourMinuteConverter}}" />
-                            <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="HourlyTemp5" Style="{ThemeResource NormalTextBlockStyle}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverter1}}" />
-                        </Grid>
-                    </Grid>
-
-                    <RelativePanel RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
-                      Height="2000" Margin="0,-4,0,0" Background="White">
-
-                        <Grid x:Name="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                              Margin="0,48,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <RelativePanel Grid.Column="0">
-                                <TextBlock x:Name="ForecastDate0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
+                        <RelativePanel Grid.Column="0">
+                            <TextBlock x:Name="ForecastDate0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
                                            Text="明天" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <Viewbox x:Name="Forecastillu0" Stretch="Uniform" MaxWidth="36" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate0" Margin="0,0,0,12">
-                                    <CustomControls:ConditionPath x:Name="Forecast0" />
-                                </Viewbox>
-                                <TextBlock x:Name="ForecastCondition0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu0" 
+                            <Viewbox x:Name="Forecastillu0" Stretch="Uniform" MaxWidth="36" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate0" Margin="0,0,0,12">
+                                <CustomControls:ConditionPath x:Name="Forecast0" />
+                            </Viewbox>
+                            <TextBlock x:Name="ForecastCondition0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu0" 
                                            Text="{Binding Forecast0H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" />
-                                <TextBlock x:Name="ForecastCondition01" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition0" Foreground="{ThemeResource SystemControlAltLowBrush}" 
+                            <TextBlock x:Name="ForecastCondition01" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition0" Foreground="{ThemeResource SystemControlAltLowBrush}" 
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
-                            </RelativePanel>
-                            <RelativePanel Grid.Column="1">
-                                <TextBlock x:Name="ForecastDate1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1">
+                            <TextBlock x:Name="ForecastDate1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
                                            Text="后天" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <Viewbox x:Name="Forecastillu1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate1" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
-                                    <CustomControls:ConditionPath x:Name="Forecast1" />
-                                </Viewbox>
-                                <TextBlock x:Name="ForecastCondition1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu1" 
+                            <Viewbox x:Name="Forecastillu1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate1" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
+                                <CustomControls:ConditionPath x:Name="Forecast1" />
+                            </Viewbox>
+                            <TextBlock x:Name="ForecastCondition1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu1" 
                                            Text="{Binding Forecast1H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <TextBlock x:Name="ForecastCondition11" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition1" Foreground="{ThemeResource SystemControlAltLowBrush}" 
+                            <TextBlock x:Name="ForecastCondition11" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition1" Foreground="{ThemeResource SystemControlAltLowBrush}" 
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
-                            </RelativePanel>
-                            <RelativePanel Grid.Column="2" >
-                                <TextBlock x:Name="ForecastDate2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
-                                           Margin="0,0,0,12" Text="{Binding ForecastDate3, Converter={StaticResource DateTimeConverter}}" Style="{ThemeResource NormalTextBlockStyle}">
-                                </TextBlock>
-                                <Viewbox x:Name="Forecastillu2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate2" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
-                                    <CustomControls:ConditionPath x:Name="Forecast2" />
-                                </Viewbox>
-                                <TextBlock x:Name="ForecastCondition2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu2" 
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="2" >
+                            <TextBlock x:Name="ForecastDate2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
+                                           Margin="0,0,0,12" Text="{Binding ForecastDate2, Converter={StaticResource DateTimeConverter}}" Style="{ThemeResource NormalTextBlockStyle}">
+                            </TextBlock>
+                            <Viewbox x:Name="Forecastillu2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate2" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
+                                <CustomControls:ConditionPath x:Name="Forecast2" />
+                            </Viewbox>
+                            <TextBlock x:Name="ForecastCondition2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu2" 
                                            Text="{Binding Forecast2H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <TextBlock x:Name="ForecastCondition21" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition2" Foreground="{ThemeResource SystemControlAltLowBrush}" 
+                            <TextBlock x:Name="ForecastCondition21" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition2" Foreground="{ThemeResource SystemControlAltLowBrush}" 
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
-                            </RelativePanel>
-                            <RelativePanel Grid.Column="3">
-                                <TextBlock x:Name="ForecastDate3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="3">
+                            <TextBlock x:Name="ForecastDate3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
                                            Text="{Binding ForecastDate3, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <Viewbox x:Name="Forecastillu3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate3" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
-                                    <CustomControls:ConditionPath x:Name="Forecast3" />
-                                </Viewbox>
-                                <TextBlock x:Name="ForecastCondition3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu3" 
+                            <Viewbox x:Name="Forecastillu3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate3" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
+                                <CustomControls:ConditionPath x:Name="Forecast3" />
+                            </Viewbox>
+                            <TextBlock x:Name="ForecastCondition3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu3" 
                                            Text="{Binding Forecast3H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <TextBlock x:Name="ForecastCondition31" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition3" Foreground="{ThemeResource SystemControlAltLowBrush}" 
+                            <TextBlock x:Name="ForecastCondition31" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition3" Foreground="{ThemeResource SystemControlAltLowBrush}" 
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
-                            </RelativePanel>
-                            <RelativePanel Grid.Column="4">
-                                <TextBlock x:Name="ForecastDate4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="4">
+                            <TextBlock x:Name="ForecastDate4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
                                            Text="{Binding ForecastDate4, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
-                                <Viewbox x:Name="Forecastillu4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate4" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
-                                    <CustomControls:ConditionPath x:Name="Forecast4" />
-                                </Viewbox>
-                                <TextBlock x:Name="ForecastCondition4" Style="{ThemeResource NormalTextBlockStyle}"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu4"
+                            <Viewbox x:Name="Forecastillu4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate4" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
+                                <CustomControls:ConditionPath x:Name="Forecast4" />
+                            </Viewbox>
+                            <TextBlock x:Name="ForecastCondition4" Style="{ThemeResource NormalTextBlockStyle}"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu4"
                                            Text="{Binding Forecast4H, Converter={StaticResource TempratureConverter1}}" />
-                                <TextBlock x:Name="ForecastCondition41" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition4" Foreground="{ThemeResource SystemControlAltLowBrush}" 
+                            <TextBlock x:Name="ForecastCondition41" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition4" Foreground="{ThemeResource SystemControlAltLowBrush}" 
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
-                            </RelativePanel>
-                        </Grid>
-                        <Grid x:Name="DetailsPanel" SizeChanged="Grid_SizeChanged" RelativePanel.Below="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition x:Name="Column2" Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <RelativePanel x:Name="DetailGrid0" Grid.Row="0" Height="200" >
-                                <TextBlock Text="Body Temp." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                                <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="48" >
-                                    <Grid>
-                                        <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Path.Fill>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FFFF441B" Offset="1"/>
-                                                    <GradientStop Color="#FFFFF19A"/>
-                                                </LinearGradientBrush>
-                                            </Path.Fill>
-                                            <Path.Data>
-                                                M 26.8059,30.1399L 29.4076,30.1399M 26.8059,19.7329L 30.7085,19.7329M 26.6095,9.20353C 26.6095,6.32956 28.939,4 31.813,4C 34.687,4 37.0165,6.32956 37.0165,9.20353L 37.0503,9.32582L 37.0503,40.547L 37.0819,40.5206C 40.2482,42.3051 42.4015,45.6994 42.4015,49.593C 42.4015,55.3406 37.7496,60 32.0019,60C 26.2543,60 21.5985,55.3406 21.5985,49.593C 21.5985,45.7837 23.6168,42.4524 26.6706,40.6387L 26.6433,40.547L 26.6433,9.32582L 26.6726,9.41753
-                                            </Path.Data>
-                                            <Path.Clip>
-                                                <RectangleGeometry Rect="0,0,64,64" >
-                                                    <RectangleGeometry.Transform>
-                                                        <TranslateTransform x:Name="ClipTransAni" Y="64" />
-                                                    </RectangleGeometry.Transform>
-                                                </RectangleGeometry>
-                                            </Path.Clip>
-                                        </Path>
-                                        <Path Width="64" Height="64" Stroke="Black" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Path.Data>
-                                                M 26.8059,30.1399L 29.4076,30.1399M 26.8059,19.7329L 30.7085,19.7329M 26.6095,9.20353C 26.6095,6.32956 28.939,4 31.813,4C 34.687,4 37.0165,6.32956 37.0165,9.20353L 37.0503,9.32582L 37.0503,40.547L 37.0819,40.5206C 40.2482,42.3051 42.4015,45.6994 42.4015,49.593C 42.4015,55.3406 37.7496,60 32.0019,60C 26.2543,60 21.5985,55.3406 21.5985,49.593C 21.5985,45.7837 23.6168,42.4524 26.6706,40.6387L 26.6433,40.547L 26.6433,9.32582L 26.6726,9.41753
-                                            </Path.Data>
-                                        </Path>
-                                    </Grid>
-                                </Viewbox>
-                                <TextBlock Text="{Binding BodyTemprature, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
-                            </RelativePanel>
-                            <RelativePanel x:Name="DetailGrid1" Grid.Row="0" Grid.Column="1" Height="200" >
-                                <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="48">
-                                    <Path Width="64" Height="64" Stroke="Black" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        </RelativePanel>
+                    </Grid>
+                    <Grid x:Name="DetailsPanel" SizeChanged="Grid_SizeChanged" RelativePanel.Below="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition x:Name="Column2" Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel x:Name="DetailGrid0" Grid.Row="0" Height="200" >
+                            <TextBlock Text="Body Temp." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="48" >
+                                <Grid>
+                                    <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFFF441B" Offset="1"/>
+                                                <GradientStop Color="#FFFFF19A"/>
+                                            </LinearGradientBrush>
+                                        </Path.Fill>
+                                        <Path.Data>
+                                            M 26.8059,30.1399L 29.4076,30.1399M 26.8059,19.7329L 30.7085,19.7329M 26.6095,9.20353C 26.6095,6.32956 28.939,4 31.813,4C 34.687,4 37.0165,6.32956 37.0165,9.20353L 37.0503,9.32582L 37.0503,40.547L 37.0819,40.5206C 40.2482,42.3051 42.4015,45.6994 42.4015,49.593C 42.4015,55.3406 37.7496,60 32.0019,60C 26.2543,60 21.5985,55.3406 21.5985,49.593C 21.5985,45.7837 23.6168,42.4524 26.6706,40.6387L 26.6433,40.547L 26.6433,9.32582L 26.6726,9.41753
+                                        </Path.Data>
+                                        <Path.Clip>
+                                            <RectangleGeometry Rect="0,0,64,64" >
+                                                <RectangleGeometry.Transform>
+                                                    <TranslateTransform x:Name="ClipTransAni" Y="64" />
+                                                </RectangleGeometry.Transform>
+                                            </RectangleGeometry>
+                                        </Path.Clip>
+                                    </Path>
+                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlForegroundLowBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Data>
+                                            M 26.8059,30.1399L 29.4076,30.1399M 26.8059,19.7329L 30.7085,19.7329M 26.6095,9.20353C 26.6095,6.32956 28.939,4 31.813,4C 34.687,4 37.0165,6.32956 37.0165,9.20353L 37.0503,9.32582L 37.0503,40.547L 37.0819,40.5206C 40.2482,42.3051 42.4015,45.6994 42.4015,49.593C 42.4015,55.3406 37.7496,60 32.0019,60C 26.2543,60 21.5985,55.3406 21.5985,49.593C 21.5985,45.7837 23.6168,42.4524 26.6706,40.6387L 26.6433,40.547L 26.6433,9.32582L 26.6726,9.41753
+                                        </Path.Data>
+                                    </Path>
+                                </Grid>
+                            </Viewbox>
+                            <TextBlock Text="{Binding BodyTemprature, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
+                        </RelativePanel>
+                        <RelativePanel x:Name="DetailGrid1" Grid.Row="0" Grid.Column="1" Height="200" >
+                            <TextBlock Text="Wind" Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="48">
+                                <Grid>
+                                    <Rectangle StrokeThickness="0" Width="4" Height="34" RadiusX="2" RadiusY="2" Fill="{ThemeResource SystemControlAltMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" />
+                                    <Path VerticalAlignment="Center" HorizontalAlignment="Center" Width="64" Height="64" Stroke="{ThemeResource SystemControlForegroundLowBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1">
                                         <Path.Data>
                                             M 30.5597,31.177L 30.5597,4.15459L 33.4405,7.06972L 33.4403,7.03515L 33.4403,31.177L 56.7236,44.6196L 52.7544,45.6739L 31.9314,33.6717L 31.9314,33.646L 8.68241,47.0886L 9.75397,43.1538L 30.5512,31.1513L 30.5597,31.177 Z M 33.646,32C 33.646,32.909 32.909,33.646 32,33.646C 31.091,33.646 30.354,32.909 30.354,32C 30.354,31.091 31.091,30.354 32,30.354C 32.909,30.354 33.646,31.091 33.646,32 Z
                                         </Path.Data>
@@ -693,21 +697,26 @@
                                             <RotateTransform x:Name="fengchezhuan" CenterX="32" CenterY="32" Angle="0" />
                                         </Path.RenderTransform>
                                     </Path>
-                                </Viewbox>
-                            </RelativePanel>
-                            <RelativePanel x:Name="DetailGrid2" Grid.Row="1" Height="200" />
-                            <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="200" />
-                            <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="200" />
-                            <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="200" />
-                            <RelativePanel x:Name="DetailGrid6" Grid.Row="3" Height="200" />
-                            <RelativePanel x:Name="DetailGrid7" Grid.Row="3" Grid.Column="1" Height="200" />
-                            <RelativePanel x:Name="DetailGrid8" Grid.Row="3" Grid.Column="2" Visibility="Collapsed" Height="200" />
-                        </Grid>
-                    </RelativePanel>
+                                </Grid>
+                            </Viewbox>
+                            <TextBlock Text="{Binding Wind, Converter={StaticResource WindSpeedConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid1Separator" />
+                            <TextBlock x:Name="DetailGrid1Separator" Text=" | " Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
+                            <TextBlock Text="{Binding Wind, Converter={StaticResource WindDirectionConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid1Separator" />
+                        </RelativePanel>
+                        <RelativePanel x:Name="DetailGrid2" Grid.Row="1" Height="200" >
+                            <TextBlock Text="Hum." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock Text="{Binding Humidity, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                        </RelativePanel>
+                        <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="200" />
+                        <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="200" />
+                        <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="200" />
+                        <RelativePanel x:Name="DetailGrid6" Grid.Row="3" Height="200" />
+                        <RelativePanel x:Name="DetailGrid7" Grid.Row="3" Grid.Column="1" Height="200" />
+                        <RelativePanel x:Name="DetailGrid8" Grid.Row="3" Grid.Column="2" Visibility="Collapsed" Height="200" />
+                    </Grid>
                 </RelativePanel>
-
-            </ScrollViewer.Content>
-        </ScrollViewer>
+            </RelativePanel>
+        </ptr:PulltoRefresh>
     </RelativePanel>
 
 </Page>

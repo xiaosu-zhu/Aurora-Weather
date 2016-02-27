@@ -1,0 +1,83 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local2="using:Com.Aurora.Shared.Controls">
+
+    <Style TargetType="local2:PulltoRefresh">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IndicatorHeight" Value="200" />
+        <Setter Property="TriggerOffset" Value="40" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="IndicatorForeground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:PulltoRefresh">
+                    <RelativePanel x:Name="Root" ManipulationMode="All">
+                        <RelativePanel.Resources>
+                            <Storyboard x:Name="IndicatorIn">
+                                <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True" Duration="0:0:0.64">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                            <Storyboard x:Name="IndicatorOut">
+                                <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="0.36" EnableDependentAnimation="True" Duration="0:0:0.64">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                            <Storyboard x:Name="IndicatorOverlayIn">
+                                <DoubleAnimation Storyboard.TargetName="Indicator" Storyboard.TargetProperty="Height" EnableDependentAnimation="True" Duration="0:0:0.64">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                            <Storyboard x:Name="IndicatorOverlayOut">
+                                <DoubleAnimation Storyboard.TargetName="Indicator" Storyboard.TargetProperty="Height" EnableDependentAnimation="True" To="0" Duration="0:0:0.64">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                            <Storyboard x:Name="RefreshStart">
+                                <DoubleAnimation Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.16" To="1" EnableDependentAnimation="True" Duration="0:0:0.16">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True" Duration="0:0:0.16">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                            <Storyboard x:Name="RefreshComplete">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="0" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="0.36" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </RelativePanel.Resources>
+                        <Grid x:Name="Indicator" Height="0" Canvas.ZIndex="3" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                            <Ellipse x:Name="IndicatorOverlayBackground" Height="32" Width="32" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4" />
+                            <SymbolIcon x:Name="IndicatorIcon" Foreground="{TemplateBinding IndicatorForeground}" Opacity="0.36" Symbol="Refresh" Height="24" Width="24" Margin="0,0,0,8" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                                <SymbolIcon.RenderTransform>
+                                    <CompositeTransform x:Name="IndicatorTransform" Rotation="0" ScaleX="1" ScaleY="1" CenterX="12" CenterY="12" />
+                                </SymbolIcon.RenderTransform>
+                            </SymbolIcon>
+                            <ProgressRing x:Name="IndicatorRing" Opacity="0" Foreground="{TemplateBinding IndicatorForeground}" Height="24" Width="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8" IsActive="False" />
+                        </Grid>
+                        <ScrollViewer RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="Indicator" Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" x:Name="Main" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}" VerticalScrollMode="Disabled">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </ScrollViewer>
+                    </RelativePanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

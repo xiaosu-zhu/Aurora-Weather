@@ -11,7 +11,7 @@ namespace Com.Aurora.AuWeather.Models
         private uint degree;
         private WindDirection direction;
         private WindScale scale;
-        private uint speed;
+        private Speed speed;
 
         public uint Degree
         {
@@ -50,7 +50,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public uint Speed
+        public Speed Speed
         {
             get
             {
@@ -59,50 +59,45 @@ namespace Com.Aurora.AuWeather.Models
 
             set
             {
-                if (value >= 221)
-                    throw new ArgumentOutOfRangeException();
+                speed = value;
+                if (speed.KMPH < 3)
+                    Scale = WindScale.zero;
+                else if (speed.KMPH < 7)
+                    Scale = WindScale.one;
+                else if (speed.KMPH < 13)
+                    Scale = WindScale.two;
+                else if (speed.KMPH < 20)
+                    Scale = WindScale.three;
+                else if (speed.KMPH < 31)
+                    Scale = WindScale.four;
+                else if (speed.KMPH < 41)
+                    Scale = WindScale.five;
+                else if (speed.KMPH < 52)
+                    Scale = WindScale.six;
+                else if (speed.KMPH < 63)
+                    Scale = WindScale.seven;
+                else if (speed.KMPH < 76)
+                    Scale = WindScale.eight;
+                else if (speed.KMPH < 88)
+                    Scale = WindScale.nine;
+                else if (speed.KMPH < 104)
+                    Scale = WindScale.ten;
+                else if (speed.KMPH < 118)
+                    Scale = WindScale.eleven;
+                else if (speed.KMPH < 133)
+                    Scale = WindScale.twelve;
+                else if (speed.KMPH < 150)
+                    Scale = WindScale.thirteen;
+                else if (speed.KMPH < 167)
+                    Scale = WindScale.fourteen;
+                else if (speed.KMPH < 184)
+                    Scale = WindScale.fifteen;
+                else if (speed.KMPH < 202)
+                    Scale = WindScale.sixteen;
+                else if (speed.KMPH < 221)
+                    Scale = WindScale.seventeen;
                 else
-                {
-                    speed = value;
-                    if (speed < 3)
-                        Scale = WindScale.zero;
-                    else if (speed < 7)
-                        Scale = WindScale.one;
-                    else if (speed < 13)
-                        Scale = WindScale.two;
-                    else if (speed < 20)
-                        Scale = WindScale.three;
-                    else if (speed < 31)
-                        Scale = WindScale.four;
-                    else if (speed < 41)
-                        Scale = WindScale.five;
-                    else if (speed < 52)
-                        Scale = WindScale.six;
-                    else if (speed < 63)
-                        Scale = WindScale.seven;
-                    else if (speed < 76)
-                        Scale = WindScale.eight;
-                    else if (speed < 88)
-                        Scale = WindScale.nine;
-                    else if (speed < 104)
-                        Scale = WindScale.ten;
-                    else if (speed < 118)
-                        Scale = WindScale.eleven;
-                    else if (speed < 133)
-                        Scale = WindScale.twelve;
-                    else if (speed < 150)
-                        Scale = WindScale.thirteen;
-                    else if (speed < 167)
-                        Scale = WindScale.fourteen;
-                    else if (speed < 184)
-                        Scale = WindScale.fifteen;
-                    else if (speed < 202)
-                        Scale = WindScale.sixteen;
-                    else if (speed < 221)
-                        Scale = WindScale.seventeen;
-                    else
-                        Scale = WindScale.unknown;
-                }
+                    Scale = WindScale.eighteen;
 
             }
         }
@@ -136,7 +131,7 @@ namespace Com.Aurora.AuWeather.Models
         public Wind(HeWeather.JsonContract.WindContract wind)
         {
             Degree = uint.Parse(wind.deg);
-            Speed = uint.Parse(wind.spd);
+            Speed = Speed.FromKMPH(uint.Parse(wind.spd));
         }
     }
 }
