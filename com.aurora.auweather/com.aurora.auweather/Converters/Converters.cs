@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 
 namespace Com.Aurora.Shared.Converters
 {
-    class ConditionConverter : IValueConverter
+    public class ConditionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -27,7 +28,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class TempratureConverterWithoutDecoration : IValueConverter
+    public class TempratureConverterWithoutDecoration : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -79,17 +80,17 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class WindSpeedConverter : IValueConverter
+    public class WindSpeedConverter : IValueConverter
     {
-        public static WindParameter windParameter = WindParameter.BeaufortandText;
-        private static SpeedParameter speedParameter = SpeedParameter.KMPH;
+        public static WindParameter WindParameter { get; private set; } = WindParameter.BeaufortandText;
+        public static SpeedParameter SpeedParameter { get; private set; } = SpeedParameter.KMPH;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value != default(Wind))
             {
                 var wind = value as Wind;
                 StringBuilder sb = new StringBuilder();
-                switch (windParameter)
+                switch (WindParameter)
                 {
                     case WindParameter.BeaufortandText:
                     case WindParameter.BeaufortandDegree:
@@ -108,7 +109,7 @@ namespace Com.Aurora.Shared.Converters
         }
         private StringBuilder SetSpeed(Speed speed, StringBuilder sb)
         {
-            switch (speedParameter)
+            switch (SpeedParameter)
             {
                 case SpeedParameter.KMPH:
                     sb.Append(speed.KMPH.ToString("0.0") + " km/h");
@@ -194,9 +195,15 @@ namespace Com.Aurora.Shared.Converters
         {
             throw new NotImplementedException();
         }
+
+        public static void ChangeParameter(WindParameter windFormat, SpeedParameter speedFormat)
+        {
+            WindParameter = windFormat;
+            SpeedParameter = speedFormat;
+        }
     }
 
-    class WindDirectionConverter : IValueConverter
+    public class WindDirectionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -204,7 +211,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 var wind = value as Wind;
                 StringBuilder sb = new StringBuilder();
-                switch (WindSpeedConverter.windParameter)
+                switch (WindSpeedConverter.WindParameter)
                 {
                     case WindParameter.BeaufortandText:
                     case WindParameter.SpeedandText:
@@ -271,7 +278,8 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
-    class TemraturePathConverter : IValueConverter
+
+    public class TemraturePathConverter : IValueConverter
     {
         private const float _factor = -64;
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -290,7 +298,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class TempraturePathEndConverter : IValueConverter
+    public class TempraturePathEndConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -308,7 +316,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class HourMinuteConverter : IValueConverter
+    public class HourMinuteConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -326,7 +334,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class PoptoThicknessConverter : IValueConverter
+    public class PoptoThicknessConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -343,7 +351,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class ScrollViewerConverter : IValueConverter
+    public class ScrollViewerConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -356,7 +364,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class ConditiontoTextConverter : IValueConverter
+    public class ConditiontoTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -478,18 +486,131 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    class BodyTempratureAniConverter : IValueConverter
+    public class BodyTempratureAniConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
-                return 0;
+                return 64;
             float temp = ((Temprature)value).Celsius;
             temp = temp < -15 ? -15 : temp;
             temp = temp > 40 ? 40 : temp;
             temp += 15;
             temp /= 55;
             return 56 * (1 - temp);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HumidityAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+                return 64;
+            float temp = (uint)value;
+            temp /= 100;
+            return 56 * (1 - temp);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PcpnTransAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+                return 64;
+            float temp = (float)value;
+            temp = temp > 150 ? 150 : temp;
+            temp /= 150;
+            return 56 * (1 - temp);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PrecipitationConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return ((float)value).ToString("0.#") + "mm";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SunRiseAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return new DoubleCollection { 98.96666666, 0, (double)value * 98.96666666, 1000 };
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SunRiseAlignmentConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (bool)value ? HorizontalAlignment.Left : HorizontalAlignment.Right;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SunSetAlignmentConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (bool)value ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SunRiseTextAlignMentConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (bool)value ? -72 : 72;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SunSetTextAlignMentConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (bool)value ? 72 : -72;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

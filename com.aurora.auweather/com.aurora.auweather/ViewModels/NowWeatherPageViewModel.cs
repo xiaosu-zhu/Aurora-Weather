@@ -26,6 +26,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string currentId;
         private HeWeatherModel fetchresult;
         private uint humidity;
+        private float precipitation;
+        private uint proportion;
+        private double sunProgress;
 
         private float tempraturePath0;
         private float tempraturePath1;
@@ -830,6 +833,45 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public float Precipitation
+        {
+            get
+            {
+                return precipitation;
+            }
+
+            set
+            {
+                SetProperty(ref precipitation, value);
+            }
+        }
+
+        public uint Proportion
+        {
+            get
+            {
+                return proportion;
+            }
+
+            set
+            {
+                SetProperty(ref proportion, value);
+            }
+        }
+
+        public double SunProgress
+        {
+            get
+            {
+                return sunProgress;
+            }
+
+            set
+            {
+                SetProperty(ref sunProgress, value);
+            }
+        }
+
         public event FetchDataCompleteEventHandler FetchDataComplete;
         public event ParameterChangedEventHandler ParameterChanged;
         public event FetchDataFailedEventHandler FetchDataFailed;
@@ -1077,7 +1119,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             NowH = fetchresult.DailyForecast[0].HighTemp;
             NowL = fetchresult.DailyForecast[0].LowTemp;
             BodyTemprature = fetchresult.NowWeather.BodyTemprature;
-            Humidity = fetchresult.DailyForecast[0].Humidity;
+            Humidity = fetchresult.HourlyForecast[0].Humidity;
+            Precipitation = fetchresult.NowWeather.Precipitation;
+            Proportion = fetchresult.HourlyForecast[0].Pop;
             if (Temprature.Celsius > 20)
             {
                 IsSummer = true;
@@ -1108,11 +1152,20 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
         {
             var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
-            if (updateMinutes > sunRise.TotalMinutes && updateMinutes < sunSet.TotalMinutes)
+            if (updateMinutes < sunRise.TotalMinutes)
             {
-                return false;
+                SunProgress = (1440 + updateMinutes - sunSet.TotalMinutes) / (sunRise.Add(TimeSpan.FromHours(24)) - sunSet).TotalMinutes;
             }
-            return true;
+            else if (updateMinutes >= sunSet.TotalMinutes)
+            {
+                SunProgress = (updateMinutes - sunSet.TotalMinutes) / (sunRise.Add(TimeSpan.FromHours(24)) - sunSet).TotalMinutes;
+            }
+            else
+            {
+                SunProgress = (updateMinutes - sunRise.TotalMinutes) / (sunSet - sunRise).TotalMinutes;
+                return true;
+            }
+            return false;
         }
 
         private void ReadSettings()

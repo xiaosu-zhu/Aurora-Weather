@@ -101,7 +101,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             CityId = basic.id;
             Latitude = float.Parse(basic.lat);
             Longitude = float.Parse(basic.lon);
-            UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd HH:mm", provider);
+            UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd H:mm", provider);
         }
     }
 }

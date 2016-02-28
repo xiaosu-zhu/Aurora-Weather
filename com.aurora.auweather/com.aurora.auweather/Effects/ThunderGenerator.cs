@@ -17,7 +17,7 @@ namespace Com.Aurora.AuWeather.Effects
     /// 通过直线生成闪电，并添加发光效果，初始化间隔和每个闪电持续时间
     /// 在画布上半部生成
     /// </summary>
-    public class ThunderGenerator
+    public class ThunderGenerator :IDisposable
     {
         private float maxDuration;
         private float minDuration;
@@ -98,6 +98,12 @@ namespace Com.Aurora.AuWeather.Effects
             {
                 currentThunder = null;
             }
+        }
+
+        public void Dispose()
+        {
+            this.blur.Dispose();
+            this.currentThunder = null;
         }
     }
 }

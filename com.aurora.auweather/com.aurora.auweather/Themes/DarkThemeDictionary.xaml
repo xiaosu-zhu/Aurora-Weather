@@ -3,27 +3,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Com.Aurora.AuWeather">
 
-    <SolidColorBrush x:Key="SystemBackgroundHighBrush" Color="#FF1A1C37"/>
+    <SolidColorBrush x:Key="SystemBackgroundHighBrush" Color="#FF202040"/>
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FFDFDFDF"/>
 
-    <SolidColorBrush x:Key="SystemTranslucentHighBrush" Color="#CC1A1C37" />
+    <SolidColorBrush x:Key="SystemTranslucentHighBrush" Color="#CC202040" />
     <SolidColorBrush x:Key="SystemTranslucentBaseHighBrush" Color="#CC232323" />
-    <SolidColorBrush x:Key="SystemTranslucentAltHighBrush" Color="#441A1C37" />
+    <SolidColorBrush x:Key="SystemTranslucentAltHighBrush" Color="#44202040" />
 
-    <SolidColorBrush x:Key="SystemControlForegroundHighBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SystemControlForegroundHighBrush" Color="#FF000000"/>
     <SolidColorBrush x:Key="SystemControlForegroundLowBrush" Color="#FFb0b0b0"/>
     <SolidColorBrush x:Key="SystemControlBackgroundHighBrush" Color="#FF000000"/>
     <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FFF0F0F0" />
     <SolidColorBrush x:Key="SystemControlAltHighBrush" Color="#FF444444" />
-    <SolidColorBrush x:Key="SystemControlAltLowBrush" Color="#CC4860A6" />
-    <SolidColorBrush x:Key="SystemControlAltMediumBrush" Color="#CCA6AFCB" />
+    <SolidColorBrush x:Key="SystemControlAltLowBrush" Color="#FF304090" />
+    <SolidColorBrush x:Key="SystemControlAltMediumBrush" Color="#FF4050a0" />
 
     <SolidColorBrush x:Key="SystemControlTranslucentBaseHighBrush" Color="#CCF0F0F0" />
     <SolidColorBrush x:Key="SystemControlTranslucentAltHighBrush" Color="#44000000" />
-    <SolidColorBrush x:Key="SystemControlTranslucentHighBrush" Color="#CC1A1C37" />
-    <SolidColorBrush x:Key="SystemControlTranslucentAltAltHighBrush" Color="#44F0F0F0" />
+    <SolidColorBrush x:Key="SystemControlTranslucentHighBrush" Color="#CC4050a0" />
+    <SolidColorBrush x:Key="SystemControlTranslucentAltAltHighBrush" Color="#AA202040" />
     <SolidColorBrush x:Key="SystemControlTranslucentAltBaseLowBrush" Color="#33F0F0F0" />
-    <SolidColorBrush x:Key="SystemControlTranslucentHighLightBrush" Color="#441A1C37" />
+    <SolidColorBrush x:Key="SystemControlTranslucentHighLightBrush" Color="#44202040" />
     <SolidColorBrush x:Key="SystemControlTranslucentBaseLightBrush" Color="#44DFDFDF" />
 
     <SolidColorBrush x:Key="SystemThemeMainBrush" Color="{ThemeResource SystemAccentColor}" />
@@ -31,8 +31,8 @@
     <SolidColorBrush x:Key="FixedWhiteBrush" Color="White"/>
     <SolidColorBrush x:Key="FixedTranslucentBrush" Color="#44FFFFFF"/>
 
-    <Color x:Key="SystemBackgroundHighColor" >#FF1A1C37</Color>
-    <Color x:Key="SystemBackgroundTranslucentHighColor" >#771A1C37</Color>
+    <Color x:Key="SystemBackgroundHighColor" >#FF202040</Color>
+    <Color x:Key="SystemBackgroundTranslucentHighColor" >#77202040</Color>
     <Color x:Key="SystemAltHighColor">#FF000000</Color>
     <Color x:Key="SystemTranslucentHighColor">#DD000000</Color>
     <Color x:Key="SystemTranslucentLowColor">#44000000</Color>

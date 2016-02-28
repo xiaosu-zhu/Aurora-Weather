@@ -16,21 +16,30 @@ namespace Com.Aurora.AuWeather
 {
     public sealed partial class NowWeatherPage : Page
     {
-        NowWeatherPageViewModel mModel;
         private double verticalOffset;
         private double actualWidth;
         private bool isAnimating = false;
         private bool isFadeOut = false;
+        public double SunRiseStrokeLength
+        {
+            get { return (double)GetValue(SunRiseStrokeLengthProperty); }
+            set { SetValue(SunRiseStrokeLengthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SunRiseStrokeLength.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SunRiseStrokeLengthProperty =
+            DependencyProperty.Register("SunRiseStrokeLength", typeof(double), typeof(NowWeatherPage), new PropertyMetadata(0d));
+
 
         public bool DetailsPanelIsNormalState { get; private set; }
 
         public NowWeatherPage()
         {
             this.InitializeComponent();
-            mModel = new NowWeatherPageViewModel();
-            this.DataContext = mModel;
-            mModel.FetchDataComplete += MModel_FetchDataComplete;
-            mModel.ParameterChanged += MModel_ParameterChanged;
+            //DataContext = new NowWeatherPageViewModel();
+            
+            DataContext.FetchDataComplete += MModel_FetchDataComplete;
+            DataContext.ParameterChanged += MModel_ParameterChanged;
         }
 
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
@@ -50,29 +59,42 @@ namespace Com.Aurora.AuWeather
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
             {
                 isAnimating = true;
-                WeatherCanvas.ChangeCondition(mModel.Condition, mModel.IsNight, mModel.IsSummer);
+                WeatherCanvas.ChangeCondition(DataContext.Condition, DataContext.IsNight, DataContext.IsSummer);
                 TempraturePathAnimation.Begin();
-                DetialGrid0Play();
-                Forecast0.SetCondition(mModel.Forecast0, mModel.IsNight);
-                Forecast1.SetCondition(mModel.Forecast1, mModel.IsNight);
-                Forecast2.SetCondition(mModel.Forecast2, mModel.IsNight);
-                Forecast3.SetCondition(mModel.Forecast3, mModel.IsNight);
-                Forecast4.SetCondition(mModel.Forecast4, mModel.IsNight);
+                DetailGrid0Play();
+                DetailGrid1Play();
+                DetailGrid2Play();
+                Forecast0.SetCondition(DataContext.Forecast0, DataContext.IsNight);
+                Forecast1.SetCondition(DataContext.Forecast1, DataContext.IsNight);
+                Forecast2.SetCondition(DataContext.Forecast2, DataContext.IsNight);
+                Forecast3.SetCondition(DataContext.Forecast3, DataContext.IsNight);
+                Forecast4.SetCondition(DataContext.Forecast4, DataContext.IsNight);
                 await Task.Delay(3000);
                 isAnimating = false;
             }));
         }
 
-        private void DetialGrid0Play()
+        private void DetailGrid2Play()
+        {
+            SunRiseAni.Begin();
+        }
+
+        private void DetailGrid0Play()
         {
             DetailTempratureIn.Begin();
             ThreadPoolTimer.CreatePeriodicTimer((work) =>
             {
                 this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
                  {
-                     fengchezhuan.Angle += 0.1396263377777778 * mModel.Wind.Speed.MPS;
+                     fengchezhuan.Angle += 0.1396263377777778 * DataContext.Wind.Speed.MPS;
                  }));
             }, TimeSpan.FromMilliseconds(16));
+        }
+
+        private void DetailGrid1Play()
+        {
+            WaterDropTransAni.Begin();
+            PcpnTransAni.Begin();
         }
 
         private void RelativePanel_LayoutUpdated(object sender, object e)
@@ -107,10 +129,9 @@ namespace Com.Aurora.AuWeather
             if (verticalOffset != ScrollableRoot.VerticalOffset && ScrollableRoot.VerticalOffset < 376)
             {
                 verticalOffset = ScrollableRoot.VerticalOffset;
-                var offset = verticalOffset > 376 ? 376 : verticalOffset;
-                offset /= 376;
-                // Circle Ease
-                offset = Math.Sin(offset * Math.PI / 2);
+                var offset = verticalOffset > 368 ? 368 : verticalOffset;
+                offset /= 368;
+                offset = EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
                 NowTemp.FontSize = 96 - 48 * offset;
                 TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - ButtonOffset.ActualWidth - 32) * offset / 2;
                 if (verticalOffset > 2 && !isFadeOut)
@@ -165,8 +186,8 @@ namespace Com.Aurora.AuWeather
         {
             var offset = verticalOffset > 200 ? 200 : verticalOffset;
             offset = -64 * (1 - offset / 200);
-            double[] results = new double[] { mModel.TempraturePath0 * offset, mModel.TempraturePath1 * offset, mModel.TempraturePath2 * offset,
-                mModel.TempraturePath3 * offset, mModel.TempraturePath4 * offset, mModel.TempraturePath5 * offset };
+            double[] results = new double[] { DataContext.TempraturePath0 * offset, DataContext.TempraturePath1 * offset, DataContext.TempraturePath2 * offset,
+                DataContext.TempraturePath3 * offset, DataContext.TempraturePath4 * offset, DataContext.TempraturePath5 * offset };
             CalculateY0(offset, PathFigure, results[0]);
             CalculateY1(offset, BezierControl1, results[0]);
             CalculateY2(offset, BezierControl2, results[0], results[1]);
@@ -209,13 +230,13 @@ namespace Com.Aurora.AuWeather
             control.Point3 = p;
         }
 
-        private void Page_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            mModel.FetchDataComplete -= MModel_FetchDataComplete;
-            mModel.ParameterChanged -= MModel_ParameterChanged;
+            DataContext.FetchDataComplete -= MModel_FetchDataComplete;
+            DataContext.ParameterChanged -= MModel_ParameterChanged;
         }
 
-        private void Grid_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (DetailsPanel.ActualWidth < 720)
             {

@@ -63,7 +63,7 @@ namespace Com.Aurora.Shared.Controls
             RefreshStartAni = Root.Resources["RefreshStart"] as Storyboard;
             RefreshCompleteAni = Root.Resources["RefreshComplete"] as Storyboard;
 
-            if (ForceEnabled || InteractionHelper.HaveTouchCapabilities())
+            if (ForceEnabled || InteractionHelper.HaveTouchCapabilities()|| Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 Root.ManipulationDelta += Root_ManipulationDelta;
                 Root.Loaded += Root_Loaded;

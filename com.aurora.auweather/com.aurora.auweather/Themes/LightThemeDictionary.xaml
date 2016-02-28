@@ -20,8 +20,8 @@
     
     <SolidColorBrush x:Key="SystemControlTranslucentBaseHighBrush" Color="#CC000000" />
     <SolidColorBrush x:Key="SystemControlTranslucentAltHighBrush" Color="#44FFFFFF" />
-    <SolidColorBrush x:Key="SystemControlTranslucentHighBrush" Color="#CCF0F0F0" />
-    <SolidColorBrush x:Key="SystemControlTranslucentAltAltHighBrush" Color="#44F0F0F0" />
+    <SolidColorBrush x:Key="SystemControlTranslucentHighBrush" Color="#CCCCCCCC" />
+    <SolidColorBrush x:Key="SystemControlTranslucentAltAltHighBrush" Color="#AAF0F0F0" />
     <SolidColorBrush x:Key="SystemControlTranslucentAltBaseLowBrush" Color="#33000000" />
     <SolidColorBrush x:Key="SystemControlTranslucentHighLightBrush" Color="#44DFDFDF" />
     <SolidColorBrush x:Key="SystemControlTranslucentBaseLightBrush" Color="#44232323" />

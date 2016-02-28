@@ -10,7 +10,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Unloaded="Page_Unloaded">
+    Unloaded="Page_Unloaded"
+    x:Name="Page">
+
+    <Page.DataContext>
+        <ViewModels:NowWeatherPageViewModel x:Name="DataContext"/>
+    </Page.DataContext>
 
     <Page.Resources>
         <ResourceDictionary>
@@ -33,7 +38,16 @@
             <Converters:ScrollViewerConverter x:Key="ScrollViewerConverter" />
             <Converters:ConditiontoTextConverter x:Key="ConditiontoTextConverter" />
             <Converters:BodyTempratureAniConverter x:Key="BodyTempratureAniConverter" />
+            <Converters:HumidityAniConverter x:Key="HumidityAniConverter" />
             <Converters:PercentageConverter x:Key="PercentageConverter" />
+            <Converters:PrecipitationConverter x:Key="PrecipitationConverter" />
+            <Converters:PcpnTransAniConverter x:Key="PcpnTransAniConverter" />
+            <Converters:TimeSpanConverter x:Key="TimeSpanConverter" />
+            <Converters:SunRiseAniConverter x:Key="SunRiseAniConverter" />
+            <Converters:SunRiseAlignmentConverter x:Key="SunRiseAlignmentConverter" />
+            <Converters:SunSetAlignmentConverter x:Key="SunSetAlignmentConverter" />
+            <Converters:SunRiseTextAlignMentConverter x:Key="SunRiseTextAlignMentConverter" />
+            <Converters:SunSetTextAlignMentConverter x:Key="SunSetTextAlignMentConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -397,6 +411,27 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
+            <Storyboard x:Name="WaterDropTransAni">
+                <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{Binding Humidity, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="True" >
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="PcpnTransAni">
+                <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{Binding Precipitation, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="True" >
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="SunRiseAni">
+                <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="SunRiseStrokeLength" To="{Binding SunProgress}" EnableDependentAnimation="True" >
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
         </RelativePanel.Resources>
         <RelativePanel x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
@@ -573,7 +608,7 @@
                 </Grid>
 
                 <RelativePanel RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
-                      Height="2000" Margin="0,-4,0,0" Background="White">
+                      Height="2000" Margin="0,-4,0,0" Background="{ThemeResource SystemControlForegroundHighBrush}">
 
                     <Grid x:Name="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
                               Margin="0,48,0,0">
@@ -675,7 +710,7 @@
                                             </RectangleGeometry>
                                         </Path.Clip>
                                     </Path>
-                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlForegroundLowBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlTranslucentHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Data>
                                             M 26.8059,30.1399L 29.4076,30.1399M 26.8059,19.7329L 30.7085,19.7329M 26.6095,9.20353C 26.6095,6.32956 28.939,4 31.813,4C 34.687,4 37.0165,6.32956 37.0165,9.20353L 37.0503,9.32582L 37.0503,40.547L 37.0819,40.5206C 40.2482,42.3051 42.4015,45.6994 42.4015,49.593C 42.4015,55.3406 37.7496,60 32.0019,60C 26.2543,60 21.5985,55.3406 21.5985,49.593C 21.5985,45.7837 23.6168,42.4524 26.6706,40.6387L 26.6433,40.547L 26.6433,9.32582L 26.6726,9.41753
                                         </Path.Data>
@@ -689,7 +724,7 @@
                             <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="48">
                                 <Grid>
                                     <Rectangle StrokeThickness="0" Width="4" Height="34" RadiusX="2" RadiusY="2" Fill="{ThemeResource SystemControlAltMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" />
-                                    <Path VerticalAlignment="Center" HorizontalAlignment="Center" Width="64" Height="64" Stroke="{ThemeResource SystemControlForegroundLowBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1">
+                                    <Path VerticalAlignment="Center" HorizontalAlignment="Center" Width="64" Height="64" Fill="{ThemeResource SystemBackgroundHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="0">
                                         <Path.Data>
                                             M 30.5597,31.177L 30.5597,4.15459L 33.4405,7.06972L 33.4403,7.03515L 33.4403,31.177L 56.7236,44.6196L 52.7544,45.6739L 31.9314,33.6717L 31.9314,33.646L 8.68241,47.0886L 9.75397,43.1538L 30.5512,31.1513L 30.5597,31.177 Z M 33.646,32C 33.646,32.909 32.909,33.646 32,33.646C 31.091,33.646 30.354,32.909 30.354,32C 30.354,31.091 31.091,30.354 32,30.354C 32.909,30.354 33.646,31.091 33.646,32 Z
                                         </Path.Data>
@@ -705,10 +740,106 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid2" Grid.Row="1" Height="200" >
                             <TextBlock Text="Hum." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="48" >
+                                <Grid>
+                                    <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF2080FF" Offset="1"/>
+                                                <GradientStop Color="#FFA0DAFF"/>
+                                            </LinearGradientBrush>
+                                        </Path.Fill>
+                                        <Path.Data>
+                                            F1 M 32.0287,4.03049C 32.0287,14.3843 49.5188,28.3964 49.5188,41.9719C 49.5188,51.9702 41.6961,60 32.0287,60L 31.9714,60C 22.304,60 14.4812,51.9702 14.4812,41.9719C 14.4812,28.3964 31.9714,14.3538 31.9714,4
+                                        </Path.Data>
+                                        <Path.Clip>
+                                            <RectangleGeometry Rect="0,0,64,64" >
+                                                <RectangleGeometry.Transform>
+                                                    <TranslateTransform x:Name="WaterDropTrans" Y="64" />
+                                                </RectangleGeometry.Transform>
+                                            </RectangleGeometry>
+                                        </Path.Clip>
+                                    </Path>
+                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlTranslucentHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Data>
+                                            F1 M 32.0287,4.03049C 32.0287,14.3843 49.5188,28.3964 49.5188,41.9719C 49.5188,51.9702 41.6961,60 32.0287,60L 31.9714,60C 22.304,60 14.4812,51.9702 14.4812,41.9719C 14.4812,28.3964 31.9714,14.3538 31.9714,4
+                                        </Path.Data>
+                                    </Path>
+                                </Grid>
+                            </Viewbox>
                             <TextBlock Text="{Binding Humidity, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
-                        <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="200" />
-                        <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="200" />
+                        <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="200" >
+                            <TextBlock Text="Pcpn." Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,24,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="48" >
+                                <Grid>
+                                    <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF2080FF" Offset="1"/>
+                                                <GradientStop Color="#FFA0DAFF"/>
+                                            </LinearGradientBrush>
+                                        </Path.Fill>
+                                        <Path.Data>
+                                            M 32,60L 32,60C 28.1341,60 25,56.8659 25,53L 25,11C 25,7.13408 28.1341,4 32,4L 32,4C 35.8659,4 39,7.13408 39,11L 39,53C 39,56.8659 35.8659,60 32,60 Z M 25,32L 28.5,32M 25,46L 28.5,46M 25,39L 32,39M 25,25L 32,25M 25,18L 28.5,18
+                                        </Path.Data>
+                                        <Path.Clip>
+                                            <RectangleGeometry Rect="0,0,64,64" >
+                                                <RectangleGeometry.Transform>
+                                                    <TranslateTransform x:Name="PcpnTrans" Y="64" />
+                                                </RectangleGeometry.Transform>
+                                            </RectangleGeometry>
+                                        </Path.Clip>
+                                    </Path>
+
+                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlTranslucentHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Data>
+                                            M 32,60L 32,60C 28.1341,60 25,56.8659 25,53L 25,11C 25,7.13408 28.1341,4 32,4L 32,4C 35.8659,4 39,7.13408 39,11L 39,53C 39,56.8659 35.8659,60 32,60 Z M 25,32L 28.5,32M 25,46L 28.5,46M 25,39L 32,39M 25,25L 32,25M 25,18L 28.5,18
+                                        </Path.Data>
+                                    </Path>
+                                </Grid>
+                            </Viewbox>
+                            <TextBlock Text="{Binding Precipitation, Converter={StaticResource PrecipitationConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid3Separator" />
+                            <TextBlock x:Name="DetailGrid3Separator" Text=" | " Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
+                            <TextBlock Text="{Binding Proportion, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid3Separator" />
+                        </RelativePanel>
+                        <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="200" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,56,0,56">
+                                <Grid Height="320" Width="640" >
+                                    <Ellipse Height="512" Width="512" VerticalAlignment="Top" Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="8">
+                                        <Ellipse.Clip>
+                                            <RectangleGeometry Rect="0,0 512,256" />
+                                        </Ellipse.Clip>
+                                    </Ellipse>
+                                    <!-- Wow! -->
+                                    <Ellipse x:Name="FillLine" Height="512" Width="512" VerticalAlignment="Top" Stroke="#FFA700" StrokeDashArray="{Binding ElementName=Page, Path=SunRiseStrokeLength, Converter={StaticResource SunRiseAniConverter}}" StrokeThickness="8">
+                                        <Ellipse.Clip>
+                                            <RectangleGeometry Rect="0,0 512,256" />
+                                        </Ellipse.Clip>
+                                    </Ellipse>
+                                    <Path x:Name="SunriseIcon" HorizontalAlignment="{Binding IsNight, Converter={StaticResource SunRiseAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FFEF00" >
+                                        <Path.Data>
+                                            M 64,19.6522L 64,19.6522C 61.1187,19.6522 58.7826,17.3161 58.7826,14.4348L 58.7826,9.2174C 58.7826,6.33609 61.1187,4 64,4L 64,4C 66.8813,4 69.2174,6.33609 69.2174,9.2174L 69.2174,14.4348C 69.2174,17.3161 66.8813,19.6522 64,19.6522 Z M 30.087,24.8696C 30.087,27.7509 27.7509,30.087 24.8696,30.087C 21.9883,30.087 19.6522,27.7509 19.6522,24.8696C 19.6522,21.9883 21.9883,19.6522 24.8696,19.6522C 27.7509,19.6522 30.087,21.9883 30.087,24.8696 Z M 103.13,30.087C 100.249,30.087 97.913,27.7509 97.913,24.8696C 97.913,21.9883 100.249,19.6522 103.13,19.6522C 106.012,19.6522 108.348,21.9883 108.348,24.8696C 108.348,27.7509 106.012,30.087 103.13,30.087 Z M 4.00001,64L 19.6522,64L 19.6522,64C 19.6522,61.1187 17.3161,58.7826 14.4348,58.7826L 9.2174,58.7826C 6.3361,58.7826 4.00001,61.1187 4.00001,64 Z M 24.8696,64L 103.13,64C 103.13,42.3887 85.6113,24.8696 64,24.8696C 42.3887,24.8696 24.8696,42.3887 24.8696,64 Z M 108.348,64L 124,64L 124,64C 124,61.1187 121.664,58.7826 118.783,58.7826L 113.565,58.7826C 110.684,58.7826 108.348,61.1187 108.348,64 Z
+                                        </Path.Data>
+                                    </Path>
+                                    <Path x:Name="SunsetIcon" HorizontalAlignment="{Binding IsNight, Converter={StaticResource SunSetAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FF5F00" >
+                                        <Path.Data>
+                                            F1 M 24.8696,64L 103.13,64C 103.13,42.3887 85.6113,24.8696 64,24.8696C 42.3887,24.8696 24.8696,42.3887 24.8696,64 Z
+                                        </Path.Data>
+                                    </Path>
+                                </Grid>
+                            </Viewbox>
+                            <TextBlock Text="{Binding SunRise, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                                <TextBlock.RenderTransform>
+                                    <TranslateTransform X="{Binding IsNight, Converter={StaticResource SunRiseTextAlignMentConverter}}" />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                            <TextBlock Text="{Binding SunSet, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,24" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                                <TextBlock.RenderTransform>
+                                    <TranslateTransform X="{Binding IsNight, Converter={StaticResource SunSetTextAlignMentConverter}}" />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </RelativePanel>
                         <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="200" />
                         <RelativePanel x:Name="DetailGrid6" Grid.Row="3" Height="200" />
                         <RelativePanel x:Name="DetailGrid7" Grid.Row="3" Grid.Column="1" Height="200" />

@@ -13,7 +13,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return ((TimeSpan)value).ToString(@"h\:mm"); 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -121,4 +121,5 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
 }

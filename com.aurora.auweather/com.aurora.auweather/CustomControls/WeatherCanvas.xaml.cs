@@ -55,7 +55,6 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
-
             if (isRain || isThunder)
                 CreateRain();
 
