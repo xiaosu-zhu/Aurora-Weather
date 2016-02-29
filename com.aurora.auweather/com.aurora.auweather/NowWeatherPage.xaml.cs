@@ -37,7 +37,7 @@ namespace Com.Aurora.AuWeather
         {
             this.InitializeComponent();
             //DataContext = new NowWeatherPageViewModel();
-            
+
             DataContext.FetchDataComplete += MModel_FetchDataComplete;
             DataContext.ParameterChanged += MModel_ParameterChanged;
         }
@@ -77,6 +77,7 @@ namespace Com.Aurora.AuWeather
         private void DetailGrid2Play()
         {
             SunRiseAni.Begin();
+            MoonPhaseAni.Begin();
         }
 
         private void DetailGrid0Play()

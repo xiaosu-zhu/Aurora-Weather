@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Com.Aurora.Shared.Helpers;
 using System;
+using Com.Aurora.AuWeather.LunarCalendar;
 
 namespace Com.Aurora.AuWeather
 {
@@ -17,7 +18,6 @@ namespace Com.Aurora.AuWeather
             {
                 TitleBlock.Visibility = Visibility.Collapsed;
             }
-
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

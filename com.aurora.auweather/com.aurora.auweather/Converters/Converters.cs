@@ -1,13 +1,19 @@
-﻿using Com.Aurora.AuWeather.Models;
+﻿using Com.Aurora.AuWeather;
+using Com.Aurora.AuWeather.LunarCalendar;
+using Com.Aurora.AuWeather.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Com.Aurora.Shared.Converters
 {
@@ -545,7 +551,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return ((float)value).ToString("0.#") + "mm";
+            return ((float)value).ToString("0.#") + " mm";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -597,7 +603,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? -72 : 72;
+            return (bool)value ? -90 : 90;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -610,7 +616,154 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? 72 : -72;
+            return (bool)value ? 90 : -90;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class MoonPhaseProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var p = (value as CalendarInfo).LunarDay;
+            string uri;
+            if (p < 2)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon0.png";
+            }
+            else if (p < 6)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon1.png";
+            }
+            else if (p < 9)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon2.png";
+            }
+            else if (p < 13)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon3.png";
+            }
+            else if (p < 17)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon4.png";
+            }
+            else if (p < 21)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon5.png";
+            }
+            else if (p < 24)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon6.png";
+            }
+            else if (p < 28)
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon7.png";
+            }
+            else
+            {
+                uri = "ms-appx:///Assets/MoonPhase/moon0.png";
+            }
+            return new BitmapImage(new Uri(uri));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class MoonPhaseTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var p = (value as CalendarInfo).LunarDay;
+            string result;
+            if (p < 2)
+            {
+                result = "新月";
+            }
+            else if (p < 6)
+            {
+                result = "峨眉月";
+            }
+            else if (p < 9)
+            {
+                result = "上弦月";
+            }
+            else if (p < 13)
+            {
+                result = "上凸月";
+            }
+            else if (p < 17)
+            {
+                result = "满月";
+            }
+            else if (p < 21)
+            {
+                result = "下凸月";
+            }
+            else if (p < 24)
+            {
+                result = "下弦月";
+            }
+            else if (p < 28)
+            {
+                result = "残月";
+            }
+            else
+            {
+                result = "新月";
+            }
+            return result;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class VisibilityConverter : IValueConverter
+    {
+        public static LengthParameter LengthParameter { get; private set; } = LengthParameter.KM;
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var l = value as Length;
+            switch (LengthParameter)
+            {
+                case LengthParameter.KM: return l.KM.ToString("0.##") + " km";
+                case LengthParameter.M: return l.M.ToString("0.##") + " m";
+                case LengthParameter.Mile: return l.Mile.ToString("0.##") + " mile";
+                case LengthParameter.NM: return l.NM.ToString("0.##") + " nm";
+                default: return "0km";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PressureConverter : IValueConverter
+    {
+        public static PressureParameter PressureParameter { get; private set; } = PressureParameter.Atm;
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var l = value as Pressure;
+            switch (PressureParameter)
+            {
+                case PressureParameter.Atm: return l.Atm.ToString("0.####") + " Atm";
+                case PressureParameter.Hpa: return l.HPa.ToString("0.####") + " Hpa";
+                case PressureParameter.Torr: return l.Torr.ToString("0.####") + " Torr";
+                case PressureParameter.CmHg: return l.CmHg.ToString("0.####") + " CmHg";
+                default:
+                    return "0 Atm";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

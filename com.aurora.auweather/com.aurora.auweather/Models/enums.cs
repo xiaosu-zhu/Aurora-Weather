@@ -36,4 +36,8 @@ namespace Com.Aurora.AuWeather.Models
     public enum WindParameter : byte { BeaufortandText, BeaufortandDegree, SpeedandText, SpeedandDegree }
 
     public enum SpeedParameter : byte { KMPH, MPS, Knot };
+
+    public enum LengthParameter : byte { KM, M, Mile, NM };
+
+    public enum PressureParameter : byte { Atm, Hpa, Torr, CmHg };
 }

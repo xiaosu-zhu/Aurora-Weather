@@ -95,6 +95,38 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Key" />
+    <Content Include="Assets\MoonPhase\moon0.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon0.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon0.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon0.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon1.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon1.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon1.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon1.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon2.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon2.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon2.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon2.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon3.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon3.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon3.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon3.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon4.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon4.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon4.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon4.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon5.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon5.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon5.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon5.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon6.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon6.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon6.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon6.scale-240.png" />
+    <Content Include="Assets\MoonPhase\moon7.scale-100.png" />
+    <Content Include="Assets\MoonPhase\moon7.scale-140.png" />
+    <Content Include="Assets\MoonPhase\moon7.scale-180.png" />
+    <Content Include="Assets\MoonPhase\moon7.scale-240.png" />
     <Content Include="Assets\rain.png" />
     <Content Include="Assets\rain_cloud.png" />
     <Content Include="Assets\smoke1.png" />
@@ -126,6 +158,8 @@
     <Compile Include="Effects\StarParticleSystem.cs" />
     <Compile Include="Effects\Thunder.cs" />
     <Compile Include="Effects\ThunderGenerator.cs" />
+    <Compile Include="LunarCalendar\CalendarInfo.cs" />
+    <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -150,7 +184,9 @@
     <Compile Include="Models\HeWeather\WeatherAlarm.cs" />
     <Compile Include="Models\HeWeather\WeatherSuggestion.cs" />
     <Compile Include="Models\IWeather.cs" />
+    <Compile Include="Models\Length.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Pressure.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\Speed.cs" />
     <Compile Include="Models\Temprature.cs" />

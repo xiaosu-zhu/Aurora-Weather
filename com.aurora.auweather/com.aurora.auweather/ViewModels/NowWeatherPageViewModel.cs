@@ -1,4 +1,5 @@
-﻿using Com.Aurora.AuWeather.Models;
+﻿using Com.Aurora.AuWeather.LunarCalendar;
+using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.Shared.Converters;
@@ -29,6 +30,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         private float precipitation;
         private uint proportion;
         private double sunProgress;
+        private double moonPhase;
+        private Pressure pressure;
+        private Length visibility;
 
         private float tempraturePath0;
         private float tempraturePath1;
@@ -91,6 +95,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private List<KeyValuePair<string, string>> storedDatas;
         private SettingsModel settings;
         private CitySettingsModel currentCityModel;
+        private CalendarInfo calendar;
 
         public Temprature Temprature
         {
@@ -872,6 +877,58 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public double MoonPhase
+        {
+            get
+            {
+                return moonPhase;
+            }
+
+            set
+            {
+                SetProperty(ref moonPhase, value);
+            }
+        }
+
+        public CalendarInfo Calendar
+        {
+            get
+            {
+                return calendar;
+            }
+
+            set
+            {
+                SetProperty(ref calendar, value);
+            }
+        }
+
+        public Pressure Pressure
+        {
+            get
+            {
+                return pressure;
+            }
+
+            set
+            {
+                SetProperty(ref pressure, value);
+            }
+        }
+
+        public Length Visibility
+        {
+            get
+            {
+                return visibility;
+            }
+
+            set
+            {
+                SetProperty(ref visibility, value);
+            }
+        }
+
         public event FetchDataCompleteEventHandler FetchDataComplete;
         public event ParameterChangedEventHandler ParameterChanged;
         public event FetchDataFailedEventHandler FetchDataFailed;
@@ -884,6 +941,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     ReadSettings();
                     await FetchData();
+                    CalcCalendar();
                 }
                 catch (ArgumentNullException)
                 {
@@ -895,6 +953,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                       InitialViewModel();
                   }));
             });
+        }
+
+        private void CalcCalendar()
+        {
+            calendar = new CalendarInfo(fetchresult.Location.UpdateTime);
+            moonPhase = Calendar.LunarDay / 30d;
         }
 
         private void OnFetchDataFailed(object sender, FetchDataFailedEventArgs e)
@@ -1115,6 +1179,12 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void SetNow()
         {
+            var p = moonPhase;
+            moonPhase = double.NaN;
+            MoonPhase = p;
+            var c = calendar;
+            calendar = null;
+            Calendar = c;
             Temprature = fetchresult.NowWeather.Temprature;
             NowH = fetchresult.DailyForecast[0].HighTemp;
             NowL = fetchresult.DailyForecast[0].LowTemp;
@@ -1122,6 +1192,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             Humidity = fetchresult.HourlyForecast[0].Humidity;
             Precipitation = fetchresult.NowWeather.Precipitation;
             Proportion = fetchresult.HourlyForecast[0].Pop;
+            Pressure = fetchresult.NowWeather.Pressure;
+            Visibility = fetchresult.NowWeather.Visibility;
             if (Temprature.Celsius > 20)
             {
                 IsSummer = true;

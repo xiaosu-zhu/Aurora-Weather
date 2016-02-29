@@ -9,6 +9,7 @@ using Windows.Security.Cryptography.Core;
 using Com.Aurora.Shared.Helpers.Crypto;
 using Windows.Storage.Streams;
 using Windows.Security.Cryptography;
+using Com.Aurora.AuWeather.LunarCalendar;
 
 namespace UnitTest
 {
@@ -133,6 +134,12 @@ namespace UnitTest
             IBuffer buffEncrypted = CryptoHelper.CipherEncryption(strMsg, strAlgName, encoding, key);
             var actual = CryptoHelper.CipherDecryption(strAlgName, buffEncrypted, encoding, key);
             Assert.AreEqual(strMsg, actual);
+        }
+
+        [TestMethod]
+        public void LunarCalendarTest()
+        {
+            CalendarInfo c = new CalendarInfo();
         }
     }
 }

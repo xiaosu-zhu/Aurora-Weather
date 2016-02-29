@@ -5,9 +5,9 @@
         private NowCondition now;
         private Temprature bodyTemprature;
         private float precipitation;
-        private uint visibility;
+        private Length visibility;
         private Wind wind;
-        private uint pressure;
+        private Pressure pressure;
         private Temprature temprature;
 
         public NowCondition Now
@@ -49,7 +49,7 @@
             }
         }
 
-        public uint Visibility
+        public Length Visibility
         {
             get
             {
@@ -75,7 +75,7 @@
             }
         }
 
-        public uint Pressure
+        public Pressure Pressure
         {
             get
             {
@@ -106,9 +106,9 @@
             Now = new NowCondition(now.cond);
             BodyTemprature = Temprature.FromCelsius(int.Parse(now.fl));
             Precipitation = float.Parse(now.pcpn);
-            Visibility = uint.Parse(now.vis);
+            Visibility = Length.FromKM(float.Parse(now.vis));
             Wind = new Wind(now.wind);
-            Pressure = uint.Parse(now.pres);
+            Pressure = Pressure.FromHPa(float.Parse(now.pres));
             Temprature = Temprature.FromCelsius(int.Parse(now.tmp));
         }
     }

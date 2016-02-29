@@ -14,10 +14,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private uint humidity;
         private float precipitation;
         private uint pop;
-        private uint pressure;
+        private Pressure pressure;
         private Temprature highTemp;
         private Temprature lowTemp;
-        private uint visibility;
+        private Length visibility;
         private Wind wind;
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        public uint Pressure
+        public Pressure Pressure
         {
             get
             {
@@ -159,7 +159,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        public uint Visibility
+        public Length Visibility
         {
             get
             {
@@ -195,10 +195,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Humidity = uint.Parse(daily_forecast.hum);
             Precipitation = float.Parse(daily_forecast.pcpn);
             Pop = uint.Parse(daily_forecast.pop);
-            Pressure = uint.Parse(daily_forecast.pres);
+            Pressure = Pressure.FromHPa(float.Parse(daily_forecast.pres));
             HighTemp = Temprature.FromCelsius(int.Parse(daily_forecast.tmp.max));
             LowTemp = Temprature.FromCelsius(int.Parse(daily_forecast.tmp.min));
-            Visibility = uint.Parse(daily_forecast.vis);
+            Visibility = Length.FromKM(float.Parse(daily_forecast.vis));
             Wind = new Wind(daily_forecast.wind);
         }
     }

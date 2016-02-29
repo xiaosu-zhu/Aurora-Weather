@@ -8,7 +8,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private DateTime dateTime;
         private uint humidity;
         private uint pop;
-        private uint pressure;
+        private Pressure pressure;
         private Temprature temprature;
         private Wind wind;
 
@@ -51,7 +51,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        public uint Pressure
+        public Pressure Pressure
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             DateTime = DateTime.ParseExact(hourly_forecast.date, "yyyy-MM-dd HH:mm", provider);
             Humidity = uint.Parse(hourly_forecast.hum);
             Pop = uint.Parse(hourly_forecast.pop);
-            Pressure = uint.Parse(hourly_forecast.pres);
+            Pressure = Pressure.FromHPa(float.Parse(hourly_forecast.pres));
             Temprature = Temprature.FromCelsius(int.Parse(hourly_forecast.tmp));
             Wind = new Wind(hourly_forecast.wind);
         }
