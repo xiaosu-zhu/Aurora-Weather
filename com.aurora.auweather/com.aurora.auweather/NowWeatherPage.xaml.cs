@@ -1,12 +1,11 @@
 ﻿using Com.Aurora.AuWeather.ViewModels;
+using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
+using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Graphics.Display;
+using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,6 +19,13 @@ namespace Com.Aurora.AuWeather
         private double actualWidth;
         private bool isAnimating = false;
         private bool isFadeOut = false;
+        /// <summary>
+        /// use binary: 1111 1111 to implement every DetailGrid Animation status
+        /// </summary>
+        private int detailGridAnimation_FLAG = 0;
+
+        private Point[] DetailGridPoint = new Point[9];
+
         public double SunRiseStrokeLength
         {
             get { return (double)GetValue(SunRiseStrokeLengthProperty); }
@@ -31,7 +37,7 @@ namespace Com.Aurora.AuWeather
             DependencyProperty.Register("SunRiseStrokeLength", typeof(double), typeof(NowWeatherPage), new PropertyMetadata(0d));
 
 
-        public bool DetailsPanelIsNormalState { get; private set; }
+        public bool DetailsPanelIsNormalState = true;
 
         public NowWeatherPage()
         {
@@ -56,14 +62,13 @@ namespace Com.Aurora.AuWeather
 
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
+            CalcDetailGridPosition();
+            isAnimating = true;
+            WeatherCanvas.ChangeCondition(DataContext.Condition, DataContext.IsNight, DataContext.IsSummer);
+            ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
             {
-                isAnimating = true;
-                WeatherCanvas.ChangeCondition(DataContext.Condition, DataContext.IsNight, DataContext.IsSummer);
                 TempraturePathAnimation.Begin();
-                DetailGrid0Play();
-                DetailGrid1Play();
-                DetailGrid2Play();
                 Forecast0.SetCondition(DataContext.Forecast0, DataContext.IsNight);
                 Forecast1.SetCondition(DataContext.Forecast1, DataContext.IsNight);
                 Forecast2.SetCondition(DataContext.Forecast2, DataContext.IsNight);
@@ -74,30 +79,79 @@ namespace Com.Aurora.AuWeather
             }));
         }
 
-        private void DetailGrid2Play()
-        {
-            SunRiseAni.Begin();
-            MoonPhaseAni.Begin();
-        }
-
+        #region DetailGrid Animation
         private void DetailGrid0Play()
         {
-            DetailTempratureIn.Begin();
-            ThreadPoolTimer.CreatePeriodicTimer((work) =>
+            if (detailGridAnimation_FLAG % 2 == 0)
             {
-                this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
-                 {
-                     fengchezhuan.Angle += 0.1396263377777778 * DataContext.Wind.Speed.MPS;
-                 }));
-            }, TimeSpan.FromMilliseconds(16));
+                DetailTempratureIn.Begin();
+                detailGridAnimation_FLAG++;
+            }
         }
-
         private void DetailGrid1Play()
         {
-            WaterDropTransAni.Begin();
-            PcpnTransAni.Begin();
+            if ((detailGridAnimation_FLAG >> 1) % 2 == 0)
+            {
+                ThreadPoolTimer.CreatePeriodicTimer((work) =>
+                                {
+                                    this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
+                                     {
+                                         fengchezhuan.Angle += 0.1396263377777778 * DataContext.Wind.Speed.MPS;
+                                     }));
+                                }, TimeSpan.FromMilliseconds(16));
+                detailGridAnimation_FLAG += 2;
+            }
         }
+        private void DetailGrid2Play()
+        {
+            if ((detailGridAnimation_FLAG >> 2) % 2 == 0)
+            {
+                WaterDropTransAni.Begin();
+                detailGridAnimation_FLAG += 4;
+            }
+        }
+        private void DetailGrid3Play()
+        {
+            if ((detailGridAnimation_FLAG >> 3) % 2 == 0)
+            {
+                PcpnTransAni.Begin();
+                detailGridAnimation_FLAG += 8;
+            }
+        }
+        private void DetailGrid4Play()
+        {
+            if ((detailGridAnimation_FLAG >> 4) % 2 == 0)
+            {
+                SunRiseAni.Begin();
+                detailGridAnimation_FLAG += 16;
+            }
+        }
+        private void DetailGrid6Play()
+        {
+            if ((detailGridAnimation_FLAG >> 5) % 2 == 0)
+            {
+                VisTransAni.Begin();
+                detailGridAnimation_FLAG += 32;
+            }
+        }
+        private void DetailGrid7Play()
+        {
+            if ((detailGridAnimation_FLAG >> 6) % 2 == 0)
+            {
+                PressureTransAni.Begin();
+                detailGridAnimation_FLAG += 64;
+            }
+        }
+        private void DetailGrid8Play()
+        {
+            if ((detailGridAnimation_FLAG >> 6) % 2 == 0)
+            {
+                detailGridAnimation_FLAG += 128;
+            }
+        }
+        #endregion
 
+        #region Hold Bezier
         private void RelativePanel_LayoutUpdated(object sender, object e)
         {
             if (actualWidth != Root.ActualWidth || isAnimating)
@@ -145,7 +199,7 @@ namespace Com.Aurora.AuWeather
                     isFadeOut = false;
                     TempratureIn.Begin();
                 }
-
+                ScrollPathPoint(verticalOffset);
             }
         }
 
@@ -155,7 +209,6 @@ namespace Com.Aurora.AuWeather
             p.X = actualWidth;
             endPoint1.Point = p;
         }
-
         private void SetPathPoint1(BezierSegment control, double actualWidth, float v)
         {
             var p = control.Point1;
@@ -174,15 +227,9 @@ namespace Com.Aurora.AuWeather
             p.X = actualWidth * v;
             control.Point3 = p;
         }
+        #endregion
 
-        private void ScrollableRoot_LayoutUpdated(object sender, object e)
-        {
-            if (verticalOffset == ScrollableRoot.VerticalOffset || ScrollableRoot.VerticalOffset > 201)
-                return;
-            verticalOffset = ScrollableRoot.VerticalOffset;
-            ScrollPathPoint(verticalOffset);
-        }
-
+        #region Scroll Bezier
         private void ScrollPathPoint(double verticalOffset)
         {
             var offset = verticalOffset > 200 ? 200 : verticalOffset;
@@ -198,14 +245,12 @@ namespace Com.Aurora.AuWeather
             CalculateY2(offset, BezierControl6, results[4], results[5]);
             CalculateY1(offset, BezierControl7, results[5]);
         }
-
         private void CalculateY0(double offset, PathFigure pathFigure, double result)
         {
             var p = pathFigure.StartPoint;
             p.Y = result;
             pathFigure.StartPoint = p;
         }
-
         private void CalculateY1(double offset, BezierSegment control, double result)
         {
             var p = control.Point1;
@@ -230,6 +275,7 @@ namespace Com.Aurora.AuWeather
             p.Y = result2;
             control.Point3 = p;
         }
+        #endregion
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -237,59 +283,106 @@ namespace Com.Aurora.AuWeather
             DataContext.ParameterChanged -= MModel_ParameterChanged;
         }
 
+        #region Change Layout
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (DetailsPanel.ActualWidth < 720)
+            if (DetailsPanel.ActualWidth < 720 && !DetailsPanelIsNormalState)
             {
-                this.DetailsPanelGotoNormalState();
+                DetailsPanelGotoNormalState();
             }
-            else
+            else if (DetailsPanel.ActualWidth >= 720 && DetailsPanelIsNormalState)
             {
-                this.DetailsPanelGotoWideState();
+                DetailsPanelGotoWideState();
             }
         }
 
         private void DetailsPanelGotoNormalState()
         {
-            if (!DetailsPanelIsNormalState)
-            {
-                return;
-            }
-            else
-            {
-                DetailsPanelIsNormalState = false;
-                var length = GridLength.Auto;
-                Column2.Width = length;
-                UIHelper.SetControlPositioninGrid(DetailGrid2, 1, 0);
-                UIHelper.SetControlPositioninGrid(DetailGrid3, 1, 1);
-                UIHelper.SetControlPositioninGrid(DetailGrid4, 2, 0);
-                UIHelper.SetControlPositioninGrid(DetailGrid5, 2, 1);
-                UIHelper.SetControlPositioninGrid(DetailGrid6, 3, 0);
-                UIHelper.SetControlPositioninGrid(DetailGrid7, 3, 1);
-                UIHelper.SetControlPositioninGrid(DetailGrid8, 3, 2);
-                UIHelper.ReverseVisibility(DetailGrid8);
-            }
+            DetailsPanelIsNormalState = true;
+            var length = GridLength.Auto;
+            Column2.Width = length;
+            UIHelper.Change_Row_Column(DetailGrid2, 1, 0);
+            UIHelper.Change_Row_Column(DetailGrid3, 1, 1);
+            UIHelper.Change_Row_Column(DetailGrid4, 2, 0);
+            UIHelper.Change_Row_Column(DetailGrid5, 2, 1);
+            UIHelper.Change_Row_Column(DetailGrid6, 3, 0);
+            UIHelper.Change_Row_Column(DetailGrid7, 3, 1);
+            UIHelper.Change_Row_Column(DetailGrid8, 3, 2);
+            UIHelper.ReverseVisibility(DetailGrid8);
         }
 
         private void DetailsPanelGotoWideState()
         {
-            if (DetailsPanelIsNormalState)
+            DetailsPanelIsNormalState = false;
+            var length = new GridLength(1, GridUnitType.Star);
+            Column2.Width = length;
+            UIHelper.Change_Row_Column(DetailGrid2, 0, 2);
+            UIHelper.Change_Row_Column(DetailGrid3, 1, 0);
+            UIHelper.Change_Row_Column(DetailGrid4, 1, 1);
+            UIHelper.Change_Row_Column(DetailGrid5, 1, 2);
+            UIHelper.Change_Row_Column(DetailGrid6, 2, 0);
+            UIHelper.Change_Row_Column(DetailGrid7, 2, 1);
+            UIHelper.Change_Row_Column(DetailGrid8, 2, 2);
+            UIHelper.ReverseVisibility(DetailGrid8);
+        }
+        #endregion
+
+        private void CalcDetailGridPosition()
+        {
+            DetailGridPoint[0] = DetailGrid0.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[1] = DetailGrid1.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[2] = DetailGrid2.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[3] = DetailGrid3.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[4] = DetailGrid4.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[5] = DetailGrid5.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[6] = DetailGrid6.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[7] = DetailGrid7.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[8] = DetailGrid8.GetPositioninRoot(ScrollableRoot);
+            for (int i = 0; i < DetailGridPoint.Length; i++)
             {
-                return;
+                DetailGridPoint[i].Y += ScrollableRoot.VerticalOffset;
             }
-            else
+        }
+
+        private void ScrollableRoot_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            CalcDetailGridPosition();
+            DetailGridPlay(ScrollableRoot.ActualHeight + ScrollableRoot.VerticalOffset - 240);
+        }
+
+        private void DetailGridPlay(double offsetProgress)
+        {
+            if (offsetProgress > DetailGridPoint[0].Y)
             {
-                DetailsPanelIsNormalState = true;
-                var length = new GridLength(1, GridUnitType.Star);
-                Column2.Width = length;
-                UIHelper.SetControlPositioninGrid(DetailGrid2, 0, 2);
-                UIHelper.SetControlPositioninGrid(DetailGrid3, 1, 0);
-                UIHelper.SetControlPositioninGrid(DetailGrid4, 1, 1);
-                UIHelper.SetControlPositioninGrid(DetailGrid5, 1, 2);
-                UIHelper.SetControlPositioninGrid(DetailGrid6, 2, 0);
-                UIHelper.SetControlPositioninGrid(DetailGrid7, 2, 1);
-                UIHelper.SetControlPositioninGrid(DetailGrid8, 2, 2);
-                UIHelper.ReverseVisibility(DetailGrid8);
+                DetailGrid0Play();
+            }
+            if (offsetProgress > DetailGridPoint[1].Y)
+            {
+                DetailGrid1Play();
+            }
+            if (offsetProgress > DetailGridPoint[2].Y)
+            {
+                DetailGrid2Play();
+            }
+            if (offsetProgress > DetailGridPoint[3].Y)
+            {
+                DetailGrid3Play();
+            }
+            if (offsetProgress > DetailGridPoint[4].Y)
+            {
+                DetailGrid4Play();
+            }
+            if (offsetProgress > DetailGridPoint[6].Y)
+            {
+                DetailGrid6Play();
+            }
+            if (offsetProgress > DetailGridPoint[7].Y)
+            {
+                DetailGrid7Play();
+            }
+            if (offsetProgress > DetailGridPoint[8].Y)
+            {
+                DetailGrid8Play();
             }
         }
 

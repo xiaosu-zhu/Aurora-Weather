@@ -1,12 +1,9 @@
-﻿namespace Com.Aurora.AuWeather.ViewModels
+﻿namespace Com.Aurora.AuWeather.ViewModels.Events
 {
-    public delegate void FetchDataCompleteEventHandler(object sender, FetchDataCompleteEventArgs e);
-
     public class FetchDataCompleteEventArgs
     {
-    }
 
-    public delegate void FetchDataFailedEventHandler(object sender, FetchDataFailedEventArgs e);
+    }
 
     public class FetchDataFailedEventArgs
     {

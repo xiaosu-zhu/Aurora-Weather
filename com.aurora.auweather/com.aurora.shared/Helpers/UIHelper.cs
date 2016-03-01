@@ -10,13 +10,13 @@ namespace Com.Aurora.Shared.Helpers
 {
     public static class UIHelper
     {
-        public static void SetControlPositioninGrid(DependencyObject d, int row, int column)
+        public static void Change_Row_Column(FrameworkElement d, int row, int column)
         {
             d.SetValue(Grid.RowProperty, row);
             d.SetValue(Grid.ColumnProperty, column);
         }
 
-        public static void ReverseVisibility(UIElement e)
+        public static void ReverseVisibility(FrameworkElement e)
         {
             if (e.Visibility == Visibility.Collapsed)
             {

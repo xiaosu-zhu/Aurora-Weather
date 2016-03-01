@@ -771,4 +771,18 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class PressureAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var p = value as Pressure;
+            return (p.Atm - 1) * 900;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

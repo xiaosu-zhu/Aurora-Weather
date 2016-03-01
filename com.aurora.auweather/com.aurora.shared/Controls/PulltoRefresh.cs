@@ -1,4 +1,5 @@
-﻿using Com.Aurora.Shared.Helpers;
+﻿using System;
+using Com.Aurora.Shared.Helpers;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,7 +16,7 @@ namespace Com.Aurora.Shared.Controls
     {
         public PulltoRefresh()
         {
-            this.DefaultStyleKey = typeof(PulltoRefresh);
+            DefaultStyleKey = typeof(PulltoRefresh);
         }
 
         public ScrollViewer Main { get; private set; }
@@ -37,7 +38,9 @@ namespace Com.Aurora.Shared.Controls
 
         public Storyboard IndicatorOverlayOut { get; private set; }
 
-        public event RefreshStartEventHandler RefreshStart;
+        public event EventHandler<RefreshStartEventArgs> RefreshStart;
+        public event EventHandler<ScrollViewerViewChangedEventArgs> ViewChanged;
+
         private void OnRefreshStart(object sender, RefreshStartEventArgs e)
         {
             var h = RefreshStart;
@@ -62,8 +65,9 @@ namespace Com.Aurora.Shared.Controls
             IndicatorOverlayOut = Root.Resources["IndicatorOverlayOut"] as Storyboard;
             RefreshStartAni = Root.Resources["RefreshStart"] as Storyboard;
             RefreshCompleteAni = Root.Resources["RefreshComplete"] as Storyboard;
+            Main.ViewChanged += Main_ViewChanged;
 
-            if (ForceEnabled || InteractionHelper.HaveTouchCapabilities()|| Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if (ForceEnabled || InteractionHelper.HaveTouchCapabilities() || Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 Root.ManipulationDelta += Root_ManipulationDelta;
                 Root.Loaded += Root_Loaded;
@@ -82,6 +86,20 @@ namespace Com.Aurora.Shared.Controls
                 Indicator.Visibility = Visibility.Collapsed;
                 Main.ManipulationMode = ManipulationModes.None;
                 Main.LayoutUpdated += Main_LayoutUpdated;
+            }
+        }
+
+        private void Main_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            OnViewChanged(sender, e);
+        }
+
+        private void OnViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            var h = this.ViewChanged;
+            if (h != null)
+            {
+                h(sender, e);
             }
         }
 
@@ -339,9 +357,6 @@ namespace Com.Aurora.Shared.Controls
     }
 
     public enum IndicatorDisplayMode { Header, Overlay };
-
-    public delegate void RefreshStartEventHandler(object sender, RefreshStartEventArgs e);
-
     public class RefreshStartEventArgs
     {
 

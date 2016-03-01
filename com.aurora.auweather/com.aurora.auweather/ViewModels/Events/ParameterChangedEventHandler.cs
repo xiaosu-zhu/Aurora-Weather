@@ -1,7 +1,5 @@
-﻿namespace Com.Aurora.AuWeather.ViewModels
+﻿namespace Com.Aurora.AuWeather.ViewModels.Events
 {
-    public delegate void ParameterChangedEventHandler(object sender, ParameterChangedEventArgs e);
-
     public class ParameterChangedEventArgs
     {
         public object Parameter { get; private set; }

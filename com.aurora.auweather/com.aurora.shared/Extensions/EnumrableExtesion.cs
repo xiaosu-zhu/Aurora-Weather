@@ -9,9 +9,9 @@ namespace Com.Aurora.Shared.Extensions
 {
     public static class EnumrableExtesion
     {
-        public static bool IsNullorEmpty(this ICollection e)
+        public static bool IsNullorEmpty(this ICollection collection)
         {
-            return (e == null || e.Count == 0);
+            return (collection == null || collection.Count == 0);
         }
 
         public static bool IsNullorEmpty(this Array array)

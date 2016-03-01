@@ -52,6 +52,7 @@
             <Converters:MoonPhaseTextConverter x:Key="MoonPhaseTextConverter" />
             <Converters:VisibilityConverter x:Key="VisibilityConverter" />
             <Converters:PressureConverter x:Key="PressureConverter" />
+            <Converters:PressureAniConverter x:Key="PressureAniConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -436,8 +437,54 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
-            <Storyboard x:Name="MoonPhaseAni">
-
+            <Storyboard x:Name="PressureTransAni">
+                <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{Binding Pressure, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="VisTransAni">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.16" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="1" Duration="0:0:0.16" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.32" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="1" Duration="0:0:0.32" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.48" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="1" Duration="0:0:0.48" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.8" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="1" Duration="0:0:0.8" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
             </Storyboard>
         </RelativePanel.Resources>
         <RelativePanel x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
@@ -864,11 +911,26 @@
                             <TextBlock Text="Visibility" Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
                                 <Grid>
-                                    <Path Width="64" Height="64" Fill="{ThemeResource SystemControlAltMediumBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <Path.Data>
-                                            M 60,32C 60,47.464 47.464,60 32,60C 16.5361,60 4,47.464 4,32C 4,16.536 16.5361,4 32,4C 47.464,4 60,16.536 60,32 Z M 53,32C 53,43.5979 43.5979,53 32,53C 20.4021,53 11,43.5979 11,32C 11,20.4021 20.4021,11 32,11C 43.5979,11 53,20.4021 53,32 Z M 46,32C 46,39.732 39.732,46 32,46C 24.268,46 18,39.732 18,32C 18,24.268 24.268,18 32,18C 39.732,18 46,24.268 46,32 Z M 39,32C 39,35.866 35.866,39 32,39C 28.134,39 25,35.866 25,32C 25,28.134 28.134,25 32,25C 35.866,25 39,28.134 39,32 Z
-                                        </Path.Data>
-                                    </Path>
+                                    <Ellipse Height="60" Width="60" Fill="#80BBBBBB">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="vissubellipse3" CenterX="30" CenterY="30" ScaleX="0" ScaleY="0" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse Height="36" Width="36" Fill="#80AAAAAA" >
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="vissubellipse2" CenterX="18" CenterY="18" ScaleX="0" ScaleY="0" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse Height="24" Width="24" Fill="#80999999" >
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="vissubellipse1" CenterX="12" CenterY="12" ScaleX="0" ScaleY="0" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse Height="12" Width="12" Fill="#80888888" >
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="vissubellipse0" CenterX="6" CenterY="6" ScaleX="0" ScaleY="0" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
                                 </Grid>
                             </Viewbox>
                             <TextBlock Text="{Binding Visibility, Converter={StaticResource VisibilityConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
@@ -877,10 +939,18 @@
                             <TextBlock Text="Pressure" Style="{ThemeResource SemiBaseTextBlockStyle}" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
                                 <Grid>
-                                    <Path Width="64" Height="64" Fill="{ThemeResource SystemControlAltMediumBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlAltMediumBrush}" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Data>
-                                            M 60,32C 60,47.464 47.464,60 32,60C 16.5361,60 4,47.464 4,32C 4,16.536 16.5361,4 32,4C 47.464,4 60,16.536 60,32 Z M 53,32C 53,43.5979 43.5979,53 32,53C 20.4021,53 11,43.5979 11,32C 11,20.4021 20.4021,11 32,11C 43.5979,11 53,20.4021 53,32 Z M 46,32C 46,39.732 39.732,46 32,46C 24.268,46 18,39.732 18,32C 18,24.268 24.268,18 32,18C 39.732,18 46,24.268 46,32 Z M 39,32C 39,35.866 35.866,39 32,39C 28.134,39 25,35.866 25,32C 25,28.134 28.134,25 32,25C 35.866,25 39,28.134 39,32 Z
+                                            M 12.2012,51.7992C 7.13408,46.7322 4.00004,39.732 4.00004,32C 4.00004,16.536 16.5361,4 32,4C 47.464,4 60,16.536 60,32C 60,39.7319 56.866,46.7319 51.7989,51.7989M 32,8.2L 32,4M 60,32L 53,32M 51.7977,12.2023L 47.8379,16.1621M 12.201,12.201L 14.1809,14.1809M 5.4,32L 4,32
                                         </Path.Data>
+                                    </Path>
+                                    <Path Width="64" Height="64" Fill="{ThemeResource SystemControlTranslucentHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path.Data>
+                                            F1 M 32.7,11C 32.7,10.6135 32.3865,10.3 32,10.3C 31.6134,10.3 31.3,10.6135 31.3,11L 30.6,32C 30.6,32.7732 31.2268,33.4 32,33.4C 32.7732,33.4 33.4,32.7732 33.4,32L 32.7,11 Z
+                                        </Path.Data>
+                                        <Path.RenderTransform>
+                                            <RotateTransform CenterX="32" CenterY="32" x:Name="PressureTrans" Angle="0" />
+                                        </Path.RenderTransform>
                                     </Path>
                                 </Grid>
                             </Viewbox>

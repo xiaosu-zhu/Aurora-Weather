@@ -31,6 +31,11 @@ namespace Com.Aurora.AuWeather
             MainFrame.Navigate(typeof(NowWeatherPage));
         }
 
+        private void Hamburger_Click(object sender, RoutedEventArgs e)
+        {
+            Root.IsPaneOpen = !Root.IsPaneOpen;
+        }
+
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)
         //{
         //    #region

@@ -2,6 +2,7 @@
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -929,9 +930,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public event FetchDataCompleteEventHandler FetchDataComplete;
-        public event ParameterChangedEventHandler ParameterChanged;
-        public event FetchDataFailedEventHandler FetchDataFailed;
+        public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
+        public event EventHandler<ParameterChangedEventArgs> ParameterChanged;
+        public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
 
         public NowWeatherPageViewModel()
         {

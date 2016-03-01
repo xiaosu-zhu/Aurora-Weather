@@ -203,12 +203,12 @@
     <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\DailyForecastViewModel.cs" />
-    <Compile Include="ViewModels\FetchDataCompleteEventHandler.cs" />
+    <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
     <Compile Include="ViewModels\HourlyForecastViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />
-    <Compile Include="ViewModels\ParameterChangedEventHandler.cs" />
+    <Compile Include="ViewModels\Events\ParameterChangedEventHandler.cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
