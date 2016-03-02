@@ -34,6 +34,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private double moonPhase;
         private Pressure pressure;
         private Length visibility;
+        private AQI aqi;
 
         private float tempraturePath0;
         private float tempraturePath1;
@@ -930,6 +931,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public AQI Aqi
+        {
+            get
+            {
+                return aqi;
+            }
+
+            set
+            {
+                SetProperty(ref aqi, value);
+            }
+        }
+
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
         public event EventHandler<ParameterChangedEventArgs> ParameterChanged;
         public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
@@ -1195,6 +1209,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             Proportion = fetchresult.HourlyForecast[0].Pop;
             Pressure = fetchresult.NowWeather.Pressure;
             Visibility = fetchresult.NowWeather.Visibility;
+            Aqi = fetchresult.Aqi;
             if (Temprature.Celsius > 20)
             {
                 IsSummer = true;

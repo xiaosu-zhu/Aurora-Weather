@@ -37,15 +37,28 @@ namespace Com.Aurora.AuWeather
             DependencyProperty.Register("SunRiseStrokeLength", typeof(double), typeof(NowWeatherPage), new PropertyMetadata(0d));
 
 
+        public double AqiCircleStorkeLength
+        {
+            get { return (double)GetValue(AqiCircleStorkeLengthProperty); }
+            set { SetValue(AqiCircleStorkeLengthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AqiCircleStorkeLength.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AqiCircleStorkeLengthProperty =
+            DependencyProperty.Register("AqiCircleStorkeLength", typeof(double), typeof(NowWeatherPage), new PropertyMetadata(0d));
+
+
+
         public bool DetailsPanelIsNormalState = true;
+        private bool rootIsWideState = false;
 
         public NowWeatherPage()
         {
             this.InitializeComponent();
             //DataContext = new NowWeatherPageViewModel();
 
-            DataContext.FetchDataComplete += MModel_FetchDataComplete;
-            DataContext.ParameterChanged += MModel_ParameterChanged;
+            Context.FetchDataComplete += MModel_FetchDataComplete;
+            Context.ParameterChanged += MModel_ParameterChanged;
         }
 
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
@@ -64,25 +77,34 @@ namespace Com.Aurora.AuWeather
         {
             CalcDetailGridPosition();
             isAnimating = true;
-            WeatherCanvas.ChangeCondition(DataContext.Condition, DataContext.IsNight, DataContext.IsSummer);
+            WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
             ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+            TempraturePathAnimation.Begin();
+            AQIAni.Begin();
+            if (rootIsWideState)
             {
-                TempraturePathAnimation.Begin();
-                Forecast0.SetCondition(DataContext.Forecast0, DataContext.IsNight);
-                Forecast1.SetCondition(DataContext.Forecast1, DataContext.IsNight);
-                Forecast2.SetCondition(DataContext.Forecast2, DataContext.IsNight);
-                Forecast3.SetCondition(DataContext.Forecast3, DataContext.IsNight);
-                Forecast4.SetCondition(DataContext.Forecast4, DataContext.IsNight);
-                await Task.Delay(3000);
-                isAnimating = false;
-            }));
+                DetailGrid0Play();
+                DetailGrid1Play();
+                DetailGrid2Play();
+                DetailGrid3Play();
+                DetailGrid4Play();
+                DetailGrid6Play();
+                DetailGrid7Play();
+                DetailGrid8Play();
+            }
+            Forecast0.SetCondition(Context.Forecast0, Context.IsNight);
+            Forecast1.SetCondition(Context.Forecast1, Context.IsNight);
+            Forecast2.SetCondition(Context.Forecast2, Context.IsNight);
+            Forecast3.SetCondition(Context.Forecast3, Context.IsNight);
+            Forecast4.SetCondition(Context.Forecast4, Context.IsNight);
+            await Task.Delay(3000);
+            isAnimating = false;
         }
 
         #region DetailGrid Animation
         private void DetailGrid0Play()
         {
-            if (detailGridAnimation_FLAG % 2 == 0)
+            if ((detailGridAnimation_FLAG & 1) == 0)
             {
                 DetailTempratureIn.Begin();
                 detailGridAnimation_FLAG++;
@@ -90,13 +112,13 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid1Play()
         {
-            if ((detailGridAnimation_FLAG >> 1) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 2) == 0)
             {
                 ThreadPoolTimer.CreatePeriodicTimer((work) =>
                                 {
                                     this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
                                      {
-                                         fengchezhuan.Angle += 0.1396263377777778 * DataContext.Wind.Speed.MPS;
+                                         fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
                                      }));
                                 }, TimeSpan.FromMilliseconds(16));
                 detailGridAnimation_FLAG += 2;
@@ -104,7 +126,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid2Play()
         {
-            if ((detailGridAnimation_FLAG >> 2) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 4) == 0)
             {
                 WaterDropTransAni.Begin();
                 detailGridAnimation_FLAG += 4;
@@ -112,7 +134,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid3Play()
         {
-            if ((detailGridAnimation_FLAG >> 3) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 8) == 0)
             {
                 PcpnTransAni.Begin();
                 detailGridAnimation_FLAG += 8;
@@ -120,7 +142,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid4Play()
         {
-            if ((detailGridAnimation_FLAG >> 4) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 16) == 0)
             {
                 SunRiseAni.Begin();
                 detailGridAnimation_FLAG += 16;
@@ -128,7 +150,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid6Play()
         {
-            if ((detailGridAnimation_FLAG >> 5) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 32) == 0)
             {
                 VisTransAni.Begin();
                 detailGridAnimation_FLAG += 32;
@@ -136,7 +158,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid7Play()
         {
-            if ((detailGridAnimation_FLAG >> 6) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 64) == 0)
             {
                 PressureTransAni.Begin();
                 detailGridAnimation_FLAG += 64;
@@ -144,7 +166,7 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid8Play()
         {
-            if ((detailGridAnimation_FLAG >> 6) % 2 == 0)
+            if ((detailGridAnimation_FLAG & 128) == 0)
             {
                 detailGridAnimation_FLAG += 128;
             }
@@ -154,9 +176,9 @@ namespace Com.Aurora.AuWeather
         #region Hold Bezier
         private void RelativePanel_LayoutUpdated(object sender, object e)
         {
-            if (actualWidth != Root.ActualWidth || isAnimating)
+            if (actualWidth != ScrollableRoot.ActualWidth || isAnimating)
             {
-                actualWidth = Root.ActualWidth;
+                actualWidth = ScrollableRoot.ActualWidth;
                 SetPathPoint1(BezierControl1, actualWidth, 1f / 21f);
                 SetPathPoint2(BezierControl1, actualWidth, 2f / 21f);
                 SetPathPoint3(BezierControl1, actualWidth, 3f / 21f);
@@ -188,7 +210,8 @@ namespace Com.Aurora.AuWeather
                 offset /= 368;
                 offset = EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
                 NowTemp.FontSize = 96 - 48 * offset;
-                TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - ButtonOffset.ActualWidth - 32) * offset / 2;
+                var horizotaloffset = ButtonOffset.Visibility == Visibility.Visible ? 72 : 0;
+                TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - horizotaloffset - 32) * offset / 2;
                 if (verticalOffset > 2 && !isFadeOut)
                 {
                     isFadeOut = true;
@@ -234,8 +257,8 @@ namespace Com.Aurora.AuWeather
         {
             var offset = verticalOffset > 200 ? 200 : verticalOffset;
             offset = -64 * (1 - offset / 200);
-            double[] results = new double[] { DataContext.TempraturePath0 * offset, DataContext.TempraturePath1 * offset, DataContext.TempraturePath2 * offset,
-                DataContext.TempraturePath3 * offset, DataContext.TempraturePath4 * offset, DataContext.TempraturePath5 * offset };
+            double[] results = new double[] { Context.TempraturePath0 * offset, Context.TempraturePath1 * offset, Context.TempraturePath2 * offset,
+                Context.TempraturePath3 * offset, Context.TempraturePath4 * offset, Context.TempraturePath5 * offset };
             CalculateY0(offset, PathFigure, results[0]);
             CalculateY1(offset, BezierControl1, results[0]);
             CalculateY2(offset, BezierControl2, results[0], results[1]);
@@ -279,8 +302,8 @@ namespace Com.Aurora.AuWeather
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            DataContext.FetchDataComplete -= MModel_FetchDataComplete;
-            DataContext.ParameterChanged -= MModel_ParameterChanged;
+            Context.FetchDataComplete -= MModel_FetchDataComplete;
+            Context.ParameterChanged -= MModel_ParameterChanged;
         }
 
         #region Change Layout
@@ -329,15 +352,15 @@ namespace Com.Aurora.AuWeather
 
         private void CalcDetailGridPosition()
         {
-            DetailGridPoint[0] = DetailGrid0.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[1] = DetailGrid1.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[2] = DetailGrid2.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[3] = DetailGrid3.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[4] = DetailGrid4.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[5] = DetailGrid5.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[6] = DetailGrid6.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[7] = DetailGrid7.GetPositioninRoot(ScrollableRoot);
-            DetailGridPoint[8] = DetailGrid8.GetPositioninRoot(ScrollableRoot);
+            DetailGridPoint[0] = DetailGrid0.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[1] = DetailGrid1.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[2] = DetailGrid2.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[3] = DetailGrid3.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[4] = DetailGrid4.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[5] = DetailGrid5.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[6] = DetailGrid6.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[7] = DetailGrid7.GetPositioninParent(ScrollableRoot);
+            DetailGridPoint[8] = DetailGrid8.GetPositioninParent(ScrollableRoot);
             for (int i = 0; i < DetailGridPoint.Length; i++)
             {
                 DetailGridPoint[i].Y += ScrollableRoot.VerticalOffset;
@@ -386,6 +409,33 @@ namespace Com.Aurora.AuWeather
             }
         }
 
+        private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if ((Window.Current.Content as Frame).ActualWidth < 864 && rootIsWideState)
+            {
+                RootGotoNormalState();
+            }
+            else if ((Window.Current.Content as Frame).ActualWidth >= 864 && !rootIsWideState)
+            {
+                RootGotoWideState();
+            }
+        }
 
+        private void RootGotoWideState()
+        {
+            rootIsWideState = true;
+            RootColumn1.Width = new GridLength(1, GridUnitType.Star);
+            WeatherPanel.Children.Remove(DetailsPanel);
+            Root.Children.Add(DetailsPanel);
+           
+        }
+
+        private void RootGotoNormalState()
+        {
+            rootIsWideState = false;
+            RootColumn1.Width = GridLength.Auto;
+            Root.Children.Remove(DetailsPanel);
+            WeatherPanel.Children.Add(DetailsPanel);
+        }
     }
 }

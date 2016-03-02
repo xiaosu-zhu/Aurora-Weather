@@ -1,12 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Com.Aurora.AuWeather.LunarCalendar;
+using Com.Aurora.Shared.MVVM;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
-    class MainPageViewModel
+    public class MainPageViewModel : ViewModelBase
     {
+        CalendarInfo calendar;
+
+        public MainPageViewModel()
+        {
+            Calendar = new CalendarInfo();
+        }
+
+        public CalendarInfo Calendar
+        {
+            get
+            {
+                return calendar;
+            }
+
+            set
+            {
+                SetProperty(ref calendar, value);
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace Com.Aurora.Shared.Extensions
 {
     public static class FrameworkElementExtensions
     {
-        public static Point GetPositioninRoot(this FrameworkElement f, FrameworkElement root)
+        public static Point GetPositioninParent(this FrameworkElement f, FrameworkElement root)
         {
             if (f != null)
             {

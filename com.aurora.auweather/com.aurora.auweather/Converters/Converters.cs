@@ -785,4 +785,286 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class VisibilityAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var vis = (value as Length).KM;
+            if (vis > 15)
+            {
+                return 1;
+            }
+            else if (vis > 8)
+            {
+                return 0.8;
+            }
+            else if (vis > 4)
+            {
+                return 0.6;
+            }
+            else if (vis > 1)
+            {
+                return 0.4;
+            }
+            else if (vis > 0.5)
+            {
+                return 0.2;
+            }
+            else
+            {
+                return 0.1;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class MainPaneBGConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var month = DateTime.Now.Month;
+            var uri = new Uri("ms-appx:///Assets/MonthlyPic/" + month + ".png");
+            return new BitmapImage(uri);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DateNowConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return DateTime.Now.ToString("yyyy-M-d dddd");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class LunarCalendarConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value != null)
+            {
+                var calendar = value as CalendarInfo;
+                return "农历 " + calendar.LunarYearSexagenary + "年" + calendar.LunarMonthText + "月" + calendar.LunarDayText;
+            }
+            return "...";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PaneHamburgerForeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var month = DateTime.Now.Month;
+            if (month / 2 == 0 || month == 3)
+            {
+                return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            }
+            return new SolidColorBrush(Color.FromArgb(255, 240, 240, 240));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AqiCircleAniConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return new DoubleCollection { (double)value * 109.97333333, 1000 };
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AqiCircleColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var q = (value as AQI).Qlty;
+            switch (q)
+            {
+                case AQIQuality.unknown:
+                    return Color.FromArgb(255, 240, 240, 240);
+                case AQIQuality.one:
+                    return Color.FromArgb(255, 54, 204, 0);
+                case AQIQuality.two:
+                    return Color.FromArgb(255, 134, 134, 0);
+                case AQIQuality.three:
+                    return Color.FromArgb(255, 204, 204, 0);
+                case AQIQuality.four:
+                    return Color.FromArgb(255, 255, 134, 0);
+                case AQIQuality.five:
+                    return Color.FromArgb(255, 255, 51, 0);
+                case AQIQuality.six:
+                    return Color.FromArgb(255, 255, 0, 0);
+                default:
+                    return Color.FromArgb(255, 240, 240, 240);
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AQIQualityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var q = (value as AQI).Qlty;
+            switch (q)
+            {
+                case AQIQuality.unknown:
+                    return "...";
+                case AQIQuality.one:
+                    return "优";
+                case AQIQuality.two:
+                    return "良";
+                case AQIQuality.three:
+                    return "轻度污染";
+                case AQIQuality.four:
+                    return "中度污染";
+                case AQIQuality.five:
+                    return "重度污染";
+                case AQIQuality.six:
+                    return "严重污染";
+                default:
+                    return "...";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AQIValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Aqi;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PM25Converter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Pm25;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PM10Converter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Pm10;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SO2Converter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).So2;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SO2ProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).So2 > 500 ? 1 : (value as AQI).So2 / 500f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PM25ProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Pm25 > 500 ? 1 : (value as AQI).Pm25 / 500f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PM10ProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Pm10 > 500 ? 1 : (value as AQI).Pm10 / 500f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AqiProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Aqi > 500 ? 1 : (value as AQI).Aqi / 500f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
