@@ -482,7 +482,7 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <SplitView x:Name="Root" DisplayMode="Overlay" OpenPaneLength="384" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemBackgroundHighBrush}">
+    <SplitView Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="Root" DisplayMode="Overlay" OpenPaneLength="384" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemBackgroundHighBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
@@ -510,9 +510,9 @@
                 </Button>
                 <StackPanel x:Name="DateTimePanel" Margin="0,216,0,0" Padding="12,0,12,0" Orientation="Vertical">
                     <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" >
-                        <Run FontSize="24" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                        <Run FontSize="20" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <LineBreak />
-                        <Run FontSize="16" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
+                        <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
                     </TextBlock>
                 </StackPanel>
                 <ScrollViewer RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">

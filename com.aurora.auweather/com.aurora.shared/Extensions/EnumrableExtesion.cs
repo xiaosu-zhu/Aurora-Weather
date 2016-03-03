@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Com.Aurora.Shared.Helpers;
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Aurora.Shared.Extensions
 {
@@ -17,6 +14,16 @@ namespace Com.Aurora.Shared.Extensions
         public static bool IsNullorEmpty(this Array array)
         {
             return (array == null || array.Length == 0);
+        }
+
+        public static string SelectRandomString(this string[] s)
+        {
+            if (!s.IsNullorEmpty())
+            {
+                var index = Tools.Random.Next(s.Length);
+                return s[index];
+            }
+            return null;
         }
     }
 }

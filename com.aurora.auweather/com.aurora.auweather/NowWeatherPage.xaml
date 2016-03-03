@@ -65,6 +65,7 @@
             <Converters:PM10ProgressConverter x:Key="PM10ProgressConverter" />
             <Converters:AqiCircleAniConverter x:Key="AqiCircleAniConverter" />
             <Converters:AqiCircleColorConverter x:Key="AqiCircleColorConverter" />
+            <Converters:ImmersiveDateTimeConverter x:Key="ImmersiveDateTimeConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -94,6 +95,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreButton" Storyboard.TargetProperty="Visibility" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ImmersiveButton" Storyboard.TargetProperty="Visibility" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton" Storyboard.TargetProperty="Visibility" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Large">
@@ -112,6 +119,24 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Margin" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0,32,0,0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn1" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollableRoot" Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="0,160,0,0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Header" Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="284" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ImmersiveButton" Storyboard.TargetProperty="Visibility" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton" Storyboard.TargetProperty="Visibility" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LargeModeSubPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -565,8 +590,83 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
+            <Storyboard x:Name="ImmersiveTransAni">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="(Grid.ColumnSpan)" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="2" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="HorizontalAlignment" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Left" />
+                    <DiscreteObjectKeyFrame KeyTime="0:0:1.8" Value="Stretch" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="VerticalAlignment" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:1.8" Value="Stretch" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollableRoot" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowTemp" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <FadeOutThemeAnimation Storyboard.TargetName="ScrollableRoot" />
+                <FadeOutThemeAnimation Storyboard.TargetName="LargeModeSubPanel" />
+                <FadeOutThemeAnimation Storyboard.TargetName="MoreButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="RefreshButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="CurrentCity" />
+                <FadeOutThemeAnimation Storyboard.TargetName="HighLowPanel" />
+                <FadeOutThemeAnimation Storyboard.TargetName="NowCondition" />
+                <FadeOutThemeAnimation Storyboard.TargetName="NowTemp" />
+                <FadeOutThemeAnimation Storyboard.TargetName="TempDeg" />
+                <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True" BeginTime="0:0:1.8" >
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation x:Name="ImmersiveWidthIn" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Width" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation x:Name="ImmersiveHeightIn" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="ImmersiveAllIn">
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveTemp" />
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveGlance" />
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveMoreButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveBackButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
+            </Storyboard>
+            <Storyboard x:Name="ImmersiveAllBack">
+                <FadeInThemeAnimation Storyboard.TargetName="ImmersiveTemp" />
+                <FadeInThemeAnimation Storyboard.TargetName="ImmersiveGlance" />
+                <FadeInThemeAnimation Storyboard.TargetName="ImmersiveMoreButton" />
+                <FadeInThemeAnimation Storyboard.TargetName="ImmersiveBackButton" />
+                <FadeInThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
+            </Storyboard>
         </Grid.Resources>
-        <RelativePanel x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
+        <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
+
+        </ScrollViewer>
+        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel.ChildrenTransitions>
                 <TransitionCollection>
@@ -622,8 +722,46 @@
                     <SymbolIcon Symbol="More" />
                 </Button.Content>
             </Button>
+            <Button x:Name="ImmersiveButton" Click="ImmersiveButton_Click" Visibility="Collapsed" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MoreButton">
+                <Button.Content>
+                    <SymbolIcon Symbol="FullScreen" />
+                </Button.Content>
+            </Button>
+            <Button x:Name="RefreshButton" Visibility="Collapsed" Command="{Binding RefreshCommand}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
+                <Button.Content>
+                    <SymbolIcon Symbol="Refresh" />
+                </Button.Content>
+            </Button>
+            <Grid Visibility="Collapsed" Opacity="0" x:Name="ImmersiveDetailsPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="CurrentTime" FontSize="144" FontWeight="ExtraLight" Text="{Binding CurrentTime, Converter={StaticResource ImmersiveDateTimeConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}" />
+                </TextBlock>
+                <TextBlock x:Name="ImmersiveGlance" Text="nimabi" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
+                    <Button.Content>
+                        <SymbolIcon Symbol="More" />
+                    </Button.Content>
+                </Button>
+                <Button x:Name="ImmersiveBackButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,0,0">
+                    <SymbolIcon Symbol="BackToWindow" />
+                </Button>
+                <Button x:Name="ImmersiveRefreshButton" Grid.RowSpan="5" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
+                    <Button.Content>
+                        <SymbolIcon Symbol="Refresh" />
+                    </Button.Content>
+                </Button>
+            </Grid>
+            
         </RelativePanel>
-
+        
         <ptr:PulltoRefresh x:Name="ScrollableRoot" Padding="0,112,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
                       HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <RelativePanel>
@@ -757,8 +895,8 @@
                     </Grid>
                 </Grid>
 
-                <RelativePanel x:Name="WeatherPanel" RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
-                               Margin="0,-4,0,0" Padding="0,0,0,64" Background="{ThemeResource SystemControlForegroundHighBrush}">
+                <RelativePanel Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="WeatherPanel" RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                               Margin="0,-4,0,0" Padding="0,0,0,64">
                     <Grid x:Name="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
                               Margin="0,64,0,64">
                         <Grid.ChildrenTransitions>
@@ -1113,6 +1251,7 @@
                 </RelativePanel>
             </RelativePanel>
         </ptr:PulltoRefresh>
+
     </Grid>
 
 </Page>

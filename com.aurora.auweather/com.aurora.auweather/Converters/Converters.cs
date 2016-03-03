@@ -1,38 +1,16 @@
-﻿using Com.Aurora.AuWeather;
-using Com.Aurora.AuWeather.LunarCalendar;
+﻿using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Com.Aurora.Shared.Converters
 {
-    public class ConditionConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value is WeatherCondition)
-            {
-                var va = (WeatherCondition)value;
-            }
-            return null;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     public class TempratureConverterWithoutDecoration : IValueConverter
     {
@@ -359,9 +337,14 @@ namespace Com.Aurora.Shared.Converters
 
     public class ScrollViewerConverter : IValueConverter
     {
+        public static bool isLargeMode = false;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return 480 - (double)value < 112 ? 112 : 480 - (double)value;
+            if (isLargeMode)
+                return 480 - (double)value < 160 ? 160 : 480 - (double)value;
+            else
+                return 480 - (double)value < 112 ? 112 : 480 - (double)value;
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1060,6 +1043,20 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return (value as AQI).Aqi > 500 ? 1 : (value as AQI).Aqi / 500f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ImmersiveDateTimeConverter : IValueConverter
+    {
+        public static string DateTimeConverterParameter { get; private set; } = "H:mm";
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return ((DateTime)value).ToString(DateTimeConverterParameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

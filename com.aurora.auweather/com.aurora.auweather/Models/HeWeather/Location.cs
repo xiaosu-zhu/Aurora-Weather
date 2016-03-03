@@ -11,6 +11,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private float latitude;
         private float longitude;
         private DateTime updateTime;
+        private DateTime utcTime;
 
         public string City
         {
@@ -93,6 +94,19 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        public DateTime UtcTime
+        {
+            get
+            {
+                return utcTime;
+            }
+
+            set
+            {
+                utcTime = value;
+            }
+        }
+
         public Location(JsonContract.LocationContract basic)
         {
             CultureInfo provider = CultureInfo.InvariantCulture;
@@ -102,6 +116,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Latitude = float.Parse(basic.lat);
             Longitude = float.Parse(basic.lon);
             UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd H:mm", provider);
+            UtcTime = DateTime.ParseExact(basic.update.utc, "yyyy-MM-dd H:mm", provider);
         }
     }
 }

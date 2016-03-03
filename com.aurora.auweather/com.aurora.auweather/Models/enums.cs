@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Com.Aurora.AuWeather.Models
+﻿namespace Com.Aurora.AuWeather.Models
 {
     public enum WeatherCondition : byte
     {
@@ -32,6 +26,8 @@ namespace Com.Aurora.AuWeather.Models
     public enum RefreshState : byte { none, daily, six_hour, twelve_hour };
 
     public enum RainLevel : byte { light, moderate, heavy, extreme, sSnow, lSnow };
+
+    public enum TempratureParameter : byte { Celsius, Fahrenheit, Kelvin };
 
     public enum WindParameter : byte { BeaufortandText, BeaufortandDegree, SpeedandText, SpeedandDegree }
 

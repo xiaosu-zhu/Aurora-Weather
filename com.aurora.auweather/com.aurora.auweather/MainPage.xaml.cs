@@ -1,10 +1,7 @@
-﻿using Com.Aurora.AuWeather.Models;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
-using Microsoft.Graphics.Canvas.UI.Xaml;
 using Com.Aurora.Shared.Helpers;
 using System;
-using Com.Aurora.AuWeather.LunarCalendar;
 
 namespace Com.Aurora.AuWeather
 {

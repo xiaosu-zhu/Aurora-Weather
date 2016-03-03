@@ -1,5 +1,4 @@
-﻿using Com.Aurora.AuWeather.ViewModels;
-using Com.Aurora.AuWeather.ViewModels.Events;
+﻿using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -18,6 +17,7 @@ namespace Com.Aurora.AuWeather
         private double verticalOffset;
         private double actualWidth;
         private bool isAnimating = false;
+        private bool animated = false;
         private bool isFadeOut = false;
         /// <summary>
         /// use binary: 1111 1111 to implement every DetailGrid Animation status
@@ -51,6 +51,10 @@ namespace Com.Aurora.AuWeather
 
         public bool DetailsPanelIsNormalState = true;
         private bool rootIsWideState = false;
+        private ThreadPoolTimer fengcheTimer;
+        private ThreadPoolTimer immersiveTimer;
+        private bool isImmersiveMode = false;
+        private bool isImmersiveAllIn = false;
 
         public NowWeatherPage()
         {
@@ -75,8 +79,10 @@ namespace Com.Aurora.AuWeather
 
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
+            detailGridAnimation_FLAG = 0;
             CalcDetailGridPosition();
             isAnimating = true;
+            animated = true;
             WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
             ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             TempraturePathAnimation.Begin();
@@ -114,13 +120,17 @@ namespace Com.Aurora.AuWeather
         {
             if ((detailGridAnimation_FLAG & 2) == 0)
             {
-                ThreadPoolTimer.CreatePeriodicTimer((work) =>
-                                {
-                                    this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
-                                     {
-                                         fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
-                                     }));
-                                }, TimeSpan.FromMilliseconds(16));
+                if (fengcheTimer != null)
+                {
+                    fengcheTimer.Cancel();
+                }
+                fengcheTimer = ThreadPoolTimer.CreatePeriodicTimer((work) =>
+                                  {
+                                      var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
+                                       {
+                                           fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
+                                       }));
+                                  }, TimeSpan.FromMilliseconds(16));
                 detailGridAnimation_FLAG += 2;
             }
         }
@@ -304,6 +314,11 @@ namespace Com.Aurora.AuWeather
         {
             Context.FetchDataComplete -= MModel_FetchDataComplete;
             Context.ParameterChanged -= MModel_ParameterChanged;
+            if (fengcheTimer != null)
+            {
+                fengcheTimer.Cancel();
+                fengcheTimer = null;
+            }
         }
 
         #region Change Layout
@@ -423,19 +438,78 @@ namespace Com.Aurora.AuWeather
 
         private void RootGotoWideState()
         {
+            ScrollViewerConverter.isLargeMode = true;
             rootIsWideState = true;
-            RootColumn1.Width = new GridLength(1, GridUnitType.Star);
             WeatherPanel.Children.Remove(DetailsPanel);
-            Root.Children.Add(DetailsPanel);
-           
+            LargeModeSubPanel.Content = DetailsPanel;
+            if (animated)
+            {
+                DetailGrid0Play();
+                DetailGrid1Play();
+                DetailGrid2Play();
+                DetailGrid3Play();
+                DetailGrid4Play();
+                DetailGrid6Play();
+                DetailGrid7Play();
+                DetailGrid8Play();
+            }
         }
 
         private void RootGotoNormalState()
         {
+            ScrollViewerConverter.isLargeMode = false;
             rootIsWideState = false;
-            RootColumn1.Width = GridLength.Auto;
-            Root.Children.Remove(DetailsPanel);
+            LargeModeSubPanel.Content = null;
             WeatherPanel.Children.Add(DetailsPanel);
+        }
+
+        private void ImmersiveButton_Click(object sender, RoutedEventArgs e)
+        {
+            isImmersiveMode = true;
+            ImmersiveWidthIn.From = MainCanvas.ActualWidth;
+            ImmersiveWidthIn.To = Root.ActualWidth;
+            ImmersiveHeightIn.From = MainCanvas.ActualHeight;
+            ImmersiveHeightIn.To = Root.ActualHeight;
+            ImmersiveTransAni.Completed += (s, args) =>
+            {
+                MainCanvas.Width = double.NaN;
+                MainCanvas.Height = double.NaN;
+                immersiveTimer = ThreadPoolTimer.CreateTimer((task) =>
+                {
+                    var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                      {
+                          ImmersiveAllIn.Begin();
+                          isImmersiveAllIn = true;
+                      }));
+                }, TimeSpan.FromSeconds(1));
+            };
+            ImmersiveTransAni.Begin();
+        }
+
+        private void MainCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if (isImmersiveMode)
+            {
+                if (isImmersiveAllIn)
+                {
+                    ImmersiveAllBack.Begin();
+                    isImmersiveAllIn = false;
+                }
+                if (immersiveTimer != null)
+                {
+                    immersiveTimer.Cancel();
+                    immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
+                    {
+                        var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                        {
+                            ImmersiveAllIn.Begin();
+
+                        }));
+                        await Task.Delay(160);
+                        isImmersiveAllIn = true;
+                    }, TimeSpan.FromSeconds(2));
+                }
+            }
         }
     }
 }
