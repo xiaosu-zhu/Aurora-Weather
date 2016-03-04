@@ -5,77 +5,29 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     internal class Location
     {
-        private string city;
-        private string country;
-        private string cityId;
-        private float latitude;
-        private float longitude;
-        private DateTime updateTime;
-        private DateTime utcTime;
-
         public string City
         {
-            get
-            {
-                return city;
-            }
-
-            set
-            {
-                city = value;
-            }
+            get; private set;
         }
 
         public string Country
         {
-            get
-            {
-                return country;
-            }
-
-            set
-            {
-                country = value;
-            }
+            get; private set;
         }
 
         public string CityId
         {
-            get
-            {
-                return cityId;
-            }
-
-            set
-            {
-                cityId = value;
-            }
+            get; private set;
         }
 
         public float Latitude
         {
-            get
-            {
-                return latitude;
-            }
-
-            set
-            {
-                latitude = value;
-            }
+            get; private set;
         }
 
         public float Longitude
         {
-            get
-            {
-                return longitude;
-            }
-
-            set
-            {
-                longitude = value;
-            }
+            get; private set;
         }
 
         /// <summary>
@@ -83,28 +35,12 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         /// </summary>
         public DateTime UpdateTime
         {
-            get
-            {
-                return updateTime;
-            }
-
-            set
-            {
-                updateTime = value;
-            }
+            get; private set;
         }
 
         public DateTime UtcTime
         {
-            get
-            {
-                return utcTime;
-            }
-
-            set
-            {
-                utcTime = value;
-            }
+            get; private set;
         }
 
         public Location(JsonContract.LocationContract basic)

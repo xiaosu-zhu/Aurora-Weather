@@ -2,103 +2,39 @@
 {
     internal class NowWeather
     {
-        private NowCondition now;
-        private Temprature bodyTemprature;
-        private float precipitation;
-        private Length visibility;
-        private Wind wind;
-        private Pressure pressure;
-        private Temprature temprature;
-
         public NowCondition Now
         {
-            get
-            {
-                return now;
-            }
-
-            set
-            {
-                now = value;
-            }
+            get; private set;
         }
 
         public Temprature BodyTemprature
         {
-            get
-            {
-                return bodyTemprature;
-            }
-
-            set
-            {
-                bodyTemprature = value;
-            }
+            get; private set;
         }
 
         public float Precipitation
         {
-            get
-            {
-                return precipitation;
-            }
-
-            set
-            {
-                precipitation = value;
-            }
+            get; private set;
         }
 
         public Length Visibility
         {
-            get
-            {
-                return visibility;
-            }
-
-            set
-            {
-                visibility = value;
-            }
+            get; private set;
         }
 
         public Wind Wind
         {
-            get
-            {
-                return wind;
-            }
-
-            set
-            {
-                wind = value;
-            }
+            get; private set;
         }
 
         public Pressure Pressure
         {
-            get
-            {
-                return pressure;
-            }
-
-            set
-            {
-                pressure = value;
-            }
+            get; private set;
         }
 
         public Temprature Temprature
         {
-            get
-            {
-                return temprature;
-            }
-
-            set
-            {
-                temprature = value;
-            }
+            get; private set;
         }
 
         public NowWeather(JsonContract.NowWeatherContract now)
@@ -115,19 +51,9 @@
 
     internal class NowCondition : Condition
     {
-        private WeatherCondition condition;
-
         public WeatherCondition Condition
         {
-            get
-            {
-                return condition;
-            }
-
-            set
-            {
-                condition = value;
-            }
+            get; private set;
         }
         public NowCondition(JsonContract.Condition_NowContract cond)
         {

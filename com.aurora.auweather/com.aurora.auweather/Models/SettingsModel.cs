@@ -85,9 +85,9 @@ namespace Com.Aurora.AuWeather.Models
 
         }
 
-        public async Task SaveData(string currentId, string fetchresult)
+        public async Task SaveDataAsync(string currentId, string fetchresult)
         {
-            await FileIOHelper.SaveStringtoStorage(currentId, fetchresult);
+            await FileIOHelper.SaveStringtoStorageAsync(currentId, fetchresult);
         }
     }
 }

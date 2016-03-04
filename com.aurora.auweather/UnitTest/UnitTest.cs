@@ -21,8 +21,8 @@ namespace UnitTest
         {
             string url = "http://apis.baidu.com/heweather/pro/weather";
             string[] param = { "city=beijing" };
-            var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-            var actual = await BaiduRequestHelper.RequestWithKey(url, param, keys[0]);
+            var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+            var actual = await BaiduRequestHelper.RequestWithKeyAsync(url, param, keys[0]);
             string notexpected = null;
             Assert.AreNotEqual(notexpected, actual);
         }
@@ -80,7 +80,7 @@ namespace UnitTest
         [TestMethod]
         public async Task ReadCityTest()
         {
-            var str = await FileIOHelper.ReadStringFromAssets("cityid.txt");
+            var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
         }
 
         [TestMethod]

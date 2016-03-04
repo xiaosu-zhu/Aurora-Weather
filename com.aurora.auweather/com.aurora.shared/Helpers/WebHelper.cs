@@ -15,7 +15,7 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="pars">请求的参数</param>
         /// <param name="apikey">百度 API Key</param>
         /// <returns>请求结果</returns>
-        public static async Task<string> RequestWithKey(string url, string[] pars, string apikey)
+        public static async Task<string> RequestWithKeyAsync(string url, string[] pars, string apikey)
         {
             var strURL = url;
             if (!pars.IsNullorEmpty())
@@ -56,7 +56,7 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="pars">请求的参数</param>
         /// <param name="apikey">API Key</param>
         /// <returns>请求结果</returns>
-        public static async Task<string> RequestIncludeKey(string url, string[] pars, string apikey)
+        public static async Task<string> RequestIncludeKeyAsync(string url, string[] pars, string apikey)
         {
             var strURL = url;
             if (!pars.IsNullorEmpty())

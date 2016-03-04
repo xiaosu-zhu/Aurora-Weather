@@ -16,7 +16,7 @@ using Windows.UI.Core;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
-    internal class NowWeatherPageViewModel : ViewModelBase
+    public class NowWeatherPageViewModel : ViewModelBase
     {
         #region private members
         private Temprature temprature;
@@ -37,6 +37,13 @@ namespace Com.Aurora.AuWeather.ViewModels
         private Pressure pressure;
         private Length visibility;
         private AQI aqi;
+        private Suggestion comf;
+        private Suggestion cw;
+        private Suggestion drsg;
+        private Suggestion flu;
+        private Suggestion sport;
+        private Suggestion trav;
+        private Suggestion uv;
 
         private float tempraturePath0;
         private float tempraturePath1;
@@ -102,6 +109,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private CalendarInfo calendar;
         private ThreadPoolTimer currentTimer;
         private TimeZoneInfo currentTimeZone;
+        private string glance;
         #endregion
         #region public binded properties
         public Temprature Temprature
@@ -961,6 +969,108 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SetProperty(ref aqi, value);
             }
         }
+        public string Glance
+        {
+            get
+            {
+                return glance;
+            }
+
+            set
+            {
+                SetProperty(ref glance, value);
+            }
+        }
+        public Suggestion Comf
+        {
+            get
+            {
+                return comf;
+            }
+
+            set
+            {
+                SetProperty(ref comf, value);
+            }
+        }
+
+        public Suggestion Cw
+        {
+            get
+            {
+                return cw;
+            }
+
+            set
+            {
+                SetProperty(ref cw, value);
+            }
+        }
+
+        public Suggestion Drsg
+        {
+            get
+            {
+                return drsg;
+            }
+
+            set
+            {
+                SetProperty(ref drsg, value);
+            }
+        }
+
+        public Suggestion Flu
+        {
+            get
+            {
+                return flu;
+            }
+
+            set
+            {
+                SetProperty(ref flu, value);
+            }
+        }
+
+        public Suggestion Sport
+        {
+            get
+            {
+                return sport;
+            }
+
+            set
+            {
+                SetProperty(ref sport, value);
+            }
+        }
+
+        public Suggestion Trav
+        {
+            get
+            {
+                return trav;
+            }
+
+            set
+            {
+                SetProperty(ref trav, value);
+            }
+        }
+
+        public Suggestion Uv
+        {
+            get
+            {
+                return uv;
+            }
+
+            set
+            {
+                SetProperty(ref uv, value);
+            }
+        }
         #endregion
         #region events
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
@@ -974,16 +1084,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 return new DelegateCommand(async () =>
                 {
-                    await Refresh();
+                    await RefreshAsync();
                 });
             }
         }
-        private async Task Refresh()
+
+
+
+        public async Task RefreshAsync()
         {
             try
             {
                 storedDatas.Clear();
-                await FetchData();
+                await FetchDataAsync();
                 CalcCalendar();
             }
             catch (ArgumentNullException)
@@ -1004,8 +1117,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                 try
                 {
                     ReadSettings();
-                    await FetchData();
+                    await FetchDataAsync();
                     CalcCalendar();
+                    GenerateGlance();
                 }
                 catch (ArgumentNullException)
                 {
@@ -1017,6 +1131,15 @@ namespace Com.Aurora.AuWeather.ViewModels
                       InitialViewModel();
                   }));
             });
+        }
+
+        private void GenerateGlance()
+        {
+            var time = fetchresult.Location.UpdateTime;
+            var updateMinutes = time.Hour * 60 + time.Minute;
+            glance = Models.Glance.GenerateGlanceDescription(fetchresult,
+                 updateMinutes >= fetchresult.DailyForecast[0].SunSet.TotalMinutes - 30,
+                 TempratureParameter.Celsius);
         }
 
         private void CalcCalendar()
@@ -1034,9 +1157,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        private async Task FetchData()
+        private async Task FetchDataAsync()
         {
-            await SearchExistingData();
+            await SearchExistingDataAsync();
             string resstr;
             if (currentId != null)
             {
@@ -1055,7 +1178,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                 }
 #if DEBUG
-                resstr = await FileIOHelper.ReadStringFromAssets("testdata");
+                await Task.Delay(5000);
+                resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
 #else
                 var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
@@ -1065,7 +1189,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 fetchresult = new HeWeatherModel(resjson1);
                 var task = ThreadPool.RunAsync(async (work) =>
                 {
-                    await settings.SaveData(currentId, resstr);
+                    await settings.SaveDataAsync(currentId, resstr);
                 });
                 currentCityModel.Update();
                 citys[settings.CurrentCityIndex] = currentCityModel;
@@ -1097,6 +1221,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             var c = currentCity;
             currentCity = null;
             City = c;
+            var g = glance;
+            glance = null;
+            Glance = g;
             SetNow();
             SetTime();
             CalculatePath();
@@ -1104,11 +1231,23 @@ namespace Com.Aurora.AuWeather.ViewModels
             SetHour();
             SetProportion();
             SetDailyForecast();
+            SetSuggestion();
 
             this.NotifyFetchDataComplete();
         }
 
-        private async Task SearchExistingData()
+        private void SetSuggestion()
+        {
+            Comf = fetchresult.WeatherSuggestion.Comfortable;
+            Cw = fetchresult.WeatherSuggestion.CarWashing;
+            Drsg = fetchresult.WeatherSuggestion.Dressing;
+            Uv = fetchresult.WeatherSuggestion.UV;
+            Sport = fetchresult.WeatherSuggestion.Sport;
+            Flu = fetchresult.WeatherSuggestion.Flu;
+            Trav = fetchresult.WeatherSuggestion.Trav;
+        }
+
+        private async Task SearchExistingDataAsync()
         {
             if (!citys.IsNullorEmpty())
             {
@@ -1123,7 +1262,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     try
                     {
-                        var data = await FileIOHelper.ReadStringFromStorage(c.Id);
+                        var data = await FileIOHelper.ReadStringFromStorageAsync(c.Id);
                         if (data != null)
                             storedDatas.Add(new KeyValuePair<string, string>(c.Id, data));
                     }
@@ -1276,21 +1415,19 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             UpdateTime = fetchresult.Location.UpdateTime;
             currentTimeZone = DateTimeHelper.GetTimeZone(UpdateTime, fetchresult.Location.UtcTime);
-            CurrentTime = DateTimeHelper.RevisetoLoc(currentTimeZone);
+            RefreshCurrentTime();
             CurrentTimeRefreshTask();
             SunRise = fetchresult.DailyForecast[0].SunRise;
             SunSet = fetchresult.DailyForecast[0].SunSet;
-            if (CalculateIsNight(UpdateTime, SunRise, SunSet))
-            {
-                IsNight = true;
-            }
-            else
-            {
-                IsNight = false;
-            }
+            IsNight = CalculateIsNight(UpdateTime, SunRise, SunSet);
         }
 
-        private void CurrentTimeRefreshTask()
+        public void RefreshCurrentTime()
+        {
+            CurrentTime = DateTimeHelper.RevisetoLoc(currentTimeZone);
+        }
+
+        public void CurrentTimeRefreshTask()
         {
             if (currentTimer != null)
             {

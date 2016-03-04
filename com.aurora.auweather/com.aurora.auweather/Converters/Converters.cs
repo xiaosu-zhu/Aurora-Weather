@@ -1,5 +1,6 @@
 ﻿using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.Models.HeWeather;
 using System;
 using System.Text;
 using Windows.Foundation;
@@ -1057,6 +1058,32 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return ((DateTime)value).ToString(DateTimeConverterParameter);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SuggestionBrfConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as Suggestion).Brief;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SuggestionTxtConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as Suggestion).Text;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -20,7 +20,7 @@ namespace Com.Aurora.AuWeather.Effects
 
         protected override void InitializeConstants()
         {
-            bitmapFilename = "Assets/star.png";
+            bitmapFilename = "Assets/Particle/star.png";
             minLifetime = 0.2f;
             maxLifetime = 20;
             minRotationAngle = 0;

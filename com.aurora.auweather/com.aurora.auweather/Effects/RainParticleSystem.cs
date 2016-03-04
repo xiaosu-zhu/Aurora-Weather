@@ -1,8 +1,5 @@
 ﻿using Com.Aurora.AuWeather.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 using Com.Aurora.Shared.Helpers;
@@ -22,6 +19,12 @@ namespace Com.Aurora.AuWeather.Effects
         private Rect snowBounds;
         private Rect rainBounds;
         private Vector2 rainCenter;
+
+        /// <summary>
+        /// 替换 minNum 和 maxNum，以适应不同窗口尺寸（每像素生成的粒子数量）
+        /// </summary>
+        private float minDensity, maxDensity;
+        private float numParticles = 0;
 
         /// <summary>
         /// 根据雨的规模设置初始化参数
@@ -76,11 +79,11 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1;
             maxRotationAngle = 2;
 
-            minInitialSpeed = 80;
-            maxInitialSpeed = 120;
+            minInitialSpeed = 50;
+            maxInitialSpeed = 80;
 
             minAcceleration = 0;
-            maxAcceleration = 40;
+            maxAcceleration = 20;
 
             minScaleX = 0.3f;
             maxScaleX = 0.6f;
@@ -88,8 +91,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.3f;
             maxScaleY = 0.6f;
 
-            minNumParticles = 2;
-            maxNumParticles = 3;
+            minDensity = 0.0002f;
+            maxDensity = 0.0005f;
         }
 
         private void InitializesSnow()
@@ -100,11 +103,11 @@ namespace Com.Aurora.AuWeather.Effects
             minRotationAngle = 1;
             maxRotationAngle = 2;
 
-            minInitialSpeed = 50;
-            maxInitialSpeed = 150;
+            minInitialSpeed = 60;
+            maxInitialSpeed = 90;
 
             minAcceleration = 0;
-            maxAcceleration = 25;
+            maxAcceleration = 10;
 
             minScaleX = 0.2f;
             maxScaleX = 0.4f;
@@ -112,8 +115,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.2f;
             maxScaleY = 0.4f;
 
-            minNumParticles = 0;
-            maxNumParticles = 2;
+            minDensity = 0;
+            maxDensity = 0.0002f;
         }
 
         private void Initializeextreme()
@@ -133,8 +136,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 4;
 
-            minNumParticles = 11;
-            maxNumParticles = 12;
+            minDensity = 0.005f;
+            maxDensity = 0.008f;
         }
 
         private void Initializeheavy()
@@ -154,8 +157,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 2;
 
-            minNumParticles = 6;
-            maxNumParticles = 7;
+            minDensity = 0.003f;
+            maxDensity = 0.005f;
         }
 
         private void Initializemoderate()
@@ -175,8 +178,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 1.3f;
 
-            minNumParticles = 2;
-            maxNumParticles = 3;
+            minDensity = 0.002f;
+            maxDensity = 0.003f;
         }
 
         private void InitializeLight()
@@ -196,14 +199,14 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.7f;
             maxScaleY = 1;
 
-            minNumParticles = 0;
-            maxNumParticles = 2;
+            minDensity = 0f;
+            maxDensity = 0.002f;
         }
 
         public override async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
         {
-            snowbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/snow.png");
-            rainbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/rain.png");
+            snowbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/Particle/snow.png");
+            rainbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/Particle/rain.png");
             snowCenter = snowbitmap.Size.ToVector2() / 2;
             snowBounds = snowbitmap.Bounds;
             rainCenter = rainbitmap.Size.ToVector2() / 2;
@@ -248,8 +251,10 @@ namespace Com.Aurora.AuWeather.Effects
         /// <param name="size"></param>
         public void AddRainDrop(Vector2 size)
         {
-            int numParticles = Tools.Random.Next(minNumParticles, maxNumParticles);
-            for (int i = 0; i < numParticles; i++)
+            numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
+            var actualAdd = (int)numParticles;
+            numParticles %= 1;
+            for (int i = 0; i < actualAdd; i++)
             {
                 Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
                 float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);

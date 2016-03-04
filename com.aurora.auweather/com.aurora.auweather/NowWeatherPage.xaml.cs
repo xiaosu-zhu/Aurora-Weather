@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace Com.Aurora.AuWeather
@@ -65,6 +66,15 @@ namespace Com.Aurora.AuWeather
             Context.ParameterChanged += MModel_ParameterChanged;
         }
 
+        private async void Current_Resuming(object sender, object e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+              {
+                  Context.RefreshCurrentTime();
+                  Context.CurrentTimeRefreshTask();
+              }));
+        }
+
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
         {
             if (e.Parameter is int)
@@ -118,18 +128,25 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid1Play()
         {
+            if (fengcheTimer != null)
+            {
+                fengcheTimer.Cancel();
+            }
+            if (isImmersiveMode)
+            {
+                return;
+            }
             if ((detailGridAnimation_FLAG & 2) == 0)
             {
-                if (fengcheTimer != null)
-                {
-                    fengcheTimer.Cancel();
-                }
+
                 fengcheTimer = ThreadPoolTimer.CreatePeriodicTimer((work) =>
                                   {
+
                                       var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
-                                       {
-                                           fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
-                                       }));
+                                                                         {
+                                                                             fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
+                                                                         }));
+
                                   }, TimeSpan.FromMilliseconds(16));
                 detailGridAnimation_FLAG += 2;
             }
@@ -321,7 +338,7 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        #region Change Layout
+        #region DetailsPanel Change Layout
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (DetailsPanel.ActualWidth < 720 && !DetailsPanelIsNormalState)
@@ -424,16 +441,34 @@ namespace Com.Aurora.AuWeather
             }
         }
 
+        #region Root Mode Changing
         private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if ((Window.Current.Content as Frame).ActualWidth < 864 && rootIsWideState)
+            if ((Window.Current.Content as Frame).ActualWidth < 720)
             {
+                RootGotoNarrowState();
+            }
+            else if ((Window.Current.Content as Frame).ActualWidth < 864)
+            {
+                if (!ScrollViewerConverter.isLargeMode)
+                    ScrollViewerConverter.isLargeMode = true;
                 RootGotoNormalState();
             }
             else if ((Window.Current.Content as Frame).ActualWidth >= 864 && !rootIsWideState)
             {
                 RootGotoWideState();
             }
+        }
+
+        private void RootGotoNarrowState()
+        {
+            if (isImmersiveMode)
+            {
+                isImmersiveMode = false;
+                ImmersiveBackButton_Click(null, null);
+            }
+            if (ScrollViewerConverter.isLargeMode)
+                ScrollViewerConverter.isLargeMode = false;
         }
 
         private void RootGotoWideState()
@@ -457,11 +492,15 @@ namespace Com.Aurora.AuWeather
 
         private void RootGotoNormalState()
         {
-            ScrollViewerConverter.isLargeMode = false;
-            rootIsWideState = false;
-            LargeModeSubPanel.Content = null;
-            WeatherPanel.Children.Add(DetailsPanel);
+            if (rootIsWideState)
+            {
+                ScrollViewerConverter.isLargeMode = true;
+                rootIsWideState = false;
+                LargeModeSubPanel.Content = null;
+                WeatherPanel.Children.Add(DetailsPanel);
+            }
         }
+        #endregion
 
         private void ImmersiveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -470,6 +509,7 @@ namespace Com.Aurora.AuWeather
             ImmersiveWidthIn.To = Root.ActualWidth;
             ImmersiveHeightIn.From = MainCanvas.ActualHeight;
             ImmersiveHeightIn.To = Root.ActualHeight;
+            App.Current.Resuming += Current_Resuming;
             ImmersiveTransAni.Completed += (s, args) =>
             {
                 MainCanvas.Width = double.NaN;
@@ -484,6 +524,11 @@ namespace Com.Aurora.AuWeather
                 }, TimeSpan.FromSeconds(1));
             };
             ImmersiveTransAni.Begin();
+            if (fengcheTimer != null)
+            {
+                fengcheTimer.Cancel();
+                detailGridAnimation_FLAG -= 2;
+            }
         }
 
         private void MainCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -510,6 +555,36 @@ namespace Com.Aurora.AuWeather
                     }, TimeSpan.FromSeconds(2));
                 }
             }
+        }
+
+        private void ImmersiveBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            ImmersiveHeightBack.From = MainCanvas.ActualHeight;
+            ImmersiveWidthBack.From = MainCanvas.ActualWidth;
+            ImmersiveHeightBack.To = 480 - ScrollableRoot.VerticalOffset < 160 ? 160 : 480 - ScrollableRoot.VerticalOffset;
+            ImmersiveWidthBack.To = rootIsWideState ? Root.ActualWidth / 2 : Root.ActualWidth;
+            if (immersiveTimer != null)
+            {
+                immersiveTimer.Cancel();
+                immersiveTimer = null;
+            }
+            App.Current.Resuming -= Current_Resuming;
+            ImmersiveBackAni.Completed += (s, args) =>
+            {
+                if (isFadeOut)
+                {
+                    TempratureOut.Begin();
+                }
+                Binding HeightBinding = new Binding();
+                HeightBinding.Source = ScrollableRoot;
+                HeightBinding.Path = new PropertyPath("VerticalOffset");
+                HeightBinding.Converter = new ScrollViewerConverter();
+                BindingOperations.SetBinding(MainCanvas, HeightProperty, HeightBinding);
+                MainCanvas.Width = double.NaN;
+                DetailGrid1Play();
+            };
+            ImmersiveBackAni.Begin();
+            isImmersiveMode = false;
         }
     }
 }

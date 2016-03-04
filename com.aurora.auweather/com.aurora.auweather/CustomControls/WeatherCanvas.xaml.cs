@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Media.Imaging;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -23,7 +20,9 @@ namespace Com.Aurora.AuWeather.CustomControls
         StarParticleSystem star = new StarParticleSystem();
         SmokeParticleSystem smoke = new SmokeParticleSystem();
         ThunderGenerator thunderGen = new ThunderGenerator();
-        private bool useSpriteBatch = false;
+        SolarSystem sun = new SolarSystem();
+
+        private bool useSpriteBatch = true;
 
         private bool isCloudy;
         private bool isRain;
@@ -31,6 +30,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private bool isThunder;
         private bool isFog;
         private bool isHaze;
+        private bool isSunny;
         private float timeToCreate = 0;
 
         private bool isSummer = false;
@@ -67,13 +67,13 @@ namespace Com.Aurora.AuWeather.CustomControls
                 }
             }
 
-            if (isCloudy || isRain || isThunder || isHaze || isFog)
+            if (isThunder || isHaze || isFog)
             {
                 timeToCreate -= elapsedTime;
                 if (timeToCreate < 0)
                 {
-                    timeToCreate = Tools.RandomBetween(5, 7);
                     CreateSmoke();
+                    timeToCreate = Tools.RandomBetween(5, 7);
                     if (isThunder)
                     {
                         thunderGen.Generate(Canvas.Size.ToVector2());
@@ -84,6 +84,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             smoke.Update(elapsedTime);
             rain.Update(elapsedTime, Canvas.Size.ToVector2());
             thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
+            if (isSunny)
+                sun.Update();
         }
 
         private void CreateSmoke()
@@ -109,16 +111,21 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var ds = args.DrawingSession;
-
-            if ((!isRain) && isNight)
-                star.Draw(ds, useSpriteBatch);
-            if (isThunder)
-                thunderGen.Draw(sender, args.DrawingSession);
-            if (isCloudy || isRain || isThunder || isHaze || isFog)
-                smoke.Draw(ds, useSpriteBatch);
-            if (isRain)
-                rain.Draw(ds, useSpriteBatch);
+            using (var ds = args.DrawingSession)
+            {
+                if ((!isRain) && isNight)
+                    star.Draw(ds, useSpriteBatch);
+                if (isThunder)
+                    thunderGen.Draw(sender, args.DrawingSession);
+                if (isCloudy || isRain || isThunder || isHaze || isFog)
+                    smoke.Draw(ds, useSpriteBatch);
+                if (isRain)
+                    rain.Draw(ds, useSpriteBatch);
+                if (isSunny)
+                {
+                    sun.Draw(ds, useSpriteBatch);
+                }
+            }
         }
 
         private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
@@ -132,6 +139,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             await rain.CreateResourcesAsync(sender);
             await star.CreateResourcesAsync(sender);
             await smoke.CreateResourcesAsync(sender);
+            await sun.CreateResourcesAsync(sender);
         }
 
         public void ChangeCondition(WeatherCondition condition, bool isnight, bool issummer)
@@ -253,6 +261,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = false;
             isThunder = false;
             isCloudy = false;
+            sun.Clear();
         }
 
         private void SetCold()
@@ -344,8 +353,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void SetSunny()
         {
-            if (!isNight)
-                SunAnimation.Begin();
+            isSunny = !isNight;
             SetSunnyBG();
         }
 
@@ -426,6 +434,15 @@ namespace Com.Aurora.AuWeather.CustomControls
             GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
             BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
             BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+        }
+
+        public void ImmersiveIn()
+        {
+
+        }
+        public void ImmersiveOut()
+        {
+
         }
     }
 }

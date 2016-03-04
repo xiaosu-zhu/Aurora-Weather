@@ -33,61 +33,24 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             throw new ArgumentException();
         }
 
-        private WeatherAlarmLevel level;
-        private WeatherAlarmType type;
-        private string title;
-        private string text;
-
         public WeatherAlarmLevel Level
         {
-            get
-            {
-                return level;
-            }
-
-            set
-            {
-                level = value;
-            }
+            get; private set;
         }
 
         public WeatherAlarmType Type
         {
-            get
-            {
-                return type;
-            }
-
-            set
-            {
-                type = value;
-            }
+            get; private set;
         }
 
         public string Title
         {
-            get
-            {
-                return title;
-            }
-
-            set
-            {
-                title = value;
-            }
+            get; private set;
         }
 
         public string Text
         {
-            get
-            {
-                return text;
-            }
-
-            set
-            {
-                text = value;
-            }
+            get; private set;
         }
 
         public WeatherAlarm(JsonContract.WeatherAlarmContract alarm)

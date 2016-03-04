@@ -2,76 +2,36 @@
 {
     internal class WeatherSuggestion
     {
-        private Suggestion comfortable;
-        private Suggestion carWashing;
-        private Suggestion dressing;
-        private Suggestion flu;
-        private Suggestion sport;
 
         internal Suggestion Comfortable
         {
-            get
-            {
-                return comfortable;
-            }
-
-            set
-            {
-                comfortable = value;
-            }
+            get; private set;
         }
 
         internal Suggestion CarWashing
         {
-            get
-            {
-                return carWashing;
-            }
-
-            set
-            {
-                carWashing = value;
-            }
+            get; private set;
         }
 
         internal Suggestion Dressing
         {
-            get
-            {
-                return dressing;
-            }
-
-            set
-            {
-                dressing = value;
-            }
+            get; private set;
         }
 
         internal Suggestion Flu
         {
-            get
-            {
-                return flu;
-            }
-
-            set
-            {
-                flu = value;
-            }
+            get; private set;
         }
 
         internal Suggestion Sport
         {
-            get
-            {
-                return sport;
-            }
-
-            set
-            {
-                sport = value;
-            }
+            get; private set;
         }
+        internal Suggestion UV
+        {
+            get; private set;
+        }
+        internal Suggestion Trav;
 
         public WeatherSuggestion(JsonContract.WeatherSuggestionContract suggestion)
         {
@@ -80,14 +40,13 @@
             Dressing = new Suggestion(suggestion.drsg);
             Flu = new Suggestion(suggestion.flu);
             Sport = new Suggestion(suggestion.sport);
+            UV = new Suggestion(suggestion.uv);
+            Trav = new Suggestion(suggestion.trav);
         }
     }
 
-    internal class Suggestion
+    public class Suggestion
     {
-        private string brief;
-        private string text;
-
         public Suggestion(JsonContract.SuggestionContract suggestion)
         {
             Brief = suggestion.brf;
@@ -96,28 +55,12 @@
 
         public string Brief
         {
-            get
-            {
-                return brief;
-            }
-
-            set
-            {
-                brief = value;
-            }
+            get; private set;
         }
 
         public string Text
         {
-            get
-            {
-                return text;
-            }
-
-            set
-            {
-                text = value;
-            }
+            get; private set;
         }
     }
 }

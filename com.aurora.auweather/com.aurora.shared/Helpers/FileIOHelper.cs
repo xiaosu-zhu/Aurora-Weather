@@ -43,7 +43,7 @@ namespace Com.Aurora.Shared.Helpers
         /// </summary>
         /// <param name="fileName">file total name</param>
         /// <returns></returns>
-        public static async Task<string> ReadStringFromAssets(string fileName)
+        public static async Task<string> ReadStringFromAssetsAsync(string fileName)
         {
             if (fileName == null)
                 throw new ArgumentException();
@@ -56,7 +56,7 @@ namespace Com.Aurora.Shared.Helpers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static async Task<byte[]> ReadAllBytesFromInstall(string fileName)
+        public static async Task<byte[]> ReadAllBytesFromInstallAsync(string fileName)
         {
             var uri = new Uri("ms-appx:///" + fileName);
             var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
@@ -70,7 +70,7 @@ namespace Com.Aurora.Shared.Helpers
         /// </summary>
         /// <param name="fileName">文件名</param>
         /// <param name="buffer">要存储的缓冲区</param>
-        public static async Task SaveBuffertoStorage(string fileName, IBuffer buffer)
+        public static async Task SaveBuffertoStorageAsync(string fileName, IBuffer buffer)
         {
             if (fileName == null)
                 throw new ArgumentException();
@@ -86,7 +86,7 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="fileName"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static async Task SaveStringtoStorage(string fileName, string content)
+        public static async Task SaveStringtoStorageAsync(string fileName, string content)
         {
             if (fileName == null)
                 throw new ArgumentException();
@@ -100,7 +100,7 @@ namespace Com.Aurora.Shared.Helpers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static async Task<IBuffer> ReadBufferFromStorage(string fileName)
+        public static async Task<IBuffer> ReadBufferFromStorageAsync(string fileName)
         {
             if (fileName == null)
                 throw new ArgumentException();
@@ -110,7 +110,7 @@ namespace Com.Aurora.Shared.Helpers
             return await FileIO.ReadBufferAsync(file);
         }
 
-        public static async Task<string> ReadStringFromStorage(string fileName)
+        public static async Task<string> ReadStringFromStorageAsync(string fileName)
         {
             if (fileName == null)
                 throw new ArgumentException();
@@ -124,7 +124,7 @@ namespace Com.Aurora.Shared.Helpers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static async Task<IBuffer> ReadBufferFromAssets(string fileName)
+        public static async Task<IBuffer> ReadBufferFromAssetsAsync(string fileName)
         {
             if (fileName == null)
                 throw new ArgumentException();

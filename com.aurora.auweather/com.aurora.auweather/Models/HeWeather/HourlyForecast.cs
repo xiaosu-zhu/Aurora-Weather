@@ -5,89 +5,34 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     internal class HourlyForecast
     {
-        private DateTime dateTime;
-        private uint humidity;
-        private uint pop;
-        private Pressure pressure;
-        private Temprature temprature;
-        private Wind wind;
-
         public DateTime DateTime
         {
-            get
-            {
-                return dateTime;
-            }
-
-            set
-            {
-                dateTime = value;
-            }
+            get; private set;
         }
 
         public uint Humidity
         {
-            get
-            {
-                return humidity;
-            }
-
-            set
-            {
-                humidity = value;
-            }
+            get; private set;
         }
 
         public uint Pop
         {
-            get
-            {
-                return pop;
-            }
-
-            set
-            {
-                pop = value;
-            }
+            get; private set;
         }
 
         public Pressure Pressure
         {
-            get
-            {
-                return pressure;
-            }
-
-            set
-            {
-                pressure = value;
-            }
+            get; private set;
         }
 
         public Temprature Temprature
         {
-            get
-            {
-                return temprature;
-            }
-
-            set
-            {
-                temprature = value;
-            }
+            get; private set;
         }
 
         public Wind Wind
         {
-            get
-            {
-                return wind;
-            }
-
-            set
-            {
-                wind = value;
-            }
+            get; private set;
         }
 
         public HourlyForecast(JsonContract.HourlyForecastContract hourly_forecast)

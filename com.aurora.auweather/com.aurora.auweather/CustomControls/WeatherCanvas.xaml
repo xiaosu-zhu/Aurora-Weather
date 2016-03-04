@@ -47,6 +47,9 @@
                 <GradientStop x:Name="Gradient1" Color="#FF3060A0" Offset="1"/>
             </LinearGradientBrush>
         </RelativePanel.Background>
+        <Image Stretch="UniformToFill" x:Name="BG" RelativePanel.AlignBottomWithPanel="True"
+                     Source="/Assets/mike wilson.jpg"   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                                                      RelativePanel.AlignTopWithPanel="True" />
         <canvas:CanvasAnimatedControl x:Name="Canvas" RelativePanel.AlignBottomWithPanel="True"
                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                                                       RelativePanel.AlignTopWithPanel="True" CreateResources="Canvas_CreateResources"

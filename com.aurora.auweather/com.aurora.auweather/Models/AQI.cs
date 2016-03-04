@@ -1,18 +1,8 @@
-﻿using System;
-
-namespace Com.Aurora.AuWeather.Models
+﻿namespace Com.Aurora.AuWeather.Models
 {
 
-    internal class AQI
+    public class AQI
     {
-        private uint aqi;
-        private uint co;
-        private uint no2;
-        private uint o3;
-        private uint pm10;
-        private uint pm25;
-        private AQIQuality qlty;
-        private uint so2;
 
         public AQI(HeWeather.JsonContract.AQICpntract aqi)
         {
@@ -42,106 +32,42 @@ namespace Com.Aurora.AuWeather.Models
 
         public uint Aqi
         {
-            get
-            {
-                return aqi;
-            }
-
-            set
-            {
-                aqi = value;
-            }
+            get; private set;
         }
 
         public uint Co
         {
-            get
-            {
-                return co;
-            }
-
-            set
-            {
-                co = value;
-            }
+            get; private set;
         }
 
         public uint No2
         {
-            get
-            {
-                return no2;
-            }
-
-            set
-            {
-                no2 = value;
-            }
+            get; private set;
         }
 
         public uint O3
         {
-            get
-            {
-                return o3;
-            }
-
-            set
-            {
-                o3 = value;
-            }
+            get; private set;
         }
 
         public uint Pm10
         {
-            get
-            {
-                return pm10;
-            }
-
-            set
-            {
-                pm10 = value;
-            }
+            get; private set;
         }
 
         public uint Pm25
         {
-            get
-            {
-                return pm25;
-            }
-
-            set
-            {
-                pm25 = value;
-            }
+            get; private set;
         }
 
         public uint So2
         {
-            get
-            {
-                return so2;
-            }
-
-            set
-            {
-                so2 = value;
-            }
+            get; private set;
         }
 
         internal AQIQuality Qlty
         {
-            get
-            {
-                return qlty;
-            }
-
-            set
-            {
-                qlty = value;
-            }
+            get; private set;
         }
     }
 }

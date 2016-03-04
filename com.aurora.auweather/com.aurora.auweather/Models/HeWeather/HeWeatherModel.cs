@@ -7,117 +7,45 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
     enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
     internal class HeWeatherModel : WeatherModel, IWeather
     {
-        private HeWeatherStatus status;
-        private AQI aqi;
-        private DailyForecast[] dailyForecast;
-        private HourlyForecast[] hourlyForecast;
-        private Location location;
-        private NowWeather nowWeather;
-        private WeatherSuggestion weatherSuggestion;
-        private WeatherAlarm[] alarms;
 
         public HeWeatherStatus Status
         {
-            get
-            {
-                return status;
-            }
-
-            set
-            {
-                status = value;
-            }
+            get; private set;
         }
 
         internal AQI Aqi
         {
-            get
-            {
-                return aqi;
-            }
-
-            set
-            {
-                aqi = value;
-            }
+            get; private set;
         }
 
         internal DailyForecast[] DailyForecast
         {
-            get
-            {
-                return dailyForecast;
-            }
-
-            set
-            {
-                dailyForecast = value;
-            }
+            get; private set;
         }
 
         internal HourlyForecast[] HourlyForecast
         {
-            get
-            {
-                return hourlyForecast;
-            }
-
-            set
-            {
-                hourlyForecast = value;
-            }
+            get; private set;
         }
 
         internal Location Location
         {
-            get
-            {
-                return location;
-            }
-
-            set
-            {
-                location = value;
-            }
+            get; private set;
         }
 
         internal NowWeather NowWeather
         {
-            get
-            {
-                return nowWeather;
-            }
-
-            set
-            {
-                nowWeather = value;
-            }
+            get; private set;
         }
 
         internal WeatherSuggestion WeatherSuggestion
         {
-            get
-            {
-                return weatherSuggestion;
-            }
-
-            set
-            {
-                weatherSuggestion = value;
-            }
+            get; private set;
         }
 
         internal WeatherAlarm[] Alarms
         {
-            get
-            {
-                return alarms;
-            }
-
-            set
-            {
-                alarms = value;
-            }
+            get; private set;
         }
 
         private static HeWeatherStatus ParseStatus(string status_s)

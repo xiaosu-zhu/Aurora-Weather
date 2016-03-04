@@ -7,33 +7,13 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
     internal class DailyForecast
     {
-        private DateTime date;
-        private TimeSpan sunRise;
-        private TimeSpan sunSet;
-        private DailyCondition condition;
-        private uint humidity;
-        private float precipitation;
-        private uint pop;
-        private Pressure pressure;
-        private Temprature highTemp;
-        private Temprature lowTemp;
-        private Length visibility;
-        private Wind wind;
 
         /// <summary>
         /// 预报的日期 yyyy-MM-dd
         /// </summary>
         public DateTime Date
         {
-            get
-            {
-                return date;
-            }
-
-            set
-            {
-                date = value;
-            }
+            get; private set;
         }
 
         /// <summary>
@@ -41,15 +21,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         /// </summary>
         public TimeSpan SunRise
         {
-            get
-            {
-                return sunRise;
-            }
-
-            set
-            {
-                sunRise = value;
-            }
+            get; private set;
         }
 
         /// <summary>
@@ -57,132 +29,52 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         /// </summary>
         public TimeSpan SunSet
         {
-            get
-            {
-                return sunSet;
-            }
-
-            set
-            {
-                sunSet = value;
-            }
+            get; private set;
         }
 
         public DailyCondition Condition
         {
-            get
-            {
-                return condition;
-            }
-
-            set
-            {
-                condition = value;
-            }
+            get; private set;
         }
 
         public uint Humidity
         {
-            get
-            {
-                return humidity;
-            }
-
-            set
-            {
-                humidity = value;
-            }
+            get; private set;
         }
 
         public float Precipitation
         {
-            get
-            {
-                return precipitation;
-            }
-
-            set
-            {
-                precipitation = value;
-            }
+            get; private set;
         }
 
         public uint Pop
         {
-            get
-            {
-                return pop;
-            }
-
-            set
-            {
-                pop = value;
-            }
+            get; private set;
         }
 
         public Pressure Pressure
         {
-            get
-            {
-                return pressure;
-            }
-
-            set
-            {
-                pressure = value;
-            }
+            get; private set;
         }
 
         public Temprature HighTemp
         {
-            get
-            {
-                return highTemp;
-            }
-
-            set
-            {
-                highTemp = value;
-            }
+            get; private set;
         }
 
         public Temprature LowTemp
         {
-            get
-            {
-                return lowTemp;
-            }
-
-            set
-            {
-                lowTemp = value;
-            }
+            get; private set;
         }
 
         public Length Visibility
         {
-            get
-            {
-                return visibility;
-            }
-
-            set
-            {
-                visibility = value;
-            }
+            get; private set;
         }
 
         public Wind Wind
         {
-            get
-            {
-                return wind;
-            }
-
-            set
-            {
-                wind = value;
-            }
+            get; private set;
         }
 
         public DailyForecast(JsonContract.DailyForecastContract daily_forecast)
@@ -207,33 +99,14 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
     internal class DailyCondition : Condition
     {
-        private WeatherCondition dayCond;
-        private WeatherCondition nightCond;
-
         internal WeatherCondition DayCond
         {
-            get
-            {
-                return dayCond;
-            }
-
-            set
-            {
-                dayCond = value;
-            }
+            get; private set;
         }
 
         internal WeatherCondition NightCond
         {
-            get
-            {
-                return nightCond;
-            }
-
-            set
-            {
-                nightCond = value;
-            }
+            get; private set;
         }
 
         public DailyCondition(JsonContract.ConditionContract cond)

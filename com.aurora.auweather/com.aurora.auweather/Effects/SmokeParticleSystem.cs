@@ -2,12 +2,9 @@
 using Microsoft.Graphics.Canvas;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml.Shapes;
 
 namespace Com.Aurora.AuWeather.Effects
 {
@@ -22,6 +19,10 @@ namespace Com.Aurora.AuWeather.Effects
 
         private string[] smokeSurfaceName;
 
+        private float minDensity;
+        private float maxDensity;
+        private float numParticles;
+
         public SmokeParticleSystem()
         {
             this.InitializeConstants();
@@ -29,23 +30,23 @@ namespace Com.Aurora.AuWeather.Effects
 
         protected override void InitializeConstants()
         {
-            smokeSurfaceName = new string[] {"Assets/smoke1.png", "Assets/smoke2.png",
-            "Assets/smoke3.png","Assets/smoke4.png","Assets/smoke5.png","Assets/smoke6.png"};
-            minLifetime = 5;
-            maxLifetime = 7;
+            smokeSurfaceName = new string[] {"Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
+            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"};
+            minLifetime = 3;
+            maxLifetime = 8;
             minRotationAngle = -1.5708f;
             maxRotationAngle = 1.5708f;
             minRotationSpeed = 0;
-            maxRotationSpeed = 0.1f;
+            maxRotationSpeed = 0.05f;
             minScaleX = 1;
             maxScaleX = 4;
             minScaleY = 1;
             maxScaleY = 4;
-            minNumParticles = 10;
-            maxNumParticles = 15;
+            minDensity = 0f;
+            maxDensity = 0.015f;
             blendState = CanvasBlend.Add;
-            minInitialSpeed = 100;
-            maxInitialSpeed = 150;
+            minInitialSpeed = 50;
+            maxInitialSpeed = 75;
             minAcceleration = 0;
             maxAcceleration = 0;
         }
@@ -72,14 +73,15 @@ namespace Com.Aurora.AuWeather.Effects
         public override void AddParticles(Vector2 size)
         {
             // 添加的数量
-            int numParticles = Tools.Random.Next(minNumParticles, maxNumParticles);
-
+            numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
+            var actualAdd = (int)numParticles;
+            numParticles %= 1;
             // 激活这些粒子
-            for (int i = 0; i < numParticles; i++)
+            for (int i = 0; i < actualAdd; i++)
             {
                 // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                 Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                var where = new Vector2(Tools.RandomBetween(-size.X * 0.5f, size.X * 0.5f), Tools.RandomBetween(0, size.Y));
+                var where = new Vector2(0, Tools.RandomBetween(0, size.Y));
                 // 初始化粒子参数
                 InitializeParticle(particle, where);
                 particle.Key = Tools.Random.Next(0, 6);
