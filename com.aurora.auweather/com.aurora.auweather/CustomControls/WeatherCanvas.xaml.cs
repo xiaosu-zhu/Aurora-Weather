@@ -1,12 +1,8 @@
 ﻿using Com.Aurora.AuWeather.Effects;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Helpers;
-using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using System;
 using System.Numerics;
-using System.Threading.Tasks;
-using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,12 +14,12 @@ namespace Com.Aurora.AuWeather.CustomControls
 {
     public sealed partial class WeatherCanvas : UserControl
     {
-        RainParticleSystem rain = new RainParticleSystem(RainLevel.light);
-        StarParticleSystem star = new StarParticleSystem();
-        SmokeParticleSystem smoke = new SmokeParticleSystem();
-        ThunderGenerator thunderGen = new ThunderGenerator();
-        SolarSystem sun = new SolarSystem();
-        BGBlur bgBlur = new BGBlur();
+        RainParticleSystem rain;
+        StarParticleSystem star;
+        SmokeParticleSystem smoke;
+        ThunderGenerator thunderGen;
+        SolarSystem sun;
+        BGBlur bgBlur;
 
         private bool useSpriteBatch = true;
 
@@ -53,15 +49,33 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private static void OnEnableDynamicChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            var weatherCanvas = d as WeatherCanvas;
             if ((bool)e.NewValue)
             {
-                (d as WeatherCanvas).Canvas.Draw += (d as WeatherCanvas).Canvas_Draw;
-                (d as WeatherCanvas).Canvas.Update += (d as WeatherCanvas).Canvas_Update;
+                weatherCanvas.sun = new SolarSystem();
+                weatherCanvas.star = new StarParticleSystem();
+                weatherCanvas.smoke = new SmokeParticleSystem();
+                weatherCanvas.rain = new RainParticleSystem();
+                weatherCanvas.bgBlur = new BGBlur();
+                weatherCanvas.thunderGen = new ThunderGenerator();
+                weatherCanvas.Canvas.Draw += weatherCanvas.Canvas_Draw;
+                weatherCanvas.Canvas.Update += weatherCanvas.Canvas_Update;
             }
             else
             {
-                (d as WeatherCanvas).Canvas.Draw -= (d as WeatherCanvas).Canvas_Draw;
-                (d as WeatherCanvas).Canvas.Update -= (d as WeatherCanvas).Canvas_Update;
+                weatherCanvas.Canvas.Draw -= weatherCanvas.Canvas_Draw;
+                weatherCanvas.Canvas.Update -= weatherCanvas.Canvas_Update;
+                weatherCanvas.sun.Dispose();
+                weatherCanvas.star.Dispose();
+                weatherCanvas.smoke.smokeDispose();
+                weatherCanvas.rain.Dispose();
+                weatherCanvas.bgBlur.Dispose();
+                weatherCanvas.sun = null;
+                weatherCanvas.star = null;
+                weatherCanvas.smoke = null;
+                weatherCanvas.rain = null;
+                weatherCanvas.bgBlur = null;
+                weatherCanvas.thunderGen = null;
             }
         }
 
@@ -71,10 +85,12 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             InitializeComponent();
             timeToCreate = Tools.RandomBetween(0, 2);
-            ThreadPoolTimer.CreatePeriodicTimer((work) =>
-            {
-                GC.Collect();
-            }, TimeSpan.FromSeconds(5));
+            sun = new SolarSystem();
+            star = new StarParticleSystem();
+            smoke = new SmokeParticleSystem();
+            rain = new RainParticleSystem();
+            bgBlur = new BGBlur();
+            thunderGen = new ThunderGenerator();
         }
 
         private void WeatherCanvas_Unloaded(object sender, RoutedEventArgs e)
@@ -159,20 +175,6 @@ namespace Com.Aurora.AuWeather.CustomControls
                     sun.Draw(ds, useSpriteBatch);
                 }
             }
-        }
-
-        private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
-        {
-            useSpriteBatch = CanvasSpriteBatch.IsSupported(sender.Device);
-            args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-        }
-
-        async Task CreateResourcesAsync(CanvasAnimatedControl sender)
-        {
-            await rain.CreateResourcesAsync(sender);
-            await star.CreateResourcesAsync(sender);
-            await smoke.CreateResourcesAsync(sender);
-            await sun.CreateResourcesAsync(sender);
         }
 
         public void ChangeCondition(WeatherCondition condition, bool isnight, bool issummer)
@@ -284,7 +286,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void SetWind()
         {
             SetRain(2);
-            SetSunnyBG();
+            SetCloudyBG();
         }
 
         private void ResetCondition()
@@ -294,8 +296,14 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = false;
             isThunder = false;
             isCloudy = false;
-            sun.Clear();
-            bgBlur.Clear();
+            if (EnableDynamic)
+            {
+                sun.Dispose();
+                star.Dispose();
+                smoke.smokeDispose();
+                rain.Dispose();
+                bgBlur.Dispose();
+            }
         }
 
         private void SetCold()
@@ -322,10 +330,11 @@ namespace Com.Aurora.AuWeather.CustomControls
             SetFogBG();
         }
 
-        private void SetSnow(int v)
+        private async void SetSnow(int v)
         {
             isRain = true;
-            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            if (EnableDynamic)
+                await rain.LoadSurfaceAsync(Canvas);
             switch (v)
             {
                 default:
@@ -341,10 +350,11 @@ namespace Com.Aurora.AuWeather.CustomControls
             SetCloudyBG();
         }
 
-        private void SetRain(int v)
+        private async void SetRain(int v)
         {
             isRain = true;
-            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            if (EnableDynamic)
+                await rain.LoadSurfaceAsync(Canvas);
             switch (v)
             {
                 default:
@@ -363,24 +373,29 @@ namespace Com.Aurora.AuWeather.CustomControls
             SetCloudyBG();
         }
 
-        private void SetThunderShower()
+        private async void SetThunderShower()
         {
+            if (EnableDynamic)
+                await rain.LoadSurfaceAsync(Canvas);
             isRain = true;
             isThunder = true;
             rainLevel = RainLevel.moderate;
             SetCloudyBG();
         }
 
-        private void SetShower()
+        private async void SetShower()
         {
+            if (EnableDynamic)
+                await rain.LoadSurfaceAsync(Canvas);
             isRain = true;
             rainLevel = RainLevel.moderate;
             SetCloudyBG();
         }
 
-        private void SetCloudy(int v)
+        private async void SetCloudy(int v)
         {
-            //BG.Source = new Uri("ms-appx:///Assets/rain_cloud.mp4");
+            if (EnableDynamic)
+                await smoke.LoadSurfaceAsync(Canvas);
             isCloudy = true;
             SetCloudyBG();
         }
@@ -389,9 +404,11 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             isSunny = !isNight;
             SetSunnyBG();
-            bgBlur.ChangeSurface(Canvas, await FileIOHelper.ReadRandomAccessStreamFromAssetsAsync("BG/thomas shellberg.jpg"));
+            if (EnableDynamic)
+                await bgBlur.LoadSurfaceAsync(Canvas, await FileIOHelper.ReadRandomAccessStreamFromAssetsAsync("BG/thomas shellberg.jpg"));
         }
 
+        #region set gradient background
         private void SetSunnyBG()
         {
             if (isSummer)
@@ -407,8 +424,8 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0xe2, 0xce, 0x60);
                     GradientAni1.To = Color.FromArgb(255, 0xd5, 0x60, 0x28);
-                    BGPointAni0.To = new Windows.Foundation.Point(0, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(1, 1);
+                    BGPointAni0.To = new Point(0, 0);
+                    BGPointAni1.To = new Point(1, 1);
                 }
             }
             else
@@ -417,15 +434,15 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x37, 0x4e, 0x80);
                     GradientAni1.To = Color.FromArgb(255, 0x17, 0x2e, 0x44);
-                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                    BGPointAni0.To = new Point(0.5, 0);
+                    BGPointAni1.To = new Point(0.5, 1);
                 }
                 else
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x4b, 0x9a, 0xdc);
                     GradientAni1.To = Color.FromArgb(255, 0x20, 0x6d, 0xcb);
-                    BGPointAni0.To = new Windows.Foundation.Point(0, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(1, 1);
+                    BGPointAni0.To = new Point(0, 0);
+                    BGPointAni1.To = new Point(1, 1);
                 }
             }
         }
@@ -437,39 +454,40 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x0d, 0x00, 0x00);
                     GradientAni1.To = Color.FromArgb(255, 0x2a, 0x00, 0x00);
-                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                    BGPointAni0.To = new Point(0.5, 0);
+                    BGPointAni1.To = new Point(0.5, 1);
                 }
                 else
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x50, 0x50, 0x50);
                     GradientAni1.To = Color.FromArgb(255, 0x20, 0x20, 0x20);
-                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                    BGPointAni0.To = new Point(0.5, 0);
+                    BGPointAni1.To = new Point(0.5, 1);
                 }
             }
             else
             {
                 GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
                 GradientAni1.To = Color.FromArgb(255, 0x5a, 0x50, 0x50);
-                BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-                BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                BGPointAni0.To = new Point(0.5, 0);
+                BGPointAni1.To = new Point(0.5, 1);
             }
         }
         private void SetHazeBG()
         {
             GradientAni0.To = Color.FromArgb(255, 0x94, 0x8b, 0x62);
             GradientAni1.To = Color.FromArgb(255, 0x70, 0x5a, 0x41);
-            BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-            BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+            BGPointAni0.To = new Point(0.5, 0);
+            BGPointAni1.To = new Point(0.5, 1);
         }
         private void SetCloudyBG()
         {
             GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
             GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
-            BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-            BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+            BGPointAni0.To = new Point(0.5, 0);
+            BGPointAni1.To = new Point(0.5, 1);
         }
+        #endregion
 
         public void ImmersiveIn()
         {

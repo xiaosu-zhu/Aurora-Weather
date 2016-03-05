@@ -25,7 +25,7 @@ namespace Com.Aurora.AuWeather.Effects
 
         public SmokeParticleSystem()
         {
-            this.InitializeConstants();
+            InitializeConstants();
         }
 
         protected override void InitializeConstants()
@@ -51,8 +51,10 @@ namespace Com.Aurora.AuWeather.Effects
             maxAcceleration = 0;
         }
 
-        public override async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
+        public override async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
         {
+            if (surfaceLoaded)
+                return;
             List<CanvasBitmap> tempSurfaceList = new List<CanvasBitmap>();
             List<Vector2> tempCenterList = new List<Vector2>();
             List<Rect> tempBoundsList = new List<Rect>();
@@ -68,25 +70,29 @@ namespace Com.Aurora.AuWeather.Effects
             smokeSurfaces = tempSurfaceList.ToArray();
             surfacesCenter = tempCenterList.ToArray();
             surfacesBounds = tempBoundsList.ToArray();
+            surfaceLoaded = true;
         }
 
         public override void AddParticles(Vector2 size)
         {
-            // 添加的数量
-            numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
-            var actualAdd = (int)numParticles;
-            numParticles %= 1;
-            // 激活这些粒子
-            for (int i = 0; i < actualAdd; i++)
+            if (surfaceLoaded)
             {
-                // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
-                Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                var where = new Vector2(0, Tools.RandomBetween(0, size.Y));
-                // 初始化粒子参数
-                InitializeParticle(particle, where);
-                particle.Key = Tools.Random.Next(0, 6);
-                // 将此粒子加入激活粒子队列
-                ActiveParticles.Add(particle);
+                // 添加的数量
+                numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
+                var actualAdd = (int)numParticles;
+                numParticles %= 1;
+                // 激活这些粒子
+                for (int i = 0; i < actualAdd; i++)
+                {
+                    // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
+                    Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
+                    var where = new Vector2(0, Tools.RandomBetween(0, size.Y));
+                    // 初始化粒子参数
+                    InitializeParticle(particle, where);
+                    particle.Key = Tools.Random.Next(0, 6);
+                    // 将此粒子加入激活粒子队列
+                    ActiveParticles.Add(particle);
+                }
             }
         }
 
@@ -103,6 +109,8 @@ namespace Com.Aurora.AuWeather.Effects
 
         public override void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
+            if (!surfaceLoaded)
+                return;
             // 保护原先画布的混合模式
             var previousBlend = drawingSession.Blend;
 
@@ -176,6 +184,18 @@ namespace Com.Aurora.AuWeather.Effects
 
                     // Draw the particle.
                     drawingSession.DrawImage(smokeSurfaces[particle.Key], 0, 0, bitmapBounds, alpha, CanvasImageInterpolation.Linear, new Matrix4x4(transform));
+                }
+            }
+        }
+        public void smokeDispose()
+        {
+            Dispose();
+            if (surfaceLoaded)
+            {
+                foreach (var item in smokeSurfaces)
+                {
+                    item.Dispose();
+                    surfaceLoaded = false;
                 }
             }
         }

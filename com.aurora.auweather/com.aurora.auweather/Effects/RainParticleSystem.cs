@@ -27,48 +27,12 @@ namespace Com.Aurora.AuWeather.Effects
         private float numParticles = 0;
 
         /// <summary>
-        /// 根据雨的规模设置初始化参数
+        /// 根据雨的规模设置初始化参数(已弃用，使用 <see cref="ChangeConstants(RainLevel)"/>)
         /// </summary>
         /// <param name="rainLevel"></param>
-        public RainParticleSystem(RainLevel rainLevel)
+        protected void InitializeConstants(RainLevel rainLevel)
         {
-            this.rainLevel = rainLevel;
-            this.InitializeConstants();
-        }
-        protected override void InitializeConstants()
-        {
-            bitmap = rainbitmap;
-            bitmapCenter = rainCenter;
-            bitmapBounds = rainBounds;
-            minLifetime = 0;
-            maxLifetime = 0;
-            minRotationSpeed = 0;
-            maxRotationSpeed = 0;
-            switch (rainLevel)
-            {
-                case RainLevel.light:
-                    InitializeLight();
-                    break;
-                case RainLevel.moderate:
-                    Initializemoderate();
-                    break;
-                case RainLevel.heavy:
-                    Initializeheavy();
-                    break;
-                case RainLevel.extreme:
-                    Initializeextreme();
-                    break;
-                case RainLevel.sSnow:
-                    InitializesSnow();
-                    break;
-                case RainLevel.lSnow:
-                    InitializelSnow();
-                    break;
-                default:
-                    InitializeLight();
-                    break;
-            }
-            blendState = CanvasBlend.Add;
+
         }
 
         private void InitializelSnow()
@@ -203,15 +167,18 @@ namespace Com.Aurora.AuWeather.Effects
             maxDensity = 0.002f;
         }
 
-        public override async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
+        public override async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
         {
+            if (surfaceLoaded)
+                return;
             snowbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/Particle/snow.png");
             rainbitmap = await CanvasBitmap.LoadAsync(resourceCreator, "Assets/Particle/rain.png");
             snowCenter = snowbitmap.Size.ToVector2() / 2;
             snowBounds = snowbitmap.Bounds;
             rainCenter = rainbitmap.Size.ToVector2() / 2;
             rainBounds = rainbitmap.Bounds;
-            ChangeConstants(this.rainLevel);
+            surfaceLoaded = true;
+            ChangeConstants(rainLevel);
         }
 
         /// <summary>
@@ -230,17 +197,20 @@ namespace Com.Aurora.AuWeather.Effects
         /// <param name="size"></param>
         public void Update(float elapsedTime, Vector2 size)
         {
-            for (int i = ActiveParticles.Count - 1; i >= 0; i--)
+            if (surfaceLoaded)
             {
-                var p = ActiveParticles[i];
-                if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
+                for (int i = ActiveParticles.Count - 1; i >= 0; i--)
                 {
-                    p.Update(elapsedTime);
-                }
-                else
-                {
-                    ActiveParticles.RemoveAt(i);
-                    FreeParticles.Push(p);
+                    var p = ActiveParticles[i];
+                    if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
+                    {
+                        p.Update(elapsedTime);
+                    }
+                    else
+                    {
+                        ActiveParticles.RemoveAt(i);
+                        FreeParticles.Push(p);
+                    }
                 }
             }
         }
@@ -251,15 +221,18 @@ namespace Com.Aurora.AuWeather.Effects
         /// <param name="size"></param>
         public void AddRainDrop(Vector2 size)
         {
-            numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
-            var actualAdd = (int)numParticles;
-            numParticles %= 1;
-            for (int i = 0; i < actualAdd; i++)
+            if (surfaceLoaded)
             {
-                Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
-                InitializeParticle(particle, new Vector2(x, -5));
-                ActiveParticles.Add(particle);
+                numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
+                var actualAdd = (int)numParticles;
+                numParticles %= 1;
+                for (int i = 0; i < actualAdd; i++)
+                {
+                    Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
+                    float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
+                    InitializeParticle(particle, new Vector2(x, -5));
+                    ActiveParticles.Add(particle);
+                }
             }
         }
 
@@ -278,9 +251,14 @@ namespace Com.Aurora.AuWeather.Effects
 
         internal void ChangeConstants(RainLevel rainLevel)
         {
+            this.rainLevel = rainLevel;
             bitmap = rainbitmap;
             bitmapCenter = rainCenter;
             bitmapBounds = rainBounds;
+            minLifetime = 0;
+            maxLifetime = 0;
+            minRotationSpeed = 0;
+            maxRotationSpeed = 0;
             switch (rainLevel)
             {
                 case RainLevel.light:
@@ -305,6 +283,7 @@ namespace Com.Aurora.AuWeather.Effects
                     InitializeLight();
                     break;
             }
+            blendState = CanvasBlend.Add;
         }
     }
 }

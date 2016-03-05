@@ -9,7 +9,7 @@ using Com.Aurora.Shared.Helpers;
 namespace Com.Aurora.AuWeather.Effects
 {
     // 此抽象类提供了粒子系统的基础功能，子类可以继承派生出不同的效果
-    public abstract class ParticleSystem
+    public abstract class ParticleSystem : IDisposable
     {
         // 粒子的纹理
         protected CanvasBitmap bitmap;
@@ -77,6 +77,7 @@ namespace Com.Aurora.AuWeather.Effects
 
         // 绘制的混合模式。火焰、烟雾在叠加模式下效果较好
         protected CanvasBlend blendState;
+        protected bool surfaceLoaded;
 
 
         #endregion
@@ -90,33 +91,40 @@ namespace Com.Aurora.AuWeather.Effects
 
 
         // 此方法必须在子类中实现，并且要设置所有参数的值
-        protected abstract void InitializeConstants();
+        protected virtual void InitializeConstants()
+        {
+
+        }
 
 
         // 载入纹理
-        public virtual async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
+        public virtual async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
         {
+            if (surfaceLoaded)
+                return;
             bitmap = await CanvasBitmap.LoadAsync(resourceCreator, bitmapFilename);
-            bitmapCenter = bitmap.Size.ToVector2() / 2;
-            bitmapBounds = bitmap.Bounds;
+            surfaceLoaded = true;
         }
 
 
         // 在画布的某一位置添加粒子
         public virtual void AddParticles(Vector2 where)
         {
-            // 添加的数量
-            int numParticles = Tools.Random.Next(minNumParticles, maxNumParticles);
-
-            // 激活这些粒子
-            for (int i = 0; i < numParticles; i++)
+            if (surfaceLoaded)
             {
-                // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
-                Particle particle = (freeParticles.Count > 0) ? freeParticles.Pop() : new Particle();
-                // 初始化粒子参数
-                InitializeParticle(particle, where);
-                // 将此粒子加入激活粒子队列
-                activeParticles.Add(particle);
+                // 添加的数量
+                int numParticles = Tools.Random.Next(minNumParticles, maxNumParticles);
+
+                // 激活这些粒子
+                for (int i = 0; i < numParticles; i++)
+                {
+                    // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
+                    Particle particle = (freeParticles.Count > 0) ? freeParticles.Pop() : new Particle();
+                    // 初始化粒子参数
+                    InitializeParticle(particle, where);
+                    // 将此粒子加入激活粒子队列
+                    activeParticles.Add(particle);
+                }
             }
         }
 
@@ -159,16 +167,19 @@ namespace Com.Aurora.AuWeather.Effects
         // 刷新所有的激活粒子
         public virtual void Update(float elapsedTime)
         {
-            // 从队列的末尾向前遍历，这样执行 Remove 的时候不会出错
-            for (int i = activeParticles.Count - 1; i >= 0; i--)
+            if (surfaceLoaded)
             {
-                Particle particle = activeParticles[i];
-
-                if (!particle.Update(elapsedTime))
+                // 从队列的末尾向前遍历，这样执行 Remove 的时候不会出错
+                for (int i = activeParticles.Count - 1; i >= 0; i--)
                 {
-                    // 如果粒子不再存活，将它去掉
-                    activeParticles.RemoveAt(i);
-                    freeParticles.Push(particle);
+                    Particle particle = activeParticles[i];
+
+                    if (!particle.Update(elapsedTime))
+                    {
+                        // 如果粒子不再存活，将它去掉
+                        activeParticles.RemoveAt(i);
+                        freeParticles.Push(particle);
+                    }
                 }
             }
         }
@@ -177,7 +188,7 @@ namespace Com.Aurora.AuWeather.Effects
         // 绘制所有粒子
         public virtual void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
-            if (bitmap == null)
+            if (!surfaceLoaded)
                 return;
             // 保护原先画布的混合模式
             var previousBlend = drawingSession.Blend;
@@ -252,6 +263,17 @@ namespace Com.Aurora.AuWeather.Effects
                     // Draw the particle.
                     drawingSession.DrawImage(bitmap, 0, 0, bitmapBounds, 1/*alpha*/, CanvasImageInterpolation.Linear, new Matrix4x4(transform));
                 }
+            }
+        }
+
+        public void Dispose()
+        {
+            if (surfaceLoaded)
+            {
+                bitmap.Dispose();
+                freeParticles.Clear();
+                ActiveParticles.Clear();
+                surfaceLoaded = false;
             }
         }
     }

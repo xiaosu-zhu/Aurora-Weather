@@ -8,7 +8,7 @@ using Windows.Foundation;
 
 namespace Com.Aurora.AuWeather.Effects
 {
-    public class SolarSystem:IDisposable
+    public class SolarSystem : IDisposable
     {
         private CanvasBitmap[] sunSurfaces;
         private Rect bound;
@@ -24,9 +24,12 @@ namespace Com.Aurora.AuWeather.Effects
         private Vector2 position = new Vector2(0, 0);
         private float opcity = 0;
         private float rotation = 0;
+        private bool surfaceLoaded = false;
 
-        public async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
+        public async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
         {
+            if (surfaceLoaded)
+                return;
             List<CanvasBitmap> tempSurfaceList = new List<CanvasBitmap>();
             for (int i = 0; i < surfaceCount; i++)
             {
@@ -41,47 +44,54 @@ namespace Com.Aurora.AuWeather.Effects
             sunSurfaces = tempSurfaceList.ToArray();
             xOffset = bound.Width / 2;
             yOffset = bound.Height / 2;
+            surfaceLoaded = true;
         }
 
         public void Update()
         {
-            if (nowFrame < inFrames)
+            if (surfaceLoaded)
             {
-                var progress = (float)nowFrame / (float)inFrames;
-                progress = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, progress);
-                position.X = (float)(xOffset * (progress - 0.5)) / 2;
-                position.Y = (float)(yOffset * (progress - 0.5)) / 2;
-                opcity = 1 * progress;
+                if (nowFrame < inFrames)
+                {
+                    var progress = (float)nowFrame / (float)inFrames;
+                    progress = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, progress);
+                    position.X = (float)(xOffset * (progress - 0.5)) / 2;
+                    position.Y = (float)(yOffset * (progress - 0.5)) / 2;
+                    opcity = 1 * progress;
+                }
+                nowFrame++;
+                rotation = 0.000174532922222222f * nowFrame;
             }
-            nowFrame++;
-            rotation = 0.000174532922222222f * nowFrame;
         }
 
         public void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
-            // 保护原先画布的混合模式
-            var previousBlend = drawingSession.Blend;
+            if (surfaceLoaded)
+            {
+                // 保护原先画布的混合模式
+                var previousBlend = drawingSession.Blend;
 
-            drawingSession.Blend = CanvasBlend.Add;
+                drawingSession.Blend = CanvasBlend.Add;
 
 #if WINDOWS_UWP
-            if (useSpriteBatch)
-            {
-                // 使用 SpriteBatch 可以提高性能
-                using (var spriteBatch = drawingSession.CreateSpriteBatch())
+                if (useSpriteBatch)
                 {
-                    Draw(drawingSession, spriteBatch);
+                    // 使用 SpriteBatch 可以提高性能
+                    using (var spriteBatch = drawingSession.CreateSpriteBatch())
+                    {
+                        Draw(drawingSession, spriteBatch);
+                    }
                 }
-            }
-            else
-            {
-                Draw(drawingSession, null);
-            }
+                else
+                {
+                    Draw(drawingSession, null);
+                }
 #else
             Draw(drawingSession);
 #endif
 
-            drawingSession.Blend = previousBlend;
+                drawingSession.Blend = previousBlend;
+            }
         }
 
 
@@ -110,14 +120,16 @@ namespace Com.Aurora.AuWeather.Effects
             }
         }
 
-        internal void Clear()
-        {
-            nowFrame = 0;
-        }
-
         public void Dispose()
         {
-            sunSurfaces[0].Dispose();
+            if (surfaceLoaded)
+            {
+                nowFrame = 0;
+                foreach (var surface in sunSurfaces)
+                {
+                    surface.Dispose();
+                }
+            }
         }
     }
 }

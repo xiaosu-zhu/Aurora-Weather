@@ -509,7 +509,7 @@ namespace Com.Aurora.AuWeather
             ImmersiveWidthIn.To = Root.ActualWidth;
             ImmersiveHeightIn.From = MainCanvas.ActualHeight;
             ImmersiveHeightIn.To = Root.ActualHeight;
-            App.Current.Resuming += Current_Resuming;
+            Application.Current.Resuming += Current_Resuming;
             ImmersiveTransAni.Completed += (s, args) =>
             {
                 MainCanvas.Width = double.NaN;
@@ -585,6 +585,16 @@ namespace Com.Aurora.AuWeather
             };
             ImmersiveBackAni.Begin();
             isImmersiveMode = false;
+        }
+
+        private void MoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            WeatherCanvas.ChangeCondition(Models.WeatherCondition.extreme_rain, false, true);
+        }
+
+        private void ImmersiveMoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            WeatherCanvas.EnableDynamic = !WeatherCanvas.EnableDynamic;
         }
     }
 }

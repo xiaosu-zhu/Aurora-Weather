@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Graphics.Canvas;
+﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
 
 namespace Com.Aurora.AuWeather.Effects
@@ -15,7 +10,7 @@ namespace Com.Aurora.AuWeather.Effects
     {
         public StarParticleSystem()
         {
-            this.InitializeConstants();
+            InitializeConstants();
         }
 
         protected override void InitializeConstants()
@@ -42,6 +37,8 @@ namespace Com.Aurora.AuWeather.Effects
 
         public override void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
         {
+            if (!surfaceLoaded)
+                return;
             // 保护原先画布的混合模式
             var previousBlend = drawingSession.Blend;
 
