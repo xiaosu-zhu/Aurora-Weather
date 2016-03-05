@@ -1,6 +1,5 @@
 ﻿using Com.Aurora.Shared.Helpers;
 using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Effects;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -9,22 +8,22 @@ using Windows.Foundation;
 
 namespace Com.Aurora.AuWeather.Effects
 {
-    public class SolarSystem
+    public class SolarSystem:IDisposable
     {
         private CanvasBitmap[] sunSurfaces;
         private Rect bound;
         private Vector2 center;
-        private Matrix5x4 colorCorrection;
         private string surfaceNameHeader = "Assets/sun/";
         private uint surfaceCount = 60;
 
-        private uint inFrames = 60;
+        private uint inFrames = 120;
         private uint nowFrame = 0;
         private float slowFactor = 0.2f;
         private double yOffset;
         private double xOffset;
         private Vector2 position = new Vector2(0, 0);
-        private float opcity;
+        private float opcity = 0;
+        private float rotation = 0;
 
         public async Task CreateResourcesAsync(ICanvasResourceCreator resourceCreator)
         {
@@ -55,6 +54,7 @@ namespace Com.Aurora.AuWeather.Effects
                 opcity = 1 * progress;
             }
             nowFrame++;
+            rotation = 0.000174532922222222f * nowFrame;
         }
 
         public void Draw(CanvasDrawingSession drawingSession, bool useSpriteBatch)
@@ -95,13 +95,13 @@ namespace Com.Aurora.AuWeather.Effects
 #if WINDOWS_UWP
             if (spriteBatch != null)
             {
-                spriteBatch.Draw(sunSurfaces[(uint)(nowFrame * slowFactor) % surfaceCount], position, new Vector4(1, 1, 1, opcity), center, 0, new Vector2(1, 1), CanvasSpriteFlip.None);
+                spriteBatch.Draw(sunSurfaces[(uint)(nowFrame * slowFactor) % surfaceCount], position, new Vector4(1, 1, 1, opcity), center, rotation, new Vector2(1, 1), CanvasSpriteFlip.None);
             }
             else
 #endif
             {
                 // Compute a transform matrix for this particle.
-                var transform = Matrix3x2.CreateRotation(0, center) *
+                var transform = Matrix3x2.CreateRotation(rotation, center) *
                                 Matrix3x2.CreateScale(1, 1, center) *
                                 Matrix3x2.CreateTranslation(position - center);
 
@@ -113,6 +113,11 @@ namespace Com.Aurora.AuWeather.Effects
         internal void Clear()
         {
             nowFrame = 0;
+        }
+
+        public void Dispose()
+        {
+            sunSurfaces[0].Dispose();
         }
     }
 }

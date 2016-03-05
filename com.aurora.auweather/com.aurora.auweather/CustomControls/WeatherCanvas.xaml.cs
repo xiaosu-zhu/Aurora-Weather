@@ -6,9 +6,11 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
+using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.Foundation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -21,6 +23,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         SmokeParticleSystem smoke = new SmokeParticleSystem();
         ThunderGenerator thunderGen = new ThunderGenerator();
         SolarSystem sun = new SolarSystem();
+        BGBlur bgBlur = new BGBlur();
 
         private bool useSpriteBatch = true;
 
@@ -38,12 +41,40 @@ namespace Com.Aurora.AuWeather.CustomControls
         private bool isNight = false;
 
 
+        public bool EnableDynamic
+        {
+            get { return (bool)GetValue(EnableDynamicProperty); }
+            set { SetValue(EnableDynamicProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EnableDynamic.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EnableDynamicProperty =
+            DependencyProperty.Register("EnableDynamic", typeof(bool), typeof(WeatherCanvas), new PropertyMetadata(true, new PropertyChangedCallback(OnEnableDynamicChanged)));
+
+        private static void OnEnableDynamicChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue)
+            {
+                (d as WeatherCanvas).Canvas.Draw += (d as WeatherCanvas).Canvas_Draw;
+                (d as WeatherCanvas).Canvas.Update += (d as WeatherCanvas).Canvas_Update;
+            }
+            else
+            {
+                (d as WeatherCanvas).Canvas.Draw -= (d as WeatherCanvas).Canvas_Draw;
+                (d as WeatherCanvas).Canvas.Update -= (d as WeatherCanvas).Canvas_Update;
+            }
+        }
+
         private WeatherCondition condition = WeatherCondition.unknown;
 
         public WeatherCanvas()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             timeToCreate = Tools.RandomBetween(0, 2);
+            ThreadPoolTimer.CreatePeriodicTimer((work) =>
+            {
+                GC.Collect();
+            }, TimeSpan.FromSeconds(5));
         }
 
         private void WeatherCanvas_Unloaded(object sender, RoutedEventArgs e)
@@ -54,6 +85,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
+            bgBlur.update(Canvas.Size.ToVector2());
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
             if (isRain || isThunder)
                 CreateRain();
@@ -113,6 +145,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             using (var ds = args.DrawingSession)
             {
+                bgBlur.Draw(ds);
                 if ((!isRain) && isNight)
                     star.Draw(ds, useSpriteBatch);
                 if (isThunder)
@@ -262,6 +295,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             isThunder = false;
             isCloudy = false;
             sun.Clear();
+            bgBlur.Clear();
         }
 
         private void SetCold()
@@ -351,10 +385,11 @@ namespace Com.Aurora.AuWeather.CustomControls
             SetCloudyBG();
         }
 
-        private void SetSunny()
+        private async void SetSunny()
         {
             isSunny = !isNight;
             SetSunnyBG();
+            bgBlur.ChangeSurface(Canvas, await FileIOHelper.ReadRandomAccessStreamFromAssetsAsync("BG/thomas shellberg.jpg"));
         }
 
         private void SetSunnyBG()
@@ -365,8 +400,8 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0, 0, 0);
                     GradientAni1.To = Color.FromArgb(255, 0x24, 0x08, 0);
-                    BGPointAni0.To = new Windows.Foundation.Point(0.5, 0);
-                    BGPointAni1.To = new Windows.Foundation.Point(0.5, 1);
+                    BGPointAni0.To = new Point(0.5, 0);
+                    BGPointAni1.To = new Point(0.5, 1);
                 }
                 else
                 {

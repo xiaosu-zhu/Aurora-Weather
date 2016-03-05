@@ -94,8 +94,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\BG\thomas shellberg.jpg" />
     <Content Include="Assets\Key" />
-    <Content Include="Assets\mike wilson.jpg" />
     <Content Include="Assets\MonthlyPic\1.scale-100.png" />
     <Content Include="Assets\MonthlyPic\1.scale-140.png" />
     <Content Include="Assets\MonthlyPic\1.scale-180.png" />
@@ -259,6 +259,7 @@
     <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
       <DependentUpon>WeatherCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Effects\BGBlur.cs" />
     <Compile Include="Effects\Particle.cs" />
     <Compile Include="Effects\ParticleSystem.cs" />
     <Compile Include="Effects\RainParticleSystem.cs" />

@@ -131,5 +131,14 @@ namespace Com.Aurora.Shared.Helpers
             StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" + fileName));
             return await FileIO.ReadBufferAsync(sFile);
         }
+
+        public static async Task<IRandomAccessStream> ReadRandomAccessStreamFromAssetsAsync(string fileName)
+        {
+            var uri = new Uri("ms-appx:///Assets/" + fileName);
+            var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            var stream = await file.OpenAsync(FileAccessMode.Read);
+            stream.Seek(0);
+            return stream;
+        }
     }
 }
