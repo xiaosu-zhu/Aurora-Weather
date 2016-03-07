@@ -7,6 +7,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
+using System;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -19,7 +20,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         SmokeParticleSystem smoke;
         ThunderGenerator thunderGen;
         SolarSystem sun;
-        BGBlur bgBlur;
+        BackBlur backBlur;
 
         private bool useSpriteBatch = true;
 
@@ -47,6 +48,31 @@ namespace Com.Aurora.AuWeather.CustomControls
         public static readonly DependencyProperty EnableDynamicProperty =
             DependencyProperty.Register("EnableDynamic", typeof(bool), typeof(WeatherCanvas), new PropertyMetadata(true, new PropertyChangedCallback(OnEnableDynamicChanged)));
 
+
+
+        public bool EnableBGBlur
+        {
+            get { return (bool)GetValue(EnableBGBlurProperty); }
+            set { SetValue(EnableBGBlurProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EnableBGBlur.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EnableBGBlurProperty =
+            DependencyProperty.Register("EnableBGBlur", typeof(bool), typeof(WeatherCanvas), new PropertyMetadata(false, new PropertyChangedCallback(OnEnableBGBlurChanged)));
+
+        private static void OnEnableBGBlurChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var weatherCanvas = d as WeatherCanvas;
+            if ((bool)e.NewValue)
+            {
+                weatherCanvas.backBlur.BlurIn();
+            }
+            else
+            {
+                weatherCanvas.backBlur.BlurOut();
+            }
+        }
+
         private static void OnEnableDynamicChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var weatherCanvas = d as WeatherCanvas;
@@ -56,7 +82,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 weatherCanvas.star = new StarParticleSystem();
                 weatherCanvas.smoke = new SmokeParticleSystem();
                 weatherCanvas.rain = new RainParticleSystem();
-                weatherCanvas.bgBlur = new BGBlur();
+                weatherCanvas.backBlur = new BackBlur();
                 weatherCanvas.thunderGen = new ThunderGenerator();
                 weatherCanvas.Canvas.Draw += weatherCanvas.Canvas_Draw;
                 weatherCanvas.Canvas.Update += weatherCanvas.Canvas_Update;
@@ -69,12 +95,12 @@ namespace Com.Aurora.AuWeather.CustomControls
                 weatherCanvas.star.Dispose();
                 weatherCanvas.smoke.smokeDispose();
                 weatherCanvas.rain.Dispose();
-                weatherCanvas.bgBlur.Dispose();
+                weatherCanvas.backBlur.Dispose();
                 weatherCanvas.sun = null;
                 weatherCanvas.star = null;
                 weatherCanvas.smoke = null;
                 weatherCanvas.rain = null;
-                weatherCanvas.bgBlur = null;
+                weatherCanvas.backBlur = null;
                 weatherCanvas.thunderGen = null;
             }
         }
@@ -89,7 +115,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             star = new StarParticleSystem();
             smoke = new SmokeParticleSystem();
             rain = new RainParticleSystem();
-            bgBlur = new BGBlur();
+            backBlur = new BackBlur();
             thunderGen = new ThunderGenerator();
         }
 
@@ -101,7 +127,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            bgBlur.update(Canvas.Size.ToVector2());
+            backBlur.update(Canvas.Size.ToVector2());
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
             if (isRain || isThunder)
                 CreateRain();
@@ -115,7 +141,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 }
             }
 
-            if (isThunder || isHaze || isFog)
+            if (isThunder || isHaze || isFog || isCloudy)
             {
                 timeToCreate -= elapsedTime;
                 if (timeToCreate < 0)
@@ -161,7 +187,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             using (var ds = args.DrawingSession)
             {
-                bgBlur.Draw(ds);
+                backBlur.Draw(ds);
                 if ((!isRain) && isNight)
                     star.Draw(ds, useSpriteBatch);
                 if (isThunder)
@@ -181,6 +207,8 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             ResetCondition();
             this.condition = condition;
+            if (Canvas == null)
+                return;
             isNight = isnight;
             isSummer = issummer;
             switch (condition)
@@ -226,12 +254,14 @@ namespace Com.Aurora.AuWeather.CustomControls
                     SetThunderShower();
                     break;
                 case WeatherCondition.light_rain:
-                case WeatherCondition.moderate_rain:
                     SetRain(0);
+                    break;
+                case WeatherCondition.moderate_rain:
+                    SetRain(1);
                     break;
                 case WeatherCondition.heavy_rain:
                 case WeatherCondition.extreme_rain:
-                    SetRain(1);
+                    SetRain(2);
                     break;
                 case WeatherCondition.drizzle_rain:
                     SetRain(0);
@@ -239,7 +269,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 case WeatherCondition.storm_rain:
                 case WeatherCondition.heavy_storm_rain:
                 case WeatherCondition.severe_storm_rain:
-                    SetRain(2);
+                    SetRain(3);
                     break;
                 case WeatherCondition.freezing_rain:
                     SetRain(0);
@@ -279,7 +309,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 default:
                     break;
             }
-            rain.ChangeConstants(rainLevel);
+
             BGAnimation.Begin();
         }
 
@@ -302,7 +332,6 @@ namespace Com.Aurora.AuWeather.CustomControls
                 star.Dispose();
                 smoke.smokeDispose();
                 rain.Dispose();
-                bgBlur.Dispose();
             }
         }
 
@@ -320,21 +349,40 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void SetHaze()
         {
+            if (EnableDynamic)
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await smoke.LoadSurfaceAsync(Canvas);
+                });
+            }
             isHaze = true;
             SetHazeBG();
         }
 
         private void SetFog()
         {
+            if (EnableDynamic)
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await smoke.LoadSurfaceAsync(Canvas);
+                });
+            }
             isFog = true;
             SetFogBG();
         }
 
-        private async void SetSnow(int v)
+        private void SetSnow(int v)
         {
             isRain = true;
             if (EnableDynamic)
-                await rain.LoadSurfaceAsync(Canvas);
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await rain.LoadSurfaceAsync(Canvas);
+                });
+            }
             switch (v)
             {
                 default:
@@ -348,13 +396,19 @@ namespace Com.Aurora.AuWeather.CustomControls
                     break;
             }
             SetCloudyBG();
+            rain.ChangeConstants(rainLevel);
         }
 
-        private async void SetRain(int v)
+        private void SetRain(int v)
         {
             isRain = true;
             if (EnableDynamic)
-                await rain.LoadSurfaceAsync(Canvas);
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await rain.LoadSurfaceAsync(Canvas);
+                });
+            }
             switch (v)
             {
                 default:
@@ -369,43 +423,81 @@ namespace Com.Aurora.AuWeather.CustomControls
                 case 2:
                     rainLevel = RainLevel.heavy;
                     break;
+                case 3:
+                    rainLevel = RainLevel.extreme;
+                    break;
             }
             SetCloudyBG();
+            rain.ChangeConstants(rainLevel);
         }
 
-        private async void SetThunderShower()
+        private void SetThunderShower()
         {
             if (EnableDynamic)
-                await rain.LoadSurfaceAsync(Canvas);
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await rain.LoadSurfaceAsync(Canvas);
+                });
+            }
             isRain = true;
             isThunder = true;
             rainLevel = RainLevel.moderate;
             SetCloudyBG();
+            rain.ChangeConstants(rainLevel);
         }
 
-        private async void SetShower()
+        private void SetShower()
         {
             if (EnableDynamic)
-                await rain.LoadSurfaceAsync(Canvas);
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    await rain.LoadSurfaceAsync(Canvas);
+                });
+            }
             isRain = true;
             rainLevel = RainLevel.moderate;
             SetCloudyBG();
+            rain.ChangeConstants(rainLevel);
         }
 
-        private async void SetCloudy(int v)
+        private void SetCloudy(int v)
         {
             if (EnableDynamic)
-                await smoke.LoadSurfaceAsync(Canvas);
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                                {
+                                    await smoke.LoadSurfaceAsync(Canvas);
+                                });
+            }
             isCloudy = true;
             SetCloudyBG();
         }
 
-        private async void SetSunny()
+        private void SetSunny()
         {
             isSunny = !isNight;
             SetSunnyBG();
             if (EnableDynamic)
-                await bgBlur.LoadSurfaceAsync(Canvas, await FileIOHelper.ReadRandomAccessStreamFromAssetsAsync("BG/thomas shellberg.jpg"));
+            {
+                if (isSunny)
+                {
+                    var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                     {
+                         await sun.LoadSurfaceAsync(Canvas);
+                     });
+                }
+                else
+                {
+                    //await backBlur.LoadSurfaceAsync(Canvas, await FileIOHelper.ReadRandomAccessStreamFromAssetsAsync("Background/Todd Quackenbush.png"));
+                    //backBlur.ImmersiveIn();
+                    var task1 = Canvas.RunOnGameLoopThreadAsync(async () =>
+                     {
+                         await star.LoadSurfaceAsync(Canvas);
+                     });
+                }
+            }
         }
 
         #region set gradient background

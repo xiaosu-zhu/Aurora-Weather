@@ -40,6 +40,6 @@
     <Color x:Key="SystemTranslucentMediumHighColor">#BBFFFFFF</Color>
     <Color x:Key="SystemTranslucentBaseMediumColor">#DD000000</Color>
     <Color x:Key="SystemTranslucentBaseLowColor">#44000000</Color>
-    <Color x:Key="SystemTranslucentBaseHighColor">#FF000000</Color>
+    <Color x:Key="SystemBaseHighColor">#FF000000</Color>
 
 </ResourceDictionary>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -26,6 +28,15 @@ namespace Com.Aurora.Shared.Helpers
             {
                 e.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public static void ChangeTitlebarButtonColor(Color backGround,Color foreGround)
+        {
+            var view = ApplicationView.GetForCurrentView();
+            var otherB = backGround;
+            var otherF = foreGround;
+            view.TitleBar.ButtonBackgroundColor = backGround;
+            view.TitleBar.ButtonForegroundColor = foreGround;
         }
     }
 }

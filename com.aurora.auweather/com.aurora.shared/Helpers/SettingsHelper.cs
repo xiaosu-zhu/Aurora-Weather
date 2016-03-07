@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Com.Aurora.Shared.Extensions;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -51,7 +53,8 @@ namespace Com.Aurora.Shared.Helpers
         {
             try
             {
-                ApplicationData.Current.RoamingSettings.Values[key] = value;
+                var container = ApplicationData.Current.RoamingSettings;
+                SettingsHelper.DirectWrite(key, value, container);
                 return true;
             }
             catch (Exception)
@@ -65,43 +68,6 @@ namespace Com.Aurora.Shared.Helpers
             return ApplicationData.Current.
                 RoamingSettings.CreateContainer(key, ApplicationDataCreateDisposition.Always);
         }
-
-        /// <summary>
-        /// Reads a RoamingSettings' container and sets all public instanced properties to source
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="actual">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void ReadGroupSettings<T>(out T source)
-        {
-            var type = typeof(T);
-            var obj = Activator.CreateInstance(type);
-            var mainContainer = ApplicationData.Current.
-                RoamingSettings.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
-            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = mainContainer.Values[member.Name];
-                member.SetValue(obj, value);
-            }
-            source = (T)obj;
-        }
-
-        /// <summary>
-        /// Write the source's all public instanced properties to RoamingSettings using container
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void WriteGroupSettings<T>(T source)
-        {
-            var type = typeof(T);
-            var mainContainer = ApplicationData.Current.
-                RoamingSettings.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
-            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = member.GetValue(source, null);
-                mainContainer.Values[member.Name] = value;
-            }
-        }
-
     }
 
     public static class LocalSettingsHelper
@@ -148,7 +114,8 @@ namespace Com.Aurora.Shared.Helpers
         {
             try
             {
-                ApplicationData.Current.LocalSettings.Values[key] = value;
+                var container = ApplicationData.Current.LocalSettings;
+                SettingsHelper.DirectWrite(key, value, container);
                 return true;
             }
             catch (Exception)
@@ -162,44 +129,7 @@ namespace Com.Aurora.Shared.Helpers
             return ApplicationData.Current.
                 LocalSettings.CreateContainer(key, ApplicationDataCreateDisposition.Always);
         }
-
-        /// <summary>
-        /// Reads a LocalSettings' container and sets all public instanced properties to source
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="actual">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void ReadGroupSettings<T>(out T source)
-        {
-            var type = typeof(T);
-            var obj = Activator.CreateInstance(type);
-            var mainContainer = ApplicationData.Current.
-                LocalSettings.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
-            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = mainContainer.Values[member.Name];
-                member.SetValue(obj, value);
-            }
-            source = (T)obj;
-        }
-
-        /// <summary>
-        /// Write the source's all public instanced properties to LocalSettings using container
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void WriteGroupSettings<T>(T source)
-        {
-            var type = typeof(T);
-            var mainContainer = ApplicationData.Current.
-                LocalSettings.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
-            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = member.GetValue(source, null);
-                mainContainer.Values[member.Name] = value;
-            }
-        }
     }
-
     public static class SettingsHelper
     {
         /// <summary>
@@ -239,16 +169,19 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="key">Setting's Key</param>
         /// <param name="value">Setting's Value</param>
         /// <returns></returns>
-        public static bool WriteSettingsValue(this ApplicationDataContainer container, string key, object value)
+        public static void WriteSettingsValue(this ApplicationDataContainer container, string key, object value)
         {
-            try
+            if (value is DateTime)
+            {
+                container.Values[key] = ((DateTime)value).ToBinary();
+            }
+            else if (value is Enum)
+            {
+                container.Values[key] = ((Enum)value).ToString();
+            }
+            else
             {
                 container.Values[key] = value;
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
 
@@ -257,52 +190,138 @@ namespace Com.Aurora.Shared.Helpers
             return container.CreateContainer(key, ApplicationDataCreateDisposition.Always);
         }
 
-        /// <summary>
-        /// Reads a LocalSettings' container and sets all public instanced properties to source
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="actual">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void ReadGroupSettings<T>(this ApplicationDataContainer container, out T source)
+        public static object DirectRead(string key, ApplicationDataContainer subContainer)
         {
-            var type = typeof(T);
-            var obj = Activator.CreateInstance(type);
-            var mainContainer = container.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
-            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = mainContainer.Values[member.Name];
-                if (member.PropertyType == typeof(DateTime))
-                {
-                    var time = DateTime.FromBinary((long)value);
-                    member.SetValue(obj, time);
-                }
-                else
-                {
-                    member.SetValue(obj, value);
-                }
-
-            }
-            source = (T)obj;
+            return subContainer.Values[key];
         }
 
         /// <summary>
-        /// Write the source's all public instanced properties to LocalSettings using container
+        /// 如果值是 DateTime, 作处理（work around）
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="container"></param>
+        public static void DirectWrite(string key, object value, ApplicationDataContainer container)
+        {
+            if (value is DateTime)
+            {
+                container.Values[key] = ((DateTime)value).ToBinary();
+            }
+            else if (value is Enum)
+            {
+                container.Values[key] = ((Enum)value).ToString();
+            }
+            else
+            {
+                container.Values[key] = value;
+            }
+        }
+
+        public static bool ReadGroupSettings<T>(this ApplicationDataContainer mainContainer, out T source)
+        {
+            try
+            {
+                var type = typeof(T);
+                var obj = Activator.CreateInstance(type);
+                foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                {
+                    if (member.PropertyType.IsArray)
+                    {
+                        var subContainer = mainContainer.CreateContainer(member.Name, ApplicationDataCreateDisposition.Always);
+                        var res = ReadArraySettings(subContainer);
+                        if (member.PropertyType == typeof(DateTime[]))
+                        {
+                            List<DateTime> times = new List<DateTime>();
+                            foreach (var time in res)
+                            {
+                                times.Add(DateTime.FromBinary((long)time));
+                            }
+                            member.SetValue(obj, times.ToArray());
+                        }
+                        else
+                        {
+                            if (res.IsNullorEmpty())
+                                member.SetValue(obj, null);
+                            member.SetValue(obj, res);
+                        }
+                    }
+                    else if (member.PropertyType == typeof(DateTime))
+                    {
+                        member.SetValue(obj, DateTime.FromBinary((long)DirectRead(member.Name, mainContainer)));
+                    }
+                    // Holy shit! WinRT's type is really different from the legacy type.
+                    else if (member.PropertyType.GetTypeInfo().IsEnum)
+                    {
+                        member.SetValue(obj, Enum.Parse(member.PropertyType, (string)DirectRead(member.Name, mainContainer)));
+                    }
+                    else
+                    {
+                        member.SetValue(obj, DirectRead(member.Name, mainContainer));
+                    }
+                }
+                source = (T)obj;
+                return true;
+            }
+            catch (Exception e)
+            {
+                source = default(T);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 读取数组数据
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="source">all properties must be ApplicationSettings acceptable, and must have a default constructor</param>
-        public static void WriteGroupSettings<T>(this ApplicationDataContainer container, T source)
+        /// <param name="subContainer"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Array ReadArraySettings(ApplicationDataContainer subContainer)
+        {
+            int i = (int)subContainer.Values["Count"];
+            var list = Array.CreateInstance(DirectRead("0", subContainer).GetType(), i);
+            for (int j = 0; j < i; j++)
+            {
+                list.SetValue(DirectRead(j.ToString(), subContainer), j);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 写入数组值
+        /// </summary>
+        /// <param name="subContainer"></param>
+        /// <param name="value"></param>
+        public static void WriteArraySettings(ApplicationDataContainer subContainer, Array value)
+        {
+            int i = 0;
+            if (value.IsNullorEmpty())
+            {
+                subContainer.Values["Count"] = 0;
+                return;
+            }
+            foreach (var item in value)
+            {
+                DirectWrite(i.ToString(), item, subContainer);
+                i++;
+            }
+            subContainer.Values["Count"] = i;
+        }
+
+        public static void WriteGroupSettings<T>(this ApplicationDataContainer mainContainer, T source)
         {
             var type = typeof(T);
-            var mainContainer = container.CreateContainer(type.Name, ApplicationDataCreateDisposition.Always);
             foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
-                var value = member.GetValue(source, null);
-                if (value is DateTime)
+                var value = member.GetValue(source);
+                if (value is Array)
                 {
-                    mainContainer.Values[member.Name] = ((DateTime)value).ToBinary();
+                    var subContainer = mainContainer.CreateContainer(member.Name, ApplicationDataCreateDisposition.Always);
+                    WriteArraySettings(subContainer, value as Array);
                 }
                 else
                 {
-                    mainContainer.Values[member.Name] = value;
+                    DirectWrite(member.Name, value, mainContainer);
                 }
             }
         }

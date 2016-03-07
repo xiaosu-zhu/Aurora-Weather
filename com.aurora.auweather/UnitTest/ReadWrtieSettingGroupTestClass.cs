@@ -4,89 +4,58 @@ namespace UnitTest
 {
     internal class ReadWrtieSettingGroupTestClass
     {
-        private TimeSpan timeSpan;
-        private int v1;
-        private string v2;
-        private double v3;
-        private bool v4;
-
-        public ReadWrtieSettingGroupTestClass(int v1, string v2, double v3, bool v4, TimeSpan timeSpan)
-        {
-            this.V1 = v1;
-            this.V2 = v2;
-            this.V3 = v3;
-            this.V4 = v4;
-            this.TimeSpan = timeSpan;
-        }
-
         public ReadWrtieSettingGroupTestClass()
         {
 
         }
 
+        public ReadWrtieSettingGroupTestClass(TimeSpan timeSpan, int v1, string v2, double v3, bool v4, DateTime v5, DateTime[] v6, string[] v7)
+        {
+            TimeSpan = timeSpan;
+            V1 = v1;
+            V2 = v2;
+            V3 = v3;
+            V4 = v4;
+            V5 = v5;
+            V6 = v6;
+            V7 = v7;
+        }
+
         public TimeSpan TimeSpan
         {
-            get
-            {
-                return timeSpan;
-            }
-
-            set
-            {
-                timeSpan = value;
-            }
+            get; private set;
         }
 
         public int V1
         {
-            get
-            {
-                return v1;
-            }
-
-            set
-            {
-                v1 = value;
-            }
+            get; private set;
         }
 
         public string V2
         {
-            get
-            {
-                return v2;
-            }
-
-            set
-            {
-                v2 = value;
-            }
+            get; private set;
         }
 
         public double V3
         {
-            get
-            {
-                return v3;
-            }
-
-            set
-            {
-                v3 = value;
-            }
+            get; private set;
         }
 
         public bool V4
         {
-            get
-            {
-                return v4;
-            }
-
-            set
-            {
-                v4 = value;
-            }
+            get; private set;
+        }
+        public DateTime V5
+        {
+            get; private set;
+        }
+        public DateTime[] V6
+        {
+            get; private set;
+        }
+        public string[] V7
+        {
+            get; private set;
         }
     }
 }

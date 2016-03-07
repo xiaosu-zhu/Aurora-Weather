@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.Aurora.Shared.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,6 +115,19 @@ namespace Com.Aurora.Shared.Converters
             }
 
             else return value.ToString() + "%";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class EnumtoStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return ((Enum)value).GetDisplayName();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

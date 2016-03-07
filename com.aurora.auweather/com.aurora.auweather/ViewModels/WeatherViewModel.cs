@@ -5,10 +5,10 @@ namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class WeatherViewModel : ViewModelBase
     {
-        private Temprature temprature;
+        private Temperature temprature;
         private Wind wind;
         private WeatherCondition condition;
-        public Temprature Temprature
+        public Temperature Temprature
         {
             get
             {

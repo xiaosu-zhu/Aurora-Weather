@@ -1,36 +1,77 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Com.Aurora.Shared.Helpers;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+using Windows.System.Threading;
+using Com.Aurora.AuWeather.Models;
 using System;
+using Com.Aurora.AuWeather.ViewModels;
 
 namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
-
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 TitleBlock.Visibility = Visibility.Collapsed;
             }
-        }
-
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
-        {
-            //canvas.RemoveFromVisualTree();
-            //canvas = null;
-        }
-
-        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
-        {
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             MainFrame.Navigate(typeof(NowWeatherPage));
         }
 
         private void Hamburger_Click(object sender, RoutedEventArgs e)
         {
             Root.IsPaneOpen = !Root.IsPaneOpen;
+        }
+
+        internal void NavigatetoSettings(Type option)
+        {
+            MainFrame.Navigate(typeof(SettingOptionsPage), option);
+        }
+
+        internal void ChangeColor(Color transparent, Color black, SolidColorBrush foreground)
+        {
+            UIHelper.ChangeTitlebarButtonColor(transparent, black);
+            Hamburger.Foreground = foreground;
+            TitleBlock.Foreground = foreground;
+        }
+
+        internal void ChangeColor(Colors colors)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        {
+            if (MainFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                if (MainFrame.Content is SettingOptionsPage && this.ActualWidth >= 720)
+                {
+                    MainFrame.Navigate(typeof(NowWeatherPage));
+                }
+                MainFrame.GoBack();
+            }
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+            MainFrame.Navigate(typeof(SettingsPage), this);
+        }
+
+        private void Cities_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(NowWeatherPage));
+        }
+
+        private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

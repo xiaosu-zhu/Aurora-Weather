@@ -49,8 +49,6 @@
         </RelativePanel.Background>
         <canvas:CanvasAnimatedControl x:Name="Canvas" RelativePanel.AlignBottomWithPanel="True"
                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                                                      RelativePanel.AlignTopWithPanel="True"
-                                      Draw="Canvas_Draw" Update="Canvas_Update"/>
-        <Image x:Name="Overlay" Width="500" Height="500" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                                                      RelativePanel.AlignTopWithPanel="True" Draw="Canvas_Draw" Update="Canvas_Update"/>
     </RelativePanel>
 </UserControl>

@@ -16,9 +16,9 @@ namespace Com.Aurora.AuWeather.Effects
         private string surfaceNameHeader = "Assets/sun/";
         private uint surfaceCount = 60;
 
-        private uint inFrames = 120;
+        private const uint inFrames = 120;
         private uint nowFrame = 0;
-        private float slowFactor = 0.2f;
+        private float slowFactor = 0.1f;
         private double yOffset;
         private double xOffset;
         private Vector2 position = new Vector2(0, 0);
@@ -71,7 +71,7 @@ namespace Com.Aurora.AuWeather.Effects
                 // 保护原先画布的混合模式
                 var previousBlend = drawingSession.Blend;
 
-                drawingSession.Blend = CanvasBlend.Add;
+                drawingSession.Blend = CanvasBlend.SourceOver;
 
 #if WINDOWS_UWP
                 if (useSpriteBatch)
@@ -129,6 +129,7 @@ namespace Com.Aurora.AuWeather.Effects
                 {
                     surface.Dispose();
                 }
+                surfaceLoaded = false;
             }
         }
     }

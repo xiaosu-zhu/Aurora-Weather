@@ -7,7 +7,7 @@
             get; private set;
         }
 
-        public Temprature BodyTemprature
+        public Temperature BodyTemprature
         {
             get; private set;
         }
@@ -32,7 +32,7 @@
             get; private set;
         }
 
-        public Temprature Temprature
+        public Temperature Temprature
         {
             get; private set;
         }
@@ -40,12 +40,12 @@
         public NowWeather(JsonContract.NowWeatherContract now)
         {
             Now = new NowCondition(now.cond);
-            BodyTemprature = Temprature.FromCelsius(int.Parse(now.fl));
+            BodyTemprature = Temperature.FromCelsius(int.Parse(now.fl));
             Precipitation = float.Parse(now.pcpn);
             Visibility = Length.FromKM(float.Parse(now.vis));
             Wind = new Wind(now.wind);
             Pressure = Pressure.FromHPa(float.Parse(now.pres));
-            Temprature = Temprature.FromCelsius(int.Parse(now.tmp));
+            Temprature = Temperature.FromCelsius(int.Parse(now.tmp));
         }
     }
 

@@ -23,11 +23,11 @@
     };
     public enum WeatherAlarmLevel : byte { blue, yellow, orange, red };
 
-    public enum RefreshState : byte { none, daily, six_hour, twelve_hour };
+    public enum RefreshState : byte { one, two, three, four };
 
     public enum RainLevel : byte { light, moderate, heavy, extreme, sSnow, lSnow };
 
-    public enum TempratureParameter : byte { Celsius, Fahrenheit, Kelvin };
+    public enum TemperatureParameter : byte { Celsius, Fahrenheit, Kelvin };
 
     public enum WindParameter : byte { BeaufortandText, BeaufortandDegree, SpeedandText, SpeedandDegree }
 
@@ -36,4 +36,6 @@
     public enum LengthParameter : byte { KM, M, Mile, NM };
 
     public enum PressureParameter : byte { Atm, Hpa, Torr, CmHg };
+
+    public enum ImmersiveBackgroundState : byte { Assets, Local, Transparent };
 }

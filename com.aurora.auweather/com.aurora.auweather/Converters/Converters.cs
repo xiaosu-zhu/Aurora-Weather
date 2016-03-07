@@ -17,17 +17,14 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is Temprature)
+            var t = (Temperature)value;
+            switch (TempratureConverter.Parameter)
             {
-                switch (TempratureConverter.Parameter)
-                {
-                    default: return (value as Temprature).Celsius + "°";
-                    case 0: return (value as Temprature).Celsius + "°";
-                    case 1: return (value as Temprature).Fahrenheit + "°";
-                    case 2: return (value as Temprature).Kelvin;
-                }
+                case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + "°";
+                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + "°";
+                case TemperatureParameter.Kelvin: return t.Kelvin.ToString("0");
+                default: return t.Celsius.ToString("0") + "°";
             }
-            return "X";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -38,16 +35,20 @@ namespace Com.Aurora.Shared.Converters
 
     public class TempratureConverter : IValueConverter
     {
-        public static int Parameter { get; private set; } = 0;
+        public static TemperatureParameter Parameter { get; private set; } = TemperatureParameter.Celsius;
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             switch (Parameter)
             {
-                default: return "C";
-                case 0: return "C";
-                case 1: return "F";
-                case 2: return "K";
+                case TemperatureParameter.Celsius:
+                    return "C";
+                case TemperatureParameter.Fahrenheit:
+                    return "F";
+                case TemperatureParameter.Kelvin:
+                    return "K";
+                default:
+                    return "C";
             }
         }
 
@@ -56,12 +57,9 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
 
-        public static void ChangeParameter(int newPar)
+        public static void ChangeParameter(TemperatureParameter newPar)
         {
-            if (newPar < 3 && newPar > -1)
-            {
-                Parameter = newPar;
-            }
+            Parameter = newPar;
         }
     }
 
@@ -303,12 +301,13 @@ namespace Com.Aurora.Shared.Converters
 
     public class HourMinuteConverter : IValueConverter
     {
+        private static string Parameter = "HH:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             //TODO
             if (value is DateTime)
             {
-                return ((DateTime)value).ToString("HH:mm");
+                return ((DateTime)value).ToString(Parameter);
             }
             return null;
         }
@@ -316,6 +315,11 @@ namespace Com.Aurora.Shared.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+
+        public static void ChangeParameter(string parameter)
+        {
+            Parameter = parameter;
         }
     }
 
@@ -482,7 +486,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
                 return 64;
-            float temp = ((Temprature)value).Celsius;
+            float temp = ((Temperature)value).Celsius;
             temp = temp < -15 ? -15 : temp;
             temp = temp > 40 ? 40 : temp;
             temp += 15;
@@ -731,6 +735,11 @@ namespace Com.Aurora.Shared.Converters
         {
             throw new NotImplementedException();
         }
+
+        internal static void ChangeParameter(LengthParameter lengthParameter)
+        {
+            LengthParameter = lengthParameter;
+        }
     }
 
     public class PressureConverter : IValueConverter
@@ -748,6 +757,11 @@ namespace Com.Aurora.Shared.Converters
                 default:
                     return "0 Atm";
             }
+        }
+
+        public static void ChangeParameter(PressureParameter parameter)
+        {
+            PressureParameter = parameter;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1063,6 +1077,11 @@ namespace Com.Aurora.Shared.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+
+        public static void ChangeParameter(string par)
+        {
+            DateTimeConverterParameter = par;
         }
     }
 

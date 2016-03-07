@@ -2,7 +2,7 @@
 
 namespace Com.Aurora.AuWeather.Models
 {
-    public class Temprature
+    public class Temperature
     {
         private float temprature;
 
@@ -40,21 +40,21 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public static Temprature FromCelsius(int celsius)
+        public static Temperature FromCelsius(int celsius)
         {
-            Temprature t = new Temprature();
+            Temperature t = new Temperature();
             t.Celsius = celsius;
             return t;
         }
-        public static Temprature FromFahrenheit(int fahrenheit)
+        public static Temperature FromFahrenheit(int fahrenheit)
         {
-            Temprature t = new Temprature();
+            Temperature t = new Temperature();
             t.Fahrenheit = fahrenheit;
             return t;
         }
-        public static Temprature FromKelvin(int kelvin)
+        public static Temperature FromKelvin(int kelvin)
         {
-            Temprature t = new Temprature();
+            Temperature t = new Temperature();
             t.Kelvin = kelvin;
             return t;
         }

@@ -1,4 +1,5 @@
-﻿using Com.Aurora.AuWeather.ViewModels.Events;
+﻿using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -10,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
 {
@@ -48,8 +50,6 @@ namespace Com.Aurora.AuWeather
         public static readonly DependencyProperty AqiCircleStorkeLengthProperty =
             DependencyProperty.Register("AqiCircleStorkeLength", typeof(double), typeof(NowWeatherPage), new PropertyMetadata(0d));
 
-
-
         public bool DetailsPanelIsNormalState = true;
         private bool rootIsWideState = false;
         private ThreadPoolTimer fengcheTimer;
@@ -61,7 +61,6 @@ namespace Com.Aurora.AuWeather
         {
             this.InitializeComponent();
             //DataContext = new NowWeatherPageViewModel();
-
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
         }
@@ -77,14 +76,13 @@ namespace Com.Aurora.AuWeather
 
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
         {
-            if (e.Parameter is int)
-            {
-                TempratureConverter.ChangeParameter((int)e.Parameter);
-            }
-            if (e.Parameter is string)
-            {
-                DateTimeConverter.ChangeParameter((string)e.Parameter);
-            }
+
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            this.Page_Unloaded(null, null);
         }
 
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
@@ -93,7 +91,6 @@ namespace Com.Aurora.AuWeather
             CalcDetailGridPosition();
             isAnimating = true;
             animated = true;
-            WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
             ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             TempraturePathAnimation.Begin();
             AQIAni.Begin();
@@ -113,7 +110,10 @@ namespace Com.Aurora.AuWeather
             Forecast2.SetCondition(Context.Forecast2, Context.IsNight);
             Forecast3.SetCondition(Context.Forecast3, Context.IsNight);
             Forecast4.SetCondition(Context.Forecast4, Context.IsNight);
-            await Task.Delay(3000);
+            await Task.Delay(1000);
+            ScrollableRoot.RefreshComplete();
+            WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
+            await Task.Delay(2000);
             isAnimating = false;
         }
 
@@ -467,6 +467,12 @@ namespace Com.Aurora.AuWeather
                 isImmersiveMode = false;
                 ImmersiveBackButton_Click(null, null);
             }
+            if (rootIsWideState)
+            {
+                rootIsWideState = false;
+                LargeModeSubPanel.Content = null;
+                WeatherPanel.Children.Add(DetailsPanel);
+            }
             if (ScrollViewerConverter.isLargeMode)
                 ScrollViewerConverter.isLargeMode = false;
         }
@@ -479,6 +485,11 @@ namespace Com.Aurora.AuWeather
             LargeModeSubPanel.Content = DetailsPanel;
             if (animated)
             {
+                if (fengcheTimer != null)
+                {
+                    fengcheTimer.Cancel();
+                    detailGridAnimation_FLAG -= 2;
+                }
                 DetailGrid0Play();
                 DetailGrid1Play();
                 DetailGrid2Play();
@@ -587,14 +598,9 @@ namespace Com.Aurora.AuWeather
             isImmersiveMode = false;
         }
 
-        private void MoreButton_Click(object sender, RoutedEventArgs e)
+        private async void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
         {
-            WeatherCanvas.ChangeCondition(Models.WeatherCondition.extreme_rain, false, true);
-        }
-
-        private void ImmersiveMoreButton_Click(object sender, RoutedEventArgs e)
-        {
-            WeatherCanvas.EnableDynamic = !WeatherCanvas.EnableDynamic;
+            await Context.RefreshAsync();
         }
     }
 }

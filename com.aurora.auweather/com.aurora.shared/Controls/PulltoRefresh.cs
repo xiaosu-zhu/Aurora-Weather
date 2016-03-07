@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
+using Windows.System.Threading;
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -164,7 +165,13 @@ namespace Com.Aurora.Shared.Controls
             {
                 OnRefreshStart(this, new RefreshStartEventArgs());
                 triggered = true;
-                IndicatorRing.IsActive = true;
+                ThreadPoolTimer.CreateTimer(async (work) =>
+                {
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                      {
+                          RefreshComplete();
+                      }));
+                }, TimeSpan.FromSeconds(25000));
                 RefreshStartAni.Begin();
             }
         }

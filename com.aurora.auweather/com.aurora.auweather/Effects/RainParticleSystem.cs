@@ -100,8 +100,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 4;
 
-            minDensity = 0.005f;
-            maxDensity = 0.008f;
+            minDensity = 0.015f;
+            maxDensity = 0.02f;
         }
 
         private void Initializeheavy()
@@ -121,8 +121,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 2;
 
-            minDensity = 0.003f;
-            maxDensity = 0.005f;
+            minDensity = 0.01f;
+            maxDensity = 0.015f;
         }
 
         private void Initializemoderate()
@@ -142,8 +142,8 @@ namespace Com.Aurora.AuWeather.Effects
             minScaleY = 0.9f;
             maxScaleY = 1.3f;
 
-            minDensity = 0.002f;
-            maxDensity = 0.003f;
+            minDensity = 0.005f;
+            maxDensity = 0.01f;
         }
 
         private void InitializeLight()
@@ -164,7 +164,7 @@ namespace Com.Aurora.AuWeather.Effects
             maxScaleY = 1;
 
             minDensity = 0f;
-            maxDensity = 0.002f;
+            maxDensity = 0.005f;
         }
 
         public override async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
@@ -177,8 +177,10 @@ namespace Com.Aurora.AuWeather.Effects
             snowBounds = snowbitmap.Bounds;
             rainCenter = rainbitmap.Size.ToVector2() / 2;
             rainBounds = rainbitmap.Bounds;
+            bitmap = rainbitmap;
+            bitmapCenter = rainCenter;
+            bitmapBounds = rainBounds;
             surfaceLoaded = true;
-            ChangeConstants(rainLevel);
         }
 
         /// <summary>

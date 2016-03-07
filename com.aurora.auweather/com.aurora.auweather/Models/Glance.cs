@@ -45,7 +45,7 @@ namespace Com.Aurora.AuWeather.Models
         private static readonly string[] wendudi = new string[] { "低温", "持续降温" };
         #endregion
 
-        internal static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TempratureParameter parameter)
+        internal static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter)
         {
             var 主语 = model.NowWeather.Now.Condition;
             string zhuyu = "现在";
@@ -282,15 +282,15 @@ namespace Com.Aurora.AuWeather.Models
             string tomorrowtemp;
             switch (parameter)
             {
-                case TempratureParameter.Celsius:
+                case TemperatureParameter.Celsius:
                     nowtemp = model.DailyForecast[0].LowTemp.Celsius + "°~" + model.DailyForecast[0].HighTemp.Celsius + "°";
                     tomorrowtemp = model.DailyForecast[1].LowTemp.Celsius + "°~" + model.DailyForecast[1].HighTemp.Celsius + "°";
                     break;
-                case TempratureParameter.Fahrenheit:
+                case TemperatureParameter.Fahrenheit:
                     nowtemp = model.DailyForecast[0].LowTemp.Fahrenheit + "°~" + model.DailyForecast[0].HighTemp.Fahrenheit + "°";
                     tomorrowtemp = model.DailyForecast[1].LowTemp.Fahrenheit + "°~" + model.DailyForecast[1].HighTemp.Fahrenheit + "°";
                     break;
-                case TempratureParameter.Kelvin:
+                case TemperatureParameter.Kelvin:
                     nowtemp = model.DailyForecast[0].LowTemp.Kelvin + "K~" + model.DailyForecast[0].HighTemp.Kelvin + "K";
                     tomorrowtemp = model.DailyForecast[1].LowTemp.Kelvin + "K~" + model.DailyForecast[1].HighTemp.Kelvin + "K";
                     break;

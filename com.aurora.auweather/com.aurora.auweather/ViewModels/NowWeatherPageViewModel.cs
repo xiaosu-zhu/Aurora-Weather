@@ -2,6 +2,7 @@
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
@@ -19,10 +20,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     public class NowWeatherPageViewModel : ViewModelBase
     {
         #region private members
-        private Temprature temprature;
-        private Temprature bodyTemprature;
-        private Temprature nowH;
-        private Temprature nowL;
+        private Temperature temprature;
+        private Temperature bodyTemprature;
+        private Temperature nowH;
+        private Temperature nowL;
         private Wind wind;
         private DateTime currentTime;
         private WeatherCondition condition;
@@ -52,12 +53,12 @@ namespace Com.Aurora.AuWeather.ViewModels
         private float tempraturePath4;
         private float tempraturePath5;
 
-        private Temprature hourlyTemp0;
-        private Temprature hourlyTemp1;
-        private Temprature hourlyTemp2;
-        private Temprature hourlyTemp3;
-        private Temprature hourlyTemp4;
-        private Temprature hourlyTemp5;
+        private Temperature hourlyTemp0;
+        private Temperature hourlyTemp1;
+        private Temperature hourlyTemp2;
+        private Temperature hourlyTemp3;
+        private Temperature hourlyTemp4;
+        private Temperature hourlyTemp5;
 
         private DateTime hour0;
         private DateTime hour1;
@@ -84,16 +85,16 @@ namespace Com.Aurora.AuWeather.ViewModels
         private WeatherCondition forecast2;
         private WeatherCondition forecast3;
         private WeatherCondition forecast4;
-        private Temprature forecast0H;
-        private Temprature forecast0L;
-        private Temprature forecast1H;
-        private Temprature forecast1L;
-        private Temprature forecast2H;
-        private Temprature forecast2L;
-        private Temprature forecast3H;
-        private Temprature forecast3L;
-        private Temprature forecast4H;
-        private Temprature forecast4L;
+        private Temperature forecast0H;
+        private Temperature forecast0L;
+        private Temperature forecast1H;
+        private Temperature forecast1L;
+        private Temperature forecast2H;
+        private Temperature forecast2L;
+        private Temperature forecast3H;
+        private Temperature forecast3L;
+        private Temperature forecast4H;
+        private Temperature forecast4L;
 
         private DateTime updateTime;
 
@@ -102,17 +103,17 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private bool isNight;
         private bool isSummer;
-        private CitySettingsModel[] citys;
         private List<KeyValuePair<string, string>> storedDatas;
         private SettingsModel settings;
-        private CitySettingsModel currentCityModel;
         private CalendarInfo calendar;
         private ThreadPoolTimer currentTimer;
         private TimeZoneInfo currentTimeZone;
         private string glance;
+        private CitySettingsModel currentCityModel;
+        private CitySettingsModel[] citys;
         #endregion
         #region public binded properties
-        public Temprature Temprature
+        public Temperature Temprature
         {
             get
             {
@@ -255,7 +256,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp0
+        public Temperature HourlyTemp0
         {
             get
             {
@@ -268,7 +269,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp1
+        public Temperature HourlyTemp1
         {
             get
             {
@@ -281,7 +282,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp2
+        public Temperature HourlyTemp2
         {
             get
             {
@@ -294,7 +295,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp3
+        public Temperature HourlyTemp3
         {
             get
             {
@@ -307,7 +308,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp4
+        public Temperature HourlyTemp4
         {
             get
             {
@@ -320,7 +321,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature HourlyTemp5
+        public Temperature HourlyTemp5
         {
             get
             {
@@ -684,7 +685,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast0H
+        public Temperature Forecast0H
         {
             get
             {
@@ -697,7 +698,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast0L
+        public Temperature Forecast0L
         {
             get
             {
@@ -710,7 +711,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast1H
+        public Temperature Forecast1H
         {
             get
             {
@@ -723,7 +724,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast1L
+        public Temperature Forecast1L
         {
             get
             {
@@ -736,7 +737,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast2H
+        public Temperature Forecast2H
         {
             get
             {
@@ -749,7 +750,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast2L
+        public Temperature Forecast2L
         {
             get
             {
@@ -762,7 +763,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast3H
+        public Temperature Forecast3H
         {
             get
             {
@@ -775,7 +776,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast3L
+        public Temperature Forecast3L
         {
             get
             {
@@ -788,7 +789,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast4H
+        public Temperature Forecast4H
         {
             get
             {
@@ -801,7 +802,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature Forecast4L
+        public Temperature Forecast4L
         {
             get
             {
@@ -814,7 +815,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature BodyTemprature
+        public Temperature BodyTemprature
         {
             get
             {
@@ -827,7 +828,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature NowH
+        public Temperature NowH
         {
             get
             {
@@ -840,7 +841,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public Temprature NowL
+        public Temperature NowL
         {
             get
             {
@@ -1089,8 +1090,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-
-
         public async Task RefreshAsync()
         {
             try
@@ -1101,7 +1100,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             catch (ArgumentNullException)
             {
-                this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
+                OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
                 return;
             }
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
@@ -1123,13 +1122,13 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 catch (ArgumentNullException)
                 {
-                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
+                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
                     return;
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
-                  {
-                      InitialViewModel();
-                  }));
+                {
+                    InitialViewModel();
+                }));
             });
         }
 
@@ -1139,7 +1138,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             var updateMinutes = time.Hour * 60 + time.Minute;
             glance = Models.Glance.GenerateGlanceDescription(fetchresult,
                  updateMinutes >= fetchresult.DailyForecast[0].SunSet.TotalMinutes - 30,
-                 TempratureParameter.Celsius);
+                 TemperatureParameter.Celsius);
         }
 
         private void CalcCalendar()
@@ -1189,11 +1188,11 @@ namespace Com.Aurora.AuWeather.ViewModels
                 fetchresult = new HeWeatherModel(resjson1);
                 var task = ThreadPool.RunAsync(async (work) =>
                 {
-                    await settings.SaveDataAsync(currentId, resstr);
+                    await settings.Cities.SaveDataAsync(currentId, resstr);
                 });
                 currentCityModel.Update();
-                citys[settings.CurrentCityIndex] = currentCityModel;
-                settings.UpdateCity(citys);
+                citys[settings.Cities.CurrentIndex] = currentCityModel;
+                settings.Cities.Save(citys);
             }
             else throw new NullReferenceException();
 
@@ -1218,13 +1217,9 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
-            var c = currentCity;
-            currentCity = null;
-            City = c;
             var g = glance;
             glance = null;
             Glance = g;
-            SetNow();
             SetTime();
             CalculatePath();
             SetHourlyTemp();
@@ -1232,52 +1227,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             SetProportion();
             SetDailyForecast();
             SetSuggestion();
-
-            this.NotifyFetchDataComplete();
-        }
-
-        private void SetSuggestion()
-        {
-            Comf = fetchresult.WeatherSuggestion.Comfortable;
-            Cw = fetchresult.WeatherSuggestion.CarWashing;
-            Drsg = fetchresult.WeatherSuggestion.Dressing;
-            Uv = fetchresult.WeatherSuggestion.UV;
-            Sport = fetchresult.WeatherSuggestion.Sport;
-            Flu = fetchresult.WeatherSuggestion.Flu;
-            Trav = fetchresult.WeatherSuggestion.Trav;
-        }
-
-        private async Task SearchExistingDataAsync()
-        {
-            if (!citys.IsNullorEmpty())
-            {
-                var currentTime = DateTime.Now;
-                storedDatas = new List<KeyValuePair<string, string>>();
-                foreach (var c in citys)
-                {
-
-                    if ((currentTime - c.LastUpdate).TotalMinutes > 15)
-                    {
-                        continue;
-                    }
-                    try
-                    {
-                        var data = await FileIOHelper.ReadStringFromStorageAsync(c.Id);
-                        if (data != null)
-                            storedDatas.Add(new KeyValuePair<string, string>(c.Id, data));
-                    }
-                    catch (Exception)
-                    {
-                        continue;
-                    }
-                }
-            }
-        }
-
-        private void InitialConverterParameter(SettingsModel settings)
-        {
-            TempratureConverter.ChangeParameter(settings.TempratureParameter);
-            DateTimeConverter.ChangeParameter(settings.ForecastDateParameter);
+            var c = currentCity;
+            currentCity = null;
+            City = c;
+            SetNow();
+            NotifyFetchDataComplete();
         }
         #region Set Properties
         private void SetDailyForecast()
@@ -1419,7 +1373,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             CurrentTimeRefreshTask();
             SunRise = fetchresult.DailyForecast[0].SunRise;
             SunSet = fetchresult.DailyForecast[0].SunSet;
-            IsNight = CalculateIsNight(UpdateTime, SunRise, SunSet);
+            IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
         }
 
         public void RefreshCurrentTime()
@@ -1434,7 +1388,15 @@ namespace Com.Aurora.AuWeather.ViewModels
                 currentTimer.Cancel();
                 currentTimer = null;
             }
-            var nextupdate = 60.05 - (DateTime.Now.Second + DateTime.Now.Millisecond / 1000f);
+            double nextupdate = 1;
+            if (settings.Preferences.EnableImmersiveSecond)
+            {
+                nextupdate = 1.02 - DateTime.Now.Millisecond / 1000d;
+            }
+            else
+            {
+                nextupdate = 60.05 - (DateTime.Now.Second + DateTime.Now.Millisecond / 1000d);
+            }
             currentTimer = ThreadPoolTimer.CreateTimer(
                 async (task) =>
             {
@@ -1468,12 +1430,62 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             return true;
         }
+        private void SetSuggestion()
+        {
+            Comf = fetchresult.WeatherSuggestion.Comfortable;
+            Cw = fetchresult.WeatherSuggestion.CarWashing;
+            Drsg = fetchresult.WeatherSuggestion.Dressing;
+            Uv = fetchresult.WeatherSuggestion.UV;
+            Sport = fetchresult.WeatherSuggestion.Sport;
+            Flu = fetchresult.WeatherSuggestion.Flu;
+            Trav = fetchresult.WeatherSuggestion.Trav;
+        }
         #endregion
+
+
+        private async Task SearchExistingDataAsync()
+        {
+            if (!settings.Cities.SavedCities.IsNullorEmpty())
+            {
+                var currentTime = DateTime.Now;
+                storedDatas = new List<KeyValuePair<string, string>>();
+                foreach (var c in settings.Cities.SavedCities)
+                {
+
+                    if ((currentTime - c.LastUpdate).TotalMinutes > 15)
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        var data = await FileIOHelper.ReadStringFromStorageAsync(c.Id);
+                        if (data != null)
+                            storedDatas.Add(new KeyValuePair<string, string>(c.Id, data));
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void InitialConverterParameter(SettingsModel settings)
+        {
+            TempratureConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
+            DateTimeConverter.ChangeParameter(settings.Preferences.GetForecastFormat());
+            HourMinuteConverter.ChangeParameter(settings.Preferences.GetHourlyFormat());
+            WindSpeedConverter.ChangeParameter(settings.Preferences.WindParameter, settings.Preferences.SpeedParameter);
+            PressureConverter.ChangeParameter(settings.Preferences.PressureParameter);
+            VisibilityConverter.ChangeParameter(settings.Preferences.LengthParameter);
+            ImmersiveDateTimeConverter.ChangeParameter(settings.Preferences.GetImmersiveFormat());
+        }
+
         private void ReadSettings()
         {
 #if DEBUG
-            settings = SettingsModel.ReadSettings();
-            if (settings.SavedCities.IsNullorEmpty())
+            this.settings = SettingsModel.Get();
+            if (settings.Cities.SavedCities.IsNullorEmpty())
             {
                 currentCityModel = new CitySettingsModel();
                 currentCityModel.City = "北京";
@@ -1485,18 +1497,21 @@ namespace Com.Aurora.AuWeather.ViewModels
                 citys[0].City = "北京";
                 citys[0].Id = "CA1000011";
                 citys[0].LastUpdate = DateTime.Now;
-                settings.CurrentCityIndex = 0;
-                settings.SavedCities = citys;
-                settings.AllowLocation = true;
-                settings.ForecastDateParameter = "dddd";
-                settings.TempratureParameter = 1;
+                settings.Cities.Pick(0);
+                settings.Cities.Set(citys);
+                settings.Cities.Set(true);
+                settings.Preferences.Set(TemperatureParameter.Fahrenheit);
+                settings.Preferences.Set(SpeedParameter.Knot);
+                settings.Preferences.Set(WindParameter.SpeedandDegree);
+                settings.Preferences.DecorateNumber = 1;
+                settings.Preferences.EnableImmersiveSecond = true;
                 settings.SaveSettings();
             }
             else
             {
-                currentCityModel = settings.SavedCities[settings.CurrentCityIndex];
+                currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                 currentCity = currentCityModel.City;
-                citys = settings.SavedCities;
+                citys = settings.Cities.SavedCities;
                 currentId = currentCityModel.Id;
             }
             InitialConverterParameter(settings);

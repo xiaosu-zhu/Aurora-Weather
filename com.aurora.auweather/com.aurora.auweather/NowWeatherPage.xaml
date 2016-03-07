@@ -426,6 +426,21 @@
                         <CircleEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowTemp" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <CircleEase />
@@ -741,10 +756,10 @@
                 <FadeInThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
             </Storyboard>
         </Grid.Resources>
-        <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
+        <ScrollViewer Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
         </ScrollViewer>
-        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
+        <RelativePanel Background="{ThemeResource SystemControlForegroundHighBrush}" PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel.ChildrenTransitions>
                 <TransitionCollection>
@@ -755,14 +770,14 @@
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
-            <TextBlock Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
+            <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
                        Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TitleAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" 
+            <TextBlock Visibility="Collapsed" x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" 
                        Text="{Binding Condition, Converter={StaticResource ConditiontoTextConverter}}" 
                            HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" FontWeight="Light">
@@ -770,7 +785,7 @@
                     <TranslateTransform x:Name="ConditionAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <StackPanel Margin="12" x:Name="HighLowPanel" Orientation="Vertical" Opacity="0" RelativePanel.RightOf="NowCondition" RelativePanel.AlignVerticalCenterWith="NowCondition">
+            <StackPanel Visibility="Collapsed" Margin="12" x:Name="HighLowPanel" Orientation="Vertical" Opacity="0" RelativePanel.RightOf="NowCondition" RelativePanel.AlignVerticalCenterWith="NowCondition">
                 <TextBlock x:Name="NowH" Text="{Binding NowH,Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
                     <TextBlock.RenderTransform >
                         <TranslateTransform x:Name="NowHAniTrans" Y="480" />
@@ -788,14 +803,14 @@
                     <TranslateTransform x:Name="TempAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="TempDeg" FontSize="48" RelativePanel.RightOf="NowTemp" RelativePanel.AlignBottomWith="NowTemp" Margin="0,0,0,12"
+            <TextBlock Visibility="Collapsed" x:Name="TempDeg" Opacity="0" FontSize="48" RelativePanel.RightOf="NowTemp" RelativePanel.AlignBottomWith="NowTemp" Margin="0,0,0,12"
                        Text="{Binding Temprature, Converter={StaticResource TempratureConverter}}" Style="{ThemeResource HeaderTextBlockStyle}"
                        Foreground="#CCF0F0F0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempDegAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Button x:Name="MoreButton" Click="MoreButton_Click" Visibility="Collapsed" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,32,0,0">
+            <Button x:Name="MoreButton" Visibility="Collapsed" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,32,0,0">
                 <Button.Content>
                     <SymbolIcon Symbol="More" />
                 </Button.Content>
@@ -818,12 +833,12 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="CurrentTime" FontSize="144" FontWeight="ExtraLight" Text="{Binding CurrentTime, Converter={StaticResource ImmersiveDateTimeConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="CurrentTime" FontSize="144" Text="{Binding CurrentTime, Converter={StaticResource ImmersiveDateTimeConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}" />
                 </TextBlock>
                 <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                <Button x:Name="ImmersiveMoreButton" Click="ImmersiveMoreButton_Click" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
+                <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
                     <Button.Content>
                         <SymbolIcon Symbol="More" />
                     </Button.Content>
@@ -840,7 +855,7 @@
 
         </RelativePanel>
 
-        <ptr:PulltoRefresh x:Name="ScrollableRoot" Padding="0,112,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
+        <ptr:PulltoRefresh x:Name="ScrollableRoot" RefreshStart="ScrollableRoot_RefreshStart" Padding="0,112,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
                       HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <RelativePanel>
                 <Grid Height="332" x:Name="Header" />

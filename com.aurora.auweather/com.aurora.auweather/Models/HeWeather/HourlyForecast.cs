@@ -25,7 +25,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             get; private set;
         }
 
-        public Temprature Temprature
+        public Temperature Temprature
         {
             get; private set;
         }
@@ -42,7 +42,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Humidity = uint.Parse(hourly_forecast.hum);
             Pop = uint.Parse(hourly_forecast.pop);
             Pressure = Pressure.FromHPa(float.Parse(hourly_forecast.pres));
-            Temprature = Temprature.FromCelsius(int.Parse(hourly_forecast.tmp));
+            Temprature = Temperature.FromCelsius(int.Parse(hourly_forecast.tmp));
             Wind = new Wind(hourly_forecast.wind);
         }
     }

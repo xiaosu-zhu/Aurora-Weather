@@ -55,20 +55,18 @@ namespace Com.Aurora.AuWeather
                     StatusBar statusBar = StatusBar.GetForCurrentView();
                     statusBar.ForegroundColor = Colors.White;
                     ApplicationView.GetForCurrentView()
-    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                 }
                 /* 桌面设置 */
                 var view = ApplicationView.GetForCurrentView();
-                view.TitleBar.ForegroundColor = Colors.White;
-                view.TitleBar.InactiveForegroundColor = Colors.White;
                 view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
                 view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
                 view.TitleBar.BackgroundColor = Colors.Transparent;
                 // button
                 view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
                 view.TitleBar.ButtonForegroundColor = Colors.White;
-                view.TitleBar.ButtonHoverForegroundColor = Colors.White;
-                view.TitleBar.ButtonPressedForegroundColor = Colors.White;
+                //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
+                //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
                 Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             }

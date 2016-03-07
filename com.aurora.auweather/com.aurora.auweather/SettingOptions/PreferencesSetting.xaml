@@ -1,0 +1,223 @@
+﻿<Page
+    x:Class="Com.Aurora.AuWeather.SettingOptions.PreferencesSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Com.Aurora.AuWeather.SettingOptions"
+    xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
+    xmlns:Converters="using:Com.Aurora.Shared.Converters"
+    xmlns:ptr ="using:Com.Aurora.Shared.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Unloaded="Page_Unloaded"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModels:PreferencesSettingViewModel x:Name="Context"/>
+    </Page.DataContext>
+
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="../Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="../Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Converters:EnumtoStringConverter x:Key="EnumtoStringConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource SystemControlForegroundHighBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1104" />
+                    </VisualState.StateTriggers>
+                    <Storyboard >
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn1" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RightScroll" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="niubi" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition x:Name="RootColumn1" Width="0" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Padding="12,8,12,0" x:Name="LeftScroll" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Enabled">
+            <StackPanel x:Name="LeftPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="ConvertTitle" Text="单位" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="温度" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Temp" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="风力表示" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Wind" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="速度" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Speed" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="距离" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Length" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="气压" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Pressure" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch">
+                            <TextBlock x:Name="FormatTitle" Text="日期时间格式" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                            <Button x:Name="AboutFormatButton" Content="说明" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" />
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ComboBox x:Name="Year" VerticalAlignment="Center" Width="120" MaxWidth="120" Margin="12">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBox x:Name="Separator0" TextChanged="Separator0_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
+                            </TextBox>
+                            <ComboBox x:Name="Month" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBox x:Name="Separator1" TextChanged="Separator1_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
+
+                            </TextBox>
+                            <ComboBox x:Name="Day" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ComboBox x:Name="Hour" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock VerticalAlignment="Center" Text=":" Margin="0,12,0,12" />
+                            <ComboBox x:Name="Minute" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate >
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Left" >
+                                <TextBlock Text="使用星期替代日期" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="UseWeekDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Right" >
+                                <TextBlock Text="显示上午/下午" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="Showtt" Toggled="Showtt_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="WeatherTitle" Text="天气与提醒" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Left" >
+                                <TextBlock Text="每日天气提醒" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="EnableEveryDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Right" >
+                                <TextBlock Text="气象灾害预警" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="EnableAlarm" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <StackPanel>
+                        <TextBlock x:Name="ImmersiveTitle" Text="沉浸模式" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Left" >
+                                <TextBlock Text="显示秒针" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="EnableSecond" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Right" >
+                                <TextBlock Text="显示上午/下午" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="ShowImmersivett" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Left" >
+                                <TextBlock Text="减弱动态效果" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="DisableDynamic" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                            <TextBlock Text="这将关闭动态天气，减弱干扰" HorizontalAlignment="Left" Margin="12" Opacity="0.6" FontSize="12" VerticalAlignment="Bottom" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Grid Height="64" />
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1" Padding="12,8,12,0" x:Name="RightScroll" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Enabled">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Height="64" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

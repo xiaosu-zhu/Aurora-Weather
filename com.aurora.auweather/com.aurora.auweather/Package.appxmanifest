@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="964ee7f4-3a32-4ebd-a727-1c804e72b477" Publisher="CN=Xiaos" Version="1.0.0.0" />
+  <Identity Name="964ee7f4-3a32-4ebd-a727-1c804e72b477" Publisher="CN=Xiaosu Zhu" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="964ee7f4-3a32-4ebd-a727-1c804e72b477" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Com.Aurora.AuWeather</DisplayName>
-    <PublisherDisplayName>Xiaos</PublisherDisplayName>
+    <PublisherDisplayName>Xiaosu Zhu</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

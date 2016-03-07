@@ -43,6 +43,9 @@
                                 </DoubleAnimation>
                             </Storyboard>
                             <Storyboard x:Name="RefreshStart">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="IsActive">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="true" />
+                                </ObjectAnimationUsingKeyFrames>
                                 <DoubleAnimation Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.16" To="1" EnableDependentAnimation="True" Duration="0:0:0.16">
                                     <DoubleAnimation.EasingFunction>
                                         <CircleEase />
@@ -57,6 +60,9 @@
                             <Storyboard x:Name="RefreshComplete">
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="Opacity">
                                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="0" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="IsActive">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="false" />
                                 </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity">
                                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="0.36" />

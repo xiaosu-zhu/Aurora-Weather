@@ -44,7 +44,7 @@ namespace Com.Aurora.AuWeather.Effects
             maxScaleY = 4;
             minDensity = 0f;
             maxDensity = 0.015f;
-            blendState = CanvasBlend.Add;
+            blendState = CanvasBlend.SourceOver;
             minInitialSpeed = 50;
             maxInitialSpeed = 75;
             minAcceleration = 0;
@@ -86,7 +86,7 @@ namespace Com.Aurora.AuWeather.Effects
                 {
                     // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                     Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                    var where = new Vector2(0, Tools.RandomBetween(0, size.Y));
+                    var where = new Vector2(-60, Tools.RandomBetween(0, size.Y));
                     // 初始化粒子参数
                     InitializeParticle(particle, where);
                     particle.Key = Tools.Random.Next(0, 6);

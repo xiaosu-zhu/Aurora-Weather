@@ -8,10 +8,10 @@ namespace Com.Aurora.AuWeather.Models
 {
     internal class TempratureRange
     {
-        public Temprature Low { get; set; }
-        public Temprature High { get; set; }
+        public Temperature Low { get; set; }
+        public Temperature High { get; set; }
 
-        public TempratureRange(Temprature low, Temprature high)
+        public TempratureRange(Temperature low, Temperature high)
         {
             Low = low;
             High = high;
@@ -19,20 +19,20 @@ namespace Com.Aurora.AuWeather.Models
 
         public static TempratureRange FromCelsius(int low, int high)
         {
-            var Low = Temprature.FromCelsius(low);
-            var High = Temprature.FromCelsius(high);
+            var Low = Temperature.FromCelsius(low);
+            var High = Temperature.FromCelsius(high);
             return new TempratureRange(Low, High);
         }
         public static TempratureRange FromFahrenheit(int low, int high)
         {
-            var Low = Temprature.FromFahrenheit(low);
-            var High = Temprature.FromFahrenheit(high);
+            var Low = Temperature.FromFahrenheit(low);
+            var High = Temperature.FromFahrenheit(high);
             return new TempratureRange(Low, High);
         }
         public static TempratureRange FromKelvin(int low, int high)
         {
-            var Low = Temprature.FromKelvin(low);
-            var High = Temprature.FromKelvin(high);
+            var Low = Temperature.FromKelvin(low);
+            var High = Temperature.FromKelvin(high);
             return new TempratureRange(Low, High);
         }
     }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
@@ -27,6 +26,14 @@ namespace Com.Aurora.Shared.Helpers
             }
         }
 
+        public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssets(string path)
+        {
+            StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            var assets = await installedLocation.GetFolderAsync("Assets");
+            var folder = await assets.GetFolderAsync(path);
+            return await folder.GetFilesAsync();
+        }
+
         /// <summary>
         /// Convert UTF-8 encoding string to stream, sync
         /// </summary>
@@ -36,6 +43,13 @@ namespace Com.Aurora.Shared.Helpers
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(src);
             return new MemoryStream(byteArray);
+        }
+
+        public static async Task<IReadOnlyList<StorageFile>> GetFilesFromLocal(string path)
+        {
+            var local = ApplicationData.Current.LocalFolder;
+            var folder = await local.GetFolderAsync(path);
+            return await folder.GetFilesAsync();
         }
 
         /// <summary>

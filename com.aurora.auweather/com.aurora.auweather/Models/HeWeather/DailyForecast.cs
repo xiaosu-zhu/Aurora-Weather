@@ -57,12 +57,12 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             get; private set;
         }
 
-        public Temprature HighTemp
+        public Temperature HighTemp
         {
             get; private set;
         }
 
-        public Temprature LowTemp
+        public Temperature LowTemp
         {
             get; private set;
         }
@@ -88,8 +88,8 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Precipitation = float.Parse(daily_forecast.pcpn);
             Pop = uint.Parse(daily_forecast.pop);
             Pressure = Pressure.FromHPa(float.Parse(daily_forecast.pres));
-            HighTemp = Temprature.FromCelsius(int.Parse(daily_forecast.tmp.max));
-            LowTemp = Temprature.FromCelsius(int.Parse(daily_forecast.tmp.min));
+            HighTemp = Temperature.FromCelsius(int.Parse(daily_forecast.tmp.max));
+            LowTemp = Temperature.FromCelsius(int.Parse(daily_forecast.tmp.min));
             Visibility = Length.FromKM(float.Parse(daily_forecast.vis));
             Wind = new Wind(daily_forecast.wind);
         }

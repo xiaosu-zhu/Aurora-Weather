@@ -32,8 +32,8 @@ namespace Com.Aurora.AuWeather.Effects
 
         private void InitializeConstants()
         {
-            minDuration = 0.5f;
-            maxDuration = 0.8f;
+            minDuration = 1f;
+            maxDuration = 1.8f;
             blendState = CanvasBlend.Add;
         }
 

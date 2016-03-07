@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Com.Aurora.AuWeather.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,9 +24,31 @@ namespace Com.Aurora.AuWeather
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        private MainPage baba;
+
         public SettingsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            baba = e.Parameter as MainPage;
+            baba.ChangeColor(Colors.Transparent, (Color)Resources["SystemBaseHighColor"], (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"]);
+        }
+
+        private void SettingsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            baba.NavigatetoSettings((SettingsList.SelectedItem as SettingOption).Option);
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ActualWidth >= 720)
+            {
+                baba.NavigatetoSettings((SettingsList.Items[0] as SettingOption).Option);
+            }
         }
     }
 }

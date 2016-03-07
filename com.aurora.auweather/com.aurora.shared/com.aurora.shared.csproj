@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="Controls\PulltoRefresh.cs" />
     <Compile Include="Converters\Converters.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EnumrableExtesion.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
