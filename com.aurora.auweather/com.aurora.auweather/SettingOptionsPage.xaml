@@ -39,10 +39,10 @@
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageTitle" Storyboard.TargetProperty="Margin" >
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="60,0,0,8" />
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="60,0,0,12" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn0" Storyboard.TargetProperty="Width" >
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="384" />
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="320" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsList" Storyboard.TargetProperty="Visibility" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
@@ -61,9 +61,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,8" />
+            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
-        <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList" SelectionChanged="SettingsList_SelectionChanged" Visibility="Collapsed" Grid.Row="1" ItemsSource="{Binding SettingsList}" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList" Visibility="Collapsed" Grid.Row="1" ItemsSource="{Binding SettingsList}" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:SettingOption">
                     <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">

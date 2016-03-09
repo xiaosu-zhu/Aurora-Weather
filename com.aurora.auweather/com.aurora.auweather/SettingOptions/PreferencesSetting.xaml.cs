@@ -24,6 +24,8 @@ namespace Com.Aurora.AuWeather.SettingOptions
     /// </summary>
     public sealed partial class PreferencesSetting : Page
     {
+        private bool rootIsWideState;
+
         public PreferencesSetting()
         {
             this.InitializeComponent();
@@ -148,6 +150,38 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private void Bool_Toggled(object sender, RoutedEventArgs e)
         {
             Context.SetBool((sender as ToggleSwitch).Name, (sender as ToggleSwitch).IsOn);
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ActualWidth >= 720)
+            {
+                RootGotoWideState();
+            }
+            else
+            {
+                RootGotoNarrowState();
+            }
+        }
+
+        private void RootGotoNarrowState()
+        {
+            if (rootIsWideState)
+            {
+                RightPanel.Children.Remove(RightPanelChild);
+                LeftPanel.Children.Insert(1, RightPanelChild);
+                rootIsWideState = false;
+            }
+        }
+
+        private void RootGotoWideState()
+        {
+            if (!rootIsWideState)
+            {
+                LeftPanel.Children.Remove(RightPanelChild);
+                RightPanel.Children.Insert(0, RightPanelChild);
+                rootIsWideState = true;
+            }
         }
     }
 }

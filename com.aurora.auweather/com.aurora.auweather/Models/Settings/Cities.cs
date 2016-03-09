@@ -11,9 +11,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
     {
         public CitySettingsModel[] SavedCities { get; private set; }
 
-        public uint CurrentIndex { get; private set; }
+        public int CurrentIndex { get; set; }
 
-        public bool EnableLocate { get; private set; } = true;
+        public bool EnableLocate { get; set; } = true;
+        public CitySettingsModel LocatedCity { get; internal set; }
 
         public static Cities Get()
         {
@@ -21,18 +22,35 @@ namespace Com.Aurora.AuWeather.Models.Settings
             try
             {
                 var container = RoamingSettingsHelper.GetContainer("Cities");
-                c.CurrentIndex = (uint)container.Values["CurrentIndex"];
+                c.CurrentIndex = (int)container.Values["CurrentIndex"];
                 c.EnableLocate = (bool)container.Values["EnableLocate"];
+                CitySettingsModel loc;
+
+                if (container.ReadGroupSettings(out loc))
+                {
+
+                    c.LocatedCity = loc;
+                    if (c.CurrentIndex == -1)
+                    {
+                        c.LocatedCity.IsCurrent = true;
+                    }
+                }
                 int i = (int)container.Values["Count"];
                 List<CitySettingsModel> cs = new List<CitySettingsModel>();
                 for (int j = 0; j < i; j++)
                 {
                     CitySettingsModel m;
                     var sub = RoamingSettingsHelper.GetContainer(j.ToString());
-                    sub.ReadGroupSettings(out m);
-                    cs.Add(m);
+                    if (sub.ReadGroupSettings(out m))
+                    {
+                        cs.Add(m);
+                    }
                 }
                 c.SavedCities = cs.ToArray();
+                if (c.CurrentIndex != -1)
+                {
+                    c.SavedCities[c.CurrentIndex].IsCurrent = true;
+                }
                 return c;
             }
             catch (Exception)
@@ -41,7 +59,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
         }
 
-        public void Pick(uint index)
+        public void Pick(int index)
         {
             CurrentIndex = index;
         }
@@ -51,6 +69,13 @@ namespace Com.Aurora.AuWeather.Models.Settings
             var container = RoamingSettingsHelper.GetContainer("Cities");
             container.Values["CurrentIndex"] = CurrentIndex;
             container.Values["EnableLocate"] = EnableLocate;
+            try
+            {
+                container.WriteGroupSettings(LocatedCity);
+            }
+            catch (Exception)
+            {
+            }
             SaveCities(container);
         }
 
@@ -62,8 +87,15 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 foreach (var item in SavedCities)
                 {
                     var sub = RoamingSettingsHelper.GetContainer(i.ToString());
-                    sub.WriteGroupSettings(item);
-                    i++;
+                    try
+                    {
+                        sub.WriteGroupSettings(item);
+                        i++;
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
                 }
             }
             container.Values["Count"] = i;
@@ -72,8 +104,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public void Save(CitySettingsModel[] citys)
         {
             this.SavedCities = citys;
-            var container = RoamingSettingsHelper.GetContainer("Cities");
-            SaveCities(container);
+            Save();
         }
 
         internal void Set(CitySettingsModel[] citys)
@@ -94,8 +125,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
     public class CitySettingsModel
     {
         public string City { get; set; }
-
         public string Id { get; set; }
+
+        public bool IsCurrent = false;
 
         public DateTime LastUpdate { get; set; } = new DateTime(1970, 1, 1);
 

@@ -18,9 +18,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public SettingsList()
         {
-            Add(new SettingOption(Symbol.Accept, "Cities Management", typeof(Cities)));
-            Add(new SettingOption(Symbol.BlockContact, "Immersive Background", typeof(Immersive)));
             Add(new SettingOption(Symbol.Calculator, "Preferences", typeof(Preferences)));
+            Add(new SettingOption(Symbol.BlockContact, "Immersive Background", typeof(Immersive)));
+            Add(new SettingOption(Symbol.Accept, "Cities Management", typeof(Cities)));
+            
             Add(new SettingOption(Symbol.Page, "About", typeof(About)));
         }
     }

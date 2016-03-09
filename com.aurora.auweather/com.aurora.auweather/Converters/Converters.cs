@@ -1,6 +1,7 @@
 ﻿using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.AuWeather.Models.Settings;
 using System;
 using System.Text;
 using Windows.Foundation;
@@ -874,9 +875,9 @@ namespace Com.Aurora.Shared.Converters
             var month = DateTime.Now.Month;
             if (month / 2 == 0 || month == 3)
             {
-                return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+                return Color.FromArgb(255, 0, 0, 0);
             }
-            return new SolidColorBrush(Color.FromArgb(255, 240, 240, 240));
+            return Color.FromArgb(255, 240, 240, 240);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1103,6 +1104,70 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return (value as Suggestion).Text;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CitySettingsModelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return ((CitySettingsModel)value).City;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ImmersiveStatetoSwitchConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var v = (ImmersiveBackgroundState)value;
+            switch (v)
+            {
+                case ImmersiveBackgroundState.Assets:
+                case ImmersiveBackgroundState.Local:
+                    return false;
+                case ImmersiveBackgroundState.Transparent:
+                    return true;
+                default: return false;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            var v = (bool)value;
+            if (v)
+            {
+                return ImmersiveBackgroundState.Transparent;
+            }
+            else
+            {
+                return ImmersiveBackgroundState.Fallback;
+            }
+        }
+    }
+    public class ImmersiveStatetoEnableConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var v = (ImmersiveBackgroundState)value;
+            switch (v)
+            {
+                case ImmersiveBackgroundState.Assets:
+                case ImmersiveBackgroundState.Local:
+                    return true;
+                case ImmersiveBackgroundState.Transparent:
+                    return false;
+                default: return false;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

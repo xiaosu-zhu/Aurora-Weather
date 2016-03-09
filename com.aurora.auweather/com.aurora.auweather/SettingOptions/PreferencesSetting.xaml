@@ -4,11 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Com.Aurora.AuWeather.SettingOptions"
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
-    xmlns:Converters="using:Com.Aurora.Shared.Converters"
-    xmlns:ptr ="using:Com.Aurora.Shared.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Unloaded="Page_Unloaded"
+    SizeChanged="Page_SizeChanged"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -25,16 +24,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Converters:EnumtoStringConverter x:Key="EnumtoStringConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource SystemControlForegroundHighBrush}">
+    <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1104" />
+                        <AdaptiveTrigger MinWindowWidth="1040" />
                     </VisualState.StateTriggers>
                     <Storyboard >
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn1" Storyboard.TargetProperty="Width">
@@ -173,7 +171,7 @@
                         </Grid>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="WeatherTitle" Text="天气与提醒" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
@@ -215,7 +213,7 @@
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Padding="12,8,12,0" x:Name="RightScroll" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Enabled">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel x:Name="RightPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Height="64" />
             </StackPanel>
         </ScrollViewer>

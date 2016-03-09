@@ -41,26 +41,28 @@ namespace Com.Aurora.AuWeather
 
         private void SettingsList_Loaded(object sender, RoutedEventArgs e)
         {
+            SettingsList.SelectionChanged -= SettingsList_SelectionChanged;
+            SettingsList.SelectedItem = (SettingsList.ItemsSource as SettingsList).First(x =>
+            {
+                return x.Option == curretType;
+            });
             if (curretType == typeof(Preferences))
             {
-                SettingsList.SelectedIndex = 2;
                 MainFrame.Navigate((typeof(PreferencesSetting)));
             }
             else if (curretType == typeof(Immersive))
             {
-                SettingsList.SelectedIndex = 1;
                 MainFrame.Navigate((typeof(ImmersiveSetting)));
             }
             else if (curretType == typeof(Cities))
             {
-                SettingsList.SelectedIndex = 0;
                 MainFrame.Navigate((typeof(CitiesSetting)));
             }
             else if (curretType == typeof(About))
             {
-                SettingsList.SelectedIndex = 3;
                 MainFrame.Navigate((typeof(AboutSetting)));
             }
+            SettingsList.SelectionChanged += SettingsList_SelectionChanged;
         }
 
         private void SettingsList_SelectionChanged(object sender, SelectionChangedEventArgs e)

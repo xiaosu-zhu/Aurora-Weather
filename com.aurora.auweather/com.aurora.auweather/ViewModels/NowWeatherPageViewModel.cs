@@ -103,7 +103,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private bool isNight;
         private bool isSummer;
-        private List<KeyValuePair<string, string>> storedDatas;
+        private KeyValuePair<string, string> storedDatas;
         private SettingsModel settings;
         private CalendarInfo calendar;
         private ThreadPoolTimer currentTimer;
@@ -1094,7 +1094,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             try
             {
-                storedDatas.Clear();
+                storedDatas = default(KeyValuePair<string, string>);
                 await FetchDataAsync();
                 CalcCalendar();
             }
@@ -1162,20 +1162,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             string resstr;
             if (currentId != null)
             {
-                if (!storedDatas.IsNullorEmpty())
+                if (!storedDatas.Equals(default(KeyValuePair<string, string>)))
                 {
-                    var lastFetchedData = storedDatas.Find(x =>
-                     {
-                         return x.Key == currentId;
-                     });
-                    if (!lastFetchedData.Equals(default(KeyValuePair<string, string>)))
-                    {
-                        resstr = lastFetchedData.Value;
-                        var resjson = HeWeatherContract.Generate(resstr);
-                        fetchresult = new HeWeatherModel(resjson);
-                        return;
-                    }
+                    resstr = storedDatas.Value;
+                    var resjson = HeWeatherContract.Generate(resstr);
+                    fetchresult = new HeWeatherModel(resjson);
+                    return;
                 }
+
 #if DEBUG
                 await Task.Delay(5000);
                 resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
@@ -1189,10 +1183,18 @@ namespace Com.Aurora.AuWeather.ViewModels
                 var task = ThreadPool.RunAsync(async (work) =>
                 {
                     await settings.Cities.SaveDataAsync(currentId, resstr);
+                    currentCityModel.Update();
+                    if (settings.Cities.CurrentIndex != -1)
+                    {
+                        citys[settings.Cities.CurrentIndex] = currentCityModel;
+                    }
+                    else
+                    {
+                        settings.Cities.LocatedCity = currentCityModel;
+                    }
+                    settings.Cities.Save(citys);
                 });
-                currentCityModel.Update();
-                citys[settings.Cities.CurrentIndex] = currentCityModel;
-                settings.Cities.Save(citys);
+
             }
             else throw new NullReferenceException();
 
@@ -1448,23 +1450,17 @@ namespace Com.Aurora.AuWeather.ViewModels
             if (!settings.Cities.SavedCities.IsNullorEmpty())
             {
                 var currentTime = DateTime.Now;
-                storedDatas = new List<KeyValuePair<string, string>>();
-                foreach (var c in settings.Cities.SavedCities)
+                if ((currentTime - currentCityModel.LastUpdate).TotalMinutes <= 15)
                 {
-
-                    if ((currentTime - c.LastUpdate).TotalMinutes > 15)
-                    {
-                        continue;
-                    }
                     try
                     {
-                        var data = await FileIOHelper.ReadStringFromStorageAsync(c.Id);
+                        var data = await FileIOHelper.ReadStringFromStorageAsync(currentCityModel.Id);
                         if (data != null)
-                            storedDatas.Add(new KeyValuePair<string, string>(c.Id, data));
+                            storedDatas = new KeyValuePair<string, string>(currentCityModel.Id, data);
                     }
                     catch (Exception)
                     {
-                        continue;
+
                     }
                 }
             }
@@ -1509,10 +1505,26 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             else
             {
-                currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
-                currentCity = currentCityModel.City;
+                if (settings.Cities.CurrentIndex == -1)
+                {
+                    currentCityModel = settings.Cities.LocatedCity;
+                    currentCity = currentCityModel.City;
+                    currentId = currentCityModel.Id;
+                }
+                else
+                {
+                    try
+                    {
+                        currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
+                        currentCity = currentCityModel.City;
+                        currentId = currentCityModel.Id;
+                    }
+                    catch (Exception)
+                    {
+                        NotifyCitiesError();
+                    }
+                }
                 citys = settings.Cities.SavedCities;
-                currentId = currentCityModel.Id;
             }
             InitialConverterParameter(settings);
 #else
@@ -1529,6 +1541,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             throw new ArgumentNullException();
             }
 #endif
+
+        }
+
+        private void NotifyCitiesError()
+        {
 
         }
     }

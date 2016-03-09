@@ -100,14 +100,72 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Background\Cloudy\Stefanus Martanto Setyo Husodo.png" />
-    <Content Include="Assets\Background\Cloudy\Thomas Morter Laing.png" />
-    <Content Include="Assets\Background\Cloudy\Thomas Shellberg.png" />
-    <Content Include="Assets\Background\Cloudy\Todd Quackenbush.png" />
-    <Content Include="Assets\Background\Sunny\Ales Krivec.png" />
-    <Content Include="Assets\Background\Sunny\Alex Gindin.png" />
-    <Content Include="Assets\Background\Sunny\Joy stamp.png" />
-    <Content Include="Assets\Background\Sunny\Kate chikina.png" />
+    <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush.png" />
+    <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush_t.png" />
+    <Content Include="Assets\Background\Cloudy\02_Paul Csogi.png" />
+    <Content Include="Assets\Background\Cloudy\02_Paul Csogi_t.png" />
+    <Content Include="Assets\Background\Cloudy\03_Andrew Ruiz.png" />
+    <Content Include="Assets\Background\Cloudy\03_Andrew Ruiz_t.png" />
+    <Content Include="Assets\Background\Cloudy\04_Lim Changwon.png" />
+    <Content Include="Assets\Background\Cloudy\04_Lim Changwon_t.png" />
+    <Content Include="Assets\Background\Foggy\01_Paul Earle.png" />
+    <Content Include="Assets\Background\Foggy\01_Paul Earle_t.png" />
+    <Content Include="Assets\Background\Foggy\02_Ales Krivec.png" />
+    <Content Include="Assets\Background\Foggy\02_Ales Krivec_t.png" />
+    <Content Include="Assets\Background\Foggy\03_Henry McIntosh.png" />
+    <Content Include="Assets\Background\Foggy\03_Henry McIntosh_t.png" />
+    <Content Include="Assets\Background\Haze\01_Thomas Morter Laing.png" />
+    <Content Include="Assets\Background\Haze\01_Thomas Morter Laing_t.png" />
+    <Content Include="Assets\Background\Haze\02_Stefanus Martanto Setyo Husodo.png" />
+    <Content Include="Assets\Background\Haze\02_Stefanus Martanto Setyo Husodo_t.png" />
+    <Content Include="Assets\Background\Haze\03_Alex Gindin.png" />
+    <Content Include="Assets\Background\Haze\03_Alex Gindin_t.png" />
+    <Content Include="Assets\Background\Rainny\01_Mike Kotsch.png" />
+    <Content Include="Assets\Background\Rainny\01_Mike Kotsch_t.png" />
+    <Content Include="Assets\Background\Rainny\02_Pete Nowicki.png" />
+    <Content Include="Assets\Background\Rainny\02_Pete Nowicki_t.png" />
+    <Content Include="Assets\Background\Rainny\03_Eutah Mizushima.png" />
+    <Content Include="Assets\Background\Rainny\03_Eutah Mizushima_t.png" />
+    <Content Include="Assets\Background\Rainny\04_Inge maria.png" />
+    <Content Include="Assets\Background\Rainny\04_Inge maria_t.png" />
+    <Content Include="Assets\Background\Rainny\05_Caroline Grodin.png" />
+    <Content Include="Assets\Background\Rainny\05_Caroline Grodin_t.png" />
+    <Content Include="Assets\Background\Rainny\06_Joy stamp.png" />
+    <Content Include="Assets\Background\Rainny\06_Joy stamp_t.png" />
+    <Content Include="Assets\Background\Rainny\07_Kate chikina.png" />
+    <Content Include="Assets\Background\Rainny\07_Kate chikina_t.png" />
+    <Content Include="Assets\Background\Rainny\08_Mario Calvo.png" />
+    <Content Include="Assets\Background\Rainny\08_Mario Calvo_t.png" />
+    <Content Include="Assets\Background\Snowy\01_Mattew Wiebe.png" />
+    <Content Include="Assets\Background\Snowy\01_Mattew Wiebe_t.png" />
+    <Content Include="Assets\Background\Snowy\02_Aaron Wilson.png" />
+    <Content Include="Assets\Background\Snowy\02_Aaron Wilson_t.png" />
+    <Content Include="Assets\Background\Snowy\03_Nathan Wolfe.png" />
+    <Content Include="Assets\Background\Snowy\03_Nathan Wolfe_t.png" />
+    <Content Include="Assets\Background\Snowy\04_Paul Itkin.png" />
+    <Content Include="Assets\Background\Snowy\04_Paul Itkin_t.png" />
+    <Content Include="Assets\Background\Snowy\05_Caleb George.png" />
+    <Content Include="Assets\Background\Snowy\05_Caleb George_t.png" />
+    <Content Include="Assets\Background\Starry\01_aurelien bellangar.png" />
+    <Content Include="Assets\Background\Starry\01_aurelien bellangar_t.png" />
+    <Content Include="Assets\Background\Starry\02_Josh Felise.png" />
+    <Content Include="Assets\Background\Starry\02_Josh Felise_t.png" />
+    <Content Include="Assets\Background\Starry\03_Martin Jernberg.png" />
+    <Content Include="Assets\Background\Starry\03_Martin Jernberg_t.png" />
+    <Content Include="Assets\Background\Starry\04_Mats-Peter Forss.png" />
+    <Content Include="Assets\Background\Starry\04_Mats-Peter Forss_t.png" />
+    <Content Include="Assets\Background\Starry\05_Thomas Shellberg.png" />
+    <Content Include="Assets\Background\Starry\05_Thomas Shellberg_t.png" />
+    <Content Include="Assets\Background\Sunny\01_Ciprian Boiciuc.png" />
+    <Content Include="Assets\Background\Sunny\01_Ciprian Boiciuc_t.png" />
+    <Content Include="Assets\Background\Sunny\02_Joseph Barrientos.png" />
+    <Content Include="Assets\Background\Sunny\02_Joseph Barrientos_t.png" />
+    <Content Include="Assets\Background\Sunny\03_Maria Georgieva.png" />
+    <Content Include="Assets\Background\Sunny\03_Maria Georgieva_t.png" />
+    <Content Include="Assets\Background\Sunny\04_Mike Wilson.png" />
+    <Content Include="Assets\Background\Sunny\04_Mike Wilson_t.png" />
+    <Content Include="Assets\Background\Sunny\05_Nick Karvounis.png" />
+    <Content Include="Assets\Background\Sunny\05_Nick Karvounis_t.png" />
     <Content Include="Assets\Key" />
     <Content Include="Assets\MonthlyPic\1.scale-100.png" />
     <Content Include="Assets\MonthlyPic\1.scale-140.png" />
@@ -445,9 +503,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Background\Rainny\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

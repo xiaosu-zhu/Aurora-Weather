@@ -262,7 +262,7 @@ namespace Com.Aurora.Shared.Helpers
                 source = (T)obj;
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 source = default(T);
                 return false;

@@ -502,7 +502,10 @@
         <SplitView.Pane>
             <RelativePanel>
                 <Image Stretch="UniformToFill" Source="{Binding Converter={StaticResource MainPaneBGConverter}}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="216" />
-                <Button x:Name="HamburgerOpen" Margin="0,32,0,0" Style="{StaticResource SymbolButton}" Foreground="{Binding PaneHamburgerForeConverter}" Width="48" Height="48" Click="Hamburger_Click">
+                <Button x:Name="HamburgerOpen" Margin="0,32,0,0" Style="{StaticResource SymbolButton}" Width="48" Height="48" Click="Hamburger_Click">
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{Binding Converter={StaticResource PaneHamburgerForeConverter}}" />
+                    </Button.Foreground>
                     <Button.Content>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>
@@ -531,8 +534,6 @@
                 <Frame x:Name="MainFrame"
                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-                <Controls:ConditionPath Height="64" Width="64"/>
-
                 <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" 
                             RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                             RelativePanel.AlignRightWithPanel="True">

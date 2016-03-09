@@ -38,11 +38,11 @@ namespace Com.Aurora.AuWeather.Models
         {
             get
             {
-                return atm / 760;
+                return atm * 760;
             }
             set
             {
-                atm = value * 760;
+                atm = value / 760;
             }
         }
 

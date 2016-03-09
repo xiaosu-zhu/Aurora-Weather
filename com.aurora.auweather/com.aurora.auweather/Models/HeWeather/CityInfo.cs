@@ -64,7 +64,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        internal Models.Location Location
+        public Models.Location Location
         {
             get
             {
@@ -77,13 +77,18 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
-        internal static List<CityInfo> CreateList(CityIdContract citys)
+        public static List<CityInfo> CreateList(CityIdContract citys)
         {
             if (citys != null && !citys.city_info.IsNullorEmpty())
             {
                 List<CityInfo> c = new List<CityInfo>();
+                c.Capacity = 70000;
                 foreach (var city in citys.city_info)
                 {
+                    if (city.id.EndsWith("A"))
+                    {
+                        continue;
+                    }
                     c.Add(new CityInfo(city));
                 }
                 return c;
@@ -96,7 +101,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         }
 
-        public CityInfo(JsonContract.CityInfoContract info)
+        public CityInfo(CityInfoContract info)
         {
             City = info.city;
             Country = info.cnty;
@@ -108,6 +113,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 float lon;
                 if (float.TryParse(info.lon, out lon))
                 {
+
                     FuckingshitLocation(ref lat, ref lon, Country);
                     this.Location = new Models.Location(lat, lon);
                 }

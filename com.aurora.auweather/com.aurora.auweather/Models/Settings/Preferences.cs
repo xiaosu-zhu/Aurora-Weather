@@ -98,7 +98,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public string GetForecastFormat()
         {
-            if (UseWeekDayforForecast)
+            if (!UseWeekDayforForecast)
                 return MonthFormat[MonthNumber] + DateSeparator + DayFormat[DayNumber];
             else
             {

@@ -9,7 +9,7 @@ using Com.Aurora.Shared.Helpers;
 namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
 {
     [DataContract]
-    class CityIdContract
+    public class CityIdContract
     {
         [DataMember]
         public CityInfoContract[] city_info;

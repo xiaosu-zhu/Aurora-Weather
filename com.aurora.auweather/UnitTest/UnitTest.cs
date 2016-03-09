@@ -10,6 +10,10 @@ using Com.Aurora.Shared.Helpers.Crypto;
 using Windows.Storage.Streams;
 using Windows.Security.Cryptography;
 using Com.Aurora.AuWeather.LunarCalendar;
+using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.AuWeather.Models.HeWeather;
+using System.Linq;
+using System.Diagnostics;
 
 namespace UnitTest
 {
@@ -138,6 +142,31 @@ namespace UnitTest
         public void LunarCalendarTest()
         {
             CalendarInfo c = new CalendarInfo();
+        }
+
+        [TestMethod]
+        public async void GeoLocateTest()
+        {
+            var data = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+            var result = JsonHelper.FromJson<CityIdContract>(data);
+            var citys = CityInfo.CreateList(result);
+            var final = from m in citys
+                        orderby CalcDistance(m, new Location(39.92f, 116.46f)) ascending
+                        select m;
+            Debug.WriteLine((final.ToArray())[0]);
+        }
+
+        private const double EARTH_RADIUS = 6378.137;//地球半径
+        private float CalcDistance(CityInfo m, Location location)
+        {
+            var lat1 = Tools.DegreesToRadians(m.Location.Latitude);
+            var lat2 = Tools.DegreesToRadians(location.Latitude);
+            var a = lat1 - lat2;
+            var b = Tools.DegreesToRadians(m.Location.Longitude) - Tools.DegreesToRadians(location.Longitude);
+            var s = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) +
+             Math.Cos(lat1) * Math.Cos(lat2) * Math.Pow(Math.Sin(b / 2), 2)));
+            s *= EARTH_RADIUS;
+            return (float)Math.Round(s * 10000) / 10000f;
         }
     }
 }

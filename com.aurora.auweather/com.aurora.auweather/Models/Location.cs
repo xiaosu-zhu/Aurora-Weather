@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.Shared.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models
 {
-    class Location
+    public class Location
     {
         private float latitude;
         private float longitude;
@@ -54,10 +57,42 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lat">纬度</param>
+        /// <param name="lon">经度</param>
         public Location(float lat, float lon)
         {
             this.Latitude = lat;
             this.Longitude = lon;
+        }
+        private const double EARTH_RADIUS = 6378.137;//地球半径
+
+        /// <summary>
+        /// 计算两点距离
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="dest"></param>
+        /// <returns></returns>
+        public static float CalcDistance(Location source, Location dest)
+        {
+            var lat1 = Tools.DegreesToRadians(source.Latitude);
+            var lat2 = Tools.DegreesToRadians(dest.Latitude);
+            var a = lat1 - lat2;
+            var b = Tools.DegreesToRadians(source.Longitude) - Tools.DegreesToRadians(dest.Longitude);
+            var s = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) +
+             Math.Cos(lat1) * Math.Cos(lat2) * Math.Pow(Math.Sin(b / 2), 2)));
+            s *= EARTH_RADIUS;
+            return (float)Math.Round(s * 10000) / 10000f;
+        }
+
+        public static IOrderedEnumerable<CityInfo> GetNearsetLocation(IEnumerable<CityInfo> cities, Location source)
+        {
+            var final = from m in cities
+                        orderby CalcDistance(m.Location, source) ascending
+                        select m;
+            return final;
         }
     }
 }

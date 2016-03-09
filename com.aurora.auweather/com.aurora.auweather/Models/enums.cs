@@ -37,5 +37,5 @@
 
     public enum PressureParameter : byte { Atm, Hpa, Torr, CmHg };
 
-    public enum ImmersiveBackgroundState : byte { Assets, Local, Transparent };
+    public enum ImmersiveBackgroundState : byte { Assets, Local, Transparent, Fallback };
 }

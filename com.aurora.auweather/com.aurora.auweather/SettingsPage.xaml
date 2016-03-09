@@ -40,7 +40,7 @@
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageTitle" Storyboard.TargetProperty="Margin" >
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="60,0,0,8" />
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="60,0,0,12" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -51,7 +51,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,8" />
+            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
         <ListView x:Name="SettingsList" Grid.Row="1" ItemsSource="{Binding SettingsList}" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SettingsList_SelectionChanged">
             <ListView.ItemTemplate>

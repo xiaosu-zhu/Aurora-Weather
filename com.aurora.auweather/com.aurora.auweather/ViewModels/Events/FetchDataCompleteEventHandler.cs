@@ -2,7 +2,17 @@
 {
     public class FetchDataCompleteEventArgs
     {
+        public object Parameter { get; private set; }
 
+        public FetchDataCompleteEventArgs()
+        {
+
+        }
+
+        public FetchDataCompleteEventArgs(object parameter)
+        {
+            this.Parameter = parameter;
+        }
     }
 
     public class FetchDataFailedEventArgs
