@@ -79,6 +79,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public DailyForecast(JsonContract.DailyForecastContract daily_forecast)
         {
+            if (daily_forecast == null)
+            {
+                return;
+            }
             CultureInfo provider = CultureInfo.InvariantCulture;
             Date = DateTime.ParseExact(daily_forecast.date, "yyyy-MM-dd", provider);
             SunRise = TimeSpan.Parse(daily_forecast.astro.sr);

@@ -37,6 +37,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public HourlyForecast(JsonContract.HourlyForecastContract hourly_forecast)
         {
+            if (hourly_forecast == null)
+            {
+                return;
+            }
             CultureInfo provider = CultureInfo.InvariantCulture;
             DateTime = DateTime.ParseExact(hourly_forecast.date, "yyyy-MM-dd HH:mm", provider);
             Humidity = uint.Parse(hourly_forecast.hum);

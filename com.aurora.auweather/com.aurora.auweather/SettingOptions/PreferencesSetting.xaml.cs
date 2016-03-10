@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Com.Aurora.AuWeather.ViewModels.Events;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Com.Aurora.AuWeather.ViewModels.Events;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Com.Aurora.AuWeather.ViewModels;
+using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -52,6 +42,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Day.ItemsSource = Context.Day;
                    Hour.ItemsSource = Context.Hour;
                    Minute.ItemsSource = Context.Minute;
+                   Week.ItemsSource = Context.Week;
+                   RefreshFreq.ItemsSource = Context.RefreshFreq;
+                   Theme.ItemsSource = Context.Theme;
 
                    Separator0.PlaceholderText = Context.Separator;
                    Separator1.PlaceholderText = Context.Separator;
@@ -63,7 +56,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    DisableDynamic.IsOn = Context.DisableDynamic;
                    EnableEveryDay.IsOn = Context.EnableEveryDay;
                    EnableAlarm.IsOn = Context.EnableAlarm;
-                   DisableDynamic.IsOn = Context.DisableDynamic;
+                   EnablePulltoRefresh.IsOn = Context.EnablePulltoRefresh;
 
                    Temp.SelectedIndex = Context.Temperature.SelectedIndex;
                    Wind.SelectedIndex = Context.Wind.SelectedIndex;
@@ -75,23 +68,31 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Month.SelectedIndex = Context.Month.SelectedIndex;
                    Day.SelectedIndex = Context.Day.SelectedIndex;
                    Minute.SelectedIndex = Context.Minute.SelectedIndex;
+                   Week.SelectedIndex = Context.Week.SelectedIndex;
+                   Theme.SelectedIndex = Context.Theme.SelectedIndex;
+                   RefreshFreq.SelectedIndex = Context.RefreshFreq.SelectedIndex;
 
                    Temp.SelectionChanged += Enum_SelectionChanged;
                    Wind.SelectionChanged += Enum_SelectionChanged;
                    Speed.SelectionChanged += Enum_SelectionChanged;
                    Length.SelectionChanged += Enum_SelectionChanged;
                    Pressure.SelectionChanged += Enum_SelectionChanged;
+                   Theme.SelectionChanged += Enum_SelectionChanged;
+                   RefreshFreq.SelectionChanged += Enum_SelectionChanged;
                    Year.SelectionChanged += Format_SelectionChanged;
                    Month.SelectionChanged += Format_SelectionChanged;
                    Day.SelectionChanged += Format_SelectionChanged;
                    Hour.SelectionChanged += Format_SelectionChanged;
                    Minute.SelectionChanged += Format_SelectionChanged;
+                   Week.SelectionChanged += Format_SelectionChanged;
                }));
         }
 
-        private void Format_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Format_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Context.SetFormatValue((sender as ComboBox).Name, (sender as ComboBox).SelectedItem as string);
+            await Task.Delay(1000);
+            ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
         }
 
         private void Enum_SelectionChanged(object sender, SelectionChangedEventArgs e)

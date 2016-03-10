@@ -26,7 +26,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool enablePosition;
         private CitySettingsModel locatedCity;
         private List<CityInfo> cities;
-        private bool m_islocatedcurrent;
+        private bool? m_islocatedcurrent;
         private List<CitySettingsModel> newlist;
 
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
@@ -105,7 +105,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
         public CitiesInfo Info { get; private set; }
-        public bool Is_Located_Current
+        public bool? Is_Located_Current
         {
             get
             {
@@ -113,6 +113,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             set
             {
+                m_islocatedcurrent = !value;
                 SetProperty(ref m_islocatedcurrent, value);
             }
         }
@@ -153,15 +154,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             SaveAll();
         }
 
-        internal void ClearCurrent()
-        {
-            foreach (var item in Info)
-            {
-                item.IsCurrent = false;
-            }
-            Is_Located_Current = false;
-        }
-
         internal void SetCurrent(CitySettingsViewModel citySettingsViewModel)
         {
             Cities.CurrentIndex = Array.FindIndex(Cities.SavedCities, (x) =>
@@ -170,7 +162,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
             if (Cities.CurrentIndex != -1)
                 Info[Cities.CurrentIndex].IsCurrent = true;
+
         }
+
 
         internal List<CityInfo> Search_TextChanged(string text)
         {
@@ -211,7 +205,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 Cities.CurrentIndex -= 1;
             }
-            ClearCurrent();
             if (Cities.CurrentIndex == -1)
             {
                 Is_Located_Current = true;
@@ -226,6 +219,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync((work) =>
             {
+                newlist.Clear();
                 if (Array.Exists(Cities.SavedCities, x =>
             {
                 return x.Id == cityInfo.Id;
@@ -292,7 +286,7 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         private string city;
         private string id;
-        private bool isCurrent;
+        private bool? isCurrent;
 
         public CitySettingsViewModel(string city, string id, bool isCurrent)
         {
@@ -327,7 +321,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public bool IsCurrent
+        public bool? IsCurrent
         {
             get
             {
@@ -336,6 +330,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
             set
             {
+                isCurrent = !value;
                 SetProperty(ref isCurrent, value);
             }
         }

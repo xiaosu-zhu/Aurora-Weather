@@ -22,17 +22,23 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Speed = new SpeedList();
                 Length = new LengthList();
                 Pressure = new PressureList();
+                Theme = new ThemeList();
+                RefreshFreq = new RefreshFreqList();
                 Year = new FormatList();
                 Month = new FormatList();
                 Day = new FormatList();
                 Hour = new FormatList();
                 Minute = new FormatList();
+                Week = new FormatList();
+
                 Year.AddRange(Preferences.YearFormat);
                 Month.AddRange(Preferences.MonthFormat);
                 Day.AddRange(Preferences.DayFormat);
                 Hour.AddRange(Preferences.HourFormat);
                 Minute.AddRange(Preferences.MinuteFormat);
+                Week.AddRange(Preferences.WeekFormat);
                 Separator = Preferences.DateSeparator.ToString();
+
                 Temperature.SelectedIndex = Temperature.FindIndex(x =>
                 {
                     return (TemperatureParameter)x.Value == Preferences.TemperatureParameter;
@@ -53,11 +59,22 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     return (PressureParameter)x.Value == Preferences.PressureParameter;
                 });
+                Theme.SelectedIndex = Theme.FindIndex(x =>
+                {
+                    return (RequestedTheme)x.Value == Preferences.Theme;
+                });
+                RefreshFreq.SelectedIndex = RefreshFreq.FindIndex(x =>
+                {
+                    return (RefreshState)x.Value == Preferences.RefreshFrequency;
+                });
+
                 Year.SelectedIndex = (int)Preferences.YearNumber;
                 Month.SelectedIndex = (int)Preferences.MonthNumber;
                 Day.SelectedIndex = (int)Preferences.DayNumber;
                 Hour.SelectedIndex = (int)Preferences.HourNumber;
                 Minute.SelectedIndex = (int)Preferences.MinuteNumber;
+                Week.SelectedIndex = (int)Preferences.WeekNumber;
+
                 DisableDynamic = Preferences.DisableDynamic;
                 EnableAlarm = Preferences.EnableAlarm;
                 EnableSecond = Preferences.EnableImmersiveSecond;
@@ -66,6 +83,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Showtt = Preferences.DecorateNumber == 1;
                 ShowImmersivett = Preferences.ShowImmersivett;
                 EnableEveryDay = Preferences.EnableEveryDay;
+                EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
+
                 OnFetchDataComplete();
             });
         }
@@ -103,6 +122,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 Preferences.MinuteNumber = (uint)Array.IndexOf(Preferences.MinuteFormat, v);
             }
+            if(name == "Week")
+            {
+                Preferences.WeekNumber = (uint)Array.IndexOf(Preferences.WeekFormat, v);
+            }
             SaveAll();
         }
 
@@ -128,6 +151,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 Preferences.Set((PressureParameter)value);
             }
+            else if (value is RefreshState)
+            {
+                Preferences.Set((RefreshState)value);
+            }
+            else if (value is RequestedTheme)
+            {
+                Preferences.Set((RequestedTheme)value);
+            }
             SaveAll();
         }
 
@@ -151,13 +182,30 @@ namespace Com.Aurora.AuWeather.ViewModels
         public SpeedList Speed { get; private set; }
         public LengthList Length { get; private set; }
         public PressureList Pressure { get; private set; }
+        public ThemeList Theme { get; private set; }
+        public RefreshFreqList RefreshFreq { get; private set; }
 
+        public FormatList Hour { get; private set; }
+        public FormatList Minute { get; private set; }
         public FormatList Year { get; private set; }
         public FormatList Month { get; private set; }
         public FormatList Day { get; private set; }
+        public FormatList Week { get; private set; }
+
+        public string Separator { get; internal set; }
+        public bool DisableDynamic { get; private set; }
+        public bool EnableAlarm { get; private set; }
+        public bool EnableSecond { get; private set; }
+        public bool UseWeekDay { get; private set; }
+        public bool UseLunarCalendar { get; private set; }
+        public bool Showtt { get; private set; }
+        public bool ShowImmersivett { get; private set; }
+        public bool EnableEveryDay { get; private set; }
+        public bool EnablePulltoRefresh { get; private set; }
 
         internal void Settt(bool isOn)
         {
+            Showtt = isOn;
             if (isOn)
             {
                 Preferences.DecorateNumber = 1;
@@ -175,21 +223,31 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 case "UseWeekDay":
                     Preferences.UseWeekDayforForecast = isOn;
+                    UseWeekDay = isOn;
                     break;
                 case "EnableEveryDay":
                     Preferences.EnableEveryDay = isOn;
+                    EnableEveryDay = isOn;
                     break;
                 case "EnableAlarm":
                     Preferences.EnableAlarm = isOn;
+                    EnableAlarm = isOn;
                     break;
                 case "EnableSecond":
                     Preferences.EnableImmersiveSecond = isOn;
+                    EnableSecond = isOn;
                     break;
                 case "ShowImmersivett":
                     Preferences.ShowImmersivett = isOn;
+                    ShowImmersivett = isOn;
                     break;
                 case "DisableDynamic":
                     Preferences.DisableDynamic = isOn;
+                    DisableDynamic = isOn;
+                    break;
+                case "EnablePulltoRefresh":
+                    Preferences.EnablePulltoRefresh = isOn;
+                    EnablePulltoRefresh = isOn;
                     break;
                 default:
                     break;
@@ -197,17 +255,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             SaveAll();
         }
 
-        public FormatList Hour { get; private set; }
-        public FormatList Minute { get; private set; }
-        public string Separator { get; internal set; }
-        public bool DisableDynamic { get; private set; }
-        public bool EnableAlarm { get; private set; }
-        public bool EnableSecond { get; private set; }
-        public bool UseWeekDay { get; private set; }
-        public bool UseLunarCalendar { get; private set; }
-        public bool Showtt { get; private set; }
-        public bool ShowImmersivett { get; private set; }
-        public bool EnableEveryDay { get; private set; }
+
     }
 
     public class FormatList : List<string>
@@ -271,6 +319,29 @@ namespace Com.Aurora.AuWeather.ViewModels
             Add(new EnumSelector(LengthParameter.M, LengthParameter.M.GetDisplayName()));
             Add(new EnumSelector(LengthParameter.Mile, LengthParameter.Mile.GetDisplayName()));
             Add(new EnumSelector(LengthParameter.NM, LengthParameter.NM.GetDisplayName()));
+        }
+        public int SelectedIndex { get; internal set; } = 0;
+    }
+
+    public class RefreshFreqList : List<EnumSelector>
+    {
+        public RefreshFreqList()
+        {
+            Add(new EnumSelector(RefreshState.one, RefreshState.one.GetDisplayName()));
+            Add(new EnumSelector(RefreshState.two, RefreshState.two.GetDisplayName()));
+            Add(new EnumSelector(RefreshState.three, RefreshState.three.GetDisplayName()));
+            Add(new EnumSelector(RefreshState.four, RefreshState.four.GetDisplayName()));
+        }
+        public int SelectedIndex { get; internal set; } = 0;
+    }
+
+    public class ThemeList : List<EnumSelector>
+    {
+        public ThemeList()
+        {
+            Add(new EnumSelector(RequestedTheme.Auto, RequestedTheme.Auto.GetDisplayName()));
+            Add(new EnumSelector(RequestedTheme.Light, RequestedTheme.Light.GetDisplayName()));
+            Add(new EnumSelector(RequestedTheme.Dark, RequestedTheme.Dark.GetDisplayName()));
         }
         public int SelectedIndex { get; internal set; } = 0;
     }

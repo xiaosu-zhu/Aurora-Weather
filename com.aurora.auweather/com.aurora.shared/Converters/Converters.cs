@@ -1,9 +1,5 @@
 ﻿using Com.Aurora.Shared.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
@@ -12,9 +8,10 @@ namespace Com.Aurora.Shared.Converters
 {
     public class TimeSpanConverter : IValueConverter
     {
+        private static string format = @"h\:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return ((TimeSpan)value).ToString(@"h\:mm"); 
+            return ((TimeSpan)value).ToString(format);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

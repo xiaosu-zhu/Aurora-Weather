@@ -45,6 +45,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public Location(JsonContract.LocationContract basic)
         {
+            if (basic == null)
+            {
+                return;
+            }
             CultureInfo provider = CultureInfo.InvariantCulture;
             City = basic.city;
             Country = basic.cnty;

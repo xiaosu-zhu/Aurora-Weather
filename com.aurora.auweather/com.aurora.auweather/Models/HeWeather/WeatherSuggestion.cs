@@ -35,6 +35,10 @@
 
         public WeatherSuggestion(JsonContract.WeatherSuggestionContract suggestion)
         {
+            if (suggestion == null)
+            {
+                return;
+            }
             Comfortable = new Suggestion(suggestion.comf);
             CarWashing = new Suggestion(suggestion.cw);
             Dressing = new Suggestion(suggestion.drsg);

@@ -566,7 +566,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? HorizontalAlignment.Left : HorizontalAlignment.Right;
+            return (bool)value ? HorizontalAlignment.Right : HorizontalAlignment.Left;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -579,7 +579,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+            return (bool)value ? HorizontalAlignment.Left : HorizontalAlignment.Right;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -592,7 +592,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? -90 : 90;
+            return (bool)value ? 90 : -90;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -605,7 +605,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? 90 : -90;
+            return (bool)value ? -90 : 90;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -839,14 +839,26 @@ namespace Com.Aurora.Shared.Converters
 
     public class DateNowConverter : IValueConverter
     {
+        public DateNowConverter()
+        {
+            var p = Preferences.Get();
+            format = p.GetDateFormat();
+        }
+        private static string format = "yyyy-M-d dddd";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return DateTime.Now.ToString("yyyy-M-d dddd");
+            return DateTime.Now.ToString(format);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+
+        internal static void Refresh()
+        {
+            var p = Preferences.Get();
+            format = p.GetDateFormat();
         }
     }
 
@@ -1015,11 +1027,89 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
+    public class COConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Co;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class NO2Converter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).No2;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class O3Converter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).O3;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class SO2ProgressConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value as AQI).So2 > 500 ? 1 : (value as AQI).So2 / 500f;
+            return (value as AQI).So2 > 2620 ? 1 : (value as AQI).So2 / 2620f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class NO2ProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).No2 > 940 ? 1 : (value as AQI).No2 / 940f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class COProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).Co > 60 ? 1 : (value as AQI).Co / 60f;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class O3ProgressConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value as AQI).O3 > 1200 ? 1 : (value as AQI).O3 / 1200;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1045,7 +1135,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value as AQI).Pm10 > 500 ? 1 : (value as AQI).Pm10 / 500f;
+            return (value as AQI).Pm10 > 600 ? 1 : (value as AQI).Pm10 / 600f;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

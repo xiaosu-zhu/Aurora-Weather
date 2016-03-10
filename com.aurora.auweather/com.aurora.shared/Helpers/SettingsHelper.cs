@@ -219,10 +219,11 @@ namespace Com.Aurora.Shared.Helpers
 
         public static bool ReadGroupSettings<T>(this ApplicationDataContainer mainContainer, out T source)
         {
+            var type = typeof(T);
+            var obj = Activator.CreateInstance(type);
             try
             {
-                var type = typeof(T);
-                var obj = Activator.CreateInstance(type);
+
                 foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
                 {
                     if (member.PropertyType.IsArray)
@@ -259,13 +260,15 @@ namespace Com.Aurora.Shared.Helpers
                         member.SetValue(obj, DirectRead(member.Name, mainContainer));
                     }
                 }
-                source = (T)obj;
                 return true;
             }
             catch (Exception)
             {
-                source = default(T);
                 return false;
+            }
+            finally
+            {
+                source = (T)obj;
             }
         }
 

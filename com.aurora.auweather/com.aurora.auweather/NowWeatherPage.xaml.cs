@@ -128,17 +128,16 @@ namespace Com.Aurora.AuWeather
         }
         private void DetailGrid1Play()
         {
-            if (fengcheTimer != null)
-            {
-                fengcheTimer.Cancel();
-            }
             if (isImmersiveMode)
             {
                 return;
             }
             if ((detailGridAnimation_FLAG & 2) == 0)
             {
-
+                if (fengcheTimer != null)
+                {
+                    fengcheTimer.Cancel();
+                }
                 fengcheTimer = ThreadPoolTimer.CreatePeriodicTimer((work) =>
                                   {
 
@@ -601,6 +600,22 @@ namespace Com.Aurora.AuWeather
         private async void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
         {
             await Context.RefreshAsync();
+        }
+
+        private void AQIDetailButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (O3Grid.Visibility == Visibility.Collapsed)
+            {
+                O3Grid.Visibility = Visibility.Visible;
+                NO2Grid.Visibility = Visibility.Visible;
+                COGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                O3Grid.Visibility = Visibility.Collapsed;
+                NO2Grid.Visibility = Visibility.Collapsed;
+                COGrid.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

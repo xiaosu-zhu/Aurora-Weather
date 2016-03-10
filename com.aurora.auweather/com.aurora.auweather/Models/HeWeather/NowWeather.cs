@@ -39,6 +39,10 @@
 
         public NowWeather(JsonContract.NowWeatherContract now)
         {
+            if (now == null)
+            {
+                return;
+            }
             Now = new NowCondition(now.cond);
             BodyTemprature = Temperature.FromCelsius(int.Parse(now.fl));
             Precipitation = float.Parse(now.pcpn);

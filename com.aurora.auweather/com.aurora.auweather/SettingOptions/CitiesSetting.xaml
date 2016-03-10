@@ -272,6 +272,9 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateDeniedButton" Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckLocateAccessButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnText" Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
@@ -281,6 +284,9 @@
             </Storyboard>
             <Storyboard x:Name="LocateAllowed">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateDeniedButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckLocateAccessButton" Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnText" Storyboard.TargetProperty="Visibility">
@@ -320,11 +326,12 @@
                 <Grid HorizontalAlignment="Stretch">
                     <TextBlock x:Name="LocateOnText" Text="使用定位" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <ToggleSwitch x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
-                    <Button x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" Content="检查定位权限，点击刷新" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                    <Button x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" Content="定位权限被禁止" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                    <HyperlinkButton x:Name="CheckLocateAccessButton" Content="转到设置" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
                 </Grid>
                 <RelativePanel MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock x:Name="LocatedText" Opacity="0" Visibility="Collapsed" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Text="{Binding LocatedCity, Converter={StaticResource CityInfoConverter}}" Margin="8" />
-                    <ToggleButton x:Name="LocatedStar" IsChecked="{Binding Is_Located_Current}" Click="LocatedStar_Click" Opacity="0" Visibility="Collapsed" Style="{ThemeResource StarButton}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8" />
+                    <ToggleButton x:Name="LocatedStar" IsChecked="{x:Bind Context.Is_Located_Current, Mode=OneWay}" Click="LocatedStar_Click" Opacity="0" Visibility="Collapsed" Style="{ThemeResource StarButton}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8" />
                     <ProgressRing x:Name="LocatingRing" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8" />
                     <TextBlock x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Text="正在定位" Margin="8" />
                 </RelativePanel>
@@ -358,7 +365,7 @@
                         <DataTemplate x:DataType="ViewModels:CitySettingsViewModel">
                             <Grid Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4" />
-                                <ToggleButton Style="{ThemeResource StarButton}" IsChecked="{Binding IsCurrent}" x:Name="ListStarButton" Click="ListStarButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,4,40,4" />
+                                <ToggleButton Style="{ThemeResource StarButton}" IsChecked="{x:Bind IsCurrent, Mode=OneWay}" x:Name="ListStarButton" Click="ListStarButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,4,40,4" />
                                 <Button x:Name="Delete" Click="Delete_Click" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4">
                                     <Button.Content>
                                         <SymbolIcon Symbol="Cancel" />

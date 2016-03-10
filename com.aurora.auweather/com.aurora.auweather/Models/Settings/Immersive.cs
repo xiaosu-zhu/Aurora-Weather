@@ -107,11 +107,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             Immersive instance;
             var container = RoamingSettingsHelper.GetContainer("Immersive");
-            if (container.ReadGroupSettings(out instance))
-            {
-                return instance;
-            }
-            return new Immersive();
+            container.ReadGroupSettings(out instance);
+            return instance;
         }
 
         internal async Task<Uri> SaveLocalFile(string title, StorageFile file)

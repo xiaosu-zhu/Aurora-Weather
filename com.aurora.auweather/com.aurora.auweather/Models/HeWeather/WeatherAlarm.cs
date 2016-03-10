@@ -55,6 +55,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public WeatherAlarm(JsonContract.WeatherAlarmContract alarm)
         {
+            if (alarm == null)
+            {
+                return;
+            }
             Level = ParseLevel(alarm.level);
             Type = ParseType(alarm.type);
             Title = alarm.title;

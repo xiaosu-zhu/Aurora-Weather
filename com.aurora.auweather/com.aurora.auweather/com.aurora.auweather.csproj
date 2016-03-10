@@ -402,7 +402,6 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
-    <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\DailyForecastViewModel.cs" />
     <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
@@ -438,6 +437,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\ConditionPath.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

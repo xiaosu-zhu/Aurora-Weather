@@ -67,6 +67,12 @@
             <Converters:AqiCircleColorConverter x:Key="AqiCircleColorConverter" />
             <Converters:ImmersiveDateTimeConverter x:Key="ImmersiveDateTimeConverter" />
             <Converters:SuggestionBrfConverter x:Key="SuggestionBrfConverter" />
+            <Converters:COConverter x:Key="COConverter" />
+            <Converters:COProgressConverter x:Key="COProgressConverter" />
+            <Converters:NO2Converter x:Key="NO2Converter" />
+            <Converters:NO2ProgressConverter x:Key="NO2ProgressConverter" />
+            <Converters:O3ProgressConverter x:Key="O3ProgressConverter" />
+            <Converters:O3Converter x:Key="O3Converter" />
             <Converters:SuggestionTxtConverter x:Key="SuggestionTxtConverter" />
         </ResourceDictionary>
     </Page.Resources>
@@ -1076,8 +1082,11 @@
                             <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Aqi,Converter={StaticResource AQIQualityConverter}}" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Center" />
                             <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Aqi,Converter={StaticResource AQIValueConverter}}" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                         </Grid>
-                        <Grid RelativePanel.RightOf="AQICircle" Margin="12,0,20,0" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                        <Grid x:Name="AQIDetailGrid" RelativePanel.RightOf="AQICircle" Margin="12,0,20,0" RelativePanel.Above="AQIDetailButton" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -1114,7 +1123,49 @@
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                             </Grid>
+                            <Grid x:Name="COGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="3">
+                                <TextBlock Text="CO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                </TextBlock>
+                                <TextBlock x:Name="COText" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource COConverter}}" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                    <Rectangle.RenderTransform>
+                                        <ScaleTransform x:Name="COTransform" ScaleX="{Binding Aqi, Converter={StaticResource COProgressConverter}}" ScaleY="1" />
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Grid>
+                            <Grid x:Name="NO2Grid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="4">
+                                <TextBlock Text="NO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <Run Typography.Variants="Subscript" Text="2" />
+                                </TextBlock>
+                                <TextBlock x:Name="NO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource NO2Converter}}" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                    <Rectangle.RenderTransform>
+                                        <ScaleTransform x:Name="NO2Transform" ScaleX="{Binding Aqi, Converter={StaticResource NO2ProgressConverter}}" ScaleY="1" />
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Grid>
+                            <Grid x:Name="O3Grid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="5">
+                                <TextBlock Text="O" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <Run Typography.Variants="Subscript" Text="3" />
+                                </TextBlock>
+                                <TextBlock x:Name="O3Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource O3Converter}}" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                    <Rectangle.RenderTransform>
+                                        <ScaleTransform x:Name="O3Transform" ScaleX="{Binding Aqi, Converter={StaticResource O3ProgressConverter}}" ScaleY="1" />
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Grid>
                         </Grid>
+                        <Button x:Name="AQIDetailButton" Style="{ThemeResource TextBlockButtonStyle}" Click="AQIDetailButton_Click" RelativePanel.RightOf="AQICircle" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="48" >
+                            <Button.Content>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <SymbolIcon HorizontalAlignment="Center" VerticalAlignment="Center" Symbol="More" />
+                                </Grid>
+                            </Button.Content>
+                        </Button>
                     </RelativePanel>
                     <Grid x:Name="DetailsPanel" SizeChanged="Grid_SizeChanged" RelativePanel.Below="AQIPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Grid.ChildrenTransitions>

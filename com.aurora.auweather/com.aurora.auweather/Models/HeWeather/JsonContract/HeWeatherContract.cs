@@ -16,7 +16,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
         [DataMember]
         public WeatherAlarmContract[] alarms { get; set; } //灾害预警，若所在城市无预警则不显示该字段，仅限国内城市
         [DataMember]
-        public AQICpntract aqi { get; set; } //空气质量，仅限国内城市
+        public AQIContract aqi { get; set; } //空气质量，仅限国内城市
         [DataMember]
         public LocationContract basic { get; set; } //基本信息
         [DataMember]

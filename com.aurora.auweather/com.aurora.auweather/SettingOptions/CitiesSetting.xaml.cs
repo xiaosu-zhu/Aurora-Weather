@@ -77,11 +77,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
             var accessStatus = await Geolocator.RequestAccessAsync();
             if (accessStatus == GeolocationAccessStatus.Allowed)
             {
+                LocateAllowed.Begin();
                 if (Context.EnablePosition)
                 {
-
-
-                    LocateAllowed.Begin();
                     _geolocator = new Geolocator();
                     _geolocator.StatusChanged += OnStatusChanged;
                     ShowRefreshing();
@@ -90,14 +88,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 }
                 else
                 {
-                    Context.EnablePosition = false;
                     HidePos();
                 }
 
             }
             else
             {
-                Context.EnablePosition = false;
                 DeniePos();
             }
         }
@@ -183,17 +179,28 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            ClearSelect();
             Context.DeleteCity((sender as Button).DataContext as CitySettingsViewModel);
         }
+
+        private void ClearSelect()
+        {
+            foreach (var item in CitiesList.Items)
+            {
+                (item as CitySettingsViewModel).IsCurrent = false;
+            }
+            Context.Is_Located_Current = false;
+        }
+
         private void ListStarButton_Click(object sender, RoutedEventArgs e)
         {
-            Context.ClearCurrent();
+            ClearSelect();
             Context.SetCurrent((sender as ToggleButton).DataContext as CitySettingsViewModel);
         }
 
         private void LocatedStar_Click(object sender, RoutedEventArgs e)
         {
-            Context.ClearCurrent();
+            ClearSelect();
             Context.SetCurrent_Locate();
         }
 

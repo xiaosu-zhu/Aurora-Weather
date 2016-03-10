@@ -4,8 +4,12 @@
     public class AQI
     {
 
-        public AQI(HeWeather.JsonContract.AQICpntract aqi)
+        public AQI(HeWeather.JsonContract.AQIContract aqi)
         {
+            if (aqi == null)
+            {
+                return;
+            }
             Aqi = uint.Parse(aqi.city.aqi);
             Co = uint.Parse(aqi.city.co);
             No2 = uint.Parse(aqi.city.no2);

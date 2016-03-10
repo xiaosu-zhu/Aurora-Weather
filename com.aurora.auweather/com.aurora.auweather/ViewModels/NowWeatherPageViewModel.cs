@@ -111,6 +111,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string glance;
         private CitySettingsModel currentCityModel;
         private CitySettingsModel[] citys;
+        private int todayIndex;
+        private int nowHourIndex;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1096,7 +1098,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 storedDatas = default(KeyValuePair<string, string>);
                 await FetchDataAsync();
-                CalcCalendar();
             }
             catch (ArgumentNullException)
             {
@@ -1106,6 +1107,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 InitialViewModel();
+                
             }));
         }
 
@@ -1117,7 +1119,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     ReadSettings();
                     await FetchDataAsync();
-                    CalcCalendar();
+
                     GenerateGlance();
                 }
                 catch (ArgumentNullException)
@@ -1143,7 +1145,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void CalcCalendar()
         {
-            calendar = new CalendarInfo(fetchresult.Location.UpdateTime);
+            calendar = new CalendarInfo(CurrentTime);
             moonPhase = Calendar.LunarDay / 30d;
         }
 
@@ -1174,9 +1176,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 await Task.Delay(5000);
                 resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
 #else
-                var keys = (await FileIOHelper.ReadStringFromAssets("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKey("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);    
+                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+
 #endif
                 var resjson1 = HeWeatherContract.Generate(resstr);
                 fetchresult = new HeWeatherModel(resjson1);
@@ -1222,83 +1225,94 @@ namespace Com.Aurora.AuWeather.ViewModels
             var g = glance;
             glance = null;
             Glance = g;
+
             SetTime();
-            CalculatePath();
-            SetHourlyTemp();
+
             SetHour();
-            SetProportion();
             SetDailyForecast();
+
             SetSuggestion();
+
+            CalcCalendar();
+
             var c = currentCity;
             currentCity = null;
             City = c;
+
             SetNow();
+            
             NotifyFetchDataComplete();
         }
         #region Set Properties
         private void SetDailyForecast()
         {
-            //json 中第一个dailyforecast 是今天的
+            // 下面这货是傻逼，只有上帝知道第几个是今天的
+            // json 中第一个dailyforecast 是今天的
+
             if (!IsNight)
             {
-                Forecast0 = fetchresult.DailyForecast[1].Condition.DayCond;
-                Forecast1 = fetchresult.DailyForecast[2].Condition.DayCond;
-                Forecast2 = fetchresult.DailyForecast[3].Condition.DayCond;
-                Forecast3 = fetchresult.DailyForecast[4].Condition.DayCond;
-                Forecast4 = fetchresult.DailyForecast[5].Condition.DayCond;
+                Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.DayCond;
+                Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.DayCond;
+                Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.DayCond;
+                Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
+                Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
             }
             else
             {
-                Forecast0 = fetchresult.DailyForecast[1].Condition.NightCond;
-                Forecast1 = fetchresult.DailyForecast[2].Condition.NightCond;
-                Forecast2 = fetchresult.DailyForecast[3].Condition.NightCond;
-                Forecast3 = fetchresult.DailyForecast[4].Condition.NightCond;
-                Forecast4 = fetchresult.DailyForecast[5].Condition.NightCond;
+                Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.NightCond;
+                Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.NightCond;
+                Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.NightCond;
+                Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
+                Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
             }
-            ForecastDate1 = fetchresult.DailyForecast[2].Date;
-            ForecastDate2 = fetchresult.DailyForecast[3].Date;
-            ForecastDate3 = fetchresult.DailyForecast[4].Date;
-            ForecastDate4 = fetchresult.DailyForecast[5].Date;
-            Forecast0H = fetchresult.DailyForecast[1].HighTemp;
-            Forecast0L = fetchresult.DailyForecast[1].LowTemp;
-            Forecast1H = fetchresult.DailyForecast[2].HighTemp;
-            Forecast1L = fetchresult.DailyForecast[2].LowTemp;
-            Forecast2H = fetchresult.DailyForecast[3].HighTemp;
-            Forecast2L = fetchresult.DailyForecast[3].LowTemp;
-            Forecast3H = fetchresult.DailyForecast[4].HighTemp;
-            Forecast3L = fetchresult.DailyForecast[4].LowTemp;
-            Forecast4H = fetchresult.DailyForecast[5].HighTemp;
-            Forecast4L = fetchresult.DailyForecast[5].LowTemp;
+            ForecastDate1 = fetchresult.DailyForecast[todayIndex + 2].Date;
+            ForecastDate2 = fetchresult.DailyForecast[todayIndex + 3].Date;
+            ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
+            ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
+            Forecast0H = fetchresult.DailyForecast[todayIndex + 1].HighTemp;
+            Forecast0L = fetchresult.DailyForecast[todayIndex + 1].LowTemp;
+            Forecast1H = fetchresult.DailyForecast[todayIndex + 2].HighTemp;
+            Forecast1L = fetchresult.DailyForecast[todayIndex + 2].LowTemp;
+            Forecast2H = fetchresult.DailyForecast[todayIndex + 3].HighTemp;
+            Forecast2L = fetchresult.DailyForecast[todayIndex + 3].LowTemp;
+            Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
+            Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
+            Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
+            Forecast4L = fetchresult.DailyForecast[todayIndex + 5].LowTemp;
         }
 
         private void SetProportion()
         {
-            Pop0 = fetchresult.HourlyForecast[0].Pop / 100f;
-            Pop1 = fetchresult.HourlyForecast[1].Pop / 100f;
-            Pop2 = fetchresult.HourlyForecast[2].Pop / 100f;
-            Pop3 = fetchresult.HourlyForecast[3].Pop / 100f;
-            Pop4 = fetchresult.HourlyForecast[4].Pop / 100f;
-            Pop5 = fetchresult.HourlyForecast[5].Pop / 100f;
+            Pop0 = fetchresult.HourlyForecast[nowHourIndex + 0].Pop / 100f;
+            Pop1 = fetchresult.HourlyForecast[nowHourIndex + 1].Pop / 100f;
+            Pop2 = fetchresult.HourlyForecast[nowHourIndex + 2].Pop / 100f;
+            Pop3 = fetchresult.HourlyForecast[nowHourIndex + 3].Pop / 100f;
+            Pop4 = fetchresult.HourlyForecast[nowHourIndex + 4].Pop / 100f;
+            Pop5 = fetchresult.HourlyForecast[nowHourIndex + 5].Pop / 100f;
         }
 
         private void SetHour()
         {
-            Hour0 = fetchresult.HourlyForecast[0].DateTime;
-            Hour1 = fetchresult.HourlyForecast[1].DateTime;
-            Hour2 = fetchresult.HourlyForecast[2].DateTime;
-            Hour3 = fetchresult.HourlyForecast[3].DateTime;
-            Hour4 = fetchresult.HourlyForecast[4].DateTime;
-            Hour5 = fetchresult.HourlyForecast[5].DateTime;
+            Hour0 = fetchresult.HourlyForecast[nowHourIndex].DateTime;
+            Hour1 = fetchresult.HourlyForecast[nowHourIndex + 1].DateTime;
+            Hour2 = fetchresult.HourlyForecast[nowHourIndex + 2].DateTime;
+            Hour3 = fetchresult.HourlyForecast[nowHourIndex + 3].DateTime;
+            Hour4 = fetchresult.HourlyForecast[nowHourIndex + 4].DateTime;
+            Hour5 = fetchresult.HourlyForecast[nowHourIndex + 5].DateTime;
+            SetHourlyTemp();
+            CalculatePath();
+            SetProportion();
+
         }
 
         private void SetHourlyTemp()
         {
-            HourlyTemp0 = fetchresult.HourlyForecast[0].Temprature;
-            HourlyTemp1 = fetchresult.HourlyForecast[1].Temprature;
-            HourlyTemp2 = fetchresult.HourlyForecast[2].Temprature;
-            HourlyTemp3 = fetchresult.HourlyForecast[3].Temprature;
-            HourlyTemp4 = fetchresult.HourlyForecast[4].Temprature;
-            HourlyTemp5 = fetchresult.HourlyForecast[5].Temprature;
+            HourlyTemp0 = fetchresult.HourlyForecast[nowHourIndex].Temprature;
+            HourlyTemp1 = fetchresult.HourlyForecast[nowHourIndex + 1].Temprature;
+            HourlyTemp2 = fetchresult.HourlyForecast[nowHourIndex + 2].Temprature;
+            HourlyTemp3 = fetchresult.HourlyForecast[nowHourIndex + 3].Temprature;
+            HourlyTemp4 = fetchresult.HourlyForecast[nowHourIndex + 4].Temprature;
+            HourlyTemp5 = fetchresult.HourlyForecast[nowHourIndex + 5].Temprature;
         }
 
         private void CalculatePath()
@@ -1306,7 +1320,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             List<float> pathResults = new List<float>();
             for (int i = 0; i < 6; i++)
             {
-                pathResults.Add(fetchresult.HourlyForecast[i].Temprature.Celsius);
+                pathResults.Add(fetchresult.HourlyForecast[i + nowHourIndex].Temprature.Celsius);
             }
             var min = 0f;
             var max = min;
@@ -1345,12 +1359,12 @@ namespace Com.Aurora.AuWeather.ViewModels
             calendar = null;
             Calendar = c;
             Temprature = fetchresult.NowWeather.Temprature;
-            NowH = fetchresult.DailyForecast[0].HighTemp;
-            NowL = fetchresult.DailyForecast[0].LowTemp;
+            NowH = fetchresult.DailyForecast[todayIndex].HighTemp;
+            NowL = fetchresult.DailyForecast[todayIndex].LowTemp;
             BodyTemprature = fetchresult.NowWeather.BodyTemprature;
-            Humidity = fetchresult.HourlyForecast[0].Humidity;
+            Humidity = fetchresult.HourlyForecast[nowHourIndex].Humidity;
             Precipitation = fetchresult.NowWeather.Precipitation;
-            Proportion = fetchresult.HourlyForecast[0].Pop;
+            Proportion = fetchresult.HourlyForecast[nowHourIndex].Pop;
             Pressure = fetchresult.NowWeather.Pressure;
             Visibility = fetchresult.NowWeather.Visibility;
             Aqi = fetchresult.Aqi;
@@ -1369,12 +1383,26 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void SetTime()
         {
+#if DEBUG
+            todayIndex = 0;
+            nowHourIndex = 0;
+#else
+            todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
+            {
+                return (x.Date - DateTime.Now).TotalHours > 0;
+            });
+            nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
+            {
+                return (x.DateTime - DateTime.Now).TotalHours > 0;
+            }
+                 );
+#endif
             UpdateTime = fetchresult.Location.UpdateTime;
             currentTimeZone = DateTimeHelper.GetTimeZone(UpdateTime, fetchresult.Location.UtcTime);
             RefreshCurrentTime();
             CurrentTimeRefreshTask();
-            SunRise = fetchresult.DailyForecast[0].SunRise;
-            SunSet = fetchresult.DailyForecast[0].SunSet;
+            SunRise = fetchresult.DailyForecast[todayIndex].SunRise;
+            SunSet = fetchresult.DailyForecast[todayIndex].SunSet;
             IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
         }
 
@@ -1450,7 +1478,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             if (!settings.Cities.SavedCities.IsNullorEmpty())
             {
                 var currentTime = DateTime.Now;
-                if ((currentTime - currentCityModel.LastUpdate).TotalMinutes <= 15)
+                if ((currentTime - currentCityModel.LastUpdate).TotalMinutes <= 150)
                 {
                     try
                     {
@@ -1485,13 +1513,13 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 currentCityModel = new CitySettingsModel();
                 currentCityModel.City = "北京";
-                currentCityModel.Id = "CA1000011";
+                currentCityModel.Id = "CN101010100";
                 currentCityModel.LastUpdate = DateTime.Now;
                 currentCity = "北京";
-                currentId = "CA1000011";
+                currentId = "CN101010100";
                 citys = new CitySettingsModel[] { new CitySettingsModel() };
                 citys[0].City = "北京";
-                citys[0].Id = "CA1000011";
+                citys[0].Id = "CN101010100";
                 citys[0].LastUpdate = DateTime.Now;
                 settings.Cities.Pick(0);
                 settings.Cities.Set(citys);

@@ -11,17 +11,20 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public WindParameter WindParameter { get; private set; } = WindParameter.SpeedandText;
 
         public bool EnableEveryDay { get; set; } = false;
+        public RefreshState RefreshFrequency { get; private set; } = RefreshState.one;
+        public RequestedTheme Theme { get; private set; } = RequestedTheme.Auto;
 
         public bool DisableDynamic { get; set; } = false;
         public bool EnableImmersiveSecond { get; set; } = false;
         public bool UseLunarCalendarPrimary { get; set; } = false;
         public bool EnableAlarm { get; set; } = false;
         public bool UseWeekDayforForecast { get; set; } = false;
+        public bool EnablePulltoRefresh { get; set; } = false;
 
         public readonly string[] YearFormat = new string[] { " ", "yy", "yyyy" };
         public readonly string[] MonthFormat = new string[] { " ", "M", "MM" };
         public readonly string[] DayFormat = new string[] { " ", "d", "dd" };
-        public readonly string[] WeekFormat = new string[] { " ", "dddd" };
+        public readonly string[] WeekFormat = new string[] { " ", "ddd", "dddd" };
         public readonly string[] HourFormat = new string[] { "H", "HH", "h", "hh" };
         public readonly string[] MinuteFormat = new string[] { "m", "mm" };
         public readonly string[] DecorateFormat = new string[] { " ", "tt" };
@@ -40,11 +43,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             Preferences ins;
             var container = RoamingSettingsHelper.GetContainer("Preferences");
-            if (container.ReadGroupSettings(out ins))
-            {
-                return ins;
-            }
-            return new Preferences();
+            container.ReadGroupSettings(out ins);
+            return ins;
         }
 
         public void Set(TemperatureParameter t)
@@ -67,6 +67,15 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             WindParameter = w;
         }
+        public void Set(RefreshState r)
+        {
+            RefreshFrequency = r;
+        }
+        public void Set(RequestedTheme r)
+        {
+            Theme = r;
+        }
+
 
         public void Save()
         {
@@ -74,25 +83,20 @@ namespace Com.Aurora.AuWeather.Models.Settings
             container.WriteGroupSettings(this);
         }
 
-        public string GetTimeFormat()
-        {
-            return (DecorateFormat[DecorateNumber] + "  " + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
-        }
-
         internal string GetHourlyFormat()
         {
-            return HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber];
+            return (DecorateFormat[DecorateNumber] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
         }
 
         public string GetImmersiveFormat()
         {
             if (EnableImmersiveSecond)
             {
-                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "  " + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber] + ":ss").Trim();
+                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber] + ":ss").Trim();
             }
             else
             {
-                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "  " + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
+                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
             }
         }
 
@@ -102,6 +106,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 return MonthFormat[MonthNumber] + DateSeparator + DayFormat[DayNumber];
             else
             {
+                if (WeekNumber > 0)
+                {
+                    return WeekFormat[WeekNumber];
+                }
                 return "dddd";
             }
         }
@@ -110,7 +118,5 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             return (YearFormat[YearNumber] + DateSeparator + MonthFormat[MonthNumber] + DateSeparator + DayFormat[DayNumber] + "  " + WeekFormat[WeekNumber]).Trim();
         }
-
-
     }
 }

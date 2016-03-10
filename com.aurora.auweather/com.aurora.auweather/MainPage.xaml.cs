@@ -11,6 +11,7 @@ using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Diagnostics;
 using System.Linq;
+using Com.Aurora.Shared.Converters;
 
 namespace Com.Aurora.AuWeather
 {
@@ -76,6 +77,13 @@ namespace Com.Aurora.AuWeather
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
+        }
+
+        internal void ReCalcPaneFormat()
+        {
+            this.DataContext = null;
+            DateNowConverter.Refresh();
+            this.DataContext = new MainPageViewModel();
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

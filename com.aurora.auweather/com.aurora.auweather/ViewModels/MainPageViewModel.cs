@@ -25,6 +25,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         public Pane()
         {
             Add(new PaneOption(Symbol.Favorite, "Now", typeof(NowWeatherPage)));
+            
+            Add(new PaneOption(Symbol.World, "Cities", typeof(CitiesPage)));
             Add(new PaneOption(Symbol.Setting, "Settings", typeof(SettingsPage)));
         }
     }

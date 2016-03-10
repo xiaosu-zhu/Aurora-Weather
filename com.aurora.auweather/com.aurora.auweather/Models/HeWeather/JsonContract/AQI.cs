@@ -3,7 +3,7 @@
 namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
 {
     [DataContract]
-    public class AQICpntract
+    public class AQIContract
     {
         [DataMember]
         public AQICityContract city; //json格式如此，必须整个类

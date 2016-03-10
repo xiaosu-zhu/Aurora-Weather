@@ -26,11 +26,11 @@ namespace Com.Aurora.AuWeather.Models
         {
             get
             {
-                return length / 1000;
+                return length * 1000;
             }
             set
             {
-                length = value * 1000;
+                length = value / 1000;
             }
         }
 
