@@ -512,7 +512,7 @@ namespace Com.Aurora.AuWeather
         }
         #endregion
 
-        private void ImmersiveButton_Click(object sender, RoutedEventArgs e)
+        private async void ImmersiveButton_Click(object sender, RoutedEventArgs e)
         {
             isImmersiveMode = true;
             ImmersiveWidthIn.From = MainCanvas.ActualWidth;
@@ -534,11 +534,14 @@ namespace Com.Aurora.AuWeather
                 }, TimeSpan.FromSeconds(1));
             };
             ImmersiveTransAni.Begin();
+
             if (fengcheTimer != null)
             {
                 fengcheTimer.Cancel();
                 detailGridAnimation_FLAG -= 2;
             }
+            await Task.Delay(1000);
+            WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
         }
 
         private void MainCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -595,6 +598,7 @@ namespace Com.Aurora.AuWeather
             };
             ImmersiveBackAni.Begin();
             isImmersiveMode = false;
+            WeatherCanvas.ImmersiveOut();
         }
 
         private async void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
@@ -617,5 +621,6 @@ namespace Com.Aurora.AuWeather
                 COGrid.Visibility = Visibility.Collapsed;
             }
         }
+
     }
 }

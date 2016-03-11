@@ -192,10 +192,14 @@
                                 <ToggleSwitch x:Name="EnableAlarm" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                         </Grid>
-                        <Grid HorizontalAlignment="Left" >
-                            <TextBlock Text="强制开启下拉刷新" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                            <ToggleSwitch x:Name="EnablePulltoRefresh" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Left" >
+                                <TextBlock Text="强制开启下拉刷新" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <ToggleSwitch x:Name="EnablePulltoRefresh" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            </Grid>
+                            <TextBlock Text="实验性功能" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                        </StackPanel>
+
                         <Grid HorizontalAlignment="Stretch" >
                             <TextBlock Text="自动刷新间隔" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
                             <ComboBox x:Name="RefreshFreq" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
@@ -236,7 +240,7 @@
                                 <TextBlock Text="减弱动态效果" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" Toggled="Bool_Toggled" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
-                            <TextBlock Text="这将关闭动态天气，减弱干扰" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                            <TextBlock Text="这将关闭动态天气，并减少内存占用" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

@@ -5,6 +5,7 @@ using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.System.Threading;
 
 namespace Com.Aurora.AuWeather.Models
 {
@@ -25,9 +26,12 @@ namespace Com.Aurora.AuWeather.Models
 
         internal void SaveSettings()
         {
-            Cities.Save();
-            Immersive.Save();
-            Preferences.Save();
+            var task = ThreadPool.RunAsync((work) =>
+             {
+                 Cities.Save();
+                 Immersive.Save();
+                 Preferences.Save();
+             });
         }
     }
 

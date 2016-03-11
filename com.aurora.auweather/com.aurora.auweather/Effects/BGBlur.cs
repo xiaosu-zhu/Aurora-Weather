@@ -29,6 +29,7 @@ namespace Com.Aurora.AuWeather.Effects
         {
             tempSurface = await CanvasBitmap.LoadAsync(creator, stream);
             bound = tempSurface.Bounds;
+            center = tempSurface.Size.ToVector2() / 2;
             blur.Source = tempSurface;
         }
 
@@ -38,6 +39,7 @@ namespace Com.Aurora.AuWeather.Effects
             {
                 scale.X = (float)(size.X / bound.Width > size.Y / bound.Height ? size.X / bound.Width : size.Y / bound.Height);
                 scale.Y = scale.X;
+                position = size / 2;
                 if (isImmersive)
                 {
                     nowFrame++;
@@ -47,7 +49,7 @@ namespace Com.Aurora.AuWeather.Effects
                 else if (nowFrame != 0)
                 {
                     nowFrame -= 1;
-                    opacity = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseIn, (double)nowFrame / inFrames);
+                    opacity = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)nowFrame / inFrames);
                     if (nowFrame == 0)
                     {
                         canDraw = false;
@@ -63,7 +65,7 @@ namespace Com.Aurora.AuWeather.Effects
                 else if (blurFrame != 0)
                 {
                     blurFrame -= 1;
-                    blur.BlurAmount = 16f * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseIn, (double)blurFrame / inFrames);
+                    blur.BlurAmount = 16f * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)blurFrame / inFrames);
                 }
             }
         }
@@ -105,11 +107,10 @@ namespace Com.Aurora.AuWeather.Effects
             // Compute a transform matrix for this particle.
             if (canDraw)
             {
-                var transform = Matrix3x2.CreateRotation(0f, center) *
-                    Matrix3x2.CreateScale(scale.X, scale.Y, center) *
+                var transform = Matrix3x2.CreateScale(scale.X, scale.Y, center) *
                     Matrix3x2.CreateTranslation(position - center);
                 if (enableBlur)
-                    drawingSession.DrawImage(blur, new Rect(0, 0, bound.Width * scale.X, bound.Height * scale.Y), bound);
+                    drawingSession.DrawImage(blur, new Rect(position.X - (bound.Width * scale.X) / 2, position.Y - (bound.Height * scale.Y) / 2, bound.Width * scale.X, bound.Height * scale.Y), bound);
                 else
                     drawingSession.DrawImage(tempSurface, 0f, 0f, bound, opacity, CanvasImageInterpolation.Linear, new Matrix4x4(transform));
             }

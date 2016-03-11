@@ -153,6 +153,166 @@ namespace Com.Aurora.AuWeather.Models.Settings
             container.WriteGroupSettings(this);
         }
 
+        public async Task<Uri> GetCurrentBackgroundAsync(WeatherCondition condition, bool isNight)
+        {
+            Uri uri;
+            switch (condition)
+            {
+                case WeatherCondition.unknown:
+                    return null;
+                case WeatherCondition.sunny:
+                case WeatherCondition.windy:
+                case WeatherCondition.calm:
+                case WeatherCondition.light_breeze:
+                case WeatherCondition.moderate:
+                case WeatherCondition.fresh_breeze:
+                case WeatherCondition.strong_breeze:
+                case WeatherCondition.high_wind:
+                case WeatherCondition.gale:
+                case WeatherCondition.hot:
+                    if (isNight)
+                    {
+                        if (Starry == ImmersiveBackgroundState.Assets)
+                        {
+                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(starry, StarryPicked);
+                        }
+                        else if (Starry == ImmersiveBackgroundState.Local)
+                        {
+                            uri = await FileIOHelper.GetFileUriFromLocalAsync(starry, local);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        if (Sunny == ImmersiveBackgroundState.Assets)
+                        {
+                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(sunny, SunnyPicked);
+                        }
+                        else if (Sunny == ImmersiveBackgroundState.Local)
+                        {
+                            uri = await FileIOHelper.GetFileUriFromLocalAsync(sunny, local);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    break;
+                case WeatherCondition.cloudy:
+                case WeatherCondition.few_clouds:
+                case WeatherCondition.partly_cloudy:
+                case WeatherCondition.overcast:
+                    if (Cloudy == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(cloudy, CloudyPicked);
+                    }
+                    else if (Cloudy == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(cloudy, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                case WeatherCondition.strong_gale:
+                case WeatherCondition.storm:
+                case WeatherCondition.violent_storm:
+                case WeatherCondition.hurricane:
+                case WeatherCondition.tornado:
+                case WeatherCondition.tropical_storm:
+                case WeatherCondition.shower_rain:
+                case WeatherCondition.heavy_shower_rain:
+                case WeatherCondition.thundershower:
+                case WeatherCondition.heavy_thunderstorm:
+                case WeatherCondition.hail:
+                case WeatherCondition.light_rain:
+                case WeatherCondition.moderate_rain:
+                case WeatherCondition.heavy_rain:
+                case WeatherCondition.extreme_rain:
+                case WeatherCondition.drizzle_rain:
+                case WeatherCondition.storm_rain:
+                case WeatherCondition.heavy_storm_rain:
+                case WeatherCondition.severe_storm_rain:
+                case WeatherCondition.freezing_rain:
+                    if (Rainny == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(rainny, RainnyPicked);
+                    }
+                    else if (Rainny == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(rainny, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                case WeatherCondition.light_snow:
+                case WeatherCondition.moderate_snow:
+                case WeatherCondition.heavy_snow:
+                case WeatherCondition.snowstorm:
+                case WeatherCondition.sleet:
+                case WeatherCondition.rain_snow:
+                case WeatherCondition.shower_snow:
+                case WeatherCondition.snow_flurry:
+                case WeatherCondition.cold:
+                    if (Snowy == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(snowy, SnowyPicked);
+                    }
+                    else if (Snowy == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(snowy, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                case WeatherCondition.mist:
+                case WeatherCondition.foggy:
+                    if (Foggy == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(foggy, FoggyPicked);
+                    }
+                    else if (Foggy == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(foggy, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                case WeatherCondition.haze:
+                case WeatherCondition.sand:
+                case WeatherCondition.dust:
+                case WeatherCondition.volcanic_ash:
+                case WeatherCondition.duststorm:
+                case WeatherCondition.sandstorm:
+                    if (Haze == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(haze, HazePicked);
+                    }
+                    else if (Haze == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(haze, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                default:
+                    return null;
+            }
+            return uri;
+        }
+
         public void Pick(string name, int number)
         {
             switch (name)
@@ -188,42 +348,6 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 default:
                     break;
             }
-        }
-
-        private static async Task<List<string>> Getstring(string path)
-        {
-            var list = new List<string>();
-            IReadOnlyList<StorageFile> files;
-            try
-            {
-                files = await FileIOHelper.GetFilesFromAssetsAsync(path);
-            }
-            catch (Exception)
-            {
-                files = null;
-            }
-
-            AddPath(path, false, files, list);
-            try
-            {
-                files = await FileIOHelper.GetFilesFromLocalAsync(path);
-            }
-            catch (Exception)
-            {
-                files = null;
-            }
-            AddPath(path, true, files, list);
-            return list;
-        }
-
-        private static void AddPath(string path, bool isLocal, IReadOnlyList<StorageFile> files, List<string> list)
-        {
-            if (files != null)
-                foreach (var f in files)
-                {
-                    var s = isLocal ? "l" : "";
-                    list.Add(s + path + "\\" + f.Name);
-                }
         }
 
         internal void CheckLocal(string title, Uri lUri)

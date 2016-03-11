@@ -82,26 +82,15 @@ namespace Com.Aurora.AuWeather.CustomControls
                 weatherCanvas.star = new StarParticleSystem();
                 weatherCanvas.smoke = new SmokeParticleSystem();
                 weatherCanvas.rain = new RainParticleSystem();
-                weatherCanvas.backBlur = new BackBlur();
                 weatherCanvas.thunderGen = new ThunderGenerator();
-                weatherCanvas.Canvas.Draw += weatherCanvas.Canvas_Draw;
-                weatherCanvas.Canvas.Update += weatherCanvas.Canvas_Update;
+                weatherCanvas.ChangeCondition(weatherCanvas.condition, weatherCanvas.isNight, weatherCanvas.isSummer);
             }
             else
             {
-                weatherCanvas.Canvas.Draw -= weatherCanvas.Canvas_Draw;
-                weatherCanvas.Canvas.Update -= weatherCanvas.Canvas_Update;
                 weatherCanvas.sun.Dispose();
                 weatherCanvas.star.Dispose();
                 weatherCanvas.smoke.smokeDispose();
                 weatherCanvas.rain.Dispose();
-                weatherCanvas.backBlur.Dispose();
-                weatherCanvas.sun = null;
-                weatherCanvas.star = null;
-                weatherCanvas.smoke = null;
-                weatherCanvas.rain = null;
-                weatherCanvas.backBlur = null;
-                weatherCanvas.thunderGen = null;
             }
         }
 
@@ -187,18 +176,25 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             using (var ds = args.DrawingSession)
             {
-                backBlur.Draw(ds);
-                if ((!isRain) && isNight)
-                    star.Draw(ds, useSpriteBatch);
-                if (isThunder)
-                    thunderGen.Draw(sender, args.DrawingSession);
-                if (isCloudy || isRain || isThunder || isHaze || isFog)
-                    smoke.Draw(ds, useSpriteBatch);
-                if (isRain)
-                    rain.Draw(ds, useSpriteBatch);
-                if (isSunny)
+                try
                 {
-                    sun.Draw(ds, useSpriteBatch);
+                    backBlur.Draw(ds);
+                    if ((!isRain) && isNight)
+                        star.Draw(ds, useSpriteBatch);
+                    if (isThunder)
+                        thunderGen.Draw(sender, args.DrawingSession);
+                    if (isCloudy || isRain || isThunder || isHaze || isFog)
+                        smoke.Draw(ds, useSpriteBatch);
+                    if (isRain)
+                        rain.Draw(ds, useSpriteBatch);
+                    if (isSunny)
+                    {
+                        sun.Draw(ds, useSpriteBatch);
+                    }
+                }
+                catch (Exception)
+                {
+
                 }
             }
         }
@@ -581,13 +577,29 @@ namespace Com.Aurora.AuWeather.CustomControls
         }
         #endregion
 
-        public void ImmersiveIn()
+        internal void ImmersiveIn(Uri uri)
         {
-
+            if (uri == null)
+            {
+                backBlur.ImmersiveOut();
+                return;
+            }
+            var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                        {
+                            using (var stream = await FileIOHelper.ReadRandomAccessStreamByUriAsync(uri))
+                            {
+                                await backBlur.LoadSurfaceAsync(Canvas, stream);
+                            }
+                            backBlur.ImmersiveIn();
+                        });
         }
-        public void ImmersiveOut()
-        {
 
+        internal void ImmersiveOut()
+        {
+            var task = Canvas.RunOnGameLoopThreadAsync(() =>
+            {
+                backBlur.ImmersiveOut();
+            });
         }
     }
 }

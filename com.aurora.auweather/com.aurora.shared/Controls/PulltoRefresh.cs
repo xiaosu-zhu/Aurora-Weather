@@ -285,7 +285,29 @@ namespace Com.Aurora.Shared.Controls
         }
         // Using a DependencyProperty as the backing store for ForceEnabled.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ForceEnabledProperty =
-            DependencyProperty.Register("ForceEnabled", typeof(bool), typeof(PulltoRefresh), new PropertyMetadata(false));
+            DependencyProperty.Register("ForceEnabled", typeof(bool), typeof(PulltoRefresh), new PropertyMetadata(false, new PropertyChangedCallback(OnForceEnabledChanged)));
+
+        private static void OnForceEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var p = d as PulltoRefresh;
+            if ((bool)e.NewValue)
+            {
+                p.Root.ManipulationDelta += p.Root_ManipulationDelta;
+                p.Root_Loaded(null, null);
+                p.Root.PointerPressed += p.Root_PointerPressed;
+                p.Root.PointerReleased += p.Root_PointerReleased;
+                p.Root.PointerCanceled += p.Root_PointerReleased;
+                p.Root.PointerCaptureLost += p.Root_PointerReleased;
+                p.Root.PointerExited += p.Root_PointerReleased;
+                p.Main.LayoutUpdated += p.Main_LayoutUpdated;
+                p.Main.PointerPressed += p.Root_PointerPressed;
+                p.Main.VerticalScrollMode = ScrollMode.Disabled;
+                p.Main.PointerWheelChanged += p.Main_PointerWheelChanged;
+                p.Main.VerticalScrollMode = ScrollMode.Disabled;
+                p.Indicator.Visibility = Visibility.Visible;
+                p.Main.ManipulationMode = ManipulationModes.All;
+            }
+        }
 
         public ScrollBarVisibility VerticalScrollBarVisibility
         {

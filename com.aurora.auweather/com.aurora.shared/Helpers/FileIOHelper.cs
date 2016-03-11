@@ -197,6 +197,28 @@ namespace Com.Aurora.Shared.Helpers
             return await FileIO.ReadTextAsync(file);
         }
 
+        public static async Task<Uri> GetFileUriFromAssetsAsync(string path, int index)
+        {
+            try
+            {
+                var files = await GetFilesFromAssetsAsync(path);
+                List<StorageFile> result = new List<StorageFile>();
+                result.AddRange(files);
+                for (int i = result.Count - 1; i > -1; i--)
+                {
+                    if ((result[i]).DisplayName.EndsWith("_t"))
+                    {
+                        result.RemoveAt(i);
+                    }
+                }
+                return new Uri("ms-appx:///Assets/" + path.Replace("\\", "/") + '/' + result[index].Name);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static async Task<StorageFile> GetFilebyUriAsync(Uri uri)
         {
             return await StorageFile.GetFileFromApplicationUriAsync(uri);
@@ -218,6 +240,14 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<IRandomAccessStream> ReadRandomAccessStreamFromAssetsAsync(string fileName)
         {
             var uri = new Uri("ms-appx:///Assets/" + fileName);
+            var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            var stream = await file.OpenAsync(FileAccessMode.Read);
+            stream.Seek(0);
+            return stream;
+        }
+
+        public static async Task<IRandomAccessStream> ReadRandomAccessStreamByUriAsync(Uri uri)
+        {
             var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
             var stream = await file.OpenAsync(FileAccessMode.Read);
             stream.Seek(0);

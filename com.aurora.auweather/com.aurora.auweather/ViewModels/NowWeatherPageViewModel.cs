@@ -113,6 +113,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         private CitySettingsModel[] citys;
         private int todayIndex;
         private int nowHourIndex;
+
+        public bool enableDynamic;
+        private bool enablePull;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1049,6 +1052,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        internal async Task<Uri> GetCurrentBackground()
+        {
+            return await settings.Immersive.GetCurrentBackgroundAsync(Condition, IsNight);
+        }
+
         public Suggestion Trav
         {
             get
@@ -1072,6 +1080,33 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref uv, value);
+            }
+        }
+
+        public bool EnableDynamic
+        {
+            get
+            {
+                return enableDynamic;
+            }
+            set
+            {
+                enableDynamic = !value;
+                settings.Preferences.DisableDynamic = !value;
+                SetProperty(ref enableDynamic, value);
+                settings.SaveSettings();
+            }
+        }
+
+        public bool EnablePulltoRefresh
+        {
+            get
+            {
+                return enablePull;
+            }
+            set
+            {
+                SetProperty(ref enablePull, value);
             }
         }
         #endregion
@@ -1107,7 +1142,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 InitialViewModel();
-                
+
             }));
         }
 
@@ -1238,9 +1273,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             var c = currentCity;
             currentCity = null;
             City = c;
-
+            EnableDynamic = !settings.Preferences.DisableDynamic;
+            EnablePulltoRefresh = settings.Preferences.EnablePulltoRefresh;
             SetNow();
-            
+
             NotifyFetchDataComplete();
         }
         #region Set Properties
@@ -1369,6 +1405,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             Visibility = fetchresult.NowWeather.Visibility;
             Aqi = fetchresult.Aqi;
 
+
             if (Temprature.Celsius > 20)
             {
                 IsSummer = true;
@@ -1389,11 +1426,11 @@ namespace Com.Aurora.AuWeather.ViewModels
 #else
             todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
             {
-                return (x.Date - DateTime.Now).TotalHours > 0;
+                return (x.Date - DateTime.Now).TotalSeconds > 0;
             });
             nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
             {
-                return (x.DateTime - DateTime.Now).TotalHours > 0;
+                return (x.DateTime - DateTime.Now).TotalSeconds > 0;
             }
                  );
 #endif
