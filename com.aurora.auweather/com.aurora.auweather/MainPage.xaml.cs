@@ -27,7 +27,7 @@ namespace Com.Aurora.AuWeather
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             MainFrame.Navigate(typeof(NowWeatherPage));
         }
-        
+
         private void Hamburger_Click(object sender, RoutedEventArgs e)
         {
             Root.IsPaneOpen = !Root.IsPaneOpen;
@@ -36,6 +36,11 @@ namespace Com.Aurora.AuWeather
         internal void NavigatetoSettings(Type option)
         {
             MainFrame.Navigate(typeof(SettingOptionsPage), option);
+        }
+
+        internal void Navigate(Type page)
+        {
+            MainFrame.Navigate(page);
         }
 
         internal void ChangeColor(Color transparent, Color black, SolidColorBrush foreground)

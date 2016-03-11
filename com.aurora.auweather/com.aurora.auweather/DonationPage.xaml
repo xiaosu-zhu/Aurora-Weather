@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="Com.Aurora.AuWeather.DonationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Com.Aurora.AuWeather"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="Get the Donation Pack" Margin="8"/>
+        <TextBlock Grid.Row="1" Style="{ThemeResource BodyTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." Margin="8" />
+        <TextBlock Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="8">
+            <Run Text="cominia" />
+            <LineBreak />
+            <Run Text="asdfkawev" />
+        </TextBlock>
+        <Button x:Name="PurchaseButton" Click="PurchaseButton_Click" Loaded="Button_Loaded" Grid.Row="3" Content="dasfsdfawe" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</Page>

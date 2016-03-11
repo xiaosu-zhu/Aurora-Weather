@@ -1176,7 +1176,7 @@
                                 </Rectangle>
                             </Grid>
                         </Grid>
-                        <Button x:Name="AQIDetailButton" Style="{ThemeResource TextBlockButtonStyle}" Click="AQIDetailButton_Click" RelativePanel.RightOf="AQICircle" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="48" >
+                        <Button x:Name="AQIDetailButton" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{ThemeResource TextBlockButtonStyle}" Click="AQIDetailButton_Click" RelativePanel.RightOf="AQICircle" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="48" >
                             <Button.Content>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <SymbolIcon HorizontalAlignment="Center" VerticalAlignment="Center" Symbol="More" />

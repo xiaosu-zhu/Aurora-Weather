@@ -330,6 +330,9 @@
     <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
       <DependentUpon>WeatherCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DonationPage.xaml.cs">
+      <DependentUpon>DonationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Effects\BGBlur.cs" />
     <Compile Include="Effects\Particle.cs" />
     <Compile Include="Effects\ParticleSystem.cs" />
@@ -339,6 +342,7 @@
     <Compile Include="Effects\StarParticleSystem.cs" />
     <Compile Include="Effects\Thunder.cs" />
     <Compile Include="Effects\ThunderGenerator.cs" />
+    <Compile Include="License\License.cs" />
     <Compile Include="LunarCalendar\CalendarInfo.cs" />
     <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -401,6 +405,8 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tile\Generator.cs" />
+    <Compile Include="Tile\Sender.cs" />
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\DailyForecastViewModel.cs" />
@@ -446,6 +452,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\WeatherCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DonationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

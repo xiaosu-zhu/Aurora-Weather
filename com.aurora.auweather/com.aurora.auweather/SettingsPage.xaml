@@ -31,7 +31,7 @@
         <ViewModels:SettingsViewModel />
     </Page.DataContext>
 
-    <Grid>
+    <Grid Background="{ThemeResource SystemBackgroundHighBrush}"> 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="Wide">
@@ -48,12 +48,14 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
-        <ListView x:Name="SettingsList" Grid.Row="1" ItemsSource="{Binding SettingsList}" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SettingsList_SelectionChanged">
+        <Button x:Name="DonateButton" Click="DonateButton_Click" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Content="Donate" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        <ListView x:Name="SettingsList" Grid.Row="2" ItemsSource="{Binding SettingsList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SettingsList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:SettingOption">
                     <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">

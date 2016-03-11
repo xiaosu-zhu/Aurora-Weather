@@ -15,12 +15,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
     public sealed partial class PreferencesSetting : Page
     {
         private bool rootIsWideState;
+        private License.License license;
 
         public PreferencesSetting()
         {
             this.InitializeComponent();
             Context.FetchDataComplete += Context_FetchDataComplete;
             App.Current.Suspending += Current_Suspending;
+            license = new License.License();
         }
 
         private void Current_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
@@ -85,6 +87,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Hour.SelectionChanged += Format_SelectionChanged;
                    Minute.SelectionChanged += Format_SelectionChanged;
                    Week.SelectionChanged += Format_SelectionChanged;
+
+                   if (!license.IsPurchased)
+                   {
+                       EnableEveryDay.IsOn = false;
+                       EnableEveryDay.IsEnabled = false;
+                       EnableAlarm.IsOn = false;
+                       EnableAlarm.IsEnabled = false;
+                       RefreshFreq.IsEnabled = false;
+                       RefreshFreq.SelectedIndex = 0;
+                   }
                }));
         }
 

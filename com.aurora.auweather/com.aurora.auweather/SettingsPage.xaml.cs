@@ -50,5 +50,10 @@ namespace Com.Aurora.AuWeather
                 baba.NavigatetoSettings((SettingsList.Items[0] as SettingOption).Option);
             }
         }
+
+        private void DonateButton_Click(object sender, RoutedEventArgs e)
+        {
+            baba.Navigate(typeof(DonationPage));
+        }
     }
 }

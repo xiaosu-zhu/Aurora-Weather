@@ -34,5 +34,10 @@ namespace Com.Aurora.Shared.Helpers
         {
             return TimeZoneInfo.ConvertTime(DateTime.Now, timeZone);
         }
+
+        public static DateTime RevisetoLoc(TimeZoneInfo timeZone, DateTime dateTime)
+        {
+            return TimeZoneInfo.ConvertTime(dateTime, timeZone);
+        }
     }
 }
