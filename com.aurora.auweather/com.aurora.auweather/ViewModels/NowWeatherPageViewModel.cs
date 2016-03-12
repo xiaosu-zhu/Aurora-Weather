@@ -3,6 +3,7 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.AuWeather.Tile;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
@@ -1120,51 +1121,42 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             get
             {
-                return new DelegateCommand(async () =>
+                return new DelegateCommand(() =>
                 {
-                    await RefreshAsync();
+                    RefreshAsync();
                 });
             }
         }
 
-        public async Task RefreshAsync()
+        public void RefreshAsync()
         {
-            try
-            {
-                storedDatas = default(KeyValuePair<string, string>);
-                await FetchDataAsync();
-            }
-            catch (ArgumentNullException)
-            {
-                OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
-                return;
-            }
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
-            {
-                InitialViewModel();
-
-            }));
+            Init();
         }
 
         public NowWeatherPageViewModel()
+        {
+            Init();
+        }
+
+        private void Init()
         {
             var task = ThreadPool.RunAsync(async (work) =>
             {
                 try
                 {
+                    storedDatas = default(KeyValuePair<string, string>);
                     ReadSettings();
                     await FetchDataAsync();
-
-                    GenerateGlance();
                 }
                 catch (ArgumentNullException)
                 {
                     OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
                     return;
                 }
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                 {
                     InitialViewModel();
+                    Sender.CreateMainTileNotification(await Generator.GenerateNormalTile(fetchresult, DateTime.Now));
                 }));
             });
         }
@@ -1174,8 +1166,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             var time = fetchresult.Location.UpdateTime;
             var updateMinutes = time.Hour * 60 + time.Minute;
             glance = Models.Glance.GenerateGlanceDescription(fetchresult,
-                 updateMinutes >= fetchresult.DailyForecast[0].SunSet.TotalMinutes - 30,
-                 TemperatureParameter.Celsius);
+                 IsNight, settings.Preferences.TemperatureParameter, DateTime.Now);
         }
 
         private void CalcCalendar()
@@ -1257,9 +1248,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
-            var g = glance;
-            glance = null;
-            Glance = g;
+
 
             SetTime();
 
@@ -1269,6 +1258,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             SetSuggestion();
 
             CalcCalendar();
+
+            GenerateGlance();
 
             var c = currentCity;
             currentCity = null;
@@ -1427,7 +1418,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
             {
                 return (x.Date - DateTime.Now).TotalSeconds > 0;
-            });
+            }) - 1;
             nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
             {
                 return (x.DateTime - DateTime.Now).TotalSeconds > 0;

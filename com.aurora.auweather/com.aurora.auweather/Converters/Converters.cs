@@ -483,119 +483,82 @@ namespace Com.Aurora.Shared.Converters
 
     public class ConditiontoImageConverter : IValueConverter
     {
-        public bool IsNight { get; internal set; }
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var condition = (WeatherCondition)value;
+            var isNight = (bool)parameter;
             switch (condition)
             {
                 case WeatherCondition.unknown:
-                    return "...";
+                    return null;
                 case WeatherCondition.sunny:
-                    return "晴";
+                    return isNight ? "Moon.png" : "Sun.png";
                 case WeatherCondition.cloudy:
-                    return "多云";
                 case WeatherCondition.few_clouds:
-                    return "少云";
                 case WeatherCondition.partly_cloudy:
-                    return "大部多云";
+                    return isNight ? "Moon Cloud.png" : "Sun Cloud.png";
                 case WeatherCondition.overcast:
-                    return "阴";
+                    return "Cloud.png";
                 case WeatherCondition.windy:
-                    return "有风";
                 case WeatherCondition.calm:
-                    return "轻风";
                 case WeatherCondition.light_breeze:
-                    return "清风";
+                    return isNight ? "Moon.png" : "Sun.png";
                 case WeatherCondition.moderate:
-                    return "和风";
                 case WeatherCondition.fresh_breeze:
-                    return "劲风";
                 case WeatherCondition.strong_breeze:
-                    return "强风";
                 case WeatherCondition.high_wind:
-                    return "疾风";
                 case WeatherCondition.gale:
-                    return "大风";
                 case WeatherCondition.strong_gale:
-                    return "烈风";
                 case WeatherCondition.storm:
-                    return "暴风";
                 case WeatherCondition.violent_storm:
-                    return "飓风";
                 case WeatherCondition.hurricane:
-                    return "台风";
                 case WeatherCondition.tornado:
-                    return "龙卷风";
                 case WeatherCondition.tropical_storm:
-                    return "热带风暴";
+                    return "Wind.png";
                 case WeatherCondition.shower_rain:
-                    return "阵雨";
                 case WeatherCondition.heavy_shower_rain:
-                    return "强阵雨";
+                    return isNight ? "Moon Cloud Rain.png" : "Sun Cloud Rain.png";
                 case WeatherCondition.thundershower:
-                    return "雷阵雨";
                 case WeatherCondition.heavy_thunderstorm:
-                    return "雷暴";
                 case WeatherCondition.hail:
-                    return "冰雹";
+                    return "Thunder Rain.png";
                 case WeatherCondition.light_rain:
-                    return "小雨";
                 case WeatherCondition.moderate_rain:
-                    return "中雨";
-                case WeatherCondition.heavy_rain:
-                    return "大雨";
-                case WeatherCondition.extreme_rain:
-                    return "暴雨";
                 case WeatherCondition.drizzle_rain:
-                    return "毛毛雨";
+                    return "Small Rain.png";
+                case WeatherCondition.heavy_rain:
+                case WeatherCondition.extreme_rain:
                 case WeatherCondition.storm_rain:
-                    return "暴风雨";
                 case WeatherCondition.heavy_storm_rain:
-                    return "大暴雨";
                 case WeatherCondition.severe_storm_rain:
-                    return "严重降水";
-                case WeatherCondition.freezing_rain:
-                    return "冻雨";
-                case WeatherCondition.light_snow:
-                    return "小雪";
-                case WeatherCondition.moderate_snow:
-                    return "中雪";
-                case WeatherCondition.heavy_snow:
-                    return "大雪";
-                case WeatherCondition.snowstorm:
-                    return "暴风雪";
+                    return "Rain.png";
                 case WeatherCondition.sleet:
-                    return "雨夹雪";
                 case WeatherCondition.rain_snow:
-                    return "雨雪";
+                case WeatherCondition.freezing_rain:
+                    return "Snow Rain.png";
+                case WeatherCondition.light_snow:
+                case WeatherCondition.moderate_snow:
+                case WeatherCondition.heavy_snow:
+                case WeatherCondition.snowstorm:
                 case WeatherCondition.shower_snow:
-                    return "阵雪";
                 case WeatherCondition.snow_flurry:
-                    return "短时小雪";
+                    return "Snow.png";
                 case WeatherCondition.mist:
-                    return "薄雾";
                 case WeatherCondition.foggy:
-                    return "雾";
+                    return "Fog.png";
                 case WeatherCondition.haze:
-                    return "霾";
                 case WeatherCondition.sand:
-                    return "沙尘";
                 case WeatherCondition.dust:
-                    return "扬尘";
                 case WeatherCondition.volcanic_ash:
-                    return "火山灰";
                 case WeatherCondition.duststorm:
-                    return "尘暴";
                 case WeatherCondition.sandstorm:
-                    return "沙尘暴";
+                    return "Haze.png";
                 case WeatherCondition.hot:
-                    return "变热";
+                    return "Hot.png";
                 case WeatherCondition.cold:
-                    return "变冷";
+                    return "Cold.png";
                 default:
-                    return "...";
+                    return null;
             }
         }
 

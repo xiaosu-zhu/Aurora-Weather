@@ -78,5 +78,35 @@ namespace Com.Aurora.AuWeather.Models
             speed.Knot = knot;
             return speed;
         }
+
+        internal string Actual(SpeedParameter windParameter)
+        {
+            switch (windParameter)
+            {
+                case SpeedParameter.KMPH:
+                    return KMPH.ToString("0.#");
+                case SpeedParameter.MPS:
+                    return MPS.ToString("0.#");
+                case SpeedParameter.Knot:
+                    return Knot.ToString("0.#");
+                default:
+                    return KMPH.ToString("0.#");
+            }
+        }
+
+        internal string DanWei(SpeedParameter speedParameter)
+        {
+            switch (speedParameter)
+            {
+                case SpeedParameter.KMPH:
+                    return "km/h";
+                case SpeedParameter.MPS:
+                    return "m/s";
+                case SpeedParameter.Knot:
+                    return "knot";
+                default:
+                    return "km/h";
+            }
+        }
     }
 }

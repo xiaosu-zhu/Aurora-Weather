@@ -601,9 +601,9 @@ namespace Com.Aurora.AuWeather
             WeatherCanvas.ImmersiveOut();
         }
 
-        private async void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
+        private void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
         {
-            await Context.RefreshAsync();
+            Context.RefreshAsync();
         }
 
         private void AQIDetailButton_Click(object sender, RoutedEventArgs e)

@@ -58,5 +58,20 @@ namespace Com.Aurora.AuWeather.Models
             t.Kelvin = kelvin;
             return t;
         }
+
+        internal string Actual(TemperatureParameter temperatureParameter)
+        {
+            switch (temperatureParameter)
+            {
+                case TemperatureParameter.Celsius:
+                    return Celsius.ToString("0") + '°';
+                case TemperatureParameter.Fahrenheit:
+                    return Fahrenheit.ToString("0") + '°';
+                case TemperatureParameter.Kelvin:
+                    return Kelvin.ToString("0");
+                default:
+                    return Celsius.ToString("0") + '°';
+            }
+        }
     }
 }
