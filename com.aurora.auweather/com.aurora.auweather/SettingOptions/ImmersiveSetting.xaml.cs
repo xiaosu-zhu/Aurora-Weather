@@ -1,5 +1,4 @@
-﻿using Com.Aurora.AuWeather.ViewModels;
-using Com.Aurora.Shared.Extensions;
+﻿using Com.Aurora.Shared.Extensions;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

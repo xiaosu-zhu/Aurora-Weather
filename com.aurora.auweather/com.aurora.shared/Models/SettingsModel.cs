@@ -1,10 +1,4 @@
-﻿using Com.Aurora.AuWeather.Models.HeWeather;
-using Com.Aurora.AuWeather.Models.Settings;
-using Com.Aurora.Shared.Extensions;
-using Com.Aurora.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Com.Aurora.AuWeather.Models.Settings;
 using Windows.System.Threading;
 
 namespace Com.Aurora.AuWeather.Models

@@ -3,14 +3,8 @@ using Windows.UI.Xaml;
 using Com.Aurora.Shared.Helpers;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
-using Windows.System.Threading;
-using Com.Aurora.AuWeather.Models;
 using System;
 using Com.Aurora.AuWeather.ViewModels;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
-using Com.Aurora.AuWeather.Models.HeWeather;
-using System.Diagnostics;
-using System.Linq;
 using Com.Aurora.Shared.Converters;
 
 namespace Com.Aurora.AuWeather

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Aurora.Shared.Helpers;
+﻿using System.Runtime.Serialization;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather.JsonContract
 {

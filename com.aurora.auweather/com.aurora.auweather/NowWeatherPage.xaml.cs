@@ -1,5 +1,4 @@
-﻿using Com.Aurora.AuWeather.Models;
-using Com.Aurora.AuWeather.ViewModels.Events;
+﻿using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Numerics;
-using Com.Aurora.Shared.Helpers;
+﻿using System.Numerics;
 
 namespace Com.Aurora.AuWeather.Effects
 {

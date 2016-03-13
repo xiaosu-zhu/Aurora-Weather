@@ -1,6 +1,5 @@
 ﻿using NotificationsExtensions.Tiles;
 using NotificationsExtensions.Badges;
-using NotificationsExtensions.Toasts;
 using System;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;

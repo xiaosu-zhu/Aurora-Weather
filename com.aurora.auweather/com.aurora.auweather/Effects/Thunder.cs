@@ -1,11 +1,7 @@
 ﻿using Com.Aurora.Shared.Helpers;
-using Microsoft.Graphics.Canvas.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Effects
 {

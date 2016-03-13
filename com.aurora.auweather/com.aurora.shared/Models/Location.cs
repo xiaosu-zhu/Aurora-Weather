@@ -1,11 +1,8 @@
 ﻿using Com.Aurora.AuWeather.Models.HeWeather;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models
 {

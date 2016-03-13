@@ -369,10 +369,7 @@
     </Compile>
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
-    <Compile Include="ViewModels\DailyForecastViewModel.cs" />
     <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
-    <Compile Include="ViewModels\ForecastViewModel.cs" />
-    <Compile Include="ViewModels\HourlyForecastViewModel.cs" />
     <Compile Include="ViewModels\ImmersiveSettingViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />
@@ -548,9 +545,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

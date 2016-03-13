@@ -1,5 +1,4 @@
-﻿
-namespace Com.Aurora.Shared.Helpers
+﻿namespace Com.Aurora.Shared.Helpers
 {
     public static class BindingHelper
     {

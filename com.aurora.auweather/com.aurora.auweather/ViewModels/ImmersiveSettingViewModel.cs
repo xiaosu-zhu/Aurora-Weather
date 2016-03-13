@@ -1,14 +1,10 @@
 ﻿using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.MVVM;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.System.Threading;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.Foundation;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
