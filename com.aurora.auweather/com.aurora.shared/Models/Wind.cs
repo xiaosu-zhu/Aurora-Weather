@@ -98,7 +98,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        internal WindDirection Direction
+        public WindDirection Direction
         {
             get
             {
@@ -111,7 +111,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        internal WindScale Scale
+        public WindScale Scale
         {
             get
             {

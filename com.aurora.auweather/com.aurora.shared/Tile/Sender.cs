@@ -1,12 +1,15 @@
 ﻿using NotificationsExtensions.Tiles;
+using NotificationsExtensions.Badges;
+using NotificationsExtensions.Toasts;
 using System;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
+using System.Collections.Generic;
 
-namespace Com.Aurora.AuWeather.Background
+namespace Com.Aurora.AuWeather.Tile
 {
-    internal static class Sender
+    public static class Sender
     {
         public static void CreateMainTileNotification(TileContent content)
         {
@@ -94,6 +97,31 @@ namespace Com.Aurora.AuWeather.Background
                 var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileName);
                 updater.Clear();
             }
+        }
+
+        public static void CreateMainTileQueue(List<TileContent> list)
+        {
+            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
+            int i = 0;
+            foreach (var item in list)
+            {
+                TileNotification n = new TileNotification(item.GetXml());
+                n.Tag = i.ToString();
+                TileUpdateManager.CreateTileUpdaterForApplication().Update(n);
+                i++;
+            }
+        }
+
+        public static void CreateBadge(BadgeNumericNotificationContent badge)
+        {
+            BadgeNotification b = new BadgeNotification(badge.GetXml());
+            BadgeUpdateManager.CreateBadgeUpdaterForApplication().Update(b);
+        }
+
+        public static void CreateBadge(BadgeGlyphNotificationContent badge)
+        {
+            BadgeNotification b = new BadgeNotification(badge.GetXml());
+            BadgeUpdateManager.CreateBadgeUpdaterForApplication().Update(b);
         }
     }
 }

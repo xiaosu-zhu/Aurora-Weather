@@ -69,7 +69,7 @@
             get; private set;
         }
 
-        internal AQIQuality Qlty
+        public AQIQuality Qlty
         {
             get; private set;
         }

@@ -9,7 +9,7 @@ using Windows.System.Threading;
 
 namespace Com.Aurora.AuWeather.Models
 {
-    internal class SettingsModel
+    public class SettingsModel
     {
         public Cities Cities { get; private set; }
         public Immersive Immersive { get; private set; }
@@ -24,7 +24,7 @@ namespace Com.Aurora.AuWeather.Models
             return s;
         }
 
-        internal void SaveSettings()
+        public void SaveSettings()
         {
             var task = ThreadPool.RunAsync((work) =>
              {

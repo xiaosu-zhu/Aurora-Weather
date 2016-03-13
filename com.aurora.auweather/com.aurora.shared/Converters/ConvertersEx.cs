@@ -824,7 +824,7 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
 
-        internal static void ChangeParameter(LengthParameter lengthParameter)
+        public static void ChangeParameter(LengthParameter lengthParameter)
         {
             LengthParameter = lengthParameter;
         }
@@ -942,7 +942,7 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
 
-        internal static void Refresh()
+        public static void Refresh()
         {
             var p = Preferences.Get();
             format = p.GetDateFormat();

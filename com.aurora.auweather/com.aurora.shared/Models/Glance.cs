@@ -295,7 +295,7 @@ namespace Com.Aurora.AuWeather.Models
         private static readonly string[] wendudi = new string[] { "低温", "持续降温" };
         #endregion
 
-        internal static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter, DateTime desiredDate)
+        public static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter, DateTime desiredDate)
         {
 #if DEBUG
             var todayIndex = 0;

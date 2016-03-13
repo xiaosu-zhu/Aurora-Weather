@@ -323,7 +323,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\Converters.cs" />
     <Compile Include="CustomControls\ConditionPath.xaml.cs">
       <DependentUpon>ConditionPath.xaml</DependentUpon>
     </Compile>
@@ -343,46 +342,9 @@
     <Compile Include="Effects\Thunder.cs" />
     <Compile Include="Effects\ThunderGenerator.cs" />
     <Compile Include="License\License.cs" />
-    <Compile Include="LunarCalendar\CalendarInfo.cs" />
-    <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Enums.cs" />
-    <Compile Include="Models\AQI.cs" />
-    <Compile Include="Models\Glance.cs" />
-    <Compile Include="Models\HeWeather\CityInfo.cs" />
-    <Compile Include="Models\HeWeather\Condition.cs" />
-    <Compile Include="Models\HeWeather\DailyForecast.cs" />
-    <Compile Include="Models\HeWeather\HeWeatherModel.cs" />
-    <Compile Include="Models\HeWeather\HourlyForecast.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\AQI.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\CityIdContract.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\DailyForecast.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\HeWeatherContract.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\HourlyForecast.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\Location.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\NowWeather.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\WeatherAlarms.cs" />
-    <Compile Include="Models\HeWeather\JsonContract\WeatherSuggestion.cs" />
-    <Compile Include="Models\HeWeather\Location.cs" />
-    <Compile Include="Models\HeWeather\NowWeather.cs" />
-    <Compile Include="Models\HeWeather\WeatherAlarm.cs" />
-    <Compile Include="Models\HeWeather\WeatherSuggestion.cs" />
-    <Compile Include="Models\IWeather.cs" />
-    <Compile Include="Models\Length.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Pressure.cs" />
-    <Compile Include="Models\SettingsModel.cs" />
-    <Compile Include="Models\Settings\About.cs" />
-    <Compile Include="Models\Settings\Cities.cs" />
-    <Compile Include="Models\Settings\Immersive.cs" />
-    <Compile Include="Models\Settings\Preferences.cs" />
-    <Compile Include="Models\Speed.cs" />
-    <Compile Include="Models\Temperature.cs" />
-    <Compile Include="Models\TempratureRange.cs" />
-    <Compile Include="Models\WeatherModel.cs" />
-    <Compile Include="Models\Wind.cs" />
     <Compile Include="NowWeatherPage.xaml.cs">
       <DependentUpon>NowWeatherPage.xaml</DependentUpon>
     </Compile>
@@ -405,9 +367,6 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tile\Generator.cs" />
-    <Compile Include="Tile\Sender.cs" />
-    <Compile Include="Tile\TempetatureParameter.cs" />
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\DailyForecastViewModel.cs" />
@@ -575,6 +534,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Aurora.AuWeather.Background\Com.Aurora.AuWeather.Background.csproj">
+      <Project>{c849b03b-f70f-4c60-8f83-f6eb3ab8eb30}</Project>
+      <Name>Com.Aurora.AuWeather.Background</Name>
+    </ProjectReference>
     <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
       <Name>Com.Aurora.Shared</Name>
@@ -585,7 +548,9 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

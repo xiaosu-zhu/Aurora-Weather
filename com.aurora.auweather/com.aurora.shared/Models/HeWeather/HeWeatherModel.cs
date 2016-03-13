@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
-    internal class HeWeatherModel : WeatherModel, IWeather
+    public enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
+    public class HeWeatherModel : WeatherModel, IWeather
     {
 
         public HeWeatherStatus Status
@@ -13,37 +13,37 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             get; private set;
         }
 
-        internal AQI Aqi
+        public AQI Aqi
         {
             get; private set;
         }
 
-        internal DailyForecast[] DailyForecast
+        public DailyForecast[] DailyForecast
         {
             get; private set;
         }
 
-        internal HourlyForecast[] HourlyForecast
+        public HourlyForecast[] HourlyForecast
         {
             get; private set;
         }
 
-        internal Location Location
+        public Location Location
         {
             get; private set;
         }
 
-        internal NowWeather NowWeather
+        public NowWeather NowWeather
         {
             get; private set;
         }
 
-        internal WeatherSuggestion WeatherSuggestion
+        public WeatherSuggestion WeatherSuggestion
         {
             get; private set;
         }
 
-        internal WeatherAlarm[] Alarms
+        public WeatherAlarm[] Alarms
         {
             get; private set;
         }

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
-    internal class Cities
+    public class Cities
     {
         public CitySettingsModel[] SavedCities { get; private set; }
 
         public int CurrentIndex { get; set; }
 
         public bool EnableLocate { get; set; } = true;
-        public CitySettingsModel LocatedCity { get; internal set; }
+        public CitySettingsModel LocatedCity { get; set; }
 
         public static Cities Get()
         {
@@ -32,7 +32,12 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     c.LocatedCity = loc;
                     if (c.CurrentIndex == -1)
                     {
-                        c.LocatedCity.IsCurrent = true;
+                        if (c.EnableLocate == true)
+                            c.LocatedCity.IsCurrent = true;
+                        else
+                        {
+                            c.CurrentIndex = 0;
+                        }
                     }
                 }
                 int i = (int)container.Values["Count"];
@@ -107,17 +112,17 @@ namespace Com.Aurora.AuWeather.Models.Settings
             Save();
         }
 
-        internal void Set(CitySettingsModel[] citys)
+        public void Set(CitySettingsModel[] citys)
         {
             SavedCities = citys;
         }
 
-        internal void Set(bool e)
+        public void Set(bool e)
         {
             EnableLocate = e;
         }
 
-        internal async Task SaveDataAsync(string currentId, string resstr)
+        public async Task SaveDataAsync(string currentId, string resstr)
         {
             await FileIOHelper.SaveStringtoStorageAsync(currentId, resstr);
         }
@@ -141,7 +146,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         }
 
-        internal void Update()
+        public void Update()
         {
             LastUpdate = DateTime.Now;
         }

@@ -2,7 +2,7 @@
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
-    internal class Preferences
+    public class Preferences
     {
         public TemperatureParameter TemperatureParameter { get; private set; } = TemperatureParameter.Celsius;
         public PressureParameter PressureParameter { get; private set; } = PressureParameter.Atm;
@@ -83,7 +83,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             container.WriteGroupSettings(this);
         }
 
-        internal string GetHourlyFormat()
+        public string GetHourlyFormat()
         {
             return (DecorateFormat[DecorateNumber] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
         }
@@ -112,6 +112,15 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 }
                 return "dddd";
             }
+        }
+
+        public string GetTileFormat()
+        {
+                if (WeekNumber > 0)
+                {
+                    return WeekFormat[WeekNumber];
+                }
+                return "ddd";
         }
 
         public string GetDateFormat()

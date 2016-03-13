@@ -1,6 +1,6 @@
 ﻿namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    internal class NowWeather
+    public class NowWeather
     {
         public NowCondition Now
         {
@@ -53,7 +53,7 @@
         }
     }
 
-    internal class NowCondition : Condition
+    public class NowCondition : Condition
     {
         public WeatherCondition Condition
         {

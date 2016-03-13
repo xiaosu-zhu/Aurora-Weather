@@ -5,7 +5,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 {
 
 
-    internal class DailyForecast
+    public class DailyForecast
     {
 
         /// <summary>
@@ -101,14 +101,14 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
 
 
-    internal class DailyCondition : Condition
+    public class DailyCondition : Condition
     {
-        internal WeatherCondition DayCond
+        public WeatherCondition DayCond
         {
             get; private set;
         }
 
-        internal WeatherCondition NightCond
+        public WeatherCondition NightCond
         {
             get; private set;
         }

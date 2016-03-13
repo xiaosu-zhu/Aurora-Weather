@@ -12,6 +12,7 @@ using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
 using Windows.UI.Core;
@@ -1147,6 +1148,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                     storedDatas = default(KeyValuePair<string, string>);
                     ReadSettings();
                     await FetchDataAsync();
+                    Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
+                    if (!fetchresult.Alarms.IsNullorEmpty())
+                    {
+                        Sender.CreateBadge(Generator.GenerateAlertBadge());
+                    }
+
                 }
                 catch (ArgumentNullException)
                 {
@@ -1155,10 +1162,55 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                 {
+                    await RegBGTask(settings.Preferences.RefreshFrequency);
                     InitialViewModel();
-                    Sender.CreateMainTileNotification(await Generator.GenerateNormalTile(fetchresult, DateTime.Now));
+
                 }));
             });
+        }
+
+
+        private async Task RegBGTask(RefreshState frequency)
+        {
+            uint freshTime;
+            switch (frequency)
+            {
+                case RefreshState.one:
+                    return;
+                case RefreshState.two:
+                    freshTime = 60;
+                    break;
+                case RefreshState.three:
+                    freshTime = 120;
+                    break;
+                case RefreshState.four:
+                    freshTime = 240;
+                    break;
+                default:
+                    return;
+            }
+            TimeTrigger hourlyTrigger = new TimeTrigger(freshTime, false);
+            SystemCondition userCondition = new SystemCondition(SystemConditionType.InternetAvailable);
+            string entryPoint = "Com.Aurora.AuWeather.Background.BackgroundTask";
+            string taskName = "Aurora Weather";
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
+            {
+                foreach (var t in BackgroundTaskRegistration.AllTasks)
+                {
+                    if (t.Value.Name == taskName)
+                    {
+                        t.Value.Unregister(true);
+                    }
+                }
+                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = taskName;
+                taskBuilder.TaskEntryPoint = entryPoint;
+                taskBuilder.AddCondition(userCondition);
+                taskBuilder.SetTrigger(hourlyTrigger);
+                var registration = taskBuilder.Register();
+            }
         }
 
         private void GenerateGlance()

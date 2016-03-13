@@ -1,37 +1,37 @@
 ﻿namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    internal class WeatherSuggestion
+    public class WeatherSuggestion
     {
 
-        internal Suggestion Comfortable
+        public Suggestion Comfortable
         {
             get; private set;
         }
 
-        internal Suggestion CarWashing
+        public Suggestion CarWashing
         {
             get; private set;
         }
 
-        internal Suggestion Dressing
+        public Suggestion Dressing
         {
             get; private set;
         }
 
-        internal Suggestion Flu
+        public Suggestion Flu
         {
             get; private set;
         }
 
-        internal Suggestion Sport
+        public Suggestion Sport
         {
             get; private set;
         }
-        internal Suggestion UV
+        public Suggestion UV
         {
             get; private set;
         }
-        internal Suggestion Trav;
+        public Suggestion Trav;
 
         public WeatherSuggestion(JsonContract.WeatherSuggestionContract suggestion)
         {

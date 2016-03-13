@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    internal class HourlyForecast
+    public class HourlyForecast
     {
         public DateTime DateTime
         {

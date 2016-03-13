@@ -27,7 +27,7 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="Com.Aurora.AuWeather.Background.Background">
+        <Extension Category="windows.backgroundTasks" EntryPoint="Com.Aurora.AuWeather.Background.BackgroundTask">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>

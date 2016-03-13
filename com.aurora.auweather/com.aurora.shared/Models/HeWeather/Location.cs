@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    internal class Location
+    public class Location
     {
         public string City
         {

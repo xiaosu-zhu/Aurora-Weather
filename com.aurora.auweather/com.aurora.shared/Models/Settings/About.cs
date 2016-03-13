@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Com.Aurora.AuWeather.Models
+namespace Com.Aurora.AuWeather.Models.Settings
 {
-    internal abstract class WeatherModel
+    public class About
     {
-        
     }
 }

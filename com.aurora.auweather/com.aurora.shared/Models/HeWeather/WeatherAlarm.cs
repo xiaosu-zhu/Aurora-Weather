@@ -1,11 +1,11 @@
 ﻿using System;
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
-    internal class WeatherAlarm
+    public class WeatherAlarm
     {
-        private static string[] TypeParseString = { "台风", "暴雨", "暴雪", "寒潮", "大风", "沙尘暴", "高温",
+        private static readonly string[] TypeParseString = { "台风", "暴雨", "暴雪", "寒潮", "大风", "沙尘暴", "高温",
             "干旱", "雷电", "冰雹", "霜冻", "大雾", "霾", "道路结冰", "森林火险", "雷雨大风" };
-        private static string[] LevelParseString = { "蓝", "黄", "橙", "红" };
+        private static readonly string[] LevelParseString = { "蓝", "黄", "橙", "红" };
         private static WeatherAlarmType ParseType(string alarm_s)
         {
             byte i = 0;

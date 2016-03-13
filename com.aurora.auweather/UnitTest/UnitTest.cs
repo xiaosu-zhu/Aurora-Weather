@@ -151,13 +151,13 @@ namespace UnitTest
             var result = JsonHelper.FromJson<CityIdContract>(data);
             var citys = CityInfo.CreateList(result);
             var final = from m in citys
-                        orderby CalcDistance(m, new Location(39.92f, 116.46f)) ascending
+                        orderby CalcDistance(m, new Com.Aurora.AuWeather.Models.Location(39.92f, 116.46f)) ascending
                         select m;
             Debug.WriteLine((final.ToArray())[0]);
         }
 
         private const double EARTH_RADIUS = 6378.137;//地球半径
-        private float CalcDistance(CityInfo m, Location location)
+        private float CalcDistance(CityInfo m, Com.Aurora.AuWeather.Models.Location location)
         {
             var lat1 = Tools.DegreesToRadians(m.Location.Latitude);
             var lat2 = Tools.DegreesToRadians(location.Latitude);

@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
-    internal class Immersive
+    public class Immersive
     {
         private const string sunny = "Background\\Sunny";
         private const string starry = "Background\\Starry";
@@ -19,24 +19,24 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         private const string local = "l.png";
 
-        public ImmersiveBackgroundState Sunny { get; internal set; }
-        public ImmersiveBackgroundState Cloudy { get; internal set; }
-        public ImmersiveBackgroundState Rainny { get; internal set; }
-        public ImmersiveBackgroundState Snowy { get; internal set; }
-        public ImmersiveBackgroundState Foggy { get; internal set; }
-        public ImmersiveBackgroundState Haze { get; internal set; }
-        public ImmersiveBackgroundState Starry { get; internal set; }
+        public ImmersiveBackgroundState Sunny { get; set; }
+        public ImmersiveBackgroundState Cloudy { get; set; }
+        public ImmersiveBackgroundState Rainny { get; set; }
+        public ImmersiveBackgroundState Snowy { get; set; }
+        public ImmersiveBackgroundState Foggy { get; set; }
+        public ImmersiveBackgroundState Haze { get; set; }
+        public ImmersiveBackgroundState Starry { get; set; }
 
-        public int SunnyPicked { get; internal set; } = 0;
-        public int CloudyPicked { get; internal set; } = 0;
-        public int RainnyPicked { get; internal set; } = 0;
-        public int SnowyPicked { get; internal set; } = 0;
-        public int FoggyPicked { get; internal set; } = 0;
-        public int HazePicked { get; internal set; } = 0;
-        public int StarryPicked { get; internal set; } = 0;
+        public int SunnyPicked { get; set; } = 0;
+        public int CloudyPicked { get; set; } = 0;
+        public int RainnyPicked { get; set; } = 0;
+        public int SnowyPicked { get; set; } = 0;
+        public int FoggyPicked { get; set; } = 0;
+        public int HazePicked { get; set; } = 0;
+        public int StarryPicked { get; set; } = 0;
 
 
-        internal static async Task<List<KeyValuePair<Uri, string>>> GetThumbnailsFromAssetsAsync(string title)
+        public static async Task<List<KeyValuePair<Uri, string>>> GetThumbnailsFromAssetsAsync(string title)
         {
             var thumbs = new List<KeyValuePair<Uri, string>>();
             switch (title)
@@ -71,7 +71,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             return thumbs;
         }
 
-        internal static async Task<Uri> GetFileFromLocalAsync(string title)
+        public static async Task<Uri> GetFileFromLocalAsync(string title)
         {
             Uri lFile;
             switch (title)
@@ -111,7 +111,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             return instance;
         }
 
-        internal async Task<Uri> SaveLocalFile(string title, StorageFile file)
+        public async Task<Uri> SaveLocalFile(string title, StorageFile file)
         {
             switch (title)
             {
@@ -350,7 +350,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
         }
 
-        internal void CheckLocal(string title, Uri lUri)
+        public void CheckLocal(string title, Uri lUri)
         {
             if (lUri == null)
                 switch (title)
