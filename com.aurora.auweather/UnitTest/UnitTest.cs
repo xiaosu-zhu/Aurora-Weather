@@ -109,9 +109,11 @@ namespace UnitTest
         {
             ReadWrtieSettingGroupTestClass origin = new ReadWrtieSettingGroupTestClass(TimeSpan.FromDays(3.045), 12, "nimabi", 2.14, true, DateTime.Now, new DateTime[] { DateTime.Now, new DateTime(1999, 10, 10), new DateTime(2016, 10, 10) }, new string[] { "cao", "ni", "ma" });
             //RoamingSettingsHelper.WriteGroupSettings(origin);
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
             ReadWrtieSettingGroupTestClass actual;
-            //RoamingSettingsHelper.ReadGroupSettings(out actual);
-            //Assert.AreEqual(origin, actual);
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
+                              //RoamingSettingsHelper.ReadGroupSettings(out actual);
+                              //Assert.AreEqual(origin, actual);
         }
 
         [TestMethod]

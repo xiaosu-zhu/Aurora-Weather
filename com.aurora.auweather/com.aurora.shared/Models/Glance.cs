@@ -26,8 +26,26 @@ namespace Com.Aurora.AuWeather.Models
         private static readonly string[] heavy_storm_rain = new string[] { "有暴风雨", "不宜外出" };
         private static readonly string[] shower = new string[] { "有阵雨", "间歇降雨" };
         private static readonly string[] freezing_rain = new string[] { "有冻雨" };
-
-        internal static string GenerateShortDescription(HeWeatherModel model, bool isNight)
+        private static readonly string[] moderate_snow = new string[] { "有雪", "雪天", "会下雪" };
+        private static readonly string[] heavy_snow = new string[] { "有大雪", "大雪天" };
+        private static readonly string[] shower_snow = new string[] { "有阵雪", "有短时降雪" };
+        private static readonly string[] snowstorm = new string[] { "有暴风雪", "有恶劣降雪" };
+        private static readonly string[] sleet = new string[] { "有雨夹雪", "雨雪" };
+        private static readonly string[] mist = new string[] { "有薄雾" };
+        private static readonly string[] foggy = new string[] { "有雾" };
+        private static readonly string[] haze = new string[] { "有霾" };
+        private static readonly string[] dust = new string[] { "有沙尘" };
+        private static readonly string[] duststorm = new string[] { "有恶劣沙尘" };
+        #endregion
+        #region Condition decoration
+        private static readonly string[] haotianqi = new string[] { "适宜外出", "天气很好" };
+        private static readonly string[] huaitianqi = new string[] { "天气不好", "天气较差" };
+        private static readonly string[] shiduda = new string[] { "湿度较大", "空气湿润" };
+        private static readonly string[] nengjiandudi = new string[] { "能见度低", "能见度差" };
+        private static readonly string[] wendugao = new string[] { "高温", "持续升温" };
+        private static readonly string[] wendudi = new string[] { "低温", "持续降温" };
+        #endregion
+        public static string GenerateShortDescription(HeWeatherModel model, bool isNight)
         {
 #if DEBUG
             var todayIndex = 0;
@@ -274,26 +292,6 @@ namespace Com.Aurora.AuWeather.Models
             }
             return string.Format("{0}{1}  {2}.", zhuyu, binyu, decoration);
         }
-
-        private static readonly string[] moderate_snow = new string[] { "有雪", "雪天", "会下雪" };
-        private static readonly string[] heavy_snow = new string[] { "有大雪", "大雪天" };
-        private static readonly string[] shower_snow = new string[] { "有阵雪", "有短时降雪" };
-        private static readonly string[] snowstorm = new string[] { "有暴风雪", "有恶劣降雪" };
-        private static readonly string[] sleet = new string[] { "有雨夹雪", "雨雪" };
-        private static readonly string[] mist = new string[] { "有薄雾" };
-        private static readonly string[] foggy = new string[] { "有雾" };
-        private static readonly string[] haze = new string[] { "有霾" };
-        private static readonly string[] dust = new string[] { "有沙尘" };
-        private static readonly string[] duststorm = new string[] { "有恶劣沙尘" };
-        #endregion
-        #region Condition decoration
-        private static readonly string[] haotianqi = new string[] { "适宜外出", "天气很好" };
-        private static readonly string[] huaitianqi = new string[] { "天气不好", "天气较差" };
-        private static readonly string[] shiduda = new string[] { "湿度较大", "空气湿润" };
-        private static readonly string[] nengjiandudi = new string[] { "能见度低", "能见度差" };
-        private static readonly string[] wendugao = new string[] { "高温", "持续升温" };
-        private static readonly string[] wendudi = new string[] { "低温", "持续降温" };
-        #endregion
 
         public static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter, DateTime desiredDate)
         {

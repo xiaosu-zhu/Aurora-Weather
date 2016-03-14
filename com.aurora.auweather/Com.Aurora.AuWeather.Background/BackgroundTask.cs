@@ -17,6 +17,7 @@ namespace Com.Aurora.AuWeather.Background
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            await FileIOHelper.AppendLogtoCacheAsync("Background Task Run Once");
             var settings = SettingsModel.Get();
             if (settings.Cities.SavedCities.IsNullorEmpty())
             {
@@ -27,6 +28,7 @@ namespace Com.Aurora.AuWeather.Background
                 var currentCity = settings.Cities.CurrentIndex == -1 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                 await Init(settings, currentCity);
             }
+            await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();
         }
 

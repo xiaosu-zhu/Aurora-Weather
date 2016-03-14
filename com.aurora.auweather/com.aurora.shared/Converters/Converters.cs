@@ -1,6 +1,7 @@
 ﻿using Com.Aurora.Shared.Extensions;
 using System;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
@@ -125,6 +126,40 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return ((Enum)value).GetDisplayName();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BooltoVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var b = (bool)value;
+            if (b)
+            {
+                return Visibility.Collapsed;
+            }
+            else
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ReverseBoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return !(bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

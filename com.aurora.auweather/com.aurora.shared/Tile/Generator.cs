@@ -258,7 +258,7 @@ namespace Com.Aurora.AuWeather.Tile
             return NowContent;
         }
 
-        private static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
+        public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
         {
             var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
             if (updateMinutes < sunRise.TotalMinutes)
@@ -795,7 +795,6 @@ namespace Com.Aurora.AuWeather.Tile
                                                     Style = TileTextStyle.Caption,
                                                     Align = TileTextAlign.Center
                                                 },
-                                                new TileText(),
                                                 new TileText()
                                                 {
                                                     Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
@@ -836,7 +835,6 @@ namespace Com.Aurora.AuWeather.Tile
                                                     Style = TileTextStyle.Caption,
                                                     Align = TileTextAlign.Center
                                                 },
-                                                new TileText(),
                                                 new TileText()
                                                 {
                                                     Text = (string)ctosConverter.Convert(isNight? model.DailyForecast[todayIndex+1].Condition.NightCond:model.DailyForecast[todayIndex+1].Condition.DayCond,null,null,null),

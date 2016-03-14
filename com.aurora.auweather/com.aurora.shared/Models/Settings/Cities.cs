@@ -131,6 +131,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
     {
         public string City { get; set; }
         public string Id { get; set; }
+        public bool IsPinned { get; set; } = false;
 
         public bool IsCurrent = false;
 

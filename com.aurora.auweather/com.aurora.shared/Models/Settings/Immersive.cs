@@ -322,27 +322,27 @@ namespace Com.Aurora.AuWeather.Models.Settings
                         SunnyPicked = number;
                     break;
                 case "Starry":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Starry == ImmersiveBackgroundState.Assets)
                         StarryPicked = number;
                     break;
                 case "Cloudy":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Cloudy == ImmersiveBackgroundState.Assets)
                         CloudyPicked = number;
                     break;
                 case "Rainny":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Rainny == ImmersiveBackgroundState.Assets)
                         RainnyPicked = number;
                     break;
                 case "Snowy":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Snowy == ImmersiveBackgroundState.Assets)
                         SnowyPicked = number;
                     break;
                 case "Foggy":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Foggy == ImmersiveBackgroundState.Assets)
                         FoggyPicked = number;
                     break;
                 case "Haze":
-                    if (Sunny == ImmersiveBackgroundState.Assets)
+                    if (Haze == ImmersiveBackgroundState.Assets)
                         HazePicked = number;
                     break;
                 default:
@@ -360,28 +360,28 @@ namespace Com.Aurora.AuWeather.Models.Settings
                             Sunny = ImmersiveBackgroundState.Assets;
                         break;
                     case "Starry":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Starry == ImmersiveBackgroundState.Local)
+                            Starry = ImmersiveBackgroundState.Assets;
                         break;
                     case "Cloudy":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Cloudy == ImmersiveBackgroundState.Local)
+                            Cloudy = ImmersiveBackgroundState.Assets;
                         break;
                     case "Rainny":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Rainny == ImmersiveBackgroundState.Local)
+                            Rainny = ImmersiveBackgroundState.Assets;
                         break;
                     case "Snowy":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Snowy == ImmersiveBackgroundState.Local)
+                            Snowy = ImmersiveBackgroundState.Assets;
                         break;
                     case "Foggy":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Foggy == ImmersiveBackgroundState.Local)
+                            Foggy = ImmersiveBackgroundState.Assets;
                         break;
                     case "Haze":
-                        if (Sunny == ImmersiveBackgroundState.Local)
-                            Sunny = ImmersiveBackgroundState.Assets;
+                        if (Haze == ImmersiveBackgroundState.Local)
+                            Haze = ImmersiveBackgroundState.Assets;
                         break;
                     default:
                         break;

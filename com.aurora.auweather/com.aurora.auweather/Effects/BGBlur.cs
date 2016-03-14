@@ -21,6 +21,7 @@ namespace Com.Aurora.AuWeather.Effects
         private uint nowFrame = 0;
         private uint blurFrame = 0;
         private float opacity = 0f;
+        private const float blurAmount = 32f;
         private const uint inFrames = 120;
         private bool isImmersive;
         private bool canDraw = false;
@@ -60,12 +61,12 @@ namespace Com.Aurora.AuWeather.Effects
                 {
                     blurFrame++;
                     if (blurFrame <= inFrames)
-                        blur.BlurAmount = 16f * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)blurFrame / inFrames);
+                        blur.BlurAmount = blurAmount * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)blurFrame / inFrames);
                 }
                 else if (blurFrame != 0)
                 {
                     blurFrame -= 1;
-                    blur.BlurAmount = 16f * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)blurFrame / inFrames);
+                    blur.BlurAmount = blurAmount * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseIn, (double)blurFrame / inFrames);
                 }
             }
         }

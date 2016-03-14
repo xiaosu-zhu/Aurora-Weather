@@ -19,7 +19,7 @@ namespace Com.Aurora.AuWeather
                 TitleBlock.Visibility = Visibility.Collapsed;
             }
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
-            MainFrame.Navigate(typeof(NowWeatherPage));
+            MainFrame.Navigate(typeof(NowWeatherPage), this);
         }
 
         private void Hamburger_Click(object sender, RoutedEventArgs e)
@@ -37,16 +37,11 @@ namespace Com.Aurora.AuWeather
             MainFrame.Navigate(page);
         }
 
-        internal void ChangeColor(Color transparent, Color black, SolidColorBrush foreground)
+        internal void ChangeColor(Color back, Color fore, SolidColorBrush foreground)
         {
-            UIHelper.ChangeTitlebarButtonColor(transparent, black);
+            UIHelper.ChangeTitlebarButtonColor(back, fore);
             Hamburger.Foreground = foreground;
             TitleBlock.Foreground = foreground;
-        }
-
-        internal void ChangeColor(Colors colors)
-        {
-            throw new NotImplementedException();
         }
 
         private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
@@ -70,7 +65,7 @@ namespace Com.Aurora.AuWeather
 
         private void Cities_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(typeof(NowWeatherPage));
+            MainFrame.Navigate(typeof(CitiesPage), this);
         }
 
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)

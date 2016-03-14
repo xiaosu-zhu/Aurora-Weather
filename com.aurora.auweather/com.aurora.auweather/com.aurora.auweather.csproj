@@ -323,6 +323,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CitiesPage.xaml.cs">
+      <DependentUpon>CitiesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\ConditionPath.xaml.cs">
       <DependentUpon>ConditionPath.xaml</DependentUpon>
     </Compile>
@@ -367,9 +370,11 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CitiesPageViewModel.cs" />
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
+    <Compile Include="ViewModels\Events\LocationUpdateEventArgs.cs" />
     <Compile Include="ViewModels\ImmersiveSettingViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />

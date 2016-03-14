@@ -26,6 +26,13 @@ namespace Com.Aurora.Shared.Helpers
             }
         }
 
+        public static async Task AppendLogtoCacheAsync(string v)
+        {
+            var cache = ApplicationData.Current.LocalCacheFolder;
+            var log = await cache.CreateFileAsync("LOG", CreationCollisionOption.OpenIfExists);
+            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + "/n");
+        }
+
         public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssetsAsync(string path)
         {
             StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;

@@ -45,7 +45,7 @@ namespace Com.Aurora.AuWeather
             {
                 MainFrame.Navigate((typeof(ImmersiveSetting)));
             }
-            else if (curretType == typeof(Cities))
+            else if (curretType == typeof(Models.Settings.Cities))
             {
                 MainFrame.Navigate((typeof(CitiesSetting)));
             }

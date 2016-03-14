@@ -22,7 +22,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 {
     internal class CitiesSettingViewModel : ViewModelBase
     {
-        private Cities Cities;
+        private Models.Settings.Cities Cities;
         private bool enablePosition;
         private CitySettingsModel locatedCity;
         private List<CityInfo> cities;
@@ -36,7 +36,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                Cities = Cities.Get();
+                Cities = Models.Settings.Cities.Get();
                 Info = new CitiesInfo();
                 if (!Cities.SavedCities.IsNullorEmpty())
                     foreach (var city in Cities.SavedCities)

@@ -15,12 +15,26 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="Get the Donation Pack" Margin="8"/>
-        <TextBlock Grid.Row="1" Style="{ThemeResource BodyTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." Margin="8" />
-        <TextBlock Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="8">
-            <Run Text="cominia" />
+        <TextBlock Grid.Row="1" Style="{ThemeResource BodyTextBlockStyle}" Margin="8" >
+            <Run Text="需要你的帮助..." />
             <LineBreak />
-            <Run Text="asdfkawev" />
+            <Run Text="需要大量的精力和时间, 才能做出一个凑合的应用; 同时, 更新天气使用的 API 需要一定的资金才能够正常工作. 如果你觉得它很棒，不妨支持一下~" />
+            <LineBreak />
+            <Run Text="帮助我们, 你将解锁捐赠版的更多功能:" />
         </TextBlock>
-        <Button x:Name="PurchaseButton" Click="PurchaseButton_Click" Loaded="Button_Loaded" Grid.Row="3" Content="dasfsdfawe" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="12">
+            <Run Text="· 每日天气提醒" />
+            <LineBreak />
+            <Run Text="· 灾害提醒及锁屏通知" />
+            <LineBreak />
+            <Run Text="· 更短的天气刷新频率" />
+            <LineBreak />
+            <Run Text="· 钉选其他城市的磁贴并自动更新" />
+        </TextBlock>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-96,12,12" Text ="获取捐赠版" Style="{ThemeResource BodyTextBlockStyle}" >
+        </TextBlock>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-48,12,12" Text ="$1.99" Style="{ThemeResource BodyTextBlockStyle}" >
+        </TextBlock>
+        <Button x:Name="PurchaseButton" Click="PurchaseButton_Click" Loaded="Button_Loaded" Grid.Row="3" Content="Get it!" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Page>

@@ -1352,4 +1352,38 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class shiliubijiuConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (double)value * 9 / 16;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class UpdateTimeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var updateTime = (DateTime)value;
+            if ((DateTime.Now - updateTime).TotalMinutes < 30)
+            {
+                return (DateTime.Now - updateTime).TotalMinutes.ToString("0") + "分钟以内";
+            }
+            else
+            {
+                return (updateTime).ToString("H:mm");
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

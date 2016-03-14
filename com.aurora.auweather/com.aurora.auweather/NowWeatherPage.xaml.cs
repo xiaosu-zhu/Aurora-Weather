@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.System.Threading;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -55,6 +56,7 @@ namespace Com.Aurora.AuWeather
         private ThreadPoolTimer immersiveTimer;
         private bool isImmersiveMode = false;
         private bool isImmersiveAllIn = false;
+        private MainPage baba;
 
         public NowWeatherPage()
         {
@@ -76,6 +78,13 @@ namespace Com.Aurora.AuWeather
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
         {
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            baba = e.Parameter as MainPage;
+            baba.ChangeColor(Colors.Transparent, Colors.White, new SolidColorBrush(Colors.White));
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -448,8 +457,7 @@ namespace Com.Aurora.AuWeather
             }
             else if ((Window.Current.Content as Frame).ActualWidth < 864)
             {
-                if (!ScrollViewerConverter.isLargeMode)
-                    ScrollViewerConverter.isLargeMode = true;
+                ScrollViewerConverter.isLargeMode = true;
                 RootGotoNormalState();
             }
             else if ((Window.Current.Content as Frame).ActualWidth >= 864 && !rootIsWideState)
@@ -473,10 +481,12 @@ namespace Com.Aurora.AuWeather
             }
             if (ScrollViewerConverter.isLargeMode)
                 ScrollViewerConverter.isLargeMode = false;
+            UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, Colors.White);
         }
 
         private void RootGotoWideState()
         {
+            UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, (Color)Resources["SystemBaseHighColor"]);
             ScrollViewerConverter.isLargeMode = true;
             rootIsWideState = true;
             WeatherPanel.Children.Remove(DetailsPanel);
@@ -503,7 +513,6 @@ namespace Com.Aurora.AuWeather
         {
             if (rootIsWideState)
             {
-                ScrollViewerConverter.isLargeMode = true;
                 rootIsWideState = false;
                 LargeModeSubPanel.Content = null;
                 WeatherPanel.Children.Add(DetailsPanel);

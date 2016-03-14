@@ -1312,7 +1312,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             CalcCalendar();
 
             GenerateGlance();
-
+            var g = glance;
+            glance = null;
+            Glance = g;
             var c = currentCity;
             currentCity = null;
             City = c;

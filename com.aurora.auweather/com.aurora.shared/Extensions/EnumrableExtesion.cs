@@ -1,6 +1,7 @@
 ﻿using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Com.Aurora.Shared.Extensions
 {
@@ -9,6 +10,11 @@ namespace Com.Aurora.Shared.Extensions
         public static bool IsNullorEmpty(this ICollection collection)
         {
             return (collection == null || collection.Count == 0);
+        }
+
+        public static bool IsNullorEmpty(this IDictionary list)
+        {
+            return (list == null || list.Count == 0);
         }
 
         public static bool IsNullorEmpty(this Array array)
