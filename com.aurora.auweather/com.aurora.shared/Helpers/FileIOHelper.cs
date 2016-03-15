@@ -30,7 +30,7 @@ namespace Com.Aurora.Shared.Helpers
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
             var log = await cache.CreateFileAsync("LOG", CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + "/n");
+            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + "\n");
         }
 
         public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssetsAsync(string path)

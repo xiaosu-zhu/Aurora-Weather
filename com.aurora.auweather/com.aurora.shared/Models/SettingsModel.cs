@@ -1,4 +1,5 @@
 ﻿using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.Shared.Helpers;
 using Windows.System.Threading;
 
 namespace Com.Aurora.AuWeather.Models
@@ -8,6 +9,7 @@ namespace Com.Aurora.AuWeather.Models
         public Cities Cities { get; private set; }
         public Immersive Immersive { get; private set; }
         public Preferences Preferences { get; private set; }
+        public bool Inited { get; private set; }
 
         public static SettingsModel Get()
         {
@@ -15,6 +17,15 @@ namespace Com.Aurora.AuWeather.Models
             s.Cities = Cities.Get();
             s.Immersive = Immersive.Get();
             s.Preferences = Preferences.Get();
+            var init = LocalSettingsHelper.ReadSettingsValue("Inited");
+            if (init == null)
+            {
+                s.Inited = false;
+            }
+            else
+            {
+                s.Inited = (bool)init;
+            }
             return s;
         }
 
@@ -25,6 +36,7 @@ namespace Com.Aurora.AuWeather.Models
                  Cities.Save();
                  Immersive.Save();
                  Preferences.Save();
+                 LocalSettingsHelper.WriteSettingsValue("Inited", Inited);
              });
         }
     }

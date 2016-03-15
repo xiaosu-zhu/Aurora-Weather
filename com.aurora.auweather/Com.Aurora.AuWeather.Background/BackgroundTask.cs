@@ -46,6 +46,8 @@ namespace Com.Aurora.AuWeather.Background
             var fetchresult = new HeWeatherModel(resjson1);
 
             Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
+            var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
+            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
             await settings.Cities.SaveDataAsync(currentCity.Id, resstr);
             currentCity.Update();
             if (settings.Cities.CurrentIndex != -1)

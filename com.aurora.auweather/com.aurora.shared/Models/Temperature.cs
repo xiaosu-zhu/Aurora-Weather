@@ -4,39 +4,39 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Temperature
     {
-        private float temprature;
+        private float temperature;
 
         public int Celsius
         {
             get
             {
-                return Convert.ToInt32((temprature - 273.15));
+                return Convert.ToInt32((temperature - 273.15));
             }
             set
             {
-                temprature = value + 273.15f > 0 ? value + 273.15f : 0;
+                temperature = value + 273.15f > 0 ? value + 273.15f : 0;
             }
         }
         public int Fahrenheit
         {
             get
             {
-                return Convert.ToInt32((temprature - 273.15) * 9 / 5 + 32);
+                return Convert.ToInt32((temperature - 273.15) * 9 / 5 + 32);
             }
             set
             {
-                temprature = ((value - 32) * 5 / 9 + 273.15f) > 0 ? ((value - 32) * 5 / 9 + 273.15f) : 0;
+                temperature = ((value - 32) * 5 / 9 + 273.15f) > 0 ? ((value - 32) * 5 / 9 + 273.15f) : 0;
             }
         }
         public int Kelvin
         {
             get
             {
-                return (int)temprature;
+                return (int)temperature;
             }
             set
             {
-                temprature = value > 0 ? value : 0;
+                temperature = value > 0 ? value : 0;
             }
         }
 
@@ -56,6 +56,41 @@ namespace Com.Aurora.AuWeather.Models
         {
             Temperature t = new Temperature();
             t.Kelvin = kelvin;
+            return t;
+        }
+
+        public static Temperature operator +(Temperature left, Temperature right)
+        {
+            var t = new Temperature();
+            t.temperature = left.temperature + right.temperature;
+            return t;
+        }
+
+        public static Temperature operator -(Temperature left, Temperature right)
+        {
+            var t = new Temperature();
+            t.temperature = left.temperature - right.temperature;
+            return t;
+        }
+
+        public static Temperature operator *(Temperature left, Temperature right)
+        {
+            var t = new Temperature();
+            t.temperature = left.temperature * right.temperature;
+            return t;
+        }
+
+        public static Temperature operator /(Temperature left, Temperature right)
+        {
+            var t = new Temperature();
+            t.temperature = left.temperature / right.temperature;
+            return t;
+        }
+
+        public static Temperature operator /(Temperature left, float right)
+        {
+            var t = new Temperature();
+            t.temperature = left.temperature / right;
             return t;
         }
 

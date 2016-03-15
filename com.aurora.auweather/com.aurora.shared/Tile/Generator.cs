@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.Settings;
+using NotificationsExtensions.Toasts;
+using Windows.Data.Xml.Dom;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -258,6 +260,11 @@ namespace Com.Aurora.AuWeather.Tile
             return NowContent;
         }
 
+        public static ToastContent CreateToast(HeWeatherModel model, DateTime DueTime)
+        {
+            throw new NotImplementedException();
+        }
+
         public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
         {
             var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
@@ -314,6 +321,34 @@ namespace Com.Aurora.AuWeather.Tile
         {
             var b = new BadgeGlyphNotificationContent(GlyphValue.Alert);
             return b;
+        }
+
+        public static ToastContent GenerateEveryDayToast(HeWeatherModel model, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
+        {
+            var ctos = new ConditiontoTextConverter();
+            var toast = new ToastContent()
+            {
+                Scenario = ToastScenario.Default,
+                ActivationType = ToastActivationType.Foreground,
+                Duration = ToastDuration.Long,
+                Visual = new ToastVisual()
+                {
+                    TitleText = new ToastText()
+                    {
+                        Text = "Today's Weather for " + currentCity.City
+                    },
+                    BodyTextLine1 = new ToastText()
+                    {
+                        Text = model.DailyForecast[todayIndex].Date.ToString(settings.Preferences.GetForecastFormat()) + "  " + ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null)
+                        + ((model.DailyForecast[todayIndex].HighTemp + model.DailyForecast[todayIndex].LowTemp) / 2).Actual(settings.Preferences.TemperatureParameter)
+                    },
+                    BodyTextLine2 = new ToastText()
+                    {
+                        Text = glanceFull
+                    },
+                }
+            };
+            return toast;
         }
 
         private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)

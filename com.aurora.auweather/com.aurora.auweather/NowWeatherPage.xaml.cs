@@ -1,4 +1,5 @@
-﻿using Com.Aurora.AuWeather.ViewModels.Events;
+﻿using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -118,9 +119,25 @@ namespace Com.Aurora.AuWeather
             Forecast2.SetCondition(Context.Forecast2, Context.IsNight);
             Forecast3.SetCondition(Context.Forecast3, Context.IsNight);
             Forecast4.SetCondition(Context.Forecast4, Context.IsNight);
+            if (Context.Condition == (WeatherCondition.sunny | WeatherCondition.windy
+                | WeatherCondition.calm |
+                WeatherCondition.light_breeze |
+                WeatherCondition.moderate |
+                WeatherCondition.fresh_breeze |
+                WeatherCondition.strong_breeze |
+                WeatherCondition.high_wind |
+                WeatherCondition.gale))
+            {
+                baba.ChangeColor(new SolidColorBrush(Colors.Black));
+            }
+            else
+            {
+                baba.ChangeColor(new SolidColorBrush(Colors.White));
+            }
             await Task.Delay(1000);
             ScrollableRoot.RefreshComplete();
             WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
+
             await Task.Delay(2000);
             isAnimating = false;
         }
@@ -527,6 +544,7 @@ namespace Com.Aurora.AuWeather
             ImmersiveWidthIn.To = Root.ActualWidth;
             ImmersiveHeightIn.From = MainCanvas.ActualHeight;
             ImmersiveHeightIn.To = Root.ActualHeight;
+            UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, Colors.White);
             Application.Current.Resuming += Current_Resuming;
             ImmersiveTransAni.Completed += (s, args) =>
             {

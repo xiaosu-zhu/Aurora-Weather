@@ -138,17 +138,54 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal void Refresh(IList<object> selectedItems)
+        internal async void Refresh()
         {
-            throw new NotImplementedException();
+            foreach (var item in Cities)
+            {
+                item.Updated = false;
+            }
+            await SearchExisitingData();
+            Update();
         }
+
 
         internal void Delete(IList<object> selectedItems)
         {
-            throw new NotImplementedException();
+            var its = new object[selectedItems.Count];
+            selectedItems.CopyTo(its, 0);
+            if (its.IsNullorEmpty())
+            {
+                return;
+            }
+            foreach (CityViewModel item in its)
+            {
+                Cities.Remove(item);
+            }
+
+            var t = ThreadPool.RunAsync((work) =>
+            {
+                var citys = new List<CitySettingsModel>();
+                citys.AddRange(settings.Cities.SavedCities);
+                foreach (CityViewModel c in its)
+                {
+                    var index = citys.FindIndex(x =>
+                    {
+                        return x.Id == c.Id;
+                    });
+                    if (index == -1 && settings.Cities.LocatedCity != null)
+                    {
+                        settings.Cities.LocatedCity = null;
+                    }
+                    else
+                    {
+                        citys.RemoveAt(index);
+                    }
+                }
+                settings.Cities.Save(citys.ToArray());
+            });
         }
 
-        internal async void Pin(IList<object> selectedItems, object sender)
+        internal async void Pin(IList<object> selectedItems)
         {
             if (selectedItems == null || selectedItems.Count == 0)
             {
@@ -323,7 +360,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             foreach (var item in Cities)
             {
                 var currentTime = DateTime.Now;
-                if ((currentTime - item.LastUpdate).TotalMinutes <= 150)
+                if ((currentTime - item.LastUpdate).TotalMinutes < 60)
                 {
                     try
                     {

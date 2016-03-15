@@ -44,6 +44,12 @@ namespace Com.Aurora.AuWeather
             TitleBlock.Foreground = foreground;
         }
 
+        internal void ChangeColor(SolidColorBrush foreground)
+        {
+            Hamburger.Foreground = foreground;
+            TitleBlock.Foreground = foreground;
+        }
+
         private void MainPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
             if (MainFrame.CanGoBack && e.Handled == false)

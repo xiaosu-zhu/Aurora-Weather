@@ -195,7 +195,7 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    <ScrollViewer Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <ScrollViewer Background="{ThemeResource SystemControlTranslucentAltHighBrush}" Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <ScrollViewer.Resources>
             <Storyboard x:Name="LocatingIn">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Visibility">
@@ -323,7 +323,7 @@
         </ScrollViewer.Resources>
         <Grid>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid HorizontalAlignment="Stretch">
+                <Grid MaxWidth="480" HorizontalAlignment="Stretch">
                     <TextBlock x:Name="LocateOnText" Text="使用定位" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <ToggleSwitch x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
                     <Button x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" Content="定位权限被禁止" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
@@ -343,7 +343,7 @@
                             <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>
                         </Grid>
                     </Button>
-                    <AutoSuggestBox x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PlaceholderText="输入中文, 全拼, 外国城市输入英文">
+                    <AutoSuggestBox MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PlaceholderText="输入中文, 全拼, 外国城市输入英文">
                         <AutoSuggestBox.Transitions>
                             <TransitionCollection>
                                 <ContentThemeTransition />

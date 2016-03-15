@@ -17,11 +17,11 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary Source="../Themes/LightThemeDictionary.xaml" x:Key="Light"/>
-                <ResourceDictionary Source="../Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+                <ResourceDictionary Source="/Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="/Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/Styles.xaml" />
+                <ResourceDictionary Source="/Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <CollectionViewSource x:Key="GridViewSource" Source="{x:Bind Context.Cities, Mode=OneWay}" />
             <Converters:ConditiontoTextConverter x:Key="ConditiontoTextConverter" />
@@ -873,15 +873,15 @@
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
                         </Grid>
                         <ScrollViewer MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
-                            <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighLightBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
                                     <RowDefinition Height="36" />
                                 </Grid.RowDefinitions>
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind City, Mode=OneWay}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind NowCondition, Mode=OneWay, Converter={StaticResource ConditiontoTextConverter}}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundHighBrush}" TextTrimming="WordEllipsis" Margin="8,8,96,8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind Glance, Mode=OneWay}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundHighBrush}" Margin="8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind LastUpdate, Mode=OneWay, Converter={StaticResource DateTimeConverter}}" />
+                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind City, Mode=OneWay}" />
+                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind NowCondition, Mode=OneWay, Converter={StaticResource ConditiontoTextConverter}}" />
+                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" TextTrimming="WordEllipsis" Margin="8,8,96,8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind Glance, Mode=OneWay}" />
+                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind LastUpdate, Mode=OneWay, Converter={StaticResource DateTimeConverter}}" />
                             </Grid>
                         </ScrollViewer>
                     </RelativePanel>

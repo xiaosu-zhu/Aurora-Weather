@@ -4,18 +4,12 @@ using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -111,6 +105,7 @@ namespace Com.Aurora.AuWeather
             if (isEditMode)
             {
                 Delete();
+                QuitEditMode();
             }
             else
             {
@@ -120,7 +115,7 @@ namespace Com.Aurora.AuWeather
 
         private void PinTiles(object sender)
         {
-            Context.Pin(GridView.SelectedItems, sender);
+            Context.Pin(GridView.SelectedItems);
         }
 
         private void Delete()
@@ -130,7 +125,7 @@ namespace Com.Aurora.AuWeather
 
         private void RefreshAll()
         {
-            Context.Refresh(GridView.SelectedItems);
+            Context.Refresh();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)

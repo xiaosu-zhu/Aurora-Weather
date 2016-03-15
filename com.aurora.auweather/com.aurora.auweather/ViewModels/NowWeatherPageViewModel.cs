@@ -1149,7 +1149,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     ReadSettings();
                     await FetchDataAsync();
                     Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
-                    if (!fetchresult.Alarms.IsNullorEmpty())
+                    if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                     {
                         Sender.CreateBadge(Generator.GenerateAlertBadge());
                     }
@@ -1557,21 +1557,18 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private async Task SearchExistingDataAsync()
         {
-            if (!settings.Cities.SavedCities.IsNullorEmpty())
+            var currentTime = DateTime.Now;
+            if ((currentTime - currentCityModel.LastUpdate).TotalMinutes < 60)
             {
-                var currentTime = DateTime.Now;
-                if ((currentTime - currentCityModel.LastUpdate).TotalMinutes <= 150)
+                try
                 {
-                    try
-                    {
-                        var data = await FileIOHelper.ReadStringFromStorageAsync(currentCityModel.Id);
-                        if (data != null)
-                            storedDatas = new KeyValuePair<string, string>(currentCityModel.Id, data);
-                    }
-                    catch (Exception)
-                    {
+                    var data = await FileIOHelper.ReadStringFromStorageAsync(currentCityModel.Id);
+                    if (data != null)
+                        storedDatas = new KeyValuePair<string, string>(currentCityModel.Id, data);
+                }
+                catch (Exception)
+                {
 
-                    }
                 }
             }
         }
