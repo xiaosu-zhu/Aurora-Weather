@@ -111,6 +111,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
              });
         }
 
+        internal void Complete()
+        {
+            Context.Complete();
+        }
+
+        internal bool CheckCompleted()
+        {
+            return Context.CheckCompleted();
+        }
+
         private async void OnStatusChanged(Geolocator sender, StatusChangedEventArgs args)
         {
             var e = args;

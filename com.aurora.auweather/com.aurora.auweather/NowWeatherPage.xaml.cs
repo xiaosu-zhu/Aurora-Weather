@@ -138,7 +138,7 @@ namespace Com.Aurora.AuWeather
             ScrollableRoot.RefreshComplete();
             WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
 
-            await Task.Delay(2000);
+            await Task.Delay(3000);
             isAnimating = false;
         }
 

@@ -55,6 +55,7 @@ namespace Com.Aurora.AuWeather
              }));
         }
 
+
         private void DeniePos()
         {
             Context.DeniePos();

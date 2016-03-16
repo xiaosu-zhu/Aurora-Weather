@@ -260,9 +260,35 @@ namespace Com.Aurora.AuWeather.Tile
             return NowContent;
         }
 
-        public static ToastContent CreateToast(HeWeatherModel model, DateTime DueTime)
+        public static ToastContent CreateToast(HeWeatherModel model, CitySettingsModel currentCity, SettingsModel settings, DateTime DueTime)
         {
-            throw new NotImplementedException();
+            var glance = Glance.GenerateGlanceDescription(model, false, settings.Preferences.TemperatureParameter, DueTime);
+            var ctos = new ConditiontoTextConverter();
+            var todayIndex = Array.FindIndex(model.DailyForecast, x =>
+            {
+                return x.Date.Date == DueTime.Date;
+            });
+            var t = new ToastContent()
+            {
+                Duration = ToastDuration.Long,
+                Launch = currentCity.Id,
+                Visual = new ToastVisual()
+                {
+                    TitleText = new ToastText()
+                    {
+                        Text = "Today in " + currentCity.City
+                    },
+                    BodyTextLine1 = new ToastText()
+                    {
+                        Text = (string)ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null)
+                    },
+                    BodyTextLine2 = new ToastText()
+                    {
+                        Text = glance
+                    }
+                }
+            };
+            return t;
         }
 
         public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
@@ -283,18 +309,14 @@ namespace Com.Aurora.AuWeather.Tile
 
         public static async Task<List<TileContent>> CreateAll(HeWeatherModel model, DateTime desiredDate)
         {
-#if DEBUG
-            var todayIndex = 0;
-#else
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
-                return (x.Date - desiredDate).TotalSeconds > 0;
-            }) - 1;
+                return x.Date.Date == desiredDate.Date;
+            });
             var hourIndex = Array.FindIndex(model.HourlyForecast, x =>
             {
                 return (x.DateTime - desiredDate).TotalSeconds > 0;
             });
-#endif
             var updateTime = model.Location.UpdateTime;
             var currentTimeZone = DateTimeHelper.GetTimeZone(updateTime, model.Location.UtcTime);
             var sunRise = model.DailyForecast[todayIndex].SunRise;
@@ -692,6 +714,32 @@ namespace Com.Aurora.AuWeather.Tile
                 }
             };
             return forecaset;
+        }
+
+        public static ToastContent CreateAlertToast(HeWeatherModel fetchresult, CitySettingsModel currentCityModel)
+        {
+            var alarm = fetchresult.Alarms[0];
+            ToastContent t = new ToastContent()
+            {
+                Duration = ToastDuration.Long,
+                Scenario = ToastScenario.Alarm,
+                Visual = new ToastVisual()
+                {
+                    TitleText = new ToastText()
+                    {
+                        Text = "气象灾害预警"
+                    },
+                    BodyTextLine1 = new ToastText()
+                    {
+                        Text = alarm.Title
+                    },
+                    BodyTextLine2 = new ToastText()
+                    {
+                        Text = alarm.Text
+                    }
+                }
+            };
+            return t;
         }
 
         private static TileContent GenerateNowTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)

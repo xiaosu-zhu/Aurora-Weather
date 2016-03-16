@@ -47,14 +47,10 @@ namespace Com.Aurora.AuWeather.Models
         #endregion
         public static string GenerateShortDescription(HeWeatherModel model, bool isNight)
         {
-#if DEBUG
-            var todayIndex = 0;
-#else
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
-                return (x.Date - desiredDate).TotalSeconds > 0;
-            }) - 1;
-#endif
+                return x.Date.Date == DateTime.Today.Date;
+            });
             var 主语 = model.NowWeather.Now.Condition;
             string zhuyu = "现在";
             if (Tools.Random.Next(200) >= 100)
@@ -295,14 +291,10 @@ namespace Com.Aurora.AuWeather.Models
 
         public static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter, DateTime desiredDate)
         {
-#if DEBUG
-            var todayIndex = 0;
-#else
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
-                return (x.Date - desiredDate).TotalSeconds > 0;
-            }) - 1;
-#endif
+                return x.Date.Date == desiredDate.Date;
+            });
             var 主语 = model.NowWeather.Now.Condition;
             string zhuyu = "现在";
             if (Tools.Random.Next(200) >= 100)

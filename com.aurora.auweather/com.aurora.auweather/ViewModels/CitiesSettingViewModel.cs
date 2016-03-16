@@ -118,12 +118,28 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        internal void Complete()
+        {
+            Cities.Save();
+            LocalSettingsHelper.WriteSettingsValue("Inited", true);
+        }
+
+        internal bool CheckCompleted()
+        {
+            return !Cities.SavedCities.IsNullorEmpty() || Cities.LocatedCity != null;
+        }
+
         internal async Task CalcPosition(Geoposition pos)
         {
 
             var final = Models.Location.GetNearsetLocation(cities,
                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
             Cities.LocatedCity = new CitySettingsModel(final.ToArray()[0]);
+            if (Cities.SavedCities.IsNullorEmpty())
+            {
+                Cities.CurrentIndex = -1;
+            }
+            Cities.Save();
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 LocatedCity = Cities.LocatedCity;

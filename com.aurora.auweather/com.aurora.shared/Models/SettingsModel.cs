@@ -1,4 +1,5 @@
-﻿using Com.Aurora.AuWeather.Models.Settings;
+﻿using System;
+using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.Helpers;
 using Windows.System.Threading;
 
@@ -38,6 +39,11 @@ namespace Com.Aurora.AuWeather.Models
                  Preferences.Save();
                  LocalSettingsHelper.WriteSettingsValue("Inited", Inited);
              });
+        }
+
+        public void Set(bool v)
+        {
+            Inited = v;
         }
     }
 

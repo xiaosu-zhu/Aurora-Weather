@@ -78,60 +78,81 @@ namespace Com.Aurora.AuWeather
                 NavigatetoStart();
                 return;
             }
-            if ((!settings.Cities.SavedCities.IsNullorEmpty()) || settings.Cities.LocatedCity != null)
+            if (this.args != null)
             {
-                if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
+                if (this.args == settings.Cities.LocatedCity.Id)
                 {
-                    var r = ThreadPool.RunAsync(async (work) =>
-                    {
-                        var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                        var result = JsonHelper.FromJson<CityIdContract>(str);
-                        var citys = CityInfo.CreateList(result);
-                        str = null;
-                        result = null;
-                        var p = Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                         {
-                             var accessStatus = await Geolocator.RequestAccessAsync();
-                             if (accessStatus == GeolocationAccessStatus.Allowed)
-                             {
-                                 var _geolocator = new Geolocator();
-                                 var pos = await _geolocator.GetGeopositionAsync();
-                                 var t = ThreadPool.RunAsync((w) =>
-                                 {
-                                     w.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                     CalcPosition(pos, citys, settings);
-                                 });
-                             }
-                         }));
-                    });
-                }
-                else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
-                {
-                    if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
-                    {
-#if DEBUG
-                        await Task.Delay(5000);
-                        var resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
-                        var task = ThreadPool.RunAsync(async (work) =>
-                        {
-                            work.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                            await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr);
-                            settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
-                            settings.Cities.Save();
-                        });
-                    }
+                    settings.Cities.CurrentIndex = -1;
                 }
                 else
                 {
+                    var index = Array.FindIndex(settings.Cities.SavedCities, x =>
+                     {
+                         return x.Id == this.args;
+                     });
+                    if (index >= 0)
+                    {
+                        settings.Cities.CurrentIndex = index;
+                    }
+                }
 
-                    NavigatetoStart();
-                    return;
+            }
+            if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
+            {
+                var r = ThreadPool.RunAsync(async (work) =>
+                {
+                    var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                    var result = JsonHelper.FromJson<CityIdContract>(str);
+                    var citys = CityInfo.CreateList(result);
+                    str = null;
+                    result = null;
+                    var p = Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                     {
+                         var accessStatus = await Geolocator.RequestAccessAsync();
+                         if (accessStatus == GeolocationAccessStatus.Allowed)
+                         {
+                             var _geolocator = new Geolocator();
+                             var pos = await _geolocator.GetGeopositionAsync();
+                             var t = ThreadPool.RunAsync(async (w) =>
+                             {
+                                 w.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                                 CalcPosition(pos, citys, settings);
+                                 if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
+                                 {
+                                     var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                                     var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
+                                     var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                                     var task = ThreadPool.RunAsync(async (m) =>
+                                 {
+                                     await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
+                                     settings.Cities.LocatedCity.Update();
+                                     settings.Cities.Save();
+                                 });
+                                 }
+                             });
+                         }
+                     }));
+                });
+            }
+            else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
+            {
+                if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
+                {
+                    var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                    var param = new string[] { "cityid=" + settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id };
+                    var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                    var task = ThreadPool.RunAsync(async (work) =>
+                    {
+                        work.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                        await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr);
+                        settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
+                        settings.Cities.Save();
+                    });
+
+                }
+                else
+                {
+                    SplashComplete(null, AsyncStatus.Completed);
                 }
             }
             else
@@ -139,7 +160,6 @@ namespace Com.Aurora.AuWeather
                 NavigatetoStart();
                 return;
             }
-
         }
 
         private async void NavigatetoStart()

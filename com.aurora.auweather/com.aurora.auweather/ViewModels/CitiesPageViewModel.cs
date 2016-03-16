@@ -68,6 +68,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+
         internal void DeniePos()
         {
             if (settings.Cities.LocatedCity != null && settings.Cities.EnableLocate)
@@ -85,15 +86,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
-#if DEBUG
-                        await Task.Delay(5000);
-                        var resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
+                        var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                        var param = new string[] { "cityid=" + item.Id };
+                        var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                         item.data = resstr;
                         await settings.Cities.SaveDataAsync(item.Id, resstr);
                         var index = Array.FindIndex(settings.Cities.SavedCities, x =>
@@ -222,29 +217,20 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     catch (Exception)
                     {
-#if DEBUG
-                        resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
+                        var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                        var param = new string[] { "cityid=" + item.Id };
+                        resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                     }
                     var resjson = HeWeatherContract.Generate(resstr);
                     var weather = new HeWeatherModel(resjson);
-#if DEBUG
-                    var todayIndex = 0;
-#else
-            var todayIndex = Array.FindIndex(model.DailyForecast, x =>
-            {
-                return (x.Date - desiredDate).TotalSeconds > 0;
-            }) - 1;
-            var hourIndex = Array.FindIndex(model.HourlyForecast, x =>
-            {
-                return (x.DateTime - desiredDate).TotalSeconds > 0;
-            });
-#endif
+                    var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
+                    {
+                        return x.Date.Date == DateTime.Today.Date;
+                    });
+                    var hourIndex = Array.FindIndex(weather.HourlyForecast, x =>
+                    {
+                        return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+                    });
                     var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
                     var glanceFull = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
                     var glance = Glance.GenerateShortDescription(weather, isNight);
@@ -258,15 +244,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var t = ThreadPool.RunAsync(async (work) =>
             {
-#if DEBUG
-                await Task.Delay(5000);
-                var resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
                 var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
+                var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
+                var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                 Cities[0].data = resstr;
                 await settings.Cities.SaveDataAsync(Cities[0].Id, resstr);
                 settings.Cities.LocatedCity.Update();
@@ -314,18 +294,14 @@ namespace Com.Aurora.AuWeather.ViewModels
         private async Task itemInit(CityViewModel item, HeWeatherModel weather)
         {
             item.NowCondition = weather.NowWeather.Now.Condition;
-#if DEBUG
-            var todayIndex = 0;
-#else
-            var todayIndex = Array.FindIndex(model.DailyForecast, x =>
+            var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
             {
-                return (x.Date - desiredDate).TotalSeconds > 0;
-            }) - 1;
-            var hourIndex = Array.FindIndex(model.HourlyForecast, x =>
-            {
-                return (x.DateTime - desiredDate).TotalSeconds > 0;
+                return x.Date.Date == DateTime.Today.Date;
             });
-#endif
+            var hourIndex = Array.FindIndex(weather.HourlyForecast, x =>
+            {
+                return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+            });
             var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
             item.Glance = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
             item.Background = new BitmapImage(await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight));

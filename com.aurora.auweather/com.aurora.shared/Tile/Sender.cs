@@ -5,6 +5,7 @@ using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using System.Collections.Generic;
+using NotificationsExtensions.Toasts;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -69,6 +70,12 @@ namespace Com.Aurora.AuWeather.Tile
             ScheduledToastNotification scheduledToast = new ScheduledToastNotification(toastXml, dueTime);
             scheduledToast.Id = id;
             ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
+        }
+
+        public static void CreateToast(ToastContent content)
+        {
+            ToastNotification t = new ToastNotification(content.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(t);
         }
 
         public static void RemoveSpecScheduledToastNotification(string id)

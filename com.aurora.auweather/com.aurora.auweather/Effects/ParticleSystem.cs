@@ -268,13 +268,14 @@ namespace Com.Aurora.AuWeather.Effects
 
         public void Dispose()
         {
-            if (surfaceLoaded)
+            if (surfaceLoaded && bitmap != null)
             {
                 bitmap.Dispose();
-                freeParticles.Clear();
-                ActiveParticles.Clear();
+
                 surfaceLoaded = false;
             }
+            freeParticles.Clear();
+            ActiveParticles.Clear();
         }
     }
 }

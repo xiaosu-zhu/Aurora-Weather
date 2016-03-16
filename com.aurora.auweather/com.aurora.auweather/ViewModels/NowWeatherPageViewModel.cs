@@ -112,7 +112,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         private TimeZoneInfo currentTimeZone;
         private string glance;
         private CitySettingsModel currentCityModel;
-        private CitySettingsModel[] citys;
         private int todayIndex;
         private int nowHourIndex;
 
@@ -1148,11 +1147,20 @@ namespace Com.Aurora.AuWeather.ViewModels
                     storedDatas = default(KeyValuePair<string, string>);
                     ReadSettings();
                     await FetchDataAsync();
-                    Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
-                    if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
+                    var t = ThreadPool.RunAsync(async (w) =>
                     {
-                        Sender.CreateBadge(Generator.GenerateAlertBadge());
-                    }
+                        Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
+                        if (settings.Preferences.EnableEveryDay)
+                        {
+                            var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
+                            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCityModel, settings, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
+                        }
+                        if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
+                        {
+                            Sender.CreateBadge(Generator.GenerateAlertBadge());
+                            Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel));
+                        }
+                    });
 
                 }
                 catch (ArgumentNullException)
@@ -1164,7 +1172,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     await RegBGTask(settings.Preferences.RefreshFrequency);
                     InitialViewModel();
-
                 }));
             });
         }
@@ -1176,7 +1183,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             switch (frequency)
             {
                 case RefreshState.one:
-                    return;
+                    freshTime = 29;
+                    break;
                 case RefreshState.two:
                     freshTime = 60;
                     break;
@@ -1189,8 +1197,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 default:
                     return;
             }
-            TimeTrigger hourlyTrigger = new TimeTrigger(freshTime, false);
-            SystemCondition userCondition = new SystemCondition(SystemConditionType.InternetAvailable);
             string entryPoint = "Com.Aurora.AuWeather.Background.BackgroundTask";
             string taskName = "Aurora Weather";
             var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
@@ -1204,6 +1210,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                         t.Value.Unregister(true);
                     }
                 }
+                if (freshTime == 29)
+                {
+                    return;
+                }
+                TimeTrigger hourlyTrigger = new TimeTrigger(freshTime, false);
+                SystemCondition userCondition = new SystemCondition(SystemConditionType.InternetAvailable);
                 BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
                 taskBuilder.Name = taskName;
                 taskBuilder.TaskEntryPoint = entryPoint;
@@ -1249,16 +1261,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                     fetchresult = new HeWeatherModel(resjson);
                     return;
                 }
-
-#if DEBUG
-                await Task.Delay(5000);
-                resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
                 var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
                 resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
                 var resjson1 = HeWeatherContract.Generate(resstr);
                 fetchresult = new HeWeatherModel(resjson1);
                 var task = ThreadPool.RunAsync(async (work) =>
@@ -1267,13 +1272,13 @@ namespace Com.Aurora.AuWeather.ViewModels
                     currentCityModel.Update();
                     if (settings.Cities.CurrentIndex != -1)
                     {
-                        citys[settings.Cities.CurrentIndex] = currentCityModel;
+                        settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCityModel;
                     }
                     else
                     {
                         settings.Cities.LocatedCity = currentCityModel;
                     }
-                    settings.Cities.Save(citys);
+                    settings.Cities.Save();
                 });
 
             }
@@ -1465,20 +1470,15 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void SetTime()
         {
-#if DEBUG
-            todayIndex = 0;
-            nowHourIndex = 0;
-#else
             todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
             {
-                return (x.Date - DateTime.Now).TotalSeconds > 0;
-            }) - 1;
+                return x.Date.Date == DateTime.Today.Date;
+            });
             nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
             {
                 return (x.DateTime - DateTime.Now).TotalSeconds > 0;
             }
                  );
-#endif
             UpdateTime = fetchresult.Location.UpdateTime;
             currentTimeZone = DateTimeHelper.GetTimeZone(UpdateTime, fetchresult.Location.UtcTime);
             RefreshCurrentTime();
@@ -1586,69 +1586,27 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void ReadSettings()
         {
-#if DEBUG
             this.settings = SettingsModel.Get();
-            if (settings.Cities.SavedCities.IsNullorEmpty())
+            if (settings.Cities.CurrentIndex == -1)
             {
-                currentCityModel = new CitySettingsModel();
-                currentCityModel.City = "北京";
-                currentCityModel.Id = "CN101010100";
-                currentCityModel.LastUpdate = DateTime.Now;
-                currentCity = "北京";
-                currentId = "CN101010100";
-                citys = new CitySettingsModel[] { new CitySettingsModel() };
-                citys[0].City = "北京";
-                citys[0].Id = "CN101010100";
-                citys[0].LastUpdate = DateTime.Now;
-                settings.Cities.Pick(0);
-                settings.Cities.Set(citys);
-                settings.Cities.Set(true);
-                settings.Preferences.Set(TemperatureParameter.Fahrenheit);
-                settings.Preferences.Set(SpeedParameter.Knot);
-                settings.Preferences.Set(WindParameter.SpeedandDegree);
-                settings.Preferences.DecorateNumber = 1;
-                settings.Preferences.EnableImmersiveSecond = true;
-                settings.SaveSettings();
+                currentCityModel = settings.Cities.LocatedCity;
+                currentCity = currentCityModel.City;
+                currentId = currentCityModel.Id;
             }
             else
             {
-                if (settings.Cities.CurrentIndex == -1)
+                try
                 {
-                    currentCityModel = settings.Cities.LocatedCity;
+                    currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                     currentCity = currentCityModel.City;
                     currentId = currentCityModel.Id;
                 }
-                else
+                catch (Exception)
                 {
-                    try
-                    {
-                        currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
-                        currentCity = currentCityModel.City;
-                        currentId = currentCityModel.Id;
-                    }
-                    catch (Exception)
-                    {
-                        NotifyCitiesError();
-                    }
+                    NotifyCitiesError();
                 }
-                citys = settings.Cities.SavedCities;
             }
             InitialConverterParameter(settings);
-#else
-            settings = SettingsModel.ReadSettings();
-            if (!settings.SavedCities.IsNullorEmpty())
-            {
-            currentCity = settings.CurrentCity.City;
-            citys = settings.SavedCities;
-            currentId = settings.CurrentCity.Id;
-            InitialConverterParameter(settings);
-            }
-            else
-            {
-            throw new ArgumentNullException();
-            }
-#endif
-
         }
 
         private void NotifyCitiesError()

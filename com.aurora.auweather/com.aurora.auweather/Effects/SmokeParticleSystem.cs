@@ -195,9 +195,10 @@ namespace Com.Aurora.AuWeather.Effects
                 foreach (var item in smokeSurfaces)
                 {
                     item.Dispose();
-                    surfaceLoaded = false;
+                    
                 }
             }
+            surfaceLoaded = false;
         }
     }
 }

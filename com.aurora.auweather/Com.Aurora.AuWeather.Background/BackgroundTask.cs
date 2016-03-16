@@ -25,8 +25,23 @@ namespace Com.Aurora.AuWeather.Background
             }
             else
             {
-                var currentCity = settings.Cities.CurrentIndex == -1 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];
-                await Init(settings, currentCity);
+                if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
+                {
+                    if (settings.Cities.LocatedCity == null)
+                    {
+                        settings.Cities.CurrentIndex = 0;
+                    }
+                    else
+                    {
+                        var currentCity = settings.Cities.LocatedCity;
+                        await Init(settings, currentCity);
+                    }
+                }
+                else
+                {
+                    var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
+                    await Init(settings, currentCity);
+                }
             }
             await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();
@@ -34,20 +49,22 @@ namespace Com.Aurora.AuWeather.Background
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
-#if DEBUG
-            var resstr = await FileIOHelper.ReadStringFromAssetsAsync("testdata");
-#else
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-
-#endif
+            var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+            var param = new string[] { "cityid=" + currentCity.Id };
+            var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
             var resjson1 = HeWeatherContract.Generate(resstr);
             var fetchresult = new HeWeatherModel(resjson1);
-
             Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
-            var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
+            if (settings.Preferences.EnableEveryDay)
+            {
+                var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
+                Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
+            }
+            if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
+            {
+                Sender.CreateBadge(Generator.GenerateAlertBadge());
+                Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity));
+            }
             await settings.Cities.SaveDataAsync(currentCity.Id, resstr);
             currentCity.Update();
             if (settings.Cities.CurrentIndex != -1)
