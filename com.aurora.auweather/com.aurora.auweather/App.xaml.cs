@@ -1,15 +1,9 @@
-﻿using Com.Aurora.Shared.Helpers.Crypto;
-using System;
+﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Background;
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
-using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
@@ -32,6 +26,49 @@ namespace Com.Aurora.AuWeather
             this.Suspending += OnSuspending;
         }
 
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+            {
+                /* mobile 设置状态栏 */
+                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    StatusBar statusBar = StatusBar.GetForCurrentView();
+                    statusBar.ForegroundColor = Colors.White;
+                    ApplicationView.GetForCurrentView()
+                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                }
+                /* 桌面设置 */
+                var view = ApplicationView.GetForCurrentView();
+                view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+                view.TitleBar.BackgroundColor = Colors.Transparent;
+                // button
+                view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+                view.TitleBar.ButtonForegroundColor = Colors.White;
+                //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
+                //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
+                view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+                Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            }
+            if (args.Kind == ActivationKind.ToastNotification)
+            {
+                //Get the pre-defined arguments and user inputs from the eventargs;
+                var toastArgs = args as ToastNotificationActivatedEventArgs;
+                var splash = toastArgs.SplashScreen;
+                var arguments = toastArgs.Argument;
+                if (Window.Current.Content == null)
+                {
+                    if (toastArgs.PreviousExecutionState != ApplicationExecutionState.Running)
+                    {
+                        SplashScreenEx extendedSplash = new SplashScreenEx(splash, arguments);
+                        Window.Current.Content = extendedSplash;
+                    }
+                }
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
+        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

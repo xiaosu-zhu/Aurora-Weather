@@ -56,5 +56,17 @@ namespace Com.Aurora.AuWeather
                 PurchaseButton.IsEnabled = !license.IsPurchased;
             }
         }
+
+        private void DollarText_Loaded(object sender, RoutedEventArgs e)
+        {
+            DollarText.Text = license.Price;
+        }
+
+        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
+        {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            var obtain = loader.GetString("Obtain");
+            ConfirmText.Text = obtain + license.Name;
+        }
     }
 }

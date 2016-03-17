@@ -324,22 +324,22 @@
         <Grid>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid MaxWidth="480" HorizontalAlignment="Stretch">
-                    <TextBlock x:Name="LocateOnText" Text="使用定位" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                    <TextBlock x:Uid="LocateOnText" x:Name="LocateOnText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <ToggleSwitch x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
-                    <Button x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" Content="定位权限被禁止" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                    <HyperlinkButton x:Name="CheckLocateAccessButton" Content="转到设置" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
+                    <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                    <HyperlinkButton x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
                 </Grid>
                 <RelativePanel MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock x:Name="LocatedText" Opacity="0" Visibility="Collapsed" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Text="{Binding LocatedCity, Converter={StaticResource CityInfoConverter}}" Margin="8" />
                     <ToggleButton x:Name="LocatedStar" IsChecked="{x:Bind Context.Is_Located_Current, Mode=OneWay}" Click="LocatedStar_Click" Opacity="0" Visibility="Collapsed" Style="{ThemeResource StarButton}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8" />
                     <ProgressRing x:Name="LocatingRing" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8" />
-                    <TextBlock x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Text="正在定位" Margin="8" />
+                    <TextBlock x:Uid="LocatingText" x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Margin="8" />
                 </RelativePanel>
                 <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource SystemControlAltMediumBrush}" />
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Button MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Style="{ThemeResource SymbolButton}">
                         <Grid HorizontalAlignment="Stretch">
-                            <TextBlock FontWeight="Normal" Text="搜索城市" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock x:Uid="SearchText" FontWeight="Normal" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>
                         </Grid>
                     </Button>
@@ -379,7 +379,7 @@
             </StackPanel>
             <Grid x:Name="FetchingPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ProgressRing x:Name="FetchingRing" IsActive="True" Height="48" Width="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8" />
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="加载城市数据" Margin="8,64,8,8" />
+                <TextBlock x:Uid="LoadingDataText" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,64,8,8" />
             </Grid>
         </Grid>
 

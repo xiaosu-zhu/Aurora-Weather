@@ -267,13 +267,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             var t = ThreadPool.RunAsync((work) =>
             {
-                settings.SaveSettings();
+                settings.Cities.Save();
             });
-        }
-
-        private void RunAsync(Func<object, Task> p)
-        {
-            throw new NotImplementedException();
         }
 
         private async Task Complete(CityViewModel item)

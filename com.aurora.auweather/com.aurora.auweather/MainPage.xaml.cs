@@ -30,6 +30,9 @@ namespace Com.Aurora.AuWeather
         internal void NavigatetoSettings(Type option)
         {
             MainFrame.Navigate(typeof(SettingOptionsPage), option);
+            Refresh.Visibility = Visibility.Collapsed;
+            Settings.Icon = new SymbolIcon(Symbol.Setting);
+            Cities.Icon = new SymbolIcon(Symbol.Calculator);
         }
 
         internal void Navigate(Type page)
@@ -65,18 +68,63 @@ namespace Com.Aurora.AuWeather
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-
-            MainFrame.Navigate(typeof(SettingsPage), this);
+            if (MainFrame.Content is CitiesPage)
+            {
+                (MainFrame.Content as CitiesPage).Add();
+            }
+            else
+            {
+                MainFrame.Navigate(typeof(SettingsPage), this);
+                Refresh.Visibility = Visibility.Collapsed;
+                Settings.Icon = new SymbolIcon(Symbol.Setting);
+                Cities.Icon = new SymbolIcon(Symbol.Calculator);
+            }
         }
 
         private void Cities_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(typeof(CitiesPage), this);
+            if (MainFrame.Content is CitiesPage)
+            {
+                (MainFrame.Content as CitiesPage).Edit();
+            }
+            else
+            {
+                MainFrame.Navigate(typeof(CitiesPage), this);
+                Settings.Icon = new SymbolIcon(Symbol.Add);
+                Cities.Icon = new SymbolIcon(Symbol.Edit);
+                Refresh.Visibility = Visibility.Visible;
+            }
+        }
+
+        internal void CitiesPageQuitEditMode()
+        {
+            Cities.Icon = new SymbolIcon(Symbol.Edit);
+            Refresh.Icon = new SymbolIcon(Symbol.Refresh);
+            Settings.Icon = new SymbolIcon(Symbol.Add);
         }
 
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
+            if ((PaneList.SelectedItem as PaneOption).Page == typeof(CitiesPage))
+            {
+                Settings.Icon = new SymbolIcon(Symbol.Add);
+                Cities.Icon = new SymbolIcon(Symbol.Edit);
+                
+            }
+            else
+            {
+                Settings.Icon = new SymbolIcon(Symbol.Setting);
+                Cities.Icon = new SymbolIcon(Symbol.Calculator);
+            }
+            if((PaneList.SelectedItem as PaneOption).Page == typeof(SettingsPage))
+            {
+                Refresh.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Refresh.Visibility = Visibility.Visible;
+            }
         }
 
         internal void ReCalcPaneFormat()
@@ -84,6 +132,43 @@ namespace Com.Aurora.AuWeather
             this.DataContext = null;
             DateNowConverter.Refresh();
             this.DataContext = new MainPageViewModel();
+        }
+
+        private void Today_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(NowWeatherPage), this);
+            Settings.Icon = new SymbolIcon(Symbol.Setting);
+            Cities.Icon = new SymbolIcon(Symbol.Calculator);
+            Refresh.Visibility = Visibility.Visible;
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is NowWeatherPage)
+            {
+                (MainFrame.Content as NowWeatherPage).Refresh();
+            }
+            else if (MainFrame.Content is CitiesPage)
+            {
+                (MainFrame.Content as CitiesPage).Refresh();
+            }
+        }
+
+        internal void CitiesPageGotoEditMode()
+        {
+            Cities.Icon = new SymbolIcon(Symbol.Delete);
+            Refresh.Icon = new SymbolIcon(Symbol.Cancel);
+            Settings.Icon = new SymbolIcon(Symbol.Pin);
+        }
+
+        private void Find_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Like_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

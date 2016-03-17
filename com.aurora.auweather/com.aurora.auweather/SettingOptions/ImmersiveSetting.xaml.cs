@@ -14,6 +14,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
     /// </summary>
     public sealed partial class ImmersiveSetting : Page
     {
+        private Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
         public ImmersiveSetting()
         {
             this.InitializeComponent();
@@ -75,9 +76,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                       {
                           item.Thumbnail = new BitmapImage(item.Path);
                       }
-                      switch ((Root.SelectedItem as PivotItem).Header as string)
+                      switch (Root.SelectedIndex)
                       {
-                          case "Sunny":
+                          case 0:
                               if (Context.localFile != null && Context.SunnyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(SunnyList, SunnyLocal, SunnyLocalGrid, SunnyButton);
@@ -89,7 +90,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               SunnyList.ItemsSource = Context.CurrentList;
                               SunnyList.SelectedIndex = Context.sunnyP;
                               break;
-                          case "Starry":
+                          case 1:
                               if (Context.localFile != null && Context.StarryState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(StarryList, StarryLocal, StarryLocalGrid, StarryButton);
@@ -101,7 +102,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               StarryList.ItemsSource = Context.CurrentList;
                               StarryList.SelectedIndex = Context.starryP;
                               break;
-                          case "Cloudy":
+                          case 2:
                               if (Context.localFile != null && Context.CloudyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(CloudyList, CloudyLocal, CloudyLocalGrid, CloudyButton);
@@ -113,7 +114,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               CloudyList.ItemsSource = Context.CurrentList;
                               CloudyList.SelectedIndex = Context.cloudyP;
                               break;
-                          case "Rainny":
+                          case 3:
                               if (Context.localFile != null && Context.RainnyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(RainnyList, RainnyLocal, RainnyLocalGrid, RainnyButton);
@@ -125,7 +126,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               RainnyList.ItemsSource = Context.CurrentList;
                               RainnyList.SelectedIndex = Context.rainnyP;
                               break;
-                          case "Snowy":
+                          case 4:
                               if (Context.localFile != null && Context.SnowyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(SnowyList, SnowyLocal, SnowyLocalGrid, SnowyButton);
@@ -137,7 +138,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               SnowyList.ItemsSource = Context.CurrentList;
                               SnowyList.SelectedIndex = Context.snowyP;
                               break;
-                          case "Foggy":
+                          case 5:
                               if (Context.localFile != null && Context.FoggyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(FoggyList, FoggyLocal, FoggyLocalGrid, FoggyButton);
@@ -149,7 +150,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               FoggyList.ItemsSource = Context.CurrentList;
                               FoggyList.SelectedIndex = Context.foggyP;
                               break;
-                          case "Haze":
+                          case 6:
                               if (Context.localFile != null && Context.HazeState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(HazeList, HazeLocal, HazeLocalGrid, HazeButton);
@@ -174,7 +175,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             list.Visibility = Visibility.Visible;
             grid.Visibility = Visibility.Collapsed;
             image.Source = null;
-            button.Content = "Add Image";
+            button.Content = loader.GetString("Add_Image");
         }
 
         private async void HideList(ListView list, Image image, Grid grid, Button button)
@@ -187,7 +188,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             }
             grid.Visibility = Visibility.Visible;
             list.Visibility = Visibility.Collapsed;
-            button.Content = "Replace Image";
+            button.Content = loader.GetString("Replace_Image");
         }
 
         private void Root_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -230,13 +231,13 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
-                Context.ChoseLocal(((((sender as Button).Parent as StackPanel).Parent as ScrollViewer).Parent as PivotItem).Header as string, file);
+                Context.ChoseLocal(Root.SelectedIndex, file);
         }
 
         private void LocalButton_Click(object sender, RoutedEventArgs e)
         {
             ((((sender as Button).Parent as Grid).Parent as StackPanel).Children[1] as ListView).SelectedIndex = 0;
-            Context.DeleteLocal((((((sender as Button).Parent as Grid).Parent as StackPanel).Parent as ScrollViewer).Parent as PivotItem).Header as string);
+            Context.DeleteLocal(Root.SelectedIndex);
         }
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)

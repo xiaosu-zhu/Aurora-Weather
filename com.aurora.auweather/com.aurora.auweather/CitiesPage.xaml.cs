@@ -71,6 +71,33 @@ namespace Com.Aurora.AuWeather
             citys = null;
         }
 
+        internal void Add()
+        {
+            if (isEditMode)
+            {
+                PinTiles();
+            }
+            else
+            {
+                baba.NavigatetoSettings(typeof(Cities));
+            }
+        }
+
+        internal void Edit()
+        {
+            if (isEditMode)
+            {
+                Delete();
+                QuitEditMode();
+                baba.CitiesPageQuitEditMode();
+            }
+            else
+            {
+                GotoEditMode();
+                baba.CitiesPageGotoEditMode();
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -92,7 +119,7 @@ namespace Com.Aurora.AuWeather
         {
             if (isEditMode)
             {
-                PinTiles(sender);
+                PinTiles();
             }
             else
             {
@@ -107,6 +134,7 @@ namespace Com.Aurora.AuWeather
             {
                 Delete();
                 QuitEditMode();
+                baba.CitiesPageQuitEditMode();
             }
             else
             {
@@ -114,7 +142,7 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void PinTiles(object sender)
+        private void PinTiles()
         {
             Context.Pin(GridView.SelectedItems);
         }
@@ -122,6 +150,19 @@ namespace Com.Aurora.AuWeather
         private void Delete()
         {
             Context.Delete(GridView.SelectedItems);
+        }
+
+        internal void Refresh()
+        {
+            if (isEditMode)
+            {
+                QuitEditMode();
+                baba.CitiesPageQuitEditMode();
+            }
+            else
+            {
+                RefreshAll();
+            }
         }
 
         private void RefreshAll()
@@ -134,6 +175,7 @@ namespace Com.Aurora.AuWeather
             if (isEditMode)
             {
                 QuitEditMode();
+                baba.CitiesPageQuitEditMode();
             }
             else
             {
@@ -144,6 +186,7 @@ namespace Com.Aurora.AuWeather
         private void RelativePanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             GotoEditMode();
+            baba.CitiesPageGotoEditMode();
         }
 
         private void GotoEditMode()

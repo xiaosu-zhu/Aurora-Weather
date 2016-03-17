@@ -13,7 +13,6 @@ using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.System.Threading;
-using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -95,7 +94,14 @@ namespace Com.Aurora.AuWeather
                         settings.Cities.CurrentIndex = index;
                     }
                 }
-
+            }
+            if (settings.Cities.SavedCities == null && settings.Cities.EnableLocate)
+            {
+                settings.Cities.CurrentIndex = -1;
+            }
+            else if (settings.Cities.SavedCities == null && !settings.Cities.EnableLocate)
+            {
+                NavigatetoStart();
             }
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {

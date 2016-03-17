@@ -857,7 +857,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock x:Name="TitleText" Style="{ThemeResource TitleTextBlockStyle}" Text="Cities" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
+            <TextBlock x:Uid="CitiesText" x:Name="TitleText" Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
         <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemBackgroundHighBrush}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}">
             <AppBarButton Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" />

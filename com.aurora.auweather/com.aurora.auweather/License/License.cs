@@ -18,18 +18,37 @@ namespace Com.Aurora.AuWeather.License
             }
         }
 
+        public string Price
+        {
+            get;
+            private set;
+        }
+        public string Name { get; private set; }
+
         public event LicenseChangedEventHandler LicenseChanged;
 
         public License()
         {
             Reload();
-            licenseChangeHandler = new LicenseChangedEventHandler(licenseChangedEventHandler);
-            CurrentAppSimulator.LicenseInformation.LicenseChanged += licenseChangeHandler;
         }
 
-        private void Reload()
+        private async void Reload()
         {
             licenseInformation = CurrentAppSimulator.LicenseInformation;
+            try
+            {
+                ListingInformation listing = await CurrentAppSimulator.LoadListingInformationAsync();
+                var product = listing.ProductListings[DonationPack];
+                Name = product.Name;
+                Price = product.FormattedPrice;
+                licenseChangeHandler = new LicenseChangedEventHandler(licenseChangedEventHandler);
+                CurrentAppSimulator.LicenseInformation.LicenseChanged += licenseChangeHandler;
+            }
+            catch (Exception)
+            {
+                Name = "error";
+                Price = "...";
+            }
         }
 
         private void licenseChangedEventHandler()

@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AddButton.Label" xml:space="preserve">
+    <value>搜索城市</value>
+  </data>
+  <data name="Add_Image" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="BlurBGText.Text" xml:space="preserve">
+    <value>模糊背景</value>
+  </data>
+  <data name="BodyTempText.Text" xml:space="preserve">
+    <value>体感温度</value>
+  </data>
+  <data name="CheckLocateAccessButton.Content" xml:space="preserve">
+    <value>转到设置</value>
+  </data>
+  <data name="Cities" xml:space="preserve">
+    <value>城市概览</value>
+  </data>
+  <data name="CitiesButton.Label" xml:space="preserve">
+    <value>城市概览</value>
+  </data>
+  <data name="CitiesText.Text" xml:space="preserve">
+    <value>城市概览</value>
+  </data>
+  <data name="Cities_Management" xml:space="preserve">
+    <value>城市管理</value>
+  </data>
+  <data name="Cloudy.Header" xml:space="preserve">
+    <value>云朵</value>
+  </data>
+  <data name="ComfortableText.Text" xml:space="preserve">
+    <value>舒适指数:  </value>
+  </data>
+  <data name="CWText.Text" xml:space="preserve">
+    <value>洗车指数:  </value>
+  </data>
+  <data name="DanweiText.Text" xml:space="preserve">
+    <value>单位换算</value>
+  </data>
+  <data name="DescripButton.Content" xml:space="preserve">
+    <value>说明</value>
+  </data>
+  <data name="DisableDynamicDescripText.Text" xml:space="preserve">
+    <value>这将关闭动态天气, 并减少内存占用</value>
+  </data>
+  <data name="DisableDynamicText.Text" xml:space="preserve">
+    <value>减弱动态效果</value>
+  </data>
+  <data name="DonateButton.Content" xml:space="preserve">
+    <value>投喂我!</value>
+  </data>
+  <data name="DonateOption0.Text" xml:space="preserve">
+    <value>· 每日天气提醒</value>
+  </data>
+  <data name="DonateOption1.Text" xml:space="preserve">
+    <value>· 灾害提醒及锁屏通知</value>
+  </data>
+  <data name="DonateOption2.Text" xml:space="preserve">
+    <value>· 更短的天气刷新频率</value>
+  </data>
+  <data name="DonateOption3.Text" xml:space="preserve">
+    <value>· 钉选其他城市的磁贴并自动更新</value>
+  </data>
+  <data name="DonateRun0.Text" xml:space="preserve">
+    <value>需要你的帮助...</value>
+  </data>
+  <data name="DonateRun1.Text" xml:space="preserve">
+    <value>做出一个还算凑合的应用, 也需要大量的精力和时间; 而且, 这个应用更新天气使用的 API 需要一些资金才能够正常工作. 如果你觉得它很棒，不妨支持一下~</value>
+  </data>
+  <data name="DonateRun2.Text" xml:space="preserve">
+    <value>帮助我们, 你将解锁捐赠版的更多功能:</value>
+  </data>
+  <data name="DressingText.Text" xml:space="preserve">
+    <value>穿衣指数:  </value>
+  </data>
+  <data name="DynamicText.Text" xml:space="preserve">
+    <value>动态天气</value>
+  </data>
+  <data name="EnableAlarmText.Text" xml:space="preserve">
+    <value>气象灾害预警</value>
+  </data>
+  <data name="EnableEveryText.Text" xml:space="preserve">
+    <value>每日天气提醒</value>
+  </data>
+  <data name="ExperimentalText.Text" xml:space="preserve">
+    <value>试验性功能</value>
+  </data>
+  <data name="FeedbackButton.Label" xml:space="preserve">
+    <value>反馈</value>
+  </data>
+  <data name="FluText.Text" xml:space="preserve">
+    <value>流感指数:  </value>
+  </data>
+  <data name="Foggy.Header" xml:space="preserve">
+    <value>雾</value>
+  </data>
+  <data name="ForceRefreshText.Text" xml:space="preserve">
+    <value>强制开启下拉刷新</value>
+  </data>
+  <data name="FormatText.Text" xml:space="preserve">
+    <value>日期与时间</value>
+  </data>
+  <data name="Haze.Header" xml:space="preserve">
+    <value>沙与霾</value>
+  </data>
+  <data name="HumidityText.Text" xml:space="preserve">
+    <value>湿度</value>
+  </data>
+  <data name="ImmersiveText.Text" xml:space="preserve">
+    <value>沉浸模式</value>
+  </data>
+  <data name="Immersive_Background" xml:space="preserve">
+    <value>沉浸模式背景</value>
+  </data>
+  <data name="LengthParameter_KM" xml:space="preserve">
+    <value>千米</value>
+  </data>
+  <data name="LengthParameter_M" xml:space="preserve">
+    <value>米</value>
+  </data>
+  <data name="LengthParameter_Mile" xml:space="preserve">
+    <value>英里</value>
+  </data>
+  <data name="LengthParameter_NM" xml:space="preserve">
+    <value>海里</value>
+  </data>
+  <data name="LengthParText.Text" xml:space="preserve">
+    <value>能见度</value>
+  </data>
+  <data name="LoadingDataText.Text" xml:space="preserve">
+    <value>加载城市数据</value>
+  </data>
+  <data name="LocateDeniedButton.Content" xml:space="preserve">
+    <value>定位权限被关闭</value>
+  </data>
+  <data name="LocateOnText.Text" xml:space="preserve">
+    <value>开启定位</value>
+  </data>
+  <data name="LocatingText.Text" xml:space="preserve">
+    <value>正在定位</value>
+  </data>
+  <data name="MoonPhaseText.Text" xml:space="preserve">
+    <value>月相</value>
+  </data>
+  <data name="NextTomorrowText.Text" xml:space="preserve">
+    <value>后天</value>
+  </data>
+  <data name="NoBGText.Text" xml:space="preserve">
+    <value>不使用背景</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>当前天气</value>
+  </data>
+  <data name="NowButton.Label" xml:space="preserve">
+    <value>现在</value>
+  </data>
+  <data name="Obtain" xml:space="preserve">
+    <value>获取</value>
+  </data>
+  <data name="PrecipitationText.Text" xml:space="preserve">
+    <value>降水量</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>偏好设置</value>
+  </data>
+  <data name="PressureParameter_Atm" xml:space="preserve">
+    <value>标准大气压</value>
+  </data>
+  <data name="PressureParameter_CmHg" xml:space="preserve">
+    <value>厘米汞柱</value>
+  </data>
+  <data name="PressureParameter_Hpa" xml:space="preserve">
+    <value>毫巴</value>
+  </data>
+  <data name="PressureParameter_Torr" xml:space="preserve">
+    <value>托</value>
+  </data>
+  <data name="PressureParText.Text" xml:space="preserve">
+    <value>气压</value>
+  </data>
+  <data name="PressureText.Text" xml:space="preserve">
+    <value>气压</value>
+  </data>
+  <data name="PurchaseButton.Content" xml:space="preserve">
+    <value>走你!</value>
+  </data>
+  <data name="Rainny.Header" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RefreshFreqText.Text" xml:space="preserve">
+    <value>自动刷新间隔</value>
+  </data>
+  <data name="RefreshState_four" xml:space="preserve">
+    <value>四小时</value>
+  </data>
+  <data name="RefreshState_one" xml:space="preserve">
+    <value>不自动刷新</value>
+  </data>
+  <data name="RefreshState_three" xml:space="preserve">
+    <value>两小时</value>
+  </data>
+  <data name="RefreshState_two" xml:space="preserve">
+    <value>一小时</value>
+  </data>
+  <data name="Replace_Image" xml:space="preserve">
+    <value>替换</value>
+  </data>
+  <data name="RequestedTheme_Auto" xml:space="preserve">
+    <value>自动</value>
+  </data>
+  <data name="RequestedTheme_Dark" xml:space="preserve">
+    <value>暗</value>
+  </data>
+  <data name="RequestedTheme_Light" xml:space="preserve">
+    <value>亮</value>
+  </data>
+  <data name="SearchText.Text" xml:space="preserve">
+    <value>搜索并添加</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsButton.Label" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsText.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ShowSecondText.Text" xml:space="preserve">
+    <value>显示秒针</value>
+  </data>
+  <data name="ShowttText.Text" xml:space="preserve">
+    <value>显示上午/下午</value>
+  </data>
+  <data name="Snowy.Header" xml:space="preserve">
+    <value>冬雪</value>
+  </data>
+  <data name="SpeedParameter_KMPH" xml:space="preserve">
+    <value>千米/时</value>
+  </data>
+  <data name="SpeedParameter_Knot" xml:space="preserve">
+    <value>节</value>
+  </data>
+  <data name="SpeedParameter_MPS" xml:space="preserve">
+    <value>米/秒</value>
+  </data>
+  <data name="SpeedParText.Text" xml:space="preserve">
+    <value>风速</value>
+  </data>
+  <data name="SplashText.Text" xml:space="preserve">
+    <value>准备数据...</value>
+  </data>
+  <data name="SportText.Text" xml:space="preserve">
+    <value>运动指数:  </value>
+  </data>
+  <data name="Starry.Header" xml:space="preserve">
+    <value>星空</value>
+  </data>
+  <data name="Sunny.Header" xml:space="preserve">
+    <value>阳光</value>
+  </data>
+  <data name="SunProgressText.Text" xml:space="preserve">
+    <value>太阳位置</value>
+  </data>
+  <data name="TemperatureParameter_Celsius" xml:space="preserve">
+    <value>摄氏度</value>
+  </data>
+  <data name="TemperatureParameter_Fahrenheit" xml:space="preserve">
+    <value>华氏度</value>
+  </data>
+  <data name="TemperatureParameter_Kelvin" xml:space="preserve">
+    <value>热力温标</value>
+  </data>
+  <data name="TempParText.Text" xml:space="preserve">
+    <value>温度</value>
+  </data>
+  <data name="ThemeText.Text" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="TitleBlock.Text" xml:space="preserve">
+    <value>极光天气</value>
+  </data>
+  <data name="ToastText.Text" xml:space="preserve">
+    <value>天气与提醒</value>
+  </data>
+  <data name="TomorrowText.Text" xml:space="preserve">
+    <value>明天</value>
+  </data>
+  <data name="TravelText.Text" xml:space="preserve">
+    <value>旅行指数:  </value>
+  </data>
+  <data name="UseWeekText.Text" xml:space="preserve">
+    <value>使用星期替代日期</value>
+  </data>
+  <data name="UVText.Text" xml:space="preserve">
+    <value>紫外线指数:  </value>
+  </data>
+  <data name="VisibilityText.Text" xml:space="preserve">
+    <value>能见度</value>
+  </data>
+  <data name="WelcomeText.Text" xml:space="preserve">
+    <value>欢迎!</value>
+  </data>
+  <data name="WindParameter_BeaufortandDegree" xml:space="preserve">
+    <value>风级+角度</value>
+  </data>
+  <data name="WindParameter_BeaufortandText" xml:space="preserve">
+    <value>风级+风向</value>
+  </data>
+  <data name="WindParameter_SpeedandDegree" xml:space="preserve">
+    <value>风速+角度</value>
+  </data>
+  <data name="WindParameter_SpeedandText" xml:space="preserve">
+    <value>风速+风向</value>
+  </data>
+  <data name="WindParText.Text" xml:space="preserve">
+    <value>风力与风向</value>
+  </data>
+  <data name="WindText.Text" xml:space="preserve">
+    <value>风力风向</value>
+  </data>
+</root>

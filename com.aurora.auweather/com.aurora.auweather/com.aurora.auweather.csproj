@@ -316,8 +316,8 @@
     <Content Include="Assets\sun\00057.png" />
     <Content Include="Assets\sun\00058.png" />
     <Content Include="Assets\sun\00059.png" />
-    <Content Include="Assets\testdata" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -564,7 +564,10 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Strings\en-US\" />
+    <Folder Include="Strings\zh-TW\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

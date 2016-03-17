@@ -18,6 +18,12 @@ namespace Com.Aurora.AuWeather
 {
     public sealed partial class NowWeatherPage : Page
     {
+        private const double FENGCHE_ZHUANSU = 0.1396263377777778;
+        private const int WEATHERCANVAS_HEADEROFFSET = 368;
+        private const int FIXED_TITLE_FONTSIZE = 96;
+        private const int WEATHER_BEZIER_SCROLLOFFSET = 200;
+        private const int NORMAL_SIZE_WIDTH = 720;
+        private const int WIDE_SIZE_WIDTH = 864;
         private double verticalOffset;
         private double actualWidth;
         private bool isAnimating = false;
@@ -79,6 +85,11 @@ namespace Com.Aurora.AuWeather
         private void MModel_ParameterChanged(object sender, ParameterChangedEventArgs e)
         {
 
+        }
+
+        internal void Refresh()
+        {
+            Context.RefreshAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -168,7 +179,7 @@ namespace Com.Aurora.AuWeather
 
                                       var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
                                                                          {
-                                                                             fengchezhuan.Angle += 0.1396263377777778 * Context.Wind.Speed.MPS;
+                                                                             fengchezhuan.Angle += FENGCHE_ZHUANSU * Context.Wind.Speed.MPS;
                                                                          }));
 
                                   }, TimeSpan.FromMilliseconds(16));
@@ -257,10 +268,10 @@ namespace Com.Aurora.AuWeather
             if (verticalOffset != ScrollableRoot.VerticalOffset && ScrollableRoot.VerticalOffset < 376)
             {
                 verticalOffset = ScrollableRoot.VerticalOffset;
-                var offset = verticalOffset > 368 ? 368 : verticalOffset;
-                offset /= 368;
+                var offset = verticalOffset > WEATHERCANVAS_HEADEROFFSET ? WEATHERCANVAS_HEADEROFFSET : verticalOffset;
+                offset /= WEATHERCANVAS_HEADEROFFSET;
                 offset = EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
-                NowTemp.FontSize = 96 - 48 * offset;
+                NowTemp.FontSize = FIXED_TITLE_FONTSIZE - 48 * offset;
                 var horizotaloffset = ButtonOffset.Visibility == Visibility.Visible ? 72 : 0;
                 TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - horizotaloffset - 32) * offset / 2;
                 if (verticalOffset > 2 && !isFadeOut)
@@ -306,8 +317,8 @@ namespace Com.Aurora.AuWeather
         #region Scroll Bezier
         private void ScrollPathPoint(double verticalOffset)
         {
-            var offset = verticalOffset > 200 ? 200 : verticalOffset;
-            offset = -64 * (1 - offset / 200);
+            var offset = verticalOffset > WEATHER_BEZIER_SCROLLOFFSET ? WEATHER_BEZIER_SCROLLOFFSET : verticalOffset;
+            offset = -64 * (1 - offset / WEATHER_BEZIER_SCROLLOFFSET);
             double[] results = new double[] { Context.TempraturePath0 * offset, Context.TempraturePath1 * offset, Context.TempraturePath2 * offset,
                 Context.TempraturePath3 * offset, Context.TempraturePath4 * offset, Context.TempraturePath5 * offset };
             CalculateY0(offset, PathFigure, results[0]);
@@ -365,11 +376,11 @@ namespace Com.Aurora.AuWeather
         #region DetailsPanel Change Layout
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (DetailsPanel.ActualWidth < 720 && !DetailsPanelIsNormalState)
+            if (DetailsPanel.ActualWidth < NORMAL_SIZE_WIDTH && !DetailsPanelIsNormalState)
             {
                 DetailsPanelGotoNormalState();
             }
-            else if (DetailsPanel.ActualWidth >= 720 && DetailsPanelIsNormalState)
+            else if (DetailsPanel.ActualWidth >= NORMAL_SIZE_WIDTH && DetailsPanelIsNormalState)
             {
                 DetailsPanelGotoWideState();
             }
@@ -468,16 +479,16 @@ namespace Com.Aurora.AuWeather
         #region Root Mode Changing
         private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if ((Window.Current.Content as Frame).ActualWidth < 720)
+            if ((Window.Current.Content as Frame).ActualWidth < NORMAL_SIZE_WIDTH)
             {
                 RootGotoNarrowState();
             }
-            else if ((Window.Current.Content as Frame).ActualWidth < 864)
+            else if ((Window.Current.Content as Frame).ActualWidth < WIDE_SIZE_WIDTH)
             {
                 ScrollViewerConverter.isLargeMode = true;
                 RootGotoNormalState();
             }
-            else if ((Window.Current.Content as Frame).ActualWidth >= 864 && !rootIsWideState)
+            else if ((Window.Current.Content as Frame).ActualWidth >= WIDE_SIZE_WIDTH && !rootIsWideState)
             {
                 RootGotoWideState();
             }

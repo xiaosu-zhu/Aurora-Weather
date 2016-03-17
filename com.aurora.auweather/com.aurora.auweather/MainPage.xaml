@@ -582,14 +582,9 @@
                             </Setter>
                         </Style>
                     </CommandBar.CommandBarOverflowPresenterStyle>
-                    <AppBarButton Icon="Setting" Label="Settings" Click="Settings_Click" />
-                    <AppBarButton Icon="Refresh" Label="Refresh" />
-                    <AppBarButton Label="Today" >
-                        <AppBarButton.Icon>
-                            <PathIcon Data="M 28.1333,15.9L 39.8667,15.9L 39.8925,15.8925C 41.4006,14.3845 42.3333,12.3012 42.3333,10C 42.3333,5.3976 38.6024,1.66667 34,1.66667C 29.3976,1.66667 25.6667,5.3976 25.6667,10C 25.6667,12.3011 26.5993,14.3844 28.1073,15.8924L 28.1333,15.9 Z M 43.6824,10C 43.6824,15.5229 39.3475,20 34,20C 28.6526,20 24.3176,15.5229 24.3176,10C 24.3176,4.47713 28.6526,-3.8147e-006 34,-3.8147e-006C 39.3475,-3.8147e-006 43.6824,4.47713 43.6824,10 Z M 35.14,7.43912L 28.8228,4.82246L 28.8222,4.82212L 31.4391,11.14L 31.4282,11.0931C 31.8498,12.1083 32.8508,12.8222 34.0185,12.8222C 35.5669,12.8222 36.8222,11.5669 36.8222,10.0185C 36.8222,8.84999 36.1073,7.84846 35.0911,7.42732M 35.6852,10.0185C 35.6852,10.939 34.939,11.6852 34.0185,11.6852C 33.098,11.6852 32.3518,10.939 32.3518,10.0185C 32.3518,9.09804 33.098,8.35184 34.0185,8.35184C 34.939,8.35184 35.6852,9.09804 35.6852,10.0185 Z " />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Width="68" Label="Cities" Click="Cities_Click" >
+                    <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" />
+                    <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click"/>
+                    <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Width="68" Click="Cities_Click" >
                         <!--Width 68 Height 20-->
                         <AppBarButton.Icon>
                             <PathIcon Data="F1 M 39.7971,
@@ -606,10 +601,14 @@
                                       3.47788C 41.3916,3.95886 41.0017,4.34784 40.5217,4.34784 Z "/>
                         </AppBarButton.Icon>
                     </AppBarButton>
-
+                    <AppBarButton x:Uid="NowButton" x:Name="Today" Click="Today_Click">
+                        <AppBarButton.Icon>
+                            <PathIcon Data="M 28.1333,15.9L 39.8667,15.9L 39.8925,15.8925C 41.4006,14.3845 42.3333,12.3012 42.3333,10C 42.3333,5.3976 38.6024,1.66667 34,1.66667C 29.3976,1.66667 25.6667,5.3976 25.6667,10C 25.6667,12.3011 26.5993,14.3844 28.1073,15.8924L 28.1333,15.9 Z M 43.6824,10C 43.6824,15.5229 39.3475,20 34,20C 28.6526,20 24.3176,15.5229 24.3176,10C 24.3176,4.47713 28.6526,-3.8147e-006 34,-3.8147e-006C 39.3475,-3.8147e-006 43.6824,4.47713 43.6824,10 Z M 35.14,7.43912L 28.8228,4.82246L 28.8222,4.82212L 31.4391,11.14L 31.4282,11.0931C 31.8498,12.1083 32.8508,12.8222 34.0185,12.8222C 35.5669,12.8222 36.8222,11.5669 36.8222,10.0185C 36.8222,8.84999 36.1073,7.84846 35.0911,7.42732M 35.6852,10.0185C 35.6852,10.939 34.939,11.6852 34.0185,11.6852C 33.098,11.6852 32.3518,10.939 32.3518,10.0185C 32.3518,9.09804 33.098,8.35184 34.0185,8.35184C 34.939,8.35184 35.6852,9.09804 35.6852,10.0185 Z " />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                     <CommandBar.SecondaryCommands>
-                        <AppBarButton Icon="Find" Label="Find" />
-                        <AppBarButton Icon="Like" Label="Feedback" />
+                        <AppBarButton x:Uid="AddButton" x:Name="Find" Icon="Find" Click="Find_Click" />
+                        <AppBarButton x:Uid="FeedbackButton" x:Name="Like" Icon="Like" Click="Like_Click" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
                 <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Style="{StaticResource SymbolButton}" >
@@ -618,7 +617,7 @@
                     </Button.Content>
                 </Button>
                 <Grid x:Name="TitleBar" Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                    <TextBlock x:Name="TitleBlock" Text="极光天气" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
                 </Grid>
             </RelativePanel>
         </SplitView.Content>

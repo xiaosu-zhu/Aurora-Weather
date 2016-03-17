@@ -30,11 +30,11 @@
     </Page.Resources>
 
     <Pivot x:Name="Root" Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <PivotItem Header="Sunny">
+        <PivotItem x:Uid="Sunny" Header="Sunny">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding SunnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
@@ -59,11 +59,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Starry">
+        <PivotItem x:Uid="Starry" Header="Starry">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
@@ -88,11 +88,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Cloudy">
+        <PivotItem x:Uid="Cloudy" Header="Cloudy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
@@ -117,11 +117,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Rainny">
+        <PivotItem x:Uid="Rainny" Header="Rainny">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
@@ -146,11 +146,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Snowy">
+        <PivotItem x:Uid="Snowy" Header="Snowy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
@@ -175,11 +175,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Foggy">
+        <PivotItem x:Uid="Foggy" Header="Foggy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
@@ -204,11 +204,11 @@
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Haze">
+        <PivotItem x:Uid="Haze" Header="Haze">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Text="Do not use background" Margin="8" VerticalAlignment="Center" />
+                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{Binding HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">

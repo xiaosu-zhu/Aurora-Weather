@@ -5,6 +5,8 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using Windows.System.Threading;
 using Com.Aurora.AuWeather.ViewModels.Events;
+using Windows.Foundation;
+using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -16,6 +18,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync((work) =>
             {
+                work.Completed = new Windows.Foundation.AsyncActionCompletedHandler(WorkComplete);
                 Preferences = Preferences.Get();
                 Temperature = new TemperatureList();
                 Wind = new WindList();
@@ -84,9 +87,13 @@ namespace Com.Aurora.AuWeather.ViewModels
                 ShowImmersivett = Preferences.ShowImmersivett;
                 EnableEveryDay = Preferences.EnableEveryDay;
                 EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
-
-                OnFetchDataComplete();
             });
+        }
+
+        private async void WorkComplete(IAsyncAction asyncInfo, AsyncStatus asyncStatus)
+        {
+            await Task.Delay(500);
+            OnFetchDataComplete();
         }
 
         public EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;

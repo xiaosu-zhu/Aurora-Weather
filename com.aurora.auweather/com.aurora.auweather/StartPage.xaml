@@ -56,7 +56,7 @@
 
                 </Path>
             </Viewbox>
-            <TextBlock Loaded="TextBlock_Loaded" Text="Welcome!" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="16" />
+            <TextBlock x:Uid="WelcomeText" Loaded="TextBlock_Loaded" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="16" />
             <AppBarButton Click="CompleteButton_Click" Foreground="White" Width="48" Height="48" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="CompleteButton" >
                 <SymbolIcon Symbol="Forward" />
             </AppBarButton>

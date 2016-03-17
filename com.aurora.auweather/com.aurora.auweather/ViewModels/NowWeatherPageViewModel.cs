@@ -21,6 +21,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 {
     public class NowWeatherPageViewModel : ViewModelBase
     {
+        private const string BACKGROUND_ENTRY = "Com.Aurora.AuWeather.Background.BackgroundTask";
+        private const string BACKGROUND_NAME = "Aurora Weather";
         #region private members
         private Temperature temprature;
         private Temperature bodyTemprature;
@@ -1197,8 +1199,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 default:
                     return;
             }
-            string entryPoint = "Com.Aurora.AuWeather.Background.BackgroundTask";
-            string taskName = "Aurora Weather";
+            string entryPoint = BACKGROUND_ENTRY;
+            string taskName = BACKGROUND_NAME;
             var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
             if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
                 backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
@@ -1305,8 +1307,6 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
-
-
             SetTime();
 
             SetHour();

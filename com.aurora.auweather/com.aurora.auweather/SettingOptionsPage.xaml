@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Com.Aurora.AuWeather"
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
+    xmlns:Converters="using:Com.Aurora.Shared.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -16,6 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Converters:BooltoVisibilityConverter x:Key="BooltoVisibility" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -27,7 +29,7 @@
     </Page.Transitions>
 
     <Page.DataContext>
-        <ViewModels:SettingsViewModel />
+        <ViewModels:SettingsViewModel x:Name="Context"/>
     </Page.DataContext>
 
     <Grid>
@@ -44,7 +46,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn0" Storyboard.TargetProperty="Width" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="320" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsList" Storyboard.TargetProperty="Visibility" >
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsPanel" Storyboard.TargetProperty="Visibility" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
@@ -61,18 +63,22 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" Text="设置" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
+            <TextBlock x:Uid="SettingsText" Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
-        <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList" Visibility="Collapsed" Grid.Row="1" ItemsSource="{Binding SettingsList}" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="ViewModels:SettingOption">
-                    <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
-                        <SymbolIcon Width="36" Height="36" Symbol="{Binding Symbol}" />
-                        <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel x:Name="SettingsPanel" Visibility="Collapsed" Grid.Row="1" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Button x:Uid="DonateButton" x:Name="DonateButton" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+            <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList"  ItemsSource="{Binding SettingsList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:SettingOption">
+                        <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
+                            <SymbolIcon Width="36" Height="36" Symbol="{Binding Symbol}" />
+                            <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
         <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlForegroundHighBrush}" />
     </Grid>
 </Page>

@@ -9,7 +9,6 @@ using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.Settings;
 using NotificationsExtensions.Toasts;
-using Windows.Data.Xml.Dom;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -268,27 +267,30 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 return x.Date.Date == DueTime.Date;
             });
-            var t = new ToastContent()
+            var toast = new ToastContent()
             {
+                Scenario = ToastScenario.Default,
+                ActivationType = ToastActivationType.Foreground,
                 Duration = ToastDuration.Long,
                 Launch = currentCity.Id,
                 Visual = new ToastVisual()
                 {
                     TitleText = new ToastText()
                     {
-                        Text = "Today in " + currentCity.City
+                        Text = "Today's Weather for " + currentCity.City
                     },
                     BodyTextLine1 = new ToastText()
                     {
-                        Text = (string)ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null)
+                        Text = ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null) + ", "
+                        + ((model.DailyForecast[todayIndex].HighTemp + model.DailyForecast[todayIndex].LowTemp) / 2).Actual(settings.Preferences.TemperatureParameter)
                     },
                     BodyTextLine2 = new ToastText()
                     {
                         Text = glance
-                    }
+                    },
                 }
             };
-            return t;
+            return toast;
         }
 
         public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
@@ -345,34 +347,6 @@ namespace Com.Aurora.AuWeather.Tile
             return b;
         }
 
-        public static ToastContent GenerateEveryDayToast(HeWeatherModel model, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
-        {
-            var ctos = new ConditiontoTextConverter();
-            var toast = new ToastContent()
-            {
-                Scenario = ToastScenario.Default,
-                ActivationType = ToastActivationType.Foreground,
-                Duration = ToastDuration.Long,
-                Visual = new ToastVisual()
-                {
-                    TitleText = new ToastText()
-                    {
-                        Text = "Today's Weather for " + currentCity.City
-                    },
-                    BodyTextLine1 = new ToastText()
-                    {
-                        Text = model.DailyForecast[todayIndex].Date.ToString(settings.Preferences.GetForecastFormat()) + "  " + ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null)
-                        + ((model.DailyForecast[todayIndex].HighTemp + model.DailyForecast[todayIndex].LowTemp) / 2).Actual(settings.Preferences.TemperatureParameter)
-                    },
-                    BodyTextLine2 = new ToastText()
-                    {
-                        Text = glanceFull
-                    },
-                }
-            };
-            return toast;
-        }
-
         private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
             var ctosConverter = new ConditiontoTextConverter();
@@ -409,7 +383,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -443,7 +417,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -494,7 +468,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -528,7 +502,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+4].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+4].Date.ToString("ddd"),
 
                                                 },
                                                 new TileImage()
@@ -578,18 +552,18 @@ namespace Com.Aurora.AuWeather.Tile
                                 },
                                 new TileText()
                                 {
-                                    Text = model.DailyForecast[todayIndex+4].Date.ToString(settings.Preferences.GetTileFormat()),
+                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
                                     Align = TileTextAlign.Center
                                 },
                                  new TileText()
                                  {
-                                                    Text = model.DailyForecast[todayIndex+4].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter),
                                                     Style = TileTextStyle.Caption,
                                                     Align = TileTextAlign.Center
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+4].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter),
                                                     Style = TileTextStyle.CaptionSubtle,
                                                     Align = TileTextAlign.Center
                                                 },
@@ -614,7 +588,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -647,7 +621,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -680,7 +654,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString(settings.Preferences.GetTileFormat()),
+                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString("ddd"),
                                                 },
                                                 new TileImage()
                                                 {
@@ -723,6 +697,7 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 Duration = ToastDuration.Long,
                 Scenario = ToastScenario.Alarm,
+                Launch = currentCityModel.Id,
                 Visual = new ToastVisual()
                 {
                     TitleText = new ToastText()

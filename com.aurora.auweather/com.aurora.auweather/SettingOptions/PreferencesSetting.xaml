@@ -56,9 +56,9 @@
             <StackPanel x:Name="LeftPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="ConvertTitle" Text="单位" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="温度" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock HorizontalAlignment="Left" x:Uid="TempParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Temp" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
@@ -68,7 +68,7 @@
                             </ComboBox>
                         </Grid>
                         <Grid Margin="12" HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="风力表示" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock HorizontalAlignment="Left" x:Uid="WindParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Wind" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
@@ -78,7 +78,7 @@
                             </ComboBox>
                         </Grid>
                         <Grid Margin="12" HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="速度" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock HorizontalAlignment="Left" x:Uid="SpeedParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Speed" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
@@ -88,7 +88,7 @@
                             </ComboBox>
                         </Grid>
                         <Grid Margin="12" HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="距离" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock HorizontalAlignment="Left" x:Uid="LengthParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Length" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
@@ -98,7 +98,7 @@
                             </ComboBox>
                         </Grid>
                         <Grid Margin="12" HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="气压" Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock HorizontalAlignment="Left" x:Uid="PressureParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox SelectionChanged="Enum_SelectionChanged" x:Name="Pressure" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
@@ -111,8 +111,8 @@
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid HorizontalAlignment="Stretch">
-                            <TextBlock x:Name="FormatTitle" Text="日期时间格式" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                            <Button x:Name="AboutFormatButton" Content="说明" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" />
+                            <TextBlock x:Name="FormatTitle" x:Uid="FormatText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                            <Button x:Name="AboutFormatButton" x:Uid="DescripButton" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" />
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <ComboBox x:Name="Year" VerticalAlignment="Center" Width="120" MaxWidth="120" Margin="12">
@@ -168,11 +168,11 @@
                         </StackPanel>
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
-                                <TextBlock Text="使用星期替代日期" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="UseWeekDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
-                                <TextBlock Text="显示上午/下午" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="Showtt" Toggled="Showtt_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                         </Grid>
@@ -181,27 +181,27 @@
                 <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="WeatherTitle" Text="天气与提醒" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="WeatherTitle" x:Uid="ToastText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
-                                <TextBlock Text="每日天气提醒" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="EnableEveryDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
-                                <TextBlock Text="气象灾害预警" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="EnableAlarm" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
-                                <TextBlock Text="强制开启下拉刷新" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="EnablePulltoRefresh" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
-                            <TextBlock Text="实验性功能" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                            <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
 
                         <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock Text="自动刷新间隔" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock x:Uid="RefreshFreqText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
                             <ComboBox x:Name="RefreshFreq" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="ViewModels:EnumSelector">
@@ -211,7 +211,7 @@
                             </ComboBox>
                         </Grid>
                         <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock Text="主题" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock x:Uid="ThemeText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
                             <ComboBox x:Name="Theme" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="ViewModels:EnumSelector">
@@ -223,24 +223,24 @@
                     </StackPanel>
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel>
-                        <TextBlock x:Name="ImmersiveTitle" Text="沉浸模式" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="ImmersiveTitle" x:Uid="ImmersiveText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
-                                <TextBlock Text="显示秒针" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="EnableSecond" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
-                                <TextBlock Text="显示上午/下午" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="ShowImmersivett" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
 
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
-                                <TextBlock Text="减弱动态效果" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" Toggled="Bool_Toggled" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
-                            <TextBlock Text="这将关闭动态天气，并减少内存占用" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                            <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

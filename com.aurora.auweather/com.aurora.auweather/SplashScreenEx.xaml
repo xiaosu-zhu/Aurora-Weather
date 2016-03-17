@@ -27,8 +27,8 @@
         </Grid.RowDefinitions>
         <Canvas Grid.RowSpan="3">
             <Image x:Name="SplashImage" Source="Assets/SplashScreen.png"/>
-            <ProgressRing Foreground ="White" Name="SplashProgressRing" IsActive="True" Width="64" Height="64" ></ProgressRing>
+            <ProgressRing Foreground ="White" Name="SplashProgressRing" IsActive="True" Width="48" Height="48" ></ProgressRing>
         </Canvas>
-        <TextBlock Grid.Row="2" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Preparing Data" Style="{StaticResource TitleTextBlockStyle}" />
+        <TextBlock Grid.Row="2" x:Uid="SplashText" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" />
     </Grid>
 </Page>

@@ -61,5 +61,10 @@ namespace Com.Aurora.AuWeather
             curretType = (SettingsList.SelectedItem as SettingOption).Option;
             SettingsList_Loaded(null, null);
         }
+
+        private void DonateButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(DonationPage));
+        }
     }
 }

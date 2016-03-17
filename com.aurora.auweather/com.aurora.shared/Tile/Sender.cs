@@ -49,6 +49,7 @@ namespace Com.Aurora.AuWeather.Tile
         {
             ScheduledTileNotification scheduledTile = new ScheduledTileNotification(content.GetXml(), dueTime);
             scheduledTile.Id = id;
+            RemoveSpecScheduledTileNotification(id);
             TileUpdateManager.CreateTileUpdaterForApplication().AddToSchedule(scheduledTile);
         }
 
@@ -69,6 +70,7 @@ namespace Com.Aurora.AuWeather.Tile
         {
             ScheduledToastNotification scheduledToast = new ScheduledToastNotification(toastXml, dueTime);
             scheduledToast.Id = id;
+            RemoveSpecScheduledToastNotification(id);
             ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
         }
 

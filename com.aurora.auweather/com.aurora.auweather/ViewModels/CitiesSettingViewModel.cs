@@ -63,6 +63,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+        ~CitiesSettingViewModel()
+        {
+            if (cities != null)
+            {
+                cities.Clear();
+                cities = null;
+            }
+        }
+
         internal void SaveAll()
         {
             var task = ThreadPool.RunAsync((work) =>

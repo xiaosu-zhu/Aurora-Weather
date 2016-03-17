@@ -11,6 +11,7 @@ using Windows.UI.Core;
 using Com.Aurora.AuWeather.Models;
 using Windows.Storage;
 using Com.Aurora.Shared.Helpers;
+using System.Collections.Generic;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -174,10 +175,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 immersive = Immersive.Get();
                 PivotList = new ImmersiveGroup();
-                CurrentList = await CurrentImmersiveList.Get(PivotList[0].Title);
-                var lUri = await Immersive.GetFileFromLocalAsync(PivotList[0].Title);
+                CurrentList = await CurrentImmersiveList.Get(PivotList[0]);
+                var lUri = await Immersive.GetFileFromLocalAsync(PivotList[0]);
                 await CheckandSetlocalFile(lUri);
-                immersive.CheckLocal(PivotList[0].Title, lUri);
+                immersive.CheckLocal(PivotList[0], lUri);
                 rePick();
 
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
@@ -222,14 +223,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
-        internal void ChoseLocal(string title, StorageFile file)
+        internal void ChoseLocal(int title, StorageFile file)
         {
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                var uri = await immersive.SaveLocalFile(title, file);
+                var uri = await immersive.SaveLocalFile(PivotList[title], file);
                 SaveAll();
                 await CheckandSetlocalFile(uri);
-                OnSetLocalComplete(title);
+                OnSetLocalComplete(PivotList[title]);
             });
         }
 
@@ -259,39 +260,39 @@ namespace Com.Aurora.AuWeather.ViewModels
             var task = ThreadPool.RunAsync(async (work) =>
              {
                  CurrentList = null;
-                 CurrentList = await CurrentImmersiveList.Get(PivotList[index].Title);
-                 var lUri = await Immersive.GetFileFromLocalAsync(PivotList[index].Title);
+                 CurrentList = await CurrentImmersiveList.Get(PivotList[index]);
+                 var lUri = await Immersive.GetFileFromLocalAsync(PivotList[index]);
                  await CheckandSetlocalFile(lUri);
-                 immersive.CheckLocal(PivotList[index].Title, lUri);
+                 immersive.CheckLocal(PivotList[index], lUri);
                  SaveAll();
                  OnFetchDataComplete();
              });
 
         }
 
-        internal void DeleteLocal(string title)
+        internal void DeleteLocal(int title)
         {
             switch (title)
             {
-                case "Sunny":
+                case 0:
                     SunnyState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Starry":
+                case 1:
                     StarryState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Cloudy":
+                case 2:
                     CloudyState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Rainny":
+                case 3:
                     RainnyState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Snowy":
+                case 4:
                     SnowyState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Foggy":
+                case 5:
                     FoggyState = ImmersiveBackgroundState.Assets;
                     break;
-                case "Haze":
+                case 6:
                     HazeState = ImmersiveBackgroundState.Assets;
                     break;
                 default:
@@ -306,7 +307,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             if (listSelect == -1)
                 return;
-            immersive.Pick(PivotList[rootSelect].Title, listSelect);
+            immersive.Pick(PivotList[rootSelect], listSelect);
             SunnyState = immersive.Sunny;
             StarryState = immersive.Starry;
             CloudyState = immersive.Cloudy;
@@ -347,17 +348,19 @@ namespace Com.Aurora.AuWeather.ViewModels
         public BitmapImage Thumbnail { get; set; }
     }
 
-    public class ImmersiveGroup : ObservableCollection<ImmersiveSelector>
+    public class ImmersiveGroup : List<string>
     {
         public ImmersiveGroup()
         {
-            Add(new ImmersiveSelector("Sunny"));
-            Add(new ImmersiveSelector("Starry"));
-            Add(new ImmersiveSelector("Cloudy"));
-            Add(new ImmersiveSelector("Rainny"));
-            Add(new ImmersiveSelector("Snowy"));
-            Add(new ImmersiveSelector("Foggy"));
-            Add(new ImmersiveSelector("Haze"));
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+            Add("Sunny");
+            Add("Starry");
+            Add("Cloudy");
+            Add("Rainny");
+            Add("Snowy");
+            Add("Foggy");
+            Add("Haze");
         }
     }
 
