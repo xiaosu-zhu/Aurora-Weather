@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Com.Aurora.AuWeather.Models.Settings;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,15 +12,44 @@ namespace Com.Aurora.AuWeather
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class DonationPage : Page
+    public sealed partial class DonationPage : Page, INotifyPropertyChanged
     {
         private License.License license;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public DonationPage()
         {
-            this.InitializeComponent();
             license = new License.License();
+            this.InitializeComponent();
+            var p = Preferences.Get();
+            Theme = p.GetTheme();
             license.LicenseChanged += License_LicenseChanged;
+        }
+
+        private ElementTheme theme;
+
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                theme = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var h = PropertyChanged;
+            if (h != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void License_LicenseChanged()
@@ -39,7 +71,7 @@ namespace Com.Aurora.AuWeather
                     // The customer doesn't own this feature, so 
                     // show the purchase dialog.
 
-                    await license.TryPurchaseAsync(License.License.DonationPack);
+                    await license.TryPurchaseAsync(License.License.DonationPack[(int)PurchaseSlider.Value]);
                     if (license.IsPurchased)
                     {
                         Button_Loaded(null, null);
@@ -57,16 +89,15 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void DollarText_Loaded(object sender, RoutedEventArgs e)
-        {
-            DollarText.Text = license.Price;
-        }
-
         private void TextBlock_Loaded(object sender, RoutedEventArgs e)
         {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             var obtain = loader.GetString("Obtain");
-            ConfirmText.Text = obtain + license.Name;
+        }
+
+        private void PurchaseSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        {
+            DollarText.Text = license.Price[(int)PurchaseSlider.Value];
         }
     }
 }

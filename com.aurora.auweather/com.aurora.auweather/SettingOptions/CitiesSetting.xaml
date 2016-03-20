@@ -9,6 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Unloaded="Page_Unloaded"
+    RequestedTheme="{x:Bind Context.Theme,Mode=OneWay}"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -343,7 +344,7 @@
                             <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>
                         </Grid>
                     </Button>
-                    <AutoSuggestBox MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PlaceholderText="输入中文, 全拼, 外国城市输入英文">
+                    <AutoSuggestBox x:Uid="AutoSuggestbox" MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <AutoSuggestBox.Transitions>
                             <TransitionCollection>
                                 <ContentThemeTransition />

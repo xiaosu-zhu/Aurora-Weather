@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Add_Image" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="CheckLocateAccessButton.Content" xml:space="preserve">
+    <value>转至“设置”</value>
+  </data>
+  <data name="Cloudy.Header" xml:space="preserve">
+    <value>云</value>
+  </data>
+  <data name="DanweiText.Text" xml:space="preserve">
+    <value>单位换算</value>
+  </data>
+  <data name="DescripButton.Content" xml:space="preserve">
+    <value>结果</value>
+  </data>
+  <data name="FeedbackButton.Label" xml:space="preserve">
+    <value>反馈</value>
+  </data>
+  <data name="FormatText.Text" xml:space="preserve">
+    <value>日期和时间</value>
+  </data>
+  <data name="HumidityText.Text" xml:space="preserve">
+    <value>湿度</value>
+  </data>
+  <data name="LengthParameter_KM" xml:space="preserve">
+    <value>千米</value>
+  </data>
+  <data name="LengthParameter_M" xml:space="preserve">
+    <value>米</value>
+  </data>
+  <data name="LengthParameter_Mile" xml:space="preserve">
+    <value>英里</value>
+  </data>
+  <data name="LengthParameter_NM" xml:space="preserve">
+    <value>海里</value>
+  </data>
+  <data name="LocatingText.Text" xml:space="preserve">
+    <value>正在定位</value>
+  </data>
+  <data name="MoonPhaseText.Text" xml:space="preserve">
+    <value>月相</value>
+  </data>
+  <data name="NowButton.Label" xml:space="preserve">
+    <value>现在</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>首选项</value>
+  </data>
+  <data name="PressureParameter_Torr" xml:space="preserve">
+    <value>托</value>
+  </data>
+  <data name="PressureParText.Text" xml:space="preserve">
+    <value>气压</value>
+  </data>
+  <data name="PressureText.Text" xml:space="preserve">
+    <value>气压</value>
+  </data>
+  <data name="Rainny.Header" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RefreshFreqText.Text" xml:space="preserve">
+    <value>自动刷新间隔:</value>
+  </data>
+  <data name="RefreshState_one" xml:space="preserve">
+    <value>不自动刷新</value>
+  </data>
+  <data name="Replace_Image" xml:space="preserve">
+    <value>替换</value>
+  </data>
+  <data name="RequestedTheme_Auto" xml:space="preserve">
+    <value>自动</value>
+  </data>
+  <data name="RequestedTheme_Dark" xml:space="preserve">
+    <value>阴暗</value>
+  </data>
+  <data name="RequestedTheme_Light" xml:space="preserve">
+    <value>明亮</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsButton.Label" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsText.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ShowSecondText.Text" xml:space="preserve">
+    <value>显示秒针</value>
+  </data>
+  <data name="SpeedParameter_Knot" xml:space="preserve">
+    <value>节</value>
+  </data>
+  <data name="SpeedParameter_MPS" xml:space="preserve">
+    <value>米/秒</value>
+  </data>
+  <data name="SpeedParText.Text" xml:space="preserve">
+    <value>风速</value>
+  </data>
+  <data name="TemperatureParameter_Celsius" xml:space="preserve">
+    <value>摄氏度</value>
+  </data>
+  <data name="TemperatureParameter_Fahrenheit" xml:space="preserve">
+    <value>华氏度</value>
+  </data>
+  <data name="TempParText.Text" xml:space="preserve">
+    <value>温度</value>
+  </data>
+  <data name="ThemeText.Text" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="TomorrowText.Text" xml:space="preserve">
+    <value>明天</value>
+  </data>
+  <data name="WelcomeText.Text" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="First_quarter" xml:space="preserve">
+    <value>上弦月</value>
+  </data>
+  <data name="Full_moon" xml:space="preserve">
+    <value>满月</value>
+  </data>
+  <data name="New_Moon" xml:space="preserve">
+    <value>新月</value>
+  </data>
+  <data name="Third_quarter" xml:space="preserve">
+    <value>下弦月</value>
+  </data>
+  <data name="Waning_crescent" xml:space="preserve">
+    <value>残月</value>
+  </data>
+  <data name="WeatherCondition_cloudy" xml:space="preserve">
+    <value>多云</value>
+  </data>
+  <data name="WeatherCondition_gale" xml:space="preserve">
+    <value>大风</value>
+  </data>
+  <data name="WeatherCondition_heavy_snow" xml:space="preserve">
+    <value>大雪</value>
+  </data>
+  <data name="WeatherCondition_heavy_thunderstorm" xml:space="preserve">
+    <value>雷暴</value>
+  </data>
+  <data name="WeatherCondition_light_snow" xml:space="preserve">
+    <value>小雪</value>
+  </data>
+  <data name="WeatherCondition_mist" xml:space="preserve">
+    <value>薄雾</value>
+  </data>
+  <data name="WeatherCondition_moderate" xml:space="preserve">
+    <value>和风</value>
+  </data>
+  <data name="WeatherCondition_storm_rain" xml:space="preserve">
+    <value>暴风雨</value>
+  </data>
+  <data name="WeatherCondition_sunny" xml:space="preserve">
+    <value>晴天</value>
+  </data>
+  <data name="WeatherCondition_violent_storm" xml:space="preserve">
+    <value>旋流器</value>
+  </data>
+  <data name="WindDirection_east" xml:space="preserve">
+    <value>东风</value>
+  </data>
+  <data name="WindDirection_north" xml:space="preserve">
+    <value>北风</value>
+  </data>
+  <data name="WindDirection_south" xml:space="preserve">
+    <value>南风</value>
+  </data>
+  <data name="WindDirection_west" xml:space="preserve">
+    <value>西风</value>
+  </data>
+  <data name="WindScale_eight" xml:space="preserve">
+    <value>大风</value>
+  </data>
+  <data name="WindScale_four" xml:space="preserve">
+    <value>和风</value>
+  </data>
+  <data name="WindScale_one" xml:space="preserve">
+    <value>平静</value>
+  </data>
+  <data name="WindScale_twelve" xml:space="preserve">
+    <value>旋流器</value>
+  </data>
+  <data name="WindScale_two" xml:space="preserve">
+    <value>微风</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="DateDes.Text" xml:space="preserve">
+    <value>(日)</value>
+  </data>
+  <data name="HourDes.Text" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="MonthDes.Text" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>天气</value>
+  </data>
+  <data name="YearDes.Text" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="breeze0" xml:space="preserve">
+    <value>微风</value>
+  </data>
+  <data name="breeze1" xml:space="preserve">
+    <value>和风</value>
+  </data>
+  <data name="Glance" xml:space="preserve">
+    <value>{0}、{1}、{2}。</value>
+  </data>
+  <data name="Glancecloudy0" xml:space="preserve">
+    <value>多云</value>
+  </data>
+  <data name="GlanceSunny0" xml:space="preserve">
+    <value>晴天</value>
+  </data>
+  <data name="jintian" xml:space="preserve">
+    <value>今天(&amp;A)</value>
+  </data>
+  <data name="moderate_rain2" xml:space="preserve">
+    <value>雨天</value>
+  </data>
+  <data name="overcast0" xml:space="preserve">
+    <value>底纹</value>
+  </data>
+  <data name="xianzai" xml:space="preserve">
+    <value>现在</value>
+  </data>
+  <data name="MinDes.Text" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="OtherDes.Text" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="Cacel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="EditButton.Label" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+</root>

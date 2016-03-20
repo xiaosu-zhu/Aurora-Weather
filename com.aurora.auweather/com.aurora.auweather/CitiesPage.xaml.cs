@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -25,10 +26,12 @@ namespace Com.Aurora.AuWeather
     {
         private MainPage baba;
         private bool isEditMode;
+        private License.License license;
 
         public CitiesPage()
         {
             this.InitializeComponent();
+            license = new License.License();
             Context.LocationUpdate += Context_LocationUpdate;
         }
 
@@ -102,7 +105,24 @@ namespace Com.Aurora.AuWeather
         {
             base.OnNavigatedTo(e);
             baba = e.Parameter as MainPage;
-            baba.ChangeColor(Colors.Transparent, (Color)Resources["SystemBaseHighColor"], (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"]);
+            Color c;
+            SolidColorBrush s;
+            if (Context.Theme == ElementTheme.Dark)
+            {
+                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
+            else
+            {
+                c = (Color)Resources["SystemBaseHighColor"];
+                s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+            }
+            baba.ChangeColor(Colors.Transparent, c, s);
+            if (!license.IsPurchased)
+            {
+                RefreshButton.IsEnabled = false;
+            }
         }
 
         private void RelativePanel_PointerEntered(object sender, PointerRoutedEventArgs e)
@@ -191,20 +211,38 @@ namespace Com.Aurora.AuWeather
 
         private void GotoEditMode()
         {
+            var loader = new ResourceLoader();
             isEditMode = true;
             GridView.SelectionMode = ListViewSelectionMode.Multiple;
             EditButton.Icon = new SymbolIcon(Symbol.Delete);
             RefreshButton.Icon = new SymbolIcon(Symbol.Cancel);
             AddButton.Icon = new SymbolIcon(Symbol.Pin);
+            EditButton.Label = loader.GetString("Delete");
+            RefreshButton.Label = loader.GetString("Cacel");
+            AddButton.Label = loader.GetString("Pin");
+            RefreshButton.IsEnabled = true;
+            if (!license.IsPurchased)
+            {
+                AddButton.IsEnabled = false;
+            }
         }
 
         private void QuitEditMode()
         {
+            var loader = new ResourceLoader();
             isEditMode = false;
             GridView.SelectionMode = ListViewSelectionMode.Single;
             EditButton.Icon = new SymbolIcon(Symbol.Edit);
             RefreshButton.Icon = new SymbolIcon(Symbol.Refresh);
             AddButton.Icon = new SymbolIcon(Symbol.Add);
+            EditButton.Label = loader.GetString("Edit");
+            RefreshButton.Label = loader.GetString("Refresh");
+            AddButton.Label = loader.GetString("Add");
+            AddButton.IsEnabled = true;
+            if (!license.IsPurchased)
+            {
+                RefreshButton.IsEnabled = false;
+            }
         }
 
         private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)

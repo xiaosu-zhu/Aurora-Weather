@@ -12,12 +12,14 @@ using Com.Aurora.AuWeather.Models;
 using Windows.Storage;
 using Com.Aurora.Shared.Helpers;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
     public class ImmersiveSettingViewModel : ViewModelBase
     {
         private Immersive immersive;
+        private ElementTheme theme;
 
         public ImmersiveGroup PivotList { get; set; }
         public CurrentImmersiveList CurrentList { get; set; }
@@ -149,6 +151,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
+
         public int sunnyP;
         public int starryP;
         public int cloudyP;
@@ -171,6 +186,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public ImmersiveSettingViewModel()
         {
+            var p = Preferences.Get();
+            Theme = p.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
                 immersive = Immersive.Get();

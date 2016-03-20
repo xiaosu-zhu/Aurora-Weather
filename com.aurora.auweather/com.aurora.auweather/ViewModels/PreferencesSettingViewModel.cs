@@ -7,19 +7,24 @@ using Windows.System.Threading;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Windows.Foundation;
 using System.Threading.Tasks;
+using Com.Aurora.Shared.MVVM;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
-    internal class PreferencesSettingViewModel
+    internal class PreferencesSettingViewModel : ViewModelBase
     {
         private Preferences Preferences;
+        private ElementTheme theme;
 
         public PreferencesSettingViewModel()
         {
+            Preferences = Preferences.Get();
+            Theme1 = Preferences.GetTheme();
             var task = ThreadPool.RunAsync((work) =>
             {
-                work.Completed = new Windows.Foundation.AsyncActionCompletedHandler(WorkComplete);
-                Preferences = Preferences.Get();
+                work.Completed = new AsyncActionCompletedHandler(WorkComplete);
+
                 Temperature = new TemperatureList();
                 Wind = new WindList();
                 Speed = new SpeedList();
@@ -129,11 +134,16 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 Preferences.MinuteNumber = (uint)Array.IndexOf(Preferences.MinuteFormat, v);
             }
-            if(name == "Week")
+            if (name == "Week")
             {
                 Preferences.WeekNumber = (uint)Array.IndexOf(Preferences.WeekFormat, v);
             }
             SaveAll();
+        }
+
+        internal void ReloadTheme()
+        {
+            Theme1 = Preferences.GetTheme();
         }
 
         internal void SetEnumValue(Enum value)
@@ -171,10 +181,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void SaveAll()
         {
-            var task = ThreadPool.RunAsync((work) =>
-            {
-                Preferences.Save();
-            });
+            Preferences.Save();
         }
 
         internal void SetSeparator(string text)
@@ -209,6 +216,19 @@ namespace Com.Aurora.AuWeather.ViewModels
         public bool ShowImmersivett { get; private set; }
         public bool EnableEveryDay { get; private set; }
         public bool EnablePulltoRefresh { get; private set; }
+
+        public ElementTheme Theme1
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
 
         internal void Settt(bool isOn)
         {

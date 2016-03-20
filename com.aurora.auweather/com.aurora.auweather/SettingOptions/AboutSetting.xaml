@@ -23,8 +23,40 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Grid>
 
-    </Grid>
+    <StackPanel Background="{ThemeResource SystemControlForegroundHighBrush}">
+        <TextBlock x:Uid="AppNameText" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" Margin="12" />
+        <TextBlock Text="Aurora Studio" HorizontalAlignment="Center" Margin="12" />
+        <TextBlock x:Name="Version" Loaded="Version_Loaded" HorizontalAlignment="Center" Margin="12" />
+        <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+            <Button.Flyout>
+                <Flyout Placement="Full">
+                    <ScrollViewer>
+                        <TextBlock Margin="12" MaxWidth="300" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Copyright(C) 2016 Aurora Studio&#x000A;&#x000A;
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x000A;
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.">
+                        </TextBlock>
+                    </ScrollViewer>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+        <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+            <Button.Flyout>
+                <Flyout>
+                    <StackPanel>
+                        <TextBlock Text="Baidu Api Store" Margin="12" />
+                        <HyperlinkButton Content="apistore.baidu.com" NavigateUri="http://apistore.baidu.com/" Margin="12" />
+                        <TextBlock Text="HeWeather" Margin="12" />
+                        <HyperlinkButton Content="heweather.com" NavigateUri="http://heweather.com/" Margin="12" />
+                    </StackPanel>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+        <Button x:Name="FeedbackButton" x:Uid="FeedbackText" Style="{ThemeResource TextBlockButtonStyle}" Click="FeedbackButton_Click" HorizontalAlignment="Center" Margin="12" />
+    </StackPanel>
 </Page>

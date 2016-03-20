@@ -16,6 +16,7 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -116,6 +117,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         private CitySettingsModel currentCityModel;
         private int todayIndex;
         private int nowHourIndex;
+
+        private ElementTheme theme;
 
         public bool enableDynamic;
         private bool enablePull;
@@ -1130,6 +1133,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
+
         public void RefreshAsync()
         {
             Init();
@@ -1259,9 +1275,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (!storedDatas.Equals(default(KeyValuePair<string, string>)))
                 {
                     resstr = storedDatas.Value;
-                    var resjson = HeWeatherContract.Generate(resstr);
-                    fetchresult = new HeWeatherModel(resjson);
-                    return;
+                    if (resstr.Length > 31)
+                    {
+                        var resjson = HeWeatherContract.Generate(resstr);
+                        fetchresult = new HeWeatherModel(resjson);
+                        return;
+                    }
                 }
                 var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
@@ -1307,6 +1326,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
+            Theme = settings.Preferences.GetTheme();
             SetTime();
 
             SetHour();
@@ -1477,8 +1497,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
             {
                 return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+            });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
             }
-                 );
+            if (nowHourIndex < 0)
+            {
+                nowHourIndex = 0;
+            }
             UpdateTime = fetchresult.Location.UpdateTime;
             currentTimeZone = DateTimeHelper.GetTimeZone(UpdateTime, fetchresult.Location.UtcTime);
             RefreshCurrentTime();

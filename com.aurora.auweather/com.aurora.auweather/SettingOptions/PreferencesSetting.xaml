@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Unloaded="Page_Unloaded"
     SizeChanged="Page_SizeChanged"
+    RequestedTheme="{x:Bind Context.Theme1,Mode=OneWay}"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -112,10 +113,82 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock x:Name="FormatTitle" x:Uid="FormatText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                            <Button x:Name="AboutFormatButton" x:Uid="DescripButton" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" />
+                            <Button x:Name="AboutFormatButton" x:Uid="DescripButton" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" >
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <StackPanel>
+                                            <TextBlock x:Uid="TimeFormatDescrip" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Margin="12" />
+                                            <TextBlock Margin="8" x:Uid="YearDes" />
+                                            <StackPanel Margin="8" Orientation="Horizontal" >
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="yy - " />
+                                                    <Run x:Name="yy" Text="16" />
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="yyyy - " />
+                                                    <Run x:Name="yyyy" Text="2016" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Margin="8" x:Uid="MonthDes"/>
+                                            <StackPanel Orientation="Horizontal"  Margin="8">
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="M - "/>
+                                                    <Run x:Name="M" Text="3" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Margin="8" x:Uid="DateDes" />
+                                            <StackPanel Orientation="Horizontal" Margin="8">
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="d - "/>
+                                                    <Run x:Name="d" Text="19" />
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="ddd - "/>
+                                                    <Run x:Name="ddd" Text="周一" />
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="dddd - "/>
+                                                    <Run x:Name="dddd" Text="星期一" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Margin="8" x:Uid="HourDes" />
+                                            <StackPanel Orientation="Horizontal" Margin="8">
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="H - "/>
+                                                    <Run x:Name="H" Text="16" />
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="h - "/>
+                                                    <Run x:Name="h" Text="16" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Margin="8" x:Uid="MinDes"/>
+                                            <StackPanel Orientation="Horizontal" Margin="8">
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="m - "/>
+                                                    <Run x:Name="m" Text="9" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Margin="8" x:Uid="OtherDes"/>
+                                            <StackPanel Orientation="Vertical" Margin="8">
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="M, d, H, h, m - "/>
+                                                    <Run x:Uid="buchaoguoshi" />
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run Text="MM, dd, HH, hh, mm - "/>
+                                                </TextBlock>
+                                                <TextBlock Margin="0,0,8,0">
+                                                    <Run x:Uid="chaoguoshi"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ComboBox x:Name="Year" VerticalAlignment="Center" Width="120" MaxWidth="120" Margin="12">
+                            <ComboBox x:Name="Year" VerticalAlignment="Center" Width="120" MaxWidth="120" Margin="4,12,4,12">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
                                         <TextBlock Text="{Binding}" />
@@ -124,7 +197,7 @@
                             </ComboBox>
                             <TextBox x:Name="Separator0" TextChanged="Separator0_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
                             </TextBox>
-                            <ComboBox x:Name="Month" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                            <ComboBox x:Name="Month" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="4,12,4,12">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
                                         <TextBlock Text="{Binding}" />
@@ -134,7 +207,7 @@
                             <TextBox x:Name="Separator1" TextChanged="Separator1_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
 
                             </TextBox>
-                            <ComboBox x:Name="Day" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
+                            <ComboBox x:Name="Day" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="4,12,4,12">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate >
                                         <TextBlock Text="{Binding}" />

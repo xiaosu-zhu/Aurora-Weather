@@ -139,7 +139,17 @@ namespace Com.Aurora.AuWeather
                 WeatherCondition.high_wind |
                 WeatherCondition.gale))
             {
-                baba.ChangeColor(new SolidColorBrush(Colors.Black));
+                SolidColorBrush s;
+                if (Context.Theme == ElementTheme.Dark)
+                {
+                    var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                    s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                }
+                else
+                {
+                    s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+                }
+                baba.ChangeColor(s);
             }
             else
             {
@@ -514,7 +524,17 @@ namespace Com.Aurora.AuWeather
 
         private void RootGotoWideState()
         {
-            UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, (Color)Resources["SystemBaseHighColor"]);
+            Color c;
+            if (Context.Theme == ElementTheme.Dark)
+            {
+                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+            }
+            else
+            {
+                c = (Color)Resources["SystemBaseHighColor"];
+            }
+            UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, c);
             ScrollViewerConverter.isLargeMode = true;
             rootIsWideState = true;
             WeatherPanel.Children.Remove(DetailsPanel);

@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="AddButton.Label" xml:space="preserve">
+    <value>搜索城市</value>
+  </data>
+  <data name="Add_Image" xml:space="preserve">
+    <value>自訂</value>
+  </data>
+  <data name="BlurBGText.Text" xml:space="preserve">
+    <value>模糊背景</value>
+  </data>
+  <data name="BodyTempText.Text" xml:space="preserve">
+    <value>體感溫度</value>
+  </data>
+  <data name="CheckLocateAccessButton.Content" xml:space="preserve">
+    <value>前往設定</value>
+  </data>
+  <data name="Cities" xml:space="preserve">
+    <value>城市概覽</value>
+  </data>
+  <data name="CitiesButton.Label" xml:space="preserve">
+    <value>城市概覽</value>
+  </data>
+  <data name="CitiesText.Text" xml:space="preserve">
+    <value>城市概覽</value>
+  </data>
+  <data name="Cities_Management" xml:space="preserve">
+    <value>城市管理</value>
+  </data>
+  <data name="Cloudy.Header" xml:space="preserve">
+    <value>雲端</value>
+  </data>
+  <data name="ComfortableText.Text" xml:space="preserve">
+    <value>舒適指數:  </value>
+  </data>
+  <data name="CWText.Text" xml:space="preserve">
+    <value>洗車指數:  </value>
+  </data>
+  <data name="DanweiText.Text" xml:space="preserve">
+    <value>單位換算</value>
+  </data>
+  <data name="DescripButton.Content" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="DisableDynamicDescripText.Text" xml:space="preserve">
+    <value>這將關閉動態天氣, 並減少記憶體佔用</value>
+  </data>
+  <data name="DisableDynamicText.Text" xml:space="preserve">
+    <value>減弱動態效果</value>
+  </data>
+  <data name="DonateButton.Content" xml:space="preserve">
+    <value>投喂我!</value>
+  </data>
+  <data name="DonateOption0.Text" xml:space="preserve">
+    <value>· 每日天氣提醒</value>
+  </data>
+  <data name="DonateOption1.Text" xml:space="preserve">
+    <value>· 災害提醒及鎖屏通知</value>
+  </data>
+  <data name="DonateOption2.Text" xml:space="preserve">
+    <value>· 更短的天氣刷新頻率</value>
+  </data>
+  <data name="DonateOption3.Text" xml:space="preserve">
+    <value>· 釘選其他城市的磁貼並自動更新</value>
+  </data>
+  <data name="DonateRun0.Text" xml:space="preserve">
+    <value>需要你的説明...</value>
+  </data>
+  <data name="DonateRun1.Text" xml:space="preserve">
+    <value>做出一個還算湊合的應用, 也需要大量的精力和時間; 而且, 這個應用更新天氣使用的 API 需要一些資金才能夠正常工作. 如果你覺得它很棒，不妨支援一下~</value>
+  </data>
+  <data name="DonateRun2.Text" xml:space="preserve">
+    <value>説明我們, 你將解鎖捐贈版的更多功能:</value>
+  </data>
+  <data name="DressingText.Text" xml:space="preserve">
+    <value>穿衣指數:  </value>
+  </data>
+  <data name="DynamicText.Text" xml:space="preserve">
+    <value>動態天氣</value>
+  </data>
+  <data name="EnableAlarmText.Text" xml:space="preserve">
+    <value>氣象災害預警</value>
+  </data>
+  <data name="EnableEveryText.Text" xml:space="preserve">
+    <value>每日天氣提醒</value>
+  </data>
+  <data name="ExperimentalText.Text" xml:space="preserve">
+    <value>試驗性功能</value>
+  </data>
+  <data name="FeedbackButton.Label" xml:space="preserve">
+    <value>意見反應</value>
+  </data>
+  <data name="FluText.Text" xml:space="preserve">
+    <value>流感指數:  </value>
+  </data>
+  <data name="Foggy.Header" xml:space="preserve">
+    <value>霧</value>
+  </data>
+  <data name="ForceRefreshText.Text" xml:space="preserve">
+    <value>強制開啟下拉刷新</value>
+  </data>
+  <data name="FormatText.Text" xml:space="preserve">
+    <value>日期與時間</value>
+  </data>
+  <data name="Haze.Header" xml:space="preserve">
+    <value>沙與霾</value>
+  </data>
+  <data name="HumidityText.Text" xml:space="preserve">
+    <value>濕氣</value>
+  </data>
+  <data name="ImmersiveText.Text" xml:space="preserve">
+    <value>沉浸模式</value>
+  </data>
+  <data name="Immersive_Background" xml:space="preserve">
+    <value>沉浸模式背景</value>
+  </data>
+  <data name="LengthParameter_KM" xml:space="preserve">
+    <value>公里</value>
+  </data>
+  <data name="LengthParameter_M" xml:space="preserve">
+    <value>METRE</value>
+  </data>
+  <data name="LengthParameter_Mile" xml:space="preserve">
+    <value>英哩</value>
+  </data>
+  <data name="LengthParameter_NM" xml:space="preserve">
+    <value>英制海里</value>
+  </data>
+  <data name="LengthParText.Text" xml:space="preserve">
+    <value>能見度</value>
+  </data>
+  <data name="LoadingDataText.Text" xml:space="preserve">
+    <value>載入城市資料</value>
+  </data>
+  <data name="LocateDeniedButton.Content" xml:space="preserve">
+    <value>定位許可權被關閉</value>
+  </data>
+  <data name="LocateOnText.Text" xml:space="preserve">
+    <value>開啟定位</value>
+  </data>
+  <data name="LocatingText.Text" xml:space="preserve">
+    <value>尋找中</value>
+  </data>
+  <data name="MoonPhaseText.Text" xml:space="preserve">
+    <value>月相</value>
+  </data>
+  <data name="NextTomorrowText.Text" xml:space="preserve">
+    <value>後天</value>
+  </data>
+  <data name="NoBGText.Text" xml:space="preserve">
+    <value>不使用背景</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>當前天氣</value>
+  </data>
+  <data name="NowButton.Label" xml:space="preserve">
+    <value>剛剛</value>
+  </data>
+  <data name="Obtain" xml:space="preserve">
+    <value>Pay what you want</value>
+  </data>
+  <data name="PrecipitationText.Text" xml:space="preserve">
+    <value>降水量</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>喜好設定</value>
+  </data>
+  <data name="PressureParameter_Atm" xml:space="preserve">
+    <value>標準大氣壓</value>
+  </data>
+  <data name="PressureParameter_CmHg" xml:space="preserve">
+    <value>釐米汞柱</value>
+  </data>
+  <data name="PressureParameter_Hpa" xml:space="preserve">
+    <value>毫巴</value>
+  </data>
+  <data name="PressureParameter_Torr" xml:space="preserve">
+    <value>Torr</value>
+  </data>
+  <data name="PressureParText.Text" xml:space="preserve">
+    <value>氣動</value>
+  </data>
+  <data name="PressureText.Text" xml:space="preserve">
+    <value>氣動</value>
+  </data>
+  <data name="PurchaseButton.Content" xml:space="preserve">
+    <value>走你!</value>
+  </data>
+  <data name="Rainny.Header" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="RefreshFreqText.Text" xml:space="preserve">
+    <value>自動刷新間隔</value>
+  </data>
+  <data name="RefreshState_four" xml:space="preserve">
+    <value>四小時</value>
+  </data>
+  <data name="RefreshState_one" xml:space="preserve">
+    <value>不要自動重新整理</value>
+  </data>
+  <data name="RefreshState_three" xml:space="preserve">
+    <value>兩小時</value>
+  </data>
+  <data name="RefreshState_two" xml:space="preserve">
+    <value>一小時</value>
+  </data>
+  <data name="Replace_Image" xml:space="preserve">
+    <value>取代</value>
+  </data>
+  <data name="RequestedTheme_Auto" xml:space="preserve">
+    <value>自動</value>
+  </data>
+  <data name="RequestedTheme_Dark" xml:space="preserve">
+    <value>暗</value>
+  </data>
+  <data name="RequestedTheme_Light" xml:space="preserve">
+    <value>亮</value>
+  </data>
+  <data name="SearchText.Text" xml:space="preserve">
+    <value>搜索並添加</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsButton.Label" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsText.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="ShowSecondText.Text" xml:space="preserve">
+    <value>顯示秒針</value>
+  </data>
+  <data name="ShowttText.Text" xml:space="preserve">
+    <value>顯示上午/下午</value>
+  </data>
+  <data name="Snowy.Header" xml:space="preserve">
+    <value>冬雪</value>
+  </data>
+  <data name="SpeedParameter_KMPH" xml:space="preserve">
+    <value>千米/時</value>
+  </data>
+  <data name="SpeedParameter_Knot" xml:space="preserve">
+    <value>章節</value>
+  </data>
+  <data name="SpeedParameter_MPS" xml:space="preserve">
+    <value>每秒公尺</value>
+  </data>
+  <data name="SpeedParText.Text" xml:space="preserve">
+    <value>風速</value>
+  </data>
+  <data name="SplashText.Text" xml:space="preserve">
+    <value>準備資料...</value>
+  </data>
+  <data name="SportText.Text" xml:space="preserve">
+    <value>運動指數:  </value>
+  </data>
+  <data name="Starry.Header" xml:space="preserve">
+    <value>星空</value>
+  </data>
+  <data name="Sunny.Header" xml:space="preserve">
+    <value>陽光</value>
+  </data>
+  <data name="SunProgressText.Text" xml:space="preserve">
+    <value>太陽位置</value>
+  </data>
+  <data name="TemperatureParameter_Celsius" xml:space="preserve">
+    <value>Degree Celsius</value>
+  </data>
+  <data name="TemperatureParameter_Fahrenheit" xml:space="preserve">
+    <value>華氏 (F)</value>
+  </data>
+  <data name="TemperatureParameter_Kelvin" xml:space="preserve">
+    <value>熱力溫標</value>
+  </data>
+  <data name="TempParText.Text" xml:space="preserve">
+    <value>溫度</value>
+  </data>
+  <data name="ThemeText.Text" xml:space="preserve">
+    <value>主旨</value>
+  </data>
+  <data name="TitleBlock.Text" xml:space="preserve">
+    <value>極光天氣</value>
+  </data>
+  <data name="ToastText.Text" xml:space="preserve">
+    <value>天氣與提醒</value>
+  </data>
+  <data name="TomorrowText.Text" xml:space="preserve">
+    <value>明日|明天|未來的一天</value>
+  </data>
+  <data name="TravelText.Text" xml:space="preserve">
+    <value>旅行指數:  </value>
+  </data>
+  <data name="UseWeekText.Text" xml:space="preserve">
+    <value>使用星期替代日期</value>
+  </data>
+  <data name="UVText.Text" xml:space="preserve">
+    <value>紫外線指數:  </value>
+  </data>
+  <data name="VisibilityText.Text" xml:space="preserve">
+    <value>能見度</value>
+  </data>
+  <data name="WelcomeText.Text" xml:space="preserve">
+    <value>歡迎!</value>
+  </data>
+  <data name="WindParameter_BeaufortandDegree" xml:space="preserve">
+    <value>風級+角度</value>
+  </data>
+  <data name="WindParameter_BeaufortandText" xml:space="preserve">
+    <value>風級+風向</value>
+  </data>
+  <data name="WindParameter_SpeedandDegree" xml:space="preserve">
+    <value>風速+角度</value>
+  </data>
+  <data name="WindParameter_SpeedandText" xml:space="preserve">
+    <value>風速+風向</value>
+  </data>
+  <data name="WindParText.Text" xml:space="preserve">
+    <value>風力與風向</value>
+  </data>
+  <data name="WindText.Text" xml:space="preserve">
+    <value>風力風向</value>
+  </data>
+  <data name="DonationTitle.Text" xml:space="preserve">
+    <value>獲取捐贈版</value>
+  </data>
+  <data name="First_quarter" xml:space="preserve">
+    <value>First Quarter Moon</value>
+  </data>
+  <data name="Full_moon" xml:space="preserve">
+    <value>滿月</value>
+  </data>
+  <data name="New_Moon" xml:space="preserve">
+    <value>新月</value>
+  </data>
+  <data name="Third_quarter" xml:space="preserve">
+    <value>Last Quarter Moon</value>
+  </data>
+  <data name="Waning_crescent" xml:space="preserve">
+    <value>殘月</value>
+  </data>
+  <data name="Waning_gibbous" xml:space="preserve">
+    <value>下凸月</value>
+  </data>
+  <data name="Waxing_crescent" xml:space="preserve">
+    <value>峨眉月</value>
+  </data>
+  <data name="Waxing_gibbous" xml:space="preserve">
+    <value>上凸月</value>
+  </data>
+  <data name="WeatherCondition_calm" xml:space="preserve">
+    <value>輕風</value>
+  </data>
+  <data name="WeatherCondition_cloudy" xml:space="preserve">
+    <value>多雲</value>
+  </data>
+  <data name="WeatherCondition_cold" xml:space="preserve">
+    <value>變冷</value>
+  </data>
+  <data name="WeatherCondition_drizzle_rain" xml:space="preserve">
+    <value>毛毛雨</value>
+  </data>
+  <data name="WeatherCondition_dust" xml:space="preserve">
+    <value>揚塵</value>
+  </data>
+  <data name="WeatherCondition_duststorm" xml:space="preserve">
+    <value>塵暴</value>
+  </data>
+  <data name="WeatherCondition_extreme_rain" xml:space="preserve">
+    <value>暴雨</value>
+  </data>
+  <data name="WeatherCondition_few_clouds" xml:space="preserve">
+    <value>少雲</value>
+  </data>
+  <data name="WeatherCondition_foggy" xml:space="preserve">
+    <value>霧</value>
+  </data>
+  <data name="WeatherCondition_freezing_rain" xml:space="preserve">
+    <value>凍雨</value>
+  </data>
+  <data name="WeatherCondition_fresh_breeze" xml:space="preserve">
+    <value>勁風</value>
+  </data>
+  <data name="WeatherCondition_gale" xml:space="preserve">
+    <value>大風</value>
+  </data>
+  <data name="WeatherCondition_hail" xml:space="preserve">
+    <value>冰雹</value>
+  </data>
+  <data name="WeatherCondition_haze" xml:space="preserve">
+    <value>霾</value>
+  </data>
+  <data name="WeatherCondition_heavy_rain" xml:space="preserve">
+    <value>大雨</value>
+  </data>
+  <data name="WeatherCondition_heavy_shower_rain" xml:space="preserve">
+    <value>強陣雨</value>
+  </data>
+  <data name="WeatherCondition_heavy_snow" xml:space="preserve">
+    <value>大雪</value>
+  </data>
+  <data name="WeatherCondition_heavy_storm_rain" xml:space="preserve">
+    <value>大暴雨</value>
+  </data>
+  <data name="WeatherCondition_heavy_thunderstorm" xml:space="preserve">
+    <value>Thunderstorm</value>
+  </data>
+  <data name="WeatherCondition_high_wind" xml:space="preserve">
+    <value>疾風</value>
+  </data>
+  <data name="WeatherCondition_hot" xml:space="preserve">
+    <value>變熱</value>
+  </data>
+  <data name="WeatherCondition_hurricane" xml:space="preserve">
+    <value>颱風</value>
+  </data>
+  <data name="WeatherCondition_light_breeze" xml:space="preserve">
+    <value>清風</value>
+  </data>
+  <data name="WeatherCondition_light_rain" xml:space="preserve">
+    <value>小雨</value>
+  </data>
+  <data name="WeatherCondition_light_snow" xml:space="preserve">
+    <value>小雪</value>
+  </data>
+  <data name="WeatherCondition_mist" xml:space="preserve">
+    <value>迷濛幻境</value>
+  </data>
+  <data name="WeatherCondition_moderate" xml:space="preserve">
+    <value>和風</value>
+  </data>
+  <data name="WeatherCondition_moderate_rain" xml:space="preserve">
+    <value>中雨</value>
+  </data>
+  <data name="WeatherCondition_moderate_snow" xml:space="preserve">
+    <value>中雪</value>
+  </data>
+  <data name="WeatherCondition_overcast" xml:space="preserve">
+    <value>陰</value>
+  </data>
+  <data name="WeatherCondition_partly_cloudy" xml:space="preserve">
+    <value>大部多雲</value>
+  </data>
+  <data name="WeatherCondition_rain_snow" xml:space="preserve">
+    <value>雨雪</value>
+  </data>
+  <data name="WeatherCondition_sand" xml:space="preserve">
+    <value>沙塵</value>
+  </data>
+  <data name="WeatherCondition_sandstorm" xml:space="preserve">
+    <value>沙塵暴</value>
+  </data>
+  <data name="WeatherCondition_severe_storm_rain" xml:space="preserve">
+    <value>極端降水</value>
+  </data>
+  <data name="WeatherCondition_shower_rain" xml:space="preserve">
+    <value>陣雨</value>
+  </data>
+  <data name="WeatherCondition_shower_snow" xml:space="preserve">
+    <value>陣雪</value>
+  </data>
+  <data name="WeatherCondition_sleet" xml:space="preserve">
+    <value>雨夾雪</value>
+  </data>
+  <data name="WeatherCondition_snowstorm" xml:space="preserve">
+    <value>暴風雪</value>
+  </data>
+  <data name="WeatherCondition_snow_flurry" xml:space="preserve">
+    <value>短時降雪</value>
+  </data>
+  <data name="WeatherCondition_storm" xml:space="preserve">
+    <value>暴風</value>
+  </data>
+  <data name="WeatherCondition_storm_rain" xml:space="preserve">
+    <value>暴風雨</value>
+  </data>
+  <data name="WeatherCondition_strong_breeze" xml:space="preserve">
+    <value>強風</value>
+  </data>
+  <data name="WeatherCondition_strong_gale" xml:space="preserve">
+    <value>烈風</value>
+  </data>
+  <data name="WeatherCondition_sunny" xml:space="preserve">
+    <value>晴朗</value>
+  </data>
+  <data name="WeatherCondition_thundershower" xml:space="preserve">
+    <value>雷陣雨</value>
+  </data>
+  <data name="WeatherCondition_tornado" xml:space="preserve">
+    <value>龍捲風</value>
+  </data>
+  <data name="WeatherCondition_tropical_storm" xml:space="preserve">
+    <value>熱帶風暴</value>
+  </data>
+  <data name="WeatherCondition_unknown" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="WeatherCondition_violent_storm" xml:space="preserve">
+    <value>氣旋</value>
+  </data>
+  <data name="WeatherCondition_volcanic_ash" xml:space="preserve">
+    <value>火山灰</value>
+  </data>
+  <data name="WeatherCondition_windy" xml:space="preserve">
+    <value>有風</value>
+  </data>
+  <data name="WindDirection_east" xml:space="preserve">
+    <value>東風</value>
+  </data>
+  <data name="WindDirection_north" xml:space="preserve">
+    <value>北風</value>
+  </data>
+  <data name="WindDirection_northeast" xml:space="preserve">
+    <value>東北風</value>
+  </data>
+  <data name="WindDirection_northwest" xml:space="preserve">
+    <value>西北風</value>
+  </data>
+  <data name="WindDirection_south" xml:space="preserve">
+    <value>南風</value>
+  </data>
+  <data name="WindDirection_southeast" xml:space="preserve">
+    <value>東南風</value>
+  </data>
+  <data name="WindDirection_southwest" xml:space="preserve">
+    <value>西南風</value>
+  </data>
+  <data name="WindDirection_unknown" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="WindDirection_west" xml:space="preserve">
+    <value>西風</value>
+  </data>
+  <data name="WindScale_eight" xml:space="preserve">
+    <value>大風</value>
+  </data>
+  <data name="WindScale_eighteen" xml:space="preserve">
+    <value>極強台颶風</value>
+  </data>
+  <data name="WindScale_eleven" xml:space="preserve">
+    <value>暴風</value>
+  </data>
+  <data name="WindScale_fifteen" xml:space="preserve">
+    <value>強台颶風</value>
+  </data>
+  <data name="WindScale_five" xml:space="preserve">
+    <value>清風</value>
+  </data>
+  <data name="WindScale_four" xml:space="preserve">
+    <value>和風</value>
+  </data>
+  <data name="WindScale_fourteen" xml:space="preserve">
+    <value>強台颶風</value>
+  </data>
+  <data name="WindScale_nine" xml:space="preserve">
+    <value>烈風</value>
+  </data>
+  <data name="WindScale_one" xml:space="preserve">
+    <value>平靜</value>
+  </data>
+  <data name="WindScale_seven" xml:space="preserve">
+    <value>疾風</value>
+  </data>
+  <data name="WindScale_seventeen" xml:space="preserve">
+    <value>超強台颶風</value>
+  </data>
+  <data name="WindScale_six" xml:space="preserve">
+    <value>強風</value>
+  </data>
+  <data name="WindScale_sixteen" xml:space="preserve">
+    <value>超強台颶風</value>
+  </data>
+  <data name="WindScale_ten" xml:space="preserve">
+    <value>狂風</value>
+  </data>
+  <data name="WindScale_thirteen" xml:space="preserve">
+    <value>颱風</value>
+  </data>
+  <data name="WindScale_three" xml:space="preserve">
+    <value>輕風</value>
+  </data>
+  <data name="WindScale_twelve" xml:space="preserve">
+    <value>氣旋</value>
+  </data>
+  <data name="WindScale_two" xml:space="preserve">
+    <value>微風</value>
+  </data>
+  <data name="WindScale_unknown" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="WindScale_zero" xml:space="preserve">
+    <value>無風</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>極光天氣</value>
+  </data>
+  <data name="AppNameText.Text" xml:space="preserve">
+    <value>極光天氣</value>
+  </data>
+  <data name="buchaoguoshi.Text" xml:space="preserve">
+    <value>不超過十, 不顯示十位</value>
+  </data>
+  <data name="chaoguoshi.Text" xml:space="preserve">
+    <value>不超過十, 十位顯示零</value>
+  </data>
+  <data name="DateDes.Text" xml:space="preserve">
+    <value>日:</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>極光天氣</value>
+  </data>
+  <data name="FeedbackText.Content" xml:space="preserve">
+    <value>評分回饋</value>
+  </data>
+  <data name="HourDes.Text" xml:space="preserve">
+    <value>時:</value>
+  </data>
+  <data name="MonthDes.Text" xml:space="preserve">
+    <value>月:</value>
+  </data>
+  <data name="OpenSourceText.Content" xml:space="preserve">
+    <value>開放原始碼許可</value>
+  </data>
+  <data name="ProviderText.Content" xml:space="preserve">
+    <value>資料提供方</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>天氣</value>
+  </data>
+  <data name="TimeFormatDescrip.Text" xml:space="preserve">
+    <value>日期時間格式示例</value>
+  </data>
+  <data name="YearDes.Text" xml:space="preserve">
+    <value>年:</value>
+  </data>
+  <data name="bianleng" xml:space="preserve">
+    <value>會變冷</value>
+  </data>
+  <data name="bianre" xml:space="preserve">
+    <value>會變熱</value>
+  </data>
+  <data name="breeze0" xml:space="preserve">
+    <value>微風</value>
+  </data>
+  <data name="breeze1" xml:space="preserve">
+    <value>和風</value>
+  </data>
+  <data name="dust0" xml:space="preserve">
+    <value>有沙塵</value>
+  </data>
+  <data name="duststorm0" xml:space="preserve">
+    <value>有惡劣沙塵</value>
+  </data>
+  <data name="few_clouds0" xml:space="preserve">
+    <value>少雲</value>
+  </data>
+  <data name="few_clouds1" xml:space="preserve">
+    <value>飄雲</value>
+  </data>
+  <data name="foggy0" xml:space="preserve">
+    <value>有霧</value>
+  </data>
+  <data name="freezing_rain0" xml:space="preserve">
+    <value>有凍雨</value>
+  </data>
+  <data name="gale0" xml:space="preserve">
+    <value>有強風</value>
+  </data>
+  <data name="gale1" xml:space="preserve">
+    <value>大風天</value>
+  </data>
+  <data name="Glance" xml:space="preserve">
+    <value>{0} {1} {2}.</value>
+  </data>
+  <data name="Glancecloudy0" xml:space="preserve">
+    <value>多雲</value>
+  </data>
+  <data name="Glancecloudy1" xml:space="preserve">
+    <value>有雲</value>
+  </data>
+  <data name="GlanceFull" xml:space="preserve">
+    <value>{0} {1}, {2}{3}. 明日: {4},{5}.</value>
+  </data>
+  <data name="GlanceSunny0" xml:space="preserve">
+    <value>晴朗</value>
+  </data>
+  <data name="GlanceSunny1" xml:space="preserve">
+    <value>無雲</value>
+  </data>
+  <data name="hail0" xml:space="preserve">
+    <value>有冰雹</value>
+  </data>
+  <data name="haotianqi0" xml:space="preserve">
+    <value>適宜外出</value>
+  </data>
+  <data name="haotianqi1" xml:space="preserve">
+    <value>天氣很好</value>
+  </data>
+  <data name="haze0" xml:space="preserve">
+    <value>有霾</value>
+  </data>
+  <data name="heavy_rain0" xml:space="preserve">
+    <value>有大雨</value>
+  </data>
+  <data name="heavy_rain1" xml:space="preserve">
+    <value>外出注意大雨</value>
+  </data>
+  <data name="heavy_snow0" xml:space="preserve">
+    <value>有大雪</value>
+  </data>
+  <data name="heavy_snow1" xml:space="preserve">
+    <value>大雪天</value>
+  </data>
+  <data name="heavy_storm_rain0" xml:space="preserve">
+    <value>有暴風雨</value>
+  </data>
+  <data name="heavy_storm_rain1" xml:space="preserve">
+    <value>不宜外出</value>
+  </data>
+  <data name="huaitianqi0" xml:space="preserve">
+    <value>天氣不好</value>
+  </data>
+  <data name="huaitianqi1" xml:space="preserve">
+    <value>天氣較差</value>
+  </data>
+  <data name="jintian" xml:space="preserve">
+    <value>今天(&amp;A)</value>
+  </data>
+  <data name="mist0" xml:space="preserve">
+    <value>有薄霧</value>
+  </data>
+  <data name="moderate_rain0" xml:space="preserve">
+    <value>小雨</value>
+  </data>
+  <data name="moderate_rain1" xml:space="preserve">
+    <value>有雨</value>
+  </data>
+  <data name="moderate_rain2" xml:space="preserve">
+    <value>雨天</value>
+  </data>
+  <data name="moderate_rain3" xml:space="preserve">
+    <value>需要帶傘</value>
+  </data>
+  <data name="moderate_snow0" xml:space="preserve">
+    <value>有雪</value>
+  </data>
+  <data name="moderate_snow1" xml:space="preserve">
+    <value>雪天</value>
+  </data>
+  <data name="moderate_snow2" xml:space="preserve">
+    <value>會下雪</value>
+  </data>
+  <data name="nengjiandudi0" xml:space="preserve">
+    <value>能見度低</value>
+  </data>
+  <data name="nengjiandudi1" xml:space="preserve">
+    <value>能見度差</value>
+  </data>
+  <data name="overcast0" xml:space="preserve">
+    <value>網底</value>
+  </data>
+  <data name="overcast1" xml:space="preserve">
+    <value>沒有太陽</value>
+  </data>
+  <data name="partly_cloudy0" xml:space="preserve">
+    <value>局部多雲</value>
+  </data>
+  <data name="shiduda0" xml:space="preserve">
+    <value>濕度較大</value>
+  </data>
+  <data name="shiduda1" xml:space="preserve">
+    <value>空氣濕潤</value>
+  </data>
+  <data name="shower0" xml:space="preserve">
+    <value>有陣雨</value>
+  </data>
+  <data name="shower1" xml:space="preserve">
+    <value>間歇降雨</value>
+  </data>
+  <data name="shower_snow0" xml:space="preserve">
+    <value>有陣雪</value>
+  </data>
+  <data name="shower_snow1" xml:space="preserve">
+    <value>有短時降雪</value>
+  </data>
+  <data name="sleet0" xml:space="preserve">
+    <value>有雨夾雪</value>
+  </data>
+  <data name="sleet1" xml:space="preserve">
+    <value>雨雪</value>
+  </data>
+  <data name="snowstorm0" xml:space="preserve">
+    <value>有暴風雪</value>
+  </data>
+  <data name="snowstorm1" xml:space="preserve">
+    <value>有惡劣降雪</value>
+  </data>
+  <data name="storm0" xml:space="preserve">
+    <value>注意風暴</value>
+  </data>
+  <data name="thundershower0" xml:space="preserve">
+    <value>有雷雨</value>
+  </data>
+  <data name="unknown_weather" xml:space="preserve">
+    <value>未知天氣</value>
+  </data>
+  <data name="wanjian" xml:space="preserve">
+    <value>晚間</value>
+  </data>
+  <data name="wendudi0" xml:space="preserve">
+    <value>低溫</value>
+  </data>
+  <data name="wendudi1" xml:space="preserve">
+    <value>持續降溫</value>
+  </data>
+  <data name="wendugao0" xml:space="preserve">
+    <value>高溫</value>
+  </data>
+  <data name="wendugao1" xml:space="preserve">
+    <value>持續升溫</value>
+  </data>
+  <data name="windy0" xml:space="preserve">
+    <value>有風</value>
+  </data>
+  <data name="xianzai" xml:space="preserve">
+    <value>剛剛</value>
+  </data>
+  <data name="MinDes.Text" xml:space="preserve">
+    <value>分:</value>
+  </data>
+  <data name="OtherDes.Text" xml:space="preserve">
+    <value>其他:</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>搜索城市</value>
+  </data>
+  <data name="Cacel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>釘選</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="EditButton.Label" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="AutoSuggestbox.PlaceholderText" xml:space="preserve">
+    <value>中國城市輸入中文, 全拼, 其他輸入英文</value>
+  </data>
+</root>

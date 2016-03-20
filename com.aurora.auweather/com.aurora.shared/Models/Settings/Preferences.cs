@@ -1,4 +1,6 @@
-﻿using Com.Aurora.Shared.Helpers;
+﻿using System;
+using Com.Aurora.Shared.Helpers;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
@@ -45,6 +47,30 @@ namespace Com.Aurora.AuWeather.Models.Settings
             var container = RoamingSettingsHelper.GetContainer("Preferences");
             container.ReadGroupSettings(out ins);
             return ins;
+        }
+
+        public ElementTheme GetTheme()
+        {
+            if (Theme == RequestedTheme.Auto)
+            {
+                if (DateTime.Now > (DateTime.Today.AddHours(7.5)) && DateTime.Now < (DateTime.Today.AddHours(19.5)))
+                {
+                    return ElementTheme.Default;
+                }
+                else
+                {
+                    return ElementTheme.Dark;
+                }
+            }
+            if (Theme == RequestedTheme.Dark)
+            {
+                return ElementTheme.Dark;
+            }
+            if (Theme == RequestedTheme.Light)
+            {
+                return ElementTheme.Light;
+            }
+            return ElementTheme.Default;
         }
 
         public void Set(TemperatureParameter t)
@@ -116,11 +142,11 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public string GetTileFormat()
         {
-                if (WeekNumber > 0)
-                {
-                    return WeekFormat[WeekNumber];
-                }
-                return "ddd";
+            if (WeekNumber > 0)
+            {
+                return WeekFormat[WeekNumber];
+            }
+            return "ddd";
         }
 
         public string GetDateFormat()

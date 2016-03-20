@@ -2,6 +2,7 @@
 using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Com.Aurora.AuWeather.ViewModels
@@ -9,12 +10,12 @@ namespace Com.Aurora.AuWeather.ViewModels
     internal class SettingsViewModel : ViewModelBase
     {
         public SettingsList SettingsList { get; set; } = new SettingsList();
-
+        private ElementTheme theme;
         public bool IsNotPurchased
         {
             get
             {
-                return isnotPurchased;
+                return !isnotPurchased;
             }
 
             set
@@ -23,13 +24,34 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
+
         public SettingsViewModel()
         {
             var license = new License.License();
             IsNotPurchased = license.IsPurchased;
+            var p = Preferences.Get();
+            Theme = p.GetTheme();
         }
 
         private bool isnotPurchased;
+
+        internal void ReloadTheme()
+        {
+            var p = Preferences.Get();
+            Theme = p.GetTheme();
+        }
     }
 
     internal class SettingsList : ObservableCollection<SettingOption>
@@ -37,9 +59,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         public SettingsList()
         {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            Add(new SettingOption(Symbol.Calculator, loader.GetString("Preferences"), typeof(Preferences)));
-            Add(new SettingOption(Symbol.BlockContact, loader.GetString("Immersive_Background"), typeof(Immersive)));
-            Add(new SettingOption(Symbol.Accept, loader.GetString("Cities_Management"), typeof(Models.Settings.Cities)));
+            Add(new SettingOption(Symbol.Repair, loader.GetString("Preferences"), typeof(Preferences)));
+            Add(new SettingOption(Symbol.BrowsePhotos, loader.GetString("Immersive_Background"), typeof(Immersive)));
+            Add(new SettingOption(Symbol.World, loader.GetString("Cities_Management"), typeof(Models.Settings.Cities)));
             Add(new SettingOption(Symbol.Page, loader.GetString("About"), typeof(About)));
         }
     }

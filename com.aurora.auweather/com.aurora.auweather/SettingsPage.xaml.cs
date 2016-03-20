@@ -25,7 +25,20 @@ namespace Com.Aurora.AuWeather
         {
             base.OnNavigatedTo(e);
             baba = e.Parameter as MainPage;
-            baba.ChangeColor(Colors.Transparent, (Color)Resources["SystemBaseHighColor"], (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"]);
+            Color c;
+            SolidColorBrush s;
+            if (Context.Theme == ElementTheme.Dark)
+            {
+                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
+            else
+            {
+                c = (Color)Resources["SystemBaseHighColor"];
+                s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+            }
+            baba.ChangeColor(Colors.Transparent, c, s);
         }
 
         private void SettingsList_SelectionChanged(object sender, SelectionChangedEventArgs e)

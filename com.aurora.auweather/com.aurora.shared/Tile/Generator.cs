@@ -319,6 +319,14 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 return (x.DateTime - desiredDate).TotalSeconds > 0;
             });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
+            }
+            if (hourIndex < 0)
+            {
+                hourIndex = 0;
+            }
             var updateTime = model.Location.UpdateTime;
             var currentTimeZone = DateTimeHelper.GetTimeZone(updateTime, model.Location.UtcTime);
             var sunRise = model.DailyForecast[todayIndex].SunRise;
@@ -349,6 +357,10 @@ namespace Com.Aurora.AuWeather.Tile
 
         private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
+            if (model.DailyForecast.Length < 5)
+            {
+                return null;
+            }
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
             var forecaset = new TileContent()

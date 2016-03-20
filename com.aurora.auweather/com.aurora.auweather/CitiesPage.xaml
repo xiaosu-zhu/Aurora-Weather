@@ -8,6 +8,7 @@
     xmlns:Converters="using:Com.Aurora.Shared.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    RequestedTheme="{x:Bind Context.Theme,Mode=OneWay}"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -860,19 +861,19 @@
             <TextBlock x:Uid="CitiesText" x:Name="TitleText" Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
         <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemBackgroundHighBrush}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}">
-            <AppBarButton Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" />
-            <AppBarButton Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
-            <AppBarButton Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
+            <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" />
+            <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
+            <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
         </CommandBar>
         <GridView IsMultiSelectCheckBoxEnabled="True" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" SelectionChanged="GridView_SelectionChanged" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="384" Height="216" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="336" Height="189" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Image Stretch="Uniform" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                         <Grid Visibility="{x:Bind Updated, Converter={StaticResource BooltoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
                         </Grid>
-                        <ScrollViewer MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
+                        <ScrollViewer Width="336" MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
                             <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />
@@ -880,7 +881,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind City, Mode=OneWay}" />
                                 <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind NowCondition, Mode=OneWay, Converter={StaticResource ConditiontoTextConverter}}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" TextTrimming="WordEllipsis" Margin="8,8,96,8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind Glance, Mode=OneWay}" />
+                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" TextTrimming="WordEllipsis" MaxWidth="240" Margin="8,8,8,8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind Glance, Mode=OneWay}" />
                                 <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind LastUpdate, Mode=OneWay, Converter={StaticResource DateTimeConverter}}" />
                             </Grid>
                         </ScrollViewer>

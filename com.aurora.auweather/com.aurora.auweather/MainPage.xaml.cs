@@ -6,11 +6,14 @@ using Windows.UI.Xaml.Media;
 using System;
 using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.Shared.Converters;
+using Windows.ApplicationModel.Resources;
 
 namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
+        private License.License license;
+
         public MainPage()
         {
             InitializeComponent();
@@ -20,6 +23,7 @@ namespace Com.Aurora.AuWeather
             }
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             MainFrame.Navigate(typeof(NowWeatherPage), this);
+            license = new License.License();
         }
 
         private void Hamburger_Click(object sender, RoutedEventArgs e)
@@ -29,10 +33,14 @@ namespace Com.Aurora.AuWeather
 
         internal void NavigatetoSettings(Type option)
         {
+            var loader = new ResourceLoader();
             MainFrame.Navigate(typeof(SettingOptionsPage), option);
             Refresh.Visibility = Visibility.Collapsed;
             Settings.Icon = new SymbolIcon(Symbol.Setting);
-            Cities.Icon = new SymbolIcon(Symbol.Calculator);
+            Cities.Icon = new SymbolIcon(Symbol.World);
+            Settings.Label = loader.GetString("Settings");
+            Cities.Label = loader.GetString("Cities");
+            Refresh.Label = loader.GetString("Refresh");
         }
 
         internal void Navigate(Type page)
@@ -61,9 +69,34 @@ namespace Com.Aurora.AuWeather
                 if (MainFrame.Content is SettingOptionsPage && this.ActualWidth >= 720)
                 {
                     MainFrame.Navigate(typeof(NowWeatherPage));
+                    return;
+                }
+                if (MainFrame.Content is NowWeatherPage)
+                {
+                    e.Handled = false;
+                    return;
                 }
                 MainFrame.GoBack();
             }
+        }
+
+        internal void ReloadTheme()
+        {
+            Context.ReloadTheme();
+            Color c;
+            SolidColorBrush s;
+            if (Context.Theme == ElementTheme.Dark)
+            {
+                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
+            else
+            {
+                c = (Color)Resources["SystemBaseHighColor"];
+                s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+            }
+            ChangeColor(Colors.Transparent, c, s);
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
@@ -74,10 +107,14 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
+                var loader = new ResourceLoader();
                 MainFrame.Navigate(typeof(SettingsPage), this);
                 Refresh.Visibility = Visibility.Collapsed;
                 Settings.Icon = new SymbolIcon(Symbol.Setting);
-                Cities.Icon = new SymbolIcon(Symbol.Calculator);
+                Cities.Icon = new SymbolIcon(Symbol.World);
+                Settings.Label = loader.GetString("Settings");
+                Cities.Label = loader.GetString("Cities");
+                Refresh.Label = loader.GetString("Refresh");
             }
         }
 
@@ -89,18 +126,35 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
+                var loader = new ResourceLoader();
                 MainFrame.Navigate(typeof(CitiesPage), this);
                 Settings.Icon = new SymbolIcon(Symbol.Add);
                 Cities.Icon = new SymbolIcon(Symbol.Edit);
+                Cities.Label = loader.GetString("Edit");
+                Refresh.Label = loader.GetString("Refresh");
+                Settings.Label = loader.GetString("Add");
                 Refresh.Visibility = Visibility.Visible;
+                if (!license.IsPurchased)
+                {
+                    Refresh.IsEnabled = false;
+                }
             }
         }
 
         internal void CitiesPageQuitEditMode()
         {
+            var loader = new ResourceLoader();
             Cities.Icon = new SymbolIcon(Symbol.Edit);
             Refresh.Icon = new SymbolIcon(Symbol.Refresh);
             Settings.Icon = new SymbolIcon(Symbol.Add);
+            Cities.Label = loader.GetString("Edit");
+            Refresh.Label = loader.GetString("Refresh");
+            Settings.Label = loader.GetString("Add");
+            if (!license.IsPurchased)
+            {
+                Refresh.IsEnabled = false;
+            }
+            Settings.IsEnabled = true;
         }
 
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,16 +162,28 @@ namespace Com.Aurora.AuWeather
             MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
             if ((PaneList.SelectedItem as PaneOption).Page == typeof(CitiesPage))
             {
+                var loader = new ResourceLoader();
                 Settings.Icon = new SymbolIcon(Symbol.Add);
                 Cities.Icon = new SymbolIcon(Symbol.Edit);
-                
+                Cities.Label = loader.GetString("Edit");
+                Refresh.Label = loader.GetString("Refresh");
+                Settings.Label = loader.GetString("Add");
+                if (!license.IsPurchased)
+                {
+                    Refresh.IsEnabled = false;
+                }
             }
             else
             {
+                var loader = new ResourceLoader();
                 Settings.Icon = new SymbolIcon(Symbol.Setting);
-                Cities.Icon = new SymbolIcon(Symbol.Calculator);
+                Cities.Icon = new SymbolIcon(Symbol.World);
+                Settings.Label = loader.GetString("Settings");
+                Cities.Label = loader.GetString("Cities");
+                Refresh.Label = loader.GetString("Refresh");
+                Refresh.IsEnabled = true;
             }
-            if((PaneList.SelectedItem as PaneOption).Page == typeof(SettingsPage))
+            if ((PaneList.SelectedItem as PaneOption).Page == typeof(SettingsPage))
             {
                 Refresh.Visibility = Visibility.Collapsed;
             }
@@ -136,10 +202,15 @@ namespace Com.Aurora.AuWeather
 
         private void Today_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(typeof(NowWeatherPage), this);
+            var loader = new ResourceLoader();
             Settings.Icon = new SymbolIcon(Symbol.Setting);
-            Cities.Icon = new SymbolIcon(Symbol.Calculator);
+            Cities.Icon = new SymbolIcon(Symbol.World);
+            Settings.Label = loader.GetString("Settings");
+            Cities.Label = loader.GetString("Cities");
+            Refresh.Label = loader.GetString("Refresh");
             Refresh.Visibility = Visibility.Visible;
+            Refresh.IsEnabled = true;
+            MainFrame.Navigate(typeof(NowWeatherPage), this);
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -156,19 +227,22 @@ namespace Com.Aurora.AuWeather
 
         internal void CitiesPageGotoEditMode()
         {
+            var loader = new ResourceLoader();
             Cities.Icon = new SymbolIcon(Symbol.Delete);
             Refresh.Icon = new SymbolIcon(Symbol.Cancel);
             Settings.Icon = new SymbolIcon(Symbol.Pin);
+            Cities.Label = loader.GetString("Delete");
+            Refresh.Label = loader.GetString("Cacel");
+            Settings.Label = loader.GetString("Pin");
+            if (!license.IsPurchased)
+            {
+                Settings.IsEnabled = false;
+            }
         }
 
-        private void Find_Click(object sender, RoutedEventArgs e)
+        private async void Like_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Like_Click(object sender, RoutedEventArgs e)
-        {
-
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=" + Windows.ApplicationModel.Package.Current.Id.FamilyName));
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

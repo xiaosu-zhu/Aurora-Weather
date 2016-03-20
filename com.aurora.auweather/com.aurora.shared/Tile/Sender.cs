@@ -113,6 +113,10 @@ namespace Com.Aurora.AuWeather.Tile
             int i = 0;
             foreach (var item in list)
             {
+                if(item == null)
+                {
+                    continue;
+                }
                 TileNotification n = new TileNotification(item.GetXml());
                 n.Tag = i.ToString();
                 TileUpdateManager.CreateTileUpdaterForApplication().Update(n);

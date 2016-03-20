@@ -66,5 +66,11 @@ namespace Com.Aurora.AuWeather
         {
             MainFrame.Navigate(typeof(DonationPage));
         }
+
+        internal void ReloadTheme()
+        {
+            Context.ReloadTheme();
+            ((Window.Current.Content as Frame).Content as MainPage).ReloadTheme();
+        }
     }
 }

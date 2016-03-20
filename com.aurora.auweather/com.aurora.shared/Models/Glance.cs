@@ -9,41 +9,42 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Glance
     {
+        static Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
         #region Condition desiciption
-        private static readonly string[] sunny = new string[] { "晴朗", "无云" };
-        private static readonly string[] cloudy = new string[] { "多云", "有云" };
-        private static readonly string[] few_clouds = new string[] { "少云", "飘云" };
-        private static readonly string[] partly_cloudy = new string[] { "局部多云" };
-        private static readonly string[] overcast = new string[] { "阴天", "没有太阳" };
-        private static readonly string[] windy = new string[] { "有风" };
-        private static readonly string[] breeze = new string[] { "微风", "和风" };
-        private static readonly string[] gale = new string[] { "有强风", "大风天" };
-        private static readonly string[] storm = new string[] { "注意风暴" };
-        private static readonly string[] thundershower = new string[] { "有雷雨" };
-        private static readonly string[] hail = new string[] { "有冰雹" };
-        private static readonly string[] moderate_rain = new string[] { "小雨", "有雨", "雨天", "需要带伞" };
-        private static readonly string[] heavy_rain = new string[] { "有大雨", "外出注意雨伞" };
-        private static readonly string[] heavy_storm_rain = new string[] { "有暴风雨", "不宜外出" };
-        private static readonly string[] shower = new string[] { "有阵雨", "间歇降雨" };
-        private static readonly string[] freezing_rain = new string[] { "有冻雨" };
-        private static readonly string[] moderate_snow = new string[] { "有雪", "雪天", "会下雪" };
-        private static readonly string[] heavy_snow = new string[] { "有大雪", "大雪天" };
-        private static readonly string[] shower_snow = new string[] { "有阵雪", "有短时降雪" };
-        private static readonly string[] snowstorm = new string[] { "有暴风雪", "有恶劣降雪" };
-        private static readonly string[] sleet = new string[] { "有雨夹雪", "雨雪" };
-        private static readonly string[] mist = new string[] { "有薄雾" };
-        private static readonly string[] foggy = new string[] { "有雾" };
-        private static readonly string[] haze = new string[] { "有霾" };
-        private static readonly string[] dust = new string[] { "有沙尘" };
-        private static readonly string[] duststorm = new string[] { "有恶劣沙尘" };
+        private static readonly string[] sunny = new string[] { loader.GetString("GlanceSunny0"), loader.GetString("GlanceSunny1") };
+        private static readonly string[] cloudy = new string[] { loader.GetString("Glancecloudy0"), loader.GetString("Glancecloudy1") };
+        private static readonly string[] few_clouds = new string[] { loader.GetString("few_clouds0"), loader.GetString("few_clouds1") };
+        private static readonly string[] partly_cloudy = new string[] { loader.GetString("partly_cloudy0") };
+        private static readonly string[] overcast = new string[] { loader.GetString("overcast0"), loader.GetString("overcast1") };
+        private static readonly string[] windy = new string[] { loader.GetString("windy0") };
+        private static readonly string[] breeze = new string[] { loader.GetString("breeze0"), loader.GetString("breeze1") };
+        private static readonly string[] gale = new string[] { loader.GetString("gale0"), loader.GetString("gale1") };
+        private static readonly string[] storm = new string[] { loader.GetString("storm0") };
+        private static readonly string[] thundershower = new string[] { loader.GetString("thundershower0") };
+        private static readonly string[] hail = new string[] { loader.GetString("hail0") };
+        private static readonly string[] moderate_rain = new string[] { loader.GetString("moderate_rain0"), loader.GetString("moderate_rain1"), loader.GetString("moderate_rain2"), loader.GetString("moderate_rain3") };
+        private static readonly string[] heavy_rain = new string[] { loader.GetString("heavy_rain0"), loader.GetString("heavy_rain1") };
+        private static readonly string[] heavy_storm_rain = new string[] { loader.GetString("heavy_storm_rain0"), loader.GetString("heavy_storm_rain1") };
+        private static readonly string[] shower = new string[] { loader.GetString("shower0"), loader.GetString("shower1") };
+        private static readonly string[] freezing_rain = new string[] { loader.GetString("freezing_rain0") };
+        private static readonly string[] moderate_snow = new string[] { loader.GetString("moderate_snow0"), loader.GetString("moderate_snow1"), loader.GetString("moderate_snow2") };
+        private static readonly string[] heavy_snow = new string[] { loader.GetString("heavy_snow0"), loader.GetString("heavy_snow1") };
+        private static readonly string[] shower_snow = new string[] { loader.GetString("shower_snow0"), loader.GetString("shower_snow1") };
+        private static readonly string[] snowstorm = new string[] { loader.GetString("snowstorm0"), loader.GetString("snowstorm1") };
+        private static readonly string[] sleet = new string[] { loader.GetString("sleet0"), loader.GetString("sleet1") };
+        private static readonly string[] mist = new string[] { loader.GetString("mist0") };
+        private static readonly string[] foggy = new string[] { loader.GetString("foggy0") };
+        private static readonly string[] haze = new string[] { loader.GetString("haze0") };
+        private static readonly string[] dust = new string[] { loader.GetString("dust0") };
+        private static readonly string[] duststorm = new string[] { loader.GetString("duststorm0") };
         #endregion
         #region Condition decoration
-        private static readonly string[] haotianqi = new string[] { "适宜外出", "天气很好" };
-        private static readonly string[] huaitianqi = new string[] { "天气不好", "天气较差" };
-        private static readonly string[] shiduda = new string[] { "湿度较大", "空气湿润" };
-        private static readonly string[] nengjiandudi = new string[] { "能见度低", "能见度差" };
-        private static readonly string[] wendugao = new string[] { "高温", "持续升温" };
-        private static readonly string[] wendudi = new string[] { "低温", "持续降温" };
+        private static readonly string[] haotianqi = new string[] { loader.GetString("haotianqi0"), loader.GetString("haotianqi1") };
+        private static readonly string[] huaitianqi = new string[] { loader.GetString("huaitianqi0"), loader.GetString("huaitianqi1") };
+        private static readonly string[] shiduda = new string[] { loader.GetString("shiduda0"), loader.GetString("shiduda1") };
+        private static readonly string[] nengjiandudi = new string[] { loader.GetString("nengjiandudi0"), loader.GetString("nengjiandudi1") };
+        private static readonly string[] wendugao = new string[] { loader.GetString("wendugao0"), loader.GetString("wendugao1") };
+        private static readonly string[] wendudi = new string[] { loader.GetString("wendudi0"), loader.GetString("wendudi1") };
         #endregion
         public static string GenerateShortDescription(HeWeatherModel model, bool isNight)
         {
@@ -51,19 +52,23 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return x.Date.Date == DateTime.Today.Date;
             });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
+            }
             var 主语 = model.NowWeather.Now.Condition;
-            string zhuyu = "现在";
+            string zhuyu = loader.GetString("xianzai");
             if (Tools.Random.Next(200) >= 100)
             {
                 if (isNight)
                 {
                     主语 = model.DailyForecast[todayIndex].Condition.NightCond;
-                    zhuyu = "晚间";
+                    zhuyu = loader.GetString("wanjian");
                 }
                 else
                 {
                     主语 = model.DailyForecast[todayIndex].Condition.DayCond;
-                    zhuyu = "今天";
+                    zhuyu = loader.GetString("jintian");
                 }
             }
             string binyu;
@@ -90,7 +95,7 @@ namespace Com.Aurora.AuWeather.Models
                     switch (主语)
                     {
                         case WeatherCondition.unknown:
-                            return "未知天气";
+                            return loader.GetString("unknown_weather");
                         case WeatherCondition.sunny:
                         case WeatherCondition.few_clouds:
                         case WeatherCondition.partly_cloudy:
@@ -176,7 +181,7 @@ namespace Com.Aurora.AuWeather.Models
             switch (主语)
             {
                 case WeatherCondition.unknown:
-                    return "未知天气";
+                    return loader.GetString("unknown_weather");
                 case WeatherCondition.sunny:
                     binyu = sunny.SelectRandomString();
                     break;
@@ -279,14 +284,14 @@ namespace Com.Aurora.AuWeather.Models
                     binyu = duststorm.SelectRandomString();
                     break;
                 case WeatherCondition.hot:
-                    binyu = "会变热";
+                    binyu = loader.GetString("bianre");
                     break;
                 case WeatherCondition.cold:
-                    binyu = "会变冷";
+                    binyu = loader.GetString("bianleng");
                     break;
-                default: return "未知天气";
+                default: return loader.GetString("unknown_weather");
             }
-            return string.Format("{0}{1}  {2}.", zhuyu, binyu, decoration);
+            return string.Format(loader.GetString("Glance"), zhuyu, binyu, decoration);
         }
 
         public static string GenerateGlanceDescription(HeWeatherModel model, bool isNight, TemperatureParameter parameter, DateTime desiredDate)
@@ -295,19 +300,23 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return x.Date.Date == desiredDate.Date;
             });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
+            }
             var 主语 = model.NowWeather.Now.Condition;
-            string zhuyu = "现在";
+            string zhuyu = loader.GetString("xianzai");
             if (Tools.Random.Next(200) >= 100)
             {
                 if (isNight)
                 {
                     主语 = model.DailyForecast[todayIndex].Condition.NightCond;
-                    zhuyu = "晚间";
+                    zhuyu = loader.GetString("wanjian");
                 }
                 else
                 {
                     主语 = model.DailyForecast[todayIndex].Condition.DayCond;
-                    zhuyu = "今天";
+                    zhuyu = loader.GetString("jintian");
                 }
             }
             string binyu;
@@ -334,7 +343,7 @@ namespace Com.Aurora.AuWeather.Models
                     switch (主语)
                     {
                         case WeatherCondition.unknown:
-                            return "未知天气";
+                            return loader.GetString("unknown_weather");
                         case WeatherCondition.sunny:
                         case WeatherCondition.few_clouds:
                         case WeatherCondition.partly_cloudy:
@@ -416,7 +425,7 @@ namespace Com.Aurora.AuWeather.Models
             switch (主语)
             {
                 case WeatherCondition.unknown:
-                    return "未知天气";
+                    return loader.GetString("unknown_weather");
                 case WeatherCondition.sunny:
                     binyu = sunny.SelectRandomString();
                     break;
@@ -519,12 +528,12 @@ namespace Com.Aurora.AuWeather.Models
                     binyu = duststorm.SelectRandomString();
                     break;
                 case WeatherCondition.hot:
-                    binyu = "会变热";
+                    binyu = loader.GetString("bianre");
                     break;
                 case WeatherCondition.cold:
-                    binyu = "会变冷";
+                    binyu = loader.GetString("bianleng");
                     break;
-                default: return "未知天气";
+                default: return loader.GetString("unknown_weather");
             }
             string nowtemp;
             string tomorrowtemp;
@@ -550,7 +559,7 @@ namespace Com.Aurora.AuWeather.Models
             string tomorrowcondition;
             var converter = new ConditiontoTextConverter();
             tomorrowcondition = (string)converter.Convert(model.DailyForecast[todayIndex + 1].Condition.DayCond, null, null, null);
-            return string.Format("{0}{1}, {2}{3}. 明日: {4},{5}.", zhuyu, binyu, decoration, nowtemp, tomorrowcondition, tomorrowtemp);
+            return string.Format(loader.GetString("GlanceFull"), zhuyu, binyu, decoration, nowtemp, tomorrowcondition, tomorrowtemp);
         }
     }
 }

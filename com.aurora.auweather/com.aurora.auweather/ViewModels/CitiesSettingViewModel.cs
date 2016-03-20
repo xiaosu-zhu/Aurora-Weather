@@ -17,6 +17,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Windows.Foundation;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -28,12 +29,15 @@ namespace Com.Aurora.AuWeather.ViewModels
         private List<CityInfo> cities;
         private bool? m_islocatedcurrent;
         private List<CitySettingsModel> newlist;
+        private ElementTheme theme;
 
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
         public event EventHandler<FetchDataCompleteEventArgs> LocateComplete;
 
         public CitiesSettingViewModel()
         {
+            var p = Preferences.Get();
+            Theme = p.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
                 Cities = Models.Settings.Cities.Get();
@@ -127,6 +131,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
+
         internal void Complete()
         {
             Cities.Save();
@@ -187,7 +204,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
             if (Cities.CurrentIndex != -1)
                 Info[Cities.CurrentIndex].IsCurrent = true;
-
+            SaveAll();
         }
 
 
@@ -244,7 +261,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync((work) =>
             {
-                newlist.Clear();
                 if (Array.Exists(Cities.SavedCities, x =>
             {
                 return x.Id == cityInfo.Id;

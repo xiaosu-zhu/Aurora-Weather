@@ -16,6 +16,7 @@ using Com.Aurora.AuWeather.Tile;
 using System.Collections.Generic;
 using Com.Aurora.Shared.Extensions;
 using Windows.UI.StartScreen;
+using Windows.UI.Xaml;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -28,6 +29,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public Cities Cities { get; set; } = new Cities();
 
         private int currentIndex;
+        private ElementTheme theme;
 
         public int CurrentIndex
         {
@@ -41,8 +43,21 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ElementTheme Theme
+        {
+            get
+            {
+                return theme;
+            }
+            set
+            {
+                SetProperty(ref theme, value);
+            }
+        }
+
         public CitiesPageViewModel()
         {
+            Theme = settings.Preferences.GetTheme();
             if (settings.Cities.EnableLocate)
             {
                 if (settings.Cities.LocatedCity != null)
@@ -80,9 +95,10 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void Update()
         {
+            var licens = new License.License();
             foreach (var item in Cities)
             {
-                if (!item.Updated)
+                if (!item.Updated && licens.IsPurchased)
                 {
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
@@ -231,6 +247,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         return (x.DateTime - DateTime.Now).TotalSeconds > 0;
                     });
+                    if (todayIndex < 0)
+                    {
+                        todayIndex = 0;
+                    }
+                    if (hourIndex < 0)
+                    {
+                        hourIndex = 0;
+                    }
                     var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
                     var glanceFull = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
                     var glance = Glance.GenerateShortDescription(weather, isNight);
@@ -265,17 +289,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 settings.Cities.CurrentIndex = selectedIndex;
             }
-            var t = ThreadPool.RunAsync((work) =>
-            {
-                settings.Cities.Save();
-            });
+            settings.Cities.Save();
         }
 
         private async Task Complete(CityViewModel item)
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
             {
-                if (item.data != null)
+                if (item.data != null && item.data.Length > 31)
                 {
                     var resjson = HeWeatherContract.Generate(item.data);
                     var weather = new HeWeatherModel(resjson);
@@ -297,9 +318,22 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 return (x.DateTime - DateTime.Now).TotalSeconds > 0;
             });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
+            }
+            if (hourIndex < 0)
+            {
+                hourIndex = 0;
+            }
             var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
             item.Glance = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
-            item.Background = new BitmapImage(await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight));
+            var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
+            if (uri != null)
+            {
+                item.Background = new BitmapImage(uri);
+            }
+
             item.data = null;
         }
 
@@ -307,7 +341,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             foreach (var item in Cities)
             {
-                if (item.data != null)
+                if (item.data != null && item.data.Length > 31)
                 {
                     var resjson = HeWeatherContract.Generate(item.data);
                     var weather = new HeWeatherModel(resjson);

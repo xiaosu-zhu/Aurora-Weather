@@ -11,6 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Unloaded="Page_Unloaded"
+    RequestedTheme="{x:Bind Context.Theme,Mode=OneWay}"
     x:Name="Page">
 
     <Page.DataContext>
@@ -85,7 +86,7 @@
     </Page.Transitions>
 
 
-    <Grid x:Name="Root" LayoutUpdated="RelativePanel_LayoutUpdated" SizeChanged="Root_SizeChanged">
+    <Grid Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="Root" LayoutUpdated="RelativePanel_LayoutUpdated" SizeChanged="Root_SizeChanged">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition x:Name="RootColumn1" Width="auto" />
@@ -762,10 +763,10 @@
                 <FadeInThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
             </Storyboard>
         </Grid.Resources>
-        <ScrollViewer Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
+        <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
         </ScrollViewer>
-        <RelativePanel Background="{ThemeResource SystemControlForegroundHighBrush}" PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
+        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel.ChildrenTransitions>
                 <TransitionCollection>

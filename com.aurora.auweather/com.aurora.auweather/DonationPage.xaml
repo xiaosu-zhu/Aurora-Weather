@@ -5,6 +5,7 @@
     xmlns:local="using:Com.Aurora.AuWeather"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    RequestedTheme="{x:Bind Theme, Mode=OneWay}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,7 +16,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Get the Donation Pack" Margin="8"/>
+        <TextBlock x:Uid="DonationTitle" Grid.Row="1" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="8"/>
         <TextBlock Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="8" >
             <Run x:Uid="DonateRun0" />
             <LineBreak />
@@ -32,10 +33,11 @@
             <LineBreak />
             <Run x:Uid="DonateOption3" />
         </TextBlock>
-        <TextBlock x:Name="ConfirmText" Loaded="TextBlock_Loaded" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-96,12,12" Style="{ThemeResource BodyTextBlockStyle}" >
+        <TextBlock x:Name="ConfirmText" Loaded="TextBlock_Loaded" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-156,12,12" Style="{ThemeResource BodyTextBlockStyle}" >
         </TextBlock>
-        <TextBlock Loaded="DollarText_Loaded" Grid.Row="4" x:Name="DollarText" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-48,12,12" Text ="$1.99" Style="{ThemeResource BodyTextBlockStyle}" >
+        <TextBlock Grid.Row="4" x:Name="DollarText" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-108,12,12" Text ="$1.99" Style="{ThemeResource BodyTextBlockStyle}" >
         </TextBlock>
-        <Button x:Name="PurchaseButton" x:Uid="PurchaseButton" Click="PurchaseButton_Click" Loaded="Button_Loaded" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Slider x:Name="PurchaseSlider" IsThumbToolTipEnabled="False" Maximum="6" StepFrequency="1" Minimum="0" SnapsTo="StepValues" Value="3" ValueChanged="PurchaseSlider_ValueChanged" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="12,-56,12,12" />
+        <Button x:Name="PurchaseButton" x:Uid="PurchaseButton" Click="PurchaseButton_Click" Loaded="Button_Loaded" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Page>

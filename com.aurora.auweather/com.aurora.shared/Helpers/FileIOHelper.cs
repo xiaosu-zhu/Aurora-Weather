@@ -30,7 +30,7 @@ namespace Com.Aurora.Shared.Helpers
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
             var log = await cache.CreateFileAsync("LOG", CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + "\n");
+            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + Environment.NewLine);
         }
 
         public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssetsAsync(string path)
@@ -40,7 +40,7 @@ namespace Com.Aurora.Shared.Helpers
             try
             {
                 var folder = await assets.GetFolderAsync(path);
-                var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName);
+                var files = await folder.GetFilesAsync();
                 return files;
             }
             catch (Exception)
@@ -84,7 +84,7 @@ namespace Com.Aurora.Shared.Helpers
             try
             {
                 var folder = await local.GetFolderAsync(path);
-                return await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName);
+                return await folder.GetFilesAsync();
             }
             catch (Exception)
             {

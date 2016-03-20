@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Com.Aurora.AuWeather.ViewModels;
 using System.Threading.Tasks;
+using System;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -79,7 +80,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Speed.SelectionChanged += Enum_SelectionChanged;
                    Length.SelectionChanged += Enum_SelectionChanged;
                    Pressure.SelectionChanged += Enum_SelectionChanged;
-                   Theme.SelectionChanged += Enum_SelectionChanged;
+                   Theme.SelectionChanged += Theme_SelectionChanged;
                    RefreshFreq.SelectionChanged += Enum_SelectionChanged;
                    Year.SelectionChanged += Format_SelectionChanged;
                    Month.SelectionChanged += Format_SelectionChanged;
@@ -98,6 +99,13 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        RefreshFreq.SelectedIndex = 0;
                    }
                }));
+        }
+
+        private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Context.SetEnumValue(((sender as ComboBox).SelectedItem as EnumSelector).Value);
+            Context.ReloadTheme();
+            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
         }
 
         private async void Format_SelectionChanged(object sender, SelectionChangedEventArgs e)
