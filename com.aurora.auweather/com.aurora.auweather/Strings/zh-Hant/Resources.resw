@@ -876,4 +876,10 @@
   <data name="AutoSuggestbox.PlaceholderText" xml:space="preserve">
     <value>中國城市輸入中文, 全拼, 其他輸入英文</value>
   </data>
+  <data name="Thankyou" xml:space="preserve">
+    <value>這個 App 將為你提供更好的服務!</value>
+  </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>謝謝你!</value>
+  </data>
 </root>

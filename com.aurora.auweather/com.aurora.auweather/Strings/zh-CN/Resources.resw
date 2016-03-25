@@ -981,4 +981,10 @@
   <data name="EditButton.Label" xml:space="preserve">
     <value>编辑</value>
   </data>
+  <data name="Thankyou" xml:space="preserve">
+    <value>这个 App 将为你提供更好的服务!</value>
+  </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>谢谢你!</value>
+  </data>
 </root>

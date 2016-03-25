@@ -1158,6 +1158,14 @@
           <source>中国城市输入中文, 全拼, 其他输入英文</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Ingresso cinese nelle città cinesi, ortografia, inglese</target>
         </trans-unit>
+        <trans-unit id="Thankyou" translate="yes" xml:space="preserve">
+          <source>这个 App 将为你提供更好的服务!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Questa applicazione vi fornirà un servizio migliore!</target>
+        </trans-unit>
+        <trans-unit id="ThankyouTitle" translate="yes" xml:space="preserve">
+          <source>谢谢你!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Grazie!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

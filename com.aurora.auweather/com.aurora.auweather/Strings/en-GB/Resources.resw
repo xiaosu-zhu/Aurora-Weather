@@ -876,4 +876,10 @@
   <data name="AutoSuggestbox.PlaceholderText" xml:space="preserve">
     <value>Input Chinese in Chinese cities, spelling, English</value>
   </data>
+  <data name="Thankyou" xml:space="preserve">
+    <value>This App will provide you with better service!</value>
+  </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>Thank you!</value>
+  </data>
 </root>

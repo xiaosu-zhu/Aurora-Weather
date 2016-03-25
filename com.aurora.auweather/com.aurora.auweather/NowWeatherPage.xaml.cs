@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -71,6 +72,16 @@ namespace Com.Aurora.AuWeather
             //DataContext = new NowWeatherPageViewModel();
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
+            Context.FetchDataFailed += Context_FetchDataFailed;
+        }
+
+        private async void Context_FetchDataFailed(object sender, FetchDataFailedEventArgs e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+             {
+                 var d = new MessageDialog(e.Message);
+                 await d.ShowAsync();
+             }));
         }
 
         private async void Current_Resuming(object sender, object e)

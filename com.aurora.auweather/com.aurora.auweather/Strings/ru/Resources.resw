@@ -876,4 +876,7 @@
   <data name="AutoSuggestbox.PlaceholderText" xml:space="preserve">
     <value>Ввода китайского в китайских городах, правописание, Английский</value>
   </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>Спасибо!</value>
+  </data>
 </root>

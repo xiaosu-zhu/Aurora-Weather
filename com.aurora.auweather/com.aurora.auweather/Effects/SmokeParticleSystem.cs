@@ -161,7 +161,7 @@ namespace Com.Aurora.AuWeather.Effects
                 //      .25
                 //
                 // Since we want the maximum alpha to be 1, not .25, we'll scale the entire equation by 4.
-                float alpha = 4 * normalizedLifetime * (1 - normalizedLifetime);
+                float alpha = 6 * normalizedLifetime * (1 - normalizedLifetime);
 
                 // Make particles grow as they age.
                 // They'll start at 75% of their size, and increase to 100% once they're finished.

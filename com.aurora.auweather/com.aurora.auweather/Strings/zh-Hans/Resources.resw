@@ -273,4 +273,7 @@
   <data name="EditButton.Label" xml:space="preserve">
     <value>编辑</value>
   </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>谢谢</value>
+  </data>
 </root>

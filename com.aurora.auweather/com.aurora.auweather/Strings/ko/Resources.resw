@@ -876,4 +876,10 @@
   <data name="AutoSuggestbox.PlaceholderText" xml:space="preserve">
     <value>중국 주요 도시에서 맞춤법, 한국어 입력된 중국어</value>
   </data>
+  <data name="Thankyou" xml:space="preserve">
+    <value>이 애플 리 케이이 션 것입니다 더 나은 서비스를 제공!</value>
+  </data>
+  <data name="ThankyouTitle" xml:space="preserve">
+    <value>감사합니다!</value>
+  </data>
 </root>

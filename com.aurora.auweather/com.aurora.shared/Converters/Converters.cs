@@ -12,6 +12,10 @@ namespace Com.Aurora.Shared.Converters
         private static string format = @"h\:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return ((TimeSpan)value).ToString(format);
         }
 
@@ -45,6 +49,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             return new SolidColorBrush((Color)value);
         }
 
@@ -60,6 +68,10 @@ namespace Com.Aurora.Shared.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var dateTime = (DateTime)(value);
             return dateTime.ToString(Parameter);
         }
@@ -79,6 +91,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             if (value is int)
             {
                 return value.ToString() + "%";
@@ -111,8 +127,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return value.ToString() + "%";
             }
-
-            else return value.ToString() + "%";
+            else return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -125,6 +140,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             return ((Enum)value).GetDisplayName();
         }
 
@@ -138,6 +157,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return Visibility.Visible;
+            }
             var b = (bool)value;
             if (b)
             {
@@ -159,6 +182,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return true;
+            }
             return !(bool)value;
         }
 

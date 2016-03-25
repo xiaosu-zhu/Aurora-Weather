@@ -55,11 +55,23 @@ namespace Com.Aurora.AuWeather
         private void License_LicenseChanged()
         {
             PurchaseButton.IsEnabled = !license.IsPurchased;
+            if (license.IsPurchased)
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                ConfirmText.Text = loader.GetString("Thankyou");
+                DollarText.Text = loader.GetString("ThankyouTitle");
+            }
         }
 
         private void Button_Loaded(object sender, RoutedEventArgs e)
         {
             PurchaseButton.IsEnabled = !license.IsPurchased;
+            if (license.IsPurchased)
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                ConfirmText.Text = loader.GetString("Thankyou");
+                DollarText.Text = loader.GetString("ThankyouTitle");
+            }
         }
 
         private async void PurchaseButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +86,10 @@ namespace Com.Aurora.AuWeather
                     await license.TryPurchaseAsync(License.License.DonationPack[(int)PurchaseSlider.Value]);
                     if (license.IsPurchased)
                     {
+                        var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                         Button_Loaded(null, null);
+                        ConfirmText.Text = loader.GetString("Thankyou");
+                        DollarText.Text = loader.GetString("ThankyouTitle");
                     }
                     //Check the license state to determine if the in-app purchase was successful.
                 }
@@ -86,6 +101,12 @@ namespace Com.Aurora.AuWeather
             else
             {
                 PurchaseButton.IsEnabled = !license.IsPurchased;
+                if (license.IsPurchased)
+                {
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                    ConfirmText.Text = loader.GetString("Thankyou");
+                    DollarText.Text = loader.GetString("ThankyouTitle");
+                }
             }
         }
 

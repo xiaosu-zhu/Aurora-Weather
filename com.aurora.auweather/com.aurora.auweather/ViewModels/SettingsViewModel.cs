@@ -15,7 +15,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             get
             {
-                return !isnotPurchased;
+                return isnotPurchased;
             }
 
             set

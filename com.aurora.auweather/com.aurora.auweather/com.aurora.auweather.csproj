@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Com.Aurora.AuWeather_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>DC0317775CE977D28EA677CE0FFCC8A5D9FA3F53</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>90237C0F6F2916FFACC3638215432635784D970B</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -104,9 +104,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush.png" />
     <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush_t.png" />
     <Content Include="Assets\Background\Cloudy\02_Paul Csogi.png" />
@@ -359,6 +356,7 @@
     <Content Include="Assets\sun\00058.png" />
     <Content Include="Assets\sun\00059.png" />
     <None Include="Com.Aurora.AuWeather_StoreKey.pfx" />
+    <None Include="Com.Aurora.AuWeather_TemporaryKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\it-IT\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
@@ -459,7 +457,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="com.aurora.auweather_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cityid.txt" />
@@ -630,11 +627,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de-DE.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-CA.xlf" />
@@ -658,6 +650,11 @@
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-Hans.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-Hant.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-TW.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

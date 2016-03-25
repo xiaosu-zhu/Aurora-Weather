@@ -1,4 +1,4 @@
-ï»¿using Com.Aurora.AuWeather.LunarCalendar;
+using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.Settings;
@@ -19,13 +19,17 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var t = (Temperature)value;
             switch (TempratureConverter.Parameter)
             {
-                case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + "Â°";
-                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + "Â°";
+                case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + "¡ã";
+                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + "¡ã";
                 case TemperatureParameter.Kelvin: return t.Kelvin.ToString("0");
-                default: return t.Celsius.ToString("0") + "Â°";
+                default: return t.Celsius.ToString("0") + "¡ã";
             }
         }
 
@@ -71,6 +75,10 @@ namespace Com.Aurora.Shared.Converters
         public static SpeedParameter SpeedParameter { get; private set; } = SpeedParameter.KMPH;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             if (value != default(Wind))
             {
                 var wind = value as Wind;
@@ -132,6 +140,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             if (value != default(Wind))
             {
                 var wind = value as Wind;
@@ -156,7 +168,7 @@ namespace Com.Aurora.Shared.Converters
         private StringBuilder SetDegree(uint degree, StringBuilder sb)
         {
             sb.Append(degree);
-            sb.Append('Â°');
+            sb.Append('¡ã');
             return sb;
         }
 
@@ -177,6 +189,10 @@ namespace Com.Aurora.Shared.Converters
         private const float _factor = -64;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return new Point(0, 0);
+            }
             if (value is float)
             {
                 Point? point = new Point(0, (float)value * _factor);
@@ -195,6 +211,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return new Point(0, 0);
+            }
             switch ((string)parameter)
             {
                 case "0": return new Point(0, (double)value);
@@ -214,7 +234,10 @@ namespace Com.Aurora.Shared.Converters
         private static string Parameter = "HH:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //TODO
+            if (value == null)
+            {
+                return null;
+            }
             if (value is DateTime)
             {
                 return ((DateTime)value).ToString(Parameter);
@@ -237,6 +260,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 2;
+            }
             if (value is float)
             {
                 return 2 + ((float)value) * 4;
@@ -255,6 +282,10 @@ namespace Com.Aurora.Shared.Converters
         public static bool isLargeMode = false;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 480;
+            }
             if (isLargeMode)
                 return 480 - (double)value < 160 ? 160 : 480 - (double)value;
             else
@@ -272,6 +303,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var condition = (WeatherCondition)value;
             return condition.GetDisplayName();
         }
@@ -286,6 +321,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             var condition = (WeatherCondition)value;
             var isNight = (bool)parameter;
             switch (condition)
@@ -428,6 +467,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return ((float)value).ToString("0.#") + " mm";
         }
 
@@ -441,6 +484,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return new DoubleCollection { 98.96666666, 0, 0, 1000 };
+            }
             return new DoubleCollection { 98.96666666, 0, (double)value * 98.96666666, 1000 };
         }
 
@@ -454,6 +501,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return HorizontalAlignment.Left;
+            }
             return (bool)value ? HorizontalAlignment.Right : HorizontalAlignment.Left;
         }
 
@@ -467,6 +518,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return HorizontalAlignment.Right;
+            }
             return (bool)value ? HorizontalAlignment.Left : HorizontalAlignment.Right;
         }
 
@@ -480,6 +535,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return -90;
+            }
             return (bool)value ? 90 : -90;
         }
 
@@ -493,6 +552,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 90;
+            }
             return (bool)value ? -90 : 90;
         }
 
@@ -506,6 +569,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return null;
+            }
             var p = (value as CalendarInfo).LunarDay;
             string uri;
             if (p < 2)
@@ -557,6 +624,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             var p = (value as CalendarInfo).LunarDay;
             string result;
@@ -610,6 +681,10 @@ namespace Com.Aurora.Shared.Converters
         public static LengthParameter LengthParameter { get; private set; } = LengthParameter.KM;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var l = value as Length;
             switch (LengthParameter)
             {
@@ -637,6 +712,10 @@ namespace Com.Aurora.Shared.Converters
         public static PressureParameter PressureParameter { get; private set; } = PressureParameter.Atm;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var l = value as Pressure;
             switch (PressureParameter)
             {
@@ -664,6 +743,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             var p = value as Pressure;
             return (p.Atm - 1) * 900;
         }
@@ -678,6 +761,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 1;
+            }
             var vis = (value as Length).KM;
             if (vis > 15)
             {
@@ -758,7 +845,7 @@ namespace Com.Aurora.Shared.Converters
             if (value != null)
             {
                 var calendar = value as CalendarInfo;
-                return ("å†œåŽ† " + calendar.LunarYearSexagenary + "å¹´" + calendar.LunarMonthText + "æœˆ" + calendar.LunarDayText + "    " + calendar.SolarTermStr).Trim();
+                return ("Å©Àú " + calendar.LunarYearSexagenary + "Äê" + calendar.LunarMonthText + "ÔÂ" + calendar.LunarDayText + "    " + calendar.SolarTermStr).Trim();
             }
             return "...";
         }
@@ -791,6 +878,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return new DoubleCollection { 0, 1000 };
+            }
             return new DoubleCollection { (double)value * 109.97333333, 1000 };
         }
 
@@ -804,6 +895,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return Color.FromArgb(255, 240, 240, 240);
+            }
             var q = (value as AQI).Qlty;
             switch (q)
             {
@@ -836,23 +931,27 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var q = (value as AQI).Qlty;
             switch (q)
             {
                 case AQIQuality.unknown:
                     return "...";
                 case AQIQuality.one:
-                    return "ä¼˜";
+                    return "ÓÅ";
                 case AQIQuality.two:
-                    return "è‰¯";
+                    return "Á¼";
                 case AQIQuality.three:
-                    return "è½»åº¦æ±¡æŸ“";
+                    return "Çá¶ÈÎÛÈ¾";
                 case AQIQuality.four:
-                    return "ä¸­åº¦æ±¡æŸ“";
+                    return "ÖÐ¶ÈÎÛÈ¾";
                 case AQIQuality.five:
-                    return "é‡åº¦æ±¡æŸ“";
+                    return "ÖØ¶ÈÎÛÈ¾";
                 case AQIQuality.six:
-                    return "ä¸¥é‡æ±¡æŸ“";
+                    return "ÑÏÖØÎÛÈ¾";
                 default:
                     return "...";
             }
@@ -868,6 +967,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Aqi;
         }
 
@@ -881,6 +984,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Pm25;
         }
 
@@ -894,6 +1001,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Pm10;
         }
 
@@ -907,6 +1018,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).So2;
         }
 
@@ -920,6 +1035,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Co;
         }
 
@@ -933,6 +1052,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).No2;
         }
 
@@ -946,6 +1069,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).O3;
         }
 
@@ -959,6 +1086,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).So2 > 2620 ? 1 : (value as AQI).So2 / 2620f;
         }
 
@@ -972,6 +1103,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).No2 > 940 ? 1 : (value as AQI).No2 / 940f;
         }
 
@@ -985,6 +1120,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Co > 60 ? 1 : (value as AQI).Co / 60f;
         }
 
@@ -998,6 +1137,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).O3 > 1200 ? 1 : (value as AQI).O3 / 1200;
         }
 
@@ -1011,6 +1154,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Pm25 > 500 ? 1 : (value as AQI).Pm25 / 500f;
         }
 
@@ -1024,6 +1171,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Pm10 > 600 ? 1 : (value as AQI).Pm10 / 600f;
         }
 
@@ -1037,6 +1188,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (value as AQI).Aqi > 500 ? 1 : (value as AQI).Aqi / 500f;
         }
 
@@ -1051,6 +1206,10 @@ namespace Com.Aurora.Shared.Converters
         public static string DateTimeConverterParameter { get; private set; } = "H:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return ((DateTime)value).ToString(DateTimeConverterParameter);
         }
 
@@ -1069,6 +1228,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return (value as Suggestion).Brief;
         }
 
@@ -1082,6 +1245,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return (value as Suggestion).Text;
         }
 
@@ -1095,6 +1262,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             return ((CitySettingsModel)value).City;
         }
 
@@ -1108,6 +1279,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return false;
+            }
             var v = (ImmersiveBackgroundState)value;
             switch (v)
             {
@@ -1137,6 +1312,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return false;
+            }
             var v = (ImmersiveBackgroundState)value;
             switch (v)
             {
@@ -1159,6 +1338,10 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return 0;
+            }
             return (double)value * 9 / 16;
         }
 
@@ -1172,10 +1355,14 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return "...";
+            }
             var updateTime = (DateTime)value;
             if ((DateTime.Now - updateTime).TotalMinutes < 30)
             {
-                return (DateTime.Now - updateTime).TotalMinutes.ToString("0") + "åˆ†é’Ÿä»¥å†…";
+                return (DateTime.Now - updateTime).TotalMinutes.ToString("0") + "·ÖÖÓÒÔÄÚ";
             }
             else
             {
@@ -1189,3 +1376,4 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 }
+

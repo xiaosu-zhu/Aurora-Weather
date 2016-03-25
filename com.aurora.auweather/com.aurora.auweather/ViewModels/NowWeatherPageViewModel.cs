@@ -1183,7 +1183,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 catch (ArgumentNullException)
                 {
-                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("未设置城市"));
+                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("Cities null!"));
                     return;
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
@@ -1285,8 +1285,18 @@ namespace Com.Aurora.AuWeather.ViewModels
                 var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
                 resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                if (resstr == null)
+                {
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network Error!"));
+                    return;
+                }
                 var resjson1 = HeWeatherContract.Generate(resstr);
                 fetchresult = new HeWeatherModel(resjson1);
+                if (fetchresult.Status != HeWeatherStatus.ok)
+                {
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service Unavailable!"));
+                    return;
+                }
                 var task = ThreadPool.RunAsync(async (work) =>
                 {
                     await settings.Cities.SaveDataAsync(currentId, resstr);

@@ -27,23 +27,31 @@ namespace Com.Aurora.Shared.Helpers
                 }
                 strURL = strURL.Remove(strURL.Length - 1);
             }
-            WebRequest request;
-            request = WebRequest.Create(strURL);
-            request.Method = "GET";
-            // 添加header
-            request.Headers["apikey"] = apikey;
-            WebResponse response;
-            response = await request.GetResponseAsync();
-            Stream s;
-            s = response.GetResponseStream();
-            string StrDate = "";
-            string strValue = "";
-            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
-            while ((StrDate = Reader.ReadLine()) != null)
+            try
             {
-                strValue += StrDate + "\r\n";
+                WebRequest request;
+                request = WebRequest.Create(strURL);
+                request.Method = "GET";
+                // 添加header
+                request.Headers["apikey"] = apikey;
+                WebResponse response;
+                response = await request.GetResponseAsync();
+                Stream s;
+                s = response.GetResponseStream();
+                string StrDate = "";
+                string strValue = "";
+                StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+                while ((StrDate = Reader.ReadLine()) != null)
+                {
+                    strValue += StrDate + "\r\n";
+                }
+
+                return strValue;
             }
-            return strValue;
+            catch (System.Exception)
+            {
+                return null;
+            }
         }
     }
 

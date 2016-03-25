@@ -1158,6 +1158,14 @@
           <source>中国城市输入中文, 全拼, 其他输入英文</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">中國城市輸入中文, 全拼, 其他輸入英文</target>
         </trans-unit>
+        <trans-unit id="Thankyou" translate="yes" xml:space="preserve">
+          <source>这个 App 将为你提供更好的服务!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">這個 App 將為你提供更好的服務!</target>
+        </trans-unit>
+        <trans-unit id="ThankyouTitle" translate="yes" xml:space="preserve">
+          <source>谢谢你!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">謝謝你!</target>
+        </trans-unit>
       </group>
     </body>
   </file>
