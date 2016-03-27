@@ -67,7 +67,7 @@
             <TextBlock x:Uid="SettingsText" Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
         <StackPanel x:Name="SettingsPanel" Visibility="Collapsed" Grid.Row="1" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <Button x:Uid="DonateButton" x:Name="DonateButton" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+            <Button x:Uid="DonateButton" Foreground="#DC3E00" x:Name="DonateButton" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
             <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList"  ItemsSource="{Binding SettingsList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:SettingOption">

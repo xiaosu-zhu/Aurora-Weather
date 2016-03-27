@@ -21,10 +21,10 @@ namespace Com.Aurora.AuWeather
         public DonationPage()
         {
             license = new License.License();
-            this.InitializeComponent();
             var p = Preferences.Get();
             Theme = p.GetTheme();
             license.LicenseChanged += License_LicenseChanged;
+            this.InitializeComponent();
         }
 
         private ElementTheme theme;

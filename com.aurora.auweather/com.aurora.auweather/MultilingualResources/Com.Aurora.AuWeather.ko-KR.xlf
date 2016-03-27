@@ -1160,7 +1160,7 @@
         </trans-unit>
         <trans-unit id="Thankyou" translate="yes" xml:space="preserve">
           <source>这个 App 将为你提供更好的服务!</source>
-          <target state="new">这个 App 将为你提供更好的服务!</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">이 애플 리 케이이 션 것입니다 더 나은 서비스를 제공!</target>
         </trans-unit>
         <trans-unit id="ThankyouTitle" translate="yes" xml:space="preserve">
           <source>谢谢你!</source>
