@@ -25,7 +25,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Canvas Margin="0,32,0,0" Grid.RowSpan="3">
+        <Canvas Grid.RowSpan="3">
             <Image x:Name="SplashImage" Source="Assets/SplashScreen.png"/>
             <ProgressRing Foreground ="White" Name="SplashProgressRing" IsActive="True" Width="48" Height="48" ></ProgressRing>
         </Canvas>

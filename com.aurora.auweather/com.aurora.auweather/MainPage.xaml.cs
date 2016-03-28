@@ -45,7 +45,7 @@ namespace Com.Aurora.AuWeather
 
         internal void Navigate(Type page)
         {
-            MainFrame.Navigate(page);
+            MainFrame.Navigate(page, this);
         }
 
         internal void ChangeColor(Color back, Color fore, SolidColorBrush foreground)

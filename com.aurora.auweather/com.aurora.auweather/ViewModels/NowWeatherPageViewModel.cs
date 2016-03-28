@@ -1183,7 +1183,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 catch (ArgumentNullException)
                 {
-                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("Cities null!"));
+                    await Task.Delay(1000);
+                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("Cities_null"));
                     return;
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
@@ -1287,14 +1288,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                 resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                 if (resstr == null)
                 {
-                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network Error!"));
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
                     return;
                 }
                 var resjson1 = HeWeatherContract.Generate(resstr);
                 fetchresult = new HeWeatherModel(resjson1);
                 if (fetchresult.Status != HeWeatherStatus.ok)
                 {
-                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service Unavailable!"));
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                     return;
                 }
                 var task = ThreadPool.RunAsync(async (work) =>
@@ -1624,13 +1625,13 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void ReadSettings()
         {
             this.settings = SettingsModel.Get();
-            if (settings.Cities.CurrentIndex == -1)
+            if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
                 currentCityModel = settings.Cities.LocatedCity;
                 currentCity = currentCityModel.City;
                 currentId = currentCityModel.Id;
             }
-            else
+            else if (settings.Cities.CurrentIndex != -1)
             {
                 try
                 {
@@ -1640,15 +1641,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 catch (Exception)
                 {
-                    NotifyCitiesError();
+                    throw new ArgumentNullException();
                 }
             }
+            else
+            {
+                throw new ArgumentNullException();
+            }
             InitialConverterParameter(settings);
-        }
-
-        private void NotifyCitiesError()
-        {
-
         }
     }
 }

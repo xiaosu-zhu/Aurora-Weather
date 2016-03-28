@@ -326,7 +326,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid MaxWidth="480" HorizontalAlignment="Stretch">
                     <TextBlock x:Uid="LocateOnText" x:Name="LocateOnText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                    <ToggleSwitch x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
+                    <ToggleSwitch IsEnabled="False" x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
                     <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <HyperlinkButton x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
                 </Grid>
@@ -338,13 +338,13 @@
                 </RelativePanel>
                 <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource SystemControlAltMediumBrush}" />
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Button MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Style="{ThemeResource SymbolButton}">
+                    <Button IsEnabled="False" MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Style="{ThemeResource SymbolButton}">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock x:Uid="SearchText" FontWeight="Normal" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>
                         </Grid>
                     </Button>
-                    <AutoSuggestBox x:Uid="AutoSuggestbox" MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <AutoSuggestBox x:Uid="AutoSuggestbox" IsEnabled="False" MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <AutoSuggestBox.Transitions>
                             <TransitionCollection>
                                 <ContentThemeTransition />

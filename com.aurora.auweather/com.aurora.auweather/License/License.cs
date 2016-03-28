@@ -40,27 +40,8 @@ namespace Com.Aurora.AuWeather.License
             }
         }
 
-        public string[] Price
+        internal async void GetPrice()
         {
-            get;
-            private set;
-        }
-        public string Name { get; private set; }
-
-        public event LicenseChangedEventHandler LicenseChanged;
-
-        public License()
-        {
-            Reload();
-        }
-
-        private async void Reload()
-        {
-#if DEBUG
-            licenseInformation = CurrentAppSimulator.LicenseInformation;
-#else
-            licenseInformation = CurrentApp.LicenseInformation;
-#endif
             try
             {
 #if DEBUG
@@ -87,6 +68,30 @@ namespace Com.Aurora.AuWeather.License
             {
                 Price = null;
             }
+        }
+
+        public string[] Price
+        {
+            get;
+            private set;
+        }
+        public string Name { get; private set; }
+
+        public event LicenseChangedEventHandler LicenseChanged;
+
+        public License()
+        {
+            Reload();
+        }
+
+        private void Reload()
+        {
+#if DEBUG
+            licenseInformation = CurrentAppSimulator.LicenseInformation;
+#else
+            licenseInformation = CurrentApp.LicenseInformation;
+#endif
+
         }
 
         private void licenseChangedEventHandler()

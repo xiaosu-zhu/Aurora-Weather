@@ -882,4 +882,19 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>¡Gracias!</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hay un pequeño error...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>Error en la conexión de red...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>salir</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>El servicio meteorológico está ahora disponible...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Ir a Configuración</value>
+  </data>
 </root>

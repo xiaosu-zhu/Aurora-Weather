@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -33,6 +34,30 @@ namespace Com.Aurora.AuWeather
             this.InitializeComponent();
             license = new License.License();
             Context.LocationUpdate += Context_LocationUpdate;
+            Context.FetchDataFailed += Context_FetchDataFailed;
+        }
+
+        private async void Context_FetchDataFailed(object sender, ViewModels.Events.FetchDataFailedEventArgs e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+            {
+                var loader = new ResourceLoader();
+                var d = new MessageDialog(e.Message);
+                d.Title = loader.GetString("Error");
+                d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
+                d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                await d.ShowAsync();
+            }));
+        }
+
+        private void QuitAll(IUICommand command)
+        {
+            App.Current.Exit();
+        }
+
+        private void NavigateToSettings(IUICommand command)
+        {
+            baba.Navigate(typeof(SettingsPage));
         }
 
         private async void Context_LocationUpdate(object sender, ViewModels.Events.LocationUpdateEventArgs e)

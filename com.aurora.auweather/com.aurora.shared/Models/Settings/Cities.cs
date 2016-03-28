@@ -52,7 +52,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     }
                 }
                 c.SavedCities = cs.ToArray();
-                if (c.CurrentIndex != -1)
+                if (c.CurrentIndex != -1 && c.SavedCities.IsNullorEmpty())
                 {
                     c.SavedCities[c.CurrentIndex].IsCurrent = true;
                 }
@@ -60,7 +60,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             catch (Exception)
             {
-                return new Cities();
+                return c;
             }
         }
 
@@ -115,11 +115,6 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public void Set(CitySettingsModel[] citys)
         {
             SavedCities = citys;
-        }
-
-        public void Set(bool e)
-        {
-            EnableLocate = e;
         }
 
         public async Task SaveDataAsync(string currentId, string resstr)

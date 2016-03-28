@@ -56,6 +56,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 SearchBox.TextChanged += SearchBox_TextChanged;
                 SearchBox.SuggestionChosen += SearchBox_SuggestionChosen;
                 SearchBox.QuerySubmitted += SearchBox_QuerySubmitted;
+                SearchBox.IsEnabled = true;
+                LocateOnSwitch.IsEnabled = true;
+                LocateOnSwitch.IsEnabled = true;
+                SearchButton.IsEnabled = true;
                 FetchComplete.Begin();
                 CitiesList.ItemsSource = Context.Info;
                 await AccesstoLocate();

@@ -1,4 +1,6 @@
-﻿namespace Com.Aurora.AuWeather.ViewModels.Events
+﻿using Windows.ApplicationModel.Resources;
+
+namespace Com.Aurora.AuWeather.ViewModels.Events
 {
     public class FetchDataCompleteEventArgs
     {
@@ -21,7 +23,17 @@
 
         public FetchDataFailedEventArgs(string message)
         {
-            this.Message = message;
+            var loader = new ResourceLoader();
+            try
+            {
+                var s = loader.GetString(message);
+                if (s != null && s != "")
+                    this.Message = s;
+            }
+            catch (System.Exception)
+            {
+                this.Message = message;
+            }
         }
     }
 }

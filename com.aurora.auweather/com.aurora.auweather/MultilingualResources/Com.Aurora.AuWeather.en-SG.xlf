@@ -1166,6 +1166,30 @@
           <source>谢谢你!</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Thank you!</target>
         </trans-unit>
+        <trans-unit id="Cities_Null" translate="yes" xml:space="preserve">
+          <source>未设置城市...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">City is not set ...</target>
+        </trans-unit>
+        <trans-unit id="Error" translate="yes" xml:space="preserve">
+          <source>出了一点小错误...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">There is a small error ...</target>
+        </trans-unit>
+        <trans-unit id="Network_Error" translate="yes" xml:space="preserve">
+          <source>网络连接失败...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Network connection failed ...</target>
+        </trans-unit>
+        <trans-unit id="Quit" translate="yes" xml:space="preserve">
+          <source>退出</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Exit</target>
+        </trans-unit>
+        <trans-unit id="Service_Unavailable" translate="yes" xml:space="preserve">
+          <source>天气服务当前不可用...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">The weather service is currently unavailable ...</target>
+        </trans-unit>
+        <trans-unit id="Setting" translate="yes" xml:space="preserve">
+          <source>转到设置</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Go to settings</target>
+        </trans-unit>
       </group>
     </body>
   </file>

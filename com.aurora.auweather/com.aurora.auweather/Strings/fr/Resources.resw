@@ -882,4 +882,22 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>Merci!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>Ville n'est pas définie...</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Il y a une petite erreur...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>Échoué de la connexion réseau...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>quitter</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>Le service météo est actuellement indisponible...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Accéder aux paramètres</value>
+  </data>
 </root>

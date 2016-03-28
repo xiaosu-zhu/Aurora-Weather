@@ -1,7 +1,9 @@
 ﻿using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.Shared.Extensions;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -21,10 +23,22 @@ namespace Com.Aurora.AuWeather
         public DonationPage()
         {
             license = new License.License();
+            license.GetPrice();
             var p = Preferences.Get();
             Theme = p.GetTheme();
             license.LicenseChanged += License_LicenseChanged;
             this.InitializeComponent();
+            Task.Run(async () =>
+            {
+                while (license.Price.IsNullorEmpty())
+                    await Task.Delay(100);
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                 {
+                     PurchaseSlider_ValueChanged(null, null);
+                     TextBlock_Loaded(null, null);
+                     Button_Loaded(null, null);
+                 }));
+            });
         }
 
         private ElementTheme theme;
@@ -55,6 +69,7 @@ namespace Com.Aurora.AuWeather
         private void License_LicenseChanged()
         {
             PurchaseButton.IsEnabled = !license.IsPurchased;
+            PurchaseSlider.IsEnabled = !license.IsPurchased;
             if (license.IsPurchased)
             {
                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
@@ -66,6 +81,7 @@ namespace Com.Aurora.AuWeather
         private void Button_Loaded(object sender, RoutedEventArgs e)
         {
             PurchaseButton.IsEnabled = !license.IsPurchased;
+            PurchaseSlider.IsEnabled = !license.IsPurchased;
             if (license.IsPurchased)
             {
                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
@@ -101,6 +117,7 @@ namespace Com.Aurora.AuWeather
             else
             {
                 PurchaseButton.IsEnabled = !license.IsPurchased;
+                PurchaseSlider.IsEnabled = !license.IsPurchased;
                 if (license.IsPurchased)
                 {
                     var loader = new Windows.ApplicationModel.Resources.ResourceLoader();

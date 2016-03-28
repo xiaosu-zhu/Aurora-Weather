@@ -77,7 +77,7 @@ namespace Com.Aurora.AuWeather
                 NavigatetoStart();
                 return;
             }
-            if (this.args != null)
+            if (this.args != "" && this.args != null)
             {
                 if (this.args == settings.Cities.LocatedCity.Id)
                 {
@@ -121,7 +121,6 @@ namespace Com.Aurora.AuWeather
                              var pos = await _geolocator.GetGeopositionAsync();
                              var t = ThreadPool.RunAsync(async (w) =>
                              {
-                                 w.Completed = new AsyncActionCompletedHandler(SplashComplete);
                                  CalcPosition(pos, citys, settings);
                                  if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
                                  {
@@ -130,6 +129,7 @@ namespace Com.Aurora.AuWeather
                                      var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                                      var task = ThreadPool.RunAsync(async (m) =>
                                  {
+                                     m.Completed = new AsyncActionCompletedHandler(SplashComplete);
                                      await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
                                      settings.Cities.LocatedCity.Update();
                                      settings.Cities.Save();

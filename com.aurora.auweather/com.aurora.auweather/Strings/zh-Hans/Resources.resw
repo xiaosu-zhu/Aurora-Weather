@@ -276,4 +276,13 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>谢谢</value>
   </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>网络连接失败</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>转至“设置”</value>
+  </data>
 </root>

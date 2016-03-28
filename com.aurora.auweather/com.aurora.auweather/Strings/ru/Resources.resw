@@ -882,4 +882,22 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>Спасибо!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>Город расположен не...</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Существует небольшая ошибка...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>Сбой сетевого подключения...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>выйти</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>В настоящее время недоступна служба погоды...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Перейти к настройкам</value>
+  </data>
 </root>

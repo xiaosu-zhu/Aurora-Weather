@@ -882,4 +882,22 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>謝謝你!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>未設置城市...</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>出了一點小錯誤...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>網路連接失敗...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>結束</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>天氣服務當前不可用...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>前往設定</value>
+  </data>
 </root>

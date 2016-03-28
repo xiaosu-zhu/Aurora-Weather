@@ -47,12 +47,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         Info.Add(new CitySettingsViewModel(city.City, city.Id, city.IsCurrent));
                     }
-                enablePosition = Cities.EnableLocate;
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
-                    var e = enablePosition;
-                    enablePosition = !enablePosition;
-                    EnablePosition = e;
+                    EnablePosition = Cities.EnableLocate;
                     if (Cities.CurrentIndex == -1)
                     {
                         Is_Located_Current = true;
@@ -78,10 +75,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void SaveAll()
         {
-            var task = ThreadPool.RunAsync((work) =>
-             {
-                 Cities.Save();
-             });
+            Cities.Save();
         }
 
         private void OnRefreshComplete()
@@ -152,7 +146,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal bool CheckCompleted()
         {
-            return !Cities.SavedCities.IsNullorEmpty() || Cities.LocatedCity != null;
+            return !Cities.SavedCities.IsNullorEmpty() || Cities.EnableLocate;
         }
 
         internal async Task CalcPosition(Geoposition pos)
@@ -169,6 +163,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 LocatedCity = Cities.LocatedCity;
+                if (Cities.CurrentIndex == -1)
+                {
+                    Is_Located_Current = true;
+                }
                 this.OnLocateComplete();
             }));
         }

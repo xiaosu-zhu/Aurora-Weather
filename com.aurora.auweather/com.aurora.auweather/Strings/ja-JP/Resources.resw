@@ -882,4 +882,22 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>ありがとう！</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>市が設定されていない.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>小さなエラーがある.</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>ネットワーク接続に失敗しました.</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>終了する</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>気象サービスは現在利用できません.</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>設定に移動</value>
+  </data>
 </root>

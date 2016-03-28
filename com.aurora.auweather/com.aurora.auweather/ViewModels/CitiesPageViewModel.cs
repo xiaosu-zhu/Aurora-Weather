@@ -25,10 +25,11 @@ namespace Com.Aurora.AuWeather.ViewModels
         private SettingsModel settings = SettingsModel.Get();
 
         public event EventHandler<LocationUpdateEventArgs> LocationUpdate;
+        public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
 
         public Cities Cities { get; set; } = new Cities();
 
-        private int currentIndex;
+        private int currentIndex = -1;
         private ElementTheme theme;
 
         public int CurrentIndex
@@ -66,6 +67,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             foreach (var city in settings.Cities.SavedCities)
             {
                 Cities.Add(new CityViewModel(city));
+            }
+            if (Cities.IsNullorEmpty())
+            {
+                ThreadPool.RunAsync(async (work) =>
+                 {
+                     await Task.Delay(1000);
+                     this.OnFetchDataFailed();
+                 });
+                return;
             }
             var task = ThreadPool.RunAsync(async (work) =>
             {
@@ -386,6 +396,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             if (h != null)
             {
                 h(this, new LocationUpdateEventArgs());
+            }
+        }
+
+        private void OnFetchDataFailed()
+        {
+            var h = this.FetchDataFailed;
+            if (h != null)
+            {
+                h(this, new FetchDataFailedEventArgs("Cities_Null"));
             }
         }
     }

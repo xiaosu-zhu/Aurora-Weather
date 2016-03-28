@@ -987,4 +987,22 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>谢谢你!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>未设置城市...</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>出了一点小错误...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>网络连接失败...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>天气服务当前不可用...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>转到设置</value>
+  </data>
 </root>

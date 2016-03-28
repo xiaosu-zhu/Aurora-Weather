@@ -5,6 +5,7 @@ using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI;
@@ -69,19 +70,34 @@ namespace Com.Aurora.AuWeather
         public NowWeatherPage()
         {
             this.InitializeComponent();
-            //DataContext = new NowWeatherPageViewModel();
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
             Context.FetchDataFailed += Context_FetchDataFailed;
+            //DataContext = new NowWeatherPageViewModel();
+
         }
 
         private async void Context_FetchDataFailed(object sender, FetchDataFailedEventArgs e)
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
              {
+                 var loader = new ResourceLoader();
                  var d = new MessageDialog(e.Message);
+                 d.Title = loader.GetString("Error");
+                 d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
+                 d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                  await d.ShowAsync();
              }));
+        }
+
+        private void QuitAll(IUICommand command)
+        {
+            App.Current.Exit();
+        }
+
+        private void NavigateToSettings(IUICommand command)
+        {
+            baba.Navigate(typeof(SettingsPage));
         }
 
         private async void Current_Resuming(object sender, object e)
@@ -197,7 +213,10 @@ namespace Com.Aurora.AuWeather
                 }
                 fengcheTimer = ThreadPoolTimer.CreatePeriodicTimer((work) =>
                                   {
-
+                                      if (!Context.EnableDynamic)
+                                      {
+                                          return;
+                                      }
                                       var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(() =>
                                                                          {
                                                                              fengchezhuan.Angle += FENGCHE_ZHUANSU * Context.Wind.Speed.MPS;

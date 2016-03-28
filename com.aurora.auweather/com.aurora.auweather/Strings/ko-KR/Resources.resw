@@ -882,4 +882,19 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>감사합니다!</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>작은 오류가입니다...</value>
+  </data>
+  <data name="Network_Error" xml:space="preserve">
+    <value>네트워크 연결 실패...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>끝내다</value>
+  </data>
+  <data name="Service_Unavailable" xml:space="preserve">
+    <value>날씨 서비스는 현재 사용할 수 없습니다...</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>설정으로 이동</value>
+  </data>
 </root>
