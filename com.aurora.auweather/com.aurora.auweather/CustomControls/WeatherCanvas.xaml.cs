@@ -116,6 +116,8 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
+            if (Canvas == null)
+                return;
             backBlur.update(Canvas.Size.ToVector2());
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
             if (isRain || isThunder)

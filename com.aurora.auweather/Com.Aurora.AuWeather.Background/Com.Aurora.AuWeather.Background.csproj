@@ -112,6 +112,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Aurora.AuWeather.Core\Com.Aurora.AuWeather.Core.csproj">
+      <Project>{d7f4e99d-a166-4c9b-9bb3-84e1b9e34c2e}</Project>
+      <Name>Com.Aurora.AuWeather.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
       <Name>Com.Aurora.Shared</Name>

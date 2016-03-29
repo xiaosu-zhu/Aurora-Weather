@@ -70,11 +70,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             if (Cities.IsNullorEmpty())
             {
-                ThreadPool.RunAsync(async (work) =>
-                 {
-                     await Task.Delay(1000);
-                     this.OnFetchDataFailed();
-                 });
+                var t = ThreadPool.RunAsync(async (work) =>
+                  {
+                      await Task.Delay(1000);
+                      this.OnFetchDataFailed();
+                  });
                 return;
             }
             var task = ThreadPool.RunAsync(async (work) =>

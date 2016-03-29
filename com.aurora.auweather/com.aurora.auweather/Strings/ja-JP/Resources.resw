@@ -900,4 +900,10 @@
   <data name="Setting" xml:space="preserve">
     <value>設定に移動</value>
   </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>データ プロバイダー:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>もう一度やり直してください。</value>
+  </data>
 </root>

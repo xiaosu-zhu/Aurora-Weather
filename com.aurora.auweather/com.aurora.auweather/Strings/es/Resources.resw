@@ -882,6 +882,9 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>¡Gracias!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>La ciudad no se encuentra...</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Hay un pequeño error...</value>
   </data>
@@ -896,5 +899,11 @@
   </data>
   <data name="Setting" xml:space="preserve">
     <value>Ir a Configuración</value>
+  </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>Proveedores de datos:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>¿Vuelve a intentarlo?</value>
   </data>
 </root>

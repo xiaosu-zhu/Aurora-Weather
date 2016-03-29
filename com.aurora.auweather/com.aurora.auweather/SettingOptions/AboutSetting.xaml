@@ -25,8 +25,11 @@
     </Page.Resources>
 
     <StackPanel Background="{ThemeResource SystemControlForegroundHighBrush}">
+        <Grid Height="80" Width="80" Margin="16" Background="{ThemeResource SystemThemeMainBrush}" >
+            <Image Source="/Assets/Square150x150Logo.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="UniformToFill" />
+        </Grid>
         <TextBlock x:Uid="AppNameText" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" Margin="12" />
-        <TextBlock Text="Aurora Studio" HorizontalAlignment="Center" Margin="12" />
+        <TextBlock Text="Aurora Studio © 2016" HorizontalAlignment="Center" Margin="12" />
         <TextBlock x:Name="Version" Loaded="Version_Loaded" HorizontalAlignment="Center" Margin="12" />
         <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
             <Button.Flyout>
@@ -49,10 +52,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
             <Button.Flyout>
                 <Flyout>
                     <StackPanel>
-                        <TextBlock Text="Baidu Api Store" Margin="12" />
-                        <HyperlinkButton Content="apistore.baidu.com" NavigateUri="http://apistore.baidu.com/" Margin="12" />
-                        <TextBlock Text="HeWeather" Margin="12" />
-                        <HyperlinkButton Content="heweather.com" NavigateUri="http://heweather.com/" Margin="12" />
+                        <HyperlinkButton VerticalAlignment="Center" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
+                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="12,12,12,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <HyperlinkButton VerticalAlignment="Center" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="12,8,12,12" />
                     </StackPanel>
                 </Flyout>
             </Button.Flyout>

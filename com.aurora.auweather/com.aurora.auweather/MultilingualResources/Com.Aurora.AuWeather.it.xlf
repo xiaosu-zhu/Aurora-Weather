@@ -1168,7 +1168,7 @@
         </trans-unit>
         <trans-unit id="Cities_Null" translate="yes" xml:space="preserve">
           <source>未设置城市...</source>
-          <target state="new">未设置城市...</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Città non è impostato...</target>
         </trans-unit>
         <trans-unit id="Error" translate="yes" xml:space="preserve">
           <source>出了一点小错误...</source>
@@ -1189,6 +1189,14 @@
         <trans-unit id="Setting" translate="yes" xml:space="preserve">
           <source>转到设置</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Vai a Impostazioni</target>
+        </trans-unit>
+        <trans-unit id="DataSourceText.Text" translate="yes" xml:space="preserve">
+          <source>数据提供方:</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Provider di dati:</target>
+        </trans-unit>
+        <trans-unit id="Retry" translate="yes" xml:space="preserve">
+          <source>再试一次?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Riprova?</target>
         </trans-unit>
       </group>
     </body>

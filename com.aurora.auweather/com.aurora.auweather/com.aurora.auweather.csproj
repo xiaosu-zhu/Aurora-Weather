@@ -621,6 +621,10 @@
       <Project>{c849b03b-f70f-4c60-8f83-f6eb3ab8eb30}</Project>
       <Name>Com.Aurora.AuWeather.Background</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Com.Aurora.AuWeather.Core\Com.Aurora.AuWeather.Core.csproj">
+      <Project>{d7f4e99d-a166-4c9b-9bb3-84e1b9e34c2e}</Project>
+      <Name>Com.Aurora.AuWeather.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
       <Name>Com.Aurora.Shared</Name>
@@ -655,6 +659,9 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Logos\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -882,6 +882,9 @@
   <data name="ThankyouTitle" xml:space="preserve">
     <value>감사합니다!</value>
   </data>
+  <data name="Cities_Null" xml:space="preserve">
+    <value>시 설정 되지 않은...</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>작은 오류가입니다...</value>
   </data>
@@ -896,5 +899,11 @@
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정으로 이동</value>
+  </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>데이터 공급자:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>다시 시도?</value>
   </data>
 </root>

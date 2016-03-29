@@ -1020,8 +1020,7 @@
                         </TransitionCollection>
                     </RelativePanel.ChildrenTransitions>
                     <Grid x:Name="ForecastPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                              Margin="0,64,0,64">
-
+                              Margin="0,32,0,48">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -1086,7 +1085,7 @@
                                            Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                     </Grid>
-                    <RelativePanel x:Name="AQIPanel" RelativePanel.Below="ForecastPanel" Margin="20,0,0,64" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <RelativePanel x:Name="AQIPanel" RelativePanel.Below="ForecastPanel" Margin="24,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Ellipse Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="2" Height="72" Width="72" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                         <Ellipse x:Name="AQICircle" StrokeThickness="2" Height="72" Width="72" StrokeDashArray="{Binding ElementName=Page, Path=AqiCircleStorkeLength, Converter={StaticResource AqiCircleAniConverter}}" RenderTransformOrigin="0.5,0.5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
                             <Ellipse.RenderTransform>
@@ -1418,6 +1417,7 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Vertical" Margin="24,12,24,12">
                                 <TextBlock x:Uid="ComfortableText" Style="{ThemeResource SubtitleTextBlockStyle}" >
@@ -1460,6 +1460,12 @@
                                     <Run Text="{Binding Uv,Converter={StaticResource SuggestionBrfConverter}}" />
                                 </TextBlock>
                                 <TextBlock Text="{Binding Uv,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,64,0,0">
+                                <TextBlock VerticalAlignment="Center" Margin="8" x:Uid="DataSourceText" Style="{ThemeResource BodyTextBlockStyle}" FontSize="13.333" >
+                                </TextBlock>
+                                <Image VerticalAlignment="Center" Margin="8,8,0,8" Height="32" Width="32" Source="http://heweather.com/weather/images/logo.jpg" Stretch="UniformToFill" />
+                                <TextBlock VerticalAlignment="Center" Text="HeWeather" Margin="8" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" FontSize="13.333" />
                             </StackPanel>
                         </Grid>
                     </Grid>

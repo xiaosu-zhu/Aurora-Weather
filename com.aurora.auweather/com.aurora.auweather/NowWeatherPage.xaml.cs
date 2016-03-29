@@ -84,10 +84,23 @@ namespace Com.Aurora.AuWeather
                  var loader = new ResourceLoader();
                  var d = new MessageDialog(e.Message);
                  d.Title = loader.GetString("Error");
-                 d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
+                 if (e.Message == loader.GetString("Cities_null"))
+                 {
+                     d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
+
+                 }
+                 else
+                 {
+                     d.Commands.Add(new UICommand(loader.GetString("Refresh"), new UICommandInvokedHandler(DataFailed_Refresh)));
+                 }
                  d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                  await d.ShowAsync();
              }));
+        }
+
+        private void DataFailed_Refresh(IUICommand command)
+        {
+            Context.RefreshAsync();
         }
 
         private void QuitAll(IUICommand command)

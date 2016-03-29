@@ -900,4 +900,10 @@
   <data name="Setting" xml:space="preserve">
     <value>Ir a Configuración</value>
   </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>Proveedores de datos:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>¿Vuelve a intentarlo?</value>
+  </data>
 </root>

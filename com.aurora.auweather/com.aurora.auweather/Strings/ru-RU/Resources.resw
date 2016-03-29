@@ -900,4 +900,10 @@
   <data name="Setting" xml:space="preserve">
     <value>Перейти к настройкам</value>
   </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>Поставщики данных:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторить?</value>
+  </data>
 </root>

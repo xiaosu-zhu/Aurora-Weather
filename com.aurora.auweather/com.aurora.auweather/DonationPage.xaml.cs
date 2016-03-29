@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -37,6 +38,9 @@ namespace Com.Aurora.AuWeather
                      PurchaseSlider_ValueChanged(null, null);
                      TextBlock_Loaded(null, null);
                      Button_Loaded(null, null);
+                     PurchaseSlider.ValueChanged += PurchaseSlider_ValueChanged;
+                     LoadingPanel.Visibility = Visibility.Collapsed;
+                     LoadingRing.IsActive = false;
                  }));
             });
         }
@@ -68,6 +72,9 @@ namespace Com.Aurora.AuWeather
 
         private void License_LicenseChanged()
         {
+            PurchaseButton.Visibility = Visibility.Visible;
+            PurchaseRing.Visibility = Visibility.Collapsed;
+            PurchaseRing.IsActive = false;
             PurchaseButton.IsEnabled = !license.IsPurchased;
             PurchaseSlider.IsEnabled = !license.IsPurchased;
             if (license.IsPurchased)
@@ -80,6 +87,9 @@ namespace Com.Aurora.AuWeather
 
         private void Button_Loaded(object sender, RoutedEventArgs e)
         {
+            PurchaseButton.Visibility = Visibility.Visible;
+            PurchaseRing.Visibility = Visibility.Collapsed;
+            PurchaseRing.IsActive = false;
             PurchaseButton.IsEnabled = !license.IsPurchased;
             PurchaseSlider.IsEnabled = !license.IsPurchased;
             if (license.IsPurchased)
@@ -98,24 +108,36 @@ namespace Com.Aurora.AuWeather
                 {
                     // The customer doesn't own this feature, so 
                     // show the purchase dialog.
-
+                    PurchaseButton.Visibility = Visibility.Collapsed;
+                    PurchaseRing.Visibility = Visibility.Visible;
+                    PurchaseRing.IsActive = true;
                     await license.TryPurchaseAsync(License.License.DonationPack[(int)PurchaseSlider.Value]);
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                     if (license.IsPurchased)
                     {
-                        var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                         Button_Loaded(null, null);
                         ConfirmText.Text = loader.GetString("Thankyou");
                         DollarText.Text = loader.GetString("ThankyouTitle");
                     }
+                    ConfirmText.Text = loader.GetString("Error");
+                    DollarText.Text = loader.GetString("Retry");
                     //Check the license state to determine if the in-app purchase was successful.
                 }
                 catch (Exception)
                 {
-
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                    PurchaseButton.Visibility = Visibility.Visible;
+                    PurchaseRing.Visibility = Visibility.Collapsed;
+                    PurchaseRing.IsActive = false;
+                    var d = new MessageDialog(loader.GetString("Retry"), loader.GetString("Error"));
+                    await d.ShowAsync();
                 }
             }
             else
             {
+                PurchaseButton.Visibility = Visibility.Visible;
+                PurchaseRing.Visibility = Visibility.Collapsed;
+                PurchaseRing.IsActive = false;
                 PurchaseButton.IsEnabled = !license.IsPurchased;
                 PurchaseSlider.IsEnabled = !license.IsPurchased;
                 if (license.IsPurchased)
@@ -131,6 +153,7 @@ namespace Com.Aurora.AuWeather
         {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             var obtain = loader.GetString("Obtain");
+            ConfirmText.Text = obtain;
         }
 
         private void PurchaseSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)

@@ -1005,4 +1005,10 @@
   <data name="Setting" xml:space="preserve">
     <value>转到设置</value>
   </data>
+  <data name="DataSourceText.Text" xml:space="preserve">
+    <value>数据提供方:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>再试一次?</value>
+  </data>
 </root>

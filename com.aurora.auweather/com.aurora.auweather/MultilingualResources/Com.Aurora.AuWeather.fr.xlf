@@ -1190,6 +1190,14 @@
           <source>转到设置</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Accéder aux paramètres</target>
         </trans-unit>
+        <trans-unit id="DataSourceText.Text" translate="yes" xml:space="preserve">
+          <source>数据提供方:</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Fournisseurs de données :</target>
+        </trans-unit>
+        <trans-unit id="Retry" translate="yes" xml:space="preserve">
+          <source>再试一次?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Réessayez?</target>
+        </trans-unit>
       </group>
     </body>
   </file>

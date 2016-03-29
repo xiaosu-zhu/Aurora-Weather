@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Aurora.AuWeather.Background", "Com.Aurora.AuWeather.Background\Com.Aurora.AuWeather.Background.csproj", "{C849B03B-F70F-4C60-8F83-F6EB3AB8EB30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Aurora.AuWeather.Core", "Com.Aurora.AuWeather.Core\Com.Aurora.AuWeather.Core.csproj", "{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,22 @@ Global
 		{C849B03B-F70F-4C60-8F83-F6EB3AB8EB30}.Release|x64.Build.0 = Release|x64
 		{C849B03B-F70F-4C60-8F83-F6EB3AB8EB30}.Release|x86.ActiveCfg = Release|x86
 		{C849B03B-F70F-4C60-8F83-F6EB3AB8EB30}.Release|x86.Build.0 = Release|x86
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|ARM.Build.0 = Debug|ARM
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|x64.ActiveCfg = Debug|x64
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|x64.Build.0 = Debug|x64
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|x86.ActiveCfg = Debug|x86
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Debug|x86.Build.0 = Debug|x86
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|ARM.ActiveCfg = Release|ARM
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|ARM.Build.0 = Release|ARM
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|x64.ActiveCfg = Release|x64
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|x64.Build.0 = Release|x64
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|x86.ActiveCfg = Release|x86
+		{D7F4E99D-A166-4C9B-9BB3-84E1B9E34C2E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
