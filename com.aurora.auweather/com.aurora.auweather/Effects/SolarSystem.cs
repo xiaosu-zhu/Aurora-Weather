@@ -57,7 +57,7 @@ namespace Com.Aurora.AuWeather.Effects
                     progress = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, progress);
                     position.X = (float)(xOffset * (progress - 0.5)) / 2;
                     position.Y = (float)(yOffset * (progress - 0.5)) / 2;
-                    opcity = 1 * progress;
+                    opcity = 0.8f * progress;
                 }
                 nowFrame++;
                 rotation = 0.000174532922222222f * nowFrame;

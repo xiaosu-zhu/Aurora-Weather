@@ -35,9 +35,19 @@ namespace Com.Aurora.Shared.Helpers
             return TimeZoneInfo.ConvertTime(DateTime.Now, timeZone);
         }
 
+        public static DateTime RevisetoLoc(TimeSpan UtcOffset)
+        {
+            return DateTime.UtcNow + UtcOffset;
+        }
+
         public static DateTime RevisetoLoc(TimeZoneInfo timeZone, DateTime dateTime)
         {
             return TimeZoneInfo.ConvertTime(dateTime, timeZone);
+        }
+
+        public static DateTime RevisetoLoc(DateTime dateTime, TimeSpan UtcOffset)
+        {
+            return dateTime.ToUniversalTime() + UtcOffset;
         }
     }
 }

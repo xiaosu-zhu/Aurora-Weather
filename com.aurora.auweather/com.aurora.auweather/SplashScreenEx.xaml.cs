@@ -13,6 +13,8 @@ using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.System.Threading;
+using Windows.UI.Popups;
+using Windows.ApplicationModel.Resources;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -28,6 +30,7 @@ namespace Com.Aurora.AuWeather
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame rootFrame;
         private string args;
+        private ThreadPoolTimer timer;
 
         public SplashScreenEx(SplashScreen splashscreen, string args)
         {
@@ -126,14 +129,31 @@ namespace Com.Aurora.AuWeather
                                  {
                                      var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                                      var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
+                                     CreateTimeOutTimer();
                                      var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                                     if (resstr == null || resstr == "")
+                                     {
+                                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                                         {
+                                             var loader = new ResourceLoader();
+                                             var d = new MessageDialog(loader.GetString("Network_Error"));
+                                             d.Title = loader.GetString("Error");
+                                             d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                                             await d.ShowAsync();
+                                         }));
+                                     }
+
                                      var task = ThreadPool.RunAsync(async (m) =>
+                                     {
+                                         m.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                                         await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
+                                         settings.Cities.LocatedCity.Update();
+                                         settings.Cities.Save();
+                                     });
+                                 }
+                                 else
                                  {
-                                     m.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                     await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
-                                     settings.Cities.LocatedCity.Update();
-                                     settings.Cities.Save();
-                                 });
+                                     SplashComplete(null, AsyncStatus.Completed);
                                  }
                              });
                          }
@@ -146,7 +166,19 @@ namespace Com.Aurora.AuWeather
                 {
                     var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                     var param = new string[] { "cityid=" + settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id };
+                    CreateTimeOutTimer();
                     var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                    if (resstr == null || resstr == "")
+                    {
+                        await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                        {
+                            var loader = new ResourceLoader();
+                            var d = new MessageDialog(loader.GetString("Network_Error"));
+                            d.Title = loader.GetString("Error");
+                            d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                            await d.ShowAsync();
+                        }));
+                    }
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
                         work.Completed = new AsyncActionCompletedHandler(SplashComplete);
@@ -168,8 +200,36 @@ namespace Com.Aurora.AuWeather
             }
         }
 
+        private void CreateTimeOutTimer()
+        {
+            if (timer != null)
+            {
+                timer.Cancel();
+            }
+            timer = ThreadPoolTimer.CreateTimer(async (x) =>
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                {
+                    var loader = new ResourceLoader();
+                    var d = new MessageDialog(loader.GetString("Network_Error"));
+                    d.Title = loader.GetString("Error");
+                    d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                    await d.ShowAsync();
+                }));
+            }, TimeSpan.FromMilliseconds(20000));
+        }
+
+        private void QuitAll(IUICommand command)
+        {
+            App.Current.Exit();
+        }
+
         private async void NavigatetoStart()
         {
+            if (timer != null)
+            {
+                timer.Cancel();
+            }
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 rootFrame.Navigate(typeof(StartPage));
@@ -179,6 +239,10 @@ namespace Com.Aurora.AuWeather
 
         private async void SplashComplete(IAsyncAction asyncInfo, AsyncStatus asyncStatus)
         {
+            if (timer != null)
+            {
+                timer.Cancel();
+            }
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
              {
                  DismissExtendedSplash();
@@ -189,7 +253,16 @@ namespace Com.Aurora.AuWeather
         {
             var final = Models.Location.GetNearsetLocation(citys,
                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+
+            if (settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
+            {
+                final = null;
+                citys.Clear();
+                citys = null;
+                return;
+            }
             settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(final.ToArray()[0]);
+            final = null;
             citys.Clear();
             citys = null;
         }

@@ -111,16 +111,24 @@ namespace Com.Aurora.AuWeather
                     PurchaseButton.Visibility = Visibility.Collapsed;
                     PurchaseRing.Visibility = Visibility.Visible;
                     PurchaseRing.IsActive = true;
+                    PurchaseSlider.IsEnabled = false;
                     await license.TryPurchaseAsync(License.License.DonationPack[(int)PurchaseSlider.Value]);
                     var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                    ConfirmText.Text = loader.GetString("Obtain");
                     if (license.IsPurchased)
                     {
                         Button_Loaded(null, null);
                         ConfirmText.Text = loader.GetString("Thankyou");
                         DollarText.Text = loader.GetString("ThankyouTitle");
                     }
-                    ConfirmText.Text = loader.GetString("Error");
-                    DollarText.Text = loader.GetString("Retry");
+                    else
+                    {
+                        ConfirmText.Text = loader.GetString("Error");
+                        DollarText.Text = loader.GetString("Retry");
+                        PurchaseButton.Visibility = Visibility.Visible;
+                        PurchaseRing.Visibility = Visibility.Collapsed;
+                        PurchaseRing.IsActive = false;
+                    }
                     //Check the license state to determine if the in-app purchase was successful.
                 }
                 catch (Exception)

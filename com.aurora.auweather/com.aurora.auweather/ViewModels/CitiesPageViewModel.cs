@@ -79,7 +79,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                await SearchExisitingData();
+                await SearchExistingDataAsync();
 
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                 {
@@ -165,7 +165,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 item.Updated = false;
             }
-            await SearchExisitingData();
+            await SearchExistingDataAsync();
             Update();
         }
 
@@ -357,7 +357,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                     var weather = new HeWeatherModel(resjson);
                     await itemInit(item, weather);
                     item.Updated = true;
-
                 }
             }
             if (settings.Cities.EnableLocate && settings.Cities.LocatedCity != null)
@@ -370,7 +369,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        private async Task SearchExisitingData()
+        private async Task SearchExistingDataAsync()
         {
             foreach (var item in Cities)
             {

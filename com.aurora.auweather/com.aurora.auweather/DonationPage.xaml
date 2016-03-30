@@ -7,6 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     RequestedTheme="{x:Bind Theme, Mode=OneWay}"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -39,8 +48,8 @@
         </TextBlock>
         <Slider IsEnabled="False" x:Name="PurchaseSlider" IsThumbToolTipEnabled="False" Maximum="6" StepFrequency="1" Minimum="0" SnapsTo="StepValues" Value="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="12,-56,12,12" />
         <Button IsEnabled="False" x:Name="PurchaseButton" x:Uid="PurchaseButton" Click="PurchaseButton_Click" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <ProgressRing Visibility="Collapsed" IsActive="False" x:Name="PurchaseRing" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Grid x:Name="LoadingPanel" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlDisabledTransparentBrush}" >
+        <ProgressRing MaxWidth="480" Visibility="Collapsed" IsActive="False" x:Name="PurchaseRing" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid x:Name="LoadingPanel" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
             <ProgressRing IsActive="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="48" x:Name="LoadingRing" />
         </Grid>
     </Grid>

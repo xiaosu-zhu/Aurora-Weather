@@ -97,6 +97,7 @@ namespace Com.Aurora.AuWeather
             Context.UpdateLocation(final.ToArray()[0]);
             citys.Clear();
             citys = null;
+            final = null;
         }
 
         internal void Add()

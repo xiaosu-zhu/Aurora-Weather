@@ -285,4 +285,7 @@
   <data name="Setting" xml:space="preserve">
     <value>转至“设置”</value>
   </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
 </root>

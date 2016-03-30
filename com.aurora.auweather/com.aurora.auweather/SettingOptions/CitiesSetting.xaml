@@ -361,7 +361,7 @@
                         </AutoSuggestBox.ItemTemplate>
                     </AutoSuggestBox>
                 </Grid>
-                <ListView MaxWidth="480" x:Name="CitiesList" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:CitySettingsViewModel">
                             <Grid Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

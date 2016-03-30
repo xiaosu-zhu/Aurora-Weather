@@ -328,10 +328,10 @@ namespace Com.Aurora.AuWeather.Tile
                 hourIndex = 0;
             }
             var updateTime = model.Location.UpdateTime;
-            var currentTimeZone = DateTimeHelper.GetTimeZone(updateTime, model.Location.UtcTime);
+            var utcOffset = model.Location.UpdateTime - model.Location.UtcTime;
             var sunRise = model.DailyForecast[todayIndex].SunRise;
             var sunSet = model.DailyForecast[todayIndex].SunSet;
-            var currentTime = DateTimeHelper.RevisetoLoc(currentTimeZone, desiredDate);
+            var currentTime = DateTimeHelper.RevisetoLoc(desiredDate, utcOffset);
             var isNight = CalcIsNight(currentTime, sunRise, sunSet);
             var settings = SettingsModel.Get();
             var currentCity = settings.Cities.CurrentIndex < 0 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];

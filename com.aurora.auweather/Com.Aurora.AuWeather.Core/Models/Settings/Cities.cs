@@ -52,7 +52,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     }
                 }
                 c.SavedCities = cs.ToArray();
-                if (c.CurrentIndex != -1 && c.SavedCities.IsNullorEmpty())
+                if (c.CurrentIndex != -1 && !c.SavedCities.IsNullorEmpty())
                 {
                     c.SavedCities[c.CurrentIndex].IsCurrent = true;
                 }

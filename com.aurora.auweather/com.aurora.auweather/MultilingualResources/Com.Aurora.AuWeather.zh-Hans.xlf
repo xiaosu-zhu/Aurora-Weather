@@ -1196,7 +1196,7 @@
         </trans-unit>
         <trans-unit id="Retry" translate="yes" xml:space="preserve">
           <source>再试一次?</source>
-          <target state="new">再试一次?</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">重试</target>
         </trans-unit>
       </group>
     </body>

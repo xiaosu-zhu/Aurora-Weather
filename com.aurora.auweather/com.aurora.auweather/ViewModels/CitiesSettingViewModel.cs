@@ -154,7 +154,14 @@ namespace Com.Aurora.AuWeather.ViewModels
 
             var final = Models.Location.GetNearsetLocation(cities,
                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+            if (Cities.LocatedCity.Id == final.ToArray()[0].Id)
+            {
+                final = null;
+                return;
+            }
+            
             Cities.LocatedCity = new CitySettingsModel(final.ToArray()[0]);
+            final = null;
             if (Cities.SavedCities.IsNullorEmpty())
             {
                 Cities.CurrentIndex = -1;

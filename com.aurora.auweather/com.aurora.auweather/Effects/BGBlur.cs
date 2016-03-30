@@ -65,7 +65,7 @@ namespace Com.Aurora.AuWeather.Effects
                 }
                 else if (blurFrame != 0)
                 {
-                    blurFrame -= 1;
+                    blurFrame--;
                     blur.BlurAmount = blurAmount * (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseIn, (double)blurFrame / inFrames);
                 }
             }
@@ -110,8 +110,8 @@ namespace Com.Aurora.AuWeather.Effects
             {
                 var transform = Matrix3x2.CreateScale(scale.X, scale.Y, center) *
                     Matrix3x2.CreateTranslation(position - center);
-                if (enableBlur)
-                    drawingSession.DrawImage(blur, new Rect(position.X - (bound.Width * scale.X) / 2, position.Y - (bound.Height * scale.Y) / 2, bound.Width * scale.X, bound.Height * scale.Y), bound);
+                if (blurFrame != 0)
+                    drawingSession.DrawImage(blur, new Rect(position.X - (bound.Width * scale.X) / 2, position.Y - (bound.Height * scale.Y) / 2, bound.Width * scale.X, bound.Height * scale.Y), bound, opacity);
                 else
                     drawingSession.DrawImage(tempSurface, 0f, 0f, bound, opacity, CanvasImageInterpolation.Linear, new Matrix4x4(transform));
             }

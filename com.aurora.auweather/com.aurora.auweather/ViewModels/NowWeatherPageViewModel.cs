@@ -112,7 +112,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         private SettingsModel settings;
         private CalendarInfo calendar;
         private ThreadPoolTimer currentTimer;
-        private TimeZoneInfo currentTimeZone;
         private string glance;
         private CitySettingsModel currentCityModel;
         private int todayIndex;
@@ -122,6 +121,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public bool enableDynamic;
         private bool enablePull;
+        private TimeSpan utcOffset;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1518,7 +1518,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 nowHourIndex = 0;
             }
             UpdateTime = fetchresult.Location.UpdateTime;
-            currentTimeZone = DateTimeHelper.GetTimeZone(UpdateTime, fetchresult.Location.UtcTime);
+            utcOffset = UpdateTime - fetchresult.Location.UtcTime;
             RefreshCurrentTime();
             CurrentTimeRefreshTask();
             SunRise = fetchresult.DailyForecast[todayIndex].SunRise;
@@ -1528,7 +1528,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public void RefreshCurrentTime()
         {
-            CurrentTime = DateTimeHelper.RevisetoLoc(currentTimeZone);
+            CurrentTime = DateTimeHelper.RevisetoLoc(utcOffset);
         }
 
         public void CurrentTimeRefreshTask()
@@ -1550,7 +1550,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             currentTimer = ThreadPoolTimer.CreateTimer(
                 async (task) =>
             {
-                var locTime = DateTimeHelper.RevisetoLoc(currentTimeZone);
+                var locTime = DateTimeHelper.RevisetoLoc(utcOffset);
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
                     CurrentTime = locTime;
