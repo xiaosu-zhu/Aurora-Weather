@@ -157,6 +157,20 @@ namespace Com.Aurora.AuWeather.ViewModels
             if (Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
                 final = null;
+                if (Cities.SavedCities.IsNullorEmpty())
+                {
+                    Cities.CurrentIndex = -1;
+                }
+                Cities.Save();
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                {
+                    LocatedCity = Cities.LocatedCity;
+                    if (Cities.CurrentIndex == -1)
+                    {
+                        Is_Located_Current = true;
+                    }
+                    this.OnLocateComplete();
+                }));
                 return;
             }
             
