@@ -9,15 +9,16 @@ In Aurora weather, you can view real-time weather forecasts for more than 50,000
  - Dynamic tiles
  - Immersive Mode
  - Lock screen notifications
- - Comprehensive data
-    
+ - Comprehensive data   
+ 
 极光天气是一款经过精心制作而发布的应用。
 使用极光天气，你可以查看全球超过5万城市的实时天气预报，以及国内2567个城市/区域的气象灾害预警和空气质量指数；同时，经过精心设计的动态天气面板，可以直观且全面地获取天气详情。
  - 动态天气
  - 动态磁贴
  - 沉浸模式
  - 锁屏通知
- - 丰富全面的数据
+ - 丰富全面的数据   
+
 ## Release Note 发行说明 ##
  - 1.0.1604   
  Publishing
@@ -28,7 +29,7 @@ In Aurora weather, you can view real-time weather forecasts for more than 50,000
  首次发布
 
 
-**You can get Aurora Weather on Windows Store**
+**You can get Aurora Weather on Windows Store**    
 **你可以在 Windows Store 上获取极光天气**  
 
 [Windows Store][2]    
