@@ -1,4 +1,8 @@
-﻿/**
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+/**
  * NPinyin包含一个公开类Pinyin，该类实现了取汉字文本首字母、文本对应拼音、以及
  * 获取和拼音对应的汉字列表等方法。由于汉字字库大，且多音字较多，因此本组中实现的
  * 拼音转换不一定和词语中的字的正确读音完全吻合。但绝大部分是正确的。

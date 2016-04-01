@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.ViewModels;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.ViewModels;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

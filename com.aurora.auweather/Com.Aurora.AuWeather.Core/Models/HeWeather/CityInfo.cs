@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.Shared.Extensions;
 

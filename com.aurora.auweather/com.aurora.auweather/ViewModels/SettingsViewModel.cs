@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.Models.Settings;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.ObjectModel;

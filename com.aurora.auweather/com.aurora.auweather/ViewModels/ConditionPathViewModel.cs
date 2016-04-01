@@ -1,4 +1,8 @@
-﻿using Com.Aurora.Shared.MVVM;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.Shared.MVVM;
 using Com.Aurora.AuWeather.Models;
 using Windows.UI;
 

@@ -1,10 +1,13 @@
-﻿using Com.Aurora.AuWeather.ViewModels.Events;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.ViewModels.Events;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Com.Aurora.AuWeather.ViewModels;
 using System.Threading.Tasks;
-using System;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 

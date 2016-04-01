@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.Models.HeWeather;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;

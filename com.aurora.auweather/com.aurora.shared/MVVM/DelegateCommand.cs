@@ -1,45 +1,14 @@
-﻿using System;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace Com.Aurora.Shared.MVVM
 {
-    //public class DelegateCommand<T> : ICommand
-    //{
-    //    private readonly Action<T> executeAction;
-    //    private readonly Func<T, bool> canExecuteAction;
-    //    public event EventHandler CanExecuteChanged;
-
-    //    public DelegateCommand(Action<T> executeAction)
-    //        : this(executeAction, null)
-    //    {
-    //    }
-
-    //    public DelegateCommand(Action<T> executeAction,
-    //        Func<T, bool> canExecuteAction)
-    //    {
-    //        this.executeAction = executeAction;
-    //        this.canExecuteAction = canExecuteAction;
-    //    }
-    //    public bool CanExecute(object parameter)
-    //    {
-    //        if (canExecuteAction != null)
-    //        {
-    //            return canExecuteAction((T)parameter);
-    //        }
-    //        return true;
-    //    }
-
-    //    public void Execute(object parameter)
-    //    {
-    //        if (CanExecute(parameter))
-    //        {
-    //            executeAction((T)parameter);
-    //        }
-    //    }
-    //}
-
     /// <summary>
     /// An <see cref="ICommand"/> whose delegates can be attached for <see cref="Execute"/> and <see cref="CanExecute"/>.
     /// It also implements the <see cref="IActiveAware"/> interface, which is
@@ -339,39 +308,3 @@ namespace Com.Aurora.Shared.MVVM
         #endregion Methods 
     }
 }
-#if shangmiandefaille
-public class DelegateCommand : ICommand
-{
-    Func<object, bool> canExecuteAction;
-    Action<object> executeAction;
-    public event EventHandler CanExecuteChanged;
-
-    public DelegateCommand(Action<object> executeAction)
-        : this(executeAction, null)
-    {
-    }
-
-    public DelegateCommand(Action<object> executeAction,
-        Func<object, bool> canExecuteAction)
-    {
-        this.executeAction = executeAction;
-        this.canExecuteAction = canExecuteAction;
-    }
-    public bool CanExecute(object parameter)
-    {
-        if (canExecuteAction != null)
-        {
-            return canExecuteAction(parameter);
-        }
-        return true;
-    }
-
-    public void Execute(object parameter)
-    {
-        if (CanExecute(parameter))
-        {
-            executeAction(parameter);
-        }
-    }
-}
-#endif

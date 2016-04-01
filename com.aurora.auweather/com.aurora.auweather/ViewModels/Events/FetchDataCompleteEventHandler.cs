@@ -1,4 +1,8 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Windows.ApplicationModel.Resources;
 
 namespace Com.Aurora.AuWeather.ViewModels.Events
 {

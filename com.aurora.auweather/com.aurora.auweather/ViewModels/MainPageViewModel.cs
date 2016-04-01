@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.LunarCalendar;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.Shared.MVVM;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;

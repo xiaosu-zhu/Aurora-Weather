@@ -1,11 +1,15 @@
-﻿using Com.Aurora.Shared.Extensions;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.Shared.Extensions;
 using System;
 using System.Collections.Generic;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
-    public class HeWeatherModel : WeatherModel, IWeather
+    public class HeWeatherModel : WeatherModel
     {
 
         public HeWeatherStatus Status

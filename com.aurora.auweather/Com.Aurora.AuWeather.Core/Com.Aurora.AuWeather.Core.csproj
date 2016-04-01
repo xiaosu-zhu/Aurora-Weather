@@ -12,7 +12,7 @@
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -131,7 +131,6 @@
     <Compile Include="Models\HeWeather\NowWeather.cs" />
     <Compile Include="Models\HeWeather\WeatherAlarm.cs" />
     <Compile Include="Models\HeWeather\WeatherSuggestion.cs" />
-    <Compile Include="Models\IWeather.cs" />
     <Compile Include="Models\Length.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Pressure.cs" />
@@ -145,12 +144,9 @@
     <Compile Include="Models\TempratureRange.cs" />
     <Compile Include="Models\WeatherModel.cs" />
     <Compile Include="Models\Wind.cs" />
-    <Compile Include="MVVM\DelegateCommand.cs" />
-    <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tile\Generator.cs" />
     <Compile Include="Tile\Sender.cs" />
-    <Compile Include="Tile\TempetatureParameter.cs" />
     <EmbeddedResource Include="Properties\Com.Aurora.AuWeather.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +154,9 @@
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
       <Name>Com.Aurora.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\WunderGround\JsonContract\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

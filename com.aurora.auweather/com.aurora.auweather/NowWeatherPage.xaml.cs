@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.Models;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;

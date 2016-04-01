@@ -861,7 +861,7 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var month = DateTime.Now.Month;
-            if (month / 2 == 0 || month == 3)
+            if (month % 2 == 0 || month == 3)
             {
                 return Color.FromArgb(255, 0, 0, 0);
             }

@@ -1,10 +1,14 @@
-﻿using Microsoft.Graphics.Canvas;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Microsoft.Graphics.Canvas;
 using System.Numerics;
 
 namespace Com.Aurora.AuWeather.Effects
 {
     /// <summary>
-    /// 模拟星空使用固定的圆形发光点，并且随机进行亮度变化，同时可以在随机时刻生成流星
+    /// 模拟星空使用固定的圆形发光点，并且随机进行亮度变化
     /// </summary>
     public class StarParticleSystem : ParticleSystem
     {

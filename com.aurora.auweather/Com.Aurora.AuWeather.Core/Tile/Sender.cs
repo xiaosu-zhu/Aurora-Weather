@@ -1,4 +1,8 @@
-﻿using NotificationsExtensions.Tiles;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using NotificationsExtensions.Tiles;
 using NotificationsExtensions.Badges;
 using System;
 using Windows.Data.Xml.Dom;

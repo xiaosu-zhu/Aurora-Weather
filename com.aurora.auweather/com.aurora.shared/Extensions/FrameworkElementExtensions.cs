@@ -1,4 +1,8 @@
-﻿using Windows.Foundation;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Windows.Foundation;
 using Windows.UI.Xaml;
 
 namespace Com.Aurora.Shared.Extensions
