@@ -128,6 +128,7 @@ namespace Com.Aurora.AuWeather
                         PurchaseButton.Visibility = Visibility.Visible;
                         PurchaseRing.Visibility = Visibility.Collapsed;
                         PurchaseRing.IsActive = false;
+                        PurchaseSlider.IsEnabled = true;
                     }
                     //Check the license state to determine if the in-app purchase was successful.
                 }
@@ -137,6 +138,7 @@ namespace Com.Aurora.AuWeather
                     PurchaseButton.Visibility = Visibility.Visible;
                     PurchaseRing.Visibility = Visibility.Collapsed;
                     PurchaseRing.IsActive = false;
+                    PurchaseSlider.IsEnabled = true;
                     var d = new MessageDialog(loader.GetString("Retry"), loader.GetString("Error"));
                     await d.ShowAsync();
                 }

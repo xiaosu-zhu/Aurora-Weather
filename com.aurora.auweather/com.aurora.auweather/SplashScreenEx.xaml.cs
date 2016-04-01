@@ -15,6 +15,7 @@ using System.Linq;
 using Windows.System.Threading;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
+using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -67,6 +68,10 @@ namespace Com.Aurora.AuWeather
         private async void DismissedEventHandler(SplashScreen sender, object args)
         {
             dismissed = true;
+            SetLongTimeTimer();
+#if DEBUG
+            await Task.Delay(4000);
+#endif
             var settings = SettingsModel.Get();
             var license = new License.License();
             if (!license.IsPurchased)
@@ -200,6 +205,22 @@ namespace Com.Aurora.AuWeather
             }
         }
 
+        private void SetLongTimeTimer()
+        {
+            if (timer != null)
+            {
+                timer.Cancel();
+            }
+            timer = ThreadPoolTimer.CreateTimer(async (x) =>
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                {
+                    var loader = new ResourceLoader();
+                    SplashWelcome.Text = loader.GetString("LongTime");
+                }));
+            }, TimeSpan.FromMilliseconds(3000));
+        }
+
         private void CreateTimeOutTimer()
         {
             if (timer != null)
@@ -216,7 +237,7 @@ namespace Com.Aurora.AuWeather
                     d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                     await d.ShowAsync();
                 }));
-            }, TimeSpan.FromMilliseconds(20000));
+            }, TimeSpan.FromMilliseconds(12000));
         }
 
         private void QuitAll(IUICommand command)

@@ -1011,4 +1011,7 @@
   <data name="Retry" xml:space="preserve">
     <value>再试一次?</value>
   </data>
+  <data name="LongTime" xml:space="preserve">
+    <value>比预计时间要长...</value>
+  </data>
 </root>

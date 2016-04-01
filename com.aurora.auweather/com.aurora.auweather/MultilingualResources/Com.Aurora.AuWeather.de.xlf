@@ -1,1202 +1,1206 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="zh-CN" target-language="de" original="COM.AURORA.AUWEATHER/STRINGS/ZH-CN/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en-US" target-language="de" original="COM.AURORA.AUWEATHER/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="COM.AURORA.AUWEATHER/STRINGS/ZH-CN/RESOURCES.RESW" datatype="resx">
+      <group id="COM.AURORA.AUWEATHER/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="About" translate="yes" xml:space="preserve">
-          <source>关于</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Info</target>
+          <source>About</source>
+          <target state="new">About</target>
         </trans-unit>
         <trans-unit id="AddButton.Label" translate="yes" xml:space="preserve">
-          <source>搜索城市</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Suche Stadt</target>
+          <source>Search Cities</source>
+          <target state="new">Search Cities</target>
         </trans-unit>
         <trans-unit id="Add_Image" translate="yes" xml:space="preserve">
-          <source>自定义</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">anpassen</target>
+          <source>Customize</source>
+          <target state="new">Customize</target>
         </trans-unit>
         <trans-unit id="BlurBGText.Text" translate="yes" xml:space="preserve">
-          <source>模糊背景</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hintergrund zu verwischen</target>
+          <source>Enable Blur</source>
+          <target state="new">Enable Blur</target>
         </trans-unit>
         <trans-unit id="BodyTempText.Text" translate="yes" xml:space="preserve">
-          <source>体感温度</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Körpertemperatur</target>
+          <source>Body temperature</source>
+          <target state="new">Body temperature</target>
         </trans-unit>
         <trans-unit id="CheckLocateAccessButton.Content" translate="yes" xml:space="preserve">
-          <source>转到设置</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zu Einstellungen wechseln</target>
+          <source>Go to settings</source>
+          <target state="new">Go to settings</target>
         </trans-unit>
         <trans-unit id="Cities" translate="yes" xml:space="preserve">
-          <source>城市概览</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">City Überblick</target>
+          <source>Cities overview</source>
+          <target state="new">Cities overview</target>
         </trans-unit>
         <trans-unit id="CitiesButton.Label" translate="yes" xml:space="preserve">
-          <source>城市概览</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">City Überblick</target>
+          <source>Cities overview</source>
+          <target state="new">Cities overview</target>
         </trans-unit>
         <trans-unit id="CitiesText.Text" translate="yes" xml:space="preserve">
-          <source>城市概览</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">City Überblick</target>
+          <source>Cities overview</source>
+          <target state="new">Cities overview</target>
         </trans-unit>
         <trans-unit id="Cities_Management" translate="yes" xml:space="preserve">
-          <source>城市管理</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Die Stadtverwaltung</target>
+          <source>Cities Managment</source>
+          <target state="new">Cities Managment</target>
         </trans-unit>
         <trans-unit id="Cloudy.Header" translate="yes" xml:space="preserve">
-          <source>云朵</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wolke</target>
+          <source>Cloud</source>
+          <target state="new">Cloud</target>
         </trans-unit>
         <trans-unit id="ComfortableText.Text" translate="yes" xml:space="preserve">
-          <source>舒适指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Komfort-Index:  </target>
+          <source>Comfort index:  </source>
+          <target state="new">Comfort index:  </target>
         </trans-unit>
         <trans-unit id="CWText.Text" translate="yes" xml:space="preserve">
-          <source>洗车指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Auto-Waschanlagen-Index:  </target>
+          <source>car wash Index:  </source>
+          <target state="new">car wash Index:  </target>
         </trans-unit>
         <trans-unit id="DanweiText.Text" translate="yes" xml:space="preserve">
-          <source>单位换算</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Einheitenumrechnung</target>
+          <source>Conversion</source>
+          <target state="new">Conversion</target>
         </trans-unit>
         <trans-unit id="DescripButton.Content" translate="yes" xml:space="preserve">
-          <source>说明</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ergebnis</target>
+          <source>Description</source>
+          <target state="new">Description</target>
         </trans-unit>
         <trans-unit id="DisableDynamicDescripText.Text" translate="yes" xml:space="preserve">
-          <source>这将关闭动态天气, 并减少内存占用</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dadurch wird die dynamische Wetter und reduzierter Speicherbedarf deaktivieren</target>
+          <source>Turn off dynamic weather and reduce memory usage</source>
+          <target state="new">Turn off dynamic weather and reduce memory usage</target>
         </trans-unit>
         <trans-unit id="DisableDynamicText.Text" translate="yes" xml:space="preserve">
-          <source>减弱动态效果</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dynamische Wirkung reduziert</target>
+          <source>Disable dynamic effect</source>
+          <target state="new">Disable dynamic effect</target>
         </trans-unit>
         <trans-unit id="DonateButton.Content" translate="yes" xml:space="preserve">
-          <source>投喂我!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Feed me!</target>
+          <source>Donate it!</source>
+          <target state="new">Donate it!</target>
         </trans-unit>
         <trans-unit id="DonateOption0.Text" translate="yes" xml:space="preserve">
-          <source>· 每日天气提醒</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Tägliche Wetter-Warnungen</target>
+          <source>· Daily Alarms</source>
+          <target state="new">· Daily Alarms</target>
         </trans-unit>
         <trans-unit id="DonateOption1.Text" translate="yes" xml:space="preserve">
-          <source>· 灾害提醒及锁屏通知</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Katastrophe-Warnung und Sperre Bildschirm-Benachrichtigungen</target>
+          <source>· Disaster alerts</source>
+          <target state="new">· Disaster alerts</target>
         </trans-unit>
         <trans-unit id="DonateOption2.Text" translate="yes" xml:space="preserve">
-          <source>· 更短的天气刷新频率</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Kürzere Wetter-Aktualisierungsrate</target>
+          <source>· Shorter weather refresh rate</source>
+          <target state="new">· Shorter weather refresh rate</target>
         </trans-unit>
         <trans-unit id="DonateOption3.Text" translate="yes" xml:space="preserve">
-          <source>· 钉选其他城市的磁贴并自动更新</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· PIN, andere Städte in Fliese ausgewählt und automatisch aktualisieren</target>
+          <source>· Pin selected cities in tile and automatically update</source>
+          <target state="new">· Pin selected cities in tile and automatically update</target>
         </trans-unit>
         <trans-unit id="DonateRun0.Text" translate="yes" xml:space="preserve">
-          <source>需要你的帮助...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Brauchen Sie Ihre Hilfe...</target>
+          <source>Need your help ...</source>
+          <target state="new">Need your help ...</target>
         </trans-unit>
         <trans-unit id="DonateRun1.Text" translate="yes" xml:space="preserve">
-          <source>做出一个还算凑合的应用, 也需要大量的精力和时间; 而且, 这个应用更新天气使用的 API 需要一些资金才能够正常工作. 如果你觉得它很棒，不妨支持一下~</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aus relativ provisorischen Anwendung erfordert auch eine Menge Energie und Zeit; Diese Anwendung aktualisiert außerdem das Wetter unter Verwendung der API-Notwendigkeit etwas Geld um korrekt zu funktionieren. Wenn Sie denken, es ist toll, es unterstützen wollen ~</target>
+          <source>Application development requires a lot of energy and time; Moreover, this application using the weather API which need some money to work properly. If you think it's great, wish to support it ~</source>
+          <target state="new">Application development requires a lot of energy and time; Moreover, this application using the weather API which need some money to work properly. If you think it's great, wish to support it ~</target>
         </trans-unit>
         <trans-unit id="DonateRun2.Text" translate="yes" xml:space="preserve">
-          <source>帮助我们, 你将解锁捐赠版的更多功能:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Um uns zu helfen, entriegeln Sie die Spenden-Version zusätzliche Funktionen:</target>
+          <source>Help us, and you will unlock the donate version of additional features:</source>
+          <target state="new">Help us, and you will unlock the donate version of additional features:</target>
         </trans-unit>
         <trans-unit id="DressingText.Text" translate="yes" xml:space="preserve">
-          <source>穿衣指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Bekleidung-Index:  </target>
+          <source>Clothing index:  </source>
+          <target state="new">Clothing index:  </target>
         </trans-unit>
         <trans-unit id="DynamicText.Text" translate="yes" xml:space="preserve">
-          <source>动态天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dynamisches Wetter</target>
+          <source>Dynamic weather</source>
+          <target state="new">Dynamic weather</target>
         </trans-unit>
         <trans-unit id="EnableAlarmText.Text" translate="yes" xml:space="preserve">
-          <source>气象灾害预警</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Meteorologischen Katastrophen-Warnung</target>
+          <source>Meteorological disaster warning</source>
+          <target state="new">Meteorological disaster warning</target>
         </trans-unit>
         <trans-unit id="EnableEveryText.Text" translate="yes" xml:space="preserve">
-          <source>每日天气提醒</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tägliche Wetter-Warnungen</target>
+          <source>Daily weather alerts</source>
+          <target state="new">Daily weather alerts</target>
         </trans-unit>
         <trans-unit id="ExperimentalText.Text" translate="yes" xml:space="preserve">
-          <source>试验性功能</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Experimentelle features</target>
+          <source>Experimental features</source>
+          <target state="new">Experimental features</target>
         </trans-unit>
         <trans-unit id="FeedbackButton.Label" translate="yes" xml:space="preserve">
-          <source>反馈</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Rückmeldung</target>
+          <source>Feedback</source>
+          <target state="new">Feedback</target>
         </trans-unit>
         <trans-unit id="FluText.Text" translate="yes" xml:space="preserve">
-          <source>流感指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Grippe-Index:  </target>
+          <source>Flu index:  </source>
+          <target state="new">Flu index:  </target>
         </trans-unit>
         <trans-unit id="Foggy.Header" translate="yes" xml:space="preserve">
-          <source>雾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nebel</target>
+          <source>Fog</source>
+          <target state="new">Fog</target>
         </trans-unit>
         <trans-unit id="ForceRefreshText.Text" translate="yes" xml:space="preserve">
-          <source>强制开启下拉刷新</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kraft öffnen Sie die Dropdown-refresh</target>
+          <source>Force pull to refresh</source>
+          <target state="new">Force pull to refresh</target>
         </trans-unit>
         <trans-unit id="FormatText.Text" translate="yes" xml:space="preserve">
-          <source>日期与时间</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Datum  Uhrzeit</target>
+          <source>Date and Time</source>
+          <target state="new">Date and Time</target>
         </trans-unit>
         <trans-unit id="Haze.Header" translate="yes" xml:space="preserve">
-          <source>沙与霾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sand und haze</target>
+          <source>Sand and haze</source>
+          <target state="new">Sand and haze</target>
         </trans-unit>
         <trans-unit id="HumidityText.Text" translate="yes" xml:space="preserve">
-          <source>湿度</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Feuchtigkeit</target>
+          <source>Hummidity</source>
+          <target state="new">Hummidity</target>
         </trans-unit>
         <trans-unit id="ImmersiveText.Text" translate="yes" xml:space="preserve">
-          <source>沉浸模式</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Eintauchen</target>
+          <source>Immersive mode</source>
+          <target state="new">Immersive mode</target>
         </trans-unit>
         <trans-unit id="Immersive_Background" translate="yes" xml:space="preserve">
-          <source>沉浸模式背景</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Eintauchen-Hintergrund</target>
+          <source>Immersive background</source>
+          <target state="new">Immersive background</target>
         </trans-unit>
         <trans-unit id="LengthParameter_KM" translate="yes" xml:space="preserve">
-          <source>千米</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">KILOMETER</target>
+          <source>km</source>
+          <target state="new">km</target>
         </trans-unit>
         <trans-unit id="LengthParameter_M" translate="yes" xml:space="preserve">
-          <source>米</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">METER</target>
+          <source>m</source>
+          <target state="new">m</target>
         </trans-unit>
         <trans-unit id="LengthParameter_Mile" translate="yes" xml:space="preserve">
-          <source>英里</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">MEILE</target>
+          <source>mile</source>
+          <target state="new">mile</target>
         </trans-unit>
         <trans-unit id="LengthParameter_NM" translate="yes" xml:space="preserve">
-          <source>海里</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Admiralty-Knoten</target>
+          <source>nm</source>
+          <target state="new">nm</target>
         </trans-unit>
         <trans-unit id="LengthParText.Text" translate="yes" xml:space="preserve">
-          <source>能见度</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sichtbarkeit</target>
+          <source>Visibility</source>
+          <target state="new">Visibility</target>
         </trans-unit>
         <trans-unit id="LoadingDataText.Text" translate="yes" xml:space="preserve">
-          <source>加载城市数据</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Laden von Daten</target>
+          <source>Loading</source>
+          <target state="new">Loading</target>
         </trans-unit>
         <trans-unit id="LocateDeniedButton.Content" translate="yes" xml:space="preserve">
-          <source>定位权限被关闭</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Lage-Berechtigungen sind geschlossen</target>
+          <source>Location permissions are denied</source>
+          <target state="new">Location permissions are denied</target>
         </trans-unit>
         <trans-unit id="LocateOnText.Text" translate="yes" xml:space="preserve">
-          <source>开启定位</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Offene position</target>
+          <source>Location</source>
+          <target state="new">Location</target>
         </trans-unit>
         <trans-unit id="LocatingText.Text" translate="yes" xml:space="preserve">
-          <source>正在定位</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wird gesucht</target>
+          <source>Locating</source>
+          <target state="new">Locating</target>
         </trans-unit>
         <trans-unit id="MoonPhaseText.Text" translate="yes" xml:space="preserve">
-          <source>月相</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Mondphasen</target>
+          <source>Moon phase</source>
+          <target state="new">Moon phase</target>
         </trans-unit>
         <trans-unit id="NextTomorrowText.Text" translate="yes" xml:space="preserve">
-          <source>后天</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Übermorgen</target>
+          <source>Next Tomorrow</source>
+          <target state="new">Next Tomorrow</target>
         </trans-unit>
         <trans-unit id="NoBGText.Text" translate="yes" xml:space="preserve">
-          <source>不使用背景</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Verwenden Sie keine Hintergrund</target>
+          <source>Don't show</source>
+          <target state="new">Don't show</target>
         </trans-unit>
         <trans-unit id="Now" translate="yes" xml:space="preserve">
-          <source>当前天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aktuelles Wetter</target>
+          <source>Current weather</source>
+          <target state="new">Current weather</target>
         </trans-unit>
         <trans-unit id="NowButton.Label" translate="yes" xml:space="preserve">
-          <source>现在</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Jetzt</target>
+          <source>Now</source>
+          <target state="new">Now</target>
         </trans-unit>
         <trans-unit id="Obtain" translate="yes" xml:space="preserve">
           <source>Pay what you want</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Bezahlen, was Sie wollen</target>
+          <target state="new">Pay what you want</target>
         </trans-unit>
         <trans-unit id="PrecipitationText.Text" translate="yes" xml:space="preserve">
-          <source>降水量</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Niederschlag</target>
+          <source>Precipitation</source>
+          <target state="new">Precipitation</target>
         </trans-unit>
         <trans-unit id="Preferences" translate="yes" xml:space="preserve">
-          <source>偏好设置</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Einstellungen</target>
+          <source>Preferences</source>
+          <target state="new">Preferences</target>
         </trans-unit>
         <trans-unit id="PressureParameter_Atm" translate="yes" xml:space="preserve">
-          <source>标准大气压</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Atmosphäre</target>
+          <source>Atm</source>
+          <target state="new">Atm</target>
         </trans-unit>
         <trans-unit id="PressureParameter_CmHg" translate="yes" xml:space="preserve">
-          <source>厘米汞柱</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Cm Hg</target>
+          <source>CmHg</source>
+          <target state="new">CmHg</target>
         </trans-unit>
         <trans-unit id="PressureParameter_Hpa" translate="yes" xml:space="preserve">
-          <source>毫巴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">MB</target>
+          <source>MB</source>
+          <target state="new">MB</target>
         </trans-unit>
         <trans-unit id="PressureParameter_Torr" translate="yes" xml:space="preserve">
-          <source>托</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Torr</target>
+          <source>Torr</source>
+          <target state="new">Torr</target>
         </trans-unit>
         <trans-unit id="PressureParText.Text" translate="yes" xml:space="preserve">
-          <source>气压</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pneumatik</target>
+          <source>Pneumatic</source>
+          <target state="new">Pneumatic</target>
         </trans-unit>
         <trans-unit id="PressureText.Text" translate="yes" xml:space="preserve">
-          <source>气压</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pneumatik</target>
+          <source>Pneumatic</source>
+          <target state="new">Pneumatic</target>
         </trans-unit>
         <trans-unit id="PurchaseButton.Content" translate="yes" xml:space="preserve">
-          <source>走你!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Gehen Sie!</target>
+          <source>Rock it!</source>
+          <target state="new">Rock it!</target>
         </trans-unit>
         <trans-unit id="Rainny.Header" translate="yes" xml:space="preserve">
-          <source>雨</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Regen</target>
+          <source>Rain</source>
+          <target state="new">Rain</target>
         </trans-unit>
         <trans-unit id="RefreshButton.Label" translate="yes" xml:space="preserve">
-          <source>刷新</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">aktualisieren</target>
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
         </trans-unit>
         <trans-unit id="RefreshFreqText.Text" translate="yes" xml:space="preserve">
-          <source>自动刷新间隔</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Intervalls für die automatische Aktualisierung</target>
+          <source>Refresh interval</source>
+          <target state="new">Refresh interval</target>
         </trans-unit>
         <trans-unit id="RefreshState_four" translate="yes" xml:space="preserve">
-          <source>四小时</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vier Stunden</target>
+          <source>Four hours</source>
+          <target state="new">Four hours</target>
         </trans-unit>
         <trans-unit id="RefreshState_one" translate="yes" xml:space="preserve">
-          <source>不自动刷新</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nicht automatisch aktualisieren</target>
+          <source>Don't auto-refresh</source>
+          <target state="new">Don't auto-refresh</target>
         </trans-unit>
         <trans-unit id="RefreshState_three" translate="yes" xml:space="preserve">
-          <source>两小时</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zwei Stunden</target>
+          <source>Two hours</source>
+          <target state="new">Two hours</target>
         </trans-unit>
         <trans-unit id="RefreshState_two" translate="yes" xml:space="preserve">
-          <source>一小时</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Eine Stunde</target>
+          <source>One hour</source>
+          <target state="new">One hour</target>
         </trans-unit>
         <trans-unit id="Replace_Image" translate="yes" xml:space="preserve">
-          <source>替换</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">ersetzen</target>
+          <source>Replace</source>
+          <target state="new">Replace</target>
         </trans-unit>
         <trans-unit id="RequestedTheme_Auto" translate="yes" xml:space="preserve">
-          <source>自动</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">automatisch</target>
+          <source>Auto</source>
+          <target state="new">Auto</target>
         </trans-unit>
         <trans-unit id="RequestedTheme_Dark" translate="yes" xml:space="preserve">
-          <source>暗</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Abblenden</target>
+          <source>Dark</source>
+          <target state="new">Dark</target>
         </trans-unit>
         <trans-unit id="RequestedTheme_Light" translate="yes" xml:space="preserve">
-          <source>亮</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Hell</target>
+          <source>Light</source>
+          <target state="new">Light</target>
         </trans-unit>
         <trans-unit id="SearchText.Text" translate="yes" xml:space="preserve">
-          <source>搜索并添加</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Suchen und hinzufügen</target>
+          <source>Search and add</source>
+          <target state="new">Search and add</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
-          <source>设置</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Einstellungen</target>
+          <source>Settings</source>
+          <target state="new">Settings</target>
         </trans-unit>
         <trans-unit id="SettingsButton.Label" translate="yes" xml:space="preserve">
-          <source>设置</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Einstellungen</target>
+          <source>Settings</source>
+          <target state="new">Settings</target>
         </trans-unit>
         <trans-unit id="SettingsText.Text" translate="yes" xml:space="preserve">
-          <source>设置</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Einstellungen</target>
+          <source>Settings</source>
+          <target state="new">Settings</target>
         </trans-unit>
         <trans-unit id="ShowSecondText.Text" translate="yes" xml:space="preserve">
-          <source>显示秒针</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Sekundenzeiger anzeigen</target>
+          <source>Show second</source>
+          <target state="new">Show second</target>
         </trans-unit>
         <trans-unit id="ShowttText.Text" translate="yes" xml:space="preserve">
-          <source>显示上午/下午</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Display/Uhr</target>
+          <source>Display am/pm</source>
+          <target state="new">Display am/pm</target>
         </trans-unit>
         <trans-unit id="Snowy.Header" translate="yes" xml:space="preserve">
-          <source>冬雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Winter Schnee</target>
+          <source>Winter snow</source>
+          <target state="new">Winter snow</target>
         </trans-unit>
         <trans-unit id="SpeedParameter_KMPH" translate="yes" xml:space="preserve">
-          <source>千米/时</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Km/h</target>
+          <source>km/h</source>
+          <target state="new">km/h</target>
         </trans-unit>
         <trans-unit id="SpeedParameter_Knot" translate="yes" xml:space="preserve">
-          <source>节</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Abschnitt</target>
+          <source>knot</source>
+          <target state="new">knot</target>
         </trans-unit>
         <trans-unit id="SpeedParameter_MPS" translate="yes" xml:space="preserve">
-          <source>米/秒</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Meter pro Sekunde</target>
+          <source>m/s</source>
+          <target state="new">m/s</target>
         </trans-unit>
         <trans-unit id="SpeedParText.Text" translate="yes" xml:space="preserve">
-          <source>风速</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Windgeschwindigkeit</target>
+          <source>Wind Speed</source>
+          <target state="new">Wind Speed</target>
         </trans-unit>
         <trans-unit id="SplashText.Text" translate="yes" xml:space="preserve">
-          <source>准备数据...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vorbereitung der Daten...</target>
+          <source>Preparing data ...</source>
+          <target state="new">Preparing data ...</target>
         </trans-unit>
         <trans-unit id="SportText.Text" translate="yes" xml:space="preserve">
-          <source>运动指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Performance-Index:  </target>
+          <source>Sport index:  </source>
+          <target state="new">Sport index:  </target>
         </trans-unit>
         <trans-unit id="Starry.Header" translate="yes" xml:space="preserve">
-          <source>星空</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sternenhimmel</target>
+          <source>Starry sky</source>
+          <target state="new">Starry sky</target>
         </trans-unit>
         <trans-unit id="Sunny.Header" translate="yes" xml:space="preserve">
-          <source>阳光</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sonnenlicht</target>
+          <source>Sunlight</source>
+          <target state="new">Sunlight</target>
         </trans-unit>
         <trans-unit id="SunProgressText.Text" translate="yes" xml:space="preserve">
-          <source>太阳位置</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Position Sonne</target>
+          <source>Sun position</source>
+          <target state="new">Sun position</target>
         </trans-unit>
         <trans-unit id="TemperatureParameter_Celsius" translate="yes" xml:space="preserve">
-          <source>摄氏度</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Grad Celsius</target>
+          <source>Celsius</source>
+          <target state="new">Celsius</target>
         </trans-unit>
         <trans-unit id="TemperatureParameter_Fahrenheit" translate="yes" xml:space="preserve">
-          <source>华氏度</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Grad F</target>
+          <source>Fahrenheit</source>
+          <target state="new">Fahrenheit</target>
         </trans-unit>
         <trans-unit id="TemperatureParameter_Kelvin" translate="yes" xml:space="preserve">
-          <source>热力温标</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Thermodynamische Temperaturskala</target>
+          <source>Kelvin</source>
+          <target state="new">Kelvin</target>
         </trans-unit>
         <trans-unit id="TempParText.Text" translate="yes" xml:space="preserve">
-          <source>温度</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Thermo</target>
+          <source>Temperature</source>
+          <target state="new">Temperature</target>
         </trans-unit>
         <trans-unit id="ThemeText.Text" translate="yes" xml:space="preserve">
-          <source>主题</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Betreff</target>
+          <source>Theme</source>
+          <target state="new">Theme</target>
         </trans-unit>
         <trans-unit id="TitleBlock.Text" translate="yes" xml:space="preserve">
-          <source>极光天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aurora-Wetter</target>
+          <source>Aurora weather</source>
+          <target state="new">Aurora weather</target>
         </trans-unit>
         <trans-unit id="ToastText.Text" translate="yes" xml:space="preserve">
-          <source>天气与提醒</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wetter-Erinnerung</target>
+          <source>Weather reminder</source>
+          <target state="new">Weather reminder</target>
         </trans-unit>
         <trans-unit id="TomorrowText.Text" translate="yes" xml:space="preserve">
-          <source>明天</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Morgen</target>
+          <source>Tomorrow</source>
+          <target state="new">Tomorrow</target>
         </trans-unit>
         <trans-unit id="TravelText.Text" translate="yes" xml:space="preserve">
-          <source>旅行指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Reisen-Index:  </target>
+          <source>Travel index:  </source>
+          <target state="new">Travel index:  </target>
         </trans-unit>
         <trans-unit id="UseWeekText.Text" translate="yes" xml:space="preserve">
-          <source>使用星期替代日期</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Alternative Verwendung Woche Termine</target>
+          <source>Use weekdays</source>
+          <target state="new">Use weekdays</target>
         </trans-unit>
         <trans-unit id="UVText.Text" translate="yes" xml:space="preserve">
-          <source>紫外线指数:  </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">UV-Index:  </target>
+          <source>UV index:  </source>
+          <target state="new">UV index:  </target>
         </trans-unit>
         <trans-unit id="VisibilityText.Text" translate="yes" xml:space="preserve">
-          <source>能见度</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sichtbarkeit</target>
+          <source>Visibility</source>
+          <target state="new">Visibility</target>
         </trans-unit>
         <trans-unit id="WelcomeText.Text" translate="yes" xml:space="preserve">
-          <source>欢迎!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Herzlich Willkommen!</target>
+          <source>Welcome!</source>
+          <target state="new">Welcome!</target>
         </trans-unit>
         <trans-unit id="WindParameter_BeaufortandDegree" translate="yes" xml:space="preserve">
-          <source>风级+角度</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind + Winkel</target>
+          <source>Scale + angle</source>
+          <target state="new">Scale + angle</target>
         </trans-unit>
         <trans-unit id="WindParameter_BeaufortandText" translate="yes" xml:space="preserve">
-          <source>风级+风向</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind + wind</target>
+          <source>Scale + direction</source>
+          <target state="new">Scale + direction</target>
         </trans-unit>
         <trans-unit id="WindParameter_SpeedandDegree" translate="yes" xml:space="preserve">
-          <source>风速+角度</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind Speed + Winkel</target>
+          <source>Speed + angle</source>
+          <target state="new">Speed + angle</target>
         </trans-unit>
         <trans-unit id="WindParameter_SpeedandText" translate="yes" xml:space="preserve">
-          <source>风速+风向</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind Speed + Richtung</target>
+          <source>Speed + direction</source>
+          <target state="new">Speed + direction</target>
         </trans-unit>
         <trans-unit id="WindParText.Text" translate="yes" xml:space="preserve">
-          <source>风力与风向</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind-der wind</target>
+          <source>Wind</source>
+          <target state="new">Wind</target>
         </trans-unit>
         <trans-unit id="WindText.Text" translate="yes" xml:space="preserve">
-          <source>风力风向</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind-der wind</target>
+          <source>Wind</source>
+          <target state="new">Wind</target>
         </trans-unit>
         <trans-unit id="DonationTitle.Text" translate="yes" xml:space="preserve">
-          <source>获取捐赠版</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Spenden zu erhalten</target>
+          <source>Get donation pack</source>
+          <target state="new">Get donation pack</target>
         </trans-unit>
         <trans-unit id="First_quarter" translate="yes" xml:space="preserve">
-          <source>上弦月</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zunehmender Mond</target>
+          <source>First Quarter</source>
+          <target state="new">First Quarter</target>
         </trans-unit>
         <trans-unit id="Full_moon" translate="yes" xml:space="preserve">
-          <source>满月</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Vollmond</target>
+          <source>Full Moon</source>
+          <target state="new">Full Moon</target>
         </trans-unit>
         <trans-unit id="New_Moon" translate="yes" xml:space="preserve">
-          <source>新月</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Neumond</target>
+          <source>New Moon</source>
+          <target state="new">New Moon</target>
         </trans-unit>
         <trans-unit id="Third_quarter" translate="yes" xml:space="preserve">
-          <source>下弦月</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Abnehmender Mond</target>
+          <source>Third Quarter</source>
+          <target state="new">Third Quarter</target>
         </trans-unit>
         <trans-unit id="Waning_crescent" translate="yes" xml:space="preserve">
-          <source>残月</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Abnehmende Sichel</target>
+          <source>Waning Crescent</source>
+          <target state="new">Waning Crescent</target>
         </trans-unit>
         <trans-unit id="Waning_gibbous" translate="yes" xml:space="preserve">
-          <source>下凸月</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ab Monat</target>
+          <source>Waning gibbous</source>
+          <target state="new">Waning gibbous</target>
         </trans-unit>
         <trans-unit id="Waxing_crescent" translate="yes" xml:space="preserve">
-          <source>峨眉月</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Emei Monat</target>
+          <source>Waxing Crescent</source>
+          <target state="new">Waxing Crescent</target>
         </trans-unit>
         <trans-unit id="Waxing_gibbous" translate="yes" xml:space="preserve">
-          <source>上凸月</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Monat</target>
+          <source>Waxing Gibbous</source>
+          <target state="new">Waxing Gibbous</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_calm" translate="yes" xml:space="preserve">
-          <source>轻风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Brise</target>
+          <source>Calm</source>
+          <target state="new">Calm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_cloudy" translate="yes" xml:space="preserve">
-          <source>多云</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Bewölkt</target>
+          <source>Cloudy</source>
+          <target state="new">Cloudy</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_cold" translate="yes" xml:space="preserve">
-          <source>变冷</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kalt</target>
+          <source>Getting cold</source>
+          <target state="new">Getting cold</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_drizzle_rain" translate="yes" xml:space="preserve">
-          <source>毛毛雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nieselregen</target>
+          <source>Drizzle</source>
+          <target state="new">Drizzle</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_dust" translate="yes" xml:space="preserve">
-          <source>扬尘</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Staub</target>
+          <source>Dust</source>
+          <target state="new">Dust</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_duststorm" translate="yes" xml:space="preserve">
-          <source>尘暴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Staubsturm</target>
+          <source>Dust storm</source>
+          <target state="new">Dust storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_extreme_rain" translate="yes" xml:space="preserve">
-          <source>暴雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starker Regen</target>
+          <source>Extreme rain</source>
+          <target state="new">Extreme rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_few_clouds" translate="yes" xml:space="preserve">
-          <source>少云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aufgelockert bewölkt</target>
+          <source>Few clouds</source>
+          <target state="new">Few clouds</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_foggy" translate="yes" xml:space="preserve">
-          <source>雾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nebel</target>
+          <source>Fog</source>
+          <target state="new">Fog</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_freezing_rain" translate="yes" xml:space="preserve">
-          <source>冻雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Glatteisregen</target>
+          <source>Freezing rain</source>
+          <target state="new">Freezing rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_fresh_breeze" translate="yes" xml:space="preserve">
-          <source>劲风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starker wind</target>
+          <source>Fresh breeze</source>
+          <target state="new">Fresh breeze</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_gale" translate="yes" xml:space="preserve">
-          <source>大风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Starker Wind</target>
+          <source>Gale</source>
+          <target state="new">Gale</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_hail" translate="yes" xml:space="preserve">
-          <source>冰雹</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hagel</target>
+          <source>Hail</source>
+          <target state="new">Hail</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_haze" translate="yes" xml:space="preserve">
-          <source>霾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dunst</target>
+          <source>Haze</source>
+          <target state="new">Haze</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_heavy_rain" translate="yes" xml:space="preserve">
-          <source>大雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starker Regen</target>
+          <source>Heavy rain</source>
+          <target state="new">Heavy rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_heavy_shower_rain" translate="yes" xml:space="preserve">
-          <source>强阵雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starke Duschen</target>
+          <source>Heavy shower</source>
+          <target state="new">Heavy shower</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_heavy_snow" translate="yes" xml:space="preserve">
-          <source>大雪</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Großer Schnee</target>
+          <source>Heavy snow</source>
+          <target state="new">Heavy snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_heavy_storm_rain" translate="yes" xml:space="preserve">
-          <source>大暴雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starker Regen</target>
+          <source>Heavy storm</source>
+          <target state="new">Heavy storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_heavy_thunderstorm" translate="yes" xml:space="preserve">
-          <source>雷暴</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Gewitter</target>
+          <source>Thunderstorm</source>
+          <target state="new">Thunderstorm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_high_wind" translate="yes" xml:space="preserve">
-          <source>疾风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Explosion</target>
+          <source>High wind</source>
+          <target state="new">High wind</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_hot" translate="yes" xml:space="preserve">
-          <source>变热</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Heiß</target>
+          <source>Getting hot</source>
+          <target state="new">Getting hot</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_hurricane" translate="yes" xml:space="preserve">
-          <source>台风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Taifun</target>
+          <source>Hurricane</source>
+          <target state="new">Hurricane</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_light_breeze" translate="yes" xml:space="preserve">
-          <source>清风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kühle Brise</target>
+          <source>Light breeze</source>
+          <target state="new">Light breeze</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_light_rain" translate="yes" xml:space="preserve">
-          <source>小雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Leichter Regen</target>
+          <source>Light rain</source>
+          <target state="new">Light rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_light_snow" translate="yes" xml:space="preserve">
-          <source>小雪</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Mäßiger Schnee</target>
+          <source>Light snow</source>
+          <target state="new">Light snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_mist" translate="yes" xml:space="preserve">
-          <source>薄雾</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Haze</target>
+          <source>Mist</source>
+          <target state="new">Mist</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_moderate" translate="yes" xml:space="preserve">
-          <source>和风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zephir</target>
+          <source>Moderate</source>
+          <target state="new">Moderate</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_moderate_rain" translate="yes" xml:space="preserve">
-          <source>中雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mäßiger Regen</target>
+          <source>Moderate rain</source>
+          <target state="new">Moderate rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_moderate_snow" translate="yes" xml:space="preserve">
-          <source>中雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mäßiger Schnee</target>
+          <source>Moderate snow</source>
+          <target state="new">Moderate snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_overcast" translate="yes" xml:space="preserve">
-          <source>阴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Yin</target>
+          <source>Overcast</source>
+          <target state="new">Overcast</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_partly_cloudy" translate="yes" xml:space="preserve">
-          <source>大部多云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Die meisten bedeckt</target>
+          <source>Partly cloudy</source>
+          <target state="new">Partly cloudy</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_rain_snow" translate="yes" xml:space="preserve">
-          <source>雨雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Regen und Schnee</target>
+          <source>Rain snow</source>
+          <target state="new">Rain snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_sand" translate="yes" xml:space="preserve">
-          <source>沙尘</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Staub</target>
+          <source>Sand</source>
+          <target state="new">Sand</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_sandstorm" translate="yes" xml:space="preserve">
-          <source>沙尘暴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Staubsturm</target>
+          <source>Sand storm</source>
+          <target state="new">Sand storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_severe_storm_rain" translate="yes" xml:space="preserve">
-          <source>极端降水</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Extreme Niederschläge</target>
+          <source>Severe storm</source>
+          <target state="new">Severe storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_shower_rain" translate="yes" xml:space="preserve">
-          <source>阵雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dusche</target>
+          <source>Shower</source>
+          <target state="new">Shower</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_shower_snow" translate="yes" xml:space="preserve">
-          <source>阵雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schneeschauer</target>
+          <source>Shower snow</source>
+          <target state="new">Shower snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_sleet" translate="yes" xml:space="preserve">
-          <source>雨夹雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Graupel</target>
+          <source>Sleet</source>
+          <target state="new">Sleet</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_snowstorm" translate="yes" xml:space="preserve">
-          <source>暴风雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Blizzard</target>
+          <source>Snow storm</source>
+          <target state="new">Snow storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_snow_flurry" translate="yes" xml:space="preserve">
-          <source>短时降雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kurzzeit-Schneefall</target>
+          <source>Flurry snow</source>
+          <target state="new">Flurry snow</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_storm" translate="yes" xml:space="preserve">
-          <source>暴风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sturm</target>
+          <source>Storm</source>
+          <target state="new">Storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_storm_rain" translate="yes" xml:space="preserve">
-          <source>暴风雨</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Sturm</target>
+          <source>Storm rain</source>
+          <target state="new">Storm rain</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_strong_breeze" translate="yes" xml:space="preserve">
-          <source>强风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starke Winde</target>
+          <source>Strong breeze</source>
+          <target state="new">Strong breeze</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_strong_gale" translate="yes" xml:space="preserve">
-          <source>烈风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Gale</target>
+          <source>Strong gale</source>
+          <target state="new">Strong gale</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_sunny" translate="yes" xml:space="preserve">
-          <source>晴</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Sonne</target>
+          <source>Sunny</source>
+          <target state="new">Sunny</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_thundershower" translate="yes" xml:space="preserve">
-          <source>雷阵雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Donner Sturm</target>
+          <source>Thunder shower</source>
+          <target state="new">Thunder shower</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_tornado" translate="yes" xml:space="preserve">
-          <source>龙卷风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tornado</target>
+          <source>Tornado</source>
+          <target state="new">Tornado</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_tropical_storm" translate="yes" xml:space="preserve">
-          <source>热带风暴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tropischer Sturm</target>
+          <source>Tropical storm</source>
+          <target state="new">Tropical storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">...</target>
+          <target state="new">...</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_violent_storm" translate="yes" xml:space="preserve">
-          <source>飓风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zyklon</target>
+          <source>Violent storm</source>
+          <target state="new">Violent storm</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_volcanic_ash" translate="yes" xml:space="preserve">
-          <source>火山灰</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vulkanische Asche</target>
+          <source>Volcanic ash</source>
+          <target state="new">Volcanic ash</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_windy" translate="yes" xml:space="preserve">
-          <source>有风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Windig</target>
+          <source>Windy</source>
+          <target state="new">Windy</target>
         </trans-unit>
         <trans-unit id="WindDirection_east" translate="yes" xml:space="preserve">
-          <source>东风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wind Ost </target>
+          <source>East </source>
+          <target state="new">East </target>
         </trans-unit>
         <trans-unit id="WindDirection_north" translate="yes" xml:space="preserve">
-          <source>北风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wind Nord </target>
+          <source>North </source>
+          <target state="new">North </target>
         </trans-unit>
         <trans-unit id="WindDirection_northeast" translate="yes" xml:space="preserve">
-          <source>东北风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nordosten</target>
+          <source>Northeast</source>
+          <target state="new">Northeast</target>
         </trans-unit>
         <trans-unit id="WindDirection_northwest" translate="yes" xml:space="preserve">
-          <source>西北风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nordwestlichen wind</target>
+          <source>Northwest</source>
+          <target state="new">Northwest</target>
         </trans-unit>
         <trans-unit id="WindDirection_south" translate="yes" xml:space="preserve">
-          <source>南风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wind Süd </target>
+          <source>South </source>
+          <target state="new">South </target>
         </trans-unit>
         <trans-unit id="WindDirection_southeast" translate="yes" xml:space="preserve">
-          <source>东南风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Südöstlicher wind</target>
+          <source>Southeast</source>
+          <target state="new">Southeast</target>
         </trans-unit>
         <trans-unit id="WindDirection_southwest" translate="yes" xml:space="preserve">
-          <source>西南风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Südwestlicher wind</target>
+          <source>Southwest</source>
+          <target state="new">Southwest</target>
         </trans-unit>
         <trans-unit id="WindDirection_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">...</target>
+          <target state="new">...</target>
         </trans-unit>
         <trans-unit id="WindDirection_west" translate="yes" xml:space="preserve">
-          <source>西风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Wind West </target>
+          <source>West </source>
+          <target state="new">West </target>
         </trans-unit>
         <trans-unit id="WindScale_eight" translate="yes" xml:space="preserve">
-          <source>大风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Starker Wind</target>
+          <source>Gale</source>
+          <target state="new">Gale</target>
         </trans-unit>
         <trans-unit id="WindScale_eighteen" translate="yes" xml:space="preserve">
-          <source>极强台飓风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starke Wirbelstürme</target>
+          <source>Strong hurricanes</source>
+          <target state="new">Strong hurricanes</target>
         </trans-unit>
         <trans-unit id="WindScale_eleven" translate="yes" xml:space="preserve">
-          <source>暴风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sturm</target>
+          <source>Storm</source>
+          <target state="new">Storm</target>
         </trans-unit>
         <trans-unit id="WindScale_fifteen" translate="yes" xml:space="preserve">
-          <source>强台飓风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Stärkere Wirbelstürme</target>
+          <source>Stronger hurricanes</source>
+          <target state="new">Stronger hurricanes</target>
         </trans-unit>
         <trans-unit id="WindScale_five" translate="yes" xml:space="preserve">
-          <source>清风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kühle Brise</target>
+          <source>Light breeze</source>
+          <target state="new">Light breeze</target>
         </trans-unit>
         <trans-unit id="WindScale_four" translate="yes" xml:space="preserve">
-          <source>和风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zephir</target>
+          <source>Moderate</source>
+          <target state="new">Moderate</target>
         </trans-unit>
         <trans-unit id="WindScale_fourteen" translate="yes" xml:space="preserve">
-          <source>强台飓风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Stärkere Wirbelstürme</target>
+          <source>Stronger hurricanes</source>
+          <target state="new">Stronger hurricanes</target>
         </trans-unit>
         <trans-unit id="WindScale_nine" translate="yes" xml:space="preserve">
-          <source>烈风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Gale</target>
+          <source>Gale</source>
+          <target state="new">Gale</target>
         </trans-unit>
         <trans-unit id="WindScale_one" translate="yes" xml:space="preserve">
-          <source>平静</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ruhig</target>
+          <source>Calm</source>
+          <target state="new">Calm</target>
         </trans-unit>
         <trans-unit id="WindScale_seven" translate="yes" xml:space="preserve">
-          <source>疾风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Explosion</target>
+          <source>Strong breeze</source>
+          <target state="new">Strong breeze</target>
         </trans-unit>
         <trans-unit id="WindScale_seventeen" translate="yes" xml:space="preserve">
-          <source>超强台飓风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Super-Hurrikan</target>
+          <source>Super Hurricane</source>
+          <target state="new">Super Hurricane</target>
         </trans-unit>
         <trans-unit id="WindScale_six" translate="yes" xml:space="preserve">
-          <source>强风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starke Winde</target>
+          <source>Strong gale</source>
+          <target state="new">Strong gale</target>
         </trans-unit>
         <trans-unit id="WindScale_sixteen" translate="yes" xml:space="preserve">
-          <source>超强台飓风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Super-Hurrikan</target>
+          <source>Super Hurricane</source>
+          <target state="new">Super Hurricane</target>
         </trans-unit>
         <trans-unit id="WindScale_ten" translate="yes" xml:space="preserve">
-          <source>狂风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Der wind</target>
+          <source>High wind</source>
+          <target state="new">High wind</target>
         </trans-unit>
         <trans-unit id="WindScale_thirteen" translate="yes" xml:space="preserve">
-          <source>台风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Taifun</target>
+          <source>Hurricane</source>
+          <target state="new">Hurricane</target>
         </trans-unit>
         <trans-unit id="WindScale_three" translate="yes" xml:space="preserve">
-          <source>轻风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Brise</target>
+          <source>Breeze</source>
+          <target state="new">Breeze</target>
         </trans-unit>
         <trans-unit id="WindScale_twelve" translate="yes" xml:space="preserve">
-          <source>飓风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zyklon</target>
+          <source>Cyclone</source>
+          <target state="new">Cyclone</target>
         </trans-unit>
         <trans-unit id="WindScale_two" translate="yes" xml:space="preserve">
-          <source>微风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Brise</target>
+          <source>Breeze</source>
+          <target state="new">Breeze</target>
         </trans-unit>
         <trans-unit id="WindScale_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">...</target>
+          <target state="new">...</target>
         </trans-unit>
         <trans-unit id="WindScale_zero" translate="yes" xml:space="preserve">
-          <source>无风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kein wind</target>
+          <source>No wind</source>
+          <target state="new">No wind</target>
         </trans-unit>
         <trans-unit id="AboutText.Text" translate="yes" xml:space="preserve">
-          <source>关于</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Info</target>
+          <source>About</source>
+          <target state="new">About</target>
         </trans-unit>
         <trans-unit id="AppName" translate="yes" xml:space="preserve">
-          <source>极光天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aurora-Wetter</target>
+          <source>Aurora weather</source>
+          <target state="new">Aurora weather</target>
         </trans-unit>
         <trans-unit id="AppNameText.Text" translate="yes" xml:space="preserve">
-          <source>极光天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aurora-Wetter</target>
+          <source>Aurora weather</source>
+          <target state="new">Aurora weather</target>
         </trans-unit>
         <trans-unit id="buchaoguoshi.Text" translate="yes" xml:space="preserve">
-          <source>不超过十, 不显示十位</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nicht mehr als zehn und zehn Ziffern werden nicht angezeigt</target>
+          <source>If no more than ten, ten digits won't be displayed</source>
+          <target state="new">If no more than ten, ten digits won't be displayed</target>
         </trans-unit>
         <trans-unit id="chaoguoshi.Text" translate="yes" xml:space="preserve">
-          <source>不超过十, 十位显示零</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nicht mehr als zehn, zeigt zehn NULL</target>
+          <source>If no more than ten, shows zero</source>
+          <target state="new">If no more than ten, shows zero</target>
         </trans-unit>
         <trans-unit id="DateDes.Text" translate="yes" xml:space="preserve">
-          <source>日:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tag:</target>
+          <source>Day:</source>
+          <target state="new">Day:</target>
         </trans-unit>
         <trans-unit id="Description" translate="yes" xml:space="preserve">
-          <source>极光天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aurora-Wetter</target>
+          <source>Aurora weather</source>
+          <target state="new">Aurora weather</target>
         </trans-unit>
         <trans-unit id="FeedbackText.Content" translate="yes" xml:space="preserve">
-          <source>评分反馈</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Auswertung von Rückmeldungen</target>
+          <source>Feedback</source>
+          <target state="new">Feedback</target>
         </trans-unit>
         <trans-unit id="HourDes.Text" translate="yes" xml:space="preserve">
-          <source>时:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zeit:</target>
+          <source>Hour:</source>
+          <target state="new">Hour:</target>
         </trans-unit>
         <trans-unit id="MonthDes.Text" translate="yes" xml:space="preserve">
-          <source>月:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Monat:</target>
+          <source>Month:</source>
+          <target state="new">Month:</target>
         </trans-unit>
         <trans-unit id="OpenSourceText.Content" translate="yes" xml:space="preserve">
-          <source>开放源代码许可</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Open-Source-Lizenz</target>
+          <source>Open source license</source>
+          <target state="new">Open source license</target>
         </trans-unit>
         <trans-unit id="ProviderText.Content" translate="yes" xml:space="preserve">
-          <source>数据提供方</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Datenprovider</target>
+          <source>Data providers</source>
+          <target state="new">Data providers</target>
         </trans-unit>
         <trans-unit id="ShortName" translate="yes" xml:space="preserve">
-          <source>天气</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Wetter</target>
+          <source>Weather</source>
+          <target state="new">Weather</target>
         </trans-unit>
         <trans-unit id="TimeFormatDescrip.Text" translate="yes" xml:space="preserve">
-          <source>日期时间格式示例</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Datums-und Zeitformate Beispiel</target>
+          <source>Date-time examples</source>
+          <target state="new">Date-time examples</target>
         </trans-unit>
         <trans-unit id="YearDes.Text" translate="yes" xml:space="preserve">
-          <source>年:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Jahr:</target>
+          <source>Year:</source>
+          <target state="new">Year:</target>
         </trans-unit>
         <trans-unit id="bianleng" translate="yes" xml:space="preserve">
-          <source>会变冷</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wird kalt werden</target>
+          <source>Will get cold</source>
+          <target state="new">Will get cold</target>
         </trans-unit>
         <trans-unit id="bianre" translate="yes" xml:space="preserve">
-          <source>会变热</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wird heiß</target>
+          <source>Will get hot</source>
+          <target state="new">Will get hot</target>
         </trans-unit>
         <trans-unit id="breeze0" translate="yes" xml:space="preserve">
-          <source>微风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Brise</target>
+          <source>Breeze</source>
+          <target state="new">Breeze</target>
         </trans-unit>
         <trans-unit id="breeze1" translate="yes" xml:space="preserve">
-          <source>和风</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zephir</target>
+          <source>Zephyr</source>
+          <target state="new">Zephyr</target>
         </trans-unit>
         <trans-unit id="dust0" translate="yes" xml:space="preserve">
-          <source>有沙尘</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Staub</target>
+          <source>Dust</source>
+          <target state="new">Dust</target>
         </trans-unit>
         <trans-unit id="duststorm0" translate="yes" xml:space="preserve">
-          <source>有恶劣沙尘</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schlechte Staub</target>
+          <source>Bad dust</source>
+          <target state="new">Bad dust</target>
         </trans-unit>
         <trans-unit id="few_clouds0" translate="yes" xml:space="preserve">
-          <source>少云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aufgelockert bewölkt</target>
+          <source>Few clouds</source>
+          <target state="new">Few clouds</target>
         </trans-unit>
         <trans-unit id="few_clouds1" translate="yes" xml:space="preserve">
-          <source>飘云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schwimmende Wolken</target>
+          <source>Floating clouds</source>
+          <target state="new">Floating clouds</target>
         </trans-unit>
         <trans-unit id="foggy0" translate="yes" xml:space="preserve">
-          <source>有雾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Neblig</target>
+          <source>Foggy</source>
+          <target state="new">Foggy</target>
         </trans-unit>
         <trans-unit id="freezing_rain0" translate="yes" xml:space="preserve">
-          <source>有冻雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Glatteisregen</target>
+          <source>Freezing rain</source>
+          <target state="new">Freezing rain</target>
         </trans-unit>
         <trans-unit id="gale0" translate="yes" xml:space="preserve">
-          <source>有强风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Es gab starke Winde</target>
+          <source>There were strong winds</source>
+          <target state="new">There were strong winds</target>
         </trans-unit>
         <trans-unit id="gale1" translate="yes" xml:space="preserve">
-          <source>大风天</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Windiger Tag</target>
+          <source>Windy day</source>
+          <target state="new">Windy day</target>
         </trans-unit>
         <trans-unit id="Glance" translate="yes" xml:space="preserve">
-          <source>{0}{1}  {2}.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">{0} {1} {2}.</target>
+          <source>{0} {1} {2}.</source>
+          <target state="new">{0} {1} {2}.</target>
         </trans-unit>
         <trans-unit id="Glancecloudy0" translate="yes" xml:space="preserve">
-          <source>多云</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Bewölkt</target>
+          <source>Cloudy</source>
+          <target state="new">Cloudy</target>
         </trans-unit>
         <trans-unit id="Glancecloudy1" translate="yes" xml:space="preserve">
-          <source>有云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wolke</target>
+          <source>Cloud</source>
+          <target state="new">Cloud</target>
         </trans-unit>
         <trans-unit id="GlanceFull" translate="yes" xml:space="preserve">
-          <source>{0}{1}, {2}{3}. 明日: {4},{5}.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">{0} {1}, {2} {3}. Morgen: {4}, {5}.</target>
+          <source>{0} {1}, {2}{3}. Tomorrow: {4},{5}.</source>
+          <target state="new">{0} {1}, {2}{3}. Tomorrow: {4},{5}.</target>
         </trans-unit>
         <trans-unit id="GlanceSunny0" translate="yes" xml:space="preserve">
-          <source>晴朗</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Sonne</target>
+          <source>Clear</source>
+          <target state="new">Clear</target>
         </trans-unit>
         <trans-unit id="GlanceSunny1" translate="yes" xml:space="preserve">
-          <source>无云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wolke-frei</target>
+          <source>Cloud-free</source>
+          <target state="new">Cloud-free</target>
         </trans-unit>
         <trans-unit id="hail0" translate="yes" xml:space="preserve">
-          <source>有冰雹</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hagel</target>
+          <source>Hail</source>
+          <target state="new">Hail</target>
         </trans-unit>
         <trans-unit id="haotianqi0" translate="yes" xml:space="preserve">
-          <source>适宜外出</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ausstatten</target>
+          <source>Fit out</source>
+          <target state="new">Fit out</target>
         </trans-unit>
         <trans-unit id="haotianqi1" translate="yes" xml:space="preserve">
-          <source>天气很好</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Gutes Wetter</target>
+          <source>Good weather</source>
+          <target state="new">Good weather</target>
         </trans-unit>
         <trans-unit id="haze0" translate="yes" xml:space="preserve">
-          <source>有霾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dunst</target>
+          <source>Haze</source>
+          <target state="new">Haze</target>
         </trans-unit>
         <trans-unit id="heavy_rain0" translate="yes" xml:space="preserve">
-          <source>有大雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Starker Regen</target>
+          <source>Heavy rain</source>
+          <target state="new">Heavy rain</target>
         </trans-unit>
         <trans-unit id="heavy_rain1" translate="yes" xml:space="preserve">
-          <source>外出注意大雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aus Liebe zum Starkregen</target>
+          <source>Out attention to heavy rain</source>
+          <target state="new">Out attention to heavy rain</target>
         </trans-unit>
         <trans-unit id="heavy_snow0" translate="yes" xml:space="preserve">
-          <source>有大雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schweren Schnee</target>
+          <source>Heavy snow</source>
+          <target state="new">Heavy snow</target>
         </trans-unit>
         <trans-unit id="heavy_snow1" translate="yes" xml:space="preserve">
-          <source>大雪天</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Snow</target>
+          <source>Snow</source>
+          <target state="new">Snow</target>
         </trans-unit>
         <trans-unit id="heavy_storm_rain0" translate="yes" xml:space="preserve">
-          <source>有暴风雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Der Sturm</target>
+          <source>The storm</source>
+          <target state="new">The storm</target>
         </trans-unit>
         <trans-unit id="heavy_storm_rain1" translate="yes" xml:space="preserve">
-          <source>不宜外出</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nicht ausgehen</target>
+          <source>Not going out</source>
+          <target state="new">Not going out</target>
         </trans-unit>
         <trans-unit id="huaitianqi0" translate="yes" xml:space="preserve">
-          <source>天气不好</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schlechtes Wetter</target>
+          <source>Bad weather</source>
+          <target state="new">Bad weather</target>
         </trans-unit>
         <trans-unit id="huaitianqi1" translate="yes" xml:space="preserve">
-          <source>天气较差</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schlechtem Wetter</target>
+          <source>Poor weather</source>
+          <target state="new">Poor weather</target>
         </trans-unit>
         <trans-unit id="jintian" translate="yes" xml:space="preserve">
-          <source>今天</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">&amp;Heute</target>
+          <source>Today</source>
+          <target state="new">Today</target>
         </trans-unit>
         <trans-unit id="mist0" translate="yes" xml:space="preserve">
-          <source>有薄雾</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Misty</target>
+          <source>Misty</source>
+          <target state="new">Misty</target>
         </trans-unit>
         <trans-unit id="moderate_rain0" translate="yes" xml:space="preserve">
-          <source>小雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Leichter Regen</target>
+          <source>Light rain</source>
+          <target state="new">Light rain</target>
         </trans-unit>
         <trans-unit id="moderate_rain1" translate="yes" xml:space="preserve">
-          <source>有雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Regen</target>
+          <source>Rain</source>
+          <target state="new">Rain</target>
         </trans-unit>
         <trans-unit id="moderate_rain2" translate="yes" xml:space="preserve">
-          <source>雨天</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Regentag</target>
+          <source>Rainy Day</source>
+          <target state="new">Rainy Day</target>
         </trans-unit>
         <trans-unit id="moderate_rain3" translate="yes" xml:space="preserve">
-          <source>需要带伞</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Einen Regenschirm mitbringen müssen</target>
+          <source>Need to bring an umbrella</source>
+          <target state="new">Need to bring an umbrella</target>
         </trans-unit>
         <trans-unit id="moderate_snow0" translate="yes" xml:space="preserve">
-          <source>有雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Es lag Schnee</target>
+          <source>There was snow</source>
+          <target state="new">There was snow</target>
         </trans-unit>
         <trans-unit id="moderate_snow1" translate="yes" xml:space="preserve">
-          <source>雪天</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schnee-Tag</target>
+          <source>Snow day</source>
+          <target state="new">Snow day</target>
         </trans-unit>
         <trans-unit id="moderate_snow2" translate="yes" xml:space="preserve">
-          <source>会下雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schnee wird</target>
+          <source>Will snow</source>
+          <target state="new">Will snow</target>
         </trans-unit>
         <trans-unit id="nengjiandudi0" translate="yes" xml:space="preserve">
-          <source>能见度低</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schlechter Sicht</target>
+          <source>Low visibility</source>
+          <target state="new">Low visibility</target>
         </trans-unit>
         <trans-unit id="nengjiandudi1" translate="yes" xml:space="preserve">
-          <source>能见度差</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sichtbarkeit ist schlecht</target>
+          <source>Low visibility</source>
+          <target state="new">Low visibility</target>
         </trans-unit>
         <trans-unit id="overcast0" translate="yes" xml:space="preserve">
-          <source>阴天</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Schattierung</target>
+          <source>Overcast</source>
+          <target state="new">Overcast</target>
         </trans-unit>
         <trans-unit id="overcast1" translate="yes" xml:space="preserve">
-          <source>没有太阳</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ohne Sonne</target>
+          <source>No sun</source>
+          <target state="new">No sun</target>
         </trans-unit>
         <trans-unit id="partly_cloudy0" translate="yes" xml:space="preserve">
-          <source>局部多云</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mostly cloudy</target>
+          <source>Partly cloudy</source>
+          <target state="new">Partly cloudy</target>
         </trans-unit>
         <trans-unit id="shiduda0" translate="yes" xml:space="preserve">
-          <source>湿度较大</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hoher Luftfeuchtigkeit</target>
+          <source>High humidity</source>
+          <target state="new">High humidity</target>
         </trans-unit>
         <trans-unit id="shiduda1" translate="yes" xml:space="preserve">
-          <source>空气湿润</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Feuchte Luft</target>
+          <source>Moist air</source>
+          <target state="new">Moist air</target>
         </trans-unit>
         <trans-unit id="shower0" translate="yes" xml:space="preserve">
-          <source>有阵雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Es gibt Duschen</target>
+          <source>There are showers</source>
+          <target state="new">There are showers</target>
         </trans-unit>
         <trans-unit id="shower1" translate="yes" xml:space="preserve">
-          <source>间歇降雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zeitweise Regen</target>
+          <source>Intermittent rain</source>
+          <target state="new">Intermittent rain</target>
         </trans-unit>
         <trans-unit id="shower_snow0" translate="yes" xml:space="preserve">
-          <source>有阵雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schneeschauer</target>
+          <source>Snow showers</source>
+          <target state="new">Snow showers</target>
         </trans-unit>
         <trans-unit id="shower_snow1" translate="yes" xml:space="preserve">
-          <source>有短时降雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kurzzeit-Schneefall</target>
+          <source>Short-time snowfall</source>
+          <target state="new">Short-time snowfall</target>
         </trans-unit>
         <trans-unit id="sleet0" translate="yes" xml:space="preserve">
-          <source>有雨夹雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Der Graupel</target>
+          <source>The sleet</source>
+          <target state="new">The sleet</target>
         </trans-unit>
         <trans-unit id="sleet1" translate="yes" xml:space="preserve">
-          <source>雨雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Regen und Schnee</target>
+          <source>Rain and snow</source>
+          <target state="new">Rain and snow</target>
         </trans-unit>
         <trans-unit id="snowstorm0" translate="yes" xml:space="preserve">
-          <source>有暴风雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ein Sturm</target>
+          <source>A storm</source>
+          <target state="new">A storm</target>
         </trans-unit>
         <trans-unit id="snowstorm1" translate="yes" xml:space="preserve">
-          <source>有恶劣降雪</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Armen Schneefall</target>
+          <source>Poor snowfall</source>
+          <target state="new">Poor snowfall</target>
         </trans-unit>
         <trans-unit id="storm0" translate="yes" xml:space="preserve">
-          <source>注意风暴</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Achten Sie auf Sturm</target>
+          <source>Pay attention to storm</source>
+          <target state="new">Pay attention to storm</target>
         </trans-unit>
         <trans-unit id="thundershower0" translate="yes" xml:space="preserve">
-          <source>有雷雨</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Donner</target>
+          <source>Thunder</source>
+          <target state="new">Thunder</target>
         </trans-unit>
         <trans-unit id="unknown_weather" translate="yes" xml:space="preserve">
-          <source>未知天气</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Unbekannte Wetter</target>
+          <source>Unknown weather</source>
+          <target state="new">Unknown weather</target>
         </trans-unit>
         <trans-unit id="wanjian" translate="yes" xml:space="preserve">
-          <source>晚间</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">'Nabend</target>
+          <source>Evening</source>
+          <target state="new">Evening</target>
         </trans-unit>
         <trans-unit id="wendudi0" translate="yes" xml:space="preserve">
-          <source>低温</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Niedrige Temperatur</target>
+          <source>Low temperature</source>
+          <target state="new">Low temperature</target>
         </trans-unit>
         <trans-unit id="wendudi1" translate="yes" xml:space="preserve">
-          <source>持续降温</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Kontinuierliche Kühlung</target>
+          <source>Continuous cooling</source>
+          <target state="new">Continuous cooling</target>
         </trans-unit>
         <trans-unit id="wendugao0" translate="yes" xml:space="preserve">
-          <source>高温</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hochtemperatur</target>
+          <source>High temperature</source>
+          <target state="new">High temperature</target>
         </trans-unit>
         <trans-unit id="wendugao1" translate="yes" xml:space="preserve">
-          <source>持续升温</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Weiter zu erwärmen</target>
+          <source>Continues to heat up</source>
+          <target state="new">Continues to heat up</target>
         </trans-unit>
         <trans-unit id="windy0" translate="yes" xml:space="preserve">
-          <source>有风</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Windig</target>
+          <source>Windy</source>
+          <target state="new">Windy</target>
         </trans-unit>
         <trans-unit id="xianzai" translate="yes" xml:space="preserve">
-          <source>现在</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Jetzt</target>
+          <source>Now</source>
+          <target state="new">Now</target>
         </trans-unit>
         <trans-unit id="MinDes.Text" translate="yes" xml:space="preserve">
-          <source>分:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Cent:</target>
+          <source>Minute:</source>
+          <target state="new">Minute:</target>
         </trans-unit>
         <trans-unit id="OtherDes.Text" translate="yes" xml:space="preserve">
-          <source>其他:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Andere:</target>
+          <source>Other:</source>
+          <target state="new">Other:</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
-          <source>搜索城市</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Suche Stadt</target>
+          <source>Search Cities</source>
+          <target state="new">Search Cities</target>
         </trans-unit>
         <trans-unit id="Cacel" translate="yes" xml:space="preserve">
-          <source>取消</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">abbrechen</target>
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
         </trans-unit>
         <trans-unit id="Delete" translate="yes" xml:space="preserve">
-          <source>删除</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">entfernen</target>
+          <source>Delete</source>
+          <target state="new">Delete</target>
         </trans-unit>
         <trans-unit id="Edit" translate="yes" xml:space="preserve">
-          <source>编辑</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Bearbeiten</target>
+          <source>Edit</source>
+          <target state="new">Edit</target>
         </trans-unit>
         <trans-unit id="Pin" translate="yes" xml:space="preserve">
-          <source>钉选</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nagel-Auswahl</target>
+          <source>Pin</source>
+          <target state="new">Pin</target>
         </trans-unit>
         <trans-unit id="Refresh" translate="yes" xml:space="preserve">
-          <source>刷新</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">aktualisieren</target>
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
         </trans-unit>
         <trans-unit id="EditButton.Label" translate="yes" xml:space="preserve">
-          <source>编辑</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">Bearbeiten</target>
+          <source>Edit</source>
+          <target state="new">Edit</target>
         </trans-unit>
         <trans-unit id="AutoSuggestbox.PlaceholderText" translate="yes" xml:space="preserve">
-          <source>中国城市输入中文, 全拼, 其他输入英文</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Eingabe chinesischer in chinesischen Städten, Rechtschreibung, Englisch</target>
+          <source>When search Chinese cities, using chinese or pinyin</source>
+          <target state="new">When search Chinese cities, using chinese or pinyin</target>
         </trans-unit>
         <trans-unit id="Thankyou" translate="yes" xml:space="preserve">
-          <source>这个 App 将为你提供更好的服务!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Diese App stellt Ihnen besseren Service zur Verfügung!</target>
+          <source>Insane mode!</source>
+          <target state="new">Insane mode!</target>
         </trans-unit>
         <trans-unit id="ThankyouTitle" translate="yes" xml:space="preserve">
-          <source>谢谢你!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Danke!</target>
+          <source>Thank you!</source>
+          <target state="new">Thank you!</target>
         </trans-unit>
         <trans-unit id="Cities_Null" translate="yes" xml:space="preserve">
-          <source>未设置城市...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Stadt ist nicht festgelegt...</target>
+          <source>No Cities here...</source>
+          <target state="new">No Cities here...</target>
         </trans-unit>
         <trans-unit id="Error" translate="yes" xml:space="preserve">
-          <source>出了一点小错误...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Es gibt ein kleiner Fehler...</target>
+          <source>There is a small error ...</source>
+          <target state="new">There is a small error ...</target>
         </trans-unit>
         <trans-unit id="Network_Error" translate="yes" xml:space="preserve">
-          <source>网络连接失败...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Netzwerkverbindung fehlgeschlagen...</target>
+          <source>Network connection failed ...</source>
+          <target state="new">Network connection failed ...</target>
         </trans-unit>
         <trans-unit id="Quit" translate="yes" xml:space="preserve">
-          <source>退出</source>
-          <target state="needs-review-translation" state-qualifier="exact-match">beenden</target>
+          <source>Quit</source>
+          <target state="new">Quit</target>
         </trans-unit>
         <trans-unit id="Service_Unavailable" translate="yes" xml:space="preserve">
-          <source>天气服务当前不可用...</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Der Wetterdienst ist derzeit nicht verfügbar...</target>
+          <source>The weather service is currently unavailable ...</source>
+          <target state="new">The weather service is currently unavailable ...</target>
         </trans-unit>
         <trans-unit id="Setting" translate="yes" xml:space="preserve">
-          <source>转到设置</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Zu Einstellungen wechseln</target>
+          <source>Settings</source>
+          <target state="new">Settings</target>
         </trans-unit>
         <trans-unit id="DataSourceText.Text" translate="yes" xml:space="preserve">
-          <source>数据提供方:</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Datenanbieter:</target>
+          <source>Data providers:</source>
+          <target state="new">Data providers:</target>
         </trans-unit>
         <trans-unit id="Retry" translate="yes" xml:space="preserve">
-          <source>再试一次?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wiederholen?</target>
+          <source>Try again?</source>
+          <target state="new">Try again?</target>
+        </trans-unit>
+        <trans-unit id="LongTime" translate="yes" xml:space="preserve">
+          <source>Waiting longer than expected...</source>
+          <target state="new">Waiting longer than expected...</target>
         </trans-unit>
       </group>
     </body>

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Com.Aurora.AuWeather</RootNamespace>
     <AssemblyName>Com.Aurora.AuWeather</AssemblyName>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
@@ -100,7 +100,7 @@
   </PropertyGroup>
   <PropertyGroup Label="MultilingualAppToolkit">
     <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
-    <MultilingualFallbackLanguage>zh-CN</MultilingualFallbackLanguage>
+    <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
@@ -631,13 +631,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Logos\" />
+  </ItemGroup>
+  <ItemGroup>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de-DE.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-CA.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-GB.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-SG.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-US.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en.xlf" />
+    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-CL.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-ES.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-MX.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es.xlf" />
@@ -651,17 +659,6 @@
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ko.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ru-RU.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ru.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-Hans.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-Hant.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.zh-TW.xlf" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
-      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Logos\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
