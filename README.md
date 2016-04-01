@@ -21,11 +21,11 @@ In Aurora weather, you can view real-time weather forecasts for more than 50,000
 
 ## Release Note 发行说明 ##
  - 1.0.1604   
- Publishing
+ Publishing    
  发布到应用商店
 
  - 1.0.1603    
- First Release
+ First Release    
  首次发布
 
 
