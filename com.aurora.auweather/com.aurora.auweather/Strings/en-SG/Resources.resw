@@ -12,4 +12,157 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Add_Image" xml:space="preserve">
+    <value>Customise</value>
+  </data>
+  <data name="DanweiText.Text" xml:space="preserve">
+    <value>Conversion</value>
+  </data>
+  <data name="DescripButton.Content" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="FeedbackButton.Label" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FormatText.Text" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="LengthParameter_KM" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="LengthParameter_M" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="LengthParText.Text" xml:space="preserve">
+    <value>Visibility</value>
+  </data>
+  <data name="LoadingDataText.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="LocateOnText.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="NowButton.Label" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Replace_Image" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="RequestedTheme_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsButton.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsText.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SplashText.Text" xml:space="preserve">
+    <value>Preparing data.</value>
+  </data>
+  <data name="TemperatureParameter_Fahrenheit" xml:space="preserve">
+    <value>Fahrenheit</value>
+  </data>
+  <data name="TempParText.Text" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
+  <data name="ThemeText.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="TomorrowText.Text" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
+  <data name="VisibilityText.Text" xml:space="preserve">
+    <value>Visibility</value>
+  </data>
+  <data name="WelcomeText.Text" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WeatherCondition_moderate" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+  <data name="WindDirection_east" xml:space="preserve">
+    <value>East</value>
+  </data>
+  <data name="WindDirection_north" xml:space="preserve">
+    <value>North</value>
+  </data>
+  <data name="WindDirection_west" xml:space="preserve">
+    <value>West</value>
+  </data>
+  <data name="WindScale_four" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="DateDes.Text" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="FeedbackText.Content" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="HourDes.Text" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="MonthDes.Text" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>Weather</value>
+  </data>
+  <data name="YearDes.Text" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="GlanceSunny0" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="jintian" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="xianzai" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="MinDes.Text" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="OtherDes.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Cacel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="EditButton.Label" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Try again?</value>
+  </data>
 </root>

@@ -279,7 +279,7 @@ namespace Com.Aurora.AuWeather
             var final = Models.Location.GetNearsetLocation(citys,
                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
 
-            if (settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
+            if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
                 final = null;
                 citys.Clear();

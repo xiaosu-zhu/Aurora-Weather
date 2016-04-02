@@ -158,7 +158,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
             var final = Models.Location.GetNearsetLocation(cities,
                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-            if (Cities.LocatedCity.Id == final.ToArray()[0].Id)
+            if (Cities.LocatedCity != null && Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
                 final = null;
                 if (Cities.SavedCities.IsNullorEmpty())

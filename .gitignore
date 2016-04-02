@@ -235,3 +235,22 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 *.db
+/com.aurora.auweather/com.aurora.auweather/Assets/Key
+/com.aurora.auweather/com.aurora.auweather/_scale-400.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-240.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-180.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-150.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-140.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-125.appx
+/com.aurora.auweather/com.aurora.auweather/_scale-100.appx
+/com.aurora.auweather/com.aurora.auweather/_pkginfo.txt
+/com.aurora.auweather/com.aurora.auweather/_language-zh-hant.appx
+/com.aurora.auweather/com.aurora.auweather/_language-zh-hans.appx
+/com.aurora.auweather/com.aurora.auweather/_language-ru.appx
+/com.aurora.auweather/com.aurora.auweather/_language-ko.appx
+/com.aurora.auweather/com.aurora.auweather/_language-ja.appx
+/com.aurora.auweather/com.aurora.auweather/_language-it.appx
+/com.aurora.auweather/com.aurora.auweather/_language-fr.appx
+/com.aurora.auweather/com.aurora.auweather/_language-es.appx
+/com.aurora.auweather/com.aurora.auweather/_language-en.appx
+/com.aurora.auweather/com.aurora.auweather/_language-de.appx

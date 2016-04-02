@@ -8,7 +8,7 @@
       <group id="COM.AURORA.AUWEATHER/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="About" translate="yes" xml:space="preserve">
           <source>About</source>
-          <target state="new">About</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">About</target>
         </trans-unit>
         <trans-unit id="AddButton.Label" translate="yes" xml:space="preserve">
           <source>Search Cities</source>
@@ -16,7 +16,7 @@
         </trans-unit>
         <trans-unit id="Add_Image" translate="yes" xml:space="preserve">
           <source>Customize</source>
-          <target state="new">Customize</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Customize</target>
         </trans-unit>
         <trans-unit id="BlurBGText.Text" translate="yes" xml:space="preserve">
           <source>Enable Blur</source>
@@ -60,11 +60,11 @@
         </trans-unit>
         <trans-unit id="DanweiText.Text" translate="yes" xml:space="preserve">
           <source>Conversion</source>
-          <target state="new">Conversion</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Conversion</target>
         </trans-unit>
         <trans-unit id="DescripButton.Content" translate="yes" xml:space="preserve">
           <source>Description</source>
-          <target state="new">Description</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Description</target>
         </trans-unit>
         <trans-unit id="DisableDynamicDescripText.Text" translate="yes" xml:space="preserve">
           <source>Turn off dynamic weather and reduce memory usage</source>
@@ -128,7 +128,7 @@
         </trans-unit>
         <trans-unit id="FeedbackButton.Label" translate="yes" xml:space="preserve">
           <source>Feedback</source>
-          <target state="new">Feedback</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Feedback</target>
         </trans-unit>
         <trans-unit id="FluText.Text" translate="yes" xml:space="preserve">
           <source>Flu index:  </source>
@@ -144,7 +144,7 @@
         </trans-unit>
         <trans-unit id="FormatText.Text" translate="yes" xml:space="preserve">
           <source>Date and Time</source>
-          <target state="new">Date and Time</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Date and time</target>
         </trans-unit>
         <trans-unit id="Haze.Header" translate="yes" xml:space="preserve">
           <source>Sand and haze</source>
@@ -164,11 +164,11 @@
         </trans-unit>
         <trans-unit id="LengthParameter_KM" translate="yes" xml:space="preserve">
           <source>km</source>
-          <target state="new">km</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">km</target>
         </trans-unit>
         <trans-unit id="LengthParameter_M" translate="yes" xml:space="preserve">
           <source>m</source>
-          <target state="new">m</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">m</target>
         </trans-unit>
         <trans-unit id="LengthParameter_Mile" translate="yes" xml:space="preserve">
           <source>mile</source>
@@ -180,11 +180,11 @@
         </trans-unit>
         <trans-unit id="LengthParText.Text" translate="yes" xml:space="preserve">
           <source>Visibility</source>
-          <target state="new">Visibility</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Visibility</target>
         </trans-unit>
         <trans-unit id="LoadingDataText.Text" translate="yes" xml:space="preserve">
           <source>Loading</source>
-          <target state="new">Loading</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Loading...</target>
         </trans-unit>
         <trans-unit id="LocateDeniedButton.Content" translate="yes" xml:space="preserve">
           <source>Location permissions are denied</source>
@@ -192,7 +192,7 @@
         </trans-unit>
         <trans-unit id="LocateOnText.Text" translate="yes" xml:space="preserve">
           <source>Location</source>
-          <target state="new">Location</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Location</target>
         </trans-unit>
         <trans-unit id="LocatingText.Text" translate="yes" xml:space="preserve">
           <source>Locating</source>
@@ -216,7 +216,7 @@
         </trans-unit>
         <trans-unit id="NowButton.Label" translate="yes" xml:space="preserve">
           <source>Now</source>
-          <target state="new">Now</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Now</target>
         </trans-unit>
         <trans-unit id="Obtain" translate="yes" xml:space="preserve">
           <source>Pay what you want</source>
@@ -228,7 +228,7 @@
         </trans-unit>
         <trans-unit id="Preferences" translate="yes" xml:space="preserve">
           <source>Preferences</source>
-          <target state="new">Preferences</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Preferences</target>
         </trans-unit>
         <trans-unit id="PressureParameter_Atm" translate="yes" xml:space="preserve">
           <source>Atm</source>
@@ -240,7 +240,7 @@
         </trans-unit>
         <trans-unit id="PressureParameter_Hpa" translate="yes" xml:space="preserve">
           <source>MB</source>
-          <target state="new">MB</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">MB</target>
         </trans-unit>
         <trans-unit id="PressureParameter_Torr" translate="yes" xml:space="preserve">
           <source>Torr</source>
@@ -264,7 +264,7 @@
         </trans-unit>
         <trans-unit id="RefreshButton.Label" translate="yes" xml:space="preserve">
           <source>Refresh</source>
-          <target state="new">Refresh</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Refresh</target>
         </trans-unit>
         <trans-unit id="RefreshFreqText.Text" translate="yes" xml:space="preserve">
           <source>Refresh interval</source>
@@ -288,11 +288,11 @@
         </trans-unit>
         <trans-unit id="Replace_Image" translate="yes" xml:space="preserve">
           <source>Replace</source>
-          <target state="new">Replace</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Replace</target>
         </trans-unit>
         <trans-unit id="RequestedTheme_Auto" translate="yes" xml:space="preserve">
           <source>Auto</source>
-          <target state="new">Auto</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Auto</target>
         </trans-unit>
         <trans-unit id="RequestedTheme_Dark" translate="yes" xml:space="preserve">
           <source>Dark</source>
@@ -308,15 +308,15 @@
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>Settings</source>
-          <target state="new">Settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Settings</target>
         </trans-unit>
         <trans-unit id="SettingsButton.Label" translate="yes" xml:space="preserve">
           <source>Settings</source>
-          <target state="new">Settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Settings</target>
         </trans-unit>
         <trans-unit id="SettingsText.Text" translate="yes" xml:space="preserve">
           <source>Settings</source>
-          <target state="new">Settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Settings</target>
         </trans-unit>
         <trans-unit id="ShowSecondText.Text" translate="yes" xml:space="preserve">
           <source>Show second</source>
@@ -348,7 +348,7 @@
         </trans-unit>
         <trans-unit id="SplashText.Text" translate="yes" xml:space="preserve">
           <source>Preparing data ...</source>
-          <target state="new">Preparing data ...</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Preparing data.</target>
         </trans-unit>
         <trans-unit id="SportText.Text" translate="yes" xml:space="preserve">
           <source>Sport index:  </source>
@@ -372,7 +372,7 @@
         </trans-unit>
         <trans-unit id="TemperatureParameter_Fahrenheit" translate="yes" xml:space="preserve">
           <source>Fahrenheit</source>
-          <target state="new">Fahrenheit</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Fahrenheit</target>
         </trans-unit>
         <trans-unit id="TemperatureParameter_Kelvin" translate="yes" xml:space="preserve">
           <source>Kelvin</source>
@@ -380,11 +380,11 @@
         </trans-unit>
         <trans-unit id="TempParText.Text" translate="yes" xml:space="preserve">
           <source>Temperature</source>
-          <target state="new">Temperature</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Temperature</target>
         </trans-unit>
         <trans-unit id="ThemeText.Text" translate="yes" xml:space="preserve">
           <source>Theme</source>
-          <target state="new">Theme</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Theme</target>
         </trans-unit>
         <trans-unit id="TitleBlock.Text" translate="yes" xml:space="preserve">
           <source>Aurora weather</source>
@@ -396,7 +396,7 @@
         </trans-unit>
         <trans-unit id="TomorrowText.Text" translate="yes" xml:space="preserve">
           <source>Tomorrow</source>
-          <target state="new">Tomorrow</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Tomorrow</target>
         </trans-unit>
         <trans-unit id="TravelText.Text" translate="yes" xml:space="preserve">
           <source>Travel index:  </source>
@@ -412,11 +412,11 @@
         </trans-unit>
         <trans-unit id="VisibilityText.Text" translate="yes" xml:space="preserve">
           <source>Visibility</source>
-          <target state="new">Visibility</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Visibility</target>
         </trans-unit>
         <trans-unit id="WelcomeText.Text" translate="yes" xml:space="preserve">
           <source>Welcome!</source>
-          <target state="new">Welcome!</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Welcome</target>
         </trans-unit>
         <trans-unit id="WindParameter_BeaufortandDegree" translate="yes" xml:space="preserve">
           <source>Scale + angle</source>
@@ -584,7 +584,7 @@
         </trans-unit>
         <trans-unit id="WeatherCondition_moderate" translate="yes" xml:space="preserve">
           <source>Moderate</source>
-          <target state="new">Moderate</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Moderate</target>
         </trans-unit>
         <trans-unit id="WeatherCondition_moderate_rain" translate="yes" xml:space="preserve">
           <source>Moderate rain</source>
@@ -688,11 +688,11 @@
         </trans-unit>
         <trans-unit id="WindDirection_east" translate="yes" xml:space="preserve">
           <source>East </source>
-          <target state="new">East </target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">East</target>
         </trans-unit>
         <trans-unit id="WindDirection_north" translate="yes" xml:space="preserve">
           <source>North </source>
-          <target state="new">North </target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">North</target>
         </trans-unit>
         <trans-unit id="WindDirection_northeast" translate="yes" xml:space="preserve">
           <source>Northeast</source>
@@ -720,7 +720,7 @@
         </trans-unit>
         <trans-unit id="WindDirection_west" translate="yes" xml:space="preserve">
           <source>West </source>
-          <target state="new">West </target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">West</target>
         </trans-unit>
         <trans-unit id="WindScale_eight" translate="yes" xml:space="preserve">
           <source>Gale</source>
@@ -744,7 +744,7 @@
         </trans-unit>
         <trans-unit id="WindScale_four" translate="yes" xml:space="preserve">
           <source>Moderate</source>
-          <target state="new">Moderate</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Moderate</target>
         </trans-unit>
         <trans-unit id="WindScale_fourteen" translate="yes" xml:space="preserve">
           <source>Stronger hurricanes</source>
@@ -804,7 +804,7 @@
         </trans-unit>
         <trans-unit id="AboutText.Text" translate="yes" xml:space="preserve">
           <source>About</source>
-          <target state="new">About</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">About</target>
         </trans-unit>
         <trans-unit id="AppName" translate="yes" xml:space="preserve">
           <source>Aurora weather</source>
@@ -824,7 +824,7 @@
         </trans-unit>
         <trans-unit id="DateDes.Text" translate="yes" xml:space="preserve">
           <source>Day:</source>
-          <target state="new">Day:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Day</target>
         </trans-unit>
         <trans-unit id="Description" translate="yes" xml:space="preserve">
           <source>Aurora weather</source>
@@ -832,15 +832,15 @@
         </trans-unit>
         <trans-unit id="FeedbackText.Content" translate="yes" xml:space="preserve">
           <source>Feedback</source>
-          <target state="new">Feedback</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Feedback</target>
         </trans-unit>
         <trans-unit id="HourDes.Text" translate="yes" xml:space="preserve">
           <source>Hour:</source>
-          <target state="new">Hour:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Hour</target>
         </trans-unit>
         <trans-unit id="MonthDes.Text" translate="yes" xml:space="preserve">
           <source>Month:</source>
-          <target state="new">Month:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Month</target>
         </trans-unit>
         <trans-unit id="OpenSourceText.Content" translate="yes" xml:space="preserve">
           <source>Open source license</source>
@@ -852,7 +852,7 @@
         </trans-unit>
         <trans-unit id="ShortName" translate="yes" xml:space="preserve">
           <source>Weather</source>
-          <target state="new">Weather</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Weather</target>
         </trans-unit>
         <trans-unit id="TimeFormatDescrip.Text" translate="yes" xml:space="preserve">
           <source>Date-time examples</source>
@@ -860,7 +860,7 @@
         </trans-unit>
         <trans-unit id="YearDes.Text" translate="yes" xml:space="preserve">
           <source>Year:</source>
-          <target state="new">Year:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Year</target>
         </trans-unit>
         <trans-unit id="bianleng" translate="yes" xml:space="preserve">
           <source>Will get cold</source>
@@ -928,7 +928,7 @@
         </trans-unit>
         <trans-unit id="GlanceSunny0" translate="yes" xml:space="preserve">
           <source>Clear</source>
-          <target state="new">Clear</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Clear</target>
         </trans-unit>
         <trans-unit id="GlanceSunny1" translate="yes" xml:space="preserve">
           <source>Cloud-free</source>
@@ -984,7 +984,7 @@
         </trans-unit>
         <trans-unit id="jintian" translate="yes" xml:space="preserve">
           <source>Today</source>
-          <target state="new">Today</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Today</target>
         </trans-unit>
         <trans-unit id="mist0" translate="yes" xml:space="preserve">
           <source>Misty</source>
@@ -1116,15 +1116,15 @@
         </trans-unit>
         <trans-unit id="xianzai" translate="yes" xml:space="preserve">
           <source>Now</source>
-          <target state="new">Now</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Now</target>
         </trans-unit>
         <trans-unit id="MinDes.Text" translate="yes" xml:space="preserve">
           <source>Minute:</source>
-          <target state="new">Minute:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Minute</target>
         </trans-unit>
         <trans-unit id="OtherDes.Text" translate="yes" xml:space="preserve">
           <source>Other:</source>
-          <target state="new">Other:</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Other</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>Search Cities</source>
@@ -1132,27 +1132,27 @@
         </trans-unit>
         <trans-unit id="Cacel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Cancel</target>
         </trans-unit>
         <trans-unit id="Delete" translate="yes" xml:space="preserve">
           <source>Delete</source>
-          <target state="new">Delete</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Delete</target>
         </trans-unit>
         <trans-unit id="Edit" translate="yes" xml:space="preserve">
           <source>Edit</source>
-          <target state="new">Edit</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Edit</target>
         </trans-unit>
         <trans-unit id="Pin" translate="yes" xml:space="preserve">
           <source>Pin</source>
-          <target state="new">Pin</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pin</target>
         </trans-unit>
         <trans-unit id="Refresh" translate="yes" xml:space="preserve">
           <source>Refresh</source>
-          <target state="new">Refresh</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Refresh</target>
         </trans-unit>
         <trans-unit id="EditButton.Label" translate="yes" xml:space="preserve">
           <source>Edit</source>
-          <target state="new">Edit</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Edit</target>
         </trans-unit>
         <trans-unit id="AutoSuggestbox.PlaceholderText" translate="yes" xml:space="preserve">
           <source>When search Chinese cities, using chinese or pinyin</source>
@@ -1164,7 +1164,7 @@
         </trans-unit>
         <trans-unit id="ThankyouTitle" translate="yes" xml:space="preserve">
           <source>Thank you!</source>
-          <target state="new">Thank you!</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Thank you,</target>
         </trans-unit>
         <trans-unit id="Cities_Null" translate="yes" xml:space="preserve">
           <source>No Cities here...</source>
@@ -1188,7 +1188,7 @@
         </trans-unit>
         <trans-unit id="Setting" translate="yes" xml:space="preserve">
           <source>Settings</source>
-          <target state="new">Settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Settings</target>
         </trans-unit>
         <trans-unit id="DataSourceText.Text" translate="yes" xml:space="preserve">
           <source>Data providers:</source>
@@ -1196,7 +1196,7 @@
         </trans-unit>
         <trans-unit id="Retry" translate="yes" xml:space="preserve">
           <source>Try again?</source>
-          <target state="new">Try again?</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Try again?</target>
         </trans-unit>
         <trans-unit id="LongTime" translate="yes" xml:space="preserve">
           <source>Waiting longer than expected...</source>
