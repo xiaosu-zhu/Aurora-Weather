@@ -1,7 +1,7 @@
 #Aurora Weather#
 
 *About API Key*    
-*关于 API Key*   
+*关于 API Key*       
 *I didn't upload the api key because it takes some money and is limited for using, in case of abuse, I hide that file, but you can still try a free key by following steps:*    
 *因为这个 API 的接口不是免费的，所以为了防止滥用我隐藏了它，但是你依然可以尝试免费版接口:*
  1. Go to [Baidu Api Store][1]   
