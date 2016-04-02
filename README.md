@@ -1,4 +1,4 @@
-# Aurora Weather
+#Aurora Weather#
 
 *About API Key*    
 *关于 API Key*   
@@ -43,8 +43,8 @@ In Aurora weather, you can view real-time weather forecasts for more than 50,000
 **You can get Aurora Weather on Windows Store**    
 **你可以在 Windows Store 上获取极光天气**  
 
-[Windows Store][3]    
-![Windows Store][2]
+[Windows Store][2]    
+![Windows Store][3]
 
 
 
