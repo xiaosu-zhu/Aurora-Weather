@@ -43,10 +43,11 @@ In Aurora weather, you can view real-time weather forecasts for more than 50,000
 **You can get Aurora Weather on Windows Store**    
 **你可以在 Windows Store 上获取极光天气**  
 
-[Windows Store][2]    
-![Windows Store][1]
+[Windows Store][3]    
+![Windows Store][2]
 
 
 
-  [1]: https://assets.windowsphone.com/d86ab9b4-2f3d-4a94-92f8-1598073e7343/English_Get_it_Win_10_InvariantCulture_Default.png
+  [1]: http://apistore.baidu.com/apiworks/servicedetail/478.html "Baidu Api Store"
   [2]: https://www.microsoft.com/store/apps/9nblggh4qmj9 "Windows Store"
+  [3]: https://assets.windowsphone.com/d86ab9b4-2f3d-4a94-92f8-1598073e7343/English_Get_it_Win_10_InvariantCulture_Default.png
