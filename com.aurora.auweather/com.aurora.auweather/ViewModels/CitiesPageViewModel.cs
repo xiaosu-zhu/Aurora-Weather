@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using Com.Aurora.Shared.Extensions;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
+using Com.Aurora.AuWeather.License;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -116,7 +117,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
-                        var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                        var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                         var param = new string[] { "cityid=" + item.Id };
                         var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                         item.data = resstr;
@@ -247,7 +248,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     catch (Exception)
                     {
-                        var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                        var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                         var param = new string[] { "cityid=" + item.Id };
                         resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                     }
@@ -282,7 +283,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var t = ThreadPool.RunAsync(async (work) =>
             {
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
                 var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                 Cities[0].data = resstr;

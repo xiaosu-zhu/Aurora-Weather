@@ -175,7 +175,6 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\Key" />
     <Content Include="Assets\MonthlyPic\1.scale-100.png" />
     <Content Include="Assets\MonthlyPic\1.scale-140.png" />
     <Content Include="Assets\MonthlyPic\1.scale-180.png" />
@@ -290,6 +289,18 @@
     <Content Include="Assets\Square71x71Logo.scale-150.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\Start\welcome0.scale-100.png" />
+    <Content Include="Assets\Start\welcome0.scale-140.png" />
+    <Content Include="Assets\Start\welcome0.scale-180.png" />
+    <Content Include="Assets\Start\welcome0.scale-240.png" />
+    <Content Include="Assets\Start\welcome1.scale-100.png" />
+    <Content Include="Assets\Start\welcome1.scale-140.png" />
+    <Content Include="Assets\Start\welcome1.scale-180.png" />
+    <Content Include="Assets\Start\welcome1.scale-240.png" />
+    <Content Include="Assets\Start\welcome2.scale-100.png" />
+    <Content Include="Assets\Start\welcome2.scale-140.png" />
+    <Content Include="Assets\Start\welcome2.scale-180.png" />
+    <Content Include="Assets\Start\welcome2.scale-240.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-125.png" />
     <Content Include="Assets\StoreLogo.scale-150.png" />

@@ -77,6 +77,7 @@ namespace Com.Aurora.AuWeather
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
             Context.FetchDataFailed += Context_FetchDataFailed;
+
             //DataContext = new NowWeatherPageViewModel();
 
         }
@@ -628,13 +629,16 @@ namespace Com.Aurora.AuWeather
             {
                 MainCanvas.Width = double.NaN;
                 MainCanvas.Height = double.NaN;
-                immersiveTimer = ThreadPoolTimer.CreateTimer((task) =>
+                immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
                 {
                     var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                       {
                           ImmersiveAllIn.Begin();
-                          isImmersiveAllIn = true;
+
+                          Window.Current.CoreWindow.PointerCursor = null;
                       }));
+                    await Task.Delay(160);
+                    isImmersiveAllIn = true;
                 }, TimeSpan.FromSeconds(1));
             };
             ImmersiveTransAni.Begin();
@@ -654,6 +658,7 @@ namespace Com.Aurora.AuWeather
             {
                 if (isImmersiveAllIn)
                 {
+                    Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
                     ImmersiveAllBack.Begin();
                     isImmersiveAllIn = false;
                 }
@@ -665,10 +670,11 @@ namespace Com.Aurora.AuWeather
                         var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                         {
                             ImmersiveAllIn.Begin();
-
+                            Window.Current.CoreWindow.PointerCursor = null;
                         }));
                         await Task.Delay(160);
                         isImmersiveAllIn = true;
+
                     }, TimeSpan.FromSeconds(2));
                 }
             }

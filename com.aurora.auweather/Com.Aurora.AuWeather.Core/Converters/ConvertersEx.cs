@@ -26,10 +26,10 @@ namespace Com.Aurora.Shared.Converters
             var t = (Temperature)value;
             switch (TempratureConverter.Parameter)
             {
-                case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + "бу";
-                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + "бу";
+                case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + 'бу';
+                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + 'бу';
                 case TemperatureParameter.Kelvin: return t.Kelvin.ToString("0");
-                default: return t.Celsius.ToString("0") + "бу";
+                default: return t.Celsius.ToString("0") + 'бу';
             }
         }
 
@@ -1201,9 +1201,9 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    public class ImmersiveDateTimeConverter : IValueConverter
+    public class ImmersiveHourConverter : IValueConverter
     {
-        public static string DateTimeConverterParameter { get; private set; } = "H:mm";
+        public static string DateTimeConverterParameter { get; private set; } = "H";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
@@ -1221,6 +1221,47 @@ namespace Com.Aurora.Shared.Converters
         public static void ChangeParameter(string par)
         {
             DateTimeConverterParameter = par;
+        }
+    }
+
+    public class ImmersiveMinConverter : IValueConverter
+    {
+        public static string DateTimeConverterParameter { get; private set; } = "mm";
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return "...";
+            }
+            return ((DateTime)value).ToString(DateTimeConverterParameter);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void ChangeParameter(string par)
+        {
+            DateTimeConverterParameter = par;
+        }
+    }
+
+    public class ImmersiveSecConverter : IValueConverter
+    {
+        public static string DateTimeConverterParameter { get; private set; } = "ss";
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return "...";
+            }
+            return ((DateTime)value).ToString(DateTimeConverterParameter);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 

@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
@@ -53,7 +54,7 @@ namespace Com.Aurora.AuWeather.Background
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
-            var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+            var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
             var param = new string[] { "cityid=" + currentCity.Id };
             var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
             var resjson1 = HeWeatherContract.Generate(resstr);

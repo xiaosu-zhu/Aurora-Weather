@@ -387,8 +387,8 @@
           <target state="new">Theme</target>
         </trans-unit>
         <trans-unit id="TitleBlock.Text" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
-          <target state="new">Aurora weather</target>
+          <source>Aurora Weather</source>
+          <target state="new">Aurora Weather</target>
         </trans-unit>
         <trans-unit id="ToastText.Text" translate="yes" xml:space="preserve">
           <source>Weather reminder</source>
@@ -807,12 +807,12 @@
           <target state="new">About</target>
         </trans-unit>
         <trans-unit id="AppName" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
-          <target state="new">Aurora weather</target>
+          <source>Aurora Weather</source>
+          <target state="new">Aurora Weather</target>
         </trans-unit>
         <trans-unit id="AppNameText.Text" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
-          <target state="new">Aurora weather</target>
+          <source>Aurora Weather</source>
+          <target state="new">Aurora Weather</target>
         </trans-unit>
         <trans-unit id="buchaoguoshi.Text" translate="yes" xml:space="preserve">
           <source>If no more than ten, ten digits won't be displayed</source>
@@ -827,8 +827,8 @@
           <target state="new">Day:</target>
         </trans-unit>
         <trans-unit id="Description" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
-          <target state="new">Aurora weather</target>
+          <source>Aurora Weather</source>
+          <target state="new">Aurora Weather</target>
         </trans-unit>
         <trans-unit id="FeedbackText.Content" translate="yes" xml:space="preserve">
           <source>Feedback</source>
@@ -1201,6 +1201,30 @@
         <trans-unit id="LongTime" translate="yes" xml:space="preserve">
           <source>Waiting longer than expected...</source>
           <target state="new">Waiting longer than expected...</target>
+        </trans-unit>
+        <trans-unit id="Welcome0Detail.Text" translate="yes" xml:space="preserve">
+          <source>Easy to reach, easy to see</source>
+          <target state="new">Easy to reach, easy to see</target>
+        </trans-unit>
+        <trans-unit id="Welcome0Text.Text" translate="yes" xml:space="preserve">
+          <source>Dynamic</source>
+          <target state="new">Dynamic</target>
+        </trans-unit>
+        <trans-unit id="Welcome1Detail.Text" translate="yes" xml:space="preserve">
+          <source>Pin it on the Start</source>
+          <target state="new">Pin it on the Start</target>
+        </trans-unit>
+        <trans-unit id="Welcome1Text.Text" translate="yes" xml:space="preserve">
+          <source>Tile</source>
+          <target state="new">Tile</target>
+        </trans-unit>
+        <trans-unit id="Welcome2Detail.Text" translate="yes" xml:space="preserve">
+          <source>Go to Settings-&gt;Personalization-&gt;Lockscreen and set lockscreen notifications!</source>
+          <target state="new">Go to Settings-&gt;Personalization-&gt;Lockscreen and set lockscreen notifications!</target>
+        </trans-unit>
+        <trans-unit id="Welcome2Text.Text" translate="yes" xml:space="preserve">
+          <source>Notification</source>
+          <target state="new">Notification</target>
         </trans-unit>
       </group>
     </body>

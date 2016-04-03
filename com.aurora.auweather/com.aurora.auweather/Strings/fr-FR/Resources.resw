@@ -909,4 +909,22 @@
   <data name="LongTime" xml:space="preserve">
     <value>Attendre plus longtemps que prévu...</value>
   </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>Facilement accessible, facile à voir</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>Dynamique</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>Épingler sur le départ</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>Mosaïque</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>Allez à paramètres-&gt;personnalisation-&gt;Lockscreen et notifications de lockscreen set !</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>Notification</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
@@ -126,6 +127,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public bool enableDynamic;
         private bool enablePull;
         private TimeSpan utcOffset;
+        private bool disableSecond;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1150,6 +1152,18 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public bool DisableSecond
+        {
+            get
+            {
+                return disableSecond;
+            }
+            set
+            {
+                SetProperty(ref disableSecond, value);
+            }
+        }
+
         public void RefreshAsync()
         {
             Init();
@@ -1287,7 +1301,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         return;
                     }
                 }
-                var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + currentId };
                 resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
                 if (resstr == null)
@@ -1521,6 +1535,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 nowHourIndex = 0;
             }
+            DisableSecond = !settings.Preferences.EnableImmersiveSecond;
             UpdateTime = fetchresult.Location.UpdateTime;
             utcOffset = UpdateTime - fetchresult.Location.UtcTime;
             RefreshCurrentTime();
@@ -1623,7 +1638,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             WindSpeedConverter.ChangeParameter(settings.Preferences.WindParameter, settings.Preferences.SpeedParameter);
             PressureConverter.ChangeParameter(settings.Preferences.PressureParameter);
             VisibilityConverter.ChangeParameter(settings.Preferences.LengthParameter);
-            ImmersiveDateTimeConverter.ChangeParameter(settings.Preferences.GetImmersiveFormat());
+            ImmersiveHourConverter.ChangeParameter(settings.Preferences.GetImmersiveHourFormat());
+            ImmersiveMinConverter.ChangeParameter(settings.Preferences.GetImmersiveMinFormat());
         }
 
         private void ReadSettings()

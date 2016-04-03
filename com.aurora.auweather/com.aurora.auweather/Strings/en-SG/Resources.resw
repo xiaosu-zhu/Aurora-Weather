@@ -165,4 +165,10 @@
   <data name="Retry" xml:space="preserve">
     <value>Try again?</value>
   </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>Notification</value>
+  </data>
 </root>

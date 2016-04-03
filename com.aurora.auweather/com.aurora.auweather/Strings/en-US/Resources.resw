@@ -403,7 +403,7 @@
     <value>Theme</value>
   </data>
   <data name="TitleBlock.Text" xml:space="preserve">
-    <value>Aurora weather</value>
+    <value>Aurora Weather</value>
   </data>
   <data name="ToastText.Text" xml:space="preserve">
     <value>Weather reminder</value>
@@ -718,10 +718,10 @@
     <value>About</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Aurora weather</value>
+    <value>Aurora Weather</value>
   </data>
   <data name="AppNameText.Text" xml:space="preserve">
-    <value>Aurora weather</value>
+    <value>Aurora Weather</value>
   </data>
   <data name="buchaoguoshi.Text" xml:space="preserve">
     <value>If no more than ten, ten digits won't be displayed</value>
@@ -733,7 +733,7 @@
     <value>Day:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Aurora weather</value>
+    <value>Aurora Weather</value>
   </data>
   <data name="FeedbackText.Content" xml:space="preserve">
     <value>Feedback</value>
@@ -1013,5 +1013,23 @@
   </data>
   <data name="LongTime" xml:space="preserve">
     <value>Waiting longer than expected...</value>
+  </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>Easy to reach, easy to see</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>Pin it on the Start</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>Go to Settings-&gt;Personalization-&gt;Lockscreen and set lockscreen notifications!</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>Notification</value>
   </data>
 </root>

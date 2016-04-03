@@ -909,4 +909,22 @@
   <data name="LongTime" xml:space="preserve">
     <value>Warten länger als erwartet...</value>
   </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>Leicht zu erreichen, einfach um zu sehen</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>Dynamisch</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>PIN es am Anfang</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>Nebeneinander</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>Gehen Sie zu Einstellungen-&gt;Personalisierung-&gt;Lockscreen und Set Lockscreen Benachrichtigungen!</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>Benachrichtigung</value>
+  </data>
 </root>

@@ -387,8 +387,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tema</target>
         </trans-unit>
         <trans-unit id="TitleBlock.Text" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
+          <source>Aurora Weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo de la Aurora</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ToastText.Text" translate="yes" xml:space="preserve">
           <source>Weather reminder</source>
@@ -807,12 +808,14 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Acerca de</target>
         </trans-unit>
         <trans-unit id="AppName" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
+          <source>Aurora Weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo de la Aurora</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="AppNameText.Text" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
+          <source>Aurora Weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo de la Aurora</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="buchaoguoshi.Text" translate="yes" xml:space="preserve">
           <source>If no more than ten, ten digits won't be displayed</source>
@@ -827,8 +830,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Día:</target>
         </trans-unit>
         <trans-unit id="Description" translate="yes" xml:space="preserve">
-          <source>Aurora weather</source>
+          <source>Aurora Weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo de la Aurora</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="FeedbackText.Content" translate="yes" xml:space="preserve">
           <source>Feedback</source>
@@ -1201,6 +1205,30 @@
         <trans-unit id="LongTime" translate="yes" xml:space="preserve">
           <source>Waiting longer than expected...</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Espera más de lo esperado...</target>
+        </trans-unit>
+        <trans-unit id="Welcome0Detail.Text" translate="yes" xml:space="preserve">
+          <source>Easy to reach, easy to see</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Fácil acceso, fácil de ver</target>
+        </trans-unit>
+        <trans-unit id="Welcome0Text.Text" translate="yes" xml:space="preserve">
+          <source>Dynamic</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dinámica</target>
+        </trans-unit>
+        <trans-unit id="Welcome1Detail.Text" translate="yes" xml:space="preserve">
+          <source>Pin it on the Start</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">PIN en el inicio</target>
+        </trans-unit>
+        <trans-unit id="Welcome1Text.Text" translate="yes" xml:space="preserve">
+          <source>Tile</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Azulejo de</target>
+        </trans-unit>
+        <trans-unit id="Welcome2Detail.Text" translate="yes" xml:space="preserve">
+          <source>Go to Settings-&gt;Personalization-&gt;Lockscreen and set lockscreen notifications!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ir a Lockscreen personalización de ajustes-&gt;-&gt;y set lockscreen notificaciones!</target>
+        </trans-unit>
+        <trans-unit id="Welcome2Text.Text" translate="yes" xml:space="preserve">
+          <source>Notification</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Notificación</target>
         </trans-unit>
       </group>
     </body>

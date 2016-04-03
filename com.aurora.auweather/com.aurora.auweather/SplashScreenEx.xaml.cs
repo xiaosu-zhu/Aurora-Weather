@@ -20,6 +20,7 @@ using Windows.System.Threading;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.License;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -136,7 +137,7 @@ namespace Com.Aurora.AuWeather
                                  CalcPosition(pos, citys, settings);
                                  if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
                                  {
-                                     var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                                     var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                                      var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
                                      CreateTimeOutTimer();
                                      var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
@@ -173,7 +174,7 @@ namespace Com.Aurora.AuWeather
             {
                 if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
                 {
-                    var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                    var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                     var param = new string[] { "cityid=" + settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id };
                     CreateTimeOutTimer();
                     var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
@@ -222,7 +223,7 @@ namespace Com.Aurora.AuWeather
                     var loader = new ResourceLoader();
                     SplashWelcome.Text = loader.GetString("LongTime");
                 }));
-            }, TimeSpan.FromMilliseconds(3000));
+            }, TimeSpan.FromMilliseconds(5000));
         }
 
         private void CreateTimeOutTimer()
@@ -241,7 +242,7 @@ namespace Com.Aurora.AuWeather
                     d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                     await d.ShowAsync();
                 }));
-            }, TimeSpan.FromMilliseconds(12000));
+            }, TimeSpan.FromMilliseconds(10000));
         }
 
         private void QuitAll(IUICommand command)

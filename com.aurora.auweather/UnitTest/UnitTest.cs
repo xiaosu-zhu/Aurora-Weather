@@ -18,6 +18,7 @@ using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Linq;
 using System.Diagnostics;
+using Com.Aurora.AuWeather.License;
 
 namespace UnitTest
 {
@@ -29,7 +30,7 @@ namespace UnitTest
         {
             string url = "http://apis.baidu.com/heweather/pro/weather";
             string[] param = { "city=beijing" };
-            var keys = (await FileIOHelper.ReadStringFromAssetsAsync("Key")).Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+            var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
             var actual = await BaiduRequestHelper.RequestWithKeyAsync(url, param, keys[0]);
             string notexpected = null;
             Assert.AreNotEqual(notexpected, actual);

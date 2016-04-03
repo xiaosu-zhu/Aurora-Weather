@@ -909,4 +909,22 @@
   <data name="LongTime" xml:space="preserve">
     <value>Ждать больше, чем ожидалось...</value>
   </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>Легко добраться, легко видеть</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>Динамический</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>Закрепите его на старте</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>Плитка</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>Перейти к Lockscreen персонализации настроек&gt;-&gt;и установить lockscreen уведомления!</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>Уведомление</value>
+  </data>
 </root>

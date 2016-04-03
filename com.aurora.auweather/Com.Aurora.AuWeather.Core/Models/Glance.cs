@@ -544,12 +544,12 @@ namespace Com.Aurora.AuWeather.Models
             switch (parameter)
             {
                 case TemperatureParameter.Celsius:
-                    nowtemp = model.DailyForecast[todayIndex].LowTemp.Celsius + "°~" + model.DailyForecast[todayIndex].HighTemp.Celsius + "°";
-                    tomorrowtemp = model.DailyForecast[todayIndex + 1].LowTemp.Celsius + "°~" + model.DailyForecast[todayIndex + 1].HighTemp.Celsius + "°";
+                    nowtemp = model.DailyForecast[todayIndex].LowTemp.Celsius + "°~" + model.DailyForecast[todayIndex].HighTemp.Celsius + '°';
+                    tomorrowtemp = model.DailyForecast[todayIndex + 1].LowTemp.Celsius + "°~" + model.DailyForecast[todayIndex + 1].HighTemp.Celsius + '°';
                     break;
                 case TemperatureParameter.Fahrenheit:
-                    nowtemp = model.DailyForecast[todayIndex + 0].LowTemp.Fahrenheit + "°~" + model.DailyForecast[todayIndex + 0].HighTemp.Fahrenheit + "°";
-                    tomorrowtemp = model.DailyForecast[todayIndex + 1].LowTemp.Fahrenheit + "°~" + model.DailyForecast[todayIndex + 1].HighTemp.Fahrenheit + "°";
+                    nowtemp = model.DailyForecast[todayIndex + 0].LowTemp.Fahrenheit + "°~" + model.DailyForecast[todayIndex + 0].HighTemp.Fahrenheit + '°';
+                    tomorrowtemp = model.DailyForecast[todayIndex + 1].LowTemp.Fahrenheit + "°~" + model.DailyForecast[todayIndex + 1].HighTemp.Fahrenheit + '°';
                     break;
                 case TemperatureParameter.Kelvin:
                     nowtemp = model.DailyForecast[todayIndex + 0].LowTemp.Kelvin + "K~" + model.DailyForecast[todayIndex + 0].HighTemp.Kelvin + "K";

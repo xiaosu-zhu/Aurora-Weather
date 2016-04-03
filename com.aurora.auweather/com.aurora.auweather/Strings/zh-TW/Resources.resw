@@ -1014,4 +1014,22 @@
   <data name="LongTime" xml:space="preserve">
     <value>比預計時間要長...</value>
   </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>清晰直觀，花樣多端</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>動態天氣</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>固定到開始菜單，隨時了解天氣</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>動態磁磚</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>在設置-&gt;個性化-&gt;鎖屏中把鎖屏通知也添加上吧！</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>鎖屏通知</value>
+  </data>
 </root>

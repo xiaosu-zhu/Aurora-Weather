@@ -10,7 +10,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
 {
     public class Preferences
     {
-        public TemperatureParameter TemperatureParameter { get; private set; } = TemperatureParameter.Celsius;
+        public TemperatureParameter TemperatureParameter { get; private set; } = TemperatureParameter.Fahrenheit;
         public PressureParameter PressureParameter { get; private set; } = PressureParameter.Atm;
         public LengthParameter LengthParameter { get; private set; } = LengthParameter.KM;
         public SpeedParameter SpeedParameter { get; private set; } = SpeedParameter.KMPH;
@@ -115,19 +115,17 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public string GetHourlyFormat()
         {
-            return (DecorateFormat[DecorateNumber] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
+            return (DecorateFormat[DecorateNumber] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim(new char[] { ' ', ':' });
         }
 
-        public string GetImmersiveFormat()
+        public string GetImmersiveHourFormat()
         {
-            if (EnableImmersiveSecond)
-            {
-                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber] + ":ss").Trim();
-            }
-            else
-            {
-                return (DecorateFormat[ShowImmersivett ? 1 : 0] + "\n" + HourFormat[HourNumber] + ':' + MinuteFormat[MinuteNumber]).Trim();
-            }
+            return (DecorateFormat[ShowImmersivett ? 1 : 0] + ' ' + HourFormat[HourNumber]).Trim();
+        }
+
+        public string GetImmersiveMinFormat()
+        {
+            return (MinuteFormat[MinuteNumber]).Trim();
         }
 
         public string GetForecastFormat()
@@ -155,7 +153,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public string GetDateFormat()
         {
-            return (YearFormat[YearNumber] + DateSeparator + MonthFormat[MonthNumber] + DateSeparator + DayFormat[DayNumber] + "  " + WeekFormat[WeekNumber]).Trim();
+            return (YearFormat[YearNumber] + DateSeparator + MonthFormat[MonthNumber] + DateSeparator + DayFormat[DayNumber] + "  " + WeekFormat[WeekNumber]).Trim(new char[] { ' ', DateSeparator });
         }
+
+
     }
 }

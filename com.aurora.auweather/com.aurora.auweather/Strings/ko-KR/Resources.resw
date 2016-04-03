@@ -909,4 +909,22 @@
   <data name="LongTime" xml:space="preserve">
     <value>예상 보다 더 이상 대기...</value>
   </data>
+  <data name="Welcome0Detail.Text" xml:space="preserve">
+    <value>보고, 쉽게 도달 하기 쉬운</value>
+  </data>
+  <data name="Welcome0Text.Text" xml:space="preserve">
+    <value>동적</value>
+  </data>
+  <data name="Welcome1Detail.Text" xml:space="preserve">
+    <value>시작에 핀</value>
+  </data>
+  <data name="Welcome1Text.Text" xml:space="preserve">
+    <value>바둑판식 배열</value>
+  </data>
+  <data name="Welcome2Detail.Text" xml:space="preserve">
+    <value>설정-&gt;개인 설정-&gt;Lockscreen 및 설정된 lockscreen 알림으로 이동!</value>
+  </data>
+  <data name="Welcome2Text.Text" xml:space="preserve">
+    <value>알림</value>
+  </data>
 </root>
