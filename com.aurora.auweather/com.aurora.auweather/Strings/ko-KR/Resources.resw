@@ -927,4 +927,19 @@
   <data name="Welcome2Text.Text" xml:space="preserve">
     <value>알림</value>
   </data>
+  <data name="BackText.Text" xml:space="preserve">
+    <value>뒤로</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>자세히</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>새로 고침</value>
+  </data>
+  <data name="HamCloseText.Text" xml:space="preserve">
+    <value>닫다</value>
+  </data>
+  <data name="HamOpenText.Text" xml:space="preserve">
+    <value>열기</value>
+  </data>
 </root>

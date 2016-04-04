@@ -163,7 +163,7 @@
     <value>说明</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>这将关闭动态天气, 并减少内存占用</value>
+    <value>减少内存占用</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
     <value>减弱动态效果</value>
@@ -1031,5 +1031,20 @@
   </data>
   <data name="Welcome2Text.Text" xml:space="preserve">
     <value>锁屏通知</value>
+  </data>
+  <data name="BackText.Text" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="HamCloseText.Text" xml:space="preserve">
+    <value>收起</value>
+  </data>
+  <data name="HamOpenText.Text" xml:space="preserve">
+    <value>展开</value>
   </data>
 </root>

@@ -77,7 +77,7 @@ namespace Com.Aurora.AuWeather
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
             Context.FetchDataFailed += Context_FetchDataFailed;
-
+            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             //DataContext = new NowWeatherPageViewModel();
 
         }
@@ -424,6 +424,12 @@ namespace Com.Aurora.AuWeather
         {
             Context.FetchDataComplete -= MModel_FetchDataComplete;
             Context.ParameterChanged -= MModel_ParameterChanged;
+            if (immersiveTimer != null)
+            {
+                immersiveTimer.Cancel();
+                immersiveTimer = null;
+            }
+            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             if (fengcheTimer != null)
             {
                 fengcheTimer.Cancel();
@@ -629,20 +635,24 @@ namespace Com.Aurora.AuWeather
             {
                 MainCanvas.Width = double.NaN;
                 MainCanvas.Height = double.NaN;
-                immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
+                if (immersiveTimer != null)
                 {
-                    var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-                      {
-                          ImmersiveAllIn.Begin();
+                    immersiveTimer.Cancel();
 
-                          Window.Current.CoreWindow.PointerCursor = null;
-                      }));
-                    await Task.Delay(160);
-                    isImmersiveAllIn = true;
-                }, TimeSpan.FromSeconds(1));
+                }
+                immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
+                    {
+                        var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                        {
+                            ImmersiveAllIn.Begin();
+
+                            Window.Current.CoreWindow.PointerCursor = null;
+                        }));
+                        await Task.Delay(160);
+                        isImmersiveAllIn = true;
+                    }, TimeSpan.FromSeconds(1));
             };
             ImmersiveTransAni.Begin();
-
             if (fengcheTimer != null)
             {
                 fengcheTimer.Cancel();
@@ -665,7 +675,9 @@ namespace Com.Aurora.AuWeather
                 if (immersiveTimer != null)
                 {
                     immersiveTimer.Cancel();
-                    immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
+
+                }
+                immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
                     {
                         var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                         {
@@ -676,21 +688,21 @@ namespace Com.Aurora.AuWeather
                         isImmersiveAllIn = true;
 
                     }, TimeSpan.FromSeconds(2));
-                }
             }
         }
 
         private void ImmersiveBackButton_Click(object sender, RoutedEventArgs e)
         {
-            ImmersiveHeightBack.From = MainCanvas.ActualHeight;
-            ImmersiveWidthBack.From = MainCanvas.ActualWidth;
-            ImmersiveHeightBack.To = 480 - ScrollableRoot.VerticalOffset < 160 ? 160 : 480 - ScrollableRoot.VerticalOffset;
-            ImmersiveWidthBack.To = rootIsWideState ? Root.ActualWidth / 2 : Root.ActualWidth;
             if (immersiveTimer != null)
             {
                 immersiveTimer.Cancel();
                 immersiveTimer = null;
             }
+            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
+            ImmersiveHeightBack.From = MainCanvas.ActualHeight;
+            ImmersiveWidthBack.From = MainCanvas.ActualWidth;
+            ImmersiveHeightBack.To = 480 - ScrollableRoot.VerticalOffset < 160 ? 160 : 480 - ScrollableRoot.VerticalOffset;
+            ImmersiveWidthBack.To = rootIsWideState ? Root.ActualWidth / 2 : Root.ActualWidth;
             App.Current.Resuming -= Current_Resuming;
             ImmersiveBackAni.Completed += (s, args) =>
             {

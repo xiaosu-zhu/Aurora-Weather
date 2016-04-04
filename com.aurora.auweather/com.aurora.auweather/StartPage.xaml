@@ -200,7 +200,7 @@
             </Storyboard>
         </Grid.Resources>
         <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
-        <FlipView Loaded="FlipView_Loaded" x:Name="FlipView" Background="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <FlipView Margin="8,0,8,16" Loaded="FlipView_Loaded" x:Name="FlipView" Background="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <FlipView.Items>
                 <FlipViewItem>
                     <Grid x:Name="StartGrid0" Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

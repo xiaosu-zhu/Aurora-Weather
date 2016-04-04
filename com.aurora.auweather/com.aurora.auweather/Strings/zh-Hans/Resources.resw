@@ -414,4 +414,19 @@
   <data name="Welcome2Text.Text" xml:space="preserve">
     <value>锁屏通知</value>
   </data>
+  <data name="BackText.Text" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="HamCloseText.Text" xml:space="preserve">
+    <value>收起</value>
+  </data>
+  <data name="HamOpenText.Text" xml:space="preserve">
+    <value>展开</value>
+  </data>
 </root>

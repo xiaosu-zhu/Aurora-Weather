@@ -508,6 +508,9 @@
             <RelativePanel>
                 <Image Stretch="UniformToFill" Source="{Binding Converter={StaticResource MainPaneBGConverter}}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="203" />
                 <Button x:Name="HamburgerOpen" Margin="0,32,0,0" Style="{StaticResource SymbolButton}" Width="48" Height="48" Click="Hamburger_Click">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="HamCloseText" />
+                    </ToolTipService.ToolTip>
                     <Button.Foreground>
                         <SolidColorBrush Color="{Binding Converter={StaticResource PaneHamburgerForeConverter}}" />
                     </Button.Foreground>
@@ -613,6 +616,9 @@
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
                 <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Style="{StaticResource SymbolButton}" >
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="HamOpenText" />
+                    </ToolTipService.ToolTip>
                     <Button.Content>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>

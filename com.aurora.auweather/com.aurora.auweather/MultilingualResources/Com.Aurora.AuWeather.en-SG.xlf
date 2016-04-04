@@ -67,12 +67,12 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Description</target>
         </trans-unit>
         <trans-unit id="DisableDynamicDescripText.Text" translate="yes" xml:space="preserve">
-          <source>Turn off dynamic weather and reduce memory usage</source>
-          <target state="new">Turn off dynamic weather and reduce memory usage</target>
+          <source>Reduce memory usage</source>
+          <target state="new">Reduce memory usage</target>
         </trans-unit>
         <trans-unit id="DisableDynamicText.Text" translate="yes" xml:space="preserve">
-          <source>Disable dynamic effect</source>
-          <target state="new">Disable dynamic effect</target>
+          <source>Disable dynamic</source>
+          <target state="new">Disable dynamic</target>
         </trans-unit>
         <trans-unit id="DonateButton.Content" translate="yes" xml:space="preserve">
           <source>Donate it!</source>
@@ -115,12 +115,12 @@
           <target state="new">Dynamic weather</target>
         </trans-unit>
         <trans-unit id="EnableAlarmText.Text" translate="yes" xml:space="preserve">
-          <source>Meteorological disaster warning</source>
-          <target state="new">Meteorological disaster warning</target>
+          <source>Disaster warning</source>
+          <target state="new">Disaster warning</target>
         </trans-unit>
         <trans-unit id="EnableEveryText.Text" translate="yes" xml:space="preserve">
-          <source>Daily weather alerts</source>
-          <target state="new">Daily weather alerts</target>
+          <source>Daily weather</source>
+          <target state="new">Daily weather</target>
         </trans-unit>
         <trans-unit id="ExperimentalText.Text" translate="yes" xml:space="preserve">
           <source>Experimental features</source>
@@ -1225,6 +1225,26 @@
         <trans-unit id="Welcome2Text.Text" translate="yes" xml:space="preserve">
           <source>Notification</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Notification</target>
+        </trans-unit>
+        <trans-unit id="BackText.Text" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">&lt; Back</target>
+        </trans-unit>
+        <trans-unit id="MoreText.Text" translate="yes" xml:space="preserve">
+          <source>More</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">More...</target>
+        </trans-unit>
+        <trans-unit id="RefreshText.Text" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Refresh</target>
+        </trans-unit>
+        <trans-unit id="HamCloseText.Text" translate="yes" xml:space="preserve">
+          <source>Close</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Close</target>
+        </trans-unit>
+        <trans-unit id="HamOpenText.Text" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Open</target>
         </trans-unit>
       </group>
     </body>

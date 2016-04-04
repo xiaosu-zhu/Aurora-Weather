@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 using System;
+using Windows.System.Threading;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -70,11 +71,31 @@ namespace Com.Aurora.AuWeather.CustomControls
             if ((bool)e.NewValue)
             {
                 weatherCanvas.backBlur.BlurIn();
+                weatherCanvas.stopUpdate();
             }
             else
             {
                 weatherCanvas.backBlur.BlurOut();
+                weatherCanvas.continueUpdate();
             }
+        }
+
+        private void continueUpdate()
+        {
+            Canvas.Paused = false;
+        }
+
+        private void stopUpdate()
+        {
+            if (stopUpdateTimer != null)
+            {
+                stopUpdateTimer.Cancel();
+            }
+            if (!EnableDynamic)
+                stopUpdateTimer = ThreadPoolTimer.CreateTimer((x) =>
+                {
+                    Canvas.Paused = true;
+                }, TimeSpan.FromMilliseconds(2100));
         }
 
         private static void OnEnableDynamicChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -99,6 +120,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         }
 
         private WeatherCondition condition = WeatherCondition.unknown;
+        private ThreadPoolTimer stopUpdateTimer;
 
         public WeatherCanvas()
         {

@@ -94,6 +94,7 @@ namespace Com.Aurora.AuWeather.Effects
         {
             enableBlur = true;
             blurFrame = 0;
+
         }
 
         public void ImmersiveOut()

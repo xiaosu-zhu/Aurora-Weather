@@ -64,6 +64,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             catch (Exception)
             {
+                if (c.SavedCities == null)
+                {
+                    c.SavedCities = new CitySettingsModel[] { };
+                }
                 return c;
             }
         }
@@ -78,13 +82,17 @@ namespace Com.Aurora.AuWeather.Models.Settings
             var container = RoamingSettingsHelper.GetContainer("Cities");
             container.Values["CurrentIndex"] = CurrentIndex;
             container.Values["EnableLocate"] = EnableLocate;
-            try
+            if (LocatedCity != null)
             {
-                container.WriteGroupSettings(LocatedCity);
+                try
+                {
+                    container.WriteGroupSettings(LocatedCity);
+                }
+                catch (Exception)
+                {
+                }
             }
-            catch (Exception)
-            {
-            }
+
             SaveCities(container);
         }
 

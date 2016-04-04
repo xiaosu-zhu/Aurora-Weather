@@ -927,4 +927,19 @@
   <data name="Welcome2Text.Text" xml:space="preserve">
     <value>Notifica</value>
   </data>
+  <data name="BackText.Text" xml:space="preserve">
+    <value>Indietro</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>Altro</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="HamCloseText.Text" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="HamOpenText.Text" xml:space="preserve">
+    <value>Apri</value>
+  </data>
 </root>

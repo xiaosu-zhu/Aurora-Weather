@@ -825,6 +825,9 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
             <Button x:Name="MoreButton" Visibility="Collapsed" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,32,0,0">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="MoreText" />
+                </ToolTipService.ToolTip>
                 <Button.Content>
                     <SymbolIcon Symbol="More" />
                 </Button.Content>
@@ -838,11 +841,17 @@
                 </Button.Flyout>
             </Button>
             <Button x:Name="ImmersiveButton" Click="ImmersiveButton_Click" Visibility="Collapsed" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="MoreButton">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="ImmersiveText" />
+                </ToolTipService.ToolTip>
                 <Button.Content>
                     <SymbolIcon Symbol="FullScreen" />
                 </Button.Content>
             </Button>
             <Button x:Name="RefreshButton" Visibility="Collapsed" Command="{Binding RefreshCommand}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="RefreshText" />
+                </ToolTipService.ToolTip>
                 <Button.Content>
                     <SymbolIcon Symbol="Refresh" />
                 </Button.Content>
@@ -856,17 +865,20 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <RelativePanel Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Margin="8" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="Separator0" FontSize="144" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
-                    <TextBlock Margin="8" RelativePanel.LeftOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeHour" FontSize="144" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveHourConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
-                    <TextBlock Margin="8" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="144" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
-                    <TextBlock RelativePanel.RightOf="CurrentTimeMin" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="Separator1" FontSize="64" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" Foreground="White" />
-                    <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="64" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock Margin="8" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="Separator0" FontSize="156" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock Margin="8" RelativePanel.LeftOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeHour" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveHourConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock Margin="8" Width="168" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock RelativePanel.RightOf="CurrentTimeMin" Margin="0,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="Separator1" FontSize="72" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" Foreground="White" />
+                    <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="72" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                 </RelativePanel>
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}" />
                 </TextBlock>
                 <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                 <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="MoreText" />
+                    </ToolTipService.ToolTip>
                     <Button.Content>
                         <SymbolIcon Symbol="More" />
                     </Button.Content>
@@ -886,9 +898,15 @@
                     </Button.Flyout>
                 </Button>
                 <Button x:Name="ImmersiveBackButton" Click="ImmersiveBackButton_Click" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,0,0">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="BackText" />
+                    </ToolTipService.ToolTip>
                     <SymbolIcon Symbol="BackToWindow" />
                 </Button>
                 <Button x:Name="ImmersiveRefreshButton" Grid.RowSpan="5" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="RefreshText" />
+                    </ToolTipService.ToolTip>
                     <Button.Content>
                         <SymbolIcon Symbol="Refresh" />
                     </Button.Content>
