@@ -3,14 +3,14 @@
 *About API Key*    
 *关于 API Key*       
 
-*I didn't upload the api key because it takes some money and is limited for using, in case of abuse, I hide that file, but you can still try a free key by following steps:*    
-*因为这个 API 的接口不是免费的，所以为了防止滥用我隐藏了它，但是你依然可以尝试免费版接口:*
+*I didn't upload the api key because it takes some money and is limited for using, in case of abuse, I hide that file, but you can still try a free key by following steps:(send GET request to  http://apis.baidu.com/heweather/weather/free)*    
+*因为这个 API 的接口不是免费的，所以为了防止滥用我隐藏了它，但是你依然可以尝试免费版接口(调用网址:  http://apis.baidu.com/heweather/weather/free):*
  1. Go to [Baidu Api Store][1].   
     前往中国和世界天气预报 [Baidu Api Store][1].
  2. Sign up and get a key for free.   
     根据提示注册，自动获得免费的 Key.
  3. Store this string as a const member `Key.key` and put it in somewhere your code can access.    
-    把这个文本存储为 Key (不带扩展名) 放到 /com.aurora.auweather/Assets/ 下.
+    把这个文本作为 `Key` 的常量字符串字符串成员 `Key.key`，放在项目中.
 
 ## Intro 简介 ##
 
