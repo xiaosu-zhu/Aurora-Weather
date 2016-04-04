@@ -10,7 +10,7 @@
  2. Sign up and get a key for free.   
     根据提示注册，自动获得免费的 Key.
  3. Store this string as a const member `Key.key` and put it in somewhere your code can access.    
-    把这个文本作为 `Key` 的常量字符串字符串成员 `Key.key`，放在项目中.
+    把这个文本作为 `Key` 的常量字符串成员 `Key.key`，放在项目中.
 
 ## Intro 简介 ##
 
