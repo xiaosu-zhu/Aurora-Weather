@@ -1547,7 +1547,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public void RefreshCurrentTime()
         {
-            CurrentTime = DateTimeHelper.RevisetoLoc(utcOffset);
+            CurrentTime = DateTimeHelper.ReviseLoc(utcOffset);
         }
 
         public void CurrentTimeRefreshTask()
@@ -1569,7 +1569,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             currentTimer = ThreadPoolTimer.CreateTimer(
                 async (task) =>
             {
-                var locTime = DateTimeHelper.RevisetoLoc(utcOffset);
+                var locTime = DateTimeHelper.ReviseLoc(utcOffset);
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
                     CurrentTime = locTime;

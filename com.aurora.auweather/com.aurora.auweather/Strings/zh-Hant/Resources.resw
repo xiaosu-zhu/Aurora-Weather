@@ -1047,4 +1047,7 @@
   <data name="RefreshText.Text" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="NowText.Text" xml:space="preserve">
+    <value>剛剛</value>
+  </data>
 </root>

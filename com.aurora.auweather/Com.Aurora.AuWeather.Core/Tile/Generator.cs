@@ -335,7 +335,7 @@ namespace Com.Aurora.AuWeather.Tile
             var utcOffset = model.Location.UpdateTime - model.Location.UtcTime;
             var sunRise = model.DailyForecast[todayIndex].SunRise;
             var sunSet = model.DailyForecast[todayIndex].SunSet;
-            var currentTime = DateTimeHelper.RevisetoLoc(desiredDate, utcOffset);
+            var currentTime = DateTimeHelper.ReviseLoc(desiredDate, utcOffset);
             var isNight = CalcIsNight(currentTime, sunRise, sunSet);
             var settings = SettingsModel.Get();
             var currentCity = settings.Cities.CurrentIndex < 0 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];

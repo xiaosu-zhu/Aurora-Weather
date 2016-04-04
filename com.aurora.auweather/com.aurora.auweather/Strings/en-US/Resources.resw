@@ -1047,4 +1047,7 @@
   <data name="RefreshText.Text" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="NowText.Text" xml:space="preserve">
+    <value>Now</value>
+  </data>
 </root>

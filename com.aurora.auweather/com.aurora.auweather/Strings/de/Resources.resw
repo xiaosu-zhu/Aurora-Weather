@@ -942,4 +942,7 @@
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Öffnen</value>
   </data>
+  <data name="NowText.Text" xml:space="preserve">
+    <value>JETZT</value>
+  </data>
 </root>

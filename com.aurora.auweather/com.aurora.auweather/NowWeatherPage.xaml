@@ -975,7 +975,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour0" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour0, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse0" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <Ellipse x:Name="TempratureEllipse0" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         </Ellipse>
                         <TextBlock x:Name="HourlyTemp0" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
@@ -988,7 +988,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour1" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour1, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp1" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                            Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverter1}}" />
@@ -1000,7 +1000,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour2" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour2, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp2" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                            Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverter1}}" />
@@ -1012,7 +1012,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour3" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour3, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp3" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                            Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverter1}}" />
@@ -1024,7 +1024,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour4" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour4, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp4" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                            Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverter1}}" />
@@ -1036,7 +1036,7 @@
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour5" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
                                        Foreground="White" Text="{Binding Hour5, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
-                        <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="White" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp5" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                            Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverter1}}" />

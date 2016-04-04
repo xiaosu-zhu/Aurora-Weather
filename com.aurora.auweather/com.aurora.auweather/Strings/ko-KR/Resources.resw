@@ -942,4 +942,7 @@
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>열기</value>
   </data>
+  <data name="NowText.Text" xml:space="preserve">
+    <value>지금</value>
+  </data>
 </root>

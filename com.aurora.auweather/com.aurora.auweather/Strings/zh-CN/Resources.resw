@@ -1047,4 +1047,7 @@
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>展开</value>
   </data>
+  <data name="NowText.Text" xml:space="preserve">
+    <value>现在</value>
+  </data>
 </root>

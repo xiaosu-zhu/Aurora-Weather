@@ -1246,6 +1246,10 @@
           <source>Open</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Open</target>
         </trans-unit>
+        <trans-unit id="NowText.Text" translate="yes" xml:space="preserve">
+          <source>Now</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Now</target>
+        </trans-unit>
       </group>
     </body>
   </file>

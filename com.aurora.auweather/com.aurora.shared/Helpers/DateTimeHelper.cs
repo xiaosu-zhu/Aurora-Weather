@@ -34,22 +34,22 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="loc"></param>
         /// <param name="timeZone"></param>
         /// <returns></returns>
-        public static DateTime RevisetoLoc(TimeZoneInfo timeZone)
+        public static DateTime ReviseLoc(TimeZoneInfo timeZone)
         {
             return TimeZoneInfo.ConvertTime(DateTime.Now, timeZone);
         }
 
-        public static DateTime RevisetoLoc(TimeSpan UtcOffset)
+        public static DateTime ReviseLoc(TimeSpan UtcOffset)
         {
             return DateTime.UtcNow + UtcOffset;
         }
 
-        public static DateTime RevisetoLoc(TimeZoneInfo timeZone, DateTime dateTime)
+        public static DateTime ReviseLoc(TimeZoneInfo timeZone, DateTime dateTime)
         {
             return TimeZoneInfo.ConvertTime(dateTime, timeZone);
         }
 
-        public static DateTime RevisetoLoc(DateTime dateTime, TimeSpan UtcOffset)
+        public static DateTime ReviseLoc(DateTime dateTime, TimeSpan UtcOffset)
         {
             return dateTime.ToUniversalTime() + UtcOffset;
         }

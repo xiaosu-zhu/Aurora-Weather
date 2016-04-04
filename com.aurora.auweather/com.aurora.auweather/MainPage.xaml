@@ -590,12 +590,26 @@
                             </Setter>
                         </Style>
                     </CommandBar.CommandBarOverflowPresenterStyle>
-                    <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" />
-                    <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click"/>
+                    <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" >
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Uid="SettingsText" />
+                        </ToolTipService.ToolTip>
+                    </AppBarButton>
+                    <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Uid="RefreshText" />
+                        </ToolTipService.ToolTip>
+                    </AppBarButton>
                     <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Icon="World" Width="68" Click="Cities_Click" >
                         <!--Width 68 Height 20-->
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Uid="CitiesText" />
+                        </ToolTipService.ToolTip>
                     </AppBarButton>
                     <AppBarButton x:Uid="NowButton" x:Name="Today" Click="Today_Click">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Uid="NowText" />
+                        </ToolTipService.ToolTip>
                         <AppBarButton.Icon>
                             <PathIcon Data="F1 M 39.7971,
                                       9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,

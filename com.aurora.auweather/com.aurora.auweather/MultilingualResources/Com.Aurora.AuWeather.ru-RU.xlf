@@ -1250,6 +1250,10 @@
           <source>Open</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Открыть</target>
         </trans-unit>
+        <trans-unit id="NowText.Text" translate="yes" xml:space="preserve">
+          <source>Now</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Сейчас</target>
+        </trans-unit>
       </group>
     </body>
   </file>

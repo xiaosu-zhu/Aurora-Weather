@@ -82,6 +82,10 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void continueUpdate()
         {
+            if (stopUpdateTimer != null)
+            {
+                stopUpdateTimer.Cancel();
+            }
             Canvas.Paused = false;
         }
 
@@ -103,6 +107,11 @@ namespace Com.Aurora.AuWeather.CustomControls
             var weatherCanvas = d as WeatherCanvas;
             if ((bool)e.NewValue)
             {
+                if (weatherCanvas.stopUpdateTimer != null)
+                {
+                    weatherCanvas.stopUpdateTimer.Cancel();
+                }
+                weatherCanvas.Canvas.Paused = false;
                 weatherCanvas.sun = new SolarSystem();
                 weatherCanvas.star = new StarParticleSystem();
                 weatherCanvas.smoke = new SmokeParticleSystem();
@@ -112,10 +121,20 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             else
             {
+                weatherCanvas.Canvas.Paused = false;
                 weatherCanvas.sun.Dispose();
                 weatherCanvas.star.Dispose();
                 weatherCanvas.smoke.smokeDispose();
                 weatherCanvas.rain.Dispose();
+                if (weatherCanvas.stopUpdateTimer != null)
+                {
+                    weatherCanvas.stopUpdateTimer.Cancel();
+                }
+                if (weatherCanvas.EnableBGBlur)
+                    weatherCanvas.stopUpdateTimer = ThreadPoolTimer.CreateTimer((x) =>
+                    {
+                        weatherCanvas.Canvas.Paused = true;
+                    }, TimeSpan.FromMilliseconds(128));
             }
         }
 
