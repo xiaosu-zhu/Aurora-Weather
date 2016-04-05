@@ -334,13 +334,34 @@
                     <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <HyperlinkButton x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
                 </Grid>
-                <RelativePanel MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <RelativePanel PointerPressed="LocatePanel_PointerPressed" PointerEntered="LocatePanel_PointerEntered" PointerExited="LocatePanel_PointerExited" PointerReleased="LocatePanel_PointerReleased" Margin="8,0,8,0" MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RelativePanel.Resources>
+                        <Storyboard x:Name="Press">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Name="Release">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Name="PointerIn">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Name="PointerOut">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </RelativePanel.Resources>
                     <TextBlock x:Name="LocatedText" Opacity="0" Visibility="Collapsed" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Text="{Binding LocatedCity, Converter={StaticResource CityInfoConverter}}" Margin="8" />
                     <ToggleButton x:Name="LocatedStar" IsChecked="{x:Bind Context.Is_Located_Current, Mode=OneWay}" Click="LocatedStar_Click" Opacity="0" Visibility="Collapsed" Style="{ThemeResource StarButton}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8" />
                     <ProgressRing x:Name="LocatingRing" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8" />
                     <TextBlock x:Uid="LocatingText" x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Margin="8" />
                 </RelativePanel>
-                <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource SystemControlAltMediumBrush}" />
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Button IsEnabled="False" MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Style="{ThemeResource SymbolButton}">
                         <Grid HorizontalAlignment="Stretch">
@@ -365,7 +386,7 @@
                         </AutoSuggestBox.ItemTemplate>
                     </AutoSuggestBox>
                 </Grid>
-                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="True" ItemClick="CitiesList_ItemClick" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:CitySettingsViewModel">
                             <Grid Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

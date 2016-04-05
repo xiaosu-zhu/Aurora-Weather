@@ -74,9 +74,6 @@ namespace Com.Aurora.AuWeather
         {
             dismissed = true;
             SetLongTimeTimer();
-#if DEBUG
-            await Task.Delay(4000);
-#endif
             var settings = SettingsModel.Get();
             var license = new License.License();
             if (!license.IsPurchased)
@@ -118,22 +115,22 @@ namespace Com.Aurora.AuWeather
             }
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
-                var r = ThreadPool.RunAsync(async (work) =>
+                var accessStatus = await Geolocator.RequestAccessAsync();
+                if (accessStatus == GeolocationAccessStatus.Allowed)
                 {
-                    var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                    var result = JsonHelper.FromJson<CityIdContract>(str);
-                    var citys = CityInfo.CreateList(result);
-                    str = null;
-                    result = null;
-                    var p = Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                     {
-                         var accessStatus = await Geolocator.RequestAccessAsync();
-                         if (accessStatus == GeolocationAccessStatus.Allowed)
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                          {
+                             var l = new ResourceLoader();
+                             SplashWelcome.Text = l.GetString("Locating");
                              var _geolocator = new Geolocator();
                              var pos = await _geolocator.GetGeopositionAsync();
                              var t = ThreadPool.RunAsync(async (w) =>
                              {
+                                 var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                                 var result = JsonHelper.FromJson<CityIdContract>(str);
+                                 var citys = CityInfo.CreateList(result);
+                                 str = null;
+                                 result = null;
                                  CalcPosition(pos, citys, settings);
                                  if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
                                  {
@@ -166,9 +163,9 @@ namespace Com.Aurora.AuWeather
                                      SplashComplete(null, AsyncStatus.Completed);
                                  }
                              });
-                         }
-                     }));
-                });
+
+                         }));
+                }
             }
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
@@ -223,7 +220,7 @@ namespace Com.Aurora.AuWeather
                     var loader = new ResourceLoader();
                     SplashWelcome.Text = loader.GetString("LongTime");
                 }));
-            }, TimeSpan.FromMilliseconds(5000));
+            }, TimeSpan.FromMilliseconds(8000));
         }
 
         private void CreateTimeOutTimer()

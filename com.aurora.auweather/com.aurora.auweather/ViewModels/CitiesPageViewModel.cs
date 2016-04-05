@@ -92,12 +92,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                     var t = ThreadPool.RunAsync((x) =>
                     {
                         Update();
-                        RequireLocationUpdate();
+                        if (settings.Cities.EnableLocate)
+                            RequireLocationUpdate();
                     });
                 }));
             });
         }
-
 
         internal void DeniePos()
         {
@@ -396,11 +396,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void RequireLocationUpdate()
         {
-            var h = this.LocationUpdate;
-            if (h != null)
-            {
-                h(this, new LocationUpdateEventArgs());
-            }
+            this.LocationUpdate?.Invoke(this, new LocationUpdateEventArgs());
         }
 
         private void OnFetchDataFailed()

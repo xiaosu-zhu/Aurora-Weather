@@ -11,6 +11,7 @@ using System;
 using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.Shared.Converters;
 using Windows.ApplicationModel.Resources;
+using System.Collections.ObjectModel;
 
 namespace Com.Aurora.AuWeather
 {
@@ -49,7 +50,18 @@ namespace Com.Aurora.AuWeather
 
         internal void Navigate(Type page)
         {
-            MainFrame.Navigate(page, this);
+            if (page == typeof(NowWeatherPage))
+            {
+                PaneList.SelectedIndex = 0;
+            }
+            if (page == typeof(CitiesPage))
+            {
+                PaneList.SelectedIndex = 1;
+            }
+            if (page == typeof(SettingsPage))
+            {
+                PaneList.SelectedIndex = 2;
+            }
         }
 
         internal void ChangeColor(Color back, Color fore, SolidColorBrush foreground)
@@ -247,6 +259,13 @@ namespace Com.Aurora.AuWeather
         private async void Like_Click(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=" + Windows.ApplicationModel.Package.Current.Id.FamilyName));
+        }
+
+        private void PaneList_Loaded(object sender, RoutedEventArgs e)
+        {
+            PaneList.SelectionChanged -= PaneList_SelectionChanged;
+            PaneList.SelectedIndex = 0;
+            PaneList.SelectionChanged += PaneList_SelectionChanged;
         }
 
         //private async void Grid_Loaded(object sender, RoutedEventArgs e)

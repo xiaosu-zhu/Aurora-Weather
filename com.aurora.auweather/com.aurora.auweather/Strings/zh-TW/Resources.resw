@@ -1050,4 +1050,10 @@
   <data name="NowText.Text" xml:space="preserve">
     <value>剛剛</value>
   </data>
+  <data name="CitiesManageText.Text" xml:space="preserve">
+    <value>城市管理</value>
+  </data>
+  <data name="Locating" xml:space="preserve">
+    <value>正在定位...</value>
+  </data>
 </root>

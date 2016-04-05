@@ -1254,6 +1254,14 @@
           <source>Now</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">지금</target>
         </trans-unit>
+        <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
+          <source>Cities Managment</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">도시 관리</target>
+        </trans-unit>
+        <trans-unit id="Locating" translate="yes" xml:space="preserve">
+          <source>Locating...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">찾기...</target>
+        </trans-unit>
       </group>
     </body>
   </file>

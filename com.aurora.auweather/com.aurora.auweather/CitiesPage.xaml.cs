@@ -5,6 +5,7 @@
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,10 @@ namespace Com.Aurora.AuWeather
         public CitiesPage()
         {
             this.InitializeComponent();
-            license = new License.License();
             Context.LocationUpdate += Context_LocationUpdate;
             Context.FetchDataFailed += Context_FetchDataFailed;
+            license = new License.License();
+
         }
 
         private async void Context_FetchDataFailed(object sender, ViewModels.Events.FetchDataFailedEventArgs e)
@@ -112,7 +114,7 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
-                baba.NavigatetoSettings(typeof(Cities));
+                baba.NavigatetoSettings(typeof(Models.Settings.Cities));
             }
         }
 
@@ -173,7 +175,7 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
-                baba.NavigatetoSettings(typeof(Cities));
+                baba.NavigatetoSettings(typeof(Models.Settings.Cities));
             }
         }
 
@@ -275,13 +277,16 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (GridView.SelectedIndex == Context.CurrentIndex || GridView.SelectionMode == ListViewSelectionMode.Multiple)
+            GridView.SelectedIndex = Context.Cities.IndexOf(e.ClickedItem as CityViewModel);
+            if (GridView.SelectedIndex == Context.CurrentIndex)
             {
+                baba.Navigate(typeof(NowWeatherPage));
                 return;
             }
             Context.ChangeCurrent(GridView.SelectedIndex);
+            baba.Navigate(typeof(NowWeatherPage));
         }
     }
 }

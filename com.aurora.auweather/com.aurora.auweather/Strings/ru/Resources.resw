@@ -945,4 +945,10 @@
   <data name="NowText.Text" xml:space="preserve">
     <value>Сейчас</value>
   </data>
+  <data name="CitiesManageText.Text" xml:space="preserve">
+    <value>Управление городами</value>
+  </data>
+  <data name="Locating" xml:space="preserve">
+    <value>Поиск...</value>
+  </data>
 </root>

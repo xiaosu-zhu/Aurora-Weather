@@ -3,6 +3,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Extensions;
@@ -25,7 +26,7 @@ namespace Com.Aurora.AuWeather
     public sealed partial class NowWeatherPage : Page
     {
         private const double FENGCHE_ZHUANSU = 0.1396263377777778;
-        private const int WEATHERCANVAS_HEADEROFFSET = 368;
+        private const int WEATHERCANVAS_HEADEROFFSET = 528;
         private const int FIXED_TITLE_FONTSIZE = 96;
         private const int WEATHER_BEZIER_SCROLLOFFSET = 200;
         private const int NORMAL_SIZE_WIDTH = 720;
@@ -323,7 +324,7 @@ namespace Com.Aurora.AuWeather
                 SetEndPoint(endPoint1, actualWidth);
             }
 
-            if (verticalOffset != ScrollableRoot.VerticalOffset && ScrollableRoot.VerticalOffset < 376)
+            if (verticalOffset != ScrollableRoot.VerticalOffset && ScrollableRoot.VerticalOffset < 536)
             {
                 verticalOffset = ScrollableRoot.VerticalOffset;
                 var offset = verticalOffset > WEATHERCANVAS_HEADEROFFSET ? WEATHERCANVAS_HEADEROFFSET : verticalOffset;
@@ -744,5 +745,50 @@ namespace Com.Aurora.AuWeather
             }
         }
 
+        private void Flyout_Opened(object sender, object e)
+        {
+            if(immersiveTimer != null)
+            {
+                immersiveTimer.Cancel();
+            }
+        }
+
+        private void Flyout_Closed(object sender, object e)
+        {
+            if (immersiveTimer != null)
+            {
+                immersiveTimer.Cancel();
+            }
+            immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
+            {
+                var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                {
+                    ImmersiveAllIn.Begin();
+
+                    Window.Current.CoreWindow.PointerCursor = null;
+                }));
+                await Task.Delay(160);
+                isImmersiveAllIn = true;
+            }, TimeSpan.FromSeconds(1));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            baba.NavigatetoSettings(typeof(Cities));
+            Color c;
+            SolidColorBrush s;
+            if (Context.Theme == ElementTheme.Dark)
+            {
+                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
+            else
+            {
+                c = (Color)Resources["SystemBaseHighColor"];
+                s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+            }
+            baba.ChangeColor(Colors.Transparent, c, s);
+        }
     }
 }

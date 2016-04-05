@@ -525,7 +525,7 @@
                         <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
                     </TextBlock>
                 </StackPanel>
-                <ListView x:Name="PaneList" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:PaneOption">
                             <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">

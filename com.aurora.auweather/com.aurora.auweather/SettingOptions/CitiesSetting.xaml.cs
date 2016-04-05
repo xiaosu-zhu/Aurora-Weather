@@ -58,7 +58,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             {
                 LocateOnSwitch.Toggled += LocateOnSwitch_Toggled;
                 SearchBox.TextChanged += SearchBox_TextChanged;
-                SearchBox.SuggestionChosen += SearchBox_SuggestionChosen;
+                //SearchBox.SuggestionChosen += SearchBox_SuggestionChosen;
                 SearchBox.QuerySubmitted += SearchBox_QuerySubmitted;
                 SearchBox.IsEnabled = true;
                 LocateOnSwitch.IsEnabled = true;
@@ -246,8 +246,38 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
+            SearchBox.TextChanged -= SearchBox_TextChanged;
             // Set sender.Text. You can use args.SelectedItem to build your text string.
             sender.Text = (args.SelectedItem as CityInfo).City;
+            SearchBox.TextChanged += SearchBox_TextChanged;
+        }
+
+        private void CitiesList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ClearSelect();
+            Context.SetCurrent(e.ClickedItem as CitySettingsViewModel);
+        }
+
+        private void LocatePanel_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Press.Begin();
+        }
+
+        private void LocatePanel_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            ClearSelect();
+            Context.SetCurrent_Locate();
+            Release.Begin();
+        }
+
+        private void LocatePanel_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            PointerIn.Begin();
+        }
+
+        private void LocatePanel_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            PointerOut.Begin();
         }
     }
 }

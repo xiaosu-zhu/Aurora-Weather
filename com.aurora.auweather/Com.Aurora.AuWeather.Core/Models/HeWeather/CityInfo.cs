@@ -16,6 +16,11 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         private string id;
         private Models.Location location;
 
+        public override string ToString()
+        {
+            return this.City;
+        }
+
         public string City
         {
             get

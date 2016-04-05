@@ -284,12 +284,12 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 480;
+                return 640;
             }
             if (isLargeMode)
-                return 480 - (double)value < 160 ? 160 : 480 - (double)value;
+                return 640 - (double)value < 160 ? 160 : 640 - (double)value;
             else
-                return 480 - (double)value < 112 ? 112 : 480 - (double)value;
+                return 640 - (double)value < 112 ? 112 : 640 - (double)value;
 
         }
 

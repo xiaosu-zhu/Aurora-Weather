@@ -1250,6 +1250,14 @@
           <source>Now</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Now</target>
         </trans-unit>
+        <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
+          <source>Cities Managment</source>
+          <target state="new">Cities Managment</target>
+        </trans-unit>
+        <trans-unit id="Locating" translate="yes" xml:space="preserve">
+          <source>Locating...</source>
+          <target state="new">Locating...</target>
+        </trans-unit>
       </group>
     </body>
   </file>

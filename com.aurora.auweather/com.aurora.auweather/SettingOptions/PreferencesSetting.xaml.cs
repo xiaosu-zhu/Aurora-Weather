@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Com.Aurora.AuWeather.ViewModels;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -91,7 +92,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Hour.SelectionChanged += Format_SelectionChanged;
                    Minute.SelectionChanged += Format_SelectionChanged;
                    Week.SelectionChanged += Format_SelectionChanged;
-
                    if (!license.IsPurchased)
                    {
                        EnableEveryDay.IsOn = false;

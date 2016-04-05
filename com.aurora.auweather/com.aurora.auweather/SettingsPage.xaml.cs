@@ -60,7 +60,7 @@ namespace Com.Aurora.AuWeather
 
         private void DonateButton_Click(object sender, RoutedEventArgs e)
         {
-            baba.Navigate(typeof(DonationPage));
+            baba.NavigatetoSettings(typeof(DonationPage));
         }
     }
 }

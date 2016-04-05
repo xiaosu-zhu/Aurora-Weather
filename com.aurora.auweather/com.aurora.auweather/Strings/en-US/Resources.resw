@@ -1050,4 +1050,10 @@
   <data name="NowText.Text" xml:space="preserve">
     <value>Now</value>
   </data>
+  <data name="CitiesManageText.Text" xml:space="preserve">
+    <value>Cities Managment</value>
+  </data>
+  <data name="Locating" xml:space="preserve">
+    <value>Locating...</value>
+  </data>
 </root>

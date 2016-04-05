@@ -945,4 +945,10 @@
   <data name="NowText.Text" xml:space="preserve">
     <value>ADESSO</value>
   </data>
+  <data name="CitiesManageText.Text" xml:space="preserve">
+    <value>Città Managment</value>
+  </data>
+  <data name="Locating" xml:space="preserve">
+    <value>Individuazione...</value>
+  </data>
 </root>

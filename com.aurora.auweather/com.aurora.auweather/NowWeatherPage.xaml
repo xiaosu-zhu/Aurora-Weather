@@ -121,7 +121,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0,160,0,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Header" Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="284" />
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="444" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WeatherPanel" Storyboard.TargetProperty="Padding">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0" />
@@ -152,7 +152,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0,160,0,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Header" Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="284" />
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="444" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ImmersiveButton" Storyboard.TargetProperty="Visibility" >
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
@@ -833,9 +833,19 @@
                 </Button.Content>
                 <Button.Flyout>
                     <Flyout>
-                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <Button Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource PivotTitleContentControlStyle}" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <SymbolIcon VerticalAlignment="Center" Margin="8,0,8,0" Symbol="Find" />
+                                        <TextBlock x:Uid="CitiesManageText" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" Margin="0,0,8,0" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>
@@ -867,7 +877,7 @@
                 <RelativePanel Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Margin="8" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="Separator0" FontSize="156" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                     <TextBlock Margin="8" RelativePanel.LeftOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeHour" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveHourConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
-                    <TextBlock Margin="8" Width="168" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock Margin="0,8,8,8" Width="164" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                     <TextBlock RelativePanel.RightOf="CurrentTimeMin" Margin="0,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="Separator1" FontSize="72" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" Foreground="White" />
                     <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="72" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                 </RelativePanel>
@@ -883,7 +893,7 @@
                         <SymbolIcon Symbol="More" />
                     </Button.Content>
                     <Button.Flyout>
-                        <Flyout>
+                        <Flyout Opened="Flyout_Opened" Closed="Flyout_Closed">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -918,7 +928,7 @@
         <ptr:PulltoRefresh x:Name="ScrollableRoot" ForceEnabled="{x:Bind Context.EnablePulltoRefresh, Mode=OneWay}" RefreshStart="ScrollableRoot_RefreshStart" Padding="0,112,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
                       HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <RelativePanel>
-                <Grid Height="332" x:Name="Header" />
+                <Grid Height="492" x:Name="Header" />
                 <Path x:Name="TempraturePath" RelativePanel.Below="Header" 
                           RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                           Stroke="Transparent" StrokeThickness="0"
@@ -1451,45 +1461,52 @@
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Vertical" Margin="24,12,24,12">
-                                <TextBlock x:Uid="ComfortableText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Comf,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="ComfortableText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Comf,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Comf,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="24,12,24,12">
-                                <TextBlock x:Uid="DressingText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Drsg,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="DressingText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Drsg,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Drsg,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="2" Margin="24,12,24,12">
-                                <TextBlock x:Uid="CWText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Cw,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="CWText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Cw,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Cw,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3" Margin="24,12,24,12">
-                                <TextBlock x:Uid="SportText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Sport,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="SportText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Sport,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Sport,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="4" Margin="24,12,24,12">
-                                <TextBlock x:Uid="FluText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Flu,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="FluText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Flu,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Flu,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="5" Margin="24,12,24,12">
-                                <TextBlock x:Uid="TravelText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Trav,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="TravelText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Trav,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Trav,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="6" Margin="24,12,24,12">
-                                <TextBlock x:Uid="UVText" Style="{ThemeResource SubtitleTextBlockStyle}" >
-                                    <Run Text="{Binding Uv,Converter={StaticResource SuggestionBrfConverter}}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock x:Uid="UVText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{Binding Uv,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                </StackPanel>
                                 <TextBlock Text="{Binding Uv,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,64,0,0">

@@ -1254,6 +1254,14 @@
           <source>Now</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ADESSO</target>
         </trans-unit>
+        <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
+          <source>Cities Managment</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Città Managment</target>
+        </trans-unit>
+        <trans-unit id="Locating" translate="yes" xml:space="preserve">
+          <source>Locating...</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Individuazione...</target>
+        </trans-unit>
       </group>
     </body>
   </file>
