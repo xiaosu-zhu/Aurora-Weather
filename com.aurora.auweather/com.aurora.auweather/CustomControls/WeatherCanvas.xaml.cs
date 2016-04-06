@@ -140,6 +140,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private WeatherCondition condition = WeatherCondition.unknown;
         private ThreadPoolTimer stopUpdateTimer;
+        private float timeToCreateRain = Tools.RandomBetween(1, 5);
 
         public WeatherCanvas()
         {
@@ -166,7 +167,26 @@ namespace Com.Aurora.AuWeather.CustomControls
             backBlur.update(Canvas.Size.ToVector2());
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
             if (isRain || isThunder)
-                CreateRain();
+            {
+                if (rainLevel != RainLevel.shower)
+                {
+                    CreateRain();
+                }
+                else
+                {
+                    timeToCreateRain -= elapsedTime;
+                    if (timeToCreateRain < 0)
+                    {
+                        if (timeToCreateRain > -Tools.RandomBetween(7, 15))
+                            CreateRain();
+                        else
+                        {
+                            timeToCreateRain = Tools.RandomBetween(2, 15);
+                        }
+                    }
+                }
+            }
+
 
             if ((!isRain) && isNight)
             {
@@ -190,9 +210,9 @@ namespace Com.Aurora.AuWeather.CustomControls
                     }
                 }
             }
+            rain.Update(elapsedTime, Canvas.Size.ToVector2());
             star.Update(elapsedTime);
             smoke.Update(elapsedTime);
-            rain.Update(elapsedTime, Canvas.Size.ToVector2());
             thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
             if (isSunny)
                 sun.Update();
@@ -485,7 +505,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             isRain = true;
             isThunder = true;
-            rainLevel = RainLevel.moderate;
+            rainLevel = RainLevel.shower;
             SetCloudyBG();
             rain.ChangeConstants(rainLevel);
         }
@@ -500,7 +520,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 });
             }
             isRain = true;
-            rainLevel = RainLevel.moderate;
+            rainLevel = RainLevel.shower;
             SetCloudyBG();
             rain.ChangeConstants(rainLevel);
         }

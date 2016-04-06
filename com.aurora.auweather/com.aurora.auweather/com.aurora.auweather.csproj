@@ -457,6 +457,7 @@
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
     <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
     <Compile Include="ViewModels\Events\LocationUpdateEventArgs.cs" />
+    <Compile Include="ViewModels\Events\TimeUpdatedEventArgs.cs" />
     <Compile Include="ViewModels\ImmersiveSettingViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />

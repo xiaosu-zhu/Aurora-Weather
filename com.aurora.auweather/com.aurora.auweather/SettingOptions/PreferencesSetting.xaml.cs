@@ -64,6 +64,17 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    EnableEveryDay.IsOn = Context.EnableEveryDay;
                    EnableAlarm.IsOn = Context.EnableAlarm;
                    EnablePulltoRefresh.IsOn = Context.EnablePulltoRefresh;
+                   ThemeasRiseSet.IsOn = Context.ThemeasRiseSet;
+
+                   UseWeekDay.Toggled += Bool_Toggled;
+                   Showtt.Toggled += Showtt_Toggled;
+                   EnableSecond.Toggled += Bool_Toggled;
+                   ShowImmersivett.Toggled += Bool_Toggled;
+                   DisableDynamic.Toggled += Bool_Toggled;
+                   EnableEveryDay.Toggled += Bool_Toggled;
+                   EnableAlarm.Toggled += Bool_Toggled;
+                   EnablePulltoRefresh.Toggled += Bool_Toggled;
+                   ThemeasRiseSet.Toggled += ThemeasRiseSet_Toggled;
 
                    Temp.SelectedIndex = Context.Temperature.SelectedIndex;
                    Wind.SelectedIndex = Context.Wind.SelectedIndex;
@@ -79,6 +90,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Theme.SelectedIndex = Context.Theme.SelectedIndex;
                    RefreshFreq.SelectedIndex = Context.RefreshFreq.SelectedIndex;
 
+                   StartPicker.Time = Context.StartTime;
+                   EndPicker.Time = Context.EndTime;
+
                    Temp.SelectionChanged += Enum_SelectionChanged;
                    Wind.SelectionChanged += Enum_SelectionChanged;
                    Speed.SelectionChanged += Enum_SelectionChanged;
@@ -92,6 +106,21 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Hour.SelectionChanged += Format_SelectionChanged;
                    Minute.SelectionChanged += Format_SelectionChanged;
                    Week.SelectionChanged += Format_SelectionChanged;
+
+                   StartPicker.TimeChanged += StartPicker_TimeChanged;
+                   EndPicker.TimeChanged += EndPicker_TimeChanged;
+
+                   if (Context.Theme.SelectedIndex == 0)
+                   {
+                       AutoThemeSwitch.Visibility = Visibility.Visible;
+                       if (!Context.ThemeasRiseSet)
+                       {
+                           StartThemeSwitch.Visibility = Visibility.Visible;
+                           EndThemeSwitch.Visibility = Visibility.Visible;
+                       }
+                       
+                   }
+
                    if (!license.IsPurchased)
                    {
                        EnableEveryDay.IsOn = false;
@@ -107,6 +136,21 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Context.SetEnumValue(((sender as ComboBox).SelectedItem as EnumSelector).Value);
+            if ((RequestedTheme)(((sender as ComboBox).SelectedItem as EnumSelector).Value) == Models.RequestedTheme.Auto)
+            {
+                AutoThemeSwitch.Visibility = Visibility.Visible;
+                if (!Context.ThemeasRiseSet)
+                {
+                    StartThemeSwitch.Visibility = Visibility.Visible;
+                    EndThemeSwitch.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                AutoThemeSwitch.Visibility = Visibility.Collapsed;
+                StartThemeSwitch.Visibility = Visibility.Collapsed;
+                EndThemeSwitch.Visibility = Visibility.Collapsed;
+            }
             Context.ReloadTheme();
             (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
         }
@@ -176,6 +220,22 @@ namespace Com.Aurora.AuWeather.SettingOptions
             Context.SetBool((sender as ToggleSwitch).Name, (sender as ToggleSwitch).IsOn);
         }
 
+        private void ThemeasRiseSet_Toggled(object sender, RoutedEventArgs e)
+        {
+            Context.SetBool("ThemeasRiseSet", (sender as ToggleSwitch).IsOn);
+            if ((sender as ToggleSwitch).IsOn)
+            {
+                StartThemeSwitch.Visibility = Visibility.Collapsed;
+                EndThemeSwitch.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                StartThemeSwitch.Visibility = Visibility.Visible;
+                EndThemeSwitch.Visibility = Visibility.Visible;
+            }
+            Context.ReloadTheme();
+            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
+        }
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (ActualWidth >= 720)
@@ -206,6 +266,20 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 RightPanel.Children.Insert(0, RightPanelChild);
                 rootIsWideState = true;
             }
+        }
+
+        private void StartPicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+            Context.SetStart(e.NewTime);
+            Context.ReloadTheme();
+            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
+        }
+
+        private void EndPicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+            Context.SetEnd(e.NewTime);
+            Context.ReloadTheme();
+            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
         }
     }
 }

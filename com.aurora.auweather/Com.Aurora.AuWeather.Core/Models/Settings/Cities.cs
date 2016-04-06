@@ -139,6 +139,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public string City { get; set; }
         public string Id { get; set; }
         public bool IsPinned { get; set; } = false;
+        public float Longitude { get; set; } = -999;
+        public float Latitude { get; set; } = -999;
 
         public bool IsCurrent = false;
 
@@ -148,6 +150,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             City = info.City;
             Id = info.Id;
+            Longitude = info.Location.Longitude;
+            Latitude = info.Location.Latitude;
         }
         public CitySettingsModel()
         {

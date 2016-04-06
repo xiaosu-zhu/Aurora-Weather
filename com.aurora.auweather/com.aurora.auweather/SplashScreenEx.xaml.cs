@@ -124,46 +124,52 @@ namespace Com.Aurora.AuWeather
                              SplashWelcome.Text = l.GetString("Locating");
                              var _geolocator = new Geolocator();
                              var pos = await _geolocator.GetGeopositionAsync();
-                             var t = ThreadPool.RunAsync(async (w) =>
+                             if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
                              {
-                                 var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                                 var result = JsonHelper.FromJson<CityIdContract>(str);
-                                 var citys = CityInfo.CreateList(result);
-                                 str = null;
-                                 result = null;
-                                 CalcPosition(pos, citys, settings);
-                                 if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
+                                 var t = ThreadPool.RunAsync(async (w) =>
                                  {
-                                     var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                                     var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
-                                     CreateTimeOutTimer();
-                                     var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-                                     if (resstr == null || resstr == "")
+                                     var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                                     var result = JsonHelper.FromJson<CityIdContract>(str);
+                                     var citys = CityInfo.CreateList(result);
+                                     str = null;
+                                     result = null;
+                                     CalcPosition(pos, citys, settings);
+                                     if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
                                      {
-                                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                                         var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                                         var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
+                                         CreateTimeOutTimer();
+                                         var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                                         if (resstr == null || resstr == "")
                                          {
-                                             var loader = new ResourceLoader();
-                                             var d = new MessageDialog(loader.GetString("Network_Error"));
-                                             d.Title = loader.GetString("Error");
-                                             d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
-                                             await d.ShowAsync();
-                                         }));
+                                             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                                             {
+                                                 var loader = new ResourceLoader();
+                                                 var d = new MessageDialog(loader.GetString("Network_Error"));
+                                                 d.Title = loader.GetString("Error");
+                                                 d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                                                 await d.ShowAsync();
+                                             }));
+                                         }
+
+                                         var task = ThreadPool.RunAsync(async (m) =>
+                                         {
+                                             m.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                                             await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
+                                             settings.Cities.LocatedCity.Update();
+                                             settings.Cities.Save();
+                                         });
                                      }
-
-                                     var task = ThreadPool.RunAsync(async (m) =>
+                                     else
                                      {
-                                         m.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                         await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
-                                         settings.Cities.LocatedCity.Update();
-                                         settings.Cities.Save();
-                                     });
-                                 }
-                                 else
-                                 {
-                                     SplashComplete(null, AsyncStatus.Completed);
-                                 }
-                             });
-
+                                         SplashComplete(null, AsyncStatus.Completed);
+                                     }
+                                 });
+                             }
+                             else
+                             {
+                                 SplashComplete(null, AsyncStatus.Completed);
+                             }
                          }));
                 }
             }
@@ -279,6 +285,12 @@ namespace Com.Aurora.AuWeather
 
             if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
+                if(settings.Cities.LocatedCity.Latitude == 0)
+                {
+                    settings.Cities.LocatedCity.Latitude = final.ToArray()[0].Location.Latitude;
+                    settings.Cities.LocatedCity.Longitude = final.ToArray()[0].Location.Longitude;
+                }
+                settings.Cities.Save();
                 final = null;
                 citys.Clear();
                 citys = null;

@@ -242,6 +242,10 @@ namespace Com.Aurora.Shared.Converters
             {
                 return ((DateTime)value).ToString(Parameter);
             }
+            if (Parameter == null || Parameter.Length == 0)
+            {
+                return "";
+            }
             return null;
         }
 
@@ -1210,6 +1214,10 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "...";
             }
+            if (DateTimeConverterParameter == null || DateTimeConverterParameter.Length == 0)
+            {
+                return "";
+            }
             return ((DateTime)value).ToString(DateTimeConverterParameter);
         }
 
@@ -1232,6 +1240,10 @@ namespace Com.Aurora.Shared.Converters
             if (value == null)
             {
                 return "...";
+            }
+            if (DateTimeConverterParameter == null || DateTimeConverterParameter.Length == 0)
+            {
+                return "";
             }
             return ((DateTime)value).ToString(DateTimeConverterParameter);
         }

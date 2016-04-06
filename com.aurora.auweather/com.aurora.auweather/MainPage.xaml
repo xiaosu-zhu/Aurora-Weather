@@ -486,7 +486,7 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <SplitView x:Name="Root" DisplayMode="Overlay" OpenPaneLength="360" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemBackgroundHighBrush}">
+    <SplitView x:Name="Root" DisplayMode="Overlay" OpenPaneLength="0" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemBackgroundHighBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
@@ -499,6 +499,9 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ActionBar" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="OpenPaneLength">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="360" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

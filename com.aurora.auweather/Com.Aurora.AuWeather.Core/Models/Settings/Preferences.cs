@@ -5,6 +5,8 @@
 using System;
 using Com.Aurora.Shared.Helpers;
 using Windows.UI.Xaml;
+using Com.Aurora.AuWeather.Core.LunarCalendar;
+using System.Diagnostics;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
@@ -44,6 +46,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public uint MinuteNumber { get; set; } = 1;
         public uint DecorateNumber { get; set; } = 0;
         public bool ShowImmersivett { get; set; } = false;
+        public bool ThemeasRiseSet { get; set; } = true;
+
+        public TimeSpan StartTime { get; set; } = new TimeSpan(19, 30, 0);
+        public TimeSpan EndTime { get; set; } = new TimeSpan(7, 30, 0);
 
         public static Preferences Get()
         {
@@ -57,13 +63,58 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             if (Theme == RequestedTheme.Auto)
             {
-                if (DateTime.Now > (DateTime.Today.AddHours(7.5)) && DateTime.Now < (DateTime.Today.AddHours(19.5)))
+                if (!ThemeasRiseSet)
                 {
-                    return ElementTheme.Default;
+                    if (StartTime < EndTime)
+                    {
+                        if (DateTime.Now > (DateTime.Today + EndTime) || DateTime.Now < (DateTime.Today + StartTime))
+                        {
+                            return ElementTheme.Default;
+                        }
+                        else
+                        {
+                            return ElementTheme.Dark;
+                        }
+                    }
+                    else
+                    {
+                        if (DateTime.Now > (DateTime.Today + EndTime) && DateTime.Now < (DateTime.Today + StartTime))
+                        {
+                            return ElementTheme.Default;
+                        }
+                        else
+                        {
+                            return ElementTheme.Dark;
+                        }
+                    }
                 }
                 else
                 {
-                    return ElementTheme.Dark;
+                    var c = Cities.Get();
+                    if (c.EnableLocate && c.LocatedCity != null && c.LocatedCity.Longitude != 0 && c.LocatedCity.Latitude != 0)
+                    {
+                        var start = SunRiseSet.GetRise(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
+                        var end = SunRiseSet.GetSet(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
+                        if (DateTime.Now > (DateTime.Today + start) && DateTime.Now < (DateTime.Today + end))
+                        {
+                            return ElementTheme.Default;
+                        }
+                        else
+                        {
+                            return ElementTheme.Dark;
+                        }
+                    }
+                    else
+                    {
+                        if (DateTime.Now > (DateTime.Today.AddHours(7.5)) && DateTime.Now < (DateTime.Today.AddHours(19.5)))
+                        {
+                            return ElementTheme.Default;
+                        }
+                        else
+                        {
+                            return ElementTheme.Dark;
+                        }
+                    }
                 }
             }
             if (Theme == RequestedTheme.Dark)

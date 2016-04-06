@@ -205,8 +205,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Mondphase</target>
         </trans-unit>
         <trans-unit id="NextTomorrowText.Text" translate="yes" xml:space="preserve">
-          <source>Next Tomorrow</source>
+          <source>Next Tom.</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Nächsten Morgen</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NoBGText.Text" translate="yes" xml:space="preserve">
           <source>Don't show</source>

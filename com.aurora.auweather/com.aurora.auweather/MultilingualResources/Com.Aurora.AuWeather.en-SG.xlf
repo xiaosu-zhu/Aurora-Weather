@@ -203,8 +203,8 @@
           <target state="new">Moon phase</target>
         </trans-unit>
         <trans-unit id="NextTomorrowText.Text" translate="yes" xml:space="preserve">
-          <source>Next Tomorrow</source>
-          <target state="new">Next Tomorrow</target>
+          <source>Next Tom.</source>
+          <target state="new">Next Tom.</target>
         </trans-unit>
         <trans-unit id="NoBGText.Text" translate="yes" xml:space="preserve">
           <source>Don't show</source>

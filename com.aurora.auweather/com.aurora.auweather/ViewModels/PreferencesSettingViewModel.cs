@@ -96,6 +96,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 ShowImmersivett = Preferences.ShowImmersivett;
                 EnableEveryDay = Preferences.EnableEveryDay;
                 EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
+                ThemeasRiseSet = Preferences.ThemeasRiseSet;
+
+                StartTime = Preferences.StartTime;
+                EndTime = Preferences.EndTime;
             });
         }
 
@@ -109,11 +113,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnFetchDataComplete()
         {
-            var h = FetchDataComplete;
-            if (h != null)
-            {
-                h(this, new FetchDataCompleteEventArgs());
-            }
+            FetchDataComplete?.Invoke(this, new FetchDataCompleteEventArgs());
         }
 
         internal void SetFormatValue(string name, string v)
@@ -210,6 +210,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         public FormatList Day { get; private set; }
         public FormatList Week { get; private set; }
 
+        public TimeSpan StartTime { get; internal set; }
+        public TimeSpan EndTime { get; internal set; }
+
         public string Separator { get; internal set; }
         public bool DisableDynamic { get; private set; }
         public bool EnableAlarm { get; private set; }
@@ -220,6 +223,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public bool ShowImmersivett { get; private set; }
         public bool EnableEveryDay { get; private set; }
         public bool EnablePulltoRefresh { get; private set; }
+        public bool ThemeasRiseSet { get; internal set; }
 
         public ElementTheme Theme1
         {
@@ -280,13 +284,29 @@ namespace Com.Aurora.AuWeather.ViewModels
                     Preferences.EnablePulltoRefresh = isOn;
                     EnablePulltoRefresh = isOn;
                     break;
+                case "ThemeasRiseSet":
+                    Preferences.ThemeasRiseSet = isOn;
+                    ThemeasRiseSet = isOn;
+                    break;
                 default:
                     break;
             }
             SaveAll();
         }
 
+        internal void SetEnd(TimeSpan newTime)
+        {
+            EndTime = newTime;
+            Preferences.EndTime = newTime;
+            SaveAll();
+        }
 
+        internal void SetStart(TimeSpan newTime)
+        {
+            StartTime = newTime;
+            Preferences.StartTime = newTime;
+            SaveAll();
+        }
     }
 
     public class FormatList : List<string>

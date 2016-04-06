@@ -29,7 +29,7 @@ namespace Com.Aurora.AuWeather.Models
 
     public enum RefreshState : byte { one, two, three, four };
 
-    public enum RainLevel : byte { light, moderate, heavy, extreme, sSnow, lSnow };
+    public enum RainLevel : byte { light, moderate, heavy, extreme, shower, sSnow, lSnow };
 
     public enum TemperatureParameter : byte { Celsius, Fahrenheit, Kelvin };
 

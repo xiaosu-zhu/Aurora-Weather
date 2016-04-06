@@ -48,11 +48,7 @@ namespace Com.Aurora.Shared.Controls
 
         private void OnRefreshStart(object sender, RefreshStartEventArgs e)
         {
-            var h = RefreshStart;
-            if (h != null)
-            {
-                h(sender, e);
-            }
+            RefreshStart?.Invoke(sender, e);
         }
 
         protected override void OnApplyTemplate()
@@ -101,11 +97,7 @@ namespace Com.Aurora.Shared.Controls
 
         private void OnViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            var h = this.ViewChanged;
-            if (h != null)
-            {
-                h(sender, e);
-            }
+            ViewChanged?.Invoke(sender, e);
         }
 
         private void Main_PointerWheelChanged(object sender, PointerRoutedEventArgs e)

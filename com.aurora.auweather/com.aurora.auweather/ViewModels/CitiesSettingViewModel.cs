@@ -84,11 +84,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnRefreshComplete()
         {
-            var h = FetchDataComplete;
-            if (h != null)
-            {
-                FetchDataComplete(this, new FetchDataCompleteEventArgs());
-            }
+            this.FetchDataComplete?.Invoke(this, new FetchDataCompleteEventArgs());
         }
 
         public bool EnablePosition
@@ -177,7 +173,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }));
                 return;
             }
-            
+
             Cities.LocatedCity = new CitySettingsModel(final.ToArray()[0]);
             final = null;
             if (Cities.SavedCities.IsNullorEmpty())
@@ -198,11 +194,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnLocateComplete()
         {
-            var h = LocateComplete;
-            if (h != null)
-            {
-                LocateComplete(this, new FetchDataCompleteEventArgs());
-            }
+            this.LocateComplete?.Invoke(this, new FetchDataCompleteEventArgs());
         }
 
         internal void ChangePosition(bool isOn)

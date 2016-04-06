@@ -246,11 +246,11 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
                                 <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="UseWeekDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="UseWeekDay" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="Showtt" Toggled="Showtt_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="Showtt" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                         </Grid>
                     </StackPanel>
@@ -262,17 +262,17 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
                                 <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableEveryDay" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="EnableEveryDay" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
                                 <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableAlarm" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="EnableAlarm" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnablePulltoRefresh" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="EnablePulltoRefresh" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
@@ -297,6 +297,21 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="as rise/set" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TextBlock Text="需要定位，否则使用默认值 19:30~7:30" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.6" FontSize="12" />
+                                <ToggleSwitch x:Name="ThemeasRiseSet" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                            <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="Start:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="StartPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                            <Grid Visibility="Collapsed" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="End:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="EndPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel>
@@ -304,18 +319,18 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
                                 <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableSecond" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="EnableSecond" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Right" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="ShowImmersivett" Toggled="Bool_Toggled" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="ShowImmersivett" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
 
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Left" >
                                 <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" Toggled="Bool_Toggled" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
                             <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>

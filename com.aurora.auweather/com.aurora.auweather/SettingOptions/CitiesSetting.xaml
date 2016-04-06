@@ -286,6 +286,9 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="IsEnabled">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
                 </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="LocateAllowed">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateDeniedButton" Storyboard.TargetProperty="Visibility">
@@ -299,6 +302,9 @@
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="IsEnabled">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="SearchBoxIn">

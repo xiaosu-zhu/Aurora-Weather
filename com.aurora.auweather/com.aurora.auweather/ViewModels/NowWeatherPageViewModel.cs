@@ -1126,6 +1126,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
         public event EventHandler<ParameterChangedEventArgs> ParameterChanged;
         public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
+        public event EventHandler<TimeUpdatedEventArgs> TimeUpdated;
         #endregion
 
         public DelegateCommand RefreshCommand
@@ -1278,11 +1279,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnFetchDataFailed(object sender, FetchDataFailedEventArgs e)
         {
-            var h = this.FetchDataFailed;
-            if (h != null)
-            {
-                h(sender, e);
-            }
+            this.FetchDataFailed?.Invoke(sender, e);
         }
 
         private async Task FetchDataAsync()
@@ -1338,19 +1335,12 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void NotifyParameterChanged(object parameter)
         {
-            var h = ParameterChanged;
-            if (h != null)
-            {
-                ParameterChanged(this, new ParameterChangedEventArgs(parameter));
-            }
+
+            this.ParameterChanged?.Invoke(this, new ParameterChangedEventArgs(parameter));
         }
         private void NotifyFetchDataComplete()
         {
-            var h = FetchDataComplete;
-            if (h != null)
-            {
-                FetchDataComplete(this, new FetchDataCompleteEventArgs());
-            }
+            FetchDataComplete?.Invoke(this, new FetchDataCompleteEventArgs());
         }
 
         private void InitialViewModel()
@@ -1570,15 +1560,35 @@ namespace Com.Aurora.AuWeather.ViewModels
                 async (task) =>
             {
                 var locTime = DateTimeHelper.ReviseLoc(utcOffset);
+
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
                     CurrentTime = locTime;
+                    if (settings.Preferences.EnableImmersiveSecond)
+                    {
+                        if (CurrentTime.Second == 0)
+                        {
+                            CalculateIsNight(CurrentTime, SunRise, SunSet);
+                            OnTimeUpdated();
+                        }
+                    }
+                    else
+                    {
+                        CalculateIsNight(CurrentTime, SunRise, SunSet);
+                        OnTimeUpdated();
+                    }
                 }));
             }, TimeSpan.FromSeconds(nextupdate),
             (compelte) =>
             {
                 CurrentTimeRefreshTask();
             });
+        }
+
+        private void OnTimeUpdated()
+        {
+            Theme = settings.Preferences.GetTheme();
+            TimeUpdated?.Invoke(this, new TimeUpdatedEventArgs(IsNight));
         }
 
         private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)

@@ -110,6 +110,7 @@
     <Compile Include="Converters\ConvertersEx.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="LunarCalendar\CalendarInfo.cs" />
+    <Compile Include="LunarCalendar\SunRiseSet.cs" />
     <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="Models\AQI.cs" />
     <Compile Include="Models\Enums.cs" />

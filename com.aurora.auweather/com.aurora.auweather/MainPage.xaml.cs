@@ -46,6 +46,9 @@ namespace Com.Aurora.AuWeather
             Settings.Label = loader.GetString("Settings");
             Cities.Label = loader.GetString("Cities");
             Refresh.Label = loader.GetString("Refresh");
+            PaneList.SelectionChanged -= PaneList_SelectionChanged;
+            PaneList.SelectedIndex = 2;
+            PaneList.SelectionChanged += PaneList_SelectionChanged;
         }
 
         internal void Navigate(Type page)
@@ -211,9 +214,13 @@ namespace Com.Aurora.AuWeather
 
         internal void ReCalcPaneFormat()
         {
+            var i = PaneList.SelectedIndex;
+            PaneList.SelectionChanged -= PaneList_SelectionChanged;
             this.DataContext = null;
             DateNowConverter.Refresh();
             this.DataContext = new MainPageViewModel();
+            PaneList.SelectedIndex = i;
+            PaneList.SelectionChanged += PaneList_SelectionChanged;
         }
 
         private void Today_Click(object sender, RoutedEventArgs e)

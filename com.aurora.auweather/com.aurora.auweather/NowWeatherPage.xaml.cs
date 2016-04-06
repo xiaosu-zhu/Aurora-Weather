@@ -78,9 +78,17 @@ namespace Com.Aurora.AuWeather
             Context.FetchDataComplete += MModel_FetchDataComplete;
             Context.ParameterChanged += MModel_ParameterChanged;
             Context.FetchDataFailed += Context_FetchDataFailed;
+            Context.TimeUpdated += Context_TimeUpdated;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             //DataContext = new NowWeatherPageViewModel();
 
+        }
+
+        private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
+        {
+            detailGridAnimation_FLAG -= 16;
+            DetailGrid4Play();
+            baba.ReloadTheme();
         }
 
         private async void Context_FetchDataFailed(object sender, FetchDataFailedEventArgs e)

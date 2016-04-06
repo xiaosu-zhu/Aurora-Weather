@@ -229,11 +229,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnFetchDataComplete()
         {
-            var h = FetchDataComplete;
-            if (h != null)
-            {
-                h(this, new FetchDataCompleteEventArgs());
-            }
+            FetchDataComplete?.Invoke(this, new FetchDataCompleteEventArgs());
         }
 
         internal void SaveAll()
@@ -257,11 +253,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnSetLocalComplete(string title)
         {
-            var h = this.SetLocalComplete;
-            if (h != null)
-            {
-                h(this, new FetchDataCompleteEventArgs(title));
-            }
+            this.SetLocalComplete?.Invoke(this, new FetchDataCompleteEventArgs(title));
+
         }
 
         private async Task CheckandSetlocalFile(Uri uri)

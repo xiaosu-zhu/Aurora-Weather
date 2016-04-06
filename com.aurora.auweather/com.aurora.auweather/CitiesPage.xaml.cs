@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
+using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -80,7 +81,12 @@ namespace Com.Aurora.AuWeather
                  {
                      var _geolocator = new Geolocator();
                      var pos = await _geolocator.GetGeopositionAsync();
-                     CalcPosition(pos, citys);
+                     if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
+                         CalcPosition(pos, citys);
+                     else
+                     {
+                         FailtoPos();
+                     }
                  }
                  else
                  {
@@ -89,6 +95,10 @@ namespace Com.Aurora.AuWeather
              }));
         }
 
+        private void FailtoPos()
+        {
+
+        }
 
         private void DeniePos()
         {
@@ -97,13 +107,18 @@ namespace Com.Aurora.AuWeather
 
         private void CalcPosition(Geoposition pos, List<CityInfo> citys)
         {
-
-            var final = Models.Location.GetNearsetLocation(citys,
-                new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-            Context.UpdateLocation(final.ToArray()[0]);
-            citys.Clear();
-            citys = null;
-            final = null;
+            var t = ThreadPool.RunAsync(async (work) =>
+            {
+                var final = Models.Location.GetNearsetLocation(citys,
+                                new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                 {
+                     Context.UpdateLocation(final.ToArray()[0]);
+                     citys.Clear();
+                     citys = null;
+                     final = null;
+                 }));
+            });
         }
 
         internal void Add()

@@ -401,11 +401,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void OnFetchDataFailed()
         {
-            var h = this.FetchDataFailed;
-            if (h != null)
-            {
-                h(this, new FetchDataFailedEventArgs("Cities_Null"));
-            }
+            this.FetchDataFailed?.Invoke(this, new FetchDataFailedEventArgs("Cities_Null"));
         }
     }
 

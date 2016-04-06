@@ -105,11 +105,7 @@ namespace Com.Aurora.AuWeather.License
 
         private void OnLicenseChanged()
         {
-            var h = this.LicenseChanged;
-            if (h != null)
-            {
-                h();
-            }
+            this.LicenseChanged?.Invoke();
         }
 
         internal async Task TryPurchaseAsync(string donationPack)

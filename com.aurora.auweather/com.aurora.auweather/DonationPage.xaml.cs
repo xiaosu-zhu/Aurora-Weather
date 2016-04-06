@@ -67,11 +67,7 @@ namespace Com.Aurora.AuWeather
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var h = PropertyChanged;
-            if (h != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void License_LicenseChanged()

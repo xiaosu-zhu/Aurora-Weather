@@ -171,6 +171,27 @@ namespace Com.Aurora.AuWeather.Effects
             maxDensity = 0.005f;
         }
 
+        private void InitializeShower()
+        {
+            minRotationAngle = 1.54f;
+            maxRotationAngle = 1.57f;
+
+            minInitialSpeed = 1400;
+            maxInitialSpeed = 1600;
+
+            minAcceleration = 900;
+            maxAcceleration = 1000;
+
+            minScaleX = 0.3f;
+            maxScaleX = 0.6f;
+
+            minScaleY = 0.9f;
+            maxScaleY = 2;
+
+            minDensity = 0.01f;
+            maxDensity = 0.015f;
+        }
+
         public override async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
         {
             if (surfaceLoaded)
@@ -284,6 +305,9 @@ namespace Com.Aurora.AuWeather.Effects
                     break;
                 case RainLevel.lSnow:
                     InitializelSnow();
+                    break;
+                case RainLevel.shower:
+                    InitializeShower();
                     break;
                 default:
                     InitializeLight();

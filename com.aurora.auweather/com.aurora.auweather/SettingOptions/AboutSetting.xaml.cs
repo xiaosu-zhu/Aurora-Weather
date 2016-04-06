@@ -45,11 +45,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var h = PropertyChanged;
-            if (h != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
