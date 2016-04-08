@@ -2,6 +2,8 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
+
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public class NowWeather
@@ -54,6 +56,11 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Wind = new Wind(now.wind);
             Pressure = Pressure.FromHPa(float.Parse(now.pres));
             Temprature = Temperature.FromCelsius(int.Parse(now.tmp));
+        }
+
+        public NowWeather(double temp, string con, double hum, PcpnTotal pcpn, WindTotal wind)
+        {
+
         }
     }
 

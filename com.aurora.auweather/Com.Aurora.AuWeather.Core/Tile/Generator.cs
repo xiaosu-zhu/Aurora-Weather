@@ -13,6 +13,7 @@ using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.Settings;
 using NotificationsExtensions.Toasts;
+using Windows.ApplicationModel.Resources;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -66,6 +67,11 @@ namespace Com.Aurora.AuWeather.Tile
                         Branding = TileBranding.NameAndLogo,
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                                        {
                                 new TileText()
@@ -163,6 +169,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText()
@@ -271,6 +282,7 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 return x.Date.Date == DueTime.Date;
             });
+            var loader = new ResourceLoader();
             var toast = new ToastContent()
             {
                 Scenario = ToastScenario.Default,
@@ -281,7 +293,7 @@ namespace Com.Aurora.AuWeather.Tile
                 {
                     TitleText = new ToastText()
                     {
-                        Text = "Today's Weather for " + currentCity.City
+                        Text = string.Format(loader.GetString("Today_Weather"), currentCity.City)
                     },
                     BodyTextLine1 = new ToastText()
                     {
@@ -380,6 +392,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText(),
@@ -591,6 +608,11 @@ namespace Com.Aurora.AuWeather.Tile
 
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileGroup()
@@ -711,20 +733,15 @@ namespace Com.Aurora.AuWeather.Tile
             var alarm = fetchresult.Alarms[0];
             ToastContent t = new ToastContent()
             {
-                Duration = ToastDuration.Long,
-                Scenario = ToastScenario.Alarm,
+                Scenario = ToastScenario.Reminder,
                 Launch = currentCityModel.Id,
                 Visual = new ToastVisual()
                 {
                     TitleText = new ToastText()
                     {
-                        Text = "气象灾害预警"
-                    },
-                    BodyTextLine1 = new ToastText()
-                    {
                         Text = alarm.Title
                     },
-                    BodyTextLine2 = new ToastText()
+                    BodyTextLine1 = new ToastText()
                     {
                         Text = alarm.Text
                     }
@@ -851,6 +868,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileGroup()

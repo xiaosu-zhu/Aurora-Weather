@@ -13,7 +13,7 @@
     xmlns:Converters="using:Com.Aurora.Shared.Converters"
     mc:Ignorable="d">
     <UserControl.DataContext>
-        <ViewModels:ConditionPathViewModel />
+        <ViewModels:ConditionPathViewModel x:Name="Context"/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
@@ -21,9 +21,7 @@
         <Converters:ColortoSolidColorBrushConverter x:Key="ColortoBrushConverter" />
     </UserControl.Resources>
 
-    <Path x:Name="Root" Width="64" Height="64" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Stroke="{Binding ResultColor, Converter={StaticResource ColortoBrushConverter}}" StrokeThickness="1" Fill="{Binding ResultFillColor, Converter={StaticResource ColortoBrushConverter}}"
-          StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round"
-          Data="{Binding Result, Converter={StaticResource StringtoPathConverter}}">
-    </Path>
+    <Image x:Name="Root" Width="54" Height="54" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Source="{x:Bind Context.Source,Mode=OneWay}">
+    </Image>
 
 </UserControl>

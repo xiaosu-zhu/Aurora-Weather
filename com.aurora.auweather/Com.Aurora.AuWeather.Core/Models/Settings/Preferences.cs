@@ -18,6 +18,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public SpeedParameter SpeedParameter { get; private set; } = SpeedParameter.KMPH;
         public WindParameter WindParameter { get; private set; } = WindParameter.SpeedandText;
 
+        public DataSource DataSource { get; private set; } = DataSource.HeWeather;
+
         public bool EnableEveryDay { get; set; } = false;
         public RefreshState RefreshFrequency { get; private set; } = RefreshState.one;
         public RequestedTheme Theme { get; private set; } = RequestedTheme.Auto;
@@ -69,7 +71,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     {
                         if (DateTime.Now > (DateTime.Today + EndTime) || DateTime.Now < (DateTime.Today + StartTime))
                         {
-                            return ElementTheme.Default;
+                            return ElementTheme.Light;
                         }
                         else
                         {
@@ -80,7 +82,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     {
                         if (DateTime.Now > (DateTime.Today + EndTime) && DateTime.Now < (DateTime.Today + StartTime))
                         {
-                            return ElementTheme.Default;
+                            return ElementTheme.Light;
                         }
                         else
                         {
@@ -97,7 +99,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                         var end = SunRiseSet.GetSet(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
                         if (DateTime.Now > (DateTime.Today + start) && DateTime.Now < (DateTime.Today + end))
                         {
-                            return ElementTheme.Default;
+                            return ElementTheme.Light;
                         }
                         else
                         {
@@ -108,7 +110,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     {
                         if (DateTime.Now > (DateTime.Today.AddHours(7.5)) && DateTime.Now < (DateTime.Today.AddHours(19.5)))
                         {
-                            return ElementTheme.Default;
+                            return ElementTheme.Light;
                         }
                         else
                         {
@@ -125,6 +127,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
             {
                 return ElementTheme.Light;
             }
+            if (Theme == RequestedTheme.Default)
+                return ElementTheme.Default;
             return ElementTheme.Default;
         }
 
@@ -155,6 +159,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public void Set(RequestedTheme r)
         {
             Theme = r;
+        }
+        public void Set(DataSource d)
+        {
+            DataSource = d;
         }
 
 

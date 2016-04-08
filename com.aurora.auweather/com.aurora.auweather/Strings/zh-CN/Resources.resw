@@ -1006,7 +1006,7 @@
     <value>转到设置</value>
   </data>
   <data name="DataSourceText.Text" xml:space="preserve">
-    <value>数据提供方:</value>
+    <value>数据提供方</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>再试一次?</value>
@@ -1055,5 +1055,50 @@
   </data>
   <data name="Locating" xml:space="preserve">
     <value>正在定位...</value>
+  </data>
+  <data name="DataSourceDetailText.Text" xml:space="preserve">
+    <value>即将加入 "WeatherUnderground" 数据源</value>
+  </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>结束时间:</value>
+  </data>
+  <data name="MinutesIn" xml:space="preserve">
+    <value>{0}分钟以内</value>
+  </data>
+  <data name="StartTimeText.Text" xml:space="preserve">
+    <value>开始时间:</value>
+  </data>
+  <data name="ThemeasDetailText" xml:space="preserve">
+    <value>需要定位，否则使用默认值 19:30~7:30</value>
+  </data>
+  <data name="ThemeasRiseSetText.Text" xml:space="preserve">
+    <value>暗色时间跟随日落/日出</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>未能更新</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>更新完成</value>
+  </data>
+  <data name="RefreshStamp" xml:space="preserve">
+    <value>时间戳: {0}</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>正在更新</value>
+  </data>
+  <data name="Today_Weather" xml:space="preserve">
+    <value>今日{0}天气</value>
+  </data>
+  <data name="RequestedTheme_Default" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="CaiyunRadio.Content" xml:space="preserve">
+    <value>彩云天气</value>
+  </data>
+  <data name="HeWeatherRadio.Content" xml:space="preserve">
+    <value>和风天气</value>
   </data>
 </root>

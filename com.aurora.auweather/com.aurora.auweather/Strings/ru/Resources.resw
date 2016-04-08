@@ -951,4 +951,49 @@
   <data name="Locating" xml:space="preserve">
     <value>Поиск...</value>
   </data>
+  <data name="DataSourceDetailText.Text" xml:space="preserve">
+    <value>Новый поставщик данных: «Caiyun погода» скоро.</value>
+  </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>Время окончания события:</value>
+  </data>
+  <data name="MinutesIn" xml:space="preserve">
+    <value>В {0} минута(ы)</value>
+  </data>
+  <data name="StartTimeText.Text" xml:space="preserve">
+    <value>Время начала:</value>
+  </data>
+  <data name="ThemeasDetailText" xml:space="preserve">
+    <value>Нужно место, или использовать значение по умолчанию: 19:30 ~ 7:30</value>
+  </data>
+  <data name="ThemeasRiseSetText.Text" xml:space="preserve">
+    <value>Включить режим темный когда солнца установить</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Обновлено</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>Не удается обновить</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>Обновление завершено</value>
+  </data>
+  <data name="RefreshStamp" xml:space="preserve">
+    <value>Отметка времени: {0}</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>Обновление...</value>
+  </data>
+  <data name="RequestedTheme_Default" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="Today_Weather" xml:space="preserve">
+    <value>Сегодня для {0}</value>
+  </data>
+  <data name="CaiyunRadio.Content" xml:space="preserve">
+    <value>Погода в Caiyun</value>
+  </data>
+  <data name="HeWeatherRadio.Content" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
 </root>

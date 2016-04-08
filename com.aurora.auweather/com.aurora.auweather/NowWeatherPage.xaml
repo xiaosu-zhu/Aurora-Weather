@@ -31,6 +31,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <CollectionViewSource x:Name="AlarmsSource" Source="{x:Bind Context.Alarms,Mode=OneWay}" />
             <Converters:TempratureConverter x:Key="TempratureConverter" />
             <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverter1" />
             <Converters:WindSpeedConverter x:Key="WindSpeedConverter" />
@@ -82,6 +83,8 @@
             <Converters:ImmersiveMinConverter x:Key="ImmersiveMinConverter" />
             <Converters:ImmersiveSecConverter x:Key="ImmersiveSecConverter" />
             <Converters:BooltoVisibilityConverter x:Key="BooltoVisibilityConverter" />
+            <Converters:RefreshCompleteConverter x:Key="RefreshCompleteConverter" />
+            <Converters:AlarmLeveltoColorConverter x:Key="AlarmLeveltoColorConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -446,6 +449,9 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
@@ -456,6 +462,16 @@
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="AlarmButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1" To="1" Duration="0:0:2" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <CircleEase />
                     </DoubleAnimation.EasingFunction>
@@ -520,14 +536,18 @@
             <Storyboard x:Name="TempratureOut">
                 <FadeOutThemeAnimation Storyboard.TargetName="NowCondition" />
                 <FadeOutThemeAnimation Storyboard.TargetName="CurrentCity" />
+                <FadeOutThemeAnimation Storyboard.TargetName="AlarmButton" />
                 <FadeOutThemeAnimation Storyboard.TargetName="TempDeg" />
                 <FadeOutThemeAnimation Storyboard.TargetName="HighLowPanel" />
+                <FadeOutThemeAnimation Storyboard.TargetName="UpdateIndicator" />
             </Storyboard>
             <Storyboard x:Name="TempratureIn">
                 <FadeInThemeAnimation Storyboard.TargetName="NowCondition" />
                 <FadeInThemeAnimation Storyboard.TargetName="CurrentCity" />
+                <FadeInThemeAnimation Storyboard.TargetName="AlarmButton" />
                 <FadeInThemeAnimation Storyboard.TargetName="TempDeg" />
                 <FadeInThemeAnimation Storyboard.TargetName="HighLowPanel" />
+                <FadeInThemeAnimation Storyboard.TargetName="UpdateIndicator" />
             </Storyboard>
             <Storyboard x:Name="DetailTempratureIn">
                 <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{Binding BodyTemprature, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
@@ -650,6 +670,9 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
@@ -674,6 +697,8 @@
                 <FadeOutThemeAnimation Storyboard.TargetName="ImmersiveButton" />
                 <FadeOutThemeAnimation Storyboard.TargetName="RefreshButton" />
                 <FadeOutThemeAnimation Storyboard.TargetName="CurrentCity" />
+                <FadeOutThemeAnimation Storyboard.TargetName="AlarmButton" />
+                <FadeOutThemeAnimation Storyboard.TargetName="UpdateIndicator" />
                 <FadeOutThemeAnimation Storyboard.TargetName="HighLowPanel" />
                 <FadeOutThemeAnimation Storyboard.TargetName="NowCondition" />
                 <FadeOutThemeAnimation Storyboard.TargetName="NowTemp" />
@@ -711,6 +736,9 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0:0:1.8" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Visibility" >
+                    <DiscreteObjectKeyFrame KeyTime="0:0:1.8" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0:0:1.8" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
@@ -740,6 +768,8 @@
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="ImmersiveButton" />
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="RefreshButton" />
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="CurrentCity" />
+                <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="AlarmButton" />
+                <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="UpdateIndicator" />
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="HighLowPanel" />
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="NowCondition" />
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="NowTemp" />
@@ -769,6 +799,27 @@
                 <FadeInThemeAnimation Storyboard.TargetName="ImmersiveBackButton" />
                 <FadeInThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
             </Storyboard>
+            <Storyboard x:Name="RefreshCompleteAni">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True">
+                    <DiscreteDoubleKeyFrame KeyTime="0" Value="1" >
+                    </DiscreteDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="0" >
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.72" Value="0" >
+                    </DiscreteDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.36" Value="1" >
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Text">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="{Binding UpdateTime,Converter={StaticResource RefreshCompleteConverter}}" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
         </Grid.Resources>
         <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
@@ -784,6 +835,7 @@
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
+            <TextBlock Visibility="Collapsed" Opacity="0" x:Name="UpdateIndicator" Foreground="White" FontWeight="Light" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
                        Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
@@ -858,13 +910,32 @@
                     <SymbolIcon Symbol="FullScreen" />
                 </Button.Content>
             </Button>
-            <Button x:Name="RefreshButton" Visibility="Collapsed" Command="{Binding RefreshCommand}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
+            <Button x:Name="RefreshButton" Visibility="Collapsed" Click="RefreshButton_Click" Command="{Binding RefreshCommand}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="RefreshText" />
                 </ToolTipService.ToolTip>
                 <Button.Content>
                     <SymbolIcon Symbol="Refresh" />
                 </Button.Content>
+            </Button>
+            <Button x:Name="AlarmButton" Opacity="0" Visibility="{Binding HadNoAlarms,Converter={StaticResource BooltoVisibilityConverter}}" Margin="16" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+                <Button.Flyout>
+                    <Flyout Placement="Full">
+                        <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="ViewModels:WeatherAlarmViewModel">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Grid Margin="4" BorderThickness="2" BorderBrush="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoColorConverter}}">
+                                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoColorConverter}}" Opacity="0.2" />
+                                            <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Title,Mode=OneWay}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                        </Grid>
+                                        <TextBlock Margin="8" Text="{x:Bind Description,Mode=OneWay}" TextWrapping="WrapWholeWords"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Flyout>
+                </Button.Flyout>
             </Button>
             <Grid Visibility="Collapsed" Opacity="0" x:Name="ImmersiveDetailsPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
                 <Grid.RowDefinitions>
@@ -913,7 +984,7 @@
                     </ToolTipService.ToolTip>
                     <SymbolIcon Symbol="BackToWindow" />
                 </Button>
-                <Button x:Name="ImmersiveRefreshButton" Grid.RowSpan="5" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
+                <Button x:Name="ImmersiveRefreshButton" Click="RefreshButton_Click" Grid.RowSpan="5" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="RefreshText" />
                     </ToolTipService.ToolTip>

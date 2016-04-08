@@ -43,5 +43,7 @@ namespace Com.Aurora.AuWeather.Models
 
     public enum ImmersiveBackgroundState : byte { Assets, Local, Transparent, Fallback };
 
-    public enum RequestedTheme : byte { Auto, Light, Dark };
+    public enum RequestedTheme : byte { Default, Auto, Light, Dark };
+
+    public enum DataSource : byte { HeWeather, Caiyun };
 }

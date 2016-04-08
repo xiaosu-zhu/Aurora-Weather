@@ -115,6 +115,10 @@ namespace Com.Aurora.AuWeather
                 c = (Color)Resources["SystemBaseHighColor"];
                 s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
             }
+            if (MainFrame.Content is NowWeatherPage)
+            {
+                return;
+            }
             ChangeColor(Colors.Transparent, c, s);
         }
 

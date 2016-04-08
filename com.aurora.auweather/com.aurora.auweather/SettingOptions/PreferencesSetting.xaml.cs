@@ -110,7 +110,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    StartPicker.TimeChanged += StartPicker_TimeChanged;
                    EndPicker.TimeChanged += EndPicker_TimeChanged;
 
-                   if (Context.Theme.SelectedIndex == 0)
+                   if (Context.Theme.SelectedIndex == 1)
                    {
                        AutoThemeSwitch.Visibility = Visibility.Visible;
                        if (!Context.ThemeasRiseSet)
@@ -118,7 +118,20 @@ namespace Com.Aurora.AuWeather.SettingOptions
                            StartThemeSwitch.Visibility = Visibility.Visible;
                            EndThemeSwitch.Visibility = Visibility.Visible;
                        }
-                       
+
+                   }
+
+                   switch ((DataSource)Context.Data[Context.Data.SelectedIndex].Value)
+                   {
+                       case DataSource.HeWeather:
+                           HeWeatherRadio.IsChecked = true;
+                           break;
+                       case DataSource.Caiyun:
+                           CaiyunRadio.IsChecked = true;
+                           break;
+                       default:
+                           HeWeatherRadio.IsChecked = true;
+                           break;
                    }
 
                    if (!license.IsPurchased)
@@ -280,6 +293,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
             Context.SetEnd(e.NewTime);
             Context.ReloadTheme();
             (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
+        }
+
+        private void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            Context.SetSource(DataSource.Caiyun);
+        }
+
+        private void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            Context.SetSource(DataSource.HeWeather);
         }
     }
 }

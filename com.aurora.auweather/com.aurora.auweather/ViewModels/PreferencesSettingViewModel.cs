@@ -29,6 +29,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 work.Completed = new AsyncActionCompletedHandler(WorkComplete);
 
+                Data = new DataList();
                 Temperature = new TemperatureList();
                 Wind = new WindList();
                 Speed = new SpeedList();
@@ -51,6 +52,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Week.AddRange(Preferences.WeekFormat);
                 Separator = Preferences.DateSeparator.ToString();
 
+                Data.SelectedIndex = Data.FindIndex(x =>
+                {
+                    return (DataSource)x.Value == Preferences.DataSource;
+                });
                 Temperature.SelectedIndex = Temperature.FindIndex(x =>
                 {
                     return (TemperatureParameter)x.Value == Preferences.TemperatureParameter;
@@ -195,6 +200,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             SaveAll();
         }
 
+        public DataList Data { get; private set; }
         public TemperatureList Temperature { get; private set; }
         public WindList Wind { get; private set; }
         public SpeedList Speed { get; private set; }
@@ -307,6 +313,12 @@ namespace Com.Aurora.AuWeather.ViewModels
             Preferences.StartTime = newTime;
             SaveAll();
         }
+
+        internal void SetSource(DataSource caiyun)
+        {
+            Preferences.Set(caiyun);
+            SaveAll();
+        }
     }
 
     public class FormatList : List<string>
@@ -318,9 +330,23 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public TemperatureList()
         {
-            Add(new EnumSelector(TemperatureParameter.Celsius, TemperatureParameter.Celsius.GetDisplayName()));
-            Add(new EnumSelector(TemperatureParameter.Fahrenheit, TemperatureParameter.Fahrenheit.GetDisplayName()));
-            Add(new EnumSelector(TemperatureParameter.Kelvin, TemperatureParameter.Kelvin.GetDisplayName()));
+            foreach (TemperatureParameter item in Enum.GetValues(typeof(TemperatureParameter)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
+        }
+
+        public int SelectedIndex { get; internal set; } = 0;
+    }
+
+    public class DataList : List<EnumSelector>
+    {
+        public DataList()
+        {
+            foreach (DataSource item in Enum.GetValues(typeof(DataSource)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
 
         public int SelectedIndex { get; internal set; } = 0;
@@ -330,10 +356,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public PressureList()
         {
-            Add(new EnumSelector(PressureParameter.Atm, PressureParameter.Atm.GetDisplayName()));
-            Add(new EnumSelector(PressureParameter.CmHg, PressureParameter.CmHg.GetDisplayName()));
-            Add(new EnumSelector(PressureParameter.Hpa, PressureParameter.Hpa.GetDisplayName()));
-            Add(new EnumSelector(PressureParameter.Torr, PressureParameter.Torr.GetDisplayName()));
+            foreach (PressureParameter item in Enum.GetValues(typeof(PressureParameter)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
 
         public int SelectedIndex { get; internal set; } = 0;
@@ -343,10 +369,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public WindList()
         {
-            Add(new EnumSelector(WindParameter.BeaufortandDegree, WindParameter.BeaufortandDegree.GetDisplayName()));
-            Add(new EnumSelector(WindParameter.BeaufortandText, WindParameter.BeaufortandText.GetDisplayName()));
-            Add(new EnumSelector(WindParameter.SpeedandDegree, WindParameter.SpeedandDegree.GetDisplayName()));
-            Add(new EnumSelector(WindParameter.SpeedandText, WindParameter.SpeedandText.GetDisplayName()));
+            foreach (WindParameter item in Enum.GetValues(typeof(WindParameter)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
         public int SelectedIndex { get; internal set; } = 0;
     }
@@ -355,9 +381,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public SpeedList()
         {
-            Add(new EnumSelector(SpeedParameter.KMPH, SpeedParameter.KMPH.GetDisplayName()));
-            Add(new EnumSelector(SpeedParameter.MPS, SpeedParameter.MPS.GetDisplayName()));
-            Add(new EnumSelector(SpeedParameter.Knot, SpeedParameter.Knot.GetDisplayName()));
+            foreach (SpeedParameter item in Enum.GetValues(typeof(SpeedParameter)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
         public int SelectedIndex { get; internal set; } = 0;
     }
@@ -366,10 +393,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public LengthList()
         {
-            Add(new EnumSelector(LengthParameter.KM, LengthParameter.KM.GetDisplayName()));
-            Add(new EnumSelector(LengthParameter.M, LengthParameter.M.GetDisplayName()));
-            Add(new EnumSelector(LengthParameter.Mile, LengthParameter.Mile.GetDisplayName()));
-            Add(new EnumSelector(LengthParameter.NM, LengthParameter.NM.GetDisplayName()));
+            foreach (LengthParameter item in Enum.GetValues(typeof(LengthParameter)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
         public int SelectedIndex { get; internal set; } = 0;
     }
@@ -378,10 +405,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public RefreshFreqList()
         {
-            Add(new EnumSelector(RefreshState.one, RefreshState.one.GetDisplayName()));
-            Add(new EnumSelector(RefreshState.two, RefreshState.two.GetDisplayName()));
-            Add(new EnumSelector(RefreshState.three, RefreshState.three.GetDisplayName()));
-            Add(new EnumSelector(RefreshState.four, RefreshState.four.GetDisplayName()));
+            foreach (RefreshState item in Enum.GetValues(typeof(RefreshState)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
         public int SelectedIndex { get; internal set; } = 0;
     }
@@ -390,9 +417,10 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public ThemeList()
         {
-            Add(new EnumSelector(RequestedTheme.Auto, RequestedTheme.Auto.GetDisplayName()));
-            Add(new EnumSelector(RequestedTheme.Light, RequestedTheme.Light.GetDisplayName()));
-            Add(new EnumSelector(RequestedTheme.Dark, RequestedTheme.Dark.GetDisplayName()));
+            foreach (RequestedTheme item in Enum.GetValues(typeof(RequestedTheme)))
+            {
+                Add(new EnumSelector(item, item.GetDisplayName()));
+            }
         }
         public int SelectedIndex { get; internal set; } = 0;
     }

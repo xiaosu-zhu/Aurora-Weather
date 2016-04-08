@@ -951,4 +951,49 @@
   <data name="Locating" xml:space="preserve">
     <value>探しています.</value>
   </data>
+  <data name="DataSourceDetailText.Text" xml:space="preserve">
+    <value>新しいデータ プロバイダー:「Caiyun 天気」近日公開予定。</value>
+  </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>終了時刻:</value>
+  </data>
+  <data name="MinutesIn" xml:space="preserve">
+    <value>{0} 分で</value>
+  </data>
+  <data name="StartTimeText.Text" xml:space="preserve">
+    <value>開始時間:</value>
+  </data>
+  <data name="ThemeasDetailText" xml:space="preserve">
+    <value>必要な場所、または既定値を使用: 19:30 〜 7:30</value>
+  </data>
+  <data name="ThemeasRiseSetText.Text" xml:space="preserve">
+    <value>暗いモードを有効にするときの太陽設定</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新済み</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>更新できませんでした</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>更新の完了</value>
+  </data>
+  <data name="RefreshStamp" xml:space="preserve">
+    <value>タイムスタンプ: {0}</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>アップデート中...</value>
+  </data>
+  <data name="RequestedTheme_Default" xml:space="preserve">
+    <value>システムに従う</value>
+  </data>
+  <data name="Today_Weather" xml:space="preserve">
+    <value>{0} の今日</value>
+  </data>
+  <data name="CaiyunRadio.Content" xml:space="preserve">
+    <value>Caiyun 天気</value>
+  </data>
+  <data name="HeWeatherRadio.Content" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
 </root>

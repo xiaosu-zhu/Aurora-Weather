@@ -72,30 +72,37 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private async System.Threading.Tasks.Task AccesstoLocate()
         {
-            var accessStatus = await Geolocator.RequestAccessAsync();
-            if (accessStatus == GeolocationAccessStatus.Allowed)
+            try
             {
-                LocateAllowed.Begin();
-                if (Context.EnablePosition)
+                var accessStatus = await Geolocator.RequestAccessAsync();
+                if (accessStatus == GeolocationAccessStatus.Allowed)
                 {
-                    _geolocator = new Geolocator();
-                    _geolocator.StatusChanged += OnStatusChanged;
-                    ShowRefreshing();
-                    pos = await _geolocator.GetGeopositionAsync();
-                    if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
-                        UpdatePosition(pos);
+                    LocateAllowed.Begin();
+                    if (Context.EnablePosition)
+                    {
+                        _geolocator = new Geolocator();
+                        _geolocator.StatusChanged += OnStatusChanged;
+                        ShowRefreshing();
+                        pos = await _geolocator.GetGeopositionAsync();
+                        if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
+                            UpdatePosition(pos);
+                        else
+                        {
+                            DeniePos();
+                        }
+                    }
                     else
                     {
-                        DeniePos();
+                        HidePos();
                     }
+
                 }
                 else
                 {
-                    HidePos();
+                    DeniePos();
                 }
-
             }
-            else
+            catch (Exception)
             {
                 DeniePos();
             }

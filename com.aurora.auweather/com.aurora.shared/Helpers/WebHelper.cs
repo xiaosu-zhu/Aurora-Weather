@@ -97,4 +97,48 @@ namespace Com.Aurora.Shared.Helpers
             return strValue;
         }
     }
+
+    public static class CaiyunRequestHelper
+    {
+        private static readonly string nowUrl = "https://api.caiyunapp.com/v2/";
+        public static async Task<string> RequestNowWithKeyAsync(float lon, float lat, string key)
+        {
+            var strURL = nowUrl + key + '/' + lon.ToString("0.0000") + ',' + lat.ToString("0.0000") + "/realtime.json";
+            WebRequest request;
+            request = WebRequest.Create(strURL);
+            request.Method = "GET";
+            WebResponse response;
+            response = await request.GetResponseAsync();
+            Stream s;
+            s = response.GetResponseStream();
+            string StrDate = "";
+            string strValue = "";
+            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+            while ((StrDate = Reader.ReadLine()) != null)
+            {
+                strValue += StrDate + "\r\n";
+            }
+            return strValue;
+        }
+
+        public static async Task<string> RequestForecastWithKeyAsync(float lon, float lat, string key)
+        {
+            var strURL = nowUrl + key + '/' + lon.ToString("0.0000") + ',' + lat.ToString("0.0000") + "/forecast.json";
+            WebRequest request;
+            request = WebRequest.Create(strURL);
+            request.Method = "GET";
+            WebResponse response;
+            response = await request.GetResponseAsync();
+            Stream s;
+            s = response.GetResponseStream();
+            string StrDate = "";
+            string strValue = "";
+            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+            while ((StrDate = Reader.ReadLine()) != null)
+            {
+                strValue += StrDate + "\r\n";
+            }
+            return strValue;
+        }
+    }
 }

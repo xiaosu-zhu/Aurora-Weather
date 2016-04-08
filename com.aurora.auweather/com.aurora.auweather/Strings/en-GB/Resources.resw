@@ -264,4 +264,19 @@
   <data name="NowText.Text" xml:space="preserve">
     <value>Now</value>
   </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>Couldn't update</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>Update complete.</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
 </root>

@@ -81,7 +81,6 @@ namespace Com.Aurora.AuWeather
             Context.TimeUpdated += Context_TimeUpdated;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             //DataContext = new NowWeatherPageViewModel();
-
         }
 
         private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
@@ -89,6 +88,38 @@ namespace Com.Aurora.AuWeather
             detailGridAnimation_FLAG -= 16;
             DetailGrid4Play();
             baba.ReloadTheme();
+            if (e.IsDayNightChanged)
+            {
+                if (Context.Condition == (WeatherCondition.sunny | WeatherCondition.windy
+                | WeatherCondition.calm |
+                WeatherCondition.light_breeze |
+                WeatherCondition.moderate |
+                WeatherCondition.fresh_breeze |
+                WeatherCondition.strong_breeze |
+                WeatherCondition.high_wind |
+                WeatherCondition.gale))
+                {
+                    WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
+                    if (!Context.IsNight)
+                    {
+                        SolidColorBrush s;
+                        if (Context.Theme == ElementTheme.Dark)
+                        {
+                            var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                            s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                        }
+                        else
+                        {
+                            s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+                        }
+                        baba.ChangeColor(s);
+                    }
+                    else
+                    {
+                        baba.ChangeColor(new SolidColorBrush(Colors.White));
+                    }
+                }
+            }
         }
 
         private async void Context_FetchDataFailed(object sender, FetchDataFailedEventArgs e)
@@ -161,11 +192,18 @@ namespace Com.Aurora.AuWeather
 
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
+            var loader = new ResourceLoader();
             detailGridAnimation_FLAG = 0;
             CalcDetailGridPosition();
             isAnimating = true;
             animated = true;
             ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
+            UpdateIndicator.Text = loader.GetString("RefreshComplete");
+            TempraturePathAnimation.Completed += (s, v) =>
+            {
+                isAnimating = false;
+                RefreshCompleteAni.Begin();
+            };
             TempraturePathAnimation.Begin();
             AQIAni.Begin();
             if (rootIsWideState)
@@ -191,7 +229,7 @@ namespace Com.Aurora.AuWeather
                 WeatherCondition.fresh_breeze |
                 WeatherCondition.strong_breeze |
                 WeatherCondition.high_wind |
-                WeatherCondition.gale))
+                WeatherCondition.gale) && !Context.IsNight)
             {
                 SolidColorBrush s;
                 if (Context.Theme == ElementTheme.Dark)
@@ -209,12 +247,25 @@ namespace Com.Aurora.AuWeather
             {
                 baba.ChangeColor(new SolidColorBrush(Colors.White));
             }
+            WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
+            if (Context.Aqi == null)
+            {
+                AQIPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AQIPanel.Visibility = Visibility.Visible;
+            }
+            if (Context.Comf == null && Context.Cw == null && Context.Drsg == null)
+            {
+                SuggestionPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SuggestionPanel.Visibility = Visibility.Visible;
+            }
             await Task.Delay(1000);
             ScrollableRoot.RefreshComplete();
-            WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
-
-            await Task.Delay(3000);
-            isAnimating = false;
         }
 
         #region DetailGrid Animation
@@ -710,7 +761,7 @@ namespace Com.Aurora.AuWeather
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             ImmersiveHeightBack.From = MainCanvas.ActualHeight;
             ImmersiveWidthBack.From = MainCanvas.ActualWidth;
-            ImmersiveHeightBack.To = 480 - ScrollableRoot.VerticalOffset < 160 ? 160 : 480 - ScrollableRoot.VerticalOffset;
+            ImmersiveHeightBack.To = 640 - ScrollableRoot.VerticalOffset < 160 ? 160 : 640 - ScrollableRoot.VerticalOffset;
             ImmersiveWidthBack.To = rootIsWideState ? Root.ActualWidth / 2 : Root.ActualWidth;
             App.Current.Resuming -= Current_Resuming;
             ImmersiveBackAni.Completed += (s, args) =>
@@ -734,6 +785,8 @@ namespace Com.Aurora.AuWeather
 
         private void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
         {
+            var loader = new ResourceLoader();
+            UpdateIndicator.Text = loader.GetString("RefreshStart");
             Context.RefreshAsync();
         }
 
@@ -755,7 +808,7 @@ namespace Com.Aurora.AuWeather
 
         private void Flyout_Opened(object sender, object e)
         {
-            if(immersiveTimer != null)
+            if (immersiveTimer != null)
             {
                 immersiveTimer.Cancel();
             }
@@ -797,6 +850,12 @@ namespace Com.Aurora.AuWeather
                 s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
             }
             baba.ChangeColor(Colors.Transparent, c, s);
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            var loader = new ResourceLoader();
+            UpdateIndicator.Text = loader.GetString("RefreshStart");
         }
     }
 }

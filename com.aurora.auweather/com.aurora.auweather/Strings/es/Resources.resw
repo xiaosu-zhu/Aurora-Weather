@@ -951,4 +951,49 @@
   <data name="Locating" xml:space="preserve">
     <value>Localización de...</value>
   </data>
+  <data name="DataSourceDetailText.Text" xml:space="preserve">
+    <value>Nuevo proveedor de datos: "Tiempo del Caiyun" próximamente.</value>
+  </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>Hora de finalización:</value>
+  </data>
+  <data name="MinutesIn" xml:space="preserve">
+    <value>En {0} minuto (s)</value>
+  </data>
+  <data name="StartTimeText.Text" xml:space="preserve">
+    <value>Hora de Inicio:</value>
+  </data>
+  <data name="ThemeasDetailText" xml:space="preserve">
+    <value>Necesidad de ubicación, o usar valor por defecto: 19:30 ~ 7:30</value>
+  </data>
+  <data name="ThemeasRiseSetText.Text" xml:space="preserve">
+    <value>Activar el modo oscuro cuando el sol set</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualizado</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>No se pudo actualizar</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>Actualización completada</value>
+  </data>
+  <data name="RefreshStamp" xml:space="preserve">
+    <value>Marca de tiempo: {0}</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>Actualizando...</value>
+  </data>
+  <data name="RequestedTheme_Default" xml:space="preserve">
+    <value>Siguen el sistema</value>
+  </data>
+  <data name="Today_Weather" xml:space="preserve">
+    <value>Hoy en día para {0}</value>
+  </data>
+  <data name="CaiyunRadio.Content" xml:space="preserve">
+    <value>Caiyun tiempo</value>
+  </data>
+  <data name="HeWeatherRadio.Content" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
 </root>

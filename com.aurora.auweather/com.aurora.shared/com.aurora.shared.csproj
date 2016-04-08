@@ -115,6 +115,7 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EnumrableExtesion.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\TypeExtension.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\Crypto\CryptoHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />

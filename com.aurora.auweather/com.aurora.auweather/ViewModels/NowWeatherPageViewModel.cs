@@ -16,6 +16,7 @@ using Com.Aurora.Shared.Helpers;
 using Com.Aurora.Shared.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
@@ -128,6 +129,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool enablePull;
         private TimeSpan utcOffset;
         private bool disableSecond;
+
+        private bool hadNoAlarms = true;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1121,25 +1124,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SetProperty(ref enablePull, value);
             }
         }
-        #endregion
-        #region events
-        public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
-        public event EventHandler<ParameterChangedEventArgs> ParameterChanged;
-        public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
-        public event EventHandler<TimeUpdatedEventArgs> TimeUpdated;
-        #endregion
-
-        public DelegateCommand RefreshCommand
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    RefreshAsync();
-                });
-            }
-        }
-
         public ElementTheme Theme
         {
             get
@@ -1165,6 +1149,39 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public ObservableCollection<WeatherAlarmViewModel> Alarms = new ObservableCollection<WeatherAlarmViewModel>();
+        #endregion
+        #region events
+        public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
+        public event EventHandler<ParameterChangedEventArgs> ParameterChanged;
+        public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
+        public event EventHandler<TimeUpdatedEventArgs> TimeUpdated;
+        #endregion
+
+        public DelegateCommand RefreshCommand
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    RefreshAsync();
+                });
+            }
+        }
+
+        public bool HadNoAlarms
+        {
+            get
+            {
+                return hadNoAlarms;
+            }
+
+            set
+            {
+                SetProperty(ref hadNoAlarms, value);
+            }
+        }
+
         public void RefreshAsync()
         {
             Init();
@@ -1186,6 +1203,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                     await FetchDataAsync();
                     var t = ThreadPool.RunAsync(async (w) =>
                     {
+                        if (fetchresult == null)
+                            return;
                         Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
                         if (settings.Preferences.EnableEveryDay)
                         {
@@ -1208,6 +1227,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                 {
+                    if (fetchresult == null)
+                    {
+                        return;
+                    }
                     await RegBGTask(settings.Preferences.RefreshFrequency);
                     InitialViewModel();
                 }));
@@ -1298,39 +1321,39 @@ namespace Com.Aurora.AuWeather.ViewModels
                         return;
                     }
                 }
-                var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + currentId };
-                resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
                 if (resstr == null)
                 {
                     this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
                     return;
                 }
-                var resjson1 = HeWeatherContract.Generate(resstr);
-                fetchresult = new HeWeatherModel(resjson1);
-                if (fetchresult.Status != HeWeatherStatus.ok)
+                if (resstr.Length > 31)
                 {
-                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
+                    var resjson = HeWeatherContract.Generate(resstr);
+                    fetchresult = new HeWeatherModel(resjson);
+                    if (fetchresult.Status != HeWeatherStatus.ok)
+                    {
+                        this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
+                        return;
+                    }
+                    var task = ThreadPool.RunAsync(async (work) =>
+                    {
+                        await settings.Cities.SaveDataAsync(currentId, resstr, settings.Preferences.DataSource);
+                        currentCityModel.Update();
+                        if (settings.Cities.CurrentIndex != -1)
+                        {
+                            settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCityModel;
+                        }
+                        else
+                        {
+                            settings.Cities.LocatedCity = currentCityModel;
+                        }
+                        settings.Cities.Save();
+                    });
                     return;
                 }
-                var task = ThreadPool.RunAsync(async (work) =>
-                {
-                    await settings.Cities.SaveDataAsync(currentId, resstr);
-                    currentCityModel.Update();
-                    if (settings.Cities.CurrentIndex != -1)
-                    {
-                        settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCityModel;
-                    }
-                    else
-                    {
-                        settings.Cities.LocatedCity = currentCityModel;
-                    }
-                    settings.Cities.Save();
-                });
-
             }
             else throw new NullReferenceException();
-
         }
 
         private void NotifyParameterChanged(object parameter)
@@ -1365,10 +1388,27 @@ namespace Com.Aurora.AuWeather.ViewModels
             EnableDynamic = !settings.Preferences.DisableDynamic;
             EnablePulltoRefresh = settings.Preferences.EnablePulltoRefresh;
             SetNow();
-
+            SetAlarm();
             NotifyFetchDataComplete();
         }
+
         #region Set Properties
+        private void SetAlarm()
+        {
+            if (!fetchresult.Alarms.IsNullorEmpty())
+            {
+                foreach (var alarm in fetchresult.Alarms)
+                {
+                    var a = new WeatherAlarmViewModel(alarm);
+                    Alarms.Add(a);
+                }
+                HadNoAlarms = false;
+            }
+            else
+            {
+                HadNoAlarms = true;
+            }
+        }
         private void SetDailyForecast()
         {
             // 下面这货是傻逼，只有上帝知道第几个是今天的
@@ -1568,14 +1608,16 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         if (CurrentTime.Second == 0)
                         {
-                            CalculateIsNight(CurrentTime, SunRise, SunSet);
-                            OnTimeUpdated();
+                            var m = isNight;
+                            IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
+                            OnTimeUpdated(m ^ IsNight);
                         }
                     }
                     else
                     {
-                        CalculateIsNight(CurrentTime, SunRise, SunSet);
-                        OnTimeUpdated();
+                        var m = isNight;
+                        IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
+                        OnTimeUpdated(m ^ IsNight);
                     }
                 }));
             }, TimeSpan.FromSeconds(nextupdate),
@@ -1585,10 +1627,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
-        private void OnTimeUpdated()
+        private void OnTimeUpdated(bool dayNightChange)
         {
             Theme = settings.Preferences.GetTheme();
-            TimeUpdated?.Invoke(this, new TimeUpdatedEventArgs(IsNight));
+            TimeUpdated?.Invoke(this, new TimeUpdatedEventArgs(dayNightChange));
         }
 
         private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
@@ -1629,7 +1671,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 try
                 {
-                    var data = await FileIOHelper.ReadStringFromStorageAsync(currentCityModel.Id);
+                    var data = await settings.Cities.ReadDataAsync(currentCityModel.Id, settings.Preferences.DataSource);
                     if (data != null)
                         storedDatas = new KeyValuePair<string, string>(currentCityModel.Id, data);
                 }
@@ -1644,7 +1686,10 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             TempratureConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
             DateTimeConverter.ChangeParameter(settings.Preferences.GetForecastFormat());
-            HourMinuteConverter.ChangeParameter(settings.Preferences.GetHourlyFormat());
+            var p = settings.Preferences.GetHourlyFormat();
+            HourMinuteConverter.ChangeParameter(p);
+            UpdateTimeConverter.ChangeParameter(p);
+            RefreshCompleteConverter.ChangeParameter(p);
             WindSpeedConverter.ChangeParameter(settings.Preferences.WindParameter, settings.Preferences.SpeedParameter);
             PressureConverter.ChangeParameter(settings.Preferences.PressureParameter);
             VisibilityConverter.ChangeParameter(settings.Preferences.LengthParameter);
@@ -1655,11 +1700,19 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void ReadSettings()
         {
             this.settings = SettingsModel.Get();
+
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
-                currentCityModel = settings.Cities.LocatedCity;
-                currentCity = currentCityModel.City;
-                currentId = currentCityModel.Id;
+                try
+                {
+                    currentCityModel = settings.Cities.LocatedCity;
+                    currentCity = currentCityModel.City;
+                    currentId = currentCityModel.Id;
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentNullException();
+                }
             }
             else if (settings.Cities.CurrentIndex != -1)
             {
@@ -1681,4 +1734,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             InitialConverterParameter(settings);
         }
     }
+
+
 }

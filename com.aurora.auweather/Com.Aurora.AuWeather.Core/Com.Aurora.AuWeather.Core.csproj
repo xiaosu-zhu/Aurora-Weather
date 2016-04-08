@@ -113,6 +113,12 @@
     <Compile Include="LunarCalendar\SunRiseSet.cs" />
     <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="Models\AQI.cs" />
+    <Compile Include="Models\Caiyun\Enums.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\Forecast.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\Now.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\Precipitation.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\Result.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\Wind.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Glance.cs" />
     <Compile Include="Models\HeWeather\CityInfo.cs" />
@@ -136,6 +142,7 @@
     <Compile Include="Models\Length.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Pressure.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\Settings\About.cs" />
     <Compile Include="Models\Settings\Cities.cs" />

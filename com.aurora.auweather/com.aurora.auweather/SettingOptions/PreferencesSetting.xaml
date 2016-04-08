@@ -61,6 +61,17 @@
             <StackPanel x:Name="LeftPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="DataSourceTitle" x:Uid="DataSourceText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <StackPanel Orientation="Vertical" Margin="12" HorizontalAlignment="Stretch">
+                            <RadioButton x:Uid="HeWeatherRadio" Checked="HeWeatherRadio_Checked" x:Name="HeWeatherRadio" Margin="8" />
+                            <RadioButton x:Uid="CaiyunRadio" Checked="CaiyunRadio_Checked" x:Name="CaiyunRadio" Margin="8"/>
+                            <RadioButton Content="WeatherUnderground" Margin="8" IsEnabled="False" />
+                        </StackPanel>
+                        <Grid Margin="12" HorizontalAlignment="Stretch">
+                            <TextBlock x:Uid="DataSourceDetailText" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
                             <TextBlock HorizontalAlignment="Left" x:Uid="TempParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
@@ -299,16 +310,16 @@
                         </Grid>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                             <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="as rise/set" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TextBlock Text="需要定位，否则使用默认值 19:30~7:30" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.6" FontSize="12" />
+                                <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.6" FontSize="12" />
                                 <ToggleSwitch x:Name="ThemeasRiseSet" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="Start:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TextBlock x:Uid="StartTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                                 <TimePicker x:Name="StartPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid Visibility="Collapsed" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="End:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TextBlock x:Uid="EndTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                                 <TimePicker x:Name="EndPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                         </StackPanel>

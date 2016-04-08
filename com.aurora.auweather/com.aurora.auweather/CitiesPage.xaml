@@ -34,6 +34,7 @@
             <Converters:UpdateTimeConverter x:Key="DateTimeConverter" />
             <Converters:BooltoVisibilityConverter x:Key="BooltoVisibilityConverter" />
             <Converters:ReverseBoolConverter x:Key="ReverseConverter" />
+            <Converters:BooltoVisibilityConverter x:Key="BooltoVisiConverter" />
             <Style x:Key="DropDownCommandBar" TargetType="CommandBar">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -875,7 +876,12 @@
                     <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="336" Height="189" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Image Stretch="Uniform" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                         <Grid Visibility="{x:Bind Updated, Converter={StaticResource BooltoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
+                            <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BooltoVisiConverter},Mode=OneWay,FallbackValue=Collapsed}" />
                         </Grid>
                         <ScrollViewer Width="336" MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
                             <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

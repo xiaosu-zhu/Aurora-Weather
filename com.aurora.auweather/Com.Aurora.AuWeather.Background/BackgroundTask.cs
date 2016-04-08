@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
@@ -54,9 +55,7 @@ namespace Com.Aurora.AuWeather.Background
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
-            var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-            var param = new string[] { "cityid=" + currentCity.Id };
-            var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+            string resstr = await Request.GetRequest(settings, currentCity);
             var resjson1 = HeWeatherContract.Generate(resstr);
             var fetchresult = new HeWeatherModel(resjson1);
             Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
@@ -70,7 +69,7 @@ namespace Com.Aurora.AuWeather.Background
                 Sender.CreateBadge(Generator.GenerateAlertBadge());
                 Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity));
             }
-            await settings.Cities.SaveDataAsync(currentCity.Id, resstr);
+            await settings.Cities.SaveDataAsync(currentCity.Id, resstr, settings.Preferences.DataSource);
             currentCity.Update();
             if (settings.Cities.CurrentIndex != -1)
             {

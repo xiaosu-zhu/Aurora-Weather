@@ -22,6 +22,7 @@ using Com.Aurora.Shared.Extensions;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.License;
+using Com.Aurora.AuWeather.Core.Models;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -91,9 +92,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                     await Init();
                     var t = ThreadPool.RunAsync((x) =>
                     {
-                        Update();
                         if (settings.Cities.EnableLocate)
                             RequireLocationUpdate();
+                        Update();
                     });
                 }));
             });
@@ -108,37 +109,48 @@ namespace Com.Aurora.AuWeather.ViewModels
             settings.Cities.LocatedCity = null;
         }
 
-        private void Update()
+        private async void Update()
         {
             var licens = new License.License();
-            foreach (var item in Cities)
+            if (licens.IsPurchased)
             {
-                if (!item.Updated && licens.IsPurchased)
+                foreach (var item in Cities)
                 {
-                    var task = ThreadPool.RunAsync(async (work) =>
+                    if (!item.Updated)
                     {
-                        var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                        var param = new string[] { "cityid=" + item.Id };
-                        var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-                        item.data = resstr;
-                        await settings.Cities.SaveDataAsync(item.Id, resstr);
-                        var index = Array.FindIndex(settings.Cities.SavedCities, x =>
+                        var task = ThreadPool.RunAsync(async (work) =>
                         {
-                            return x.Id == item.Id;
+                            string resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
+                            item.data = resstr;
+                            await settings.Cities.SaveDataAsync(item.Id, resstr, settings.Preferences.DataSource);
+                            var index = Array.FindIndex(settings.Cities.SavedCities, x =>
+                            {
+                                return x.Id == item.Id;
+                            });
+                            if (index != -1)
+                            {
+                                settings.Cities.SavedCities[index].Update();
+                            }
+                            else
+                            {
+                                settings.Cities.LocatedCity.Update();
+                            }
+                            settings.Cities.Save();
+                            await Complete(item);
                         });
-                        if (index != -1)
-                        {
-                            settings.Cities.SavedCities[index].Update();
-                        }
-                        else
-                        {
-                            settings.Cities.LocatedCity.Update();
-                        }
-                        settings.Cities.Save();
-                        await Complete(item);
-                    });
+                    }
                 }
             }
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+            {
+                foreach (var item in Cities)
+                {
+                    if (!item.Updated)
+                    {
+                        item.Succeed = false;
+                    }
+                }
+            }));
         }
 
         internal void UpdateLocation(CityInfo cityInfo)
@@ -164,14 +176,28 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal async void Refresh()
+        internal void Refresh()
         {
             foreach (var item in Cities)
             {
                 item.Updated = false;
+                item.Succeed = true;
             }
-            await SearchExistingDataAsync();
-            Update();
+            var task = ThreadPool.RunAsync(async (work) =>
+            {
+                await SearchExistingDataAsync();
+
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                {
+                    await Init();
+                    var t = ThreadPool.RunAsync((x) =>
+                    {
+                        if (settings.Cities.EnableLocate)
+                            RequireLocationUpdate();
+                        Update();
+                    });
+                }));
+            });
         }
 
 
@@ -244,13 +270,11 @@ namespace Com.Aurora.AuWeather.ViewModels
                     string resstr;
                     try
                     {
-                        resstr = await FileIOHelper.ReadStringFromStorageAsync(item.Id);
+                        resstr = await settings.Cities.ReadDataAsync(item.Id, settings.Preferences.DataSource);
                     }
                     catch (Exception)
                     {
-                        var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                        var param = new string[] { "cityid=" + item.Id };
-                        resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                        resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
                     }
                     var resjson = HeWeatherContract.Generate(resstr);
                     var weather = new HeWeatherModel(resjson);
@@ -285,9 +309,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
-                var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity.Id, settings.Cities.LocatedCity.Longitude, settings.Cities.LocatedCity.Latitude);
                 Cities[0].data = resstr;
-                await settings.Cities.SaveDataAsync(Cities[0].Id, resstr);
+                await settings.Cities.SaveDataAsync(Cities[0].Id, resstr, settings.Preferences.DataSource);
                 settings.Cities.LocatedCity.Update();
                 settings.Cities.Save();
                 await Complete(Cities[0]);
@@ -317,6 +341,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     var weather = new HeWeatherModel(resjson);
                     await itemInit(item, weather);
                     item.Updated = true;
+                    item.Succeed = true;
                     item.LastUpdate = DateTime.Now;
                 }
             }));
@@ -362,6 +387,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     var weather = new HeWeatherModel(resjson);
                     await itemInit(item, weather);
                     item.Updated = true;
+                    item.Succeed = false;
                 }
             }
             if (settings.Cities.EnableLocate && settings.Cities.LocatedCity != null)
@@ -383,7 +409,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     try
                     {
-                        var data = await FileIOHelper.ReadStringFromStorageAsync(item.Id);
+                        var data = await settings.Cities.ReadDataAsync(item.Id, settings.Preferences.DataSource);
                         item.data = data;
                     }
                     catch (Exception)
@@ -416,16 +442,21 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string id;
         private WeatherCondition nowCondition;
         private bool updated;
+        private bool succeed = true;
         private DateTime lastUpdate;
         internal string data;
         private BitmapImage background;
         private string glance;
+        public float longitude;
+        public float latitude;
 
         public CityViewModel(CitySettingsModel locatedCity)
         {
             Id = locatedCity.Id;
             City = locatedCity.City;
             LastUpdate = locatedCity.LastUpdate;
+            longitude = locatedCity.Longitude;
+            latitude = locatedCity.Latitude;
         }
 
         public string City
@@ -472,7 +503,17 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SetProperty(ref updated, value);
             }
         }
-
+        public bool Succeed
+        {
+            get
+            {
+                return succeed;
+            }
+            set
+            {
+                SetProperty(ref succeed, value);
+            }
+        }
         public DateTime LastUpdate
         {
             get

@@ -221,10 +221,9 @@ namespace Com.Aurora.Shared.Helpers
         {
             var type = typeof(T);
             var obj = Activator.CreateInstance(type);
-            try
+            foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
-
-                foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                try
                 {
                     if (member.PropertyType.IsArray)
                     {
@@ -248,28 +247,38 @@ namespace Com.Aurora.Shared.Helpers
                     }
                     else if (member.PropertyType == typeof(DateTime))
                     {
-                        member.SetValue(obj, DateTime.FromBinary((long)DirectRead(member.Name, mainContainer)));
+                        var l = (long?)DirectRead(member.Name, mainContainer);
+                        if (l != null && l != default(long))
+                        {
+                            member.SetValue(obj, DateTime.FromBinary((long)l));
+                        }
+
                     }
                     // Holy shit! WinRT's type is really different from the legacy type.
                     else if (member.PropertyType.GetTypeInfo().IsEnum)
                     {
-                        member.SetValue(obj, Enum.Parse(member.PropertyType, (string)DirectRead(member.Name, mainContainer)));
+                        var s = (string)DirectRead(member.Name, mainContainer);
+                        if (s != null)
+                        {
+                            member.SetValue(obj, Enum.Parse(member.PropertyType, s));
+                        }
                     }
                     else
                     {
-                        member.SetValue(obj, DirectRead(member.Name, mainContainer));
+                        var v = DirectRead(member.Name, mainContainer);
+                        if (v != member.PropertyType.GetDefault())
+                        {
+                            member.SetValue(obj, v);
+                        }
                     }
                 }
-                return true;
+                catch (Exception)
+                {
+                    continue;
+                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                source = (T)obj;
-            }
+            source = (T)obj;
+            return true;
         }
 
         /// <summary>

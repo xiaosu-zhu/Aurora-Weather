@@ -951,4 +951,49 @@
   <data name="Locating" xml:space="preserve">
     <value>찾기...</value>
   </data>
+  <data name="DataSourceDetailText.Text" xml:space="preserve">
+    <value>새로운 데이터 공급자: "Caiyun 날씨" 출시 예정.</value>
+  </data>
+  <data name="EndTimeText.Text" xml:space="preserve">
+    <value>종료 시간:</value>
+  </data>
+  <data name="MinutesIn" xml:space="preserve">
+    <value>{0} 분에서</value>
+  </data>
+  <data name="StartTimeText.Text" xml:space="preserve">
+    <value>시작 시간:</value>
+  </data>
+  <data name="ThemeasDetailText" xml:space="preserve">
+    <value>위치, 필요 하거나 기본값을 사용 하 여: 19시 30분 ~ 7시 30분</value>
+  </data>
+  <data name="ThemeasRiseSetText.Text" xml:space="preserve">
+    <value>어두운 모드를 사용 하면 태양 설정</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트됨</value>
+  </data>
+  <data name="UpdateFailedText.Text" xml:space="preserve">
+    <value>업데이트할 수 없음</value>
+  </data>
+  <data name="RefreshComplete" xml:space="preserve">
+    <value>업데이트 완료</value>
+  </data>
+  <data name="RefreshStamp" xml:space="preserve">
+    <value>타임 스탬프: {0}</value>
+  </data>
+  <data name="RefreshStart" xml:space="preserve">
+    <value>업데이트 중...</value>
+  </data>
+  <data name="RequestedTheme_Default" xml:space="preserve">
+    <value>시스템에 따라</value>
+  </data>
+  <data name="Today_Weather" xml:space="preserve">
+    <value>{0}에 대 한 오늘</value>
+  </data>
+  <data name="CaiyunRadio.Content" xml:space="preserve">
+    <value>Caiyun 날씨</value>
+  </data>
+  <data name="HeWeatherRadio.Content" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
 </root>

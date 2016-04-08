@@ -5,6 +5,7 @@ using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.Extensions;
 using System;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -1218,7 +1219,15 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "";
             }
-            return ((DateTime)value).ToString(DateTimeConverterParameter);
+            try
+            {
+                return ((DateTime)value).ToString(DateTimeConverterParameter);
+            }
+            catch (Exception)
+            {
+                return "...";
+            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1245,7 +1254,14 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "";
             }
-            return ((DateTime)value).ToString(DateTimeConverterParameter);
+            try
+            {
+                return ((DateTime)value).ToString(DateTimeConverterParameter);
+            }
+            catch (Exception)
+            {
+                return "...";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1268,7 +1284,14 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "...";
             }
-            return ((DateTime)value).ToString(DateTimeConverterParameter);
+            try
+            {
+                return ((DateTime)value).ToString(DateTimeConverterParameter);
+            }
+            catch (Exception)
+            {
+                return "...";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1406,20 +1429,85 @@ namespace Com.Aurora.Shared.Converters
 
     public class UpdateTimeConverter : IValueConverter
     {
+        private static string Parameter = "HH:mm";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+
             if (value == null)
             {
                 return "...";
             }
+            var loader = new ResourceLoader();
             var updateTime = (DateTime)value;
             if ((DateTime.Now - updateTime).TotalMinutes < 30)
             {
-                return (DateTime.Now - updateTime).TotalMinutes.ToString("0") + "·ÖÖÓÒÔÄÚ";
+                return string.Format(loader.GetString("MinutesIn"), (DateTime.Now - updateTime).TotalMinutes.ToString("0"));
             }
             else
             {
-                return (updateTime).ToString("H:mm");
+                return (updateTime).ToString(Parameter) + loader.GetString("Update");
+            }
+        }
+
+        public static void ChangeParameter(string parameter)
+        {
+            Parameter = parameter;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class RefreshCompleteConverter : IValueConverter
+    {
+        private static string Parameter = "HH:mm";
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+            if (value is DateTime)
+            {
+                var loader = new ResourceLoader();
+                return string.Format(loader.GetString("RefreshStamp"), (((DateTime)value).ToString(Parameter)).Trim('\n'));
+            }
+            return "";
+        }
+
+        public static void ChangeParameter(string parameter)
+        {
+            Parameter = parameter;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class AlarmLeveltoColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return new SolidColorBrush(Colors.Black);
+            }
+            var v = (WeatherAlarmLevel)value;
+            switch (v)
+            {
+                case WeatherAlarmLevel.blue:
+                    return new SolidColorBrush(Colors.Blue);
+                case WeatherAlarmLevel.yellow:
+                    return new SolidColorBrush(Colors.Yellow);
+                case WeatherAlarmLevel.orange:
+                    return new SolidColorBrush(Colors.Orange);
+                case WeatherAlarmLevel.red:
+                    return new SolidColorBrush(Colors.Red);
+                default:
+                    return new SolidColorBrush(Colors.Black);
             }
         }
 

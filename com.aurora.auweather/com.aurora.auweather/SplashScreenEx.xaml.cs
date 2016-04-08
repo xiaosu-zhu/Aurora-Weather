@@ -21,6 +21,8 @@ using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
 using System.Threading.Tasks;
 using Com.Aurora.AuWeather.License;
+using System.Diagnostics;
+using Com.Aurora.AuWeather.Core.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -59,13 +61,13 @@ namespace Com.Aurora.AuWeather
         private void PositionRing()
         {
             SplashProgressRing.SetValue(Canvas.LeftProperty, splashImageRect.X + (splashImageRect.Width * 0.5) - (SplashProgressRing.Width * 0.5));
-            SplashProgressRing.SetValue(Canvas.TopProperty, (splashImageRect.Y + splashImageRect.Height + splashImageRect.Height * 0.1));
+            SplashProgressRing.SetValue(Canvas.TopProperty, (splashImageRect.Y + splashImageRect.Height + splashImageRect.Height * 0.1) + 32);
         }
 
         private void PositionImage()
         {
             SplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-            SplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
+            SplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 32);
             SplashImage.Height = splashImageRect.Height;
             SplashImage.Width = splashImageRect.Width;
         }
@@ -73,6 +75,8 @@ namespace Com.Aurora.AuWeather
         private async void DismissedEventHandler(SplashScreen sender, object args)
         {
             dismissed = true;
+            //var data = await CaiyunRequestHelper.RequestWithKeyAsync(121.6544f, 25.1552f, "Y2FpeXVuIGFuZHJpb2QgYXBp");
+            //Debug.WriteLine(data);
             SetLongTimeTimer();
             var settings = SettingsModel.Get();
             var license = new License.License();
@@ -115,72 +119,83 @@ namespace Com.Aurora.AuWeather
             }
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
-                var accessStatus = await Geolocator.RequestAccessAsync();
-                if (accessStatus == GeolocationAccessStatus.Allowed)
+                try
                 {
-                    await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                         {
-                             var l = new ResourceLoader();
-                             SplashWelcome.Text = l.GetString("Locating");
-                             var _geolocator = new Geolocator();
-                             var pos = await _geolocator.GetGeopositionAsync();
-                             if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
-                             {
-                                 var t = ThreadPool.RunAsync(async (w) =>
-                                 {
-                                     var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                                     var result = JsonHelper.FromJson<CityIdContract>(str);
-                                     var citys = CityInfo.CreateList(result);
-                                     str = null;
-                                     result = null;
-                                     CalcPosition(pos, citys, settings);
-                                     if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
-                                     {
-                                         var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                                         var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
-                                         CreateTimeOutTimer();
-                                         var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
-                                         if (resstr == null || resstr == "")
-                                         {
-                                             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                                             {
-                                                 var loader = new ResourceLoader();
-                                                 var d = new MessageDialog(loader.GetString("Network_Error"));
-                                                 d.Title = loader.GetString("Error");
-                                                 d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
-                                                 await d.ShowAsync();
-                                             }));
-                                         }
+                    var accessStatus = await Geolocator.RequestAccessAsync();
+                    if (accessStatus == GeolocationAccessStatus.Allowed)
+                    {
+                        await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                        {
+                            var l = new ResourceLoader();
+                            SplashWelcome.Text = l.GetString("Locating");
+                            try
+                            {
+                                var _geolocator = new Geolocator();
+                                var pos = await _geolocator.GetGeopositionAsync();
+                                if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
+                                {
+                                    var t = ThreadPool.RunAsync(async (w) =>
+                                    {
+                                        var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                                        var result = JsonHelper.FromJson<CityIdContract>(str);
+                                        var citys = CityInfo.CreateList(result);
+                                        str = null;
+                                        result = null;
+                                        CalcPosition(pos, citys, settings);
+                                        if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
+                                        {
+                                            CreateTimeOutTimer();
+                                            string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
+                                            if (resstr == null || resstr == "")
+                                            {
+                                                await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                                                {
+                                                    var loader = new ResourceLoader();
+                                                    var d = new MessageDialog(loader.GetString("Network_Error"));
+                                                    d.Title = loader.GetString("Error");
+                                                    d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                                                    await d.ShowAsync();
+                                                }));
+                                            }
 
-                                         var task = ThreadPool.RunAsync(async (m) =>
-                                         {
-                                             m.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                             await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr);
-                                             settings.Cities.LocatedCity.Update();
-                                             settings.Cities.Save();
-                                         });
-                                     }
-                                     else
-                                     {
-                                         SplashComplete(null, AsyncStatus.Completed);
-                                     }
-                                 });
-                             }
-                             else
-                             {
-                                 SplashComplete(null, AsyncStatus.Completed);
-                             }
-                         }));
+                                            var task = ThreadPool.RunAsync(async (m) =>
+                                            {
+                                                m.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                                                await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr, settings.Preferences.DataSource);
+                                                settings.Cities.LocatedCity.Update();
+                                                settings.Cities.Save();
+                                            });
+                                        }
+                                        else
+                                        {
+                                            SplashComplete(null, AsyncStatus.Completed);
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    SplashComplete(null, AsyncStatus.Completed);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                SplashComplete(null, AsyncStatus.Completed);
+                            }
+
+                        }));
+                    }
+                }
+                catch (Exception)
+                {
+                    SplashComplete(null, AsyncStatus.Completed);
                 }
             }
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
                 if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
                 {
-                    var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                    var param = new string[] { "cityid=" + settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id };
                     CreateTimeOutTimer();
-                    var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                    string resstr = await Request.GetRequest(settings, settings.Cities.SavedCities[settings.Cities.CurrentIndex]);
                     if (resstr == null || resstr == "")
                     {
                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
@@ -195,7 +210,9 @@ namespace Com.Aurora.AuWeather
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
                         work.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                        await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr);
+                        if (resstr == null)
+                            return;
+                        await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr, settings.Preferences.DataSource);
                         settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
                         settings.Cities.Save();
                     });
@@ -245,7 +262,7 @@ namespace Com.Aurora.AuWeather
                     d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                     await d.ShowAsync();
                 }));
-            }, TimeSpan.FromMilliseconds(10000));
+            }, TimeSpan.FromMilliseconds(35000));
         }
 
         private void QuitAll(IUICommand command)
@@ -285,7 +302,7 @@ namespace Com.Aurora.AuWeather
 
             if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
-                if(settings.Cities.LocatedCity.Latitude == 0)
+                if (settings.Cities.LocatedCity.Latitude == 0)
                 {
                     settings.Cities.LocatedCity.Latitude = final.ToArray()[0].Location.Latitude;
                     settings.Cities.LocatedCity.Longitude = final.ToArray()[0].Location.Longitude;

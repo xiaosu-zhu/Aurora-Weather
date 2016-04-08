@@ -5,6 +5,7 @@
 using Com.Aurora.Shared.Extensions;
 using System;
 using System.Collections.Generic;
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -66,6 +67,18 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        private static HeWeatherStatus ParseStatus_C(string status_s)
+        {
+            if (status_s == "ok")
+            {
+                return HeWeatherStatus.ok;
+            }
+            else
+            {
+                return HeWeatherStatus.invalid_key;
+            }
+        }
+
         public HeWeatherModel(JsonContract.HeWeatherContract heweathercontract)
         {
             if (heweathercontract == null)
@@ -78,7 +91,15 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Location = new Location(heweathercontract.basic);
             NowWeather = new NowWeather(heweathercontract.now);
             WeatherSuggestion = new WeatherSuggestion(heweathercontract.suggestion);
+        }
 
+        public HeWeatherModel(Result result, Forecast forecast)
+        {
+            if (result != null)
+            {
+                Status = ParseStatus_C(result.status);
+                NowWeather = new NowWeather(result.temperature, result.skycon, result.humidity, result.precipitation, result.wind);
+            }
         }
 
         private WeatherAlarm[] GenerateWeatherAlarms(JsonContract.WeatherAlarmContract[] alarms)

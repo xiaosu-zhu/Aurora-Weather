@@ -369,7 +369,7 @@
                     <TextBlock x:Uid="LocatingText" x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Margin="8" />
                 </RelativePanel>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Button IsEnabled="False" MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Style="{ThemeResource SymbolButton}">
+                    <Button IsEnabled="False" MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock x:Uid="SearchText" FontWeight="Normal" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>

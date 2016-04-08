@@ -117,8 +117,8 @@ namespace UnitTest
 #pragma warning disable CS0168 // 声明了变量，但从未使用过
             ReadWrtieSettingGroupTestClass actual;
 #pragma warning restore CS0168 // 声明了变量，但从未使用过
-                              //RoamingSettingsHelper.ReadGroupSettings(out actual);
-                              //Assert.AreEqual(origin, actual);
+            //RoamingSettingsHelper.ReadGroupSettings(out actual);
+            //Assert.AreEqual(origin, actual);
         }
 
         [TestMethod]
@@ -161,6 +161,13 @@ namespace UnitTest
                         orderby CalcDistance(m, new Com.Aurora.AuWeather.Models.Location(39.92f, 116.46f)) ascending
                         select m;
             Debug.WriteLine((final.ToArray())[0]);
+        }
+
+        [TestMethod]
+        public async void CaiyunTest()
+        {
+            var data = await CaiyunRequestHelper.RequestNowWithKeyAsync(121.6544f, 25.1552f, "TAkhjf8d1nlSlspN");
+            Debug.WriteLine(data);
         }
 
         private const double EARTH_RADIUS = 6378.137;//地球半径

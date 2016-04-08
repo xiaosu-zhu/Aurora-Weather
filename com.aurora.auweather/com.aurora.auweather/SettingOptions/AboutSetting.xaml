@@ -56,11 +56,22 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
         <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
             <Button.Flyout>
                 <Flyout>
-                    <StackPanel>
-                        <HyperlinkButton VerticalAlignment="Center" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
-                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="12,12,12,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        <HyperlinkButton VerticalAlignment="Center" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="12,8,12,12" />
-                    </StackPanel>
+                    <ScrollViewer>
+                        <StackPanel MaxWidth="420">
+                            <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
+                            <HyperlinkButton VerticalAlignment="Center" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
+                            <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
+                            <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <HyperlinkButton VerticalAlignment="Center" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
+                            </StackPanel>
+                            <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
+                            <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <HyperlinkButton VerticalAlignment="Center" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Flyout>
             </Button.Flyout>
         </Button>

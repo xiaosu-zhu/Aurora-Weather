@@ -180,7 +180,7 @@ namespace Com.Aurora.AuWeather.Core.LunarCalendar
 
             else d = UTo - UT;
 
-            if (d >= 0.1)
+            if (d >= 0.5)
             {
 
                 UTo = UT;
@@ -219,7 +219,7 @@ namespace Com.Aurora.AuWeather.Core.LunarCalendar
 
             else d = UTo - UT;
 
-            if (d >= 0.1)
+            if (d >= 0.5)
             {
 
                 UTo = UT;
@@ -314,7 +314,7 @@ namespace Com.Aurora.AuWeather.Core.LunarCalendar
 
                     G_sun(t_century(days(year, month, date), UTo)))))), UTo, glong, glat, year, month, date);
 
-            return new TimeSpan((int)(sunrise / 15 + Zone(glong)), (int)(60 * (sunrise / 15 + Zone(glong) - (int)(sunrise / 15 + Zone(glong)))), 0);
+            return new TimeSpan((int)(sunrise / 15 + (DateTime.Now - DateTime.UtcNow).Hours), (int)(60 * (sunrise / 15 + (DateTime.Now - DateTime.UtcNow).Hours - (int)(sunrise / 15 + (DateTime.Now - DateTime.UtcNow).Hours))) - 1, 0);
         }
 
         public static TimeSpan GetSet(Location geoPoint, DateTime desiredTime)
@@ -349,7 +349,7 @@ namespace Com.Aurora.AuWeather.Core.LunarCalendar
                               ecliptic_longitude(L_sun(t_century(days(year, month, date), UTo)),
 
                            G_sun(t_century(days(year, month, date), UTo)))))), UTo, glong, glat, year, month, date);
-            return new TimeSpan((int)(sunset / 15 + Zone(glong)), (int)(60 * (sunset / 15 + Zone(glong) - (int)(sunset / 15 + Zone(glong)))), 0);
+            return new TimeSpan((int)(sunset / 15 + (DateTime.Now - DateTime.UtcNow).Hours), (int)(60 * (sunset / 15 + (DateTime.Now - DateTime.UtcNow).Hours - (int)(sunset / 15 + (DateTime.Now - DateTime.UtcNow).Hours))) - 1, 0);
         }
 
     }

@@ -129,9 +129,32 @@ namespace Com.Aurora.AuWeather.Models.Settings
             SavedCities = citys;
         }
 
-        public async Task SaveDataAsync(string currentId, string resstr)
+        public async Task SaveDataAsync(string currentId, string resstr, DataSource source)
         {
-            await FileIOHelper.SaveStringtoStorageAsync(currentId, resstr);
+            switch (source)
+            {
+                case DataSource.HeWeather:
+                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_H", resstr);
+                    break;
+                case DataSource.Caiyun:
+                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_C", resstr);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public async Task<string> ReadDataAsync(string id, DataSource dataSource)
+        {
+            switch (dataSource)
+            {
+                case DataSource.HeWeather:
+                    return await FileIOHelper.ReadStringFromStorageAsync(id + "_H");
+                case DataSource.Caiyun:
+                    return await FileIOHelper.ReadStringFromStorageAsync(id + "_C");
+                default:
+                    return null;
+            }
         }
     }
     public class CitySettingsModel
@@ -139,8 +162,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public string City { get; set; }
         public string Id { get; set; }
         public bool IsPinned { get; set; } = false;
-        public float Longitude { get; set; } = -999;
-        public float Latitude { get; set; } = -999;
+        public float Longitude { get; set; } = 0;
+        public float Latitude { get; set; } = 0;
 
         public bool IsCurrent = false;
 
@@ -153,9 +176,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
             Longitude = info.Location.Longitude;
             Latitude = info.Location.Latitude;
         }
+
         public CitySettingsModel()
         {
-
+            //Use this to Create Default Instance.
         }
 
         public void Update()
