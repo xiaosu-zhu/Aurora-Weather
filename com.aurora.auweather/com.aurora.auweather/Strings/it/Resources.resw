@@ -58,10 +58,10 @@
     <value>Descrizione</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>Disattivare la pagina di meteo dinamico e ridurre l'utilizzo della memoria</value>
+    <value>Ridurre l'utilizzo della memoria</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>Disattivare l'effetto dinamico</value>
+    <value>Disattivare dinamico</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>Donarlo!</value>
@@ -94,10 +94,10 @@
     <value>Meteo dinamico</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Avviso di disastri meteorologici</value>
+    <value>Avviso di emergenza</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Avvisi meteo giornalieri</value>
+    <value>Meteo giornaliero</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Funzionalità sperimentali</value>
@@ -139,7 +139,7 @@
     <value>miglio</value>
   </data>
   <data name="LengthParameter_NM" xml:space="preserve">
-    <value>NM</value>
+    <value>Nm</value>
   </data>
   <data name="LengthParText.Text" xml:space="preserve">
     <value>Visibilità</value>
@@ -160,7 +160,7 @@
     <value>Fase lunare</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>Avanti domani</value>
+    <value>Tom successivo.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>Non mostrare</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Indietro</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>Altro</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Aggiorna</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>Chiudi</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Apri</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>Altro</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Aggiorna</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>ADESSO</value>
@@ -952,16 +952,19 @@
     <value>Individuazione...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nuovo provider di dati: "Meteo Caiyun" coming soon.</value>
+    <value>Nuovo provider di dati: "WeatherUnderground" coming soon.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Orario di chiusura:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>In {0} minuto/i</value>
+    <value>Prima {0} min</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Ora di inizio:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>Bisogno di posizione, o utilizzare il valore predefinito: 19.30 ~ 07.30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Attivare la modalità scuro quando sole impostato</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>La China Meteorological Administration, Caiyun Meteo</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>Non può fornire tutte le informazioni meteorologiche</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>Foto Copyright</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>Nuova origine dati "{0}" è disponibile, dare un'occhiata alle impostazioni delle preferenze!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>Vedete cosa trovate!</value>
   </data>
 </root>

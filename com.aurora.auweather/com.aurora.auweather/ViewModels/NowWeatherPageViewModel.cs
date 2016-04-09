@@ -1150,6 +1150,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
         public ObservableCollection<WeatherAlarmViewModel> Alarms = new ObservableCollection<WeatherAlarmViewModel>();
+        internal DataSource source;
         #endregion
         #region events
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
@@ -1200,6 +1201,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     storedDatas = default(KeyValuePair<string, string>);
                     ReadSettings();
+                    source = settings.Preferences.DataSource;
                     await FetchDataAsync();
                     var t = ThreadPool.RunAsync(async (w) =>
                     {

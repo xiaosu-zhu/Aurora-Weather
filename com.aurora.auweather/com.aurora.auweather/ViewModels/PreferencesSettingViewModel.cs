@@ -314,9 +314,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             SaveAll();
         }
 
-        internal void SetSource(DataSource caiyun)
+        internal async Task SetSource(DataSource caiyun)
         {
-            Preferences.Set(caiyun);
+            await Preferences.Set(caiyun);
             SaveAll();
         }
     }

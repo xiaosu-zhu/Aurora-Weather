@@ -58,10 +58,10 @@
     <value>Descripción</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>Apague el clima dinámico y reducir el uso de memoria</value>
+    <value>Reducir el uso de memoria</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>Desactivar el efecto dinámico</value>
+    <value>Desactivar la dinámica</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>¡ Dona!</value>
@@ -94,10 +94,10 @@
     <value>Tiempo dinámico</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>ADVERTENCIA de desastres meteorológicos</value>
+    <value>Atención de desastres</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Alertas de tiempo</value>
+    <value>Diario tiempo</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Características experimentales</value>
@@ -160,7 +160,7 @@
     <value>Fase de la luna</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>Siguiente mañana</value>
+    <value>Siguiente Tom.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>No mostrar</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Atrás</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>Más</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Actualizar</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>Cerrar</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Abrir</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>Más</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Actualizar</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>Ahora</value>
@@ -952,16 +952,19 @@
     <value>Localización de...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nuevo proveedor de datos: "Tiempo del Caiyun" próximamente.</value>
+    <value>Nuevo proveedor de datos: "WeatherUnderground" próximamente.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Hora de finalización:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>En {0} minuto (s)</value>
+    <value>Antes de {0} min.</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Hora de Inicio:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>Necesidad de ubicación, o usar valor por defecto: 19:30 ~ 7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Activar el modo oscuro cuando el sol set</value>
@@ -973,7 +976,7 @@
     <value>No se pudo actualizar</value>
   </data>
   <data name="RefreshComplete" xml:space="preserve">
-    <value>Actualización completada</value>
+    <value>Actualización completado</value>
   </data>
   <data name="RefreshStamp" xml:space="preserve">
     <value>Timestamp: {0}</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>La administración meteorológica China Caiyun tiempo</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>No puede proporcionar toda la información meteorológica</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>Foto Copyright</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>Nuevo origen de datos "{0}" está disponible, eche un vistazo a preferencias!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>Ver lo que encuentras!</value>
   </data>
 </root>

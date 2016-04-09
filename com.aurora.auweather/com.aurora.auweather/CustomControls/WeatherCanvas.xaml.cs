@@ -68,15 +68,18 @@ namespace Com.Aurora.AuWeather.CustomControls
         private static void OnEnableBGBlurChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var weatherCanvas = d as WeatherCanvas;
+            weatherCanvas.continueUpdate();
             if ((bool)e.NewValue)
             {
                 weatherCanvas.backBlur.BlurIn();
-                weatherCanvas.stopUpdate();
+                if (!weatherCanvas.EnableDynamic)
+                    weatherCanvas.stopUpdate();
             }
             else
             {
                 weatherCanvas.backBlur.BlurOut();
-                weatherCanvas.continueUpdate();
+                if (!weatherCanvas.EnableDynamic)
+                    weatherCanvas.stopUpdate();
             }
         }
 
@@ -105,13 +108,13 @@ namespace Com.Aurora.AuWeather.CustomControls
         private static void OnEnableDynamicChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var weatherCanvas = d as WeatherCanvas;
+            weatherCanvas.continueUpdate();
             if ((bool)e.NewValue)
             {
                 if (weatherCanvas.stopUpdateTimer != null)
                 {
                     weatherCanvas.stopUpdateTimer.Cancel();
                 }
-                weatherCanvas.Canvas.Paused = false;
                 weatherCanvas.sun = new SolarSystem();
                 weatherCanvas.star = new StarParticleSystem();
                 weatherCanvas.smoke = new SmokeParticleSystem();
@@ -121,20 +124,11 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             else
             {
-                weatherCanvas.Canvas.Paused = false;
                 weatherCanvas.sun.Dispose();
                 weatherCanvas.star.Dispose();
                 weatherCanvas.smoke.smokeDispose();
                 weatherCanvas.rain.Dispose();
-                if (weatherCanvas.stopUpdateTimer != null)
-                {
-                    weatherCanvas.stopUpdateTimer.Cancel();
-                }
-                if (weatherCanvas.EnableBGBlur)
-                    weatherCanvas.stopUpdateTimer = ThreadPoolTimer.CreateTimer((x) =>
-                    {
-                        weatherCanvas.Canvas.Paused = true;
-                    }, TimeSpan.FromMilliseconds(128));
+                weatherCanvas.stopUpdate();
             }
         }
 
@@ -646,6 +640,7 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         internal void ImmersiveIn(Uri uri)
         {
+            continueUpdate();
             if (uri == null)
             {
                 backBlur.ImmersiveOut();
@@ -658,15 +653,26 @@ namespace Com.Aurora.AuWeather.CustomControls
                                 await backBlur.LoadSurfaceAsync(Canvas, stream);
                             }
                             backBlur.ImmersiveIn();
+
                         });
+            if (!EnableBGBlur)
+            {
+                stopUpdate();
+            }
         }
 
         internal void ImmersiveOut()
         {
+            continueUpdate();
             var task = Canvas.RunOnGameLoopThreadAsync(() =>
             {
                 backBlur.ImmersiveOut();
+
             });
+            if (!EnableBGBlur)
+            {
+                stopUpdate();
+            }
         }
     }
 }

@@ -58,10 +58,10 @@
     <value>설명</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>동적 날씨를 해제 하 고 메모리 사용을 줄일 수</value>
+    <value>메모리 사용</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>동적 효과 사용 안 함</value>
+    <value>동적 비활성화</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>그것을 기부!</value>
@@ -94,10 +94,10 @@
     <value>동적 날씨</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>기상 재해 경고</value>
+    <value>재해 경고</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>매일 날씨 경고</value>
+    <value>매일 날씨</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>실험적 기능</value>
@@ -160,7 +160,7 @@
     <value>달 단계</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>다음 내일</value>
+    <value>다음 톰입니다.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>표시 안 함</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>뒤로</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>자세히</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>새로 고침</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>닫다</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>열기</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>자세히</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>새로 고침</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>지금</value>
@@ -952,16 +952,19 @@
     <value>찾기...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>새로운 데이터 공급자: "Caiyun 날씨" 출시 예정.</value>
+    <value>새로운 데이터 공급자: "WeatherUnderground" 출시 예정.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>종료 시간:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>{0} 분에서</value>
+    <value>{0} 분 전에</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>시작 시간:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>위치, 필요 하거나 기본값을 사용 하 여: 19시 30분 ~ 7시 30분</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>어두운 모드를 사용 하면 태양 설정</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>중국 기상청, Caiyun 날씨</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>모든 기상 정보를 제공 하지 않을 수 있습니다.</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>사진 저작권</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>새 데이터 원본 "{0}"은 유효한, 환경 설정을 봐!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>당신이 무엇을 찾는 참조!</value>
   </data>
 </root>

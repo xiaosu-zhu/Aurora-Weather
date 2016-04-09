@@ -11,6 +11,8 @@ using System;
 using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.Shared.Converters;
 using Windows.ApplicationModel.Resources;
+using Windows.System.Threading;
+using Windows.UI.Popups;
 
 namespace Com.Aurora.AuWeather
 {
@@ -28,6 +30,20 @@ namespace Com.Aurora.AuWeather
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             MainFrame.Navigate(typeof(NowWeatherPage), this);
             license = new License.License();
+            var t = ThreadPool.RunAsync(async (w) =>
+            {
+                var b = (int?)RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce");
+                if (b == null || b < 3)
+                {
+                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 3);
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+                     {
+                         var loader = new ResourceLoader();
+                         var d = new MessageDialog(string.Format(loader.GetString("MeetNewDataSource"), loader.GetString("CaiyunWeather")), loader.GetString("MeetNewDataSourceTitle"));
+                         await d.ShowAsync();
+                     }));
+                }
+            });
         }
 
         private void Hamburger_Click(object sender, RoutedEventArgs e)

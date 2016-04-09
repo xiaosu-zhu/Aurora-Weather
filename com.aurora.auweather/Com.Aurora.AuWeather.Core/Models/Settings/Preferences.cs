@@ -7,6 +7,7 @@ using Com.Aurora.Shared.Helpers;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
@@ -160,9 +161,20 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             Theme = r;
         }
-        public void Set(DataSource d)
+        public async Task Set(DataSource d)
         {
             DataSource = d;
+            switch (d)
+            {
+                case DataSource.HeWeather:
+                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
+                    break;
+                case DataSource.Caiyun:
+                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
+                    break;
+                default:
+                    break;
+            }
         }
 
 

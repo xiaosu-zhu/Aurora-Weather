@@ -58,10 +58,10 @@
     <value>Описание</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>Выключить динамическая погода и уменьшить использование памяти</value>
+    <value>Уменьшить использование памяти</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>Отключить динамический эффект</value>
+    <value>Отключить динамическое</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>Пожертвования это!</value>
@@ -94,10 +94,10 @@
     <value>Динамическая Погода</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Предупреждение о стихийных бедствиях метеорологических</value>
+    <value>Предупреждение о стихийных бедствиях</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Ежедневные Погода оповещения</value>
+    <value>Прогноз погоды</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Экспериментальные функции</value>
@@ -160,7 +160,7 @@
     <value>Фазы Луны</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>Далее на завтра</value>
+    <value>Следующего тома.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>Не показывать</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Назад</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>дополнительно</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Обновление</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>закрыть</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Открыть</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>дополнительно</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Обновление</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>Сейчас</value>
@@ -952,16 +952,19 @@
     <value>Поиск...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Новый поставщик данных: «Caiyun погода» скоро.</value>
+    <value>Новый поставщик данных: «WeatherUnderground» скоро.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Время окончания события:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>В {0} минута(ы)</value>
+    <value>До {0} мин</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Время начала:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>Нужно место, или использовать значение по умолчанию: 19:30 ~ 7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Включить режим темный когда солнца установить</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>Китайской метеорологической администрации, Caiyun Погода</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>Не может обеспечить все метеорологической информации</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>Фотографии авторские права</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>Новый источник данных «{0}» доступна, посмотрите на параметры предпочтений!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>Смотрите, что вы находите!</value>
   </data>
 </root>

@@ -1230,14 +1230,6 @@
           <source>Back</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Back</target>
         </trans-unit>
-        <trans-unit id="MoreText.Text" translate="yes" xml:space="preserve">
-          <source>More</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">More</target>
-        </trans-unit>
-        <trans-unit id="RefreshText.Text" translate="yes" xml:space="preserve">
-          <source>Refresh</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Refresh</target>
-        </trans-unit>
         <trans-unit id="HamCloseText.Text" translate="yes" xml:space="preserve">
           <source>Close</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Close</target>
@@ -1245,6 +1237,14 @@
         <trans-unit id="HamOpenText.Text" translate="yes" xml:space="preserve">
           <source>Open</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Open</target>
+        </trans-unit>
+        <trans-unit id="MoreText.Text" translate="yes" xml:space="preserve">
+          <source>More</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">More</target>
+        </trans-unit>
+        <trans-unit id="RefreshText.Text" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Refresh</target>
         </trans-unit>
         <trans-unit id="NowText.Text" translate="yes" xml:space="preserve">
           <source>Now</source>
@@ -1274,6 +1274,10 @@
           <source>Begin Time:</source>
           <target state="new">Begin Time:</target>
         </trans-unit>
+        <trans-unit id="ThemeasDetailText.Text" translate="yes" xml:space="preserve">
+          <source>Need Location, or use default value: 19:30~7:30</source>
+          <target state="new">Need Location, or use default value: 19:30~7:30</target>
+        </trans-unit>
         <trans-unit id="ThemeasRiseSetText.Text" translate="yes" xml:space="preserve">
           <source>Enable dark mode when sun set</source>
           <target state="new">Enable dark mode when sun set</target>
@@ -1288,8 +1292,7 @@
         </trans-unit>
         <trans-unit id="RefreshComplete" translate="yes" xml:space="preserve">
           <source>Update Completed</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Update complete.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="new">Update Completed</target>
         </trans-unit>
         <trans-unit id="RefreshStamp" translate="yes" xml:space="preserve">
           <source>Timestamp: {0}</source>
@@ -1315,9 +1318,29 @@
           <source>HeWeather</source>
           <target state="new">HeWeather</target>
         </trans-unit>
-        <trans-unit id="ThemeasDetailText.Text" translate="yes" xml:space="preserve">
-          <source>Need Location, or use default value: 19:30~7:30</source>
-          <target state="new">Need Location, or use default value: 19:30~7:30</target>
+        <trans-unit id="CaiyunWeather" translate="yes" xml:space="preserve">
+          <source>The China Meteorological Administration, Caiyun Weather</source>
+          <target state="new">The China Meteorological Administration, Caiyun Weather</target>
+        </trans-unit>
+        <trans-unit id="DataSourceAlertText.Text" translate="yes" xml:space="preserve">
+          <source>May not provide all meteorological information</source>
+          <target state="new">May not provide all meteorological information</target>
+        </trans-unit>
+        <trans-unit id="HeWeather" translate="yes" xml:space="preserve">
+          <source>HeWeather</source>
+          <target state="new">HeWeather</target>
+        </trans-unit>
+        <trans-unit id="PhotoCopyright.Content" translate="yes" xml:space="preserve">
+          <source>Photo Copyright</source>
+          <target state="new">Photo Copyright</target>
+        </trans-unit>
+        <trans-unit id="MeetNewDataSource" translate="yes" xml:space="preserve">
+          <source>New data source "{0}" is avaliable, have a look at preferences settings!</source>
+          <target state="new">New data source "{0}" is avaliable, have a look at preferences settings!</target>
+        </trans-unit>
+        <trans-unit id="MeetNewDataSourceTitle" translate="yes" xml:space="preserve">
+          <source>See what you find!</source>
+          <target state="new">See what you find!</target>
         </trans-unit>
       </group>
     </body>

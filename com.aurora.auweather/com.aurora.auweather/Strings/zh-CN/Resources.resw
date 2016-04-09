@@ -1101,4 +1101,22 @@
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>和风天气</value>
   </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>中国气象局 彩云天气</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>均可能无法提供全部气象资料</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>和风天气</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>图像版权</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>新的数据源 "{0}" 可用, 去偏好设置瞧瞧吧!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>发现了什么!</value>
+  </data>
 </root>

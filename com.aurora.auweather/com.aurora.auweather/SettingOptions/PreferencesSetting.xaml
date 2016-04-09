@@ -1,7 +1,7 @@
 ﻿<!-- Copyright (c) Aurora Studio. All rights reserved.
     
      Licensed under the MIT License. See LICENSE in the project root for license information.-->
-    
+
 <Page
     x:Class="Com.Aurora.AuWeather.SettingOptions.PreferencesSetting"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -62,6 +62,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="DataSourceTitle" x:Uid="DataSourceText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Uid="DataSourceAlertText" VerticalAlignment="Center" Margin="12,0,12,0" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                         <StackPanel Orientation="Vertical" Margin="12" HorizontalAlignment="Stretch">
                             <RadioButton x:Uid="HeWeatherRadio" Checked="HeWeatherRadio_Checked" x:Name="HeWeatherRadio" Margin="8" />
                             <RadioButton x:Uid="CaiyunRadio" Checked="CaiyunRadio_Checked" x:Name="CaiyunRadio" Margin="8"/>
@@ -255,38 +256,36 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </StackPanel>
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid HorizontalAlignment="Left" >
-                                <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="UseWeekDay" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="UseWeekDay" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <Grid HorizontalAlignment="Right" >
-                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="Showtt" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="Showtt" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                        </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="WeatherTitle" x:Uid="ToastText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid HorizontalAlignment="Left" >
-                                <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableEveryDay" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="EnableEveryDay" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <Grid HorizontalAlignment="Right" >
-                                <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableAlarm" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="EnableAlarm" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                        </Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid HorizontalAlignment="Left" >
+                            <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnablePulltoRefresh" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
+                                <ToggleSwitch x:Name="EnablePulltoRefresh" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="0,12,12,12" FontWeight="Light" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
 
                         <Grid HorizontalAlignment="Stretch" >
@@ -311,8 +310,8 @@
                         </Grid>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                             <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
+                                <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
                                 <ToggleSwitch x:Name="ThemeasRiseSet" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
@@ -328,23 +327,20 @@
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel>
                         <TextBlock x:Name="ImmersiveTitle" x:Uid="ImmersiveText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid HorizontalAlignment="Left" >
-                                <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="EnableSecond" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="EnableSecond" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <Grid HorizontalAlignment="Right" >
-                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="ShowImmersivett" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="ShowImmersivett" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-
-                        </Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            <Grid HorizontalAlignment="Left" >
+                            <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
+                                <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
+                                <ToggleSwitch x:Name="DisableDynamic" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="0,12,12,12" FontWeight="Light" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

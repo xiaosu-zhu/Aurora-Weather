@@ -19,6 +19,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
@@ -263,6 +264,19 @@ namespace Com.Aurora.AuWeather
             else
             {
                 SuggestionPanel.Visibility = Visibility.Visible;
+            }
+            switch (Context.source)
+            {
+                case DataSource.HeWeather:
+                    DataSourceImage.Source = new BitmapImage(new Uri("http://heweather.com/weather/images/logo.jpg"));
+                    DataSourceContent.Text = loader.GetString("HeWeather");
+                    break;
+                case DataSource.Caiyun:
+                    DataSourceImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Logos/Caiyun.png"));
+                    DataSourceContent.Text = loader.GetString("CaiyunWeather");
+                    break;
+                default:
+                    break;
             }
             await Task.Delay(1000);
             ScrollableRoot.RefreshComplete();

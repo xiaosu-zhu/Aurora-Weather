@@ -94,10 +94,10 @@
     <value>Dynamisches Wetter</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Meteorologischen Katastrophen-Warnung</value>
+    <value>Katastrophe-Warnung</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Tägliche Wetter-Warnungen</value>
+    <value>Tägliche Wetter</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Experimentelle Features</value>
@@ -160,7 +160,7 @@
     <value>Mondphase</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>Nächsten Morgen</value>
+    <value>Nächsten Tom.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>Nicht anzeigen</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Zurück</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>Weitere</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Öffnen</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>Weitere</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Aktualisieren</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>JETZT</value>
@@ -952,16 +952,19 @@
     <value>Auffinden von...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Neuen Datenanbieter: "Caiyun Wetter" coming soon.</value>
+    <value>Neuen Datenanbieter: "WeatherUnderground" coming soon.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Uhrzeit Ende:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>In {0} Minute(n)</value>
+    <value>Vor min {0}</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Startzeit:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>Lage brauchen, oder verwenden Sie Standardwert: 19:30 ~ 07:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Dunkel-Modus aktivieren Wenn Sonne set</value>
@@ -973,7 +976,7 @@
     <value>Update nicht möglich</value>
   </data>
   <data name="RefreshComplete" xml:space="preserve">
-    <value>Die Aktualisierung ist abgeschlossen</value>
+    <value>Update abgeschlossen</value>
   </data>
   <data name="RefreshStamp" xml:space="preserve">
     <value>Timestamp: {0}</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>Die China Meteorological Administration, Caiyun Wetter</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>Können nicht alle meteorologischen Informationen enthalten.</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>Foto Copyright</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>Neue Datenquelle "{0}" ist verfügbar, schauen Sie sich die Einstellungen Einstellungen!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>Sehen Sie, was Sie finden!</value>
   </data>
 </root>

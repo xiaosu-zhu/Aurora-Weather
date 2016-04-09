@@ -295,14 +295,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
             (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
         }
 
-        private void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
+        private async void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
         {
-            Context.SetSource(DataSource.Caiyun);
+            await Context.SetSource(DataSource.Caiyun);
         }
 
-        private void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
+        private async void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
         {
-            Context.SetSource(DataSource.HeWeather);
+            await Context.SetSource(DataSource.HeWeather);
         }
     }
 }

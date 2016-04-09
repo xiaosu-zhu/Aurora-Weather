@@ -57,9 +57,6 @@
   <data name="RefreshButton.Label" xml:space="preserve">
     <value>Refresh</value>
   </data>
-  <data name="Replace_Image" xml:space="preserve">
-    <value>Replace</value>
-  </data>
   <data name="RequestedTheme_Auto" xml:space="preserve">
     <value>Auto</value>
   </data>
@@ -180,17 +177,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>More...</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>Now</value>
@@ -200,9 +197,6 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Updated</value>
-  </data>
-  <data name="RefreshComplete" xml:space="preserve">
-    <value>Update complete.</value>
   </data>
   <data name="RefreshStart" xml:space="preserve">
     <value>Updating</value>

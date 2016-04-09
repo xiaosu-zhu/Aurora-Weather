@@ -184,6 +184,21 @@ namespace Com.Aurora.Shared.Helpers
             await FileIO.WriteTextAsync(file, content);
         }
 
+        public static async Task RemoveLocalFilesWithKeywordAsync(string key)
+        {
+            if (key == null)
+                throw new ArgumentException();
+            var storeFolder = ApplicationData.Current.LocalFolder;
+            var files = await storeFolder.GetFilesAsync();
+            foreach (var file in files)
+            {
+                if (file.Name.Contains(key))
+                {
+                    await file.DeleteAsync();
+                }
+            }
+        }
+
         /// <summary>
         /// 从存储目录读取文本
         /// </summary>

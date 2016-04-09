@@ -192,6 +192,33 @@ namespace Com.Aurora.AuWeather
             }
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
+                List<CityInfo> citys = null;
+                foreach (var citty in settings.Cities.SavedCities)
+                {
+                    if (citty.Latitude == 0 && citty.Longitude == 0)
+                    {
+                        if (citys == null)
+                        {
+                            var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                            var result = JsonHelper.FromJson<CityIdContract>(str);
+                            citys = CityInfo.CreateList(result);
+                            str = null;
+                            result = null;
+                        }
+                        var tar = citys.Find(x =>
+                        {
+                            return x.Id == citty.Id;
+                        });
+                        citty.Latitude = tar.Location.Latitude;
+                        citty.Longitude = tar.Location.Longitude;
+                    }
+                }
+                settings.Cities.Save();
+                if (citys != null)
+                {
+                    citys.Clear();
+                    citys = null;
+                }
                 if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
                 {
                     CreateTimeOutTimer();

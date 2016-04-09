@@ -58,10 +58,10 @@
     <value>Description</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>Désactiver la météo dynamique et réduire l'utilisation de la mémoire</value>
+    <value>Réduire l'utilisation de la mémoire</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>Désactiver l'effet dynamique</value>
+    <value>Désactiver la dynamique</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>Donnez-le !</value>
@@ -94,10 +94,10 @@
     <value>Météo dynamique</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Avertissement en cas de catastrophe météorologique</value>
+    <value>Avertissement en cas de catastrophe</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Alertes météorologiques quotidiennes</value>
+    <value>Météo quotidienne</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Fonctionnalités expérimentales</value>
@@ -160,7 +160,7 @@
     <value>Phase de lune</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>Suivant demain</value>
+    <value>Tom prochain.</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>Ne pas afficher</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>Retour</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>Plus</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>Actualiser</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>Fermer</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>Ouvrir</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>Plus</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>Actualiser</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>MAINTENANT</value>
@@ -952,16 +952,19 @@
     <value>Localisation...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nouveau fournisseur de données: « Caiyun Weather » coming soon.</value>
+    <value>Nouveau fournisseur de données: « WeatherUnderground » coming soon.</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Heure de fin :</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>Dans {0} minute (s)</value>
+    <value>Avant min {0}</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Heure de début :</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>Besoin d'emplacement, ou utiliser la valeur par défaut : 19:30 ~ 07:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Activer le mode sombre quand sun set</value>
@@ -973,7 +976,7 @@
     <value>Mise à jour impossible</value>
   </data>
   <data name="RefreshComplete" xml:space="preserve">
-    <value>La mise à jour est terminée</value>
+    <value>Mise à jour terminée</value>
   </data>
   <data name="RefreshStamp" xml:space="preserve">
     <value>Horodateur : {0}</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>L'Administration météorologique de Chine, Caiyun météo</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>Ne peut pas fournir tous les renseignements météorologiques</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>Photo Copyright</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>Nouvelle source de données « {0} » est disponible, jetez un oeil sur les paramètres de préférences !</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>Voir ce que vous trouvez !</value>
   </data>
 </root>

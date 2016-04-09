@@ -58,10 +58,10 @@
     <value>説明</value>
   </data>
   <data name="DisableDynamicDescripText.Text" xml:space="preserve">
-    <value>動的な天候をオフにしてメモリ使用量を減らす</value>
+    <value>メモリ使用量を減らす</value>
   </data>
   <data name="DisableDynamicText.Text" xml:space="preserve">
-    <value>動的効果を無効にします。</value>
+    <value>動的なを無効にします。</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
     <value>それを寄付する!</value>
@@ -94,10 +94,10 @@
     <value>動的な天候</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>気象災害の警告</value>
+    <value>災害警告</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>毎日の天気予報アラート</value>
+    <value>毎日の天気</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>試験的な機能</value>
@@ -160,7 +160,7 @@
     <value>ムーンフェイズ</value>
   </data>
   <data name="NextTomorrowText.Text" xml:space="preserve">
-    <value>明日次</value>
+    <value>次のトム。</value>
   </data>
   <data name="NoBGText.Text" xml:space="preserve">
     <value>表示しない</value>
@@ -298,7 +298,7 @@
     <value>テーマ</value>
   </data>
   <data name="TitleBlock.Text" xml:space="preserve">
-    <value>オーロラ 天気</value>
+    <value>オーロラの天気</value>
   </data>
   <data name="ToastText.Text" xml:space="preserve">
     <value>天気アラーム</value>
@@ -613,10 +613,10 @@
     <value>バージョン情報</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>オーロラ 天気</value>
+    <value>オーロラの天気</value>
   </data>
   <data name="AppNameText.Text" xml:space="preserve">
-    <value>オーロラ 天気</value>
+    <value>オーロラの天気</value>
   </data>
   <data name="buchaoguoshi.Text" xml:space="preserve">
     <value>10 桁は表示されない場合 10 名以内</value>
@@ -628,7 +628,7 @@
     <value>曜日:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>オーロラ 天気</value>
+    <value>オーロラの天気</value>
   </data>
   <data name="FeedbackText.Content" xml:space="preserve">
     <value>フィードバック</value>
@@ -930,17 +930,17 @@
   <data name="BackText.Text" xml:space="preserve">
     <value>戻る</value>
   </data>
-  <data name="MoreText.Text" xml:space="preserve">
-    <value>その他</value>
-  </data>
-  <data name="RefreshText.Text" xml:space="preserve">
-    <value>最新の情報に更新</value>
-  </data>
   <data name="HamCloseText.Text" xml:space="preserve">
     <value>閉じる</value>
   </data>
   <data name="HamOpenText.Text" xml:space="preserve">
     <value>開く</value>
+  </data>
+  <data name="MoreText.Text" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="RefreshText.Text" xml:space="preserve">
+    <value>最新の情報に更新</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
     <value>NOW</value>
@@ -952,16 +952,19 @@
     <value>探しています.</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>新しいデータ プロバイダー:「Caiyun 天気」近日公開予定。</value>
+    <value>新しいデータ プロバイダー:「WeatherUnderground」近日公開予定。</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>終了時刻:</value>
   </data>
   <data name="MinutesIn" xml:space="preserve">
-    <value>{0} 分で</value>
+    <value>{0} 分前</value>
   </data>
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>開始時間:</value>
+  </data>
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
+    <value>必要な場所、または既定値を使用: 19:30 〜 7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>暗いモードを有効にするときの太陽設定</value>
@@ -973,7 +976,7 @@
     <value>更新できませんでした</value>
   </data>
   <data name="RefreshComplete" xml:space="preserve">
-    <value>更新の完了</value>
+    <value>更新が完了しました</value>
   </data>
   <data name="RefreshStamp" xml:space="preserve">
     <value>タイムスタンプ: {0}</value>
@@ -992,5 +995,23 @@
   </data>
   <data name="HeWeatherRadio.Content" xml:space="preserve">
     <value>HeWeather</value>
+  </data>
+  <data name="CaiyunWeather" xml:space="preserve">
+    <value>中国気象局、Caiyun 天気</value>
+  </data>
+  <data name="DataSourceAlertText.Text" xml:space="preserve">
+    <value>すべての気象情報では、します。</value>
+  </data>
+  <data name="HeWeather" xml:space="preserve">
+    <value>HeWeather</value>
+  </data>
+  <data name="PhotoCopyright.Content" xml:space="preserve">
+    <value>写真の著作権</value>
+  </data>
+  <data name="MeetNewDataSource" xml:space="preserve">
+    <value>新しいデータ ソース「{0}」が利用可能な環境設定を見ている!</value>
+  </data>
+  <data name="MeetNewDataSourceTitle" xml:space="preserve">
+    <value>あなたは何を見つけるを参照してください!</value>
   </data>
 </root>
