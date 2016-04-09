@@ -1068,7 +1068,7 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>开始时间:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
     <value>需要定位，否则使用默认值 19:30~7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">

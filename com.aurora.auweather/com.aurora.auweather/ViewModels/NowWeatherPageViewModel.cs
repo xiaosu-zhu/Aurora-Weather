@@ -1316,8 +1316,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     resstr = storedDatas.Value;
                     if (resstr.Length > 31)
                     {
-                        var resjson = HeWeatherContract.Generate(resstr);
-                        fetchresult = new HeWeatherModel(resjson);
+                        fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                         return;
                     }
                 }
@@ -1329,8 +1328,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 if (resstr.Length > 31)
                 {
-                    var resjson = HeWeatherContract.Generate(resstr);
-                    fetchresult = new HeWeatherModel(resjson);
+                    fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                     if (fetchresult.Status != HeWeatherStatus.ok)
                     {
                         this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
@@ -1373,8 +1371,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
             SetHour();
             SetDailyForecast();
-
-            SetSuggestion();
+            if (fetchresult.WeatherSuggestion != null)
+                SetSuggestion();
 
             CalcCalendar();
 
@@ -1420,7 +1418,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.DayCond;
                 Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.DayCond;
                 Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
-                Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
+                if (fetchresult.DailyForecast.Length > todayIndex + 5)
+                    Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
             }
             else
             {
@@ -1428,12 +1427,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.NightCond;
                 Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.NightCond;
                 Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
-                Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
+                if (fetchresult.DailyForecast.Length > todayIndex + 5)
+                    Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
             }
             ForecastDate1 = fetchresult.DailyForecast[todayIndex + 2].Date;
             ForecastDate2 = fetchresult.DailyForecast[todayIndex + 3].Date;
             ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
-            ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
+            if (fetchresult.DailyForecast.Length > todayIndex + 5)
+                ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
             Forecast0H = fetchresult.DailyForecast[todayIndex + 1].HighTemp;
             Forecast0L = fetchresult.DailyForecast[todayIndex + 1].LowTemp;
             Forecast1H = fetchresult.DailyForecast[todayIndex + 2].HighTemp;
@@ -1442,8 +1443,12 @@ namespace Com.Aurora.AuWeather.ViewModels
             Forecast2L = fetchresult.DailyForecast[todayIndex + 3].LowTemp;
             Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
             Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
-            Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
-            Forecast4L = fetchresult.DailyForecast[todayIndex + 5].LowTemp;
+            if (fetchresult.DailyForecast.Length > todayIndex + 5)
+            {
+                Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
+                Forecast4L = fetchresult.DailyForecast[todayIndex + 5].LowTemp;
+            }
+
         }
 
         private void SetProportion()
@@ -1533,7 +1538,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             Pressure = fetchresult.NowWeather.Pressure;
             Visibility = fetchresult.NowWeather.Visibility;
             Aqi = fetchresult.Aqi;
-
 
             if (Temprature.Celsius > 20)
             {
@@ -1653,13 +1657,13 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
         private void SetSuggestion()
         {
-            Comf = fetchresult.WeatherSuggestion.Comfortable;
-            Cw = fetchresult.WeatherSuggestion.CarWashing;
-            Drsg = fetchresult.WeatherSuggestion.Dressing;
-            Uv = fetchresult.WeatherSuggestion.UV;
-            Sport = fetchresult.WeatherSuggestion.Sport;
-            Flu = fetchresult.WeatherSuggestion.Flu;
-            Trav = fetchresult.WeatherSuggestion.Trav;
+            Comf = fetchresult.WeatherSuggestion.Comfortable == null ? null : fetchresult.WeatherSuggestion.Comfortable;
+            Cw = fetchresult.WeatherSuggestion.CarWashing == null ? null : fetchresult.WeatherSuggestion.CarWashing;
+            Drsg = fetchresult.WeatherSuggestion.Dressing == null ? null : fetchresult.WeatherSuggestion.Dressing;
+            Uv = fetchresult.WeatherSuggestion.UV == null ? null : fetchresult.WeatherSuggestion.UV;
+            Sport = fetchresult.WeatherSuggestion.Sport == null ? null : fetchresult.WeatherSuggestion.Sport;
+            Flu = fetchresult.WeatherSuggestion.Flu == null ? null : fetchresult.WeatherSuggestion.Flu;
+            Trav = fetchresult.WeatherSuggestion.Trav == null ? null : fetchresult.WeatherSuggestion.Trav;
         }
         #endregion
 

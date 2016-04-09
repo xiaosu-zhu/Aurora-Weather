@@ -261,6 +261,9 @@ namespace Com.Aurora.AuWeather
             var loader = new ResourceLoader();
             isEditMode = true;
             GridView.SelectionMode = ListViewSelectionMode.Multiple;
+            GridView.IsItemClickEnabled = false;
+            GridView.SelectionChanged += GridView_SelectionChanged;
+            GridView.ItemClick -= GridView_ItemClick;
             EditButton.Icon = new SymbolIcon(Symbol.Delete);
             RefreshButton.Icon = new SymbolIcon(Symbol.Cancel);
             AddButton.Icon = new SymbolIcon(Symbol.Pin);
@@ -279,6 +282,9 @@ namespace Com.Aurora.AuWeather
             var loader = new ResourceLoader();
             isEditMode = false;
             GridView.SelectionMode = ListViewSelectionMode.Single;
+            GridView.IsItemClickEnabled = true;
+            GridView.SelectionChanged -= GridView_SelectionChanged;
+            GridView.ItemClick += GridView_ItemClick;
             EditButton.Icon = new SymbolIcon(Symbol.Edit);
             RefreshButton.Icon = new SymbolIcon(Symbol.Refresh);
             AddButton.Icon = new SymbolIcon(Symbol.Add);
@@ -303,5 +309,16 @@ namespace Com.Aurora.AuWeather
             Context.ChangeCurrent(GridView.SelectedIndex);
             baba.Navigate(typeof(NowWeatherPage));
         }
+
+
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridView.SelectedIndex == Context.CurrentIndex || GridView.SelectionMode == ListViewSelectionMode.Multiple)
+            {
+                return;
+            }
+            Context.ChangeCurrent(GridView.SelectedIndex);
+        }
+
     }
 }

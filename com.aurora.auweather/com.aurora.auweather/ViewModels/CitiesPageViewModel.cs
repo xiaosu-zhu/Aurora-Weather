@@ -276,8 +276,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
                     }
-                    var resjson = HeWeatherContract.Generate(resstr);
-                    var weather = new HeWeatherModel(resjson);
+                    var weather = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                     var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
                     {
                         return x.Date.Date == DateTime.Today.Date;
@@ -337,8 +336,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 if (item.data != null && item.data.Length > 31)
                 {
-                    var resjson = HeWeatherContract.Generate(item.data);
-                    var weather = new HeWeatherModel(resjson);
+                    var weather = HeWeatherModel.Generate(item.data, settings.Preferences.DataSource);
                     await itemInit(item, weather);
                     item.Updated = true;
                     item.Succeed = true;
@@ -383,8 +381,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 if (item.data != null && item.data.Length > 31)
                 {
-                    var resjson = HeWeatherContract.Generate(item.data);
-                    var weather = new HeWeatherModel(resjson);
+                    var weather = HeWeatherModel.Generate(item.data, settings.Preferences.DataSource);
                     await itemInit(item, weather);
                     item.Updated = true;
                     item.Succeed = false;

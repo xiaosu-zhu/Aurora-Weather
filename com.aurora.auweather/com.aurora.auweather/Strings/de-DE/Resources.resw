@@ -963,9 +963,6 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Startzeit:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
-    <value>Lage brauchen, oder verwenden Sie Standardwert: 19:30 ~ 07:30</value>
-  </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Dunkel-Modus aktivieren Wenn Sonne set</value>
   </data>

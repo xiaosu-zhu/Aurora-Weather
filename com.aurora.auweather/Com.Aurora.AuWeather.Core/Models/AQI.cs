@@ -2,6 +2,9 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
+
 namespace Com.Aurora.AuWeather.Models
 {
 
@@ -22,6 +25,43 @@ namespace Com.Aurora.AuWeather.Models
             Pm25 = uint.Parse(aqi.city.pm25);
             Qlty = ParseQlty(aqi.city.qlty);
             So2 = uint.Parse(aqi.city.so2);
+        }
+
+        public AQI(Value aqi, Value pm25)
+        {
+            if (aqi == null)
+                return;
+            Aqi = (uint)aqi.value;
+            Pm25 = (uint)pm25.value;
+            Qlty = CalcQlty((uint)aqi.value);
+        }
+
+        private AQIQuality CalcQlty(uint value)
+        {
+            if (value <= 50 && value >= 0)
+            {
+                return AQIQuality.one;
+            }
+            else if (value <= 100)
+            {
+                return AQIQuality.two;
+            }
+            else if (value <= 150)
+            {
+                return AQIQuality.three;
+            }
+            else if (value <= 200)
+            {
+                return AQIQuality.four;
+            }
+            else if (value <= 250)
+            {
+                return AQIQuality.five;
+            }
+            else
+            {
+                return AQIQuality.six;
+            }
         }
 
         private static AQIQuality ParseQlty(string qlty)

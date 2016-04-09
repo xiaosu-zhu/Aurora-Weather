@@ -963,9 +963,6 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Hora de Inicio:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
-    <value>Necesidad de ubicación, o usar valor por defecto: 19:30 ~ 7:30</value>
-  </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Activar el modo oscuro cuando el sol set</value>
   </data>

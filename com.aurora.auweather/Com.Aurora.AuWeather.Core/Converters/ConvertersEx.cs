@@ -1441,11 +1441,11 @@ namespace Com.Aurora.Shared.Converters
             var updateTime = (DateTime)value;
             if ((DateTime.Now - updateTime).TotalMinutes < 30)
             {
-                return string.Format(loader.GetString("MinutesIn"), (DateTime.Now - updateTime).TotalMinutes.ToString("0"));
+                return string.Format(loader.GetString("MinutesIn"), ((DateTime.Now - updateTime).TotalMinutes.ToString("0")).Trim('\n'));
             }
             else
             {
-                return (updateTime).ToString(Parameter) + loader.GetString("Update");
+                return ((updateTime).ToString(Parameter)).Trim('\n') + loader.GetString("Update");
             }
         }
 

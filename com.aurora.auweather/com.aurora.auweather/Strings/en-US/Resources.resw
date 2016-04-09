@@ -1068,7 +1068,7 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Begin Time:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
+  <data name="ThemeasDetailText.Text" xml:space="preserve">
     <value>Need Location, or use default value: 19:30~7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">

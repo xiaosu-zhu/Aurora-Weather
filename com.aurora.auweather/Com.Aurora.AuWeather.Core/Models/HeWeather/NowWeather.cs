@@ -58,14 +58,20 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Temprature = Temperature.FromCelsius(int.Parse(now.tmp));
         }
 
-        public NowWeather(double temp, string con, double hum, PcpnTotal pcpn, WindTotal wind)
+        public NowWeather(double temp, string con, PcpnTotal pcpn, WindTotal wind)
         {
-
+            Now = new NowCondition(con);
+            BodyTemprature = null;
+            Precipitation = (float)pcpn.local.intensity;
+            Wind = new Wind(wind);
+            Pressure = null;
+            Temprature = Temperature.FromCelsius((float)temp);
         }
     }
 
     public class NowCondition : Condition
     {
+
         public WeatherCondition Condition
         {
             get; private set;
@@ -73,6 +79,11 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         public NowCondition(JsonContract.Condition_NowContract cond)
         {
             Condition = ParseCondition(cond.code);
+        }
+
+        public NowCondition(string con)
+        {
+            Condition = ParseCondition_C(con);
         }
     }
 }

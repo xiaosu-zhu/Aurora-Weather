@@ -963,9 +963,6 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Время начала:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
-    <value>Нужно место, или использовать значение по умолчанию: 19:30 ~ 7:30</value>
-  </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Включить режим темный когда солнца установить</value>
   </data>

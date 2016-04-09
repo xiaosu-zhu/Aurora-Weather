@@ -61,13 +61,13 @@ namespace Com.Aurora.AuWeather
         private void PositionRing()
         {
             SplashProgressRing.SetValue(Canvas.LeftProperty, splashImageRect.X + (splashImageRect.Width * 0.5) - (SplashProgressRing.Width * 0.5));
-            SplashProgressRing.SetValue(Canvas.TopProperty, (splashImageRect.Y + splashImageRect.Height + splashImageRect.Height * 0.1) + 32);
+            SplashProgressRing.SetValue(Canvas.TopProperty, (splashImageRect.Y + splashImageRect.Height + splashImageRect.Height * 0.1) + 16);
         }
 
         private void PositionImage()
         {
             SplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-            SplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 32);
+            SplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
             SplashImage.Height = splashImageRect.Height;
             SplashImage.Width = splashImageRect.Width;
         }

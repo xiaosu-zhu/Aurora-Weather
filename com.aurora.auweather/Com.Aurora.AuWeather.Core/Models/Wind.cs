@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 using System;
 
 namespace Com.Aurora.AuWeather.Models
@@ -132,6 +133,18 @@ namespace Com.Aurora.AuWeather.Models
         {
             Degree = uint.Parse(wind.deg);
             Speed = Speed.FromKMPH(uint.Parse(wind.spd));
+        }
+
+        public Wind(WindTotal wind)
+        {
+            Degree = (uint)wind.direction;
+            Speed = Speed.FromKMPH((uint)wind.speed);
+        }
+
+        public Wind(Core.Models.Caiyun.JsonContract.Wind wind)
+        {
+            Degree = (uint)wind.direction;
+            Speed = Speed.FromKMPH((uint)wind.speed);
         }
     }
 }

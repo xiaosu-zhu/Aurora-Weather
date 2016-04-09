@@ -39,8 +39,10 @@ namespace Com.Aurora.AuWeather
         {
             if (curretType == typeof(DonationPage))
             {
+                SettingsList.SelectionChanged -= SettingsList_SelectionChanged;
                 SettingsList.SelectedIndex = -1;
-                MainFrame.Navigate((typeof(AboutSetting)));
+                SettingsList.SelectionChanged += SettingsList_SelectionChanged;
+                MainFrame.Navigate((typeof(DonationPage)));
                 return;
             }
             SettingsList.SelectionChanged -= SettingsList_SelectionChanged;
@@ -112,7 +114,9 @@ namespace Com.Aurora.AuWeather
             {
                 return;
             }
+            SettingsList.SelectionChanged -= SettingsList_SelectionChanged;
             SettingsList.SelectedIndex = -1;
+            SettingsList.SelectionChanged += SettingsList_SelectionChanged;
             MainFrame.Navigate(typeof(DonationPage));
         }
 
@@ -147,13 +151,13 @@ namespace Com.Aurora.AuWeather
 
         private void GotoNormalState()
         {
-            if(!isWideState)
+            if (!isWideState)
             {
                 return;
             }
             isWideState = false;
             var loader = new ResourceLoader();
-            if(MainFrame.Content is PreferencesSetting)
+            if (MainFrame.Content is PreferencesSetting)
             {
                 PageTitle.Text = loader.GetString("Preferences");
             }

@@ -18,12 +18,18 @@ namespace Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract
         [DataMember]
         public string unit;
         [DataMember]
+        public ForecastResult result;
+    }
+
+    [DataContract]
+    public class ForecastResult
+    {
+        [DataMember]
         public Hourly hourly;
         [DataMember]
         public Minutely minutely;
         [DataMember]
         public Daily daily;
-
     }
 
     [DataContract]

@@ -4,11 +4,13 @@
 
 using System;
 using System.Globalization;
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public class HourlyForecast
     {
+
         public DateTime DateTime
         {
             get; private set;
@@ -52,6 +54,21 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Pressure = Pressure.FromHPa(float.Parse(hourly_forecast.pres));
             Temprature = Temperature.FromCelsius(int.Parse(hourly_forecast.tmp));
             Wind = new Wind(hourly_forecast.wind);
+        }
+
+        public HourlyForecast(Value temp, Value pcpn, Value hum, Core.Models.Caiyun.JsonContract.Wind wind)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            DateTime = DateTime.ParseExact(temp.datetime, "yyyy-MM-dd HH:mm", provider);
+            Temprature = Temperature.FromCelsius((float)temp.value);
+            Wind = new Wind(wind);
+            Humidity = (uint)(hum.value * 100);
+            var p = (uint)(pcpn.value / 6.0 * 100);
+            if (p > 100)
+            {
+                p = 100;
+            }
+            Pop = p;
         }
     }
 }

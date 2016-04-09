@@ -266,7 +266,7 @@ namespace Com.Aurora.Shared.Helpers
                     else
                     {
                         var v = DirectRead(member.Name, mainContainer);
-                        if (v != member.PropertyType.GetDefault())
+                        if (v != null)
                         {
                             member.SetValue(obj, v);
                         }

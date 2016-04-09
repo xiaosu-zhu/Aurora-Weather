@@ -91,10 +91,11 @@ namespace Com.Aurora.AuWeather.Models
                 {
                     decoration.Append(shiduda[0] + ", ");
                 }
-                if (Tools.Random.Next(200) >= 100 && model.NowWeather.Visibility.KM < 0.5)
-                {
-                    decoration.Append(nengjiandudi[0] + ", ");
-                }
+                if (model.NowWeather.Visibility != null)
+                    if (Tools.Random.Next(200) >= 100 && model.NowWeather.Visibility.KM < 0.5)
+                    {
+                        decoration.Append(nengjiandudi[0] + ", ");
+                    }
                 if (Tools.Random.Next(200) >= 100)
                     switch (主语)
                     {
@@ -339,10 +340,11 @@ namespace Com.Aurora.AuWeather.Models
                 {
                     decoration.Append(shiduda[0] + ", ");
                 }
-                if (Tools.Random.Next(200) >= 100 && model.NowWeather.Visibility.KM < 0.5)
-                {
-                    decoration.Append(nengjiandudi[0] + ", ");
-                }
+                if (model.NowWeather.Visibility != null)
+                    if (Tools.Random.Next(200) >= 100 && model.NowWeather.Visibility.KM < 0.5)
+                    {
+                        decoration.Append(nengjiandudi[0] + ", ");
+                    }
                 if (Tools.Random.Next(200) >= 100)
                     switch (主语)
                     {

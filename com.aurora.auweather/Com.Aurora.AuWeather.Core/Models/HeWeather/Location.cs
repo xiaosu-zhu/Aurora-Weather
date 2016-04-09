@@ -62,5 +62,14 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd H:mm", provider);
             UtcTime = DateTime.ParseExact(basic.update.utc, "yyyy-MM-dd H:mm", provider);
         }
+
+        public Location(double lat, double lon, long timeTick, int timeZoneShift)
+        {
+            Latitude = (float)lat;
+            Longitude = (float)lon;
+            var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            UtcTime = t.AddSeconds(timeTick);
+            UpdateTime = UtcTime.AddSeconds(timeZoneShift);
+        }
     }
 }

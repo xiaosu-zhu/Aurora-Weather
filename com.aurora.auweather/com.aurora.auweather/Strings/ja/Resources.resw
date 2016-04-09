@@ -963,9 +963,6 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>開始時間:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
-    <value>必要な場所、または既定値を使用: 19:30 〜 7:30</value>
-  </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>暗いモードを有効にするときの太陽設定</value>
   </data>

@@ -963,9 +963,6 @@
   <data name="StartTimeText.Text" xml:space="preserve">
     <value>Ora di inizio:</value>
   </data>
-  <data name="ThemeasDetailText" xml:space="preserve">
-    <value>Bisogno di posizione, o utilizzare il valore predefinito: 19.30 ~ 07.30</value>
-  </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
     <value>Attivare la modalità scuro quando sole impostato</value>
   </data>

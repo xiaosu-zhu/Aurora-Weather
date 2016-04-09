@@ -65,5 +65,46 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 case "999": return WeatherCondition.unknown;
             }
         }
+
+        protected static WeatherCondition ParseCondition_C(string skycon)
+        {
+            //CLEAR_DAY：晴天
+            //CLEAR_NIGHT：晴夜
+            //PARTLY_CLOUDY_DAY：多云
+            //PARTLY_CLOUDY_NIGHT：多云
+            //CLOUDY：阴
+            //RAIN： 雨
+            //SLEET：冻雨
+            //SNOW：雪
+            //WIND：风
+            //FOG：雾
+            //HAZE：霾
+
+            switch (skycon)
+            {
+                case "CLEAR_DAY":
+                case "CLEAR_NIGHT":
+                    return WeatherCondition.sunny;
+                case "PARTLY_CLOUDY_DAY":
+                case "PARTLY_CLOUDY_NIGHT":
+                    return WeatherCondition.cloudy;
+                case "CLOUDY":
+                    return WeatherCondition.overcast;
+                case "RAIN":
+                    return WeatherCondition.light_rain;
+                case "SLEET":
+                    return WeatherCondition.sleet;
+                case "SNOW":
+                    return WeatherCondition.light_snow;
+                case "WIND":
+                    return WeatherCondition.windy;
+                case "FOG":
+                    return WeatherCondition.foggy;
+                case "HAZE":
+                    return WeatherCondition.haze;
+                default:
+                    return WeatherCondition.unknown;
+            }
+        }
     }
 }

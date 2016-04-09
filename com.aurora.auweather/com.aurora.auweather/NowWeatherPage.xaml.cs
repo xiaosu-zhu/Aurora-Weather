@@ -356,7 +356,7 @@ namespace Com.Aurora.AuWeather
         #region Hold Bezier
         private void RelativePanel_LayoutUpdated(object sender, object e)
         {
-            if (actualWidth != ScrollableRoot.ActualWidth || isAnimating)
+            if (actualWidth != ScrollableRoot.ActualWidth || isAnimating || BezierControl3.Point3.X == 0)
             {
                 actualWidth = ScrollableRoot.ActualWidth;
                 SetPathPoint1(BezierControl1, actualWidth, 1f / 21f);

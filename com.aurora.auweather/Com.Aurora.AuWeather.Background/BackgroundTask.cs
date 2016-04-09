@@ -56,8 +56,7 @@ namespace Com.Aurora.AuWeather.Background
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
             string resstr = await Request.GetRequest(settings, currentCity);
-            var resjson1 = HeWeatherContract.Generate(resstr);
-            var fetchresult = new HeWeatherModel(resjson1);
+            var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
             Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
             if (settings.Preferences.EnableEveryDay)
             {

@@ -29,7 +29,7 @@ namespace Com.Aurora.AuWeather.Models
             }
             set
             {
-                temperature = ((value - 32) * 5 / 9 + 273.15f) > 0 ? ((value - 32) * 5 / 9 + 273.15f) : 0;
+                temperature = (value - 32) * 5 / 9 + 273.15f > 0 ? ((value - 32) * 5 / 9 + 273.15f) : 0;
             }
         }
         public int Kelvin
@@ -44,22 +44,22 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public static Temperature FromCelsius(int celsius)
+        public static Temperature FromCelsius(float celsius)
         {
             Temperature t = new Temperature();
-            t.Celsius = celsius;
+            t.temperature = celsius + 273.15f > 0 ? celsius + 273.15f : 0; ;
             return t;
         }
-        public static Temperature FromFahrenheit(int fahrenheit)
+        public static Temperature FromFahrenheit(float fahrenheit)
         {
             Temperature t = new Temperature();
-            t.Fahrenheit = fahrenheit;
+            t.temperature = (fahrenheit - 32) * 5 / 9 + 273.15f > 0 ? ((fahrenheit - 32) * 5 / 9 + 273.15f) : 0;
             return t;
         }
-        public static Temperature FromKelvin(int kelvin)
+        public static Temperature FromKelvin(float kelvin)
         {
             Temperature t = new Temperature();
-            t.Kelvin = kelvin;
+            t.temperature = kelvin;
             return t;
         }
 

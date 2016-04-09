@@ -114,6 +114,7 @@
     <Compile Include="LunarCalendar\SolarTerm.cs" />
     <Compile Include="Models\AQI.cs" />
     <Compile Include="Models\Caiyun\Enums.cs" />
+    <Compile Include="Models\Caiyun\JsonContract\CaiyunContract.cs" />
     <Compile Include="Models\Caiyun\JsonContract\Forecast.cs" />
     <Compile Include="Models\Caiyun\JsonContract\Now.cs" />
     <Compile Include="Models\Caiyun\JsonContract\Precipitation.cs" />

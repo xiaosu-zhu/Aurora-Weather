@@ -71,6 +71,7 @@
                             <TextBlock x:Uid="DataSourceDetailText" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                         </Grid>
                     </StackPanel>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
@@ -285,7 +286,7 @@
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="EnablePulltoRefresh" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
-                            <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                            <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="0,12,12,12" FontWeight="Light" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
 
                         <Grid HorizontalAlignment="Stretch" >
@@ -311,7 +312,7 @@
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                             <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.6" FontSize="12" />
+                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,36,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
                                 <ToggleSwitch x:Name="ThemeasRiseSet" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
@@ -343,7 +344,7 @@
                                 <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8"/>
                             </Grid>
-                            <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="0,12,12,12" Opacity="0.6" FontSize="12" VerticalAlignment="Top" />
+                            <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="0,12,12,12" FontWeight="Light" FontSize="12" VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

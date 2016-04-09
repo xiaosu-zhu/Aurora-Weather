@@ -4,6 +4,7 @@
 
 using System;
 using System.Globalization;
+using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -11,7 +12,6 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
     public class DailyForecast
     {
-
         /// <summary>
         /// 预报的日期 yyyy-MM-dd
         /// </summary>
@@ -101,12 +101,27 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Visibility = Length.FromKM(float.Parse(daily_forecast.vis));
             Wind = new Wind(daily_forecast.wind);
         }
+
+        public DailyForecast(Skycon skycon, Range temperature, Range humidity, Range precipitation, RangeWind wind, Astro astro)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            Date = DateTime.ParseExact(temperature.date, "yyyy-MM-dd", provider);
+            SunRise = TimeSpan.Parse(astro.sunrise.time);
+            SunSet = TimeSpan.Parse(astro.sunset.time);
+            Condition = new DailyCondition(skycon);
+            HighTemp = Temperature.FromCelsius((float)temperature.max);
+            LowTemp = Temperature.FromCelsius((float)temperature.min);
+            Humidity = (uint)(humidity.avg * 100);
+            Precipitation = (uint)precipitation.avg;
+            Wind = new Wind(wind.avg);
+        }
     }
 
 
 
     public class DailyCondition : Condition
     {
+
         public WeatherCondition DayCond
         {
             get; private set;
@@ -123,5 +138,10 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             NightCond = ParseCondition(cond.code_n);
         }
 
+        public DailyCondition(Skycon skycon)
+        {
+            DayCond = ParseCondition_C(skycon.value);
+            NightCond = DayCond;
+        }
     }
 }

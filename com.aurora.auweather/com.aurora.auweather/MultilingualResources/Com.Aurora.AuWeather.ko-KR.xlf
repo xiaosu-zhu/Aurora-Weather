@@ -1276,10 +1276,6 @@
           <source>Begin Time:</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">시작 시간:</target>
         </trans-unit>
-        <trans-unit id="ThemeasDetailText" translate="yes" xml:space="preserve">
-          <source>Need Location, or use default value: 19:30~7:30</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">위치, 필요 하거나 기본값을 사용 하 여: 19시 30분 ~ 7시 30분</target>
-        </trans-unit>
         <trans-unit id="ThemeasRiseSetText.Text" translate="yes" xml:space="preserve">
           <source>Enable dark mode when sun set</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">어두운 모드를 사용 하면 태양 설정</target>
@@ -1320,6 +1316,10 @@
         <trans-unit id="HeWeatherRadio.Content" translate="yes" xml:space="preserve">
           <source>HeWeather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">HeWeather</target>
+        </trans-unit>
+        <trans-unit id="ThemeasDetailText.Text" translate="yes" xml:space="preserve">
+          <source>Need Location, or use default value: 19:30~7:30</source>
+          <target state="new">Need Location, or use default value: 19:30~7:30</target>
         </trans-unit>
       </group>
     </body>
