@@ -1014,4 +1014,28 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>당신이 무엇을 찾는 참조!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>기부 팩을 사용 하 여 일부 기능을 잠금 해제</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>전체 화면</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· 몰입 모드
+에에서 전체 화면을 전환할 수 있습니다 · "날씨 지 하" 곧 유효한
+· 기능 조정
+를 완화 · _(:з」∠) _</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>새로운 오신 버전</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>단위 변환기</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>Hey 사람</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>항상 보이는 배경</value>
+  </data>
 </root>

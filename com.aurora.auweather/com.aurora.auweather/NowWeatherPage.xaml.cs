@@ -15,6 +15,7 @@ using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -82,6 +83,8 @@ namespace Com.Aurora.AuWeather
             Context.TimeUpdated += Context_TimeUpdated;
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             //DataContext = new NowWeatherPageViewModel();
+            var loader = new ResourceLoader();
+            UpdateIndicator.Text = loader.GetString("RefreshStart");
         }
 
         private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
@@ -103,21 +106,14 @@ namespace Com.Aurora.AuWeather
                     WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
                     if (!Context.IsNight)
                     {
-                        SolidColorBrush s;
-                        if (Context.Theme == ElementTheme.Dark)
-                        {
-                            var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
-                            s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
-                        }
-                        else
-                        {
-                            s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
-                        }
+                        var s = new SolidColorBrush(Colors.Black);
                         baba.ChangeColor(s);
+                        RefreshButton.Foreground = s;
                     }
                     else
                     {
                         baba.ChangeColor(new SolidColorBrush(Colors.White));
+                        RefreshButton.Foreground = new SolidColorBrush(Colors.White);
                     }
                 }
             }
@@ -125,6 +121,7 @@ namespace Com.Aurora.AuWeather
 
         private async void Context_FetchDataFailed(object sender, FetchDataFailedEventArgs e)
         {
+            this.Context.FetchDataFailed -= Context_FetchDataFailed;
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
              {
                  var loader = new ResourceLoader();
@@ -133,19 +130,21 @@ namespace Com.Aurora.AuWeather
                  if (e.Message == loader.GetString("Cities_null"))
                  {
                      d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
-
                  }
                  else
                  {
                      d.Commands.Add(new UICommand(loader.GetString("Refresh"), new UICommandInvokedHandler(DataFailed_Refresh)));
+                     d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
                  }
                  d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
+                 d.CancelCommandIndex = 1;
                  await d.ShowAsync();
              }));
         }
 
         private void DataFailed_Refresh(IUICommand command)
         {
+            Context.FetchDataFailed += Context_FetchDataFailed;
             Context.RefreshAsync();
         }
 
@@ -156,6 +155,7 @@ namespace Com.Aurora.AuWeather
 
         private void NavigateToSettings(IUICommand command)
         {
+            Context.FetchDataFailed += Context_FetchDataFailed;
             baba.Navigate(typeof(SettingsPage));
         }
 
@@ -230,23 +230,24 @@ namespace Com.Aurora.AuWeather
                 WeatherCondition.fresh_breeze |
                 WeatherCondition.strong_breeze |
                 WeatherCondition.high_wind |
-                WeatherCondition.gale) && !Context.IsNight)
+                WeatherCondition.gale))
             {
-                SolidColorBrush s;
-                if (Context.Theme == ElementTheme.Dark)
+                if (!Context.IsNight)
                 {
-                    var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
-                    s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                    var s = new SolidColorBrush(Colors.Black);
+                    baba.ChangeColor(s);
+                    RefreshButton.Foreground = s;
                 }
                 else
                 {
-                    s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+                    baba.ChangeColor(new SolidColorBrush(Colors.White));
+                    RefreshButton.Foreground = new SolidColorBrush(Colors.White);
                 }
-                baba.ChangeColor(s);
             }
             else
             {
                 baba.ChangeColor(new SolidColorBrush(Colors.White));
+                RefreshButton.Foreground = new SolidColorBrush(Colors.White);
             }
             WeatherCanvas.ChangeCondition(Context.Condition, Context.IsNight, Context.IsSummer);
             if (Context.Aqi == null)
@@ -277,6 +278,10 @@ namespace Com.Aurora.AuWeather
                     break;
                 default:
                     break;
+            }
+            if (Context.AlwaysShowBackground)
+            {
+                WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
             }
             await Task.Delay(1000);
             ScrollableRoot.RefreshComplete();
@@ -498,6 +503,9 @@ namespace Com.Aurora.AuWeather
         {
             Context.FetchDataComplete -= MModel_FetchDataComplete;
             Context.ParameterChanged -= MModel_ParameterChanged;
+            Context.FetchDataFailed -= Context_FetchDataFailed;
+            Context.TimeUpdated -= Context_TimeUpdated;
+            Context.Unload();
             if (immersiveTimer != null)
             {
                 immersiveTimer.Cancel();
@@ -658,6 +666,11 @@ namespace Com.Aurora.AuWeather
                 var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
                 c = (Color)d["SystemBaseHighColor"];
             }
+            else if (Context.Theme == ElementTheme.Light)
+            {
+                var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+            }
             else
             {
                 c = (Color)Resources["SystemBaseHighColor"];
@@ -692,12 +705,18 @@ namespace Com.Aurora.AuWeather
                 rootIsWideState = false;
                 LargeModeSubPanel.Content = null;
                 WeatherPanel.Children.Add(DetailsPanel);
+                UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, Colors.White);
             }
         }
         #endregion
 
         private async void ImmersiveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Context.EnableFullScreen)
+            {
+                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+                await Task.Delay(160);
+            }
             isImmersiveMode = true;
             ImmersiveWidthIn.From = MainCanvas.ActualWidth;
             ImmersiveWidthIn.To = Root.ActualWidth;
@@ -733,7 +752,10 @@ namespace Com.Aurora.AuWeather
                 detailGridAnimation_FLAG -= 2;
             }
             await Task.Delay(1000);
-            WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
+            if (!Context.AlwaysShowBackground)
+            {
+                WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
+            }
         }
 
         private void MainCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -767,6 +789,7 @@ namespace Com.Aurora.AuWeather
 
         private void ImmersiveBackButton_Click(object sender, RoutedEventArgs e)
         {
+            MainCanvas.PointerMoved -= MainCanvas_PointerMoved;
             if (immersiveTimer != null)
             {
                 immersiveTimer.Cancel();
@@ -792,9 +815,17 @@ namespace Com.Aurora.AuWeather
                 MainCanvas.Width = double.NaN;
                 DetailGrid1Play();
             };
+            ImmersiveBackAni.Completed += (s, v) =>
+            {
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            };
             ImmersiveBackAni.Begin();
             isImmersiveMode = false;
-            WeatherCanvas.ImmersiveOut();
+            if (!Context.AlwaysShowBackground)
+            {
+                WeatherCanvas.ImmersiveOut();
+            }
+            MainCanvas.PointerMoved += MainCanvas_PointerMoved;
         }
 
         private void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
@@ -855,6 +886,12 @@ namespace Com.Aurora.AuWeather
             if (Context.Theme == ElementTheme.Dark)
             {
                 var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
+            else if (Context.Theme == ElementTheme.Light)
+            {
+                var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
                 c = (Color)d["SystemBaseHighColor"];
                 s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
             }

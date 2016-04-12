@@ -21,28 +21,28 @@
                             <Storyboard x:Name="IndicatorIn">
                                 <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True" Duration="0:0:0.64">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>
                             <Storyboard x:Name="IndicatorOut">
                                 <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="0.36" EnableDependentAnimation="True" Duration="0:0:0.64">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>
                             <Storyboard x:Name="IndicatorOverlayIn">
                                 <DoubleAnimation Storyboard.TargetName="Indicator" Storyboard.TargetProperty="Height" EnableDependentAnimation="True" Duration="0:0:0.64">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>
                             <Storyboard x:Name="IndicatorOverlayOut">
                                 <DoubleAnimation Storyboard.TargetName="Indicator" Storyboard.TargetProperty="Height" EnableDependentAnimation="True" To="0" Duration="0:0:0.64">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>
@@ -52,12 +52,12 @@
                                 </ObjectAnimationUsingKeyFrames>
                                 <DoubleAnimation Storyboard.TargetName="IndicatorRing" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.16" To="1" EnableDependentAnimation="True" Duration="0:0:0.16">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                                 <DoubleAnimation Storyboard.TargetName="IndicatorIcon" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True" Duration="0:0:0.16">
                                     <DoubleAnimation.EasingFunction>
-                                        <CircleEase />
+                                        <QuinticEase />
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>

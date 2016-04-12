@@ -37,6 +37,12 @@ namespace Com.Aurora.AuWeather
                 c = (Color)d["SystemBaseHighColor"];
                 s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
             }
+            else if (Context.Theme == ElementTheme.Light)
+            {
+                var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
             else
             {
                 c = (Color)Resources["SystemBaseHighColor"];

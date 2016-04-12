@@ -63,7 +63,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 SearchBox.IsEnabled = true;
                 LocateOnSwitch.IsEnabled = true;
                 LocateOnSwitch.IsEnabled = true;
-                SearchButton.IsEnabled = true;
                 FetchComplete.Begin();
                 CitiesList.ItemsSource = Context.Info;
                 await AccesstoLocate();
@@ -191,12 +190,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
             await AccesstoLocate();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchBoxIn.Begin();
-            SearchBox.Text = "";
-        }
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             ClearSelect();
@@ -253,7 +246,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 // Use args.QueryText to determine what to do.
                 Context.AddCity(args.QueryText);
             }
-            SearchBoxOut.Begin();
         }
 
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)

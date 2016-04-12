@@ -374,6 +374,10 @@
     <None Include="Com.Aurora.AuWeather_StoreKey.pfx" />
     <None Include="Com.Aurora.AuWeather_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\en-CA\Resources.resw" />
+    <PRIResource Include="Strings\en-GB\Resources.resw" />
+    <PRIResource Include="Strings\en-SG\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\it-IT\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
     <PRIResource Include="Strings\es-CL\Resources.resw" />
@@ -390,10 +394,6 @@
     <PRIResource Include="Strings\ko\Resources.resw" />
     <PRIResource Include="Strings\fr-FR\Resources.resw" />
     <PRIResource Include="Strings\fr\Resources.resw" />
-    <PRIResource Include="Strings\en-GB\Resources.resw" />
-    <PRIResource Include="Strings\en-SG\Resources.resw" />
-    <PRIResource Include="Strings\en-CA\Resources.resw" />
-    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
@@ -653,6 +653,10 @@
       <Project>{d7f4e99d-a166-4c9b-9bb3-84e1b9e34c2e}</Project>
       <Name>Com.Aurora.AuWeather.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Com.Aurora.Calculator\Com.Aurora.Calculator.csproj">
+      <Project>{a8bc87ac-8a6a-4989-878b-63f21c4194f7}</Project>
+      <Name>Com.Aurora.Calculator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\com.aurora.shared\Com.Aurora.Shared.csproj">
       <Project>{026d99cf-1c25-4dcf-ad95-1070bba9f8a8}</Project>
       <Name>Com.Aurora.Shared</Name>
@@ -667,10 +671,6 @@
   <ItemGroup>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de-DE.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-CA.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-GB.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en-SG.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.en.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-CL.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-ES.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-MX.xlf" />

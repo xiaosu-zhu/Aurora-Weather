@@ -6,7 +6,6 @@ using System;
 using Com.Aurora.Shared.Helpers;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Models.Settings
@@ -31,6 +30,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public bool EnableAlarm { get; set; } = false;
         public bool UseWeekDayforForecast { get; set; } = false;
         public bool EnablePulltoRefresh { get; set; } = false;
+        public bool AlwaysShowBackground { get; set; } = false;
+        public bool ThemeasRiseSet { get; set; } = true;
+        public bool EnableFullScreen { get; set; } = false;
 
         public readonly string[] YearFormat = new string[] { " ", "yy", "yyyy" };
         public readonly string[] MonthFormat = new string[] { " ", "M", "MM" };
@@ -49,10 +51,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public uint MinuteNumber { get; set; } = 1;
         public uint DecorateNumber { get; set; } = 0;
         public bool ShowImmersivett { get; set; } = false;
-        public bool ThemeasRiseSet { get; set; } = true;
 
         public TimeSpan StartTime { get; set; } = new TimeSpan(19, 30, 0);
         public TimeSpan EndTime { get; set; } = new TimeSpan(7, 30, 0);
+        
 
         public static Preferences Get()
         {
@@ -170,7 +172,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
                     break;
                 case DataSource.Caiyun:
-                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
+                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_C");
                     break;
                 default:
                     break;

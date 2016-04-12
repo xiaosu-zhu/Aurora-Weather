@@ -8,7 +8,7 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Temperature
     {
-        private float temperature;
+        private double temperature;
 
         public int Celsius
         {
@@ -44,19 +44,19 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public static Temperature FromCelsius(float celsius)
+        public static Temperature FromCelsius(double celsius)
         {
             Temperature t = new Temperature();
             t.temperature = celsius + 273.15f > 0 ? celsius + 273.15f : 0; ;
             return t;
         }
-        public static Temperature FromFahrenheit(float fahrenheit)
+        public static Temperature FromFahrenheit(double fahrenheit)
         {
             Temperature t = new Temperature();
             t.temperature = (fahrenheit - 32) * 5 / 9 + 273.15f > 0 ? ((fahrenheit - 32) * 5 / 9 + 273.15f) : 0;
             return t;
         }
-        public static Temperature FromKelvin(float kelvin)
+        public static Temperature FromKelvin(double kelvin)
         {
             Temperature t = new Temperature();
             t.temperature = kelvin;
@@ -91,7 +91,7 @@ namespace Com.Aurora.AuWeather.Models
             return t;
         }
 
-        public static Temperature operator /(Temperature left, float right)
+        public static Temperature operator /(Temperature left, double right)
         {
             var t = new Temperature();
             t.temperature = left.temperature / right;

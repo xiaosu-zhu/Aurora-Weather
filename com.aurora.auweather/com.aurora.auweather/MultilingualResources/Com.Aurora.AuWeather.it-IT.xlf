@@ -1342,6 +1342,39 @@
           <source>See what you find!</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vedete cosa trovate!</target>
         </trans-unit>
+        <trans-unit id="LockText.Text" translate="yes" xml:space="preserve">
+          <source>Use Donation Pack to unlock some features</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Utilizzare donazione Pack per sbloccare alcune funzioni</target>
+        </trans-unit>
+        <trans-unit id="FullScreenText.Text" translate="yes" xml:space="preserve">
+          <source>Full Screen</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Schermo intero</target>
+        </trans-unit>
+        <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
+          <source>· _(:з」∠)_
+· Always show the immersive background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">· È possibile passare a schermo intero in modalità immersiva
+piace · "Weather Underground" sarà presto disponibile
+piace · Regolazione di funzione
+di interpolazione _ _(:з」∠) ·</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
+          <source>Welcome to new version</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Benvenuti nel nuovo versione</target>
+        </trans-unit>
+        <trans-unit id="Calculator" translate="yes" xml:space="preserve">
+          <source>Unit Converter</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Convertitore di unità</target>
+        </trans-unit>
+        <trans-unit id="YouKnow" translate="yes" xml:space="preserve">
+          <source>Hey guy</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ehi ragazzo</target>
+        </trans-unit>
+        <trans-unit id="AlwaysShowText.Text" translate="yes" xml:space="preserve">
+          <source>Background always visible</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sfondo sempre visibile</target>
+        </trans-unit>
       </group>
     </body>
   </file>

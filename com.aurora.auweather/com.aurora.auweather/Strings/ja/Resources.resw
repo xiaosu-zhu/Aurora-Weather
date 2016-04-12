@@ -1014,4 +1014,28 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>あなたは何を見つけるを参照してください!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>寄付パックを使用して、いくつかの機能のロックを解除するには</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>全画面表示</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>·没入型モード
+で全画面表示を切り替えることができます ·「ウエザーマン」すぐに利用可能
+になる ·緩和機能調整
+· _(:з」∠) _</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>ようこそバージョン</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>単位のコンバーター</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>ちょっと男します。</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>背景を常に表示</value>
+  </data>
 </root>

@@ -65,6 +65,8 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    EnableAlarm.IsOn = Context.EnableAlarm;
                    EnablePulltoRefresh.IsOn = Context.EnablePulltoRefresh;
                    ThemeasRiseSet.IsOn = Context.ThemeasRiseSet;
+                   EnableFullScreen.IsOn = Context.EnableFullScreen;
+                   AlwaysShowBackground.IsOn = Context.AlwaysShowBackground;
 
                    UseWeekDay.Toggled += Bool_Toggled;
                    Showtt.Toggled += Showtt_Toggled;
@@ -75,6 +77,8 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    EnableAlarm.Toggled += Bool_Toggled;
                    EnablePulltoRefresh.Toggled += Bool_Toggled;
                    ThemeasRiseSet.Toggled += ThemeasRiseSet_Toggled;
+                   EnableFullScreen.Toggled += Bool_Toggled;
+                   AlwaysShowBackground.Toggled += Bool_Toggled;
 
                    Temp.SelectedIndex = Context.Temperature.SelectedIndex;
                    Wind.SelectedIndex = Context.Wind.SelectedIndex;
@@ -142,7 +146,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        EnableAlarm.IsEnabled = false;
                        RefreshFreq.IsEnabled = false;
                        RefreshFreq.SelectedIndex = 0;
+                       LockText.Visibility = Visibility.Visible;
                    }
+                   CaiyunRadio.Checked += CaiyunRadio_Checked;
+                   HeWeatherRadio.Checked += HeWeatherRadio_Checked;
                }));
         }
 

@@ -1119,4 +1119,25 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>See what you find!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>Use Donation Pack to unlock some features</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· _(:з」∠)_&#x000A;· Always show the immersive background</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>Welcome to new version</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Unit Converter</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>Hey guy</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>Background always visible</value>
+  </data>
 </root>

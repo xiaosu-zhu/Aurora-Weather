@@ -277,13 +277,15 @@ namespace Com.Aurora.AuWeather.ViewModels
                         resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
                     }
                     var weather = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                    var utcOffset = weather.Location.UpdateTime - weather.Location.UtcTime;
+                    var current = DateTimeHelper.ReviseLoc(utcOffset);
                     var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
                     {
-                        return x.Date.Date == DateTime.Today.Date;
+                        return x.Date.Date == current.Date;
                     });
                     var hourIndex = Array.FindIndex(weather.HourlyForecast, x =>
                     {
-                        return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+                        return (x.DateTime - current).TotalSeconds > 0;
                     });
                     if (todayIndex < 0)
                     {
@@ -348,13 +350,15 @@ namespace Com.Aurora.AuWeather.ViewModels
         private async Task itemInit(CityViewModel item, HeWeatherModel weather)
         {
             item.NowCondition = weather.NowWeather.Now.Condition;
+            var utcOffset = weather.Location.UpdateTime - weather.Location.UtcTime;
+            var current = DateTimeHelper.ReviseLoc(utcOffset);
             var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
             {
-                return x.Date.Date == DateTime.Today.Date;
+                return x.Date.Date == current.Date;
             });
             var hourIndex = Array.FindIndex(weather.HourlyForecast, x =>
             {
-                return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+                return (x.DateTime - current).TotalSeconds > 0;
             });
             if (todayIndex < 0)
             {

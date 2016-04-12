@@ -169,7 +169,7 @@
     <value>减弱动态效果</value>
   </data>
   <data name="DonateButton.Content" xml:space="preserve">
-    <value>投喂我!</value>
+    <value>捐赠版!</value>
   </data>
   <data name="DonateOption0.Text" xml:space="preserve">
     <value>· 每日天气提醒</value>
@@ -1118,5 +1118,26 @@
   </data>
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>发现了什么!</value>
+  </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>使用捐赠版解锁部分功能</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>开启全屏</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· _(:з」∠)_&#x000A;· 始终显示沉浸模式背景</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>欢迎来到新版本</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>单位换算</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>你知道的太多了</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>始终显示背景</value>
   </data>
 </root>

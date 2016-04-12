@@ -14,6 +14,7 @@
     xmlns:Controls="using:Com.Aurora.AuWeather.CustomControls"
     x:Class="Com.Aurora.AuWeather.MainPage"
     RequestedTheme="{x:Bind Context.Theme,Mode=OneWay}"
+    Unloaded="Page_Unloaded"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -479,6 +480,52 @@
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <CommandBar Background="{ThemeResource SystemBackgroundHighBrush}" x:Name="ActionBar"
+                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
+                            RelativePanel.AlignRightWithPanel="True">
+            <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" >
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="SettingsText" />
+                </ToolTipService.ToolTip>
+            </AppBarButton>
+            <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="RefreshText" />
+                </ToolTipService.ToolTip>
+            </AppBarButton>
+            <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Icon="World" Width="68" Click="Cities_Click" >
+                <!--Width 68 Height 20-->
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="CitiesText" />
+                </ToolTipService.ToolTip>
+            </AppBarButton>
+            <AppBarButton x:Uid="NowButton" x:Name="Today" Click="Today_Click">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="NowText" />
+                </ToolTipService.ToolTip>
+                <AppBarButton.Icon>
+                    <PathIcon Data="F1 M 39.7971,
+                                      9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,
+                                      6.79795 39.7971,9.99986 Z M 34,2.60895C 33.5201,2.60895 33.1301,2.21995 33.1301,1.73914L 33.1301,0.870157C 33.1301,0.390177 33.5201,0.000204086 34,0.000204086C 34.48,0.000204086 34.87,
+                                      0.390177 34.87,0.870157L 34.87,1.73914C 34.87,2.21995 34.48,2.60895 34,2.60895 Z M 26.609,10C 26.609,10.48 26.22,10.87 25.739,10.87L 24.87,10.87C 24.3901,10.87 24.0001,10.48 24.0001,
+                                      10C 24.0001,9.52002 24.3901,9.13002 24.87,9.13002L 25.739,9.13002C 26.22,9.13002 26.609,9.52002 26.609,10 Z M 34.0001,17.3911C 34.4801,17.3911 34.8701,17.78 34.8701,18.261L 34.8701,
+                                      19.13C 34.8701,19.61 34.4801,20 34.0001,20C 33.5201,20 33.1301,19.61 33.1301,19.13L 33.1301,18.261C 33.1301,17.78 33.5201,17.3911 34.0001,17.3911 Z M 41.3912,9.99996C 41.3912,9.51998 41.7802,
+                                      9.12998 42.261,9.12998L 43.13,9.12998C 43.61,9.12998 44,9.51998 44,9.99996C 44,10.4799 43.61,10.8699 43.13,10.8699L 42.261,10.8699C 41.7802,10.8699 41.3912,10.4799 41.3912,9.99996 Z M 28.3481,
+                                      3.47843C 28.3481,3.95844 27.9591,4.34841 27.4781,4.34841C 26.9982,4.34841 26.6092,3.95844 26.6092,3.47843C 26.6092,2.99845 26.9982,2.60848 27.4781,2.60848C 27.9591,2.60848 28.3481,2.99845 28.3481,
+                                      3.47843 Z M 27.4786,15.652C 27.9586,15.652 28.3486,16.0409 28.3486,16.5219C 28.3486,17.0019 27.9586,17.3909 27.4786,17.3909C 26.9987,17.3909 26.6087,17.0019 26.6087,16.5219C 26.6087,16.0409 26.9987,
+                                      15.652 27.4786,15.652 Z M 39.6522,16.5214C 39.6522,16.0414 40.0412,15.6514 40.5222,15.6514C 41.0021,15.6514 41.3911,16.0414 41.3911,16.5214C 41.3911,17.0014 41.0021,17.3914 40.5222,17.3914C 40.0412,
+                                      17.3914 39.6522,17.0014 39.6522,16.5214 Z M 40.5217,4.34784C 40.0417,4.34784 39.6517,3.95886 39.6517,3.47788C 39.6517,2.9979 40.0417,2.60891 40.5217,2.60891C 41.0017,2.60891 41.3916,2.9979 41.3916,
+                                      3.47788C 41.3916,3.95886 41.0017,4.34784 40.5217,4.34784 Z "/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="FeedbackButton" x:Name="Like" Icon="Like" Click="Like_Click" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
+    </Page.BottomAppBar>
+
     <Page.Transitions>
         <TransitionCollection>
             <EntranceThemeTransition />
@@ -507,6 +554,28 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <SplitView.Resources>
+            <Storyboard x:Name="ShowUpdateDetailAni">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdatePanel" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation Storyboard.TargetName="UpdatePanelTrans" Storyboard.TargetProperty="X" To="0" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <QuinticEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="HideUpdateDetailAni">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdatePanel" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:2" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation Storyboard.TargetName="UpdatePanelTrans" Storyboard.TargetProperty="X" To="384" EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <QuinticEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+        </SplitView.Resources>
         <SplitView.Pane>
             <RelativePanel>
                 <Image Stretch="UniformToFill" Source="{Binding Converter={StaticResource MainPaneBGConverter}}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="203" />
@@ -522,7 +591,7 @@
                     </Button.Content>
                 </Button>
                 <StackPanel x:Name="DateTimePanel" Margin="0,216,0,0" Padding="20,8,20,8" Orientation="Vertical">
-                    <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" >
+                    <TextBlock PointerReleased="TextBlock_PointerReleased" Style="{ThemeResource HeaderTextBlockStyle}" >
                         <Run FontSize="20" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <LineBreak />
                         <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
@@ -545,93 +614,6 @@
                 <Frame x:Name="MainFrame"
                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-                <CommandBar x:Name="ActionBar" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" 
-                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
-                            RelativePanel.AlignRightWithPanel="True">
-                    <CommandBar.CommandBarOverflowPresenterStyle>
-                        <Style TargetType="CommandBarOverflowPresenter">
-                            <Setter Property="Background" Value="{ThemeResource SystemControlTranslucentAltAltHighBrush}" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="MaxWidth" Value="{ThemeResource CommandBarOverflowMaxWidth}"/>
-                            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
-                            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-                            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
-                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-                            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="CommandBarOverflowPresenter">
-                                        <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
-              BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" >
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="DisplayModeStates">
-                                                    <VisualState x:Name="DisplayModeDefault" />
-                                                    <VisualState x:Name="FullWidthOpenDown" >
-                                                        <VisualState.Setters>
-                                                            <Setter Target="LayoutRoot.BorderThickness" Value="0" />
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                    <VisualState x:Name="FullWidthOpenUp" >
-                                                        <VisualState.Setters>
-                                                            <Setter Target="LayoutRoot.BorderThickness" Value="0" />
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <ScrollViewer
-              HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-              HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-              VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-              VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-              ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
-              AutomationProperties.AccessibilityView="Raw">
-                                                <ItemsPresenter x:Name="ItemsPresenter" Margin="0,7,0,7"/>
-                                            </ScrollViewer>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </CommandBar.CommandBarOverflowPresenterStyle>
-                    <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" >
-                        <ToolTipService.ToolTip>
-                            <TextBlock x:Uid="SettingsText" />
-                        </ToolTipService.ToolTip>
-                    </AppBarButton>
-                    <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click">
-                        <ToolTipService.ToolTip>
-                            <TextBlock x:Uid="RefreshText" />
-                        </ToolTipService.ToolTip>
-                    </AppBarButton>
-                    <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Icon="World" Width="68" Click="Cities_Click" >
-                        <!--Width 68 Height 20-->
-                        <ToolTipService.ToolTip>
-                            <TextBlock x:Uid="CitiesText" />
-                        </ToolTipService.ToolTip>
-                    </AppBarButton>
-                    <AppBarButton x:Uid="NowButton" x:Name="Today" Click="Today_Click">
-                        <ToolTipService.ToolTip>
-                            <TextBlock x:Uid="NowText" />
-                        </ToolTipService.ToolTip>
-                        <AppBarButton.Icon>
-                            <PathIcon Data="F1 M 39.7971,
-                                      9.99986C 39.7971,13.2018 37.2022,15.7967 34.0003,15.7967C 30.7984,15.7967 28.2035,13.2018 28.2035,9.99986C 28.2035,6.79795 30.7984,4.20304 34.0003,4.20304C 37.2022,4.20304 39.7971,
-                                      6.79795 39.7971,9.99986 Z M 34,2.60895C 33.5201,2.60895 33.1301,2.21995 33.1301,1.73914L 33.1301,0.870157C 33.1301,0.390177 33.5201,0.000204086 34,0.000204086C 34.48,0.000204086 34.87,
-                                      0.390177 34.87,0.870157L 34.87,1.73914C 34.87,2.21995 34.48,2.60895 34,2.60895 Z M 26.609,10C 26.609,10.48 26.22,10.87 25.739,10.87L 24.87,10.87C 24.3901,10.87 24.0001,10.48 24.0001,
-                                      10C 24.0001,9.52002 24.3901,9.13002 24.87,9.13002L 25.739,9.13002C 26.22,9.13002 26.609,9.52002 26.609,10 Z M 34.0001,17.3911C 34.4801,17.3911 34.8701,17.78 34.8701,18.261L 34.8701,
-                                      19.13C 34.8701,19.61 34.4801,20 34.0001,20C 33.5201,20 33.1301,19.61 33.1301,19.13L 33.1301,18.261C 33.1301,17.78 33.5201,17.3911 34.0001,17.3911 Z M 41.3912,9.99996C 41.3912,9.51998 41.7802,
-                                      9.12998 42.261,9.12998L 43.13,9.12998C 43.61,9.12998 44,9.51998 44,9.99996C 44,10.4799 43.61,10.8699 43.13,10.8699L 42.261,10.8699C 41.7802,10.8699 41.3912,10.4799 41.3912,9.99996 Z M 28.3481,
-                                      3.47843C 28.3481,3.95844 27.9591,4.34841 27.4781,4.34841C 26.9982,4.34841 26.6092,3.95844 26.6092,3.47843C 26.6092,2.99845 26.9982,2.60848 27.4781,2.60848C 27.9591,2.60848 28.3481,2.99845 28.3481,
-                                      3.47843 Z M 27.4786,15.652C 27.9586,15.652 28.3486,16.0409 28.3486,16.5219C 28.3486,17.0019 27.9586,17.3909 27.4786,17.3909C 26.9987,17.3909 26.6087,17.0019 26.6087,16.5219C 26.6087,16.0409 26.9987,
-                                      15.652 27.4786,15.652 Z M 39.6522,16.5214C 39.6522,16.0414 40.0412,15.6514 40.5222,15.6514C 41.0021,15.6514 41.3911,16.0414 41.3911,16.5214C 41.3911,17.0014 41.0021,17.3914 40.5222,17.3914C 40.0412,
-                                      17.3914 39.6522,17.0014 39.6522,16.5214 Z M 40.5217,4.34784C 40.0417,4.34784 39.6517,3.95886 39.6517,3.47788C 39.6517,2.9979 40.0417,2.60891 40.5217,2.60891C 41.0017,2.60891 41.3916,2.9979 41.3916,
-                                      3.47788C 41.3916,3.95886 41.0017,4.34784 40.5217,4.34784 Z "/>
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Uid="FeedbackButton" x:Name="Like" Icon="Like" Click="Like_Click" />
-                    </CommandBar.SecondaryCommands>
-                </CommandBar>
                 <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Style="{StaticResource SymbolButton}" >
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="HamOpenText" />
@@ -643,6 +625,21 @@
                 <Grid x:Name="TitleBar" Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
                     <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
                 </Grid>
+                <StackPanel Visibility="Collapsed" x:Name="UpdatePanel" RelativePanel.Below="TitleBar" RelativePanel.AlignRightWithPanel="True" Margin="12" Background="{ThemeResource SystemBackgroundHighBrush}" >
+                    <StackPanel.RenderTransform>
+                        <TranslateTransform x:Name="UpdatePanelTrans" X="156" />
+                    </StackPanel.RenderTransform>
+                    <Grid Background="{ThemeResource SystemThemeMainBrush}" HorizontalAlignment="Stretch">
+                        <TextBlock Foreground="White" x:Uid="UpdateTitle" Margin="12,4,12,4" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" />
+                        <Button Foreground="White" Click="HideUpdateButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4" Style="{ThemeResource TextBlockButtonStyle}">
+                            <Button.Content>
+                                <SymbolIcon Symbol="Cancel" />
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
+                    <TextBlock x:Uid="UpdateDetailText" Margin="12" Style="{ThemeResource TitleTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </StackPanel>
             </RelativePanel>
         </SplitView.Content>
     </SplitView>

@@ -33,168 +33,168 @@
             <Storyboard x:Name="GotoPage0">
                 <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="GotoPage1">
                 <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="GotoPage2">
                 <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="GotoPage3">
                 <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>

@@ -52,9 +52,11 @@ namespace Com.Aurora.AuWeather.Models
         #endregion
         public static string GenerateShortDescription(HeWeatherModel model, bool isNight)
         {
+            var utcOffset = model.Location.UpdateTime - model.Location.UtcTime;
+            var current = DateTimeHelper.ReviseLoc(utcOffset);
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
-                return x.Date.Date == DateTime.Today.Date;
+                return x.Date.Date == current.Date;
             });
             if (todayIndex < 0)
             {

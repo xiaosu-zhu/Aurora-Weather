@@ -86,7 +86,8 @@ namespace Com.Aurora.AuWeather.LunarCalendar
             //获取节气
             m_SolarTermNum = SolarTerm.GetSolarTerm(m_SolarDate);
             // 获取这一年的闰月
-            int leapMonth = calendar.GetLeapMonth(m_LunarYear, m_SolarDate.Year % 100 / 10);
+            var p = calendar.Eras;
+            int leapMonth = calendar.GetLeapMonth(m_LunarYear, Calendar.CurrentEra);
 
             if (leapMonth == m_LunarMonth)
             {
@@ -381,7 +382,7 @@ namespace Com.Aurora.AuWeather.LunarCalendar
                 throw new Exception("Wrong Date");
 
             int num1 = 0, num2 = 0;
-            int leapMonth = calendar.GetLeapMonth(year, year % 100 / 10);
+            int leapMonth = calendar.GetLeapMonth(year, Calendar.CurrentEra);
 
             if (((leapMonth == month + 1) && IsLeapMonth) || (leapMonth > 0 && leapMonth <= month))
                 num2 = month;

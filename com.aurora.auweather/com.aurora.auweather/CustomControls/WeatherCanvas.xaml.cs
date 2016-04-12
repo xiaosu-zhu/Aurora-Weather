@@ -150,6 +150,11 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void WeatherCanvas_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (stopUpdateTimer != null)
+            {
+                stopUpdateTimer.Cancel();
+                stopUpdateTimer = null;
+            }
             Canvas.RemoveFromVisualTree();
             Canvas = null;
         }

@@ -40,7 +40,7 @@ namespace Com.Aurora.AuWeather
                     StatusBar statusBar = StatusBar.GetForCurrentView();
                     statusBar.ForegroundColor = Colors.White;
                     ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
                 }
                 /* 桌面设置 */
                 var view = ApplicationView.GetForCurrentView();
@@ -48,8 +48,8 @@ namespace Com.Aurora.AuWeather
                 view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
                 view.TitleBar.BackgroundColor = Colors.Transparent;
                 // button
-                view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-                view.TitleBar.ButtonForegroundColor = Colors.White;
+                //view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+                //view.TitleBar.ButtonForegroundColor = Colors.White;
                 //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
                 //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
@@ -81,7 +81,24 @@ namespace Com.Aurora.AuWeather
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            if (Window.Current.Content == null)
+            {
+                if (e.PreviousExecutionState != ApplicationExecutionState.Running)
+                {
+                    if (e.Arguments == "Com.Aurora.AuWeather.Calculator")
+                    {
+                        Calculator.MainPage m = new Calculator.MainPage();
+                        Window.Current.Content = m;
+                    }
+                    else
+                    {
+                        SplashScreenEx extendedSplash = new SplashScreenEx(e.SplashScreen, e.Arguments);
+                        Window.Current.Content = extendedSplash;
+                    }
+                }
+            }
+            // Ensure the current window is active
+            Window.Current.Activate();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -91,6 +108,7 @@ namespace Com.Aurora.AuWeather
                 //this.DebugSettings.EnableRedrawRegions = true;
             }
 #endif
+            if (e.Arguments != "Com.Aurora.AuWeather.Calculator")
             {
                 /* mobile 设置状态栏 */
                 if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -113,16 +131,6 @@ namespace Com.Aurora.AuWeather
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
                 Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             }
-            if (Window.Current.Content == null)
-            {
-                if (e.PreviousExecutionState != ApplicationExecutionState.Running)
-                {
-                    SplashScreenEx extendedSplash = new SplashScreenEx(e.SplashScreen, e.Arguments);
-                    Window.Current.Content = extendedSplash;
-                }
-            }
-            // Ensure the current window is active
-            Window.Current.Activate();
         }
 
         /// <summary>

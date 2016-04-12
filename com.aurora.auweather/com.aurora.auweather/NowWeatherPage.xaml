@@ -179,268 +179,268 @@
                                 To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point1" 
                                 To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point2" 
                                 To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point3" 
                                 To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourlyTemp0" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid0" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid1" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid2" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.3" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid3" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid4" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.5" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid5" Storyboard.TargetProperty="Opacity" 
                                  To="1" Duration="0:0:1" BeginTime="0:0:0.6" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid0" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid1" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid2" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.3" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid3" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.4" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid4" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.5" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid5" Storyboard.TargetProperty="Height" 
                                  To="64" Duration="0:0:1" BeginTime="0:0:0.6" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TitleAniTrans" Storyboard.TargetProperty="Y" 
                                  To="0" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="ConditionAniTrans" Storyboard.TargetProperty="Y" 
                                  To="0" BeginTime="0:0:0.1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempAniTrans" Storyboard.TargetProperty="Y"
                                  To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempDegAniTrans" Storyboard.TargetProperty="Y"
                                  To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowHAniTrans" Storyboard.TargetProperty="Y"
                                  To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowLAniTrans" Storyboard.TargetProperty="Y"
                                  To="0" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Visibility" >
@@ -463,73 +463,73 @@
                 </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="AlarmButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.1" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowTemp" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.2" Duration="0:0:2" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse0" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop0, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse1" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop1, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse2" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop2, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse3" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop3, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse4" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop4, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse5" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
                                  EnableDependentAnimation="True" To="{Binding Pop5, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
@@ -552,104 +552,104 @@
             <Storyboard x:Name="DetailTempratureIn">
                 <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{Binding BodyTemprature, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="WaterDropTransAni">
                 <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{Binding Humidity, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="PcpnTransAni">
                 <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{Binding Precipitation, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="SunRiseAni">
                 <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="SunRiseStrokeLength" To="{Binding SunProgress}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="AQIAni">
                 <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="AqiCircleStorkeLength" To="{Binding Aqi, Converter={StaticResource AqiProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="PM25Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource PM25ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="PM10Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource PM10ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="SO2Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource SO2ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <ColorAnimation Storyboard.TargetName="AQICircleColor" Storyboard.TargetProperty="Color" To="{Binding Aqi, Converter={StaticResource AqiCircleColorConverter}}" EnableDependentAnimation="True">
                     <ColorAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
             </Storyboard>
             <Storyboard x:Name="PressureTransAni">
                 <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{Binding Pressure, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="VisTransAni">
                 <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
@@ -705,17 +705,17 @@
                 <FadeOutThemeAnimation Storyboard.TargetName="TempDeg" />
                 <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True" BeginTime="0:0:1.8" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation x:Name="ImmersiveWidthIn" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Width" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation x:Name="ImmersiveHeightIn" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
@@ -759,7 +759,7 @@
                 </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.64" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="ScrollableRoot" />
@@ -776,12 +776,12 @@
                 <FadeInThemeAnimation BeginTime="0:0:1.8" Storyboard.TargetName="TempDeg" />
                 <DoubleAnimation x:Name="ImmersiveWidthBack" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Width" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation x:Name="ImmersiveHeightBack" BeginTime="0:0:0.64" Storyboard.TargetName="MainCanvas" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
@@ -805,14 +805,14 @@
                     </DiscreteDoubleKeyFrame>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="0" >
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <CircleEase />
+                            <QuinticEase />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                     <DiscreteDoubleKeyFrame KeyTime="0:0:0.72" Value="0" >
                     </DiscreteDoubleKeyFrame>
                     <EasingDoubleKeyFrame KeyTime="0:0:1.36" Value="1" >
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <CircleEase />
+                            <QuinticEase />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
@@ -835,7 +835,7 @@
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
-            <TextBlock Visibility="Collapsed" Opacity="0" x:Name="UpdateIndicator" Foreground="White" FontWeight="Light" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+            <TextBlock Opacity="1" x:Name="UpdateIndicator" Foreground="White" FontWeight="Light" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
                        Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
@@ -890,6 +890,10 @@
                                 <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <TextBlock x:Uid="BlurBGText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </StackPanel>
                             <Button Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource PivotTitleContentControlStyle}" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -920,7 +924,7 @@
             </Button>
             <Button x:Name="AlarmButton" Opacity="0" Visibility="{Binding HadNoAlarms,Converter={StaticResource BooltoVisibilityConverter}}" Margin="16" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
                 <Button.Flyout>
-                    <Flyout Placement="Full">
+                    <Flyout>
                         <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="ViewModels:WeatherAlarmViewModel">
@@ -948,14 +952,14 @@
                 <RelativePanel Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Margin="8" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="Separator0" FontSize="156" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                     <TextBlock Margin="8" RelativePanel.LeftOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeHour" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveHourConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
-                    <TextBlock Margin="0,8,8,8" Width="164" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
+                    <TextBlock Margin="0,8,8,8" Width="172" RelativePanel.RightOf="Separator0" RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="CurrentTimeMin" FontSize="156" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveMinConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                     <TextBlock RelativePanel.RightOf="CurrentTimeMin" Margin="0,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="Separator1" FontSize="72" Text=":" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" Foreground="White" />
                     <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="72" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                 </RelativePanel>
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}" />
                 </TextBlock>
-                <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" FontWeight="ExtraLight" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                 <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="MoreText" />

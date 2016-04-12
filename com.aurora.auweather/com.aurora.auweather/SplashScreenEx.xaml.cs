@@ -19,9 +19,6 @@ using System.Linq;
 using Windows.System.Threading;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
-using System.Threading.Tasks;
-using Com.Aurora.AuWeather.License;
-using System.Diagnostics;
 using Com.Aurora.AuWeather.Core.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
@@ -109,6 +106,7 @@ namespace Com.Aurora.AuWeather
                     }
                 }
             }
+
             if (settings.Cities.SavedCities == null && settings.Cities.EnableLocate)
             {
                 settings.Cities.CurrentIndex = -1;
@@ -359,6 +357,15 @@ namespace Com.Aurora.AuWeather
                 splashImageRect = splash.ImageLocation;
                 PositionImage();
                 PositionRing();
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (timer != null)
+            {
+                timer.Cancel();
+                timer = null;
             }
         }
     }

@@ -6,9 +6,9 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Pressure
     {
-        private float atm;
+        private double atm;
 
-        public float Atm
+        public double Atm
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public float CmHg
+        public double CmHg
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public float Torr
+        public double Torr
         {
             get
             {
@@ -44,7 +44,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public float HPa
+        public double HPa
         {
             get
             {
@@ -56,25 +56,25 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public static Pressure FromHPa(float hpa)
+        public static Pressure FromHPa(double hpa)
         {
             Pressure p = new Pressure();
             p.HPa = hpa;
             return p;
         }
-        public static Pressure FromAtm(float hpa)
+        public static Pressure FromAtm(double hpa)
         {
             Pressure p = new Pressure();
             p.Atm = hpa;
             return p;
         }
-        public static Pressure FromTorr(float hpa)
+        public static Pressure FromTorr(double hpa)
         {
             Pressure p = new Pressure();
             p.Torr = hpa;
             return p;
         }
-        public static Pressure FromCmHg(float hpa)
+        public static Pressure FromCmHg(double hpa)
         {
             Pressure p = new Pressure();
             p.CmHg = hpa;

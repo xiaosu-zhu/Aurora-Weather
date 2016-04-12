@@ -102,6 +102,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 EnableEveryDay = Preferences.EnableEveryDay;
                 EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
                 ThemeasRiseSet = Preferences.ThemeasRiseSet;
+                EnableFullScreen = Preferences.EnableFullScreen;
+                AlwaysShowBackground = Preferences.AlwaysShowBackground;
 
                 StartTime = Preferences.StartTime;
                 EndTime = Preferences.EndTime;
@@ -230,6 +232,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         public bool EnableEveryDay { get; private set; }
         public bool EnablePulltoRefresh { get; private set; }
         public bool ThemeasRiseSet { get; internal set; }
+        public bool EnableFullScreen { get; internal set; }
+        public bool AlwaysShowBackground { get; internal set; }
 
         public ElementTheme Theme1
         {
@@ -293,6 +297,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                 case "ThemeasRiseSet":
                     Preferences.ThemeasRiseSet = isOn;
                     ThemeasRiseSet = isOn;
+                    break;
+                case "EnableFullScreen":
+                    Preferences.EnableFullScreen = isOn;
+                    EnableFullScreen = isOn;
+                    break;
+                case "AlwaysShowBackground":
+                    Preferences.AlwaysShowBackground = isOn;
+                    AlwaysShowBackground = isOn;
                     break;
                 default:
                     break;

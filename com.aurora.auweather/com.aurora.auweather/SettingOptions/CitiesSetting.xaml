@@ -208,7 +208,7 @@
                 </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Height" To="48" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatingRing" Storyboard.TargetProperty="IsActive">
@@ -232,22 +232,22 @@
                 </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimation Storyboard.TargetName="LocatedText" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="LocatedStar" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="LocatingRing" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="LocatingText" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatingRing" Storyboard.TargetProperty="IsActive">
@@ -263,7 +263,7 @@
             <Storyboard x:Name="FetchComplete">
                 <DoubleAnimation Storyboard.TargetName="FetchingPanel" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FetchingRing" Storyboard.TargetProperty="IsActive">
@@ -307,30 +307,6 @@
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
-            <Storyboard x:Name="SearchBoxIn">
-                <DoubleAnimation Storyboard.TargetName="SearchBox" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <CircleEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchBox" Storyboard.TargetProperty="Visibility" >
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton" Storyboard.TargetProperty="Visibility" >
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
-                </ObjectAnimationUsingKeyFrames>
-            </Storyboard>
-            <Storyboard x:Name="SearchBoxOut">
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchBox" Storyboard.TargetProperty="Visibility" >
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchBox" Storyboard.TargetProperty="Opacity" >
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="0" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton" Storyboard.TargetProperty="Visibility" >
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
-                </ObjectAnimationUsingKeyFrames>
-            </Storyboard>
         </ScrollViewer.Resources>
         <Grid>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -369,13 +345,7 @@
                     <TextBlock x:Uid="LocatingText" x:Name="LocatingText" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="LocatingRing" Margin="8" />
                 </RelativePanel>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Button IsEnabled="False" MaxWidth="480" x:Name="SearchButton" Click="SearchButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch">
-                        <Grid HorizontalAlignment="Stretch">
-                            <TextBlock x:Uid="SearchText" FontWeight="Normal" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <SymbolIcon Symbol="Find" Margin="8" HorizontalAlignment="Right" Foreground="{ThemeResource SystemThemeMainBrush}"/>
-                        </Grid>
-                    </Button>
-                    <AutoSuggestBox x:Uid="AutoSuggestbox" IsEnabled="False" MaxWidth="480" x:Name="SearchBox" Visibility="Collapsed" Opacity="0" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <AutoSuggestBox x:Uid="AutoSuggestbox" IsEnabled="False" MaxWidth="480" x:Name="SearchBox" QueryIcon="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <AutoSuggestBox.Transitions>
                             <TransitionCollection>
                                 <ContentThemeTransition />

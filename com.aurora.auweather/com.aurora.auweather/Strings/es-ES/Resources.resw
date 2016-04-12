@@ -1014,4 +1014,28 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>Ver lo que encuentras!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>Utilizar paquete de donación para desbloquear algunas de las características</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>Pantalla completa</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· Se puede cambiar a pantalla completa en modo de inmersión
+· "Tiempo subterráneo" pronto estará disponible
+· Facilitar el ajuste de la función
+· _(:з」∠) _</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>Bienvenido a la nueva versión</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Convertidor de la unidad</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>Hey chico</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>Fondo siempre visible</value>
+  </data>
 </root>

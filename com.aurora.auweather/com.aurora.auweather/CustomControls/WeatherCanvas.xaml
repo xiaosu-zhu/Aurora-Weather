@@ -25,22 +25,22 @@
             <Storyboard x:Name="BGAnimation">
                 <ColorAnimation x:Name="GradientAni0" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="Gradient0" Storyboard.TargetProperty="Color" >
                     <ColorAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
                 <ColorAnimation x:Name="GradientAni1" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Color" >
                     <ColorAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
                 <PointAnimation x:Name="BGPointAni0" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="BGGradient" Storyboard.TargetProperty="StartPoint">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation x:Name="BGPointAni1" Duration="0:0:2" EnableDependentAnimation="True" Storyboard.TargetName="BGGradient" Storyboard.TargetProperty="EndPoint">
                     <PointAnimation.EasingFunction>
-                        <CircleEase />
+                        <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
             </Storyboard>

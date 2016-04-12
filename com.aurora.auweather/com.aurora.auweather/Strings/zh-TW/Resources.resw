@@ -1119,4 +1119,25 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>發現了什麼!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>使用捐赠版解锁部分功能</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>開啓全屏</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· _(:з」∠)_&#x000A;· 始終顯示沉浸模式背景</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>歡迎來到新版本</value>
+  </data>
+    <data name="Calculator" xml:space="preserve">
+    <value>單位換算</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>你知道的太多了</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>始終顯示背景</value>
+  </data>
 </root>

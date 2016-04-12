@@ -829,6 +829,50 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style TargetType="GridViewItem" x:Key="GeneralGridViewItemStyle">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="IsHoldingEnabled" Value="True"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="8"/>
+                <Setter Property="MinWidth" Value="{ThemeResource GridViewItemMinWidth}"/>
+                <Setter Property="MinHeight" Value="{ThemeResource GridViewItemMinHeight}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <ListViewItemPresenter
+            ContentTransitions="{TemplateBinding ContentTransitions}"
+            SelectionCheckMarkVisualEnabled="True"
+            CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+            CheckBoxBrush="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+            DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}"
+            DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
+            FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}"
+            FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"
+            PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
+            PointerOverBackground="Transparent"
+            PointerOverForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+            SelectedBackground="{ThemeResource SystemControlHighlightAccentBrush}"
+            SelectedForeground="{ThemeResource SystemControlForegroundAccentBrush}"
+            SelectedPointerOverBackground="{ThemeResource SystemControlHighlightListAccentMediumBrush}"
+            PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
+            SelectedPressedBackground="{ThemeResource SystemControlHighlightListAccentHighBrush}"
+            DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+            DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
+            ReorderHintOffset="{ThemeResource GridViewItemReorderHintThemeOffset}"
+            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+            ContentMargin="{TemplateBinding Padding}"
+            CheckMode="Overlay"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -870,11 +914,11 @@
             <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
             <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
         </CommandBar>
-        <GridView IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
+        <GridView ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="336" Height="189" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image Stretch="Uniform" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                    <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image Stretch="UniformToFill" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                         <Grid Visibility="{x:Bind Updated, Converter={StaticResource BooltoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -883,7 +927,7 @@
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
                             <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BooltoVisiConverter},Mode=OneWay,FallbackValue=Collapsed}" />
                         </Grid>
-                        <ScrollViewer Width="336" MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
+                        <ScrollViewer MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
                             <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="36" />

@@ -64,15 +64,15 @@
                         <TextBlock x:Name="DataSourceTitle" x:Uid="DataSourceText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <TextBlock x:Uid="DataSourceAlertText" VerticalAlignment="Center" Margin="12,0,12,0" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                         <StackPanel Orientation="Vertical" Margin="12" HorizontalAlignment="Stretch">
-                            <RadioButton x:Uid="HeWeatherRadio" Checked="HeWeatherRadio_Checked" x:Name="HeWeatherRadio" Margin="8" />
-                            <RadioButton x:Uid="CaiyunRadio" Checked="CaiyunRadio_Checked" x:Name="CaiyunRadio" Margin="8"/>
-                            <RadioButton Content="WeatherUnderground" Margin="8" IsEnabled="False" />
+                            <RadioButton x:Uid="HeWeatherRadio" x:Name="HeWeatherRadio" Margin="8" />
+                            <RadioButton x:Uid="CaiyunRadio" x:Name="CaiyunRadio" Margin="8"/>
+                            <RadioButton Content="Weather Underground" Margin="8" IsEnabled="False" />
                         </StackPanel>
                         <Grid Margin="12" HorizontalAlignment="Stretch">
                             <TextBlock x:Uid="DataSourceDetailText" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                         </Grid>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
@@ -126,7 +126,7 @@
                             </ComboBox>
                         </Grid>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock x:Name="FormatTitle" x:Uid="FormatText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
@@ -269,7 +269,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="WeatherTitle" x:Uid="ToastText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <StackPanel HorizontalAlignment="Stretch">
@@ -324,10 +324,18 @@
                             </Grid>
                         </StackPanel>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel>
                         <TextBlock x:Name="ImmersiveTitle" x:Uid="ImmersiveText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <StackPanel HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="AlwaysShowText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="AlwaysShowBackground" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="FullScreenText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="EnableFullScreen" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                                 <ToggleSwitch x:Name="EnableSecond" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
@@ -342,6 +350,7 @@
                                 <ToggleSwitch x:Name="DisableDynamic" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
+                        <TextBlock x:Uid="LockText" Visibility="Collapsed" x:Name="LockText" Margin="8" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
                 <Grid Height="64" />

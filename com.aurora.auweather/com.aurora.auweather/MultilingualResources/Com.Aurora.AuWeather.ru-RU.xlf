@@ -1342,6 +1342,39 @@
           <source>See what you find!</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Смотрите, что вы находите!</target>
         </trans-unit>
+        <trans-unit id="LockText.Text" translate="yes" xml:space="preserve">
+          <source>Use Donation Pack to unlock some features</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Использование пакета пожертвование для разблокировки некоторые особенности</target>
+        </trans-unit>
+        <trans-unit id="FullScreenText.Text" translate="yes" xml:space="preserve">
+          <source>Full Screen</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
+        </trans-unit>
+        <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
+          <source>· _(:з」∠)_
+· Always show the immersive background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Вы можете переключаться полноэкранном режиме погружения
+· «Погода андеграунд» скоро будет доступно
+· Ослабление функции регулировки
+· _(:з」∠) _</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
+          <source>Welcome to new version</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Добро пожаловать в новые версии</target>
+        </trans-unit>
+        <trans-unit id="Calculator" translate="yes" xml:space="preserve">
+          <source>Unit Converter</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Конвертер единиц</target>
+        </trans-unit>
+        <trans-unit id="YouKnow" translate="yes" xml:space="preserve">
+          <source>Hey guy</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Эй парень</target>
+        </trans-unit>
+        <trans-unit id="AlwaysShowText.Text" translate="yes" xml:space="preserve">
+          <source>Background always visible</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Фон всегда видимый</target>
+        </trans-unit>
       </group>
     </body>
   </file>

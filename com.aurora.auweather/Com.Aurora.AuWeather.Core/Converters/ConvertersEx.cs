@@ -633,7 +633,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "...";
             }
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            var loader = new ResourceLoader();
             var p = (value as CalendarInfo).LunarDay;
             string result;
             if (p < 2)
@@ -828,7 +828,7 @@ namespace Com.Aurora.Shared.Converters
         private static string format = "yyyy-M-d dddd";
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return DateTime.Now.ToString(format);
+            return (DateTime.Now.ToString(format)).Trim('\n');
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1221,7 +1221,7 @@ namespace Com.Aurora.Shared.Converters
             }
             try
             {
-                return ((DateTime)value).ToString(DateTimeConverterParameter);
+                return (((DateTime)value).ToString(DateTimeConverterParameter)).Trim('\n');
             }
             catch (Exception)
             {
@@ -1256,7 +1256,7 @@ namespace Com.Aurora.Shared.Converters
             }
             try
             {
-                return ((DateTime)value).ToString(DateTimeConverterParameter);
+                return ((DateTime)value).ToString(DateTimeConverterParameter).Trim('\n');
             }
             catch (Exception)
             {
@@ -1286,7 +1286,7 @@ namespace Com.Aurora.Shared.Converters
             }
             try
             {
-                return ((DateTime)value).ToString(DateTimeConverterParameter);
+                return ((DateTime)value).ToString(DateTimeConverterParameter).Trim('\n');
             }
             catch (Exception)
             {

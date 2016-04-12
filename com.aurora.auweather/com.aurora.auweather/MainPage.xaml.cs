@@ -13,12 +13,17 @@ using Com.Aurora.Shared.Converters;
 using Windows.ApplicationModel.Resources;
 using Windows.System.Threading;
 using Windows.UI.Popups;
+using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
+using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather
 {
     public sealed partial class MainPage : Page
     {
         private License.License license;
+        private ThreadPoolTimer cancelTimer;
+        private uint clickCount = 0;
 
         public MainPage()
         {
@@ -33,17 +38,28 @@ namespace Com.Aurora.AuWeather
             var t = ThreadPool.RunAsync(async (w) =>
             {
                 var b = (int?)RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce");
-                if (b == null || b < 3)
+#if DEBUG
+                if (true)
+#else
+                if (b == null || b < 5)
+#endif
                 {
-                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 3);
-                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
-                     {
-                         var loader = new ResourceLoader();
-                         var d = new MessageDialog(string.Format(loader.GetString("MeetNewDataSource"), loader.GetString("CaiyunWeather")), loader.GetString("MeetNewDataSourceTitle"));
-                         await d.ShowAsync();
-                     }));
+                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 5);
+                    await Task.Delay(1000);
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                    {
+                        VersionText.Text = Windows.ApplicationModel.Package.Current.Id.Version.Major.ToString("0") + "." +
+               Windows.ApplicationModel.Package.Current.Id.Version.Minor.ToString("0") + "." +
+               Windows.ApplicationModel.Package.Current.Id.Version.Build.ToString("0");
+                        ShowUpdateDetail();
+                    }));
                 }
             });
+        }
+
+        private void ShowUpdateDetail()
+        {
+            ShowUpdateDetailAni.Begin();
         }
 
         private void Hamburger_Click(object sender, RoutedEventArgs e)
@@ -51,8 +67,14 @@ namespace Com.Aurora.AuWeather
             Root.IsPaneOpen = !Root.IsPaneOpen;
         }
 
+        private void HideUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideUpdateDetailAni.Begin();
+        }
+
         internal void NavigatetoSettings(Type option)
         {
+            ApplicationView.GetForCurrentView().ExitFullScreenMode();
             var loader = new ResourceLoader();
             MainFrame.Navigate(typeof(SettingOptionsPage), option);
             Refresh.Visibility = Visibility.Collapsed;
@@ -125,6 +147,12 @@ namespace Com.Aurora.AuWeather
                 c = (Color)d["SystemBaseHighColor"];
                 s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
             }
+            else if (Context.Theme == ElementTheme.Light)
+            {
+                var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
+                c = (Color)d["SystemBaseHighColor"];
+                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+            }
             else
             {
                 c = (Color)Resources["SystemBaseHighColor"];
@@ -146,7 +174,14 @@ namespace Com.Aurora.AuWeather
             else
             {
                 var loader = new ResourceLoader();
-                PaneList.SelectedIndex = 2;
+                if (PaneList.SelectedIndex == 2)
+                {
+                    PaneList_SelectionChanged(null, null);
+                }
+                else
+                {
+                    PaneList.SelectedIndex = 2;
+                }
                 Refresh.Visibility = Visibility.Collapsed;
                 Settings.Icon = new SymbolIcon(Symbol.Setting);
                 Cities.Icon = new SymbolIcon(Symbol.World);
@@ -197,6 +232,7 @@ namespace Com.Aurora.AuWeather
 
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ApplicationView.GetForCurrentView().ExitFullScreenMode();
             MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
             if ((PaneList.SelectedItem as PaneOption).Page == typeof(CitiesPage))
             {
@@ -292,6 +328,62 @@ namespace Com.Aurora.AuWeather
             PaneList.SelectionChanged -= PaneList_SelectionChanged;
             PaneList.SelectedIndex = 0;
             PaneList.SelectionChanged += PaneList_SelectionChanged;
+        }
+
+        private async void TextBlock_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            CreateCancel();
+            clickCount++;
+#if DEBUG
+            if (clickCount == 1)
+#else
+            if (clickCount == 5)
+#endif
+            {
+                var loader = new ResourceLoader();
+                var d = new MessageDialog(loader.GetString("YouKnow"), "_(:з」∠)_");
+                d.Commands.Add(new UICommand(loader.GetString("Calculator"), new UICommandInvokedHandler(OpenCalculator)));
+                d.Commands.Add(new UICommand("Cancel"));
+                d.CancelCommandIndex = 1;
+                await d.ShowAsync();
+            }
+        }
+
+        private async void OpenCalculator(IUICommand command)
+        {
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+            int newViewId = 0;
+            await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                Frame frame = new Frame();
+                frame.Navigate(typeof(Calculator.MainPage), null);
+                Window.Current.Content = frame;
+                Window.Current.Activate();
+                var view = ApplicationView.GetForCurrentView();
+                newViewId = view.Id;
+            });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+        }
+
+        private void CreateCancel()
+        {
+            if (cancelTimer != null)
+            {
+                cancelTimer.Cancel();
+            }
+            cancelTimer = ThreadPoolTimer.CreateTimer((x) =>
+            {
+                clickCount = 0;
+            }, TimeSpan.FromSeconds(1));
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (cancelTimer != null)
+            {
+                cancelTimer.Cancel();
+                cancelTimer = null;
+            }
         }
     }
 }

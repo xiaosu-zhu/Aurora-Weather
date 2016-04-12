@@ -1015,6 +1015,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        internal void Unload()
+        {
+            if (currentTimer != null)
+            {
+                currentTimer.Cancel();
+                currentTimer = null;
+            }
+        }
+
         public Suggestion Cw
         {
             get
@@ -1109,8 +1118,16 @@ namespace Com.Aurora.AuWeather.ViewModels
                 enableDynamic = !value;
                 settings.Preferences.DisableDynamic = !value;
                 SetProperty(ref enableDynamic, value);
-                settings.SaveSettings();
+                settings.Preferences.Save();
             }
+        }
+        public bool EnableFullScreen
+        {
+            get; set;
+        }
+        public bool AlwaysShowBackground
+        {
+            get; set;
         }
 
         public bool EnablePulltoRefresh
@@ -1195,23 +1212,29 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void Init()
         {
+            ReadSettings();
+            Theme = settings.Preferences.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
                 try
                 {
                     storedDatas = default(KeyValuePair<string, string>);
-                    ReadSettings();
                     source = settings.Preferences.DataSource;
                     await FetchDataAsync();
+                    utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
                     var t = ThreadPool.RunAsync(async (w) =>
                     {
                         if (fetchresult == null)
+                        {
+                            this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                             return;
-                        Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
+                        }
+                        Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
                         if (settings.Preferences.EnableEveryDay)
                         {
+
                             var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCityModel, settings, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
+                            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
                         }
                         if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                         {
@@ -1309,27 +1332,25 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private async Task FetchDataAsync()
         {
+
             await SearchExistingDataAsync();
             string resstr;
             if (currentId != null)
             {
-                if (!storedDatas.Equals(default(KeyValuePair<string, string>)))
+                try
                 {
-                    resstr = storedDatas.Value;
-                    if (resstr.Length > 31)
+                    if (!storedDatas.Equals(default(KeyValuePair<string, string>)))
                     {
+                        resstr = storedDatas.Value;
                         fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                         return;
                     }
-                }
-                resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
-                if (resstr == null)
-                {
-                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
-                    return;
-                }
-                if (resstr.Length > 31)
-                {
+                    resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
+                    if (resstr == null)
+                    {
+                        this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
+                        return;
+                    }
                     fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                     if (fetchresult.Status != HeWeatherStatus.ok)
                     {
@@ -1352,6 +1373,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                     });
                     return;
                 }
+                catch (Exception)
+                {
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
+                    return;
+                }
+
             }
             else throw new NullReferenceException();
         }
@@ -1368,7 +1395,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialViewModel()
         {
-            Theme = settings.Preferences.GetTheme();
+            EnableFullScreen = settings.Preferences.EnableFullScreen;
+            AlwaysShowBackground = settings.Preferences.AlwaysShowBackground;
             SetTime();
 
             SetHour();
@@ -1555,13 +1583,18 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void SetTime()
         {
+            DisableSecond = !settings.Preferences.EnableImmersiveSecond;
+            UpdateTime = fetchresult.Location.UpdateTime;
+            utcOffset = UpdateTime - fetchresult.Location.UtcTime;
+            RefreshCurrentTime();
+            CurrentTimeRefreshTask();
             todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
             {
-                return x.Date.Date == DateTime.Today.Date;
+                return x.Date.Date == CurrentTime.Date;
             });
             nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
             {
-                return (x.DateTime - DateTime.Now).TotalSeconds > 0;
+                return (x.DateTime - CurrentTime).TotalSeconds > 0;
             });
             if (todayIndex < 0)
             {
@@ -1571,11 +1604,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 nowHourIndex = 0;
             }
-            DisableSecond = !settings.Preferences.EnableImmersiveSecond;
-            UpdateTime = fetchresult.Location.UpdateTime;
-            utcOffset = UpdateTime - fetchresult.Location.UtcTime;
-            RefreshCurrentTime();
-            CurrentTimeRefreshTask();
+
             SunRise = fetchresult.DailyForecast[todayIndex].SunRise;
             SunSet = fetchresult.DailyForecast[todayIndex].SunSet;
             IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);

@@ -20,7 +20,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return "...";
             }
-            return ((TimeSpan)value).ToString(format);
+            return (((TimeSpan)value).ToString(format)).Trim('\n');
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -77,7 +77,7 @@ namespace Com.Aurora.Shared.Converters
                 return "...";
             }
             var dateTime = (DateTime)(value);
-            return dateTime.ToString(Parameter);
+            return (dateTime.ToString(Parameter)).Trim('\n');
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

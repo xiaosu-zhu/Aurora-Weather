@@ -1014,4 +1014,28 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>Смотрите, что вы находите!</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>Использование пакета пожертвование для разблокировки некоторые особенности</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>Полный экран</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· Вы можете переключаться полноэкранном режиме погружения
+· «Погода андеграунд» скоро будет доступно
+· Ослабление функции регулировки
+· _(:з」∠) _</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>Добро пожаловать в новые версии</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Конвертер единиц</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>Эй парень</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>Фон всегда видимый</value>
+  </data>
 </root>

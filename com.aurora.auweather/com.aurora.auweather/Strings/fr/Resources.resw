@@ -1014,4 +1014,28 @@
   <data name="MeetNewDataSourceTitle" xml:space="preserve">
     <value>Voir ce que vous trouvez !</value>
   </data>
+  <data name="LockText.Text" xml:space="preserve">
+    <value>Don Pack permet de débloquer certaines fonctionnalités</value>
+  </data>
+  <data name="FullScreenText.Text" xml:space="preserve">
+    <value>Plein écran</value>
+  </data>
+  <data name="UpdateDetailText.Text" xml:space="preserve">
+    <value>· Vous pouvez basculer plein écran en mode immersif
+· « Weather Underground » sera bientôt disponible
+· Réglage de la fonction
+d'accélération _ _(:з」∠) ·</value>
+  </data>
+  <data name="UpdateTitle.Text" xml:space="preserve">
+    <value>Bienvenue à la nouvelle version</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Convertisseur d'unité</value>
+  </data>
+  <data name="YouKnow" xml:space="preserve">
+    <value>Hé les gars</value>
+  </data>
+  <data name="AlwaysShowText.Text" xml:space="preserve">
+    <value>Fond toujours visible</value>
+  </data>
 </root>

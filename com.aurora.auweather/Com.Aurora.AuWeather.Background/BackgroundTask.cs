@@ -57,11 +57,13 @@ namespace Com.Aurora.AuWeather.Background
         {
             string resstr = await Request.GetRequest(settings, currentCity);
             var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
-            Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTime.Now));
+            var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
+            var current = DateTimeHelper.ReviseLoc(utcOffset);
+            Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
             if (settings.Preferences.EnableEveryDay)
             {
                 var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, tomorrow8).GetXml(), tomorrow8, "EveryDayToast");
+                Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
             }
             if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
             {

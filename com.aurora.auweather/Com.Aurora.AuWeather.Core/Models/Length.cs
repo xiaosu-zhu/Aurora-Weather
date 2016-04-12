@@ -6,9 +6,9 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Length
     {
-        private float length;
+        private double length;
 
-        public float KM
+        public double KM
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public float M
+        public double M
         {
             get
             {
@@ -32,49 +32,49 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public float Mile
+        public double Mile
         {
             get
             {
-                return length / 1.609344f;
+                return length / 1.609344;
             }
             set
             {
-                length = value * 1.609344f;
+                length = value * 1.609344;
             }
         }
 
-        public float NM
+        public double NM
         {
             get
             {
-                return length / 1.852f;
+                return length / 1.85318;
             }
             set
             {
-                length = value * 1.852f;
+                length = value * 1.85318;
             }
         }
 
-        public static Length FromKM(float l)
+        public static Length FromKM(double l)
         {
             var m = new Length();
             m.length = l;
             return m;
         }
-        public static Length FromM(float l)
+        public static Length FromM(double l)
         {
             var m = new Length();
             m.M = l;
             return m;
         }
-        public static Length FromMile(float l)
+        public static Length FromMile(double l)
         {
             var m = new Length();
             m.Mile = l;
             return m;
         }
-        public static Length FromNM(float l)
+        public static Length FromNM(double l)
         {
             var m = new Length();
             m.NM = l;
