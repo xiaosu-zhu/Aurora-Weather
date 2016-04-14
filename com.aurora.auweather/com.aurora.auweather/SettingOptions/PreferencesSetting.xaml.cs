@@ -182,9 +182,13 @@ namespace Com.Aurora.AuWeather.SettingOptions
             ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
         }
 
-        private void Enum_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Enum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Context.SetEnumValue(((sender as ComboBox).SelectedItem as EnumSelector).Value);
+            if ((((sender as ComboBox).SelectedItem as EnumSelector).Value) is RefreshState)
+            {
+                await Context.RegBG();
+            }
         }
 
         private void Separator0_TextChanged(object sender, TextChangedEventArgs e)

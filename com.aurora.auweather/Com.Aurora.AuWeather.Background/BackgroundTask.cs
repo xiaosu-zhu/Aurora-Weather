@@ -3,10 +3,8 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Com.Aurora.AuWeather.Core.Models;
-using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.Tile;
 using Com.Aurora.Shared.Extensions;
@@ -25,29 +23,24 @@ namespace Com.Aurora.AuWeather.Background
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             await FileIOHelper.AppendLogtoCacheAsync("Background Task Run Once");
             var settings = SettingsModel.Get();
-            if (settings.Cities.SavedCities.IsNullorEmpty())
+            if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
-
-            }
-            else
-            {
-                if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
+                if (settings.Cities.LocatedCity == null && !settings.Cities.SavedCities.IsNullorEmpty())
                 {
-                    if (settings.Cities.LocatedCity == null)
-                    {
-                        settings.Cities.CurrentIndex = 0;
-                    }
-                    else
-                    {
-                        var currentCity = settings.Cities.LocatedCity;
-                        await Init(settings, currentCity);
-                    }
-                }
-                else
-                {
+                    settings.Cities.CurrentIndex = 0;
                     var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                     await Init(settings, currentCity);
                 }
+                else
+                {
+                    var currentCity = settings.Cities.LocatedCity;
+                    await Init(settings, currentCity);
+                }
+            }
+            else if (settings.Cities.CurrentIndex == 0)
+            {
+                var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
+                await Init(settings, currentCity);
             }
             await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();

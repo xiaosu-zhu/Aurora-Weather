@@ -235,7 +235,11 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
+            {
                 Context.ChoseLocal(Root.SelectedIndex, file);
+                Context.ClearShuffle(Root.SelectedIndex);
+            }
+
         }
 
         private void LocalButton_Click(object sender, RoutedEventArgs e)

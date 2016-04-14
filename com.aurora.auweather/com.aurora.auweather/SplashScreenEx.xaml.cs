@@ -329,8 +329,8 @@ namespace Com.Aurora.AuWeather
             {
                 if (settings.Cities.LocatedCity.Latitude == 0)
                 {
-                    settings.Cities.LocatedCity.Latitude = final.ToArray()[0].Location.Latitude;
-                    settings.Cities.LocatedCity.Longitude = final.ToArray()[0].Location.Longitude;
+                    settings.Cities.LocatedCity.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
+                    settings.Cities.LocatedCity.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
                 }
                 settings.Cities.Save();
                 final = null;
@@ -338,7 +338,9 @@ namespace Com.Aurora.AuWeather
                 citys = null;
                 return;
             }
-            settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(final.ToArray()[0]);
+            var p = final.ToArray()[0];
+            p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+            settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
             final = null;
             citys.Clear();
             citys = null;

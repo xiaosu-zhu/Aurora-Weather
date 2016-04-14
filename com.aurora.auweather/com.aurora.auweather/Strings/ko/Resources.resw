@@ -1021,10 +1021,10 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 몰입 모드
-에에서 전체 화면을 전환할 수 있습니다 · "날씨 지 하" 곧 유효한
-· 기능 조정
-를 완화 · _(:з」∠) _</value>
+    <value>· _(:З」∠) _
+· 백그라운드 작업 향상
+· 위치 좌표 향상
+· 타일의 데이터 향상</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>

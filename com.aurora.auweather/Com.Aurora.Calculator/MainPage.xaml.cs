@@ -1,22 +1,16 @@
-﻿using Com.Aurora.Calculator.Core;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.Calculator.Core;
+using Com.Aurora.Shared.Extensions;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -43,9 +37,60 @@ namespace Com.Aurora.Calculator
             }
         }
 
+        private void IntBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+            long dtemp;
+            if (sender.Text.Length > 62)
+            {
+                sender.Text = sender.Text.Remove(--sender.SelectionStart, 1);
+                return;
+            }
+            if ((sender.DataContext as ProgramViewModel).Parameter == 3)
+            {
+                foreach (var c in LongExtension.HexSet)
+                {
+                    if (sender.Text == "" || c == sender.Text[sender.SelectionStart - 1])
+                    {
+                        return;
+                    }
+
+                }
+            }
+            else if ((sender.DataContext as ProgramViewModel).Parameter == 2)
+            {
+                if (!long.TryParse(sender.Text, out dtemp) && sender.Text != "")
+                {
+                    sender.Text = sender.Text.Remove(--sender.SelectionStart, 1);
+                }
+                return;
+            }
+            else if ((sender.DataContext as ProgramViewModel).Parameter == 1)
+            {
+                if (sender.Text == "" || sender.Text[sender.SelectionStart - 1] >= '0' && sender.Text[sender.SelectionStart - 1] < '8')
+                {
+                    return;
+                }
+            }
+            else if ((sender.DataContext as ProgramViewModel).Parameter == 0)
+            {
+                if (sender.Text == "" || sender.Text[sender.SelectionStart - 1] >= '0' && sender.Text[sender.SelectionStart - 1] < '2')
+                {
+                    return;
+                }
+
+            }
+            if (sender.Text != "")
+                sender.Text = sender.Text.Remove(--sender.SelectionStart, 1);
+        }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((sender as TextBox).DataContext as CalculatorViewModel).ChangeValue((sender as TextBox).Text);
+        }
+
+        private void IntBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((sender as TextBox).DataContext as ProgramViewModel).ChangeValue((sender as TextBox).Text);
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -53,6 +98,15 @@ namespace Com.Aurora.Calculator
             (sender as TextBox).TextChanged -= TextBox_TextChanged;
             (sender as TextBox).Text = string.Empty;
             (sender as TextBox).TextChanged += TextBox_TextChanged;
+        }
+
+        private void IntBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            (sender as TextBox).TextChanged -= IntBox_TextChanged;
+            (sender as TextBox).TextChanging -= IntBox_TextChanging;
+            (sender as TextBox).Text = string.Empty;
+            (sender as TextBox).TextChanged += IntBox_TextChanged;
+            (sender as TextBox).TextChanging += IntBox_TextChanging;
         }
 
         private async void PinButton_Click(object sender, RoutedEventArgs e)

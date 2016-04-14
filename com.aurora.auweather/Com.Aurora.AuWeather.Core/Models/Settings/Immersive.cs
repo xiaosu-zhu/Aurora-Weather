@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Storage;
-using System.Collections;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
@@ -38,7 +37,13 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public int FoggyPicked { get; set; } = 0;
         public int HazePicked { get; set; } = 0;
         public int StarryPicked { get; set; } = 0;
-
+        public bool SunnyShuffle { get; set; }
+        public bool StarryShuffle { get; set; }
+        public bool HazeShuffle { get; set; }
+        public bool FoggyShuffle { get; set; }
+        public bool SnowyShuffle { get; set; }
+        public bool RainnyShuffle { get; set; }
+        public bool CloudyShuffle { get; set; }
 
         public static async Task<List<KeyValuePair<Uri, string>>> GetThumbnailsFromAssetsAsync(string title)
         {
@@ -178,7 +183,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     {
                         if (Starry == ImmersiveBackgroundState.Assets)
                         {
-                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(starry, StarryPicked);
+                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(starry, StarryPicked, StarryShuffle);
                         }
                         else if (Starry == ImmersiveBackgroundState.Local)
                         {
@@ -193,7 +198,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     {
                         if (Sunny == ImmersiveBackgroundState.Assets)
                         {
-                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(sunny, SunnyPicked);
+                            uri = await FileIOHelper.GetFileUriFromAssetsAsync(sunny, SunnyPicked, SunnyShuffle);
                         }
                         else if (Sunny == ImmersiveBackgroundState.Local)
                         {
@@ -211,7 +216,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.overcast:
                     if (Cloudy == ImmersiveBackgroundState.Assets)
                     {
-                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(cloudy, CloudyPicked);
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(cloudy, CloudyPicked, CloudyShuffle);
                     }
                     else if (Cloudy == ImmersiveBackgroundState.Local)
                     {
@@ -244,7 +249,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.freezing_rain:
                     if (Rainny == ImmersiveBackgroundState.Assets)
                     {
-                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(rainny, RainnyPicked);
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(rainny, RainnyPicked, RainnyShuffle);
                     }
                     else if (Rainny == ImmersiveBackgroundState.Local)
                     {
@@ -266,7 +271,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.cold:
                     if (Snowy == ImmersiveBackgroundState.Assets)
                     {
-                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(snowy, SnowyPicked);
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(snowy, SnowyPicked, SnowyShuffle);
                     }
                     else if (Snowy == ImmersiveBackgroundState.Local)
                     {
@@ -281,7 +286,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.foggy:
                     if (Foggy == ImmersiveBackgroundState.Assets)
                     {
-                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(foggy, FoggyPicked);
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(foggy, FoggyPicked, FoggyShuffle);
                     }
                     else if (Foggy == ImmersiveBackgroundState.Local)
                     {
@@ -300,7 +305,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.sandstorm:
                     if (Haze == ImmersiveBackgroundState.Assets)
                     {
-                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(haze, HazePicked);
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(haze, HazePicked, HazeShuffle);
                     }
                     else if (Haze == ImmersiveBackgroundState.Local)
                     {

@@ -32,8 +32,9 @@
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <CollectionViewSource x:Name="AlarmsSource" Source="{x:Bind Context.Alarms,Mode=OneWay}" />
-            <Converters:TempratureConverter x:Key="TempratureConverter" />
-            <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverter1" />
+            <Converters:TempratureandDegreeConverter x:Key="TempratureConverter" />
+            <Converters:TempratureConverterWithDegree x:Key="TempratureConverterWithDegree" />
+            <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverterWithoutDegree" />
             <Converters:WindSpeedConverter x:Key="WindSpeedConverter" />
             <Converters:WindDirectionConverter x:Key="WindDirectionConverter" />
             <Converters:TemraturePathConverter x:Key="TempraturePathConverter" />
@@ -835,9 +836,9 @@
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
-            <TextBlock Opacity="1" x:Name="UpdateIndicator" Foreground="White" FontWeight="Light" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+            <TextBlock Opacity="1" x:Name="UpdateIndicator" Foreground="White" FontWeight="ExtraLight" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
-                       Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" 
+                       Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="ExtraLight"
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TitleAniTrans" Y="480" />
@@ -846,31 +847,31 @@
             <TextBlock Visibility="Collapsed" x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" 
                        Text="{Binding Condition, Converter={StaticResource ConditiontoTextConverter}}" 
-                           HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" FontWeight="Light">
+                           HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" FontWeight="ExtraLight">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="ConditionAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
             <StackPanel Visibility="Collapsed" Margin="12" x:Name="HighLowPanel" Orientation="Vertical" Opacity="0" RelativePanel.RightOf="NowCondition" RelativePanel.AlignVerticalCenterWith="NowCondition">
-                <TextBlock x:Name="NowH" Text="{Binding NowH,Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
+                <TextBlock x:Name="NowH" Text="{Binding NowH,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
                     <TextBlock.RenderTransform >
                         <TranslateTransform x:Name="NowHAniTrans" Y="480" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <TextBlock x:Name="NowL" Text="{Binding NowL,Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Foreground="#CCF0F0F0}">
+                <TextBlock x:Name="NowL" Text="{Binding NowL,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="#CCF0F0F0}">
                     <TextBlock.RenderTransform >
                         <TranslateTransform x:Name="NowLAniTrans" Y="480" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
             </StackPanel>
-            <TextBlock Opacity="0" x:Name="NowTemp" Foreground="White" FontSize="96" Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}"
-                       RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Style="{ThemeResource HeaderTextBlockStyle}" >
+            <TextBlock Opacity="0" x:Name="NowTemp" Foreground="White" FontSize="96" Text="{Binding Temprature, Converter={StaticResource TempratureConverterWithoutDegree}}"
+                       RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" >
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
             <TextBlock Visibility="Collapsed" x:Name="TempDeg" Opacity="0" FontSize="48" RelativePanel.RightOf="NowTemp" RelativePanel.AlignBottomWith="NowTemp" Margin="0,0,0,12"
-                       Text="{Binding Temprature, Converter={StaticResource TempratureConverter}}" Style="{ThemeResource HeaderTextBlockStyle}"
+                       Text="{Binding Temprature, Converter={StaticResource TempratureConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}"
                        Foreground="#CCF0F0F0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempDegAniTrans" Y="480" />
@@ -957,7 +958,7 @@
                     <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="72" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                 </RelativePanel>
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverter1}}" />
+                    <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverterWithDegree}}"/>
                 </TextBlock>
                 <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" FontWeight="ExtraLight" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                 <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
@@ -1064,7 +1065,7 @@
                         </Ellipse>
                         <TextBlock x:Name="HourlyTemp0" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid1" Opacity="0" Height="36" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
@@ -1076,7 +1077,7 @@
                         <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp1" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid2" Opacity="0" Height="36" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
@@ -1088,7 +1089,7 @@
                         <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp2" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid3" Opacity="0" Height="36" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
@@ -1100,7 +1101,7 @@
                         <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp3" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid4" Opacity="0" Height="36" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
@@ -1112,7 +1113,7 @@
                         <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp4" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid5" Opacity="0" Height="36" Grid.Column="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
@@ -1124,7 +1125,7 @@
                         <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp5" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverter1}}" />
+                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
                 </Grid>
 
@@ -1151,9 +1152,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast0" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu0" 
-                                           Text="{Binding Forecast0H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast0H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" />
                             <TextBlock x:Name="ForecastCondition01" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition0" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast0L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast0L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="1">
                             <TextBlock x:Uid="NextTomorrowText" x:Name="ForecastDate1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
@@ -1162,9 +1163,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast1" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu1" 
-                                           Text="{Binding Forecast1H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{Binding Forecast1H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition11" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition1" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast1L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast1L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="2" >
                             <TextBlock x:Name="ForecastDate2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
@@ -1174,9 +1175,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast2" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu2" 
-                                           Text="{Binding Forecast2H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{Binding Forecast2H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition21" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition2" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast2L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast2L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="3">
                             <TextBlock x:Name="ForecastDate3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
@@ -1185,9 +1186,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast3" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu3" 
-                                           Text="{Binding Forecast3H, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{Binding Forecast3H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition31" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition3" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast3L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast3L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="4">
                             <TextBlock x:Name="ForecastDate4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
@@ -1196,9 +1197,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast4" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition4" Style="{ThemeResource NormalTextBlockStyle}"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu4"
-                                           Text="{Binding Forecast4H, Converter={StaticResource TempratureConverter1}}" />
+                                           Text="{Binding Forecast4H, Converter={StaticResource TempratureConverterWithDegree}}" />
                             <TextBlock x:Name="ForecastCondition41" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition4" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast4L, Converter={StaticResource TempratureConverter1}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{Binding Forecast4L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                     </Grid>
                     <RelativePanel x:Name="AQIPanel" RelativePanel.Below="ForecastPanel" Margin="24,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
@@ -1346,7 +1347,7 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding BodyTemprature, Converter={StaticResource TempratureConverter1}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
+                            <TextBlock Text="{Binding BodyTemprature, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid1" Grid.Row="0" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="WindText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />

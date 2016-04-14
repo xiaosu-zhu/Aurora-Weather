@@ -1021,10 +1021,10 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Sie können Vollbild wechseln, in immersiven Modus
-· "Weather Underground" wird in Kürze verfügbar
-· Lockerung der Funktion Anpassung
-· _(:з」∠) _</value>
+    <value>· _(:З」∠) _
+· Hintergrund-Task-Verbesserung
+· Lage-Koordinaten-Verbesserung
+· Fliese-Datenanreicherung</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>

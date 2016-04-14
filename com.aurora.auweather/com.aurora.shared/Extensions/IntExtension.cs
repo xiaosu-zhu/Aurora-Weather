@@ -1,0 +1,49 @@
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Text;
+
+namespace Com.Aurora.Shared.Extensions
+{
+    public static class LongExtension
+    {
+        public static readonly char[] HexSet = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+
+        public static string DectoBin(this long dec)
+        {
+            var sb = new StringBuilder();
+            while (dec != 0)
+            {
+                var k = dec % 2;
+                dec /= 2;
+                sb.Append(HexSet[k]);
+            }
+            return sb.ToString().Reverse();
+        }
+
+        public static string DectoOct(this long dec)
+        {
+            var sb = new StringBuilder();
+            while (dec != 0)
+            {
+                var k = dec % 8;
+                dec /= 8;
+                sb.Append(HexSet[k]);
+            }
+            return sb.ToString().Reverse();
+        }
+
+        public static string DectoHex(this long dec)
+        {
+            var sb = new StringBuilder();
+            while (dec != 0)
+            {
+                var k = dec % 16;
+                dec /= 16;
+                sb.Append(HexSet[k]);
+            }
+            return sb.ToString().Reverse();
+        }
+    }
+}

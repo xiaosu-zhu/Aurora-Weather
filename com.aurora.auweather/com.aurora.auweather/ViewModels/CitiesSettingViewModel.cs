@@ -173,8 +173,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }));
                 return;
             }
-
-            Cities.LocatedCity = new CitySettingsModel(final.ToArray()[0]);
+            var p = final.ToArray()[0];
+            p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+            Cities.LocatedCity = new CitySettingsModel(p);
             final = null;
             if (Cities.SavedCities.IsNullorEmpty())
             {

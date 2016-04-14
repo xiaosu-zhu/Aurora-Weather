@@ -1352,12 +1352,13 @@
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
           <source>· _(:з」∠)_
-· Always show the immersive background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Вы можете переключаться полноэкранном режиме погружения
-· «Погода андеграунд» скоро будет доступно
-· Ослабление функции регулировки
-· _(:з」∠) _</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+· Background task enhancement
+· Location coordinate enhancement
+· Tile's data enhancement</source>
+          <target state="translated">· _(:З」∠) _
+· Фоновой задачи повышения
+· Расположение координаты повышение
+· Улучшение данных плитки</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

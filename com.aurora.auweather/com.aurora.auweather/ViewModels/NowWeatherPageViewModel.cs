@@ -2,11 +2,9 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.Tile;
 using Com.Aurora.AuWeather.ViewModels.Events;
@@ -18,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
 using Windows.UI.Core;
@@ -28,8 +25,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 {
     public class NowWeatherPageViewModel : ViewModelBase
     {
-        private const string BACKGROUND_ENTRY = "Com.Aurora.AuWeather.Background.BackgroundTask";
-        private const string BACKGROUND_NAME = "Aurora Weather";
+
         #region private members
         private Temperature temprature;
         private Temperature bodyTemprature;
@@ -1221,6 +1217,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                     storedDatas = default(KeyValuePair<string, string>);
                     source = settings.Preferences.DataSource;
                     await FetchDataAsync();
+                    if (fetchresult == null)
+                        return;
                     utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
                     var t = ThreadPool.RunAsync(async (w) =>
                     {
@@ -1256,60 +1254,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         return;
                     }
-                    await RegBGTask(settings.Preferences.RefreshFrequency);
+                    await Core.Models.BGTask.RegBGTask(settings.Preferences.RefreshFrequency);
                     InitialViewModel();
                 }));
             });
         }
 
 
-        private async Task RegBGTask(RefreshState frequency)
-        {
-            uint freshTime;
-            switch (frequency)
-            {
-                case RefreshState.one:
-                    freshTime = 29;
-                    break;
-                case RefreshState.two:
-                    freshTime = 60;
-                    break;
-                case RefreshState.three:
-                    freshTime = 120;
-                    break;
-                case RefreshState.four:
-                    freshTime = 240;
-                    break;
-                default:
-                    return;
-            }
-            string entryPoint = BACKGROUND_ENTRY;
-            string taskName = BACKGROUND_NAME;
-            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
-                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
-            {
-                foreach (var t in BackgroundTaskRegistration.AllTasks)
-                {
-                    if (t.Value.Name == taskName)
-                    {
-                        t.Value.Unregister(true);
-                    }
-                }
-                if (freshTime == 29)
-                {
-                    return;
-                }
-                TimeTrigger hourlyTrigger = new TimeTrigger(freshTime, false);
-                SystemCondition userCondition = new SystemCondition(SystemConditionType.InternetAvailable);
-                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
-                taskBuilder.Name = taskName;
-                taskBuilder.TaskEntryPoint = entryPoint;
-                taskBuilder.AddCondition(userCondition);
-                taskBuilder.SetTrigger(hourlyTrigger);
-                var registration = taskBuilder.Register();
-            }
-        }
+
 
         private void GenerateGlance()
         {
@@ -1332,7 +1284,6 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private async Task FetchDataAsync()
         {
-
             await SearchExistingDataAsync();
             string resstr;
             if (currentId != null)
@@ -1719,7 +1670,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialConverterParameter(SettingsModel settings)
         {
-            TempratureConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
+            TempratureandDegreeConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
             DateTimeConverter.ChangeParameter(settings.Preferences.GetForecastFormat());
             var p = settings.Preferences.GetHourlyFormat();
             HourMinuteConverter.ChangeParameter(p);

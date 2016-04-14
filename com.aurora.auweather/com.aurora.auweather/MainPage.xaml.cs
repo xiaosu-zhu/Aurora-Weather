@@ -54,6 +54,11 @@ namespace Com.Aurora.AuWeather
                         ShowUpdateDetail();
                     }));
                 }
+                else
+                {
+                    MainPanel.Children.Remove(UpdatePanel);
+                    UpdatePanel = null;
+                }
             });
         }
 
@@ -67,9 +72,12 @@ namespace Com.Aurora.AuWeather
             Root.IsPaneOpen = !Root.IsPaneOpen;
         }
 
-        private void HideUpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void HideUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             HideUpdateDetailAni.Begin();
+            await Task.Delay(2500);
+            MainPanel.Children.Remove(UpdatePanel);
+            UpdatePanel = null;
         }
 
         internal void NavigatetoSettings(Type option)

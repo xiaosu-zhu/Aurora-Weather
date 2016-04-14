@@ -113,7 +113,9 @@ namespace Com.Aurora.AuWeather
                                 new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                  {
-                     Context.UpdateLocation(final.ToArray()[0]);
+                     var p = final.ToArray()[0];
+                     p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                     Context.UpdateLocation(p);
                      citys.Clear();
                      citys = null;
                      final = null;

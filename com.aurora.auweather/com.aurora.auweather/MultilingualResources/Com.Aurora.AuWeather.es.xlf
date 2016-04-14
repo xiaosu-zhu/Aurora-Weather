@@ -1352,12 +1352,13 @@
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
           <source>· _(:з」∠)_
-· Always show the immersive background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Se puede cambiar a pantalla completa en modo de inmersión
-· "Tiempo subterráneo" pronto estará disponible
-· Facilitar el ajuste de la función
-· _(:з」∠) _</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+· Background task enhancement
+· Location coordinate enhancement
+· Tile's data enhancement</source>
+          <target state="translated">· _(:З」∠) _
+· Mejora de la tarea de fondo
+· Mejora de coordenadas de ubicación
+· Mejora de los datos de la pieza</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

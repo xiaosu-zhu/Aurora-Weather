@@ -40,7 +40,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.SunnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding SunnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
                         <ListView.ItemTemplate>
@@ -69,7 +73,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.StarryShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
                         <ListView.ItemTemplate>
@@ -98,7 +106,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.CloudyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
                         <ListView.ItemTemplate>
@@ -127,7 +139,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.RainnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
                         <ListView.ItemTemplate>
@@ -156,7 +172,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.SnowyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
                         <ListView.ItemTemplate>
@@ -185,7 +205,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.FoggyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
                         <ListView.ItemTemplate>
@@ -214,7 +238,11 @@
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{Binding HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                        <ToggleSwitch IsOn="{x:Bind Context.HazeShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">
                         <ListView.ItemTemplate>

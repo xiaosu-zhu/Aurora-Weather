@@ -1126,7 +1126,10 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_&#x000A;· 始终显示沉浸模式背景</value>
+    <value>· _(:з」∠)_
+· 增强后台任务可靠性
+· 修正定位坐标
+· 更正部分磁贴数据</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1139,5 +1142,8 @@
   </data>
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>始终显示背景</value>
+  </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>随机挑选背景</value>
   </data>
 </root>

@@ -223,7 +223,7 @@ namespace Com.Aurora.Shared.Helpers
             return await FileIO.ReadTextAsync(file);
         }
 
-        public static async Task<Uri> GetFileUriFromAssetsAsync(string path, int index)
+        public static async Task<Uri> GetFileUriFromAssetsAsync(string path, int index, bool isShuffle = false)
         {
             try
             {
@@ -236,6 +236,10 @@ namespace Com.Aurora.Shared.Helpers
                     {
                         result.RemoveAt(i);
                     }
+                }
+                if (isShuffle)
+                {
+                    index = Tools.Random.Next(result.Count);
                 }
                 return new Uri("ms-appx:///Assets/" + path.Replace("\\", "/") + '/' + result[index].Name);
             }

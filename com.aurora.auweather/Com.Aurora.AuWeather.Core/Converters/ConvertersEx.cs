@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 namespace Com.Aurora.Shared.Converters
 {
 
-    public class TempratureConverterWithoutDecoration : IValueConverter
+    public class TempratureConverterWithDegree : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -25,7 +25,7 @@ namespace Com.Aurora.Shared.Converters
                 return "...";
             }
             var t = (Temperature)value;
-            switch (TempratureConverter.Parameter)
+            switch (TempratureandDegreeConverter.Parameter)
             {
                 case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + 'бу';
                 case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + 'бу';
@@ -40,7 +40,32 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    public class TempratureConverter : IValueConverter
+    public class TempratureConverterWithoutDecoration : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return "...";
+            }
+            var t = (Temperature)value;
+            switch (TempratureandDegreeConverter.Parameter)
+            {
+                case TemperatureParameter.Celsius: return t.Celsius.ToString("0");
+                case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0");
+                case TemperatureParameter.Kelvin: return t.Kelvin.ToString("0");
+                default: return t.Celsius.ToString("0");
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class TempratureandDegreeConverter : IValueConverter
     {
         public static TemperatureParameter Parameter { get; private set; } = TemperatureParameter.Celsius;
 
@@ -49,13 +74,13 @@ namespace Com.Aurora.Shared.Converters
             switch (Parameter)
             {
                 case TemperatureParameter.Celsius:
-                    return "C";
+                    return " C";
                 case TemperatureParameter.Fahrenheit:
-                    return "F";
+                    return " F";
                 case TemperatureParameter.Kelvin:
-                    return "K";
+                    return " K";
                 default:
-                    return "C";
+                    return " C";
             }
         }
 

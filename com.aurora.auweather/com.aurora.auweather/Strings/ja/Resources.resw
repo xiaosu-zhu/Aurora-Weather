@@ -1021,10 +1021,10 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·没入型モード
-で全画面表示を切り替えることができます ·「ウエザーマン」すぐに利用可能
-になる ·緩和機能調整
-· _(:з」∠) _</value>
+    <value>·_(:З」∠) _
+·バック グラウンド タスク拡張
+·位置座標強化
+·タイルのデータの拡張</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>

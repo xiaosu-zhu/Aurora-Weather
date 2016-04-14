@@ -231,6 +231,12 @@ namespace Com.Aurora.AuWeather.ViewModels
         public bool ShowImmersivett { get; private set; }
         public bool EnableEveryDay { get; private set; }
         public bool EnablePulltoRefresh { get; private set; }
+
+        internal async Task RegBG()
+        {
+            await Core.Models.BGTask.RegBGTask(Preferences.RefreshFrequency);
+        }
+
         public bool ThemeasRiseSet { get; internal set; }
         public bool EnableFullScreen { get; internal set; }
         public bool AlwaysShowBackground { get; internal set; }

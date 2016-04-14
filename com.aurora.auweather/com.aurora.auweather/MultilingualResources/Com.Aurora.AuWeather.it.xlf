@@ -1352,12 +1352,13 @@
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
           <source>· _(:з」∠)_
-· Always show the immersive background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">· È possibile passare a schermo intero in modalità immersiva
-piace · "Weather Underground" sarà presto disponibile
-piace · Regolazione di funzione
-di interpolazione _ _(:з」∠) ·</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+· Background task enhancement
+· Location coordinate enhancement
+· Tile's data enhancement</source>
+          <target state="translated">· _(:З」∠) _
+· Potenziamento di attività di sfondo
+piace · Valorizzazione delle coordinate di posizione
+piace · Valorizzazione dei dati del riquadro</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

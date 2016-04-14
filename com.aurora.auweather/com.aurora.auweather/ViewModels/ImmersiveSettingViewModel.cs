@@ -28,6 +28,14 @@ namespace Com.Aurora.AuWeather.ViewModels
         public ImmersiveGroup PivotList { get; set; }
         public CurrentImmersiveList CurrentList { get; set; }
 
+        private bool sunnyShuffle;
+        private bool starryShuffle;
+        private bool cloudyShuffle;
+        private bool rainnyShuffle;
+        private bool snowyShuffle;
+        private bool foggyShuffle;
+        private bool hazeShuffle;
+
         public ImmersiveBackgroundState SunnyState
         {
             get
@@ -168,6 +176,111 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public bool SunnyShuffle
+        {
+            get
+            {
+                return sunnyShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref sunnyShuffle, value);
+                immersive.SunnyShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool StarryShuffle
+        {
+            get
+            {
+                return starryShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref starryShuffle, value);
+                immersive.StarryShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool CloudyShuffle
+        {
+            get
+            {
+                return cloudyShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref cloudyShuffle, value);
+                immersive.CloudyShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool RainnyShuffle
+        {
+            get
+            {
+                return rainnyShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref rainnyShuffle, value);
+                immersive.RainnyShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool SnowyShuffle
+        {
+            get
+            {
+                return snowyShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref snowyShuffle, value);
+                immersive.SnowyShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool FoggyShuffle
+        {
+            get
+            {
+                return foggyShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref foggyShuffle, value);
+                immersive.FoggyShuffle = value;
+                SaveAll();
+            }
+        }
+
+        public bool HazeShuffle
+        {
+            get
+            {
+                return hazeShuffle;
+            }
+
+            set
+            {
+                SetProperty(ref hazeShuffle, value);
+                immersive.HazeShuffle = value;
+                SaveAll();
+            }
+        }
+
         public int sunnyP;
         public int starryP;
         public int cloudyP;
@@ -211,6 +324,13 @@ namespace Com.Aurora.AuWeather.ViewModels
                     SnowyState = immersive.Snowy;
                     FoggyState = immersive.Foggy;
                     HazeState = immersive.Haze;
+                    SunnyShuffle = immersive.SunnyShuffle;
+                    StarryShuffle = immersive.StarryShuffle;
+                    CloudyShuffle = immersive.CloudyShuffle;
+                    RainnyShuffle = immersive.RainnyShuffle;
+                    SnowyShuffle = immersive.SnowyShuffle;
+                    FoggyShuffle = immersive.FoggyShuffle;
+                    HazeShuffle = immersive.HazeShuffle;
                 }));
                 OnFetchDataComplete();
             });
@@ -234,10 +354,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void SaveAll()
         {
-            var task = ThreadPool.RunAsync((work) =>
-            {
-                immersive.Save();
-            });
+            immersive.Save();
         }
 
         internal void ChoseLocal(int title, StorageFile file)
@@ -282,6 +399,36 @@ namespace Com.Aurora.AuWeather.ViewModels
                  OnFetchDataComplete();
              });
 
+        }
+
+        internal void ClearShuffle(int selectedIndex)
+        {
+            switch (selectedIndex)
+            {
+                case 0:
+                    SunnyShuffle = false;
+                    break;
+                case 1:
+                    StarryShuffle = false;
+                    break;
+                case 2:
+                    CloudyShuffle = false;
+                    break;
+                case 3:
+                    RainnyShuffle = false;
+                    break;
+                case 4:
+                    SnowyShuffle = false;
+                    break;
+                case 5:
+                    FoggyShuffle = false;
+                    break;
+                case 6:
+                    HazeShuffle = false;
+                    break;
+                default:
+                    break;
+            }
         }
 
         internal void DeleteLocal(int title)

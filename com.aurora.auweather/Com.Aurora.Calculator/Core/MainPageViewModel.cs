@@ -1,4 +1,8 @@
-﻿using Com.Aurora.AuWeather.Models;
+﻿// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.MVVM;
 using System;
@@ -13,6 +17,7 @@ namespace Com.Aurora.Calculator.Core
         public PressureList Pressure = new PressureList();
         public SpeedList Speed = new SpeedList();
         public AngleList Angle = new AngleList();
+        public ProList Pro = new ProList();
     }
 
     class LengthList : ViewModelBase
@@ -298,6 +303,79 @@ namespace Com.Aurora.Calculator.Core
                 SetProperty(ref mainValue, value);
             }
         }
+    }
+    class ProList : ViewModelBase
+    {
+        private long mainValue;
+        public long MainValue
+        {
+            get
+            {
+                return mainValue;
+            }
+            set
+            {
+                SetProperty(ref mainValue, value);
+            }
+        }
+        public ProList()
+        {
+            Items.Add(new ProgramViewModel("Bin", 0));
+            Items.Add(new ProgramViewModel("Oct", 1));
+            Items.Add(new ProgramViewModel("Dec", 2));
+            Items.Add(new ProgramViewModel("Hex", 3));
+            foreach (var item in Items)
+            {
+                item.PropertyChanged += Item_PropertyChanged;
+            }
+            MainValue = 0;
+        }
+
+        private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var i = sender as ProgramViewModel;
+            switch (i.Parameter)
+            {
+                case 0:
+                    MainValue = i.Value.BintoDec();
+                    break;
+                case 1:
+                    MainValue = i.Value.OcttoDec();
+                    break;
+                case 2:
+                    MainValue = long.Parse(i.Value);
+                    break;
+                case 3:
+                    MainValue = i.Value.HextoDec();
+                    break;
+                default:
+                    break;
+            }
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= Item_PropertyChanged;
+                switch (item.Parameter)
+                {
+                    case 0:
+                        item.Value = MainValue.DectoBin();
+                        break;
+                    case 1:
+                        item.Value = MainValue.DectoOct();
+                        break;
+                    case 2:
+                        item.Value = MainValue.ToString();
+                        break;
+                    case 3:
+                        item.Value = MainValue.DectoHex();
+                        break;
+                    default:
+                        break;
+                }
+                item.PropertyChanged += Item_PropertyChanged;
+            }
+        }
+
+        public ObservableCollection<ProgramViewModel> Items = new ObservableCollection<ProgramViewModel>();
     }
 
     class AngleList : ViewModelBase

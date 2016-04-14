@@ -38,7 +38,7 @@ namespace Com.Aurora.AuWeather.Tile
                             Children =
                             {
                                 new TileText(),
-                                                 new TileText()
+                                new TileText()
             {
                 Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
                 Align = TileTextAlign.Center
@@ -138,26 +138,6 @@ namespace Com.Aurora.AuWeather.Tile
                                         }
                                     }
                                 }
-                                //          new TileGroup()
-                                //{
-                                //    Children =
-                                //            {
-                                //                    CreateSubgroup(model.DailyForecast[todayIndex].Date.ToString(settings.Preferences.GetTileFormat()),
-                                //                  (string)ctoiConverter.Convert(model.NowWeather.Now.Condition,null,isNight,null),
-                                //                 model.DailyForecast[todayIndex].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                //                 model.DailyForecast[todayIndex].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString()),
-
-                                //                    CreateSubgroup(model.DailyForecast[todayIndex+1].Date.ToString(settings.Preferences.GetTileFormat()),
-                                //                  (string)ctoiConverter.Convert(model.NowWeather.Now.Condition,null,isNight,null),
-                                //                 model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                //                 model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString()),
-
-                                //                    CreateSubgroup(model.DailyForecast[todayIndex+2].Date.ToString(settings.Preferences.GetTileFormat()),
-                                //                  (string)ctoiConverter.Convert(model.NowWeather.Now.Condition,null,isNight,null),
-                                //                 model.DailyForecast[todayIndex+2].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                //                 model.DailyForecast[todayIndex+2].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString()),
-                                //              }
-                                //          }
                                        },
                             PeekImage = uri == null ? null : new TilePeekImage()
                             {
@@ -325,15 +305,15 @@ namespace Com.Aurora.AuWeather.Tile
             return true;
         }
 
-        public static async Task<List<TileContent>> CreateAll(HeWeatherModel model, DateTime desiredDate)
+        public static async Task<List<TileContent>> CreateAll(HeWeatherModel model, DateTime desiredDateTimeinThatRegion)
         {
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
-                return x.Date.Date == desiredDate.Date;
+                return x.Date.Date == desiredDateTimeinThatRegion.Date;
             });
             var hourIndex = Array.FindIndex(model.HourlyForecast, x =>
             {
-                return (x.DateTime - desiredDate).TotalSeconds > 0;
+                return (x.DateTime - desiredDateTimeinThatRegion).TotalSeconds > 0;
             });
             if (todayIndex < 0)
             {
@@ -343,18 +323,16 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 hourIndex = 0;
             }
-            var updateTime = model.Location.UpdateTime;
-            var utcOffset = model.Location.UpdateTime - model.Location.UtcTime;
             var sunRise = model.DailyForecast[todayIndex].SunRise;
             var sunSet = model.DailyForecast[todayIndex].SunSet;
-            var currentTime = DateTimeHelper.ReviseLoc(desiredDate, utcOffset);
+            var currentTime = desiredDateTimeinThatRegion;
             var isNight = CalcIsNight(currentTime, sunRise, sunSet);
             var settings = SettingsModel.Get();
             var currentCity = settings.Cities.CurrentIndex < 0 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];
             Uri uri = await settings.Immersive.GetCurrentBackgroundAsync(model.NowWeather.Now.Condition, isNight);
 
             var glance = Glance.GenerateShortDescription(model, isNight);
-            var glanceFull = Glance.GenerateGlanceDescription(model, isNight, settings.Preferences.TemperatureParameter, desiredDate);
+            var glanceFull = Glance.GenerateGlanceDescription(model, isNight, settings.Preferences.TemperatureParameter, desiredDateTimeinThatRegion);
             var noramlTile = GenerateNormalTile(model, isNight, glance, glanceFull, uri, todayIndex, currentCity, settings);
             var nowTile = GenerateNowTile(model, isNight, uri, glanceFull, todayIndex, currentCity, settings);
             var forecastTile = GenerateForecastTile(model, isNight, uri, glanceFull, todayIndex, currentCity, settings);

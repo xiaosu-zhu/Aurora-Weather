@@ -362,10 +362,10 @@
                         </AutoSuggestBox.ItemTemplate>
                     </AutoSuggestBox>
                 </Grid>
-                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="True" ItemClick="CitiesList_ItemClick" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="True" ItemClick="CitiesList_ItemClick" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="0,8,0,8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:CitySettingsViewModel">
-                            <Grid Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid Margin="0,4,0,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock Text="{Binding City}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4" />
                                 <ToggleButton Style="{ThemeResource StarButton}" IsChecked="{x:Bind IsCurrent, Mode=OneWay}" x:Name="ListStarButton" Click="ListStarButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,4,40,4" />
                                 <Button x:Name="Delete" Click="Delete_Click" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4">

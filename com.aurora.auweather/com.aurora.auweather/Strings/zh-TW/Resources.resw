@@ -1126,7 +1126,7 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_&#x000A;· 始終顯示沉浸模式背景</value>
+    <value>· _(:з」∠)_&#x000A;· 增强後臺任務可靠性&#x000A;· 修正定位坐標&#x000A;· 更正部分磁貼數據</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>

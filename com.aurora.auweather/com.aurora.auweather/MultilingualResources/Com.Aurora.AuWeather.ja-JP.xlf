@@ -1352,12 +1352,13 @@
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
           <source>· _(:з」∠)_
-· Always show the immersive background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">·没入型モード
-で全画面表示を切り替えることができます ·「ウエザーマン」すぐに利用可能
-になる ·緩和機能調整
-· _(:з」∠) _</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+· Background task enhancement
+· Location coordinate enhancement
+· Tile's data enhancement</source>
+          <target state="translated">·_(:З」∠) _
+·バック グラウンド タスク拡張
+·位置座標強化
+·タイルのデータの拡張</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

@@ -40,7 +40,7 @@
                                 <TextBox LostFocus="TextBox_LostFocus" 
                                          Header="{x:Bind Title}" 
                                          Style="{ThemeResource CalcuBox}" 
-                                         PlaceholderText="{x:Bind Value,Mode=TwoWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
                                          TextChanged="TextBox_TextChanged" TextChanging="TextBox_TextChanging" 
                                          Margin="4" FontSize="24" FontWeight="Light" 
                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
@@ -58,7 +58,7 @@
                                 <TextBox LostFocus="TextBox_LostFocus" 
                                          Header="{x:Bind Title}" 
                                          Style="{ThemeResource CalcuBox}" 
-                                         PlaceholderText="{x:Bind Value,Mode=TwoWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
                                          TextChanged="TextBox_TextChanged" TextChanging="TextBox_TextChanging" 
                                          Margin="4" FontSize="24" FontWeight="Light" 
                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
@@ -76,7 +76,7 @@
                                 <TextBox LostFocus="TextBox_LostFocus" 
                                          Header="{x:Bind Title}" 
                                          Style="{ThemeResource CalcuBox}" 
-                                         PlaceholderText="{x:Bind Value,Mode=TwoWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
                                          TextChanged="TextBox_TextChanged" TextChanging="TextBox_TextChanging" 
                                          Margin="4" FontSize="24" FontWeight="Light" 
                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
@@ -94,7 +94,7 @@
                                 <TextBox LostFocus="TextBox_LostFocus" 
                                          Header="{x:Bind Title}" 
                                          Style="{ThemeResource CalcuBox}" 
-                                         PlaceholderText="{x:Bind Value,Mode=TwoWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
                                          TextChanged="TextBox_TextChanged" TextChanging="TextBox_TextChanging" 
                                          Margin="4" FontSize="24" FontWeight="Light" 
                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
@@ -112,7 +112,7 @@
                                 <TextBox LostFocus="TextBox_LostFocus" 
                                          Header="{x:Bind Title}" 
                                          Style="{ThemeResource CalcuBox}" 
-                                         PlaceholderText="{x:Bind Value,Mode=TwoWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,Converter={StaticResource StringtoFloatConverter},FallbackValue=0}" 
                                          TextChanged="TextBox_TextChanged" TextChanging="TextBox_TextChanging" 
                                          Margin="4" FontSize="24" FontWeight="Light" 
                                          RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
@@ -131,6 +131,24 @@
                         <DatePicker Loaded="DatePicker_Loaded" DateChanged="DatePicker_DateChanged" Margin="16,80,16,16" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </StackPanel>
                 </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="Programmer">
+                <ListView ItemsSource="{x:Bind Context.Pro.Items}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:ProgramViewModel" >
+                            <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4">
+                                <TextBox 
+                                         Header="{x:Bind Title}" 
+                                         Style="{ThemeResource CalcuBox}" 
+                                         PlaceholderText="{x:Bind Value,Mode=OneWay,FallbackValue=0}" 
+                                         TextChanged="IntBox_TextChanged" TextChanging="IntBox_TextChanging" 
+                                         Margin="4" FontSize="24" FontWeight="Light" 
+                                         RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                                         InputScope="Number" />
+                            </RelativePanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </PivotItem>
         </Pivot.Items>
     </Pivot>

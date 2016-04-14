@@ -17,14 +17,40 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return;
             }
-            Aqi = uint.Parse(aqi.city.aqi);
-            Co = uint.Parse(aqi.city.co);
-            No2 = uint.Parse(aqi.city.no2);
-            O3 = uint.Parse(aqi.city.o3);
-            Pm10 = uint.Parse(aqi.city.pm10);
-            Pm25 = uint.Parse(aqi.city.pm25);
+            uint m;
+            if (uint.TryParse(aqi.city.aqi, out m))
+            {
+                Aqi = m;
+            }
+            if (uint.TryParse(aqi.city.co, out m))
+            {
+                Co = m;
+            }
+            if (uint.TryParse(aqi.city.no2, out m))
+            {
+                No2 = m;
+            }
+            if (uint.TryParse(aqi.city.o3, out m))
+            {
+                O3 = m;
+            }
+            if (uint.TryParse(aqi.city.pm10, out m))
+            {
+                Pm10 = m;
+            }
+            if (uint.TryParse(aqi.city.pm25, out m))
+            {
+                Pm25 = m;
+            }
+            if (uint.TryParse(aqi.city.so2, out m))
+            {
+                So2 = m;
+            }
             Qlty = ParseQlty(aqi.city.qlty);
-            So2 = uint.Parse(aqi.city.so2);
+            if (Qlty == AQIQuality.unknown && Aqi != default(uint))
+            {
+                Qlty = CalcQlty(Aqi);
+            }
         }
 
         public AQI(Value aqi, Value pm25)

@@ -1021,10 +1021,10 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Se puede cambiar a pantalla completa en modo de inmersión
-· "Tiempo subterráneo" pronto estará disponible
-· Facilitar el ajuste de la función
-· _(:з」∠) _</value>
+    <value>· _(:З」∠) _
+· Mejora de la tarea de fondo
+· Mejora de coordenadas de ubicación
+· Mejora de los datos de la pieza</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>

@@ -1126,7 +1126,7 @@
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_&#x000A;· Always show the immersive background</value>
+    <value>· _(:з」∠)_&#x000A;· Background task enhancement&#x000A;· Location coordinate enhancement&#x000A;· Tile's data enhancement</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
