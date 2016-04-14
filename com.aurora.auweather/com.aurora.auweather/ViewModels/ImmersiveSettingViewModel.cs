@@ -31,6 +31,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool sunnyShuffle;
         private bool starryShuffle;
         private bool cloudyShuffle;
+        private bool overcastShuffle;
         private bool rainnyShuffle;
         private bool snowyShuffle;
         private bool foggyShuffle;
@@ -88,6 +89,24 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 immersive.Cloudy = value;
                 SetProperty(ref cloudyState, value);
+            }
+        }
+        public ImmersiveBackgroundState OvercastState
+        {
+            get
+            {
+                return overcastState;
+            }
+
+            set
+            {
+                overcastState = ImmersiveBackgroundState.Fallback;
+                if (value == ImmersiveBackgroundState.Fallback)
+                {
+                    value = ImmersiveBackgroundState.Assets;
+                }
+                immersive.Overcast = value;
+                SetProperty(ref overcastState, value);
             }
         }
         public ImmersiveBackgroundState RainnyState
@@ -221,6 +240,18 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public bool OvercastShuffle
+        {
+            get
+            {
+                return overcastShuffle;
+            }
+            set
+            {
+                SetProperty(ref overcastShuffle, value);
+            }
+        }
+
         public bool RainnyShuffle
         {
             get
@@ -284,6 +315,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public int sunnyP;
         public int starryP;
         public int cloudyP;
+        public int overcastP;
         public int rainnyP;
         public int snowyP;
         public int foggyP;
@@ -292,6 +324,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private ImmersiveBackgroundState sunnyState;
         private ImmersiveBackgroundState starryState;
         private ImmersiveBackgroundState cloudyState;
+        private ImmersiveBackgroundState overcastState;
         private ImmersiveBackgroundState rainnyState;
         private ImmersiveBackgroundState snowyState;
         private ImmersiveBackgroundState foggyState;
@@ -320,6 +353,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     SunnyState = immersive.Sunny;
                     StarryState = immersive.Starry;
                     CloudyState = immersive.Cloudy;
+                    OvercastState = immersive.Overcast;
                     RainnyState = immersive.Rainny;
                     SnowyState = immersive.Snowy;
                     FoggyState = immersive.Foggy;
@@ -327,6 +361,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     SunnyShuffle = immersive.SunnyShuffle;
                     StarryShuffle = immersive.StarryShuffle;
                     CloudyShuffle = immersive.CloudyShuffle;
+                    OvercastShuffle = immersive.OvercastShuffle;
                     RainnyShuffle = immersive.RainnyShuffle;
                     SnowyShuffle = immersive.SnowyShuffle;
                     FoggyShuffle = immersive.FoggyShuffle;
@@ -341,6 +376,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             sunnyP = immersive.SunnyPicked;
             starryP = immersive.StarryPicked;
             cloudyP = immersive.CloudyPicked;
+            overcastP = immersive.OvercastPicked;
             rainnyP = immersive.RainnyPicked;
             foggyP = immersive.FoggyPicked;
             snowyP = immersive.SnowyPicked;
@@ -415,15 +451,18 @@ namespace Com.Aurora.AuWeather.ViewModels
                     CloudyShuffle = false;
                     break;
                 case 3:
-                    RainnyShuffle = false;
+                    OvercastShuffle = false;
                     break;
                 case 4:
-                    SnowyShuffle = false;
+                    RainnyShuffle = false;
                     break;
                 case 5:
-                    FoggyShuffle = false;
+                    SnowyShuffle = false;
                     break;
                 case 6:
+                    FoggyShuffle = false;
+                    break;
+                case 7:
                     HazeShuffle = false;
                     break;
                 default:
@@ -445,15 +484,18 @@ namespace Com.Aurora.AuWeather.ViewModels
                     CloudyState = ImmersiveBackgroundState.Assets;
                     break;
                 case 3:
-                    RainnyState = ImmersiveBackgroundState.Assets;
+                    OvercastState = ImmersiveBackgroundState.Assets;
                     break;
                 case 4:
-                    SnowyState = ImmersiveBackgroundState.Assets;
+                    RainnyState = ImmersiveBackgroundState.Assets;
                     break;
                 case 5:
-                    FoggyState = ImmersiveBackgroundState.Assets;
+                    SnowyState = ImmersiveBackgroundState.Assets;
                     break;
                 case 6:
+                    FoggyState = ImmersiveBackgroundState.Assets;
+                    break;
+                case 7:
                     HazeState = ImmersiveBackgroundState.Assets;
                     break;
                 default:
@@ -472,6 +514,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             SunnyState = immersive.Sunny;
             StarryState = immersive.Starry;
             CloudyState = immersive.Cloudy;
+            OvercastState = immersive.Overcast;
             RainnyState = immersive.Rainny;
             SnowyState = immersive.Snowy;
             FoggyState = immersive.Foggy;
@@ -518,6 +561,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             Add("Sunny");
             Add("Starry");
             Add("Cloudy");
+            Add("Overcast");
             Add("Rainny");
             Add("Snowy");
             Add("Foggy");

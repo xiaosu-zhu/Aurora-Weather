@@ -15,6 +15,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         private const string sunny = "Background\\Sunny";
         private const string starry = "Background\\Starry";
         private const string cloudy = "Background\\Cloudy";
+        private const string overcast = "Background\\Overcast";
         private const string rainny = "Background\\Rainny";
         private const string snowy = "Background\\Snowy";
         private const string foggy = "Background\\Foggy";
@@ -24,6 +25,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public ImmersiveBackgroundState Sunny { get; set; }
         public ImmersiveBackgroundState Cloudy { get; set; }
+        public ImmersiveBackgroundState Overcast { get; set; }
         public ImmersiveBackgroundState Rainny { get; set; }
         public ImmersiveBackgroundState Snowy { get; set; }
         public ImmersiveBackgroundState Foggy { get; set; }
@@ -32,6 +34,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public int SunnyPicked { get; set; } = 0;
         public int CloudyPicked { get; set; } = 0;
+        public int OvercastPicked { get; set; } = 0;
         public int RainnyPicked { get; set; } = 0;
         public int SnowyPicked { get; set; } = 0;
         public int FoggyPicked { get; set; } = 0;
@@ -44,6 +47,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public bool SnowyShuffle { get; set; }
         public bool RainnyShuffle { get; set; }
         public bool CloudyShuffle { get; set; }
+        public bool OvercastShuffle { get; set; }
 
         public static async Task<List<KeyValuePair<Uri, string>>> GetThumbnailsFromAssetsAsync(string title)
         {
@@ -58,6 +62,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     break;
                 case "Cloudy":
                     thumbs = await FileIOHelper.GetThumbnailUrisFromAssetsAsync(cloudy);
+                    break;
+                case "Overcast":
+                    thumbs = await FileIOHelper.GetThumbnailUrisFromAssetsAsync(overcast);
                     break;
                 case "Rainny":
                     thumbs = await FileIOHelper.GetThumbnailUrisFromAssetsAsync(rainny);
@@ -93,6 +100,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     break;
                 case "Cloudy":
                     lFile = await FileIOHelper.GetFileUriFromLocalAsync(cloudy, local);
+                    break;
+                case "Overcast":
+                    lFile = await FileIOHelper.GetFileUriFromLocalAsync(overcast, local);
                     break;
                 case "Rainny":
                     lFile = await FileIOHelper.GetFileUriFromLocalAsync(rainny, local);
@@ -135,6 +145,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
                     Cloudy = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(cloudy, file, local);
+                case "Overcast":
+
+                    Overcast = ImmersiveBackgroundState.Local;
+                    return await FileIOHelper.SaveFiletoLocalAsync(overcast, file, local);
                 case "Rainny":
 
                     Rainny = ImmersiveBackgroundState.Local;
@@ -213,7 +227,6 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case WeatherCondition.cloudy:
                 case WeatherCondition.few_clouds:
                 case WeatherCondition.partly_cloudy:
-                case WeatherCondition.overcast:
                     if (Cloudy == ImmersiveBackgroundState.Assets)
                     {
                         uri = await FileIOHelper.GetFileUriFromAssetsAsync(cloudy, CloudyPicked, CloudyShuffle);
@@ -221,6 +234,20 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     else if (Cloudy == ImmersiveBackgroundState.Local)
                     {
                         uri = await FileIOHelper.GetFileUriFromLocalAsync(cloudy, local);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    break;
+                case WeatherCondition.overcast:
+                    if (Overcast == ImmersiveBackgroundState.Assets)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromAssetsAsync(overcast, OvercastPicked, OvercastShuffle);
+                    }
+                    else if (Overcast == ImmersiveBackgroundState.Local)
+                    {
+                        uri = await FileIOHelper.GetFileUriFromLocalAsync(overcast, local);
                     }
                     else
                     {
@@ -338,6 +365,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     if (Cloudy == ImmersiveBackgroundState.Assets)
                         CloudyPicked = number;
                     break;
+                case "Overcast":
+                    if (Overcast == ImmersiveBackgroundState.Assets)
+                        OvercastPicked = number;
+                    break;
                 case "Rainny":
                     if (Rainny == ImmersiveBackgroundState.Assets)
                         RainnyPicked = number;
@@ -375,6 +406,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     case "Cloudy":
                         if (Cloudy == ImmersiveBackgroundState.Local)
                             Cloudy = ImmersiveBackgroundState.Assets;
+                        break;
+                    case "Overcast":
+                        if (Overcast == ImmersiveBackgroundState.Local)
+                            Overcast = ImmersiveBackgroundState.Assets;
                         break;
                     case "Rainny":
                         if (Rainny == ImmersiveBackgroundState.Local)

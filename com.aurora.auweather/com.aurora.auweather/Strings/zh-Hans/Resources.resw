@@ -1140,4 +1140,7 @@
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>始终显示背景</value>
   </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>随机挑选背景</value>
+  </data>
 </root>

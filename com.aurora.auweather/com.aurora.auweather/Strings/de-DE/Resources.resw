@@ -1038,4 +1038,7 @@
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>Hintergrund immer sichtbar</value>
   </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>Shuffle-Hintergrund</value>
+  </data>
 </root>

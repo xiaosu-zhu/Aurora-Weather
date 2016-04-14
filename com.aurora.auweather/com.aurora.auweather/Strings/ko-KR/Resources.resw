@@ -1038,4 +1038,7 @@
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>항상 보이는 배경</value>
   </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>셔플 배경</value>
+  </data>
 </root>

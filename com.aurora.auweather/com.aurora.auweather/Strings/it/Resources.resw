@@ -1038,4 +1038,7 @@ piace · Valorizzazione dei dati del riquadro</value>
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>Sfondo sempre visibile</value>
   </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>Sfondo di shuffle</value>
+  </data>
 </root>

@@ -21,7 +21,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
         public ImmersiveSetting()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Context.FetchDataComplete += Context_FetchDataComplete;
             Context.SetLocalComplete += Context_SetLocalComplete;
             App.Current.Suspending += Current_Suspending;
@@ -49,6 +49,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               break;
                           case "Cloudy":
                               HideList(CloudyList, CloudyLocal, CloudyLocalGrid, CloudyButton);
+                              break;
+                          case "Overcast":
+                              HideList(OvercastList, OvercastLocal, OvercastLocalGrid, OvercastButton);
                               break;
                           case "Rainny":
                               HideList(RainnyList, RainnyLocal, RainnyLocalGrid, RainnyButton);
@@ -91,8 +94,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(SunnyList, SunnyLocal, SunnyLocalGrid, SunnyButton);
                               }
+                              SunnyList.SelectionChanged -= List_SelectionChanged;
                               SunnyList.ItemsSource = Context.CurrentList;
                               SunnyList.SelectedIndex = Context.sunnyP;
+                              SunnyList.SelectionChanged += List_SelectionChanged;
                               break;
                           case 1:
                               if (Context.localFile != null && Context.StarryState == Models.ImmersiveBackgroundState.Local)
@@ -103,8 +108,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(StarryList, StarryLocal, StarryLocalGrid, StarryButton);
                               }
+                              StarryList.SelectionChanged -= List_SelectionChanged;
                               StarryList.ItemsSource = Context.CurrentList;
                               StarryList.SelectedIndex = Context.starryP;
+                              StarryList.SelectionChanged += List_SelectionChanged;
                               break;
                           case 2:
                               if (Context.localFile != null && Context.CloudyState == Models.ImmersiveBackgroundState.Local)
@@ -115,10 +122,26 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(CloudyList, CloudyLocal, CloudyLocalGrid, CloudyButton);
                               }
+                              CloudyList.SelectionChanged -= List_SelectionChanged;
                               CloudyList.ItemsSource = Context.CurrentList;
                               CloudyList.SelectedIndex = Context.cloudyP;
+                              CloudyList.SelectionChanged += List_SelectionChanged;
                               break;
                           case 3:
+                              if (Context.localFile != null && Context.RainnyState == Models.ImmersiveBackgroundState.Local)
+                              {
+                                  HideList(OvercastList, OvercastLocal, OvercastLocalGrid, OvercastButton);
+                              }
+                              else
+                              {
+                                  ShowList(OvercastList, OvercastLocal, OvercastLocalGrid, OvercastButton);
+                              }
+                              OvercastList.SelectionChanged -= List_SelectionChanged;
+                              OvercastList.ItemsSource = Context.CurrentList;
+                              OvercastList.SelectedIndex = Context.overcastP;
+                              OvercastList.SelectionChanged += List_SelectionChanged;
+                              break;
+                          case 4:
                               if (Context.localFile != null && Context.RainnyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(RainnyList, RainnyLocal, RainnyLocalGrid, RainnyButton);
@@ -127,10 +150,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(RainnyList, RainnyLocal, RainnyLocalGrid, RainnyButton);
                               }
+                              RainnyList.SelectionChanged -= List_SelectionChanged;
                               RainnyList.ItemsSource = Context.CurrentList;
                               RainnyList.SelectedIndex = Context.rainnyP;
+                              RainnyList.SelectionChanged += List_SelectionChanged;
                               break;
-                          case 4:
+                          case 5:
                               if (Context.localFile != null && Context.SnowyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(SnowyList, SnowyLocal, SnowyLocalGrid, SnowyButton);
@@ -139,10 +164,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(SnowyList, SnowyLocal, SnowyLocalGrid, SnowyButton);
                               }
+                              SnowyList.SelectionChanged -= List_SelectionChanged;
                               SnowyList.ItemsSource = Context.CurrentList;
                               SnowyList.SelectedIndex = Context.snowyP;
+                              SnowyList.SelectionChanged += List_SelectionChanged;
                               break;
-                          case 5:
+                          case 6:
                               if (Context.localFile != null && Context.FoggyState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(FoggyList, FoggyLocal, FoggyLocalGrid, FoggyButton);
@@ -151,10 +178,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(FoggyList, FoggyLocal, FoggyLocalGrid, FoggyButton);
                               }
+                              FoggyList.SelectionChanged -= List_SelectionChanged;
                               FoggyList.ItemsSource = Context.CurrentList;
                               FoggyList.SelectedIndex = Context.foggyP;
+                              FoggyList.SelectionChanged += List_SelectionChanged;
                               break;
-                          case 6:
+                          case 7:
                               if (Context.localFile != null && Context.HazeState == Models.ImmersiveBackgroundState.Local)
                               {
                                   HideList(HazeList, HazeLocal, HazeLocalGrid, HazeButton);
@@ -163,8 +192,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                               {
                                   ShowList(HazeList, HazeLocal, HazeLocalGrid, HazeButton);
                               }
+                              HazeList.SelectionChanged -= List_SelectionChanged;
                               HazeList.ItemsSource = Context.CurrentList;
                               HazeList.SelectedIndex = Context.hazeP;
+                              HazeList.SelectionChanged += List_SelectionChanged;
                               break;
                           default:
                               break;
@@ -205,6 +236,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             SunnyList.ItemsSource = null;
             StarryList.ItemsSource = null;
+            OvercastList.ItemsSource = null;
             CloudyList.ItemsSource = null;
             RainnyList.ItemsSource = null;
             SnowyList.ItemsSource = null;

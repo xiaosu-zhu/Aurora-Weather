@@ -1376,6 +1376,10 @@
           <source>Background always visible</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">背景を常に表示</target>
         </trans-unit>
+        <trans-unit id="ShuffleText.Text" translate="yes" xml:space="preserve">
+          <source>Shuffle background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">背景をシャッフル</target>
+        </trans-unit>
       </group>
     </body>
   </file>

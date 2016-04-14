@@ -124,6 +124,14 @@
     <Content Include="Assets\Background\Haze\02_Stefanus Martanto Setyo Husodo_t.png" />
     <Content Include="Assets\Background\Haze\03_Alex Gindin.png" />
     <Content Include="Assets\Background\Haze\03_Alex Gindin_t.png" />
+    <Content Include="Assets\Background\Overcast\01_Anrick Bregman.png" />
+    <Content Include="Assets\Background\Overcast\01_Anrick Bregman_t.png" />
+    <Content Include="Assets\Background\Overcast\02_George Domani.png" />
+    <Content Include="Assets\Background\Overcast\02_George Domani_t.png" />
+    <Content Include="Assets\Background\Overcast\03_Jan Erik Waider.png" />
+    <Content Include="Assets\Background\Overcast\03_Jan Erik Waider_t.png" />
+    <Content Include="Assets\Background\Overcast\04_Tim Mossholder.png" />
+    <Content Include="Assets\Background\Overcast\04_Tim Mossholder_t.png" />
     <Content Include="Assets\Background\Rainny\01_Mike Kotsch.png" />
     <Content Include="Assets\Background\Rainny\01_Mike Kotsch_t.png" />
     <Content Include="Assets\Background\Rainny\02_Pete Nowicki.png" />

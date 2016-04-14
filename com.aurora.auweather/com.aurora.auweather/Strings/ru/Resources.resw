@@ -1038,4 +1038,7 @@
   <data name="AlwaysShowText.Text" xml:space="preserve">
     <value>Фон всегда видимый</value>
   </data>
+  <data name="ShuffleText.Text" xml:space="preserve">
+    <value>Перемешивание фон</value>
+  </data>
 </root>
