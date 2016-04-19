@@ -78,14 +78,21 @@ namespace Com.Aurora.AuWeather.Models
         /// <returns></returns>
         public static float CalcDistance(Location source, Location dest)
         {
-            var lat1 = Tools.DegreesToRadians(source.Latitude);
-            var lat2 = Tools.DegreesToRadians(dest.Latitude);
-            var a = lat1 - lat2;
-            var b = Tools.DegreesToRadians(source.Longitude) - Tools.DegreesToRadians(dest.Longitude);
-            var s = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) +
-             Math.Cos(lat1) * Math.Cos(lat2) * Math.Pow(Math.Sin(b / 2), 2)));
-            s *= EARTH_RADIUS;
-            return (float)Math.Round(s * 10000) / 10000f;
+            try
+            {
+                var lat1 = Tools.DegreesToRadians(source.Latitude);
+                var lat2 = Tools.DegreesToRadians(dest.Latitude);
+                var a = lat1 - lat2;
+                var b = Tools.DegreesToRadians(source.Longitude) - Tools.DegreesToRadians(dest.Longitude);
+                var s = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) +
+                 Math.Cos(lat1) * Math.Cos(lat2) * Math.Pow(Math.Sin(b / 2), 2)));
+                s *= EARTH_RADIUS;
+                return (float)Math.Round(s * 10000) / 10000f;
+            }
+            catch (Exception)
+            {
+                return float.MaxValue;
+            }
         }
 
         public static IOrderedEnumerable<CityInfo> GetNearsetLocation(IEnumerable<CityInfo> cities, Location source)

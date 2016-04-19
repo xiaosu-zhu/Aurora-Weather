@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:З」∠) _
-· Potenziamento di attività di sfondo
-piace · Valorizzazione delle coordinate di posizione
-piace · Valorizzazione dei dati del riquadro</value>
+· Correzioni di bug</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1040,5 +1038,8 @@ piace · Valorizzazione dei dati del riquadro</value>
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>Sfondo di shuffle</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>nuvoloso</value>
   </data>
 </root>

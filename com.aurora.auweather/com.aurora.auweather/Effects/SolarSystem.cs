@@ -57,8 +57,8 @@ namespace Com.Aurora.AuWeather.Effects
             {
                 if (nowFrame < inFrames)
                 {
-                    var progress = (float)nowFrame / (float)inFrames;
-                    progress = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, progress);
+                    var progress = nowFrame / (float)inFrames;
+                    progress = (float)EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, progress);
                     position.X = (float)(xOffset * (progress - 0.5)) / 2;
                     position.Y = (float)(yOffset * (progress - 0.5)) / 2;
                     opcity = 0.8f * progress;

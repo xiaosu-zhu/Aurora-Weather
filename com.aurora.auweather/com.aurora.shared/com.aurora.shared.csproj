@@ -127,6 +127,7 @@
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\PinYinHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
+    <Compile Include="Helpers\SystemInfoHelper.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />

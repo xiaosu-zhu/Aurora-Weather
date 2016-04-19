@@ -17,39 +17,50 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return;
             }
-            uint m;
-            if (uint.TryParse(aqi.city.aqi, out m))
+            try
             {
-                Aqi = m;
+                uint m;
+                if (uint.TryParse(aqi.city.aqi, out m))
+                {
+                    Aqi = m;
+                }
+                if (uint.TryParse(aqi.city.co, out m))
+                {
+                    Co = m;
+                }
+                if (uint.TryParse(aqi.city.no2, out m))
+                {
+                    No2 = m;
+                }
+                if (uint.TryParse(aqi.city.o3, out m))
+                {
+                    O3 = m;
+                }
+                if (uint.TryParse(aqi.city.pm10, out m))
+                {
+                    Pm10 = m;
+                }
+                if (uint.TryParse(aqi.city.pm25, out m))
+                {
+                    Pm25 = m;
+                }
+                if (uint.TryParse(aqi.city.so2, out m))
+                {
+                    So2 = m;
+                }
+
             }
-            if (uint.TryParse(aqi.city.co, out m))
+            catch (Exception)
             {
-                Co = m;
+                
             }
-            if (uint.TryParse(aqi.city.no2, out m))
+            finally
             {
-                No2 = m;
-            }
-            if (uint.TryParse(aqi.city.o3, out m))
-            {
-                O3 = m;
-            }
-            if (uint.TryParse(aqi.city.pm10, out m))
-            {
-                Pm10 = m;
-            }
-            if (uint.TryParse(aqi.city.pm25, out m))
-            {
-                Pm25 = m;
-            }
-            if (uint.TryParse(aqi.city.so2, out m))
-            {
-                So2 = m;
-            }
-            Qlty = ParseQlty(aqi.city.qlty);
-            if (Qlty == AQIQuality.unknown && Aqi != default(uint))
-            {
-                Qlty = CalcQlty(Aqi);
+                Qlty = ParseQlty(aqi.city.qlty);
+                if (Qlty == AQIQuality.unknown && Aqi != default(uint))
+                {
+                    Qlty = CalcQlty(Aqi);
+                }
             }
         }
 

@@ -1126,7 +1126,8 @@
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_&#x000A;· Background task enhancement&#x000A;· Location coordinate enhancement&#x000A;· Tile's data enhancement</value>
+    <value>· _(:з」∠)_
+· Bugs fixes</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1142,5 +1143,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>Shuffle background</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>Overcast</value>
   </data>
 </root>

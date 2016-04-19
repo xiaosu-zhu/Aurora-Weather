@@ -1352,13 +1352,9 @@
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
           <source>· _(:з」∠)_
-· Background task enhancement
-· Location coordinate enhancement
-· Tile's data enhancement</source>
+· Bugs fixes</source>
           <target state="translated">· _(:З」∠) _
-· 백그라운드 작업 향상
-· 위치 좌표 향상
-· 타일의 데이터 향상</target>
+· 버그 수정</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,6 +1375,10 @@
         <trans-unit id="ShuffleText.Text" translate="yes" xml:space="preserve">
           <source>Shuffle background</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">셔플 배경</target>
+        </trans-unit>
+        <trans-unit id="Overcast.Header" translate="yes" xml:space="preserve">
+          <source>Overcast</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">흐린 날씨</target>
         </trans-unit>
       </group>
     </body>

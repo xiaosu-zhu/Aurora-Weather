@@ -49,12 +49,12 @@ namespace Com.Aurora.AuWeather.Effects
                 {
                     nowFrame++;
                     if (nowFrame <= inFrames)
-                        opacity = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)nowFrame / inFrames);
+                        opacity = (float)EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)nowFrame / inFrames);
                 }
                 else if (nowFrame != 0)
                 {
                     nowFrame -= 1;
-                    opacity = (float)EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)nowFrame / inFrames);
+                    opacity = (float)EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, (double)nowFrame / inFrames);
                     if (nowFrame == 0)
                     {
                         canDraw = false;

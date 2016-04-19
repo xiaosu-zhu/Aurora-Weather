@@ -26,21 +26,24 @@ namespace Com.Aurora.AuWeather.Models.Settings
             try
             {
                 var container = RoamingSettingsHelper.GetContainer("Cities");
+                var subContainer = container.GetContainer("Locate");
                 c.CurrentIndex = (int)container.Values["CurrentIndex"];
                 c.EnableLocate = (bool)container.Values["EnableLocate"];
                 CitySettingsModel loc;
 
-                if (container.ReadGroupSettings(out loc))
+                if (subContainer.ReadGroupSettings(out loc))
                 {
-
-                    c.LocatedCity = loc;
-                    if (c.CurrentIndex == -1)
+                    if (loc.City != null && loc.Id != null)
                     {
-                        if (c.EnableLocate == true)
-                            c.LocatedCity.IsCurrent = true;
-                        else
+                        c.LocatedCity = loc;
+                        if (c.CurrentIndex == -1)
                         {
-                            c.CurrentIndex = 0;
+                            if (c.EnableLocate == true)
+                                c.LocatedCity.IsCurrent = true;
+                            else
+                            {
+                                c.CurrentIndex = 0;
+                            }
                         }
                     }
                 }
@@ -80,19 +83,23 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public void Save()
         {
             var container = RoamingSettingsHelper.GetContainer("Cities");
+            var subContainer = container.GetContainer("Locate");
             container.Values["CurrentIndex"] = CurrentIndex;
             container.Values["EnableLocate"] = EnableLocate;
             if (LocatedCity != null)
             {
                 try
                 {
-                    container.WriteGroupSettings(LocatedCity);
+                    subContainer.WriteGroupSettings(LocatedCity);
                 }
                 catch (Exception)
                 {
                 }
             }
-
+            else
+            {
+                container.DeleteContainer("Locate");
+            }
             SaveCities(container);
         }
 

@@ -5,9 +5,12 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
@@ -23,11 +26,26 @@ namespace Com.Aurora.AuWeather
         /// </summary>
         public App()
         {
+            this.UnhandledException += App_UnhandledException;
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+        }
+
+        private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+            {
+                Window.Current.Content = null;
+                var f = new Frame();
+                f.Navigate(typeof(CrashReportPage), e);
+                Window.Current.Content = f;
+
+            }));
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
@@ -48,10 +66,6 @@ namespace Com.Aurora.AuWeather
                 view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
                 view.TitleBar.BackgroundColor = Colors.Transparent;
                 // button
-                //view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-                //view.TitleBar.ButtonForegroundColor = Colors.White;
-                //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
-                //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
                 Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             }

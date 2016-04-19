@@ -16,6 +16,8 @@ using Windows.UI.Popups;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Models;
+using Com.Aurora.Shared.Extensions;
 
 namespace Com.Aurora.AuWeather
 {
@@ -41,23 +43,20 @@ namespace Com.Aurora.AuWeather
 #if DEBUG
                 if (true)
 #else
-                if (b == null || b < 5)
+                if (b == null || b < 6)
 #endif
                 {
-                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 5);
+                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 6);
                     await Task.Delay(1000);
                     await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                     {
-                        VersionText.Text = Windows.ApplicationModel.Package.Current.Id.Version.Major.ToString("0") + "." +
-               Windows.ApplicationModel.Package.Current.Id.Version.Minor.ToString("0") + "." +
-               Windows.ApplicationModel.Package.Current.Id.Version.Build.ToString("0");
+                        VersionText.Text = SystemInfoHelper.GetPackageVer();
                         ShowUpdateDetail();
                     }));
                 }
                 else
                 {
-                    MainPanel.Children.Remove(UpdatePanel);
-                    UpdatePanel = null;
+                    HideUpdateButton_Click(null, null);
                 }
             });
         }
@@ -74,10 +73,21 @@ namespace Com.Aurora.AuWeather
 
         private async void HideUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            HideUpdateDetailAni.Begin();
-            await Task.Delay(2500);
-            MainPanel.Children.Remove(UpdatePanel);
-            UpdatePanel = null;
+            try
+            {
+                HideUpdateDetailAni.Begin();
+                UpdatePanel.ManipulationMode = Windows.UI.Xaml.Input.ManipulationModes.None;
+                UpdatePanel.ManipulationDelta -= UpdatePanel_ManipulationDelta;
+                UpdatePanel.ManipulationCompleted -= UpdatePanel_ManipulationCompleted;
+                await Task.Delay(1000);
+
+                MainPanel.Children.Remove(UpdatePanel);
+                UpdatePanel = null;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         internal void NavigatetoSettings(Type option)
@@ -240,6 +250,10 @@ namespace Com.Aurora.AuWeather
 
         private void PaneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (UpdatePanel != null)
+            {
+                HideUpdateButton_Click(null, null);
+            }
             ApplicationView.GetForCurrentView().ExitFullScreenMode();
             MainFrame.Navigate((PaneList.SelectedItem as PaneOption).Page, this);
             if ((PaneList.SelectedItem as PaneOption).Page == typeof(CitiesPage))
@@ -309,6 +323,14 @@ namespace Com.Aurora.AuWeather
             {
                 (MainFrame.Content as CitiesPage).Refresh();
             }
+        }
+
+        internal void ChangeCondition(WeatherCondition condition, bool isNight, string city, Temperature nowL, Temperature nowH)
+        {
+            NowCondition.SetCondition(condition, isNight);
+            NowCity.Text = city;
+            var p = TempratureandDegreeConverter.Parameter;
+            NowText.Text = condition.GetDisplayName() + " | " + nowL.Actual(p) + '~' + nowH.Actual(p);
         }
 
         internal void CitiesPageGotoEditMode()
@@ -391,6 +413,25 @@ namespace Com.Aurora.AuWeather
             {
                 cancelTimer.Cancel();
                 cancelTimer = null;
+            }
+        }
+
+        private void UpdatePanel_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
+        {
+            e.Handled = true;
+            UpdatePanelTrans.X += e.Delta.Translation.X;
+        }
+
+        private void UpdatePanel_ManipulationCompleted(object sender, Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (UpdatePanelTrans.X >= UpdatePanel.ActualWidth / 5)
+            {
+                HideUpdateButton_Click(null, null);
+            }
+            else
+            {
+                ShowUpdateDetailAni.Begin();
             }
         }
     }

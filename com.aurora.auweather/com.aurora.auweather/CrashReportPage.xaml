@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Com.Aurora.AuWeather.CrashReportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Com.Aurora.AuWeather"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+        <ContentDialog Margin="32" Loaded="CrashDialog_Loaded"
+    x:Name="CrashDialog" IsPrimaryButtonEnabled="True"
+           SecondaryButtonText="Quit" Title="Oops!" PrimaryButtonText="Send">
+            <StackPanel Margin="12">
+                <TextBlock TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}">
+        <Run>Something went wrong!</Run><LineBreak/>
+                    <LineBreak/>
+        <Run>Now you can send crash report to developer, and totally help this app get better...</Run><LineBreak/>
+                </TextBlock>
+                <TextBlock Margin="12" TextWrapping="WrapWholeWords" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
+            <Run>May be these info could help you:</Run>
+                </TextBlock>
+                <TextBlock Margin="12" x:Name="CrashInfo" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
+                </TextBlock>
+                <Button x:Name="WhyButton" Content="What will be sent?" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <ScrollViewer>
+                                <StackPanel Margin="4" MaxWidth="384" Orientation="Vertical">
+                                    <TextBlock Margin="8" Text="We will NEVER upload your personal infomation" Foreground="Red" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                    <TextBlock Margin="12" TextWrapping="WrapWholeWords" Text="In crash reports, we will log current time, current language, and some environment information, 
+then we will send these strings to developer via email directly, we WON't log any of your personal information. If you don't want to send reports, just click quit button and nothing happens." />
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+        </ContentDialog>
+    </Grid>
+</Page>

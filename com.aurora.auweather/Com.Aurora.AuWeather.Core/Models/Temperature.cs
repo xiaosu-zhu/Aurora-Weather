@@ -98,7 +98,7 @@ namespace Com.Aurora.AuWeather.Models
             return t;
         }
 
-        internal string Actual(TemperatureParameter temperatureParameter)
+        public string Actual(TemperatureParameter temperatureParameter)
         {
             switch (temperatureParameter)
             {

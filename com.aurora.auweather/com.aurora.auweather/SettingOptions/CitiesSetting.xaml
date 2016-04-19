@@ -314,7 +314,7 @@
                     <TextBlock x:Uid="LocateOnText" x:Name="LocateOnText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <ToggleSwitch IsEnabled="False" x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{Binding EnablePosition}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
                     <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                    <HyperlinkButton x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" NavigateUri="ms-settings:privacy-location" Margin="8,8,48,8" />
+                    <Button x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Style="{ThemeResource TextBlockButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckLocateAccessButton_Click" Margin="8,8,48,8" />
                 </Grid>
                 <RelativePanel PointerPressed="LocatePanel_PointerPressed" PointerEntered="LocatePanel_PointerEntered" PointerExited="LocatePanel_PointerExited" PointerReleased="LocatePanel_PointerReleased" Margin="8,0,8,0" MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <RelativePanel.Resources>

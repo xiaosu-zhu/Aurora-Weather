@@ -283,6 +283,7 @@ namespace Com.Aurora.AuWeather
             {
                 WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
             }
+            baba.ChangeCondition(Context.Condition, Context.IsNight, Context.City, Context.NowL, Context.NowH);
             await Task.Delay(1000);
             ScrollableRoot.RefreshComplete();
         }
@@ -407,7 +408,7 @@ namespace Com.Aurora.AuWeather
                 verticalOffset = ScrollableRoot.VerticalOffset;
                 var offset = verticalOffset > WEATHERCANVAS_HEADEROFFSET ? WEATHERCANVAS_HEADEROFFSET : verticalOffset;
                 offset /= WEATHERCANVAS_HEADEROFFSET;
-                offset = EasingHelper.CircleEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
+                offset = EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
                 NowTemp.FontSize = FIXED_TITLE_FONTSIZE - 48 * offset;
                 var horizotaloffset = ButtonOffset.Visibility == Visibility.Visible ? 72 : 0;
                 TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - horizotaloffset - 32) * offset / 2;
@@ -718,6 +719,7 @@ namespace Com.Aurora.AuWeather
                 await Task.Delay(160);
             }
             isImmersiveMode = true;
+            MainCanvas.PointerMoved += MainCanvas_PointerMoved;
             ImmersiveWidthIn.From = MainCanvas.ActualWidth;
             ImmersiveWidthIn.To = Root.ActualWidth;
             ImmersiveHeightIn.From = MainCanvas.ActualHeight;
@@ -818,6 +820,7 @@ namespace Com.Aurora.AuWeather
             ImmersiveBackAni.Completed += (s, v) =>
             {
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();
+
             };
             ImmersiveBackAni.Begin();
             isImmersiveMode = false;
@@ -825,7 +828,6 @@ namespace Com.Aurora.AuWeather
             {
                 WeatherCanvas.ImmersiveOut();
             }
-            MainCanvas.PointerMoved += MainCanvas_PointerMoved;
         }
 
         private void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)

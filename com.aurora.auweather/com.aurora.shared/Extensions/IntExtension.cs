@@ -36,14 +36,15 @@ namespace Com.Aurora.Shared.Extensions
 
         public static string DectoHex(this long dec)
         {
-            var sb = new StringBuilder();
-            while (dec != 0)
-            {
-                var k = dec % 16;
-                dec /= 16;
-                sb.Append(HexSet[k]);
-            }
-            return sb.ToString().Reverse();
+            return dec.ToString("X");
+        }
+    }
+
+    public static class IntExtension
+    {
+        public static string ToHexString(this int dec)
+        {
+            return "0x" + dec.ToString("X16");
         }
     }
 }

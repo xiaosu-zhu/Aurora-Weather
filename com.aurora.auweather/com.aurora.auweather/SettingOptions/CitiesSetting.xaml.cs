@@ -283,5 +283,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             PointerOut.Begin();
         }
+
+        private async void CheckLocateAccessButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-location"));
+        }
     }
 }

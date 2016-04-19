@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:З」∠) _
-· Фоновой задачи повышения
-· Расположение координаты повышение
-· Улучшение данных плитки</value>
+· Исправления ошибок</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1040,5 +1038,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>Перемешивание фон</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>облака</value>
   </data>
 </root>

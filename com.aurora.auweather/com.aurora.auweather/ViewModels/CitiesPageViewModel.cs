@@ -107,6 +107,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Cities.RemoveAt(0);
             }
             settings.Cities.LocatedCity = null;
+            settings.Cities.Save();
         }
 
         private async void Update()

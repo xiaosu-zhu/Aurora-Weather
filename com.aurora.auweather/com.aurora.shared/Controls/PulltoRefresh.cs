@@ -250,7 +250,7 @@ namespace Com.Aurora.Shared.Controls
 
         private double GetElasticFactor(double percent)
         {
-            return ElasticFactor * (1 - EasingHelper.CircleEase(EasingMode.EaseOut, percent));
+            return ElasticFactor * (1 - EasingHelper.QuinticEase(EasingMode.EaseOut, percent));
         }
 
 

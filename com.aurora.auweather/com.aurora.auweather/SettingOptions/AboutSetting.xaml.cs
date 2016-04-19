@@ -3,6 +3,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.Shared.Helpers;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -55,9 +56,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void Version_Loaded(object sender, RoutedEventArgs e)
         {
-            (sender as TextBlock).Text = Windows.ApplicationModel.Package.Current.Id.Version.Major.ToString("0") + "." +
-                Windows.ApplicationModel.Package.Current.Id.Version.Minor.ToString("0") + "." +
-                Windows.ApplicationModel.Package.Current.Id.Version.Build.ToString("0");
+            (sender as TextBlock).Text = SystemInfoHelper.GetPackageVer();
         }
     }
 }

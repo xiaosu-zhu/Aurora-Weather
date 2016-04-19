@@ -26,5 +26,23 @@ namespace Com.Aurora.Shared.Helpers
                 default: return 0;
             }
         }
+
+        public static double QuinticEase(EasingMode mode, double percent)
+        {
+            switch (mode)
+            {
+                case EasingMode.EaseOut:
+                    return Math.Pow((percent - 1), 5) + 1;
+                case EasingMode.EaseIn:
+                    return Math.Pow(percent, 5);
+                case EasingMode.EaseInOut:
+                    if (percent <= 0.5)
+                    {
+                        return Math.Pow(percent * 2, 5) / 2;
+                    }
+                    return Math.Pow((percent - 1) * 2, 5) / 2 + 1;
+                default: return 0;
+            }
+        }
     }
 }

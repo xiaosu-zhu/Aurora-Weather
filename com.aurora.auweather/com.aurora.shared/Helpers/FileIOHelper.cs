@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.Shared.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,11 +31,30 @@ namespace Com.Aurora.Shared.Helpers
             }
         }
 
-        public static async Task AppendLogtoCacheAsync(string v)
+        public static async Task AppendLogtoCacheAsync(string LOG, string name = "BGLOG")
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
-            var log = await cache.CreateFileAsync("LOG", CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + v + Environment.NewLine);
+            var log = await cache.CreateFileAsync(name, CreationCollisionOption.OpenIfExists);
+            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":  " + LOG + Environment.NewLine);
+        }
+
+
+        public static async Task<StorageFile> AppendLogtoCacheAsync(Exception exception, string name = "crashLOG")
+        {
+            var cache = ApplicationData.Current.LocalCacheFolder;
+            var log = await cache.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
+            var sb = new StringBuilder(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
+            var info = SystemInfoHelper.GetSystemInfo();
+            foreach (var i in info)
+            {
+                sb.Append(i + Environment.NewLine);
+            }
+            sb.Append("Error Code = " + exception.HResult.ToHexString() + Environment.NewLine);
+            sb.Append("Exception = " + exception.ToString() + Environment.NewLine);
+            sb.Append("StackTrace = " + exception.StackTrace + Environment.NewLine);
+            sb.Append("Source = " + exception.Source + Environment.NewLine);
+            await FileIO.AppendTextAsync(log, sb.ToString());
+            return log;
         }
 
         public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssetsAsync(string path)
@@ -53,6 +73,7 @@ namespace Com.Aurora.Shared.Helpers
             }
 
         }
+
 
         /// <summary>
         /// Convert UTF-8 encoding string to stream, sync

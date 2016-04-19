@@ -141,4 +141,49 @@ namespace Com.Aurora.Shared.Helpers
             return strValue;
         }
     }
+
+    public static class WundergroundRequestHelper
+    {
+        private static readonly string url = "http://api.wunderground.com/api/{0}/geolookup/conditions/forecast/q";
+
+        public static async Task<string> GeoLookup(string key, string country, string city)
+        {
+            var strURL = string.Format(url, key) + '/' + country + '/' + city + ".json";
+            WebRequest request;
+            request = WebRequest.Create(strURL);
+            request.Method = "GET";
+            WebResponse response;
+            response = await request.GetResponseAsync();
+            Stream s;
+            s = response.GetResponseStream();
+            string StrDate = "";
+            string strValue = "";
+            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+            while ((StrDate = Reader.ReadLine()) != null)
+            {
+                strValue += StrDate + "\r\n";
+            }
+            return strValue;
+        }
+
+        public static async Task<string> GetResult(string key, string zmw)
+        {
+            var strURL = string.Format(url, key) + '/' + zmw + ".json";
+            WebRequest request;
+            request = WebRequest.Create(strURL);
+            request.Method = "GET";
+            WebResponse response;
+            response = await request.GetResponseAsync();
+            Stream s;
+            s = response.GetResponseStream();
+            string StrDate = "";
+            string strValue = "";
+            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+            while ((StrDate = Reader.ReadLine()) != null)
+            {
+                strValue += StrDate + "\r\n";
+            }
+            return strValue;
+        }
+    }
 }

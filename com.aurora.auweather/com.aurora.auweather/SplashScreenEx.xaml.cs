@@ -72,8 +72,6 @@ namespace Com.Aurora.AuWeather
         private async void DismissedEventHandler(SplashScreen sender, object args)
         {
             dismissed = true;
-            //var data = await CaiyunRequestHelper.RequestWithKeyAsync(121.6544f, 25.1552f, "Y2FpeXVuIGFuZHJpb2QgYXBp");
-            //Debug.WriteLine(data);
             SetLongTimeTimer();
             var settings = SettingsModel.Get();
             var license = new License.License();
@@ -106,15 +104,34 @@ namespace Com.Aurora.AuWeather
                     }
                 }
             }
+            if (settings.Cities.EnableLocate)
+            {
+                if (settings.Cities.SavedCities.IsNullorEmpty())
+                {
+                    if (settings.Cities.LocatedCity != null)
+                    {
+                        settings.Cities.CurrentIndex = -1;
+                    }
+                    else
+                    {
+                        NavigatetoStart();
+                    }
+                }
 
-            if (settings.Cities.SavedCities == null && settings.Cities.EnableLocate)
-            {
-                settings.Cities.CurrentIndex = -1;
             }
-            else if (settings.Cities.SavedCities == null && !settings.Cities.EnableLocate)
+            else
             {
-                NavigatetoStart();
+                if (settings.Cities.SavedCities.IsNullorEmpty())
+                {
+                    NavigatetoStart();
+                }
+                else if (settings.Cities.CurrentIndex < 0)
+                {
+                    settings.Cities.CurrentIndex = 0;
+                }
             }
+
+
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
                 try
@@ -182,12 +199,23 @@ namespace Com.Aurora.AuWeather
 
                         }));
                     }
+                    else
+                    {
+                        if (!settings.Cities.SavedCities.IsNullorEmpty())
+                            settings.Cities.CurrentIndex = 0;
+                        else
+                        {
+                            SplashComplete(null, AsyncStatus.Completed);
+                        }
+                    }
                 }
                 catch (Exception)
                 {
-                    SplashComplete(null, AsyncStatus.Completed);
+                    NavigatetoStart();
                 }
             }
+
+
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
                 List<CityInfo> citys = null;

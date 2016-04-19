@@ -21,11 +21,11 @@ namespace Com.Aurora.AuWeather.Effects
         private Vector2[] surfacesCenter;
         private Rect[] surfacesBounds;
 
-        private string[] smokeSurfaceName;
+        private const int inFrames = 120;
 
-        private float minDensity;
-        private float maxDensity;
-        private float numParticles;
+        private static readonly string[] smokeSurfaceName = new string[] {"Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
+            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"};
+        private bool inited;
 
         public SmokeParticleSystem()
         {
@@ -34,23 +34,17 @@ namespace Com.Aurora.AuWeather.Effects
 
         protected override void InitializeConstants()
         {
-            smokeSurfaceName = new string[] {"Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
-            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"};
-            minLifetime = 3;
-            maxLifetime = 8;
-            minRotationAngle = -1.5708f;
-            maxRotationAngle = 1.5708f;
+            minRotationAngle = -0.25708f;
+            maxRotationAngle = 0.25708f;
             minRotationSpeed = 0;
-            maxRotationSpeed = 0.05f;
+            maxRotationSpeed = 0.001f;
             minScaleX = 1;
-            maxScaleX = 4;
+            maxScaleX = 1;
             minScaleY = 1;
-            maxScaleY = 4;
-            minDensity = 0f;
-            maxDensity = 0.015f;
+            maxScaleY = 1;
             blendState = CanvasBlend.SourceOver;
-            minInitialSpeed = 50;
-            maxInitialSpeed = 75;
+            minInitialSpeed = 1;
+            maxInitialSpeed = 3;
             minAcceleration = 0;
             maxAcceleration = 0;
         }
@@ -79,23 +73,74 @@ namespace Com.Aurora.AuWeather.Effects
 
         public override void AddParticles(Vector2 size)
         {
+
             if (surfaceLoaded)
             {
+                if (!inited)
+                {
+                    InitSmoke(size);
+                }
                 // 添加的数量
-                numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
-                var actualAdd = (int)numParticles;
-                numParticles %= 1;
+                var actualAdd = Tools.Random.Next(22, 24) - ActiveParticles.Count;
+                if (actualAdd < 0)
+                {
+                    actualAdd = 0;
+                }
                 // 激活这些粒子
                 for (int i = 0; i < actualAdd; i++)
                 {
                     // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                     Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                    var where = new Vector2(-60, Tools.RandomBetween(0, size.Y));
+                    particle.Key = Tools.Random.Next(0, 6);
+                    var where = new Vector2(0 - (float)(surfacesBounds[particle.Key].Width / 2), Tools.RandomBetween(0 - (float)(surfacesBounds[particle.Key].Height / 2), size.Y / 5 - (float)(surfacesBounds[particle.Key].Height / 2)));
                     // 初始化粒子参数
                     InitializeParticle(particle, where);
-                    particle.Key = Tools.Random.Next(0, 6);
+
                     // 将此粒子加入激活粒子队列
                     ActiveParticles.Add(particle);
+                }
+            }
+        }
+
+        private void InitSmoke(Vector2 size)
+        {
+            var add = Tools.Random.Next(22, 24);
+            for (int i = 0; i < add; i++)
+            {
+                // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
+                Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
+                particle.Key = Tools.Random.Next(0, 6);
+                var where = new Vector2(Tools.RandomBetween(0 - (float)(surfacesBounds[particle.Key].Width / 2), size.X + (float)(surfacesBounds[particle.Key].Width / 2)), Tools.RandomBetween((0 - (float)(surfacesBounds[particle.Key].Height / 2)), size.Y / 5 - (float)(surfacesBounds[particle.Key].Height / 2)));
+                // 初始化粒子参数
+                InitializeParticle(particle, where);
+
+                // 将此粒子加入激活粒子队列
+                ActiveParticles.Add(particle);
+            }
+            inited = true;
+        }
+
+        /// <summary>
+        /// 更新粒子物理属性，如果粒子超过边界，将其回收
+        /// </summary>
+        /// <param name="elapsedTime"></param>
+        /// <param name="size"></param>
+        public void Update(float elapsedTime, Vector2 size)
+        {
+            if (surfaceLoaded)
+            {
+                for (int i = ActiveParticles.Count - 1; i >= 0; i--)
+                {
+                    var p = ActiveParticles[i];
+                    if (p.Position.X < (size.X + (surfacesBounds[p.Key].Width) / 2))
+                    {
+                        p.Update(elapsedTime);
+                    }
+                    else
+                    {
+                        ActiveParticles.RemoveAt(i);
+                        FreeParticles.Push(p);
+                    }
                 }
             }
         }
@@ -106,7 +151,7 @@ namespace Com.Aurora.AuWeather.Effects
         /// <returns></returns>
         protected override Vector2 PickDirection()
         {
-            float angle = Tools.RandomBetween(-0.05f, 0.131f);
+            float angle = Tools.RandomBetween(-0.075f, 0.08f);
             return new Vector2((float)Math.Cos(angle),
                                (float)Math.Sin(angle));
         }
@@ -154,7 +199,11 @@ namespace Com.Aurora.AuWeather.Effects
 
                 // NormalizedLifeTime 是一个0到1之间的值，用来表示粒子在生命周期中的进度，这个值接近0或接近1时，
                 // 粒子将会渐隐/渐显，使用它来计算粒子的透明度和缩放
-                float normalizedLifetime = particle.TimeSinceStart / particle.Lifetime;
+                float normalizedLifetime = particle.TimeSinceStart / 4;
+                if (normalizedLifetime > 1)
+                {
+                    normalizedLifetime = 1;
+                }
 
                 // We want particles to fade in and fade out, so we'll calculate alpha to be
                 // (normalizedLifetime) * (1 - normalizedLifetime). This way, when normalizedLifetime
@@ -165,25 +214,23 @@ namespace Com.Aurora.AuWeather.Effects
                 //      .25
                 //
                 // Since we want the maximum alpha to be 1, not .25, we'll scale the entire equation by 4.
-                float alpha = 6 * normalizedLifetime * (1 - normalizedLifetime);
+                float alpha = (float)EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, normalizedLifetime);
 
                 // Make particles grow as they age.
                 // They'll start at 75% of their size, and increase to 100% once they're finished.
-                float scaleX = particle.ScaleX * (.75f + .25f * normalizedLifetime);
-                float scaleY = particle.ScaleY * (.75f + .25f * normalizedLifetime);
 
 #if WINDOWS_UWP
                 if (spriteBatch != null)
                 {
                     spriteBatch.Draw(smokeSurfaces[particle.Key], particle.Position, new Vector4(1, 1, 1, alpha), bitmapCenter,
-                        particle.Rotation, new Vector2(scaleX, scaleY), CanvasSpriteFlip.None);
+                        particle.Rotation, new Vector2(particle.ScaleX, particle.ScaleY), CanvasSpriteFlip.None);
                 }
                 else
 #endif
                 {
                     // Compute a transform matrix for this particle.
                     var transform = Matrix3x2.CreateRotation(particle.Rotation, bitmapCenter) *
-                                    Matrix3x2.CreateScale(scaleX, scaleY, bitmapCenter) *
+                                    Matrix3x2.CreateScale(particle.ScaleX, particle.ScaleY, bitmapCenter) *
                                     Matrix3x2.CreateTranslation(particle.Position - bitmapCenter);
 
                     // Draw the particle.
@@ -199,10 +246,11 @@ namespace Com.Aurora.AuWeather.Effects
                 foreach (var item in smokeSurfaces)
                 {
                     item.Dispose();
-                    
+
                 }
             }
             surfaceLoaded = false;
+            inited = false;
         }
     }
 }

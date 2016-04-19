@@ -590,14 +590,14 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>
                 </Button>
-                <StackPanel x:Name="DateTimePanel" Margin="0,216,0,0" Padding="20,8,20,8" Orientation="Vertical">
+                <StackPanel x:Name="DateTimePanel" Margin="0,216,0,12" Padding="20,8,20,8" Orientation="Vertical">
                     <TextBlock PointerReleased="TextBlock_PointerReleased" Style="{ThemeResource HeaderTextBlockStyle}" >
                         <Run FontSize="20" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <LineBreak />
                         <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
                     </TextBlock>
                 </StackPanel>
-                <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.Above="NowPanel" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:PaneOption">
                             <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
@@ -607,6 +607,15 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <StackPanel x:Name="NowPanel" Orientation="Horizontal" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+                    <Viewbox Stretch="Uniform" Margin="18" VerticalAlignment="Center" Height="32" Width="32">
+                        <Controls:ConditionPath HorizontalAlignment="Stretch" Height="54" Width="54" VerticalAlignment="Stretch" x:Name="NowCondition"  />
+                    </Viewbox>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                        <TextBlock x:Name="NowCity" Style="{ThemeResource BaseTextBlockStyle}" />
+                        <TextBlock x:Name="NowText" Style="{ThemeResource BodyTextBlockStyle}" />
+                    </StackPanel>
+                </StackPanel>
             </RelativePanel>
         </SplitView.Pane>
         <SplitView.Content>
@@ -625,7 +634,7 @@
                 <Grid x:Name="TitleBar" Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
                     <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
                 </Grid>
-                <StackPanel Visibility="Collapsed" Width="288" x:Name="UpdatePanel" RelativePanel.Below="TitleBar" RelativePanel.AlignRightWithPanel="True" Margin="12" Background="{ThemeResource SystemBackgroundHighBrush}" >
+                <StackPanel ManipulationMode="TranslateX" ManipulationDelta="UpdatePanel_ManipulationDelta" ManipulationCompleted="UpdatePanel_ManipulationCompleted" Visibility="Collapsed" Width="288" x:Name="UpdatePanel" RelativePanel.Below="TitleBar" RelativePanel.AlignRightWithPanel="True" Margin="12" Background="{ThemeResource SystemBackgroundHighBrush}" >
                     <StackPanel.RenderTransform>
                         <TranslateTransform x:Name="UpdatePanelTrans" X="320" />
                     </StackPanel.RenderTransform>
@@ -639,6 +648,15 @@
                     </Grid>
                     <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
                     <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource TitleTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button.Flyout>
+                            <Flyout>
+                                <ScrollViewer>
+                                    <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="384" />
+                                </ScrollViewer>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
                 </StackPanel>
             </RelativePanel>
         </SplitView.Content>

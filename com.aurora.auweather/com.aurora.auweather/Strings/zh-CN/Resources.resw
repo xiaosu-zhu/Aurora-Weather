@@ -1127,9 +1127,11 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:з」∠)_
-· 增强后台任务可靠性
-· 修正定位坐标
-· 更正部分磁贴数据</value>
+· 加入更新日志
+· 这个现在可以滑动删除
+· 更新粒子系统纹理
+· 修正多云和阴的情况下，粒子系统的表现
+· 优化闪电生成器算法</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1145,5 +1147,19 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>随机挑选背景</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>阴</value>
+  </data>
+    <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+    <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.1.16046:
+· 加入更新日志
+· 更新提示可以滑动删除
+· 更新粒子系统纹理
+· 优化闪电生成器算法
+  </value>
   </data>
 </root>

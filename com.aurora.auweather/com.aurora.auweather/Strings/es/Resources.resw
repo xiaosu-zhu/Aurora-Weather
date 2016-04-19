@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:З」∠) _
-· Mejora de la tarea de fondo
-· Mejora de coordenadas de ubicación
-· Mejora de los datos de la pieza</value>
+· Correcciones de errores</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1040,5 +1038,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>Fondo aleatorio</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>cubierto</value>
   </data>
 </root>

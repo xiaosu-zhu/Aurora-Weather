@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>·_(:З」∠) _
-·バック グラウンド タスク拡張
-·位置座標強化
-·タイルのデータの拡張</value>
+·バグを修正します。</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1040,5 +1038,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>背景をシャッフル</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>曇り</value>
   </data>
 </root>

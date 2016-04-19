@@ -1208,8 +1208,22 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void Init()
         {
-            ReadSettings();
-            Theme = settings.Preferences.GetTheme();
+            try
+            {
+                ReadSettings();
+                Theme = settings.Preferences.GetTheme();
+            }
+            catch (ArgumentNullException)
+            {
+                var taskkkk = ThreadPool.RunAsync(async (work) =>
+                {
+                    await Task.Delay(1000);
+                    OnFetchDataFailed(this, new FetchDataFailedEventArgs("Cities_null"));
+                    return;
+                });
+                return;
+            }
+
             var task = ThreadPool.RunAsync(async (work) =>
             {
                 try
@@ -1224,6 +1238,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         if (fetchresult == null)
                         {
+                            await Task.Delay(1000);
                             this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                             return;
                         }
@@ -1299,12 +1314,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                     resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
                     if (resstr == null)
                     {
+                        await Task.Delay(1000);
                         this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
                         return;
                     }
                     fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                     if (fetchresult.Status != HeWeatherStatus.ok)
                     {
+                        await Task.Delay(1000);
                         this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                         return;
                     }
@@ -1326,6 +1343,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 catch (Exception)
                 {
+                    await Task.Delay(1000);
                     this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                     return;
                 }
@@ -1685,7 +1703,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void ReadSettings()
         {
-            this.settings = SettingsModel.Get();
+            settings = SettingsModel.Get();
 
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {

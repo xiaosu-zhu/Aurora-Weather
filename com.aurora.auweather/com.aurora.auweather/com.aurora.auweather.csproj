@@ -425,6 +425,9 @@
     <Compile Include="CitiesPage.xaml.cs">
       <DependentUpon>CitiesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CrashReportPage.xaml.cs">
+      <DependentUpon>CrashReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\ConditionPath.xaml.cs">
       <DependentUpon>ConditionPath.xaml</DependentUpon>
     </Compile>
@@ -583,6 +586,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrashReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

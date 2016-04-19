@@ -48,7 +48,7 @@
                     </Grid>
                     <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
                                     <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>

@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:З」∠) _
-· 백그라운드 작업 향상
-· 위치 좌표 향상
-· 타일의 데이터 향상</value>
+· 버그 수정</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1040,5 +1038,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>셔플 배경</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>흐린 날씨</value>
   </data>
 </root>

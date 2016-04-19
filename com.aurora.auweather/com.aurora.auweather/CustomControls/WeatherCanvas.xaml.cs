@@ -199,9 +199,9 @@ namespace Com.Aurora.AuWeather.CustomControls
             if (isThunder || isHaze || isFog || isCloudy)
             {
                 timeToCreate -= elapsedTime;
+                CreateSmoke();
                 if (timeToCreate < 0)
                 {
-                    CreateSmoke();
                     timeToCreate = Tools.RandomBetween(5, 7);
                     if (isThunder)
                     {
@@ -211,7 +211,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             rain.Update(elapsedTime, Canvas.Size.ToVector2());
             star.Update(elapsedTime);
-            smoke.Update(elapsedTime);
+            smoke.Update(elapsedTime, Canvas.Size.ToVector2());
             thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
             if (isSunny)
                 sun.Update();
@@ -219,10 +219,8 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void CreateSmoke()
         {
-            Vector2 size = Canvas.Size.ToVector2();
-            // 在左侧生成
-            var where = new Vector2(size.X * 0.5f, size.Y);
-            smoke.AddParticles(where);
+
+            smoke.AddParticles(Canvas.Size.ToVector2());
         }
 
         private void CreateRain()
@@ -534,7 +532,21 @@ namespace Com.Aurora.AuWeather.CustomControls
                                 });
             }
             isCloudy = true;
-            SetCloudyBG();
+            if (v == 1)
+                SetOvercastBG();
+            else
+            {
+                SetCloudyBG();
+            }
+
+        }
+
+        private void SetOvercastBG()
+        {
+            GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
+            GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
+            BGPointAni0.To = new Point(0.5, 0);
+            BGPointAni1.To = new Point(0.5, 1);
         }
 
         private void SetSunny()
@@ -637,8 +649,8 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void SetCloudyBG()
         {
             GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
-            GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
-            BGPointAni0.To = new Point(0.5, 0);
+            GradientAni1.To = Color.FromArgb(255, 0x40, 0x80, 0xc0);
+            BGPointAni0.To = new Point(0, 0);
             BGPointAni1.To = new Point(0.5, 1);
         }
         #endregion

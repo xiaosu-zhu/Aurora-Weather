@@ -1126,7 +1126,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_&#x000A;· 增强后台任务可靠性&#x000A;· 修正定位坐标&#x000A;· 更正部分磁贴数据</value>
+    <value>· _(:з」∠)_
+· 修复数个 bug</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1142,5 +1143,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>随机挑选背景</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>阴</value>
   </data>
 </root>

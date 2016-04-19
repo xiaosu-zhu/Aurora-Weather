@@ -1022,9 +1022,7 @@
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
     <value>· _(:З」∠) _
-· Hintergrund-Task-Verbesserung
-· Lage-Koordinaten-Verbesserung
-· Fliese-Datenanreicherung</value>
+· Fehler behoben</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1040,5 +1038,8 @@
   </data>
   <data name="ShuffleText.Text" xml:space="preserve">
     <value>Shuffle-Hintergrund</value>
+  </data>
+  <data name="Overcast.Header" xml:space="preserve">
+    <value>Bewölkt</value>
   </data>
 </root>
