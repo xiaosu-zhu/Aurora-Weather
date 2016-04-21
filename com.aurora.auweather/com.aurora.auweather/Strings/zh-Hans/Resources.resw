@@ -1126,8 +1126,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_
-· 修复数个 bug</value>
+    <value>· UI 微调
+· 少量 Bug 修复</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1146,5 +1146,40 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>阴</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· UI 微调
+· 少量 Bug 修复
+      
+1.4.16046:
+· 加入更新日志
+· 更新详情可以滑动删除
+· 更新粒子系统纹理
+· 修正多云和阴下，粒子系统的表现
+· 优化闪电生成器
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>联系我</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>一起来改进应用</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>与我一起来使这个应用更完美!
+
+包括但不限于:
+
+· 改进 UI 布局
+· 提供更好的天气源
+· 绘制/提供图标或背景
+· 改进翻译
+· 改进代码
+                                
+希望能够在这里看到你的一份力!</value>
   </data>
 </root>

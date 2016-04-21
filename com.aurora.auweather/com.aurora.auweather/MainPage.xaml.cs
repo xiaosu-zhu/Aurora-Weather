@@ -39,14 +39,14 @@ namespace Com.Aurora.AuWeather
             license = new License.License();
             var t = ThreadPool.RunAsync(async (w) =>
             {
-                var b = (int?)RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce");
+                var c = Convert.ToUInt64(RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce"));
 #if DEBUG
                 if (true)
 #else
-                if (b == null || b < 6)
+                if (c < SystemInfoHelper.GetPackageVersionNum())
 #endif
                 {
-                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", 6);
+                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", SystemInfoHelper.GetPackageVersionNum());
                     await Task.Delay(1000);
                     await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                     {

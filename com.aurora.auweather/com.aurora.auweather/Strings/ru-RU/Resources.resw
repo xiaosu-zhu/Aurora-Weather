@@ -1021,8 +1021,8 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· Исправления ошибок</value>
+    <value>· Пользовательского интерфейса настройки
+· Исправлена маленькая ошибка</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>облака</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Обновление журнала</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· Пользовательского интерфейса настройки
+· Исправлена маленькая ошибка
+ 
+1.4.16046:
+· Обновление журнала Добавлено
+· Вы можете swipe удалить обновление сведений о
+· Системы частиц поверхности обновление
+· Улучшение системы частиц
+· Повышение генератор молнии
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>Свяжитесь со мной</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Улучшить этот app</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Вместе со мной Сделайте этот app более совершенной! 
+ 
+Включая, но не ограничиваясь:
+
+· Улучшения пользовательского интерфейса и макет
+· Добавить более точных данных поставщиков
+· Ничья/предоставляют более икону погоды или фон
+· Кодирования
+ 
+Спасибо!</value>
   </data>
 </root>

@@ -147,7 +147,7 @@ namespace Com.Aurora.AuWeather
                             {
                                 var _geolocator = new Geolocator();
                                 var pos = await _geolocator.GetGeopositionAsync();
-                                if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
+                                if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
                                 {
                                     var t = ThreadPool.RunAsync(async (w) =>
                                     {
@@ -161,7 +161,7 @@ namespace Com.Aurora.AuWeather
                                         {
                                             CreateTimeOutTimer();
                                             string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
-                                            if (resstr == null || resstr == "")
+                                            if (resstr.IsNullorEmpty())
                                             {
                                                 await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                                                 {
@@ -249,7 +249,7 @@ namespace Com.Aurora.AuWeather
                 {
                     CreateTimeOutTimer();
                     string resstr = await Request.GetRequest(settings, settings.Cities.SavedCities[settings.Cities.CurrentIndex]);
-                    if (resstr == null || resstr == "")
+                    if (resstr.IsNullorEmpty())
                     {
                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                         {

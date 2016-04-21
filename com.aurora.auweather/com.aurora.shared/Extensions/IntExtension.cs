@@ -44,7 +44,7 @@ namespace Com.Aurora.Shared.Extensions
     {
         public static string ToHexString(this int dec)
         {
-            return "0x" + dec.ToString("X16");
+            return "0x" + dec.ToString("X8");
         }
     }
 }

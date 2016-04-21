@@ -687,40 +687,40 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Viento</target>
         </trans-unit>
         <trans-unit id="WindDirection_east" translate="yes" xml:space="preserve">
-          <source>East </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Este </target>
+          <source>E</source>
+          <target state="translated" state-qualifier="mt-suggestion">Este </target>
         </trans-unit>
         <trans-unit id="WindDirection_north" translate="yes" xml:space="preserve">
-          <source>North </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Norte </target>
+          <source>N</source>
+          <target state="translated" state-qualifier="mt-suggestion">Norte </target>
         </trans-unit>
         <trans-unit id="WindDirection_northeast" translate="yes" xml:space="preserve">
-          <source>Northeast</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Noreste</target>
+          <source>NE</source>
+          <target state="translated" state-qualifier="mt-suggestion">Noreste</target>
         </trans-unit>
         <trans-unit id="WindDirection_northwest" translate="yes" xml:space="preserve">
-          <source>Northwest</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Noroeste</target>
+          <source>NW</source>
+          <target state="translated" state-qualifier="mt-suggestion">Noroeste</target>
         </trans-unit>
         <trans-unit id="WindDirection_south" translate="yes" xml:space="preserve">
-          <source>South </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sur </target>
+          <source>S</source>
+          <target state="translated" state-qualifier="mt-suggestion">Sur </target>
         </trans-unit>
         <trans-unit id="WindDirection_southeast" translate="yes" xml:space="preserve">
-          <source>Southeast</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sureste</target>
+          <source>SE</source>
+          <target state="translated" state-qualifier="mt-suggestion">Sureste</target>
         </trans-unit>
         <trans-unit id="WindDirection_southwest" translate="yes" xml:space="preserve">
-          <source>Southwest</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Southwest</target>
+          <source>SW</source>
+          <target state="translated" state-qualifier="mt-suggestion">Southwest</target>
         </trans-unit>
         <trans-unit id="WindDirection_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">...</target>
         </trans-unit>
         <trans-unit id="WindDirection_west" translate="yes" xml:space="preserve">
-          <source>West </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Oeste </target>
+          <source>W</source>
+          <target state="translated" state-qualifier="mt-suggestion">Oeste </target>
         </trans-unit>
         <trans-unit id="WindScale_eight" translate="yes" xml:space="preserve">
           <source>Gale</source>
@@ -1351,10 +1351,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· _(:з」∠)_
-· Bugs fixes</source>
-          <target state="translated">· _(:З」∠) _
-· Correcciones de errores</target>
+          <source>· UI tuning
+· Little bug fixed</source>
+          <target state="translated">· Interfaz de usuario sintonización
+· Pequeño error corregido</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,6 +1379,64 @@
         <trans-unit id="Overcast.Header" translate="yes" xml:space="preserve">
           <source>Overcast</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Cubierto</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogButton.Content" translate="yes" xml:space="preserve">
+          <source>Update Log</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
+          <source>1.4.16047:
+· UI tuning
+· Little bug fixed
+      
+1.4.16046:
+· Update log Added
+· You can swipe to delete the update details
+· Particle System's Surfaces updated
+· Particle System improvement
+· Lightning generator enhancement
+  </source>
+          <target state="translated">1.4.16047:
+· Interfaz de usuario sintonización
+· Pequeño error corregido
+ 
+1.4.16046:
+· Registro de actualización añadido
+· Usted puede deslizar eliminar la actualización de detalles
+· Las superficies del sistema de partículas actualizan
+· Mejora de sistema de partículas
+· Mejora del generador de rayos
+  </target>
+        </trans-unit>
+        <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
+          <source>Contact with me</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">En contacto con conmigo</target>
+        </trans-unit>
+        <trans-unit id="ImproveButton.Content" translate="yes" xml:space="preserve">
+          <source>Improve this app</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mejorar esta aplicación</target>
+        </trans-unit>
+        <trans-unit id="ImproveDetail.Text" translate="yes" xml:space="preserve">
+          <source>Together with me, make this app more perfect!
+
+Including but not limited to:
+
+· UI and layout improvement
+· Add more accurate data providers
+· Draw/provide more weather icon or background
+· Coding
+                                
+Thanks!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Junto a mí, hacer esta aplicación más perfecta! 
+ 
+Incluyendo pero no limitado a:
+
+· Mejora de la interfaz de usuario y el diseño
+· Añadir proveedores de datos más precisos
+· Sorteo/proporcionar icono meteorológico más o fondo
+· Codificación
+ 
+¡ gracias!</target>
         </trans-unit>
       </group>
     </body>

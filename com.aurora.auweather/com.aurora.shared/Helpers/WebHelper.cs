@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 
 namespace Com.Aurora.Shared.Helpers
 {
@@ -184,6 +185,17 @@ namespace Com.Aurora.Shared.Helpers
                 strValue += StrDate + "\r\n";
             }
             return strValue;
+        }
+    }
+
+
+    public static class WebHelper
+    {
+        public static bool IsInternet()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+            return internet;
         }
     }
 }

@@ -1021,8 +1021,8 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· Fehler behoben</value>
+    <value>· UI-tuning
+· Kleine Fehler behoben</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>Bewölkt</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Update-Log</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· UI-tuning
+· Kleine Fehler behoben
+ 
+1.4.16046:
+· Update-Log Added
+· Sie können swipe Informationen über das Update löschen
+· Partikel-System Oberflächen aktualisiert
+· Partikel-System Verbesserung
+· Blitz-Generator-Erweiterung
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>Kontakt mit mir</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Diese app zu verbessern</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Zusammen mit mir machen Sie diese app mehr perfekt! 
+ 
+Einschließlich aber nicht beschränkt auf:
+
+· UI und Layout Verbesserung
+· Genauere Datenanbieter
+Hinzufügen · Unentschieden/bieten weitere Wetter-Icon oder elektronische
+· Codierung
+ 
+Danke!</value>
   </data>
 </root>

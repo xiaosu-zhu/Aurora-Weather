@@ -1,3 +1,7 @@
+// Copyright (c) Aurora Studio. All rights reserved.
+//
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using Com.Aurora.AuWeather.LunarCalendar;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
@@ -778,7 +782,7 @@ namespace Com.Aurora.Shared.Converters
                 return 0;
             }
             var p = value as Pressure;
-            return (p.Atm - 1) * 900;
+            return (p.Atm - 1) * 7200;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

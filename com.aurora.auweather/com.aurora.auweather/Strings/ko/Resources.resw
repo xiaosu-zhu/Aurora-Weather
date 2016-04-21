@@ -1021,8 +1021,8 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· 버그 수정</value>
+    <value>· UI 튜닝
+· 작은 버그 수정</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>흐린 날씨</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>업데이트 로그</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· UI 튜닝
+· 작은 버그 수정
+ 
+1.4.16046:
+· 업데이트 로그 추가
+· 하실 수 있습니다 슬쩍 삭제 업데이트 내용을
+· 입자 시스템의 표면 업데이트
+· 입자 시스템 개선
+· 번개 생성기 향상
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>저 접촉</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>이 응용 프로그램을 개선</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>나, 함께 완벽 하 게 애플 리 케이이 션이 더! 제한 된 
+ 
+포함 한 아니지만:
+
+· UI 및 레이아웃 개선
+· 보다 정확한 데이터 공급자
+를 추가 · 더 많은 날씨 아이콘을 그리기 제공 또는
+· 배경 코딩
+ 
+감사!</value>
   </data>
 </root>

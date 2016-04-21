@@ -1021,8 +1021,8 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· Correzioni di bug</value>
+    <value>· Interfaccia utente aggiuntiva
+· Piccolo bug risolto</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>nuvoloso</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Aggiornamento del registro</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· Interfaccia utente aggiuntiva
+· Piccolo bug fissato
+ 
+1.4.16046:
+· Aggiornamento del registro aggiunto
+piace · Si può strisciare per eliminare l'aggiornamento dettagli
+· Superfici del sistema di particelle aggiornate
+· Miglioramento del sistema di particelle
+piace · Potenziamento di fulmine generatore
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>Contatto con me</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Migliorare questa applicazione</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Insieme a me, rendere questa app più perfetta! 
+ 
+Compreso ma non limitato a:
+
+· Miglioramento dell'interfaccia utente e layout
+piace · Aggiungere provider di dati più accurati
+piace · Sorteggio/fornire più tempo icona o sfondo
+· Codifica
+ 
+grazie!</value>
   </data>
 </root>

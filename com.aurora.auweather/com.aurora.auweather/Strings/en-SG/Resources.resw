@@ -628,31 +628,31 @@
     <value>Windy</value>
   </data>
   <data name="WindDirection_east" xml:space="preserve">
-    <value>East </value>
+    <value>E</value>
   </data>
   <data name="WindDirection_north" xml:space="preserve">
-    <value>North </value>
+    <value>N</value>
   </data>
   <data name="WindDirection_northeast" xml:space="preserve">
-    <value>Northeast</value>
+    <value>NE</value>
   </data>
   <data name="WindDirection_northwest" xml:space="preserve">
-    <value>Northwest</value>
+    <value>NW</value>
   </data>
   <data name="WindDirection_south" xml:space="preserve">
-    <value>South </value>
+    <value>S</value>
   </data>
   <data name="WindDirection_southeast" xml:space="preserve">
-    <value>Southeast</value>
+    <value>SE</value>
   </data>
   <data name="WindDirection_southwest" xml:space="preserve">
-    <value>Southwest</value>
+    <value>SW</value>
   </data>
   <data name="WindDirection_unknown" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="WindDirection_west" xml:space="preserve">
-    <value>West </value>
+    <value>W</value>
   </data>
   <data name="WindScale_eight" xml:space="preserve">
     <value>Gale</value>
@@ -1126,8 +1126,8 @@
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_
-· Bugs fixes</value>
+    <value>· UI tuning
+· Little bug fixed</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1146,5 +1146,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>Overcast</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Update Log</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· UI tuning
+· Little bug fixed
+      
+1.4.16046:
+· Update log Added
+· You can swipe to delete the update details
+· Particle System's Surfaces updated
+· Particle System improvement
+· Lightning generator enhancement
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>Contact with me</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Improve this app</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Together with me, make this app more perfect!
+
+Including but not limited to:
+
+· UI and layout improvement
+· Add more accurate data providers
+· Draw/provide more weather icon or background
+· Coding
+                                
+Thanks!</value>
   </data>
 </root>

@@ -183,6 +183,10 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Header.scale-100.png" />
+    <Content Include="Assets\Header.scale-140.png" />
+    <Content Include="Assets\Header.scale-180.png" />
+    <Content Include="Assets\Header.scale-240.png" />
     <Content Include="Assets\Logos\Caiyun.scale-100.png" />
     <Content Include="Assets\Logos\Caiyun.scale-140.png" />
     <Content Include="Assets\Logos\Caiyun.scale-180.png" />
@@ -269,6 +273,12 @@
     <Content Include="Assets\MoonPhase\moon7.scale-180.png" />
     <Content Include="Assets\MoonPhase\moon7.scale-240.png" />
     <Content Include="Assets\Particle\rain.png" />
+    <Content Include="Assets\Particle\cloud1.png" />
+    <Content Include="Assets\Particle\cloud2.png" />
+    <Content Include="Assets\Particle\cloud3.png" />
+    <Content Include="Assets\Particle\cloud4.png" />
+    <Content Include="Assets\Particle\cloud5.png" />
+    <Content Include="Assets\Particle\cloud6.png" />
     <Content Include="Assets\Particle\smoke1.png" />
     <Content Include="Assets\Particle\smoke2.png" />
     <Content Include="Assets\Particle\smoke3.png" />

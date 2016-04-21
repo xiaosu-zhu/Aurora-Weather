@@ -259,11 +259,11 @@
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="UseWeekDay" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="UseWeekDay" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="Showtt" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="Showtt" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
                     </StackPanel>
@@ -275,16 +275,16 @@
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableEveryDay" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableEveryDay" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableAlarm" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableAlarm" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
-                                <ToggleSwitch x:Name="EnablePulltoRefresh" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnablePulltoRefresh" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
 
@@ -312,7 +312,7 @@
                             <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
-                                <ToggleSwitch x:Name="ThemeasRiseSet" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="ThemeasRiseSet" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="StartTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
@@ -330,24 +330,24 @@
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="AlwaysShowText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="AlwaysShowBackground" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="AlwaysShowBackground" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="FullScreenText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableFullScreen" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableFullScreen" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableSecond" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableSecond" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="ShowImmersivett" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="ShowImmersivett" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
                                 <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
-                                <ToggleSwitch x:Name="DisableDynamic" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
                         <TextBlock x:Uid="LockText" Visibility="Collapsed" x:Name="LockText" Margin="8" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />

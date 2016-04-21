@@ -49,31 +49,34 @@ namespace Com.Aurora.AuWeather.Background
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
             string resstr = await Request.GetRequest(settings, currentCity);
-            var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
-            var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
-            var current = DateTimeHelper.ReviseLoc(utcOffset);
-            Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
-            if (settings.Preferences.EnableEveryDay)
+            if (!resstr.IsNullorEmpty())
             {
-                var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
+                var current = DateTimeHelper.ReviseLoc(utcOffset);
+                Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
+                if (settings.Preferences.EnableEveryDay)
+                {
+                    var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
+                    Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                }
+                if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
+                {
+                    Sender.CreateBadge(Generator.GenerateAlertBadge());
+                    Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity));
+                }
+                await settings.Cities.SaveDataAsync(currentCity.Id, resstr, settings.Preferences.DataSource);
+                currentCity.Update();
+                if (settings.Cities.CurrentIndex != -1)
+                {
+                    settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCity;
+                }
+                else
+                {
+                    settings.Cities.LocatedCity = currentCity;
+                }
+                settings.Cities.Save();
             }
-            if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
-            {
-                Sender.CreateBadge(Generator.GenerateAlertBadge());
-                Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity));
-            }
-            await settings.Cities.SaveDataAsync(currentCity.Id, resstr, settings.Preferences.DataSource);
-            currentCity.Update();
-            if (settings.Cities.CurrentIndex != -1)
-            {
-                settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCity;
-            }
-            else
-            {
-                settings.Cities.LocatedCity = currentCity;
-            }
-            settings.Cities.Save();
         }
 
         public void InstantUpdateSecondary(TileContent content)

@@ -532,7 +532,7 @@
     <value>北東</value>
   </data>
   <data name="WindDirection_northwest" xml:space="preserve">
-    <value>エスニック模様 1</value>
+    <value>北西</value>
   </data>
   <data name="WindDirection_south" xml:space="preserve">
     <value>南</value>
@@ -541,7 +541,7 @@
     <value>東南</value>
   </data>
   <data name="WindDirection_southwest" xml:space="preserve">
-    <value>エスニック模様 2</value>
+    <value>南西</value>
   </data>
   <data name="WindDirection_unknown" xml:space="preserve">
     <value>.</value>
@@ -1021,8 +1021,8 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·_(:З」∠) _
-·バグを修正します。</value>
+    <value>·UI のチューニング
+·小さなバグを修正</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>曇り</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>更新ログ</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+·UI のチューニング
+·小さなバグ修正
+
+1.4.16046:
+·更新ログ追加
+·スワイプすることができます詳細
+· 更新プログラムを削除するのにはパーティクル システムの表面更新
+·パーティクル システム改善
+·雷ジェネレーター強化
+ </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>私との接触します。</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>このアプリを改善します。</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>一緒より完璧なこのアプリを作る!限定
+
+など:
+
+·UI とレイアウト改善
+·正確なデータ プロバイダー
+を追加 ·天気アイコンの描画/提供またはバック グラウンドの
+·コーディング
+
+ありがとう!</value>
   </data>
 </root>

@@ -1021,8 +1021,8 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· Correcciones de errores</value>
+    <value>· Interfaz de usuario sintonización
+· Pequeño error corregido</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>cubierto</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Actualizar registro</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· Interfaz de usuario sintonización
+· Pequeño error corregido
+ 
+1.4.16046:
+· Registro de actualización añadido
+· Usted puede deslizar eliminar la actualización de detalles
+· Las superficies del sistema de partículas actualizan
+· Mejora de sistema de partículas
+· Mejora del generador de rayos
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>En contacto con conmigo</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Mejorar esta aplicación</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Junto a mí, hacer esta aplicación más perfecta! 
+ 
+Incluyendo pero no limitado a:
+
+· Mejora de la interfaz de usuario y el diseño
+· Añadir proveedores de datos más precisos
+· Sorteo/proporcionar icono meteorológico más o fondo
+· Codificación
+ 
+¡ gracias!</value>
   </data>
 </root>

@@ -1021,8 +1021,8 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:З」∠) _
-· Corrections de bugs</value>
+    <value>· Interface utilisateur tuning
+· Petite corrigé d'un bug</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1041,5 +1041,39 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>couche nuageuse</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>Mise à jour Log</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047 :
+· Interface utilisateur tuning
+· Petite corrigé d'un bug
+ 
+1.4.16046 :
+· Journal de mise à jour ajoutée
+· Vous pouvez faire glisser pour supprimer la mise à jour en détail
+· Surfaces du système de particules mise à jour de
+· Amélioration du système de particules
+· Amélioration de générateur de foudre
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>En contact avec moi</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>Améliorer ce soft</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>Avec moi, faire cette application plus parfait ! 
+ 
+y compris mais non limité aux :
+
+· Amélioration de l'interface utilisateur et la disposition
+· Ajouter des fournisseurs de données plus précis
+· Tirage au sort/fournir plus l'icône météo ou fond
+· Codage
+ 
+Merci !</value>
   </data>
 </root>

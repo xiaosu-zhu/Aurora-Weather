@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.System.Profile;
@@ -35,6 +36,11 @@ namespace Com.Aurora.Shared.Helpers
             return Package.Current.Id.Version.Major.ToString("0") + "." +
                Package.Current.Id.Version.Minor.ToString("0") + "." +
                Package.Current.Id.Version.Build.ToString("0");
+        }
+
+        public static ulong GetPackageVersionNum()
+        {
+            return ((ulong)Package.Current.Id.Version.Major << 32) + ((ulong)Package.Current.Id.Version.Minor << 16) + Package.Current.Id.Version.Build;
         }
     }
 }

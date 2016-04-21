@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 using System;
 using Windows.System.Threading;
+using System.Threading.Tasks;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -413,7 +414,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
-                    await smoke.LoadSurfaceAsync(Canvas);
+                    await smoke.LoadSurfaceAsync(Canvas, 2);
                 });
             }
             isHaze = true;
@@ -426,7 +427,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
-                    await smoke.LoadSurfaceAsync(Canvas);
+                    await smoke.LoadSurfaceAsync(Canvas, 2);
                 });
             }
             isFog = true;
@@ -455,7 +456,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                     rainLevel = RainLevel.lSnow;
                     break;
             }
-            SetCloudyBG();
+            SetOvercastBG();
             rain.ChangeConstants(rainLevel);
         }
 
@@ -487,7 +488,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                     rainLevel = RainLevel.extreme;
                     break;
             }
-            SetCloudyBG();
+            SetOvercastBG();
             rain.ChangeConstants(rainLevel);
         }
 
@@ -503,7 +504,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = true;
             isThunder = true;
             rainLevel = RainLevel.shower;
-            SetCloudyBG();
+            SetOvercastBG();
             rain.ChangeConstants(rainLevel);
         }
 
@@ -518,17 +519,17 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             isRain = true;
             rainLevel = RainLevel.shower;
-            SetCloudyBG();
+            SetOvercastBG();
             rain.ChangeConstants(rainLevel);
         }
 
-        private void SetCloudy(int v)
+        private void SetCloudy(byte v)
         {
             if (EnableDynamic)
             {
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                                 {
-                                    await smoke.LoadSurfaceAsync(Canvas);
+                                    await smoke.LoadSurfaceAsync(Canvas, v);
                                 });
             }
             isCloudy = true;
@@ -545,8 +546,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
             GradientAni1.To = Color.FromArgb(255, 0x80, 0x80, 0x80);
-            BGPointAni0.To = new Point(0.5, 0);
-            BGPointAni1.To = new Point(0.5, 1);
+            ResetGradientPoint();
         }
 
         private void SetSunny()
@@ -583,8 +583,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0, 0, 0);
                     GradientAni1.To = Color.FromArgb(255, 0x24, 0x08, 0);
-                    BGPointAni0.To = new Point(0.5, 0);
-                    BGPointAni1.To = new Point(0.5, 1);
+                    ResetGradientPoint();
                 }
                 else
                 {
@@ -600,8 +599,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x37, 0x4e, 0x80);
                     GradientAni1.To = Color.FromArgb(255, 0x17, 0x2e, 0x44);
-                    BGPointAni0.To = new Point(0.5, 0);
-                    BGPointAni1.To = new Point(0.5, 1);
+                    ResetGradientPoint();
                 }
                 else
                 {
@@ -620,37 +618,36 @@ namespace Com.Aurora.AuWeather.CustomControls
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x0d, 0x00, 0x00);
                     GradientAni1.To = Color.FromArgb(255, 0x2a, 0x00, 0x00);
-                    BGPointAni0.To = new Point(0.5, 0);
-                    BGPointAni1.To = new Point(0.5, 1);
                 }
                 else
                 {
                     GradientAni0.To = Color.FromArgb(255, 0x50, 0x50, 0x50);
                     GradientAni1.To = Color.FromArgb(255, 0x20, 0x20, 0x20);
-                    BGPointAni0.To = new Point(0.5, 0);
-                    BGPointAni1.To = new Point(0.5, 1);
                 }
             }
             else
             {
                 GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
                 GradientAni1.To = Color.FromArgb(255, 0x5a, 0x50, 0x50);
-                BGPointAni0.To = new Point(0.5, 0);
-                BGPointAni1.To = new Point(0.5, 1);
             }
+            ResetGradientPoint();
         }
         private void SetHazeBG()
         {
             GradientAni0.To = Color.FromArgb(255, 0x94, 0x8b, 0x62);
             GradientAni1.To = Color.FromArgb(255, 0x70, 0x5a, 0x41);
-            BGPointAni0.To = new Point(0.5, 0);
-            BGPointAni1.To = new Point(0.5, 1);
+            ResetGradientPoint();
         }
         private void SetCloudyBG()
         {
             GradientAni0.To = Color.FromArgb(255, 0xa0, 0xa0, 0xa0);
             GradientAni1.To = Color.FromArgb(255, 0x40, 0x80, 0xc0);
-            BGPointAni0.To = new Point(0, 0);
+            ResetGradientPoint();
+        }
+
+        private void ResetGradientPoint()
+        {
+            BGPointAni0.To = new Point(0.5, 0);
             BGPointAni1.To = new Point(0.5, 1);
         }
         #endregion
@@ -676,6 +673,10 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 stopUpdate();
             }
+            if (EnableDynamic && (condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast))
+            {
+                smoke.ImmersiveIn();
+            }
         }
 
         internal void ImmersiveOut()
@@ -689,6 +690,15 @@ namespace Com.Aurora.AuWeather.CustomControls
             if (!EnableBGBlur)
             {
                 stopUpdate();
+            }
+            if (EnableDynamic && (condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast))
+            {
+                var t = Canvas.RunOnGameLoopThreadAsync(async () =>
+                 {
+                     await Task.Delay(1280);
+                     smoke.ImmersiveOut();
+                 });
+
             }
         }
     }

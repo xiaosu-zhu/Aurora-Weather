@@ -235,7 +235,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Margin="16" x:Uid="Welcome2Text" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                         <Image Grid.Row="1" Margin="64" Source="/Assets/Start/welcome2.png" MaxWidth="240" MaxHeight="240" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <TextBlock Margin="16" x:Uid="Welcome2Detail" TextWrapping="Wrap" Grid.Row="2" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <TextBlock Margin="16" x:Uid="Welcome2Detail" TextWrapping="Wrap" Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" />
                     </Grid>
                 </FlipViewItem>
                 <FlipViewItem>

@@ -687,40 +687,40 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">바람</target>
         </trans-unit>
         <trans-unit id="WindDirection_east" translate="yes" xml:space="preserve">
-          <source>East </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">이스트 </target>
+          <source>E</source>
+          <target state="translated" state-qualifier="mt-suggestion">이스트 </target>
         </trans-unit>
         <trans-unit id="WindDirection_north" translate="yes" xml:space="preserve">
-          <source>North </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">북 </target>
+          <source>N</source>
+          <target state="translated" state-qualifier="mt-suggestion">북 </target>
         </trans-unit>
         <trans-unit id="WindDirection_northeast" translate="yes" xml:space="preserve">
-          <source>Northeast</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">북동부</target>
+          <source>NE</source>
+          <target state="translated" state-qualifier="tm-suggestion">북동부</target>
         </trans-unit>
         <trans-unit id="WindDirection_northwest" translate="yes" xml:space="preserve">
-          <source>Northwest</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">북서부</target>
+          <source>NW</source>
+          <target state="translated" state-qualifier="tm-suggestion">북서부</target>
         </trans-unit>
         <trans-unit id="WindDirection_south" translate="yes" xml:space="preserve">
-          <source>South </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">남쪽 </target>
+          <source>S</source>
+          <target state="translated" state-qualifier="mt-suggestion">남쪽 </target>
         </trans-unit>
         <trans-unit id="WindDirection_southeast" translate="yes" xml:space="preserve">
-          <source>Southeast</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">남동부</target>
+          <source>SE</source>
+          <target state="translated" state-qualifier="tm-suggestion">남동부</target>
         </trans-unit>
         <trans-unit id="WindDirection_southwest" translate="yes" xml:space="preserve">
-          <source>Southwest</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">남서부</target>
+          <source>SW</source>
+          <target state="translated" state-qualifier="tm-suggestion">남서부</target>
         </trans-unit>
         <trans-unit id="WindDirection_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">...</target>
         </trans-unit>
         <trans-unit id="WindDirection_west" translate="yes" xml:space="preserve">
-          <source>West </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">웨스트 </target>
+          <source>W</source>
+          <target state="translated" state-qualifier="mt-suggestion">웨스트 </target>
         </trans-unit>
         <trans-unit id="WindScale_eight" translate="yes" xml:space="preserve">
           <source>Gale</source>
@@ -1351,10 +1351,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">전체 화면</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· _(:з」∠)_
-· Bugs fixes</source>
-          <target state="translated">· _(:З」∠) _
-· 버그 수정</target>
+          <source>· UI tuning
+· Little bug fixed</source>
+          <target state="translated">· UI 튜닝
+· 작은 버그 수정</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,6 +1379,64 @@
         <trans-unit id="Overcast.Header" translate="yes" xml:space="preserve">
           <source>Overcast</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">흐림</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogButton.Content" translate="yes" xml:space="preserve">
+          <source>Update Log</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">업데이트 로그</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
+          <source>1.4.16047:
+· UI tuning
+· Little bug fixed
+      
+1.4.16046:
+· Update log Added
+· You can swipe to delete the update details
+· Particle System's Surfaces updated
+· Particle System improvement
+· Lightning generator enhancement
+  </source>
+          <target state="translated">1.4.16047:
+· UI 튜닝
+· 작은 버그 수정
+ 
+1.4.16046:
+· 업데이트 로그 추가
+· 하실 수 있습니다 슬쩍 삭제 업데이트 내용을
+· 입자 시스템의 표면 업데이트
+· 입자 시스템 개선
+· 번개 생성기 향상
+  </target>
+        </trans-unit>
+        <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
+          <source>Contact with me</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">저 접촉</target>
+        </trans-unit>
+        <trans-unit id="ImproveButton.Content" translate="yes" xml:space="preserve">
+          <source>Improve this app</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">이 응용 프로그램을 개선</target>
+        </trans-unit>
+        <trans-unit id="ImproveDetail.Text" translate="yes" xml:space="preserve">
+          <source>Together with me, make this app more perfect!
+
+Including but not limited to:
+
+· UI and layout improvement
+· Add more accurate data providers
+· Draw/provide more weather icon or background
+· Coding
+                                
+Thanks!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">나, 함께 완벽 하 게 애플 리 케이이 션이 더! 제한 된 
+ 
+포함 한 아니지만:
+
+· UI 및 레이아웃 개선
+· 보다 정확한 데이터 공급자
+를 추가 · 더 많은 날씨 아이콘을 그리기 제공 또는
+· 배경 코딩
+ 
+감사!</target>
         </trans-unit>
       </group>
     </body>

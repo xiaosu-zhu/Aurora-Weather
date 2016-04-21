@@ -409,7 +409,7 @@
     <value>天氣與提醒</value>
   </data>
   <data name="TomorrowText.Text" xml:space="preserve">
-    <value>明日|明天|未來的一天</value>
+    <value>明日</value>
   </data>
   <data name="TravelText.Text" xml:space="preserve">
     <value>旅行指數:  </value>
@@ -1126,8 +1126,8 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· _(:з」∠)_
-· 修復數個 bug</value>
+    <value>· UI 微調
+· 少量 Bug 修復</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1146,5 +1146,40 @@
   </data>
   <data name="Overcast.Header" xml:space="preserve">
     <value>陰</value>
+  </data>
+  <data name="UpdateLogButton.Content" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+  <data name="UpdateLogText.Text" xml:space="preserve">
+    <value>1.4.16047:
+· UI 微調
+· 少量 Bug 修復
+      
+1.4.16046:
+· 加入更新日志
+· 更新詳情可以滑動刪除
+· 更新粒子系統紋理
+· 修正多雲和陰下，粒子系統的表現
+· 優化閃電生成器
+  </value>
+  </data>
+  <data name="ContactButton.Content" xml:space="preserve">
+    <value>聯繫我</value>
+  </data>
+  <data name="ImproveButton.Content" xml:space="preserve">
+    <value>一起來改進應用</value>
+  </data>
+  <data name="ImproveDetail.Text" xml:space="preserve">
+    <value>與我一起來使這個應用更完美!
+
+包括但不限于:
+
+· 改進 UI
+· 提供更好的天氣源
+· 繪製/提供圖標或背景
+· 改進翻譯
+· 改進代碼
+                                
+希望能夠在這裏看到你的一份力!</value>
   </data>
 </root>

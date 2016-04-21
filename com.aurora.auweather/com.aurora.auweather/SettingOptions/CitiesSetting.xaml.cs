@@ -83,7 +83,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                         _geolocator.StatusChanged += OnStatusChanged;
                         ShowRefreshing();
                         pos = await _geolocator.GetGeopositionAsync();
-                        if (_geolocator.LocationStatus != (PositionStatus.NoData | PositionStatus.NotAvailable | PositionStatus.Disabled))
+                        if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
                             UpdatePosition(pos);
                         else
                         {

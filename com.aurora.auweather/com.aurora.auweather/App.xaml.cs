@@ -58,7 +58,7 @@ namespace Com.Aurora.AuWeather
                     StatusBar statusBar = StatusBar.GetForCurrentView();
                     statusBar.ForegroundColor = Colors.White;
                     ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
+                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                 }
                 /* 桌面设置 */
                 var view = ApplicationView.GetForCurrentView();
@@ -67,7 +67,7 @@ namespace Com.Aurora.AuWeather
                 view.TitleBar.BackgroundColor = Colors.Transparent;
                 // button
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-                Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             }
             if (args.Kind == ActivationKind.ToastNotification)
             {
@@ -111,8 +111,7 @@ namespace Com.Aurora.AuWeather
                     }
                 }
             }
-            // Ensure the current window is active
-            Window.Current.Activate();
+
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -143,8 +142,10 @@ namespace Com.Aurora.AuWeather
                 //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
                 //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
                 view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-                Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             }
+            // Ensure the current window is active
+            Window.Current.Activate();
         }
 
         /// <summary>

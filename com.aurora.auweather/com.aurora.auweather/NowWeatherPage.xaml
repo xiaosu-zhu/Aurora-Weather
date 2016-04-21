@@ -889,11 +889,11 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock x:Uid="BlurBGText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                             </StackPanel>
                             <Button Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource PivotTitleContentControlStyle}" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
                                 <Button.Content>
@@ -923,7 +923,7 @@
                     <SymbolIcon Symbol="Refresh" />
                 </Button.Content>
             </Button>
-            <Button x:Name="AlarmButton" Opacity="0" Visibility="{Binding HadNoAlarms,Converter={StaticResource BooltoVisibilityConverter}}" Margin="16" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+            <Button x:Name="AlarmButton" Opacity="0" Visibility="{Binding HadNoAlarms,Converter={StaticResource BooltoVisibilityConverter}}" Margin="64" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
                 <Button.Flyout>
                     <Flyout>
                         <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -960,7 +960,7 @@
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverterWithDegree}}"/>
                 </TextBlock>
-                <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" FontWeight="ExtraLight" Height="48" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" FontWeight="ExtraLight" Height="40" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                 <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="MoreText" />
@@ -973,11 +973,11 @@
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <TextBlock x:Uid="DynamicText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ToggleSwitch IsOn="{x:Bind Context.EnableDynamic,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <TextBlock x:Uid="BlurBGText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>
                         </Flyout>
@@ -1435,7 +1435,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="240" >
                             <TextBlock x:Uid="SunProgressText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,64,0,64">
+                            <Viewbox Stretch="Uniform" x:Name="SunProgressBox" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,64,0,64">
                                 <Grid Height="320" Width="640" >
                                     <Ellipse Height="512" Width="512" VerticalAlignment="Top" Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="8">
                                         <Ellipse.Clip>
@@ -1459,15 +1459,9 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding SunRise, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
-                                <TextBlock.RenderTransform>
-                                    <TranslateTransform X="{Binding IsNight, Converter={StaticResource SunRiseTextAlignMentConverter}}" />
-                                </TextBlock.RenderTransform>
+                            <TextBlock Text="{Binding SunRiseText, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="8,0,8,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWith="SunProgressBox" >
                             </TextBlock>
-                            <TextBlock Text="{Binding SunSet, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
-                                <TextBlock.RenderTransform>
-                                    <TranslateTransform X="{Binding IsNight, Converter={StaticResource SunSetTextAlignMentConverter}}" />
-                                </TextBlock.RenderTransform>
+                            <TextBlock Text="{Binding SunSetText, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWith="SunProgressBox" >
                             </TextBlock>
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="240" >

@@ -584,11 +584,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public TimeSpan SunRise
+        public TimeSpan SunRiseText
         {
             get
             {
-                return sunRise;
+                return IsNight ? sunSet : sunRise;
             }
 
             set
@@ -597,11 +597,11 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public TimeSpan SunSet
+        public TimeSpan SunSetText
         {
             get
             {
-                return sunSet;
+                return IsNight ? sunRise : sunSet;
             }
 
             set
@@ -620,6 +620,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref isNight, value);
+                this.RaisePropertyChanged("SunRiseText");
+                this.RaisePropertyChanged("SunSetText");
             }
         }
 
@@ -1231,12 +1233,16 @@ namespace Com.Aurora.AuWeather.ViewModels
                     storedDatas = default(KeyValuePair<string, string>);
                     source = settings.Preferences.DataSource;
                     await FetchDataAsync();
-                    if (fetchresult == null)
+                    if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
+                    {
+                        await Task.Delay(1000);
+                        this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                         return;
+                    }
                     utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
                     var t = ThreadPool.RunAsync(async (w) =>
                     {
-                        if (fetchresult == null)
+                        if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
                         {
                             await Task.Delay(1000);
                             this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
@@ -1312,7 +1318,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         return;
                     }
                     resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
-                    if (resstr == null)
+                    if (resstr.IsNullorEmpty())
                     {
                         await Task.Delay(1000);
                         this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
@@ -1574,9 +1580,9 @@ namespace Com.Aurora.AuWeather.ViewModels
                 nowHourIndex = 0;
             }
 
-            SunRise = fetchresult.DailyForecast[todayIndex].SunRise;
-            SunSet = fetchresult.DailyForecast[todayIndex].SunSet;
-            IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
+            SunRiseText = fetchresult.DailyForecast[todayIndex].SunRise;
+            SunSetText = fetchresult.DailyForecast[todayIndex].SunSet;
+            IsNight = CalculateIsNight(CurrentTime, sunRise, sunSet);
         }
 
         public void RefreshCurrentTime()
@@ -1613,14 +1619,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                         if (CurrentTime.Second == 0)
                         {
                             var m = isNight;
-                            IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
+                            IsNight = CalculateIsNight(CurrentTime, sunRise, sunSet);
                             OnTimeUpdated(m ^ IsNight);
                         }
                     }
                     else
                     {
                         var m = isNight;
-                        IsNight = CalculateIsNight(CurrentTime, SunRise, SunSet);
+                        IsNight = CalculateIsNight(CurrentTime, sunRise, sunSet);
                         OnTimeUpdated(m ^ IsNight);
                     }
                 }));

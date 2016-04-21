@@ -533,7 +533,7 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <SplitView x:Name="Root" DisplayMode="Overlay" OpenPaneLength="0" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemBackgroundHighBrush}">
+    <SplitView x:Name="Root" DisplayMode="Overlay" OpenPaneLength="0" Style="{ThemeResource NormalSplitView}" PaneBackground="{ThemeResource SystemControlForegroundHighBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">

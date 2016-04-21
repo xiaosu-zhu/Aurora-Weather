@@ -46,12 +46,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.SunnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -79,12 +79,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.StarryShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -112,12 +112,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.CloudyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -145,12 +145,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.OvercastShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="OvercastList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="OvercastList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -178,12 +178,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.RainnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -211,12 +211,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.SnowyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -244,12 +244,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.FoggyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -277,12 +277,12 @@
                         <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.HazeShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">
+                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
                                 <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16" Source="{Binding Thumbnail}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="24" FontSize="12" Text="{Binding Title}"/>
+                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

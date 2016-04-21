@@ -22,10 +22,16 @@ namespace Com.Aurora.AuWeather.Effects
         private Rect[] surfacesBounds;
 
         private const int inFrames = 120;
+        private byte flag = 0;
+        private bool isImmersive = false;
 
-        private static readonly string[] smokeSurfaceName = new string[] {"Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
-            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"};
+        private static readonly string[][] smokeSurfaceName = {new string[] {"Assets/Particle/cloud1.png", "Assets/Particle/cloud2.png",
+            "Assets/Particle/cloud3.png","Assets/Particle/cloud4.png","Assets/Particle/cloud5.png","Assets/Particle/cloud6.png"} ,new string[] { "Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
+            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"},new string[] { "Assets/Particle/smoke1.png", "Assets/Particle/smoke2.png",
+            "Assets/Particle/smoke3.png","Assets/Particle/smoke4.png","Assets/Particle/smoke5.png","Assets/Particle/smoke6.png"} };
         private bool inited;
+        private float minDensity = 0f;
+        private float maxDensity = 0f;
 
         public SmokeParticleSystem()
         {
@@ -34,8 +40,8 @@ namespace Com.Aurora.AuWeather.Effects
 
         protected override void InitializeConstants()
         {
-            minRotationAngle = -0.25708f;
-            maxRotationAngle = 0.25708f;
+            minRotationAngle = -0.025708f;
+            maxRotationAngle = 0.025708f;
             minRotationSpeed = 0;
             maxRotationSpeed = 0.001f;
             minScaleX = 1;
@@ -47,16 +53,92 @@ namespace Com.Aurora.AuWeather.Effects
             maxInitialSpeed = 3;
             minAcceleration = 0;
             maxAcceleration = 0;
+            minDensity = 0.02f;
+            maxDensity = 0.02625f;
         }
 
-        public override async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator)
+        public void ChangeCondition()
         {
-            if (surfaceLoaded)
+            if (flag == 0)
+            {
+                ChangetoCloudy();
+            }
+            if (flag == 1)
+            {
+                ChangetoOvercast();
+            }
+            if (flag == 2)
+            {
+                ChangetoFog();
+            }
+        }
+
+        private void ChangetoFog()
+        {
+            minRotationAngle = -0.023708f;
+            maxRotationAngle = 0.023708f;
+            minRotationSpeed = 0;
+            maxRotationSpeed = 0.0015f;
+            minScaleX = 1;
+            maxScaleX = 1;
+            minScaleY = 1;
+            maxScaleY = 1;
+            blendState = CanvasBlend.SourceOver;
+            minInitialSpeed = 1;
+            maxInitialSpeed = 3.5f;
+            minAcceleration = 0;
+            maxAcceleration = 0;
+            minDensity = 0.035f;
+            maxDensity = 0.04625f;
+        }
+
+        private void ChangetoOvercast()
+        {
+            minRotationAngle = -0.023708f;
+            maxRotationAngle = 0.023708f;
+            minRotationSpeed = 0;
+            maxRotationSpeed = 0.0015f;
+            minScaleX = 1;
+            maxScaleX = 1;
+            minScaleY = 1;
+            maxScaleY = 1;
+            blendState = CanvasBlend.SourceOver;
+            minInitialSpeed = 1;
+            maxInitialSpeed = 3.5f;
+            minAcceleration = 0;
+            maxAcceleration = 0;
+            minDensity = 0.035f;
+            maxDensity = 0.04625f;
+        }
+
+        private void ChangetoCloudy()
+        {
+            minRotationAngle = -0.025708f;
+            maxRotationAngle = 0.025708f;
+            minRotationSpeed = 0;
+            maxRotationSpeed = 0.001f;
+            minScaleX = 1;
+            maxScaleX = 1;
+            minScaleY = 1;
+            maxScaleY = 1;
+            blendState = CanvasBlend.SourceOver;
+            minInitialSpeed = 1;
+            maxInitialSpeed = 3;
+            minAcceleration = 0;
+            maxAcceleration = 0;
+            minDensity = 0.02f;
+            maxDensity = 0.02625f;
+        }
+
+        public async Task LoadSurfaceAsync(ICanvasResourceCreator resourceCreator, byte v)
+        {
+            if (surfaceLoaded && v == flag)
                 return;
+            flag = v;
             List<CanvasBitmap> tempSurfaceList = new List<CanvasBitmap>();
             List<Vector2> tempCenterList = new List<Vector2>();
             List<Rect> tempBoundsList = new List<Rect>();
-            foreach (var surfacename in smokeSurfaceName)
+            foreach (var surfacename in smokeSurfaceName[flag])
             {
                 var surf = await CanvasBitmap.LoadAsync(resourceCreator, surfacename);
                 var center = surf.Size.ToVector2() / 2;
@@ -69,6 +151,7 @@ namespace Com.Aurora.AuWeather.Effects
             surfacesCenter = tempCenterList.ToArray();
             surfacesBounds = tempBoundsList.ToArray();
             surfaceLoaded = true;
+            ChangeCondition();
         }
 
         public override void AddParticles(Vector2 size)
@@ -81,7 +164,9 @@ namespace Com.Aurora.AuWeather.Effects
                     InitSmoke(size);
                 }
                 // 添加的数量
-                var actualAdd = Tools.Random.Next(22, 24) - ActiveParticles.Count;
+                var m = (int)(size.X * minDensity);
+                var n = (int)(size.X * maxDensity);
+                var actualAdd = Tools.Random.Next(m, n) - ActiveParticles.Count;
                 if (actualAdd < 0)
                 {
                     actualAdd = 0;
@@ -91,7 +176,7 @@ namespace Com.Aurora.AuWeather.Effects
                 {
                     // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                     Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                    particle.Key = Tools.Random.Next(0, 6);
+                    particle.Key = Tools.Random.Next(0, smokeSurfaceName[flag].Length);
                     var where = new Vector2(0 - (float)(surfacesBounds[particle.Key].Width / 2), Tools.RandomBetween(0 - (float)(surfacesBounds[particle.Key].Height / 2), size.Y / 5 - (float)(surfacesBounds[particle.Key].Height / 2)));
                     // 初始化粒子参数
                     InitializeParticle(particle, where);
@@ -104,12 +189,14 @@ namespace Com.Aurora.AuWeather.Effects
 
         private void InitSmoke(Vector2 size)
         {
-            var add = Tools.Random.Next(22, 24);
+            var m = (int)(size.X * minDensity);
+            var n = (int)(size.X * maxDensity);
+            var add = Tools.Random.Next(m, n);
             for (int i = 0; i < add; i++)
             {
                 // 从空闲粒子堆里取粒子，如果没有，那么就 new 一个
                 Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                particle.Key = Tools.Random.Next(0, 6);
+                particle.Key = Tools.Random.Next(0, smokeSurfaceName[flag].Length);
                 var where = new Vector2(Tools.RandomBetween(0 - (float)(surfacesBounds[particle.Key].Width / 2), size.X + (float)(surfacesBounds[particle.Key].Width / 2)), Tools.RandomBetween((0 - (float)(surfacesBounds[particle.Key].Height / 2)), size.Y / 5 - (float)(surfacesBounds[particle.Key].Height / 2)));
                 // 初始化粒子参数
                 InitializeParticle(particle, where);
@@ -215,22 +302,28 @@ namespace Com.Aurora.AuWeather.Effects
                 //
                 // Since we want the maximum alpha to be 1, not .25, we'll scale the entire equation by 4.
                 float alpha = (float)EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, normalizedLifetime);
-
+                var x = particle.ScaleX;
+                var y = particle.ScaleY;
                 // Make particles grow as they age.
                 // They'll start at 75% of their size, and increase to 100% once they're finished.
-
+                if (isImmersive)
+                {
+                    alpha *= 0.8f;
+                    x *= 1.2f;
+                    y *= 1.2f;
+                }
 #if WINDOWS_UWP
                 if (spriteBatch != null)
                 {
                     spriteBatch.Draw(smokeSurfaces[particle.Key], particle.Position, new Vector4(1, 1, 1, alpha), bitmapCenter,
-                        particle.Rotation, new Vector2(particle.ScaleX, particle.ScaleY), CanvasSpriteFlip.None);
+                        particle.Rotation, new Vector2(x, y), CanvasSpriteFlip.None);
                 }
                 else
 #endif
                 {
                     // Compute a transform matrix for this particle.
                     var transform = Matrix3x2.CreateRotation(particle.Rotation, bitmapCenter) *
-                                    Matrix3x2.CreateScale(particle.ScaleX, particle.ScaleY, bitmapCenter) *
+                                    Matrix3x2.CreateScale(x, y, bitmapCenter) *
                                     Matrix3x2.CreateTranslation(particle.Position - bitmapCenter);
 
                     // Draw the particle.
@@ -251,6 +344,31 @@ namespace Com.Aurora.AuWeather.Effects
             }
             surfaceLoaded = false;
             inited = false;
+        }
+
+        internal void ImmersiveIn()
+        {
+            inited = false;
+            for (int i = ActiveParticles.Count - 1; i >= 0; i--)
+            {
+                var p = ActiveParticles[i];
+                ActiveParticles.RemoveAt(i);
+                FreeParticles.Push(p);
+
+            }
+            isImmersive = true;
+        }
+        internal void ImmersiveOut()
+        {
+            inited = false;
+            for (int i = ActiveParticles.Count - 1; i >= 0; i--)
+            {
+                var p = ActiveParticles[i];
+                ActiveParticles.RemoveAt(i);
+                FreeParticles.Push(p);
+
+            }
+            isImmersive = false;
         }
     }
 }

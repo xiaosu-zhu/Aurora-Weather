@@ -74,9 +74,6 @@ namespace Com.Aurora.AuWeather.Effects
             }
             builder.EndFigure(CanvasFigureLoop.Open);
             builder.SetSegmentOptions(CanvasFigureSegmentOptions.ForceRoundLineJoin);
-            //var transform = Matrix3x2.CreateRotation(particle.Rotation - 1.5708f, bitmapCenter) *
-            //                       Matrix3x2.CreateScale(/*scale*/particle.ScaleX, particle.ScaleY, bitmapCenter) *
-            //                       Matrix3x2.CreateTranslation(particle.Position - bitmapCenter);
 
             // Draw the particle.
             var path = CanvasGeometry.CreatePath(builder);
@@ -85,13 +82,13 @@ namespace Com.Aurora.AuWeather.Effects
             CanvasCommandList cl = new CanvasCommandList(sender);
             using (CanvasDrawingSession clds = cl.CreateDrawingSession())
             {
-                clds.DrawGeometry(path, currentThunder.Position, Color.FromArgb((byte)(0.75f * opacity), 255, 255, 255), 6*currentThunder.Luminace);
+                clds.DrawGeometry(path, currentThunder.Position, Color.FromArgb((byte)(0.75f * opacity), 255, 255, 255), 6 * currentThunder.Luminace);
             }
             var lightAmount = 20.6f * currentThunder.Luminace * (NormalizeLifeTime - 1) * (NormalizeLifeTime - 1);
             blur.Source = cl;
             blur.BlurAmount = lightAmount;
             drawingSession.DrawImage(blur);
-            drawingSession.DrawGeometry(path, currentThunder.Position, Color.FromArgb(opacity, 255, 240, 180), 2*currentThunder.Luminace);
+            drawingSession.DrawGeometry(path, currentThunder.Position, Color.FromArgb(opacity, 255, 240, 180), 2 * currentThunder.Luminace);
             drawingSession.Blend = previousBlend;
             if (NormalizeLifeTime > 1)
             {

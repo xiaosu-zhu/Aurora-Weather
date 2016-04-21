@@ -687,40 +687,40 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">風が強い</target>
         </trans-unit>
         <trans-unit id="WindDirection_east" translate="yes" xml:space="preserve">
-          <source>East </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">東</target>
+          <source>E</source>
+          <target state="translated" state-qualifier="mt-suggestion">東</target>
         </trans-unit>
         <trans-unit id="WindDirection_north" translate="yes" xml:space="preserve">
-          <source>North </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">北</target>
+          <source>N</source>
+          <target state="translated" state-qualifier="mt-suggestion">北</target>
         </trans-unit>
         <trans-unit id="WindDirection_northeast" translate="yes" xml:space="preserve">
-          <source>Northeast</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">北東</target>
+          <source>NE</source>
+          <target state="translated" state-qualifier="tm-suggestion">北東</target>
         </trans-unit>
         <trans-unit id="WindDirection_northwest" translate="yes" xml:space="preserve">
-          <source>Northwest</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">エスニック模様 1</target>
+          <source>NW</source>
+          <target state="translated">北西</target>
         </trans-unit>
         <trans-unit id="WindDirection_south" translate="yes" xml:space="preserve">
-          <source>South </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">南</target>
+          <source>S</source>
+          <target state="translated" state-qualifier="mt-suggestion">南</target>
         </trans-unit>
         <trans-unit id="WindDirection_southeast" translate="yes" xml:space="preserve">
-          <source>Southeast</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">東南</target>
+          <source>SE</source>
+          <target state="translated" state-qualifier="tm-suggestion">東南</target>
         </trans-unit>
         <trans-unit id="WindDirection_southwest" translate="yes" xml:space="preserve">
-          <source>Southwest</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">エスニック模様 2</target>
+          <source>SW</source>
+          <target state="translated">南西</target>
         </trans-unit>
         <trans-unit id="WindDirection_unknown" translate="yes" xml:space="preserve">
           <source>...</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">.</target>
         </trans-unit>
         <trans-unit id="WindDirection_west" translate="yes" xml:space="preserve">
-          <source>West </source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">西</target>
+          <source>W</source>
+          <target state="translated" state-qualifier="mt-suggestion">西</target>
         </trans-unit>
         <trans-unit id="WindScale_eight" translate="yes" xml:space="preserve">
           <source>Gale</source>
@@ -1351,10 +1351,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· _(:з」∠)_
-· Bugs fixes</source>
-          <target state="translated">·_(:З」∠) _
-·バグを修正します。</target>
+          <source>· UI tuning
+· Little bug fixed</source>
+          <target state="translated">·UI のチューニング
+·小さなバグを修正</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,6 +1379,64 @@
         <trans-unit id="Overcast.Header" translate="yes" xml:space="preserve">
           <source>Overcast</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">曇り</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogButton.Content" translate="yes" xml:space="preserve">
+          <source>Update Log</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">更新ログ</target>
+        </trans-unit>
+        <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
+          <source>1.4.16047:
+· UI tuning
+· Little bug fixed
+      
+1.4.16046:
+· Update log Added
+· You can swipe to delete the update details
+· Particle System's Surfaces updated
+· Particle System improvement
+· Lightning generator enhancement
+  </source>
+          <target state="translated">1.4.16047:
+·UI のチューニング
+·小さなバグ修正
+
+1.4.16046:
+·更新ログ追加
+·スワイプすることができます詳細
+· 更新プログラムを削除するのにはパーティクル システムの表面更新
+·パーティクル システム改善
+·雷ジェネレーター強化
+ </target>
+        </trans-unit>
+        <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
+          <source>Contact with me</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">私との接触します。</target>
+        </trans-unit>
+        <trans-unit id="ImproveButton.Content" translate="yes" xml:space="preserve">
+          <source>Improve this app</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">このアプリを改善します。</target>
+        </trans-unit>
+        <trans-unit id="ImproveDetail.Text" translate="yes" xml:space="preserve">
+          <source>Together with me, make this app more perfect!
+
+Including but not limited to:
+
+· UI and layout improvement
+· Add more accurate data providers
+· Draw/provide more weather icon or background
+· Coding
+                                
+Thanks!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">一緒より完璧なこのアプリを作る!限定
+
+など:
+
+·UI とレイアウト改善
+·正確なデータ プロバイダー
+を追加 ·天気アイコンの描画/提供またはバック グラウンドの
+·コーディング
+
+ありがとう!</target>
         </trans-unit>
       </group>
     </body>

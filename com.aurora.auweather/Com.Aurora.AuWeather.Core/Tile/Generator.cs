@@ -4,7 +4,6 @@
 
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Converters;
-using Com.Aurora.Shared.Helpers;
 using NotificationsExtensions.Tiles;
 using NotificationsExtensions.Badges;
 using System;
@@ -363,9 +362,8 @@ namespace Com.Aurora.AuWeather.Tile
                 {
                     DisplayName = currentCity.City,
                     Branding = TileBranding.NameAndLogo,
-                    LockDetailedStatus1 = currentCity.City,
-                    LockDetailedStatus2 = model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
-                    LockDetailedStatus3 = glanceFull,
+                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
+                    LockDetailedStatus2 = glanceFull,
                     TileLarge = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()

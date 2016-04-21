@@ -58,5 +58,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             (sender as TextBlock).Text = SystemInfoHelper.GetPackageVer();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:Xiaosu.Zhu@outlook.com"));
+        }
     }
 }

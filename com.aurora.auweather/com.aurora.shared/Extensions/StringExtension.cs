@@ -26,6 +26,11 @@ namespace Com.Aurora.Shared.Extensions
             return res;
         }
 
+        public static bool IsNullorEmpty(this string s)
+        {
+            return (s == null || s == "" || s == string.Empty);
+        }
+
         public static long OcttoDec(this string s)
         {
             var c = s.ToCharArray();
