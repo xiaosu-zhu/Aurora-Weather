@@ -35,12 +35,11 @@ namespace Com.Aurora.AuWeather.ViewModels
         private DateTime currentTime;
         private WeatherCondition condition;
         private string currentCity;
-        private string currentId;
         private HeWeatherModel fetchresult;
         private uint humidity;
         private float precipitation;
         private uint proportion;
-        private double sunProgress;
+        private double? sunProgress;
         private double moonPhase;
         private Pressure pressure;
         private Length visibility;
@@ -911,7 +910,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public double SunProgress
+        public double? SunProgress
         {
             get
             {
@@ -1251,14 +1250,13 @@ namespace Com.Aurora.AuWeather.ViewModels
                         Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
                         if (settings.Preferences.EnableEveryDay)
                         {
-
                             var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                            Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                            Sender.CreateScheduledToastNotification(await Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
                         }
                         if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                         {
                             Sender.CreateBadge(Generator.GenerateAlertBadge());
-                            Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel));
+                            Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel).GetXml());
                         }
                     });
 
@@ -1307,7 +1305,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             await SearchExistingDataAsync();
             string resstr;
-            if (currentId != null)
+            if (currentCityModel.Id != null)
             {
                 try
                 {
@@ -1333,7 +1331,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
-                        await settings.Cities.SaveDataAsync(currentId, resstr, settings.Preferences.DataSource);
+                        await settings.Cities.SaveDataAsync(currentCityModel.Id, resstr, settings.Preferences.DataSource);
                         currentCityModel.Update();
                         if (settings.Cities.CurrentIndex != -1)
                         {
@@ -1422,7 +1420,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.DayCond;
                 Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.DayCond;
                 Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.DayCond;
-                Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
+                if (fetchresult.DailyForecast.Length > todayIndex + 4)
+                    Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
                 if (fetchresult.DailyForecast.Length > todayIndex + 5)
                     Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
             }
@@ -1431,13 +1430,15 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.NightCond;
                 Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.NightCond;
                 Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.NightCond;
-                Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
+                if (fetchresult.DailyForecast.Length > todayIndex + 4)
+                    Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
                 if (fetchresult.DailyForecast.Length > todayIndex + 5)
                     Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
             }
             ForecastDate1 = fetchresult.DailyForecast[todayIndex + 2].Date;
             ForecastDate2 = fetchresult.DailyForecast[todayIndex + 3].Date;
-            ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
+            if (fetchresult.DailyForecast.Length > todayIndex + 4)
+                ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
             if (fetchresult.DailyForecast.Length > todayIndex + 5)
                 ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
             Forecast0H = fetchresult.DailyForecast[todayIndex + 1].HighTemp;
@@ -1446,8 +1447,12 @@ namespace Com.Aurora.AuWeather.ViewModels
             Forecast1L = fetchresult.DailyForecast[todayIndex + 2].LowTemp;
             Forecast2H = fetchresult.DailyForecast[todayIndex + 3].HighTemp;
             Forecast2L = fetchresult.DailyForecast[todayIndex + 3].LowTemp;
-            Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
-            Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
+            if (fetchresult.DailyForecast.Length > todayIndex + 4)
+            {
+                Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
+                Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
+            }
+
             if (fetchresult.DailyForecast.Length > todayIndex + 5)
             {
                 Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
@@ -1579,9 +1584,17 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 nowHourIndex = 0;
             }
+            if (fetchresult.DailyForecast[todayIndex].SunRise == default(TimeSpan) || fetchresult.DailyForecast[todayIndex].SunSet == default(TimeSpan))
+            {
+                SunRiseText = Core.LunarCalendar.SunRiseSet.GetRise(new Models.Location(currentCityModel.Latitude, currentCityModel.Longitude), CurrentTime);
+                SunSetText = Core.LunarCalendar.SunRiseSet.GetSet(new Models.Location(currentCityModel.Latitude, currentCityModel.Longitude), CurrentTime);
+            }
+            else
+            {
+                SunRiseText = fetchresult.DailyForecast[todayIndex].SunRise;
+                SunSetText = fetchresult.DailyForecast[todayIndex].SunSet;
+            }
 
-            SunRiseText = fetchresult.DailyForecast[todayIndex].SunRise;
-            SunSetText = fetchresult.DailyForecast[todayIndex].SunSet;
             IsNight = CalculateIsNight(CurrentTime, sunRise, sunSet);
         }
 
@@ -1677,7 +1690,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private async Task SearchExistingDataAsync()
         {
             var currentTime = DateTime.Now;
-            if ((currentTime - currentCityModel.LastUpdate).TotalMinutes < 60)
+            if ((currentTime - currentCityModel.LastUpdate).TotalMinutes < 30)
             {
                 try
                 {
@@ -1717,7 +1730,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     currentCityModel = settings.Cities.LocatedCity;
                     currentCity = currentCityModel.City;
-                    currentId = currentCityModel.Id;
                 }
                 catch (Exception)
                 {
@@ -1730,7 +1742,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                     currentCity = currentCityModel.City;
-                    currentId = currentCityModel.Id;
                 }
                 catch (Exception)
                 {

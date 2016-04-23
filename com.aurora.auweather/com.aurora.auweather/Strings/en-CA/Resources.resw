@@ -183,6 +183,9 @@
   <data name="DonateOption3.Text" xml:space="preserve">
     <value>· Pin selected cities in tile and automatically update</value>
   </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Enable the "Weather Underground" data source</value>
+  </data>
   <data name="DonateRun0.Text" xml:space="preserve">
     <value>Need your help ...</value>
   </data>
@@ -1057,7 +1060,7 @@
     <value>Locating...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>New data provider: "WeatherUnderground" coming soon.</value>
+    <value>Use Donation Pack to enable "Weather Underground"</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>End Time:</value>
@@ -1126,8 +1129,10 @@
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· UI tuning
-· Little bug fixed</value>
+    <value>· Compatible with Windows 10 Build 14328, we have updated toast and tile
+· "Weather Underground" now avaliable!
+· (may) Fixed a catastrophic failure
+· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1151,7 +1156,13 @@
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· Compatible with Windows 10 Build 14328, we have updated toast and tile
+· "Weather Underground" now avaliable!
+· (may) Fixed a catastrophic failure
+· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications
+
+1.4.16047:
 · UI tuning
 · Little bug fixed
       
@@ -1180,5 +1191,11 @@ Including but not limited to:
 · Coding
                                 
 Thanks!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
   </data>
 </root>

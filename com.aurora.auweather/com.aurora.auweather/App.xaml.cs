@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.Shared.Helpers;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -38,6 +39,11 @@ namespace Com.Aurora.AuWeather
         private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             e.Handled = true;
+            if (e.Exception.HResult == -2147418113)
+            {
+                await FileIOHelper.AppendLogtoCacheAsync(e.Exception);
+                return;
+            }
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 Window.Current.Content = null;

@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.Settings;
 using NotificationsExtensions.Toasts;
 using Windows.ApplicationModel.Resources;
+using Com.Aurora.AuWeather.Core.LunarCalendar;
+using Windows.Data.Xml.Dom;
+using Com.Aurora.Shared.Helpers;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -28,12 +31,23 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 Visual = new TileVisual()
                 {
-                    Branding = TileBranding.NameAndLogo,
+                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
+                    LockDetailedStatus2 = glanceFull,
+                    Branding = TileBranding.Auto,
                     DisplayName = currentCity.City,
                     TileMedium = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            PeekImage = uri == null ? null : new TilePeekImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                            },
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText(),
@@ -157,8 +171,7 @@ namespace Com.Aurora.AuWeather.Tile
                             {
                                 new TileText()
                                 {
-                                    Text = model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                                   Style = TileTextStyle.Caption
+
                                 },
                                             new TileGroup()
                                             {
@@ -253,14 +266,16 @@ namespace Com.Aurora.AuWeather.Tile
             return NowContent;
         }
 
-        public static ToastContent CreateToast(HeWeatherModel model, CitySettingsModel currentCity, SettingsModel settings, DateTime DueTime)
+        public static async Task<XmlDocument> CreateToast(HeWeatherModel model, CitySettingsModel currentCity, SettingsModel settings, DateTime DueTime)
         {
             var glance = Glance.GenerateGlanceDescription(model, false, settings.Preferences.TemperatureParameter, DueTime);
             var ctos = new ConditiontoTextConverter();
-            var todayIndex = Array.FindIndex(model.DailyForecast, x =>
+
+            var dueIndex = Array.FindIndex(model.DailyForecast, x =>
             {
                 return x.Date.Date == DueTime.Date;
             });
+            var uri = await settings.Immersive.GetCurrentBackgroundAsync(model.DailyForecast[dueIndex].Condition.DayCond, false);
             var loader = new ResourceLoader();
             var toast = new ToastContent()
             {
@@ -276,8 +291,8 @@ namespace Com.Aurora.AuWeather.Tile
                     },
                     BodyTextLine1 = new ToastText()
                     {
-                        Text = ctos.Convert(model.DailyForecast[todayIndex].Condition.DayCond, null, null, null) + ", "
-                        + ((model.DailyForecast[todayIndex].HighTemp + model.DailyForecast[todayIndex].LowTemp) / 2).Actual(settings.Preferences.TemperatureParameter)
+                        Text = ctos.Convert(model.DailyForecast[dueIndex].Condition.DayCond, null, null, null) + ", "
+                        + ((model.DailyForecast[dueIndex].HighTemp + model.DailyForecast[dueIndex].LowTemp) / 2).Actual(settings.Preferences.TemperatureParameter)
                     },
                     BodyTextLine2 = new ToastText()
                     {
@@ -285,11 +300,22 @@ namespace Com.Aurora.AuWeather.Tile
                     },
                 }
             };
-            return toast;
+            var xml = toast.GetXml();
+            var e = xml.CreateElement("image");
+            e.SetAttribute("placement", "hero");
+            e.SetAttribute("src", uri.AbsoluteUri);
+            var b = xml.GetElementsByTagName("binding");
+            b.Item(0).AppendChild(e);
+            return xml;
         }
 
-        public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
+        public static bool CalcIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet, Models.Location geoPoint)
         {
+            if (sunRise == default(TimeSpan) || sunSet == default(TimeSpan))
+            {
+                sunRise = SunRiseSet.GetRise(geoPoint, updateTime);
+                sunSet = SunRiseSet.GetSet(geoPoint, updateTime);
+            }
             var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
             if (updateMinutes < sunRise.TotalMinutes)
             {
@@ -325,9 +351,10 @@ namespace Com.Aurora.AuWeather.Tile
             var sunRise = model.DailyForecast[todayIndex].SunRise;
             var sunSet = model.DailyForecast[todayIndex].SunSet;
             var currentTime = desiredDateTimeinThatRegion;
-            var isNight = CalcIsNight(currentTime, sunRise, sunSet);
+
             var settings = SettingsModel.Get();
             var currentCity = settings.Cities.CurrentIndex < 0 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];
+            var isNight = CalcIsNight(currentTime, sunRise, sunSet, new Models.Location(currentCity.Latitude, currentCity.Longitude));
             Uri uri = await settings.Immersive.GetCurrentBackgroundAsync(model.NowWeather.Now.Condition, isNight);
 
             var glance = Glance.GenerateShortDescription(model, isNight);
@@ -350,10 +377,6 @@ namespace Com.Aurora.AuWeather.Tile
 
         private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
-            if (model.DailyForecast.Length < 5)
-            {
-                return null;
-            }
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
             var forecaset = new TileContent()
@@ -477,11 +500,11 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].Date.ToString("ddd") : "",
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+3].Condition.NightCond:model.DailyForecast[todayIndex+3].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 3 ? new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+3].Condition.NightCond:model.DailyForecast[todayIndex+3].Condition.DayCond,null,isNight,null)) : new TileImageSource(""),
                                                 },
                                             }
                                         },
@@ -493,12 +516,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -511,12 +534,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+4].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 4 ? model.DailyForecast[todayIndex+4].Date.ToString("ddd") : "",
 
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+4].Condition.NightCond:model.DailyForecast[todayIndex+4].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 4 ?  new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight ? model.DailyForecast[todayIndex+4].Condition.NightCond : model.DailyForecast[todayIndex+4].Condition.DayCond, null, isNight, null)) : new TileImageSource(""),
                                                 },
                                             }
 
@@ -529,12 +552,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+4].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 4 ? model.DailyForecast[todayIndex+4].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+4].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 4 ? model.DailyForecast[todayIndex+4].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -553,6 +576,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText()
@@ -730,17 +758,24 @@ namespace Com.Aurora.AuWeather.Tile
         {
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
-
+            var loader = new ResourceLoader();
             var now = new TileContent()
             {
                 Visual = new TileVisual()
                 {
+                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
+                    LockDetailedStatus2 = glanceFull,
                     DisplayName = currentCity.City,
                     Branding = TileBranding.NameAndLogo,
                     TileMedium = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText(),
@@ -782,6 +817,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            {
+                                Source = new TileImageSource(uri.ToString()),
+                                Overlay = 70
+                            },
                             Children =
                             {
                                 new TileText(),
@@ -830,12 +870,14 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            TextStacking = TileTextStacking.Center,
                             Children =
                             {
                                 new TileText()
                                 {
                                     Text = model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
-                                    Align = TileTextAlign.Center
+                                    Align = TileTextAlign.Center,
+                                    Style = TileTextStyle.Body
                                 }
                             }
                         }
@@ -863,7 +905,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = "今日",
+                                                    Text = loader.GetString("Today"),
                                                     Style = TileTextStyle.Caption,
                                                     Align = TileTextAlign.Center
                                                 },
@@ -903,7 +945,7 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = "明日",
+                                                    Text = loader.GetString("Tomorrow"),
                                                     Style = TileTextStyle.Caption,
                                                     Align = TileTextAlign.Center
                                                 },

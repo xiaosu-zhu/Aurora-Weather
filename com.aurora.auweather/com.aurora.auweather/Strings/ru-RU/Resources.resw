@@ -952,7 +952,7 @@
     <value>Поиск...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Новый поставщик данных: «WeatherUnderground» скоро.</value>
+    <value>Использование пакета пожертвование для включения «Weather Underground»</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Время окончания события:</value>
@@ -1046,7 +1046,13 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· Совместимость с Windows 10 построить 14328, мы обновили тост и плитка
+· «Погода метро» теперь доступно! 
+· (май) Исправлена катастрофический провал
+· (май) Исправлена проблема возникает на мобильных устройствах, которые не отображают lockscreen уведомления
+
+1.4.16047:
 · Пользовательского интерфейса настройки
 · Исправлена маленькая ошибка
  
@@ -1075,5 +1081,14 @@
 · Кодирования
  
 Спасибо!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Завтра</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Включите «Weather Underground» источника данных</value>
   </data>
 </root>

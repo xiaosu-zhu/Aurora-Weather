@@ -164,58 +164,65 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             if (Canvas == null)
                 return;
-            backBlur.update(Canvas.Size.ToVector2());
-            var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
-            if (isRain || isThunder)
+            try
             {
-                if (rainLevel != RainLevel.shower)
+                backBlur.update(Canvas.Size.ToVector2());
+                var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
+                if (isRain || isThunder)
                 {
-                    CreateRain();
-                }
-                else
-                {
-                    timeToCreateRain -= elapsedTime;
-                    if (timeToCreateRain < 0)
+                    if (rainLevel != RainLevel.shower)
                     {
-                        if (timeToCreateRain > -Tools.RandomBetween(7, 15))
-                            CreateRain();
-                        else
+                        CreateRain();
+                    }
+                    else
+                    {
+                        timeToCreateRain -= elapsedTime;
+                        if (timeToCreateRain < 0)
                         {
-                            timeToCreateRain = Tools.RandomBetween(2, 15);
+                            if (timeToCreateRain > -Tools.RandomBetween(7, 15))
+                                CreateRain();
+                            else
+                            {
+                                timeToCreateRain = Tools.RandomBetween(2, 15);
+                            }
                         }
                     }
                 }
-            }
 
 
-            if ((!isRain) && isNight)
-            {
-                var k = Canvas.Size.Height * Canvas.Size.Width;
-                if (star.ActiveParticles.Count < 1e-4 * k)
+                if ((!isRain) && isNight)
                 {
-                    CreateStar();
-                }
-            }
-
-            if (isThunder || isHaze || isFog || isCloudy)
-            {
-                timeToCreate -= elapsedTime;
-                CreateSmoke();
-                if (timeToCreate < 0)
-                {
-                    timeToCreate = Tools.RandomBetween(5, 7);
-                    if (isThunder)
+                    var k = Canvas.Size.Height * Canvas.Size.Width;
+                    if (star.ActiveParticles.Count < 1e-4 * k)
                     {
-                        thunderGen.Generate(Canvas.Size.ToVector2());
+                        CreateStar();
                     }
                 }
+
+                if (isThunder || isHaze || isFog || isCloudy)
+                {
+                    timeToCreate -= elapsedTime;
+                    CreateSmoke();
+                    if (timeToCreate < 0)
+                    {
+                        timeToCreate = Tools.RandomBetween(5, 7);
+                        if (isThunder)
+                        {
+                            thunderGen.Generate(Canvas.Size.ToVector2());
+                        }
+                    }
+                }
+                rain.Update(elapsedTime, Canvas.Size.ToVector2());
+                star.Update(elapsedTime);
+                smoke.Update(elapsedTime, Canvas.Size.ToVector2());
+                thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
+                if (isSunny)
+                    sun.Update();
             }
-            rain.Update(elapsedTime, Canvas.Size.ToVector2());
-            star.Update(elapsedTime);
-            smoke.Update(elapsedTime, Canvas.Size.ToVector2());
-            thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
-            if (isSunny)
-                sun.Update();
+            catch (Exception)
+            {
+
+            }
         }
 
         private void CreateSmoke()
@@ -239,9 +246,9 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            using (var ds = args.DrawingSession)
+            try
             {
-                try
+                using (var ds = args.DrawingSession)
                 {
                     backBlur.Draw(ds);
                     if ((!isRain) && isNight)
@@ -256,11 +263,12 @@ namespace Com.Aurora.AuWeather.CustomControls
                     {
                         sun.Draw(ds, useSpriteBatch);
                     }
-                }
-                catch (Exception)
-                {
 
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
 

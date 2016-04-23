@@ -78,9 +78,9 @@ namespace Com.Aurora.AuWeather.Tile
             ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
         }
 
-        public static void CreateToast(ToastContent content)
+        public static void CreateToast(XmlDocument content)
         {
-            ToastNotification t = new ToastNotification(content.GetXml());
+            ToastNotification t = new ToastNotification(content);
             ToastNotificationManager.CreateToastNotifier().Show(t);
         }
 
@@ -117,7 +117,7 @@ namespace Com.Aurora.AuWeather.Tile
             int i = 0;
             foreach (var item in list)
             {
-                if(item == null)
+                if (item == null)
                 {
                     continue;
                 }

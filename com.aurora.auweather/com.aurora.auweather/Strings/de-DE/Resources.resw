@@ -952,7 +952,7 @@
     <value>Auffinden von...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Neuen Datenanbieter: "WeatherUnderground" coming soon.</value>
+    <value>Verwenden Sie Spende-Pack, um "Weather Underground" aktivieren</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Uhrzeit Ende:</value>
@@ -1046,7 +1046,13 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
+· "Weather Underground" jetzt verfügbar! 
+· (Mai) Fixiert einen schwerwiegenden Fehler
+· (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen
+
+1.4.16047 nicht angezeigt:
 · UI-tuning
 · Kleine Fehler behoben
  
@@ -1075,5 +1081,14 @@ Hinzufügen · Unentschieden/bieten weitere Wetter-Icon oder elektronische
 · Codierung
  
 Danke!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Heute</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>morgen</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Die "Weather Underground" Datenquelle aktivieren</value>
   </data>
 </root>

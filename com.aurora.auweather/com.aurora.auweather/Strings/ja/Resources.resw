@@ -952,7 +952,7 @@
     <value>探しています.</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>新しいデータ プロバイダー:「WeatherUnderground」近日公開予定。</value>
+    <value>「天気予報の地下鉄"を有効にする寄付パックを使用します。</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>終了時刻:</value>
@@ -1046,7 +1046,13 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+·Windows 10 ビルド 14328 と互換性のある、我々 がトーストを更新しておりタイルの
+·「天気地下「今利用できる!
+·(5 月)致命的なエラー
+を修正 ·(5 月)固定 lockscreen 通知
+
+1.4.16047 を表示しないモバイル デバイスで問題が発生した:
 ·UI のチューニング
 ·小さなバグ修正
 
@@ -1075,5 +1081,14 @@
 ·コーディング
 
 ありがとう!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>明日</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>·「天気予報の地下鉄"のデータ ソース有効にする</value>
   </data>
 </root>

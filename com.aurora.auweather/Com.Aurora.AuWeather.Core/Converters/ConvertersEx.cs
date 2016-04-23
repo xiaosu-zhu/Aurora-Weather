@@ -296,13 +296,13 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 2;
+                return 2d;
             }
             if (value is float)
             {
-                return 2 + ((float)value) * 4;
+                return (double)(2 + ((float)value) * 4);
             }
-            return 2;
+            return 2d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -318,12 +318,12 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 640;
+                return 640d;
             }
             if (isLargeMode)
-                return 640 - (double)value < 160 ? 160 : 640 - (double)value;
+                return 640 - (double)value < 160 ? 160d : 640 - (double)value;
             else
-                return 640 - (double)value < 112 ? 112 : 640 - (double)value;
+                return 640 - (double)value < 112 ? 112d : 640 - (double)value;
 
         }
 
@@ -447,10 +447,10 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
-                return 64;
-            float temp = ((Temperature)value).Celsius;
-            temp = temp < -15 ? -15 : temp;
-            temp = temp > 40 ? 40 : temp;
+                return 64d;
+            double temp = ((Temperature)value).Celsius;
+            temp = temp < -15 ? -15d : temp;
+            temp = temp > 40 ? 40d : temp;
             temp += 15;
             temp /= 55;
             return 56 * (1 - temp);
@@ -468,7 +468,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
                 return 64;
-            float temp = (uint)value;
+            double temp = (uint)value;
             temp /= 100;
             return 56 * (1 - temp);
         }
@@ -484,9 +484,9 @@ namespace Com.Aurora.Shared.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
-                return 64;
-            float temp = (float)value;
-            temp = temp > 150 ? 150 : temp;
+                return 64d;
+            double temp = (float)value;
+            temp = temp > 150d ? 150d : temp;
             temp /= 150;
             return 56 * (1 - temp);
         }
@@ -557,40 +557,6 @@ namespace Com.Aurora.Shared.Converters
                 return HorizontalAlignment.Right;
             }
             return (bool)value ? HorizontalAlignment.Left : HorizontalAlignment.Right;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class SunRiseTextAlignMentConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null)
-            {
-                return -90;
-            }
-            return (bool)value ? 90 : -90;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class SunSetTextAlignMentConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null)
-            {
-                return 90;
-            }
-            return (bool)value ? -90 : 90;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -779,7 +745,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
             var p = value as Pressure;
             return (p.Atm - 1) * 7200;
@@ -797,12 +763,12 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 1;
+                return 1d;
             }
             var vis = (value as Length).KM;
             if (vis > 15)
             {
-                return 1;
+                return 1d;
             }
             else if (vis > 8)
             {
@@ -1003,9 +969,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).Aqi;
+            return (value as AQI).Aqi.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1020,9 +986,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).Pm25;
+            return (value as AQI).Pm25.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1037,9 +1003,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).Pm10;
+            return (value as AQI).Pm10.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1054,9 +1020,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).So2;
+            return (value as AQI).So2.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1071,9 +1037,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).Co;
+            return (value as AQI).Co.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1088,9 +1054,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).No2;
+            return (value as AQI).No2.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1105,9 +1071,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return "0";
             }
-            return (value as AQI).O3;
+            return (value as AQI).O3.ToString("0");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1122,9 +1088,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).So2 > 2620 ? 1 : (value as AQI).So2 / 2620f;
+            return (value as AQI).So2 > 2620 ? 1d : (value as AQI).So2 / 2620d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1139,9 +1105,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).No2 > 940 ? 1 : (value as AQI).No2 / 940f;
+            return (value as AQI).No2 > 940 ? 1d : (value as AQI).No2 / 940d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1156,9 +1122,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).Co > 60 ? 1 : (value as AQI).Co / 60f;
+            return (value as AQI).Co > 60 ? 1d : (value as AQI).Co / 60d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1173,9 +1139,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).O3 > 1200 ? 1 : (value as AQI).O3 / 1200;
+            return (value as AQI).O3 > 1200 ? 1d : (value as AQI).O3 / 1200d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1190,9 +1156,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).Pm25 > 500 ? 1 : (value as AQI).Pm25 / 500f;
+            return (value as AQI).Pm25 > 500 ? 1d : (value as AQI).Pm25 / 500d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1207,9 +1173,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).Pm10 > 600 ? 1 : (value as AQI).Pm10 / 600f;
+            return (value as AQI).Pm10 > 600 ? 1d : (value as AQI).Pm10 / 600d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1224,9 +1190,9 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
-            return (value as AQI).Aqi > 500 ? 1 : (value as AQI).Aqi / 500f;
+            return (value as AQI).Aqi > 500 ? 1d : (value as AQI).Aqi / 500d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1445,7 +1411,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return 0;
+                return 0d;
             }
             return (double)value * 9 / 16;
         }

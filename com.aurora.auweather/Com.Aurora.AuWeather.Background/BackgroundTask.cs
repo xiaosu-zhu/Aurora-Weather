@@ -55,15 +55,16 @@ namespace Com.Aurora.AuWeather.Background
                 var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
                 var current = DateTimeHelper.ReviseLoc(utcOffset);
                 Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
+
                 if (settings.Preferences.EnableEveryDay)
                 {
                     var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                    Sender.CreateScheduledToastNotification(Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)).GetXml(), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                    Sender.CreateScheduledToastNotification(await (Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset))), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
                 }
                 if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                 {
                     Sender.CreateBadge(Generator.GenerateAlertBadge());
-                    Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity));
+                    Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity).GetXml());
                 }
                 await settings.Cities.SaveDataAsync(currentCity.Id, resstr, settings.Preferences.DataSource);
                 currentCity.Update();

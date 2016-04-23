@@ -174,6 +174,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case DataSource.Caiyun:
                     await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_C");
                     break;
+                case DataSource.Wunderground:
+                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_W");
+                    break;
                 default:
                     break;
             }

@@ -11,7 +11,6 @@ using Windows.System.Threading;
 using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Helpers;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -23,7 +22,6 @@ using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Core.Models;
-using System.Net;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -122,7 +120,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         var task = ThreadPool.RunAsync(async (work) =>
                         {
-                            string resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
+                            string resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude, item.zmw);
                             if (!resstr.IsNullorEmpty())
                             {
                                 item.data = resstr;
@@ -279,7 +277,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     catch (Exception)
                     {
-                        resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude);
+                        resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude, item.zmw);
                     }
                     if (!resstr.IsNullorEmpty())
                     {
@@ -302,7 +300,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         {
                             hourIndex = 0;
                         }
-                        var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
+                        var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet, new Models.Location(currentCity.Latitude, currentCity.Longitude));
                         var glanceFull = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
                         var glance = Glance.GenerateShortDescription(weather, isNight);
                         var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
@@ -318,7 +316,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
                 var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
-                string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity.Id, settings.Cities.LocatedCity.Longitude, settings.Cities.LocatedCity.Latitude);
+                string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
                 if (!resstr.IsNullorEmpty())
                 {
                     Cities[0].data = resstr;
@@ -378,7 +376,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 hourIndex = 0;
             }
-            var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet);
+            var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet, new Models.Location(item.latitude, item.longitude));
             item.Glance = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
             var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
             if (uri != null)
@@ -460,6 +458,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string glance;
         public float longitude;
         public float latitude;
+        internal string zmw;
 
         public CityViewModel(CitySettingsModel locatedCity)
         {
@@ -468,6 +467,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             LastUpdate = locatedCity.LastUpdate;
             longitude = locatedCity.Longitude;
             latitude = locatedCity.Latitude;
+            zmw = locatedCity.ZMW;
         }
 
         public string City

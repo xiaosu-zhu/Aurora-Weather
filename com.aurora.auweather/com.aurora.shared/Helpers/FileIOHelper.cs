@@ -42,7 +42,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<StorageFile> AppendLogtoCacheAsync(Exception exception, string name = "crashLOG")
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
-            var log = await cache.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
+            var log = await cache.CreateFileAsync(name, CreationCollisionOption.OpenIfExists);
             var sb = new StringBuilder(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
             var info = SystemInfoHelper.GetSystemInfo();
             foreach (var i in info)
@@ -110,6 +110,20 @@ namespace Com.Aurora.Shared.Helpers
             {
                 var folder = await local.GetFolderAsync(path);
                 return await folder.GetFilesAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public static async Task<StorageFile> GetFileFromLocalAsync(string name)
+        {
+            var local = ApplicationData.Current.LocalFolder;
+            try
+            {
+                return await local.CreateFileAsync(name, CreationCollisionOption.OpenIfExists);
             }
             catch (Exception)
             {

@@ -5,6 +5,7 @@
 using System;
 using System.Globalization;
 using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
+using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -115,13 +116,31 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Precipitation = (uint)precipitation.avg;
             Wind = new Wind(wind.avg);
         }
+
+        public DailyForecast(forecastday daily)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            Date = new DateTime(daily.date.year, daily.date.month, daily.date.day);
+            Condition = new DailyCondition(daily.icon);
+            float m;
+            if (float.TryParse(daily.high.celsius, out m))
+            {
+                HighTemp = Temperature.FromCelsius(m);
+            }
+            if (float.TryParse(daily.low.celsius, out m))
+            {
+                LowTemp = Temperature.FromCelsius(m);
+            }
+            Humidity = Convert.ToUInt32(daily.avehumidity);
+            Precipitation = Convert.ToSingle(daily.qpf_allday.mm);
+            Wind = new Wind(Convert.ToUInt32(daily.avewind.kph), Convert.ToUInt32(daily.avewind.degrees));
+        }
     }
 
 
 
     public class DailyCondition : Condition
     {
-
         public WeatherCondition DayCond
         {
             get; private set;
@@ -141,6 +160,12 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         public DailyCondition(Skycon skycon)
         {
             DayCond = ParseCondition_C(skycon.value);
+            NightCond = DayCond;
+        }
+
+        public DailyCondition(string icon)
+        {
+            DayCond = ParseCondition_W(icon);
             NightCond = DayCond;
         }
     }

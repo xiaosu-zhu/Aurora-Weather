@@ -146,5 +146,19 @@ namespace Com.Aurora.AuWeather.Models
             Degree = (uint)wind.direction;
             Speed = Speed.FromKMPH((uint)wind.speed);
         }
+
+        public Wind(uint? wind_kph, uint? wind_degrees)
+        {
+            if (wind_kph != null && wind_degrees != null)
+            {
+                Degree = (uint)wind_degrees;
+                Speed = Speed.FromKMPH((uint)wind_kph);
+            }
+            else
+            {
+                Degree = 0;
+                Speed = Speed.FromKMPH(0);
+            }
+        }
     }
 }

@@ -7,13 +7,13 @@ using System;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
+using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
     public class HeWeatherModel : WeatherModel
     {
-
         public HeWeatherStatus Status
         {
             get; private set;
@@ -76,7 +76,19 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
             else
             {
-                return HeWeatherStatus.invalid_key;
+                return HeWeatherStatus.no_response;
+            }
+        }
+
+        private static HeWeatherStatus ParseStatus_W(WunderGroundContract w)
+        {
+            if (w != null && w.response != null && w.current_observation != null)
+            {
+                return HeWeatherStatus.ok;
+            }
+            else
+            {
+                return HeWeatherStatus.no_response;
             }
         }
 
@@ -90,6 +102,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 case DataSource.Caiyun:
                     var cai = CaiyunContract.Generate(resstr);
                     return new HeWeatherModel(cai.now, cai.forecast);
+                case DataSource.Wunderground:
+                    var wun = WunderGroundContract.Generate(resstr);
+                    return new HeWeatherModel(wun);
                 default:
                     return null;
             }
@@ -129,6 +144,19 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                     HourlyForecast = GenerateHourlyForecast(forecast.result.hourly);
                 }
             }
+        }
+
+        public HeWeatherModel(WunderGroundContract wun)
+        {
+            if (null == wun)
+            {
+                return;
+            }
+            Status = ParseStatus_W(wun);
+            NowWeather = new NowWeather(wun.current_observation);
+            DailyForecast = GenerateDailyForecast(wun.forecast.simpleforecast.forecastday);
+            HourlyForecast = GenerateHourlyForecast(wun.hourly_forecast);
+            Location = new Location(wun.current_observation);
         }
 
 
@@ -181,6 +209,20 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             return null;
         }
 
+        private HourlyForecast[] GenerateHourlyForecast(hourly[] hourly_forecast)
+        {
+            if (!hourly_forecast.IsNullorEmpty())
+            {
+                List<HourlyForecast> hours = new List<HourlyForecast>();
+                foreach (var hour in hourly_forecast)
+                {
+                    hours.Add(new HourlyForecast(hour));
+                }
+                return hours.ToArray();
+            }
+            else return null;
+        }
+
         private DailyForecast[] GenerateDailyForecast(DailyForecastContract[] daily_forecast)
         {
             if (!daily_forecast.IsNullorEmpty())
@@ -205,6 +247,21 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                     days.Add(new DailyForecast(daily.skycon[i], daily.temperature[i], daily.humidity[i], daily.precipitation[i], daily.wind[i], daily.astro[i]));
                 }
                 return days.ToArray();
+            }
+            else return null;
+        }
+
+
+        private DailyForecast[] GenerateDailyForecast(forecastday[] forecast)
+        {
+            if (!forecast.IsNullorEmpty())
+            {
+                List<DailyForecast> dailys = new List<DailyForecast>();
+                foreach (var daily in forecast)
+                {
+                    dailys.Add(new DailyForecast(daily));
+                }
+                return dailys.ToArray();
             }
             else return null;
         }

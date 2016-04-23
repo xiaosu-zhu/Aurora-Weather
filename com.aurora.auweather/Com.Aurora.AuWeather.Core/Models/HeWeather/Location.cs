@@ -4,6 +4,7 @@
 
 using System;
 using System.Globalization;
+using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -70,6 +71,19 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             UtcTime = t.AddSeconds(timeTick);
             UpdateTime = UtcTime.AddSeconds(timeZoneShift);
+        }
+
+        public Location(observation current_observation)
+        {
+            Latitude = float.Parse(current_observation.display_location.latitude);
+            Longitude = float.Parse(current_observation.display_location.longitude);
+            var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            UtcTime = t.AddSeconds(long.Parse(current_observation.local_epoch));
+            var p = int.Parse(current_observation.local_tz_offset);
+            var k = p / 100;
+            var m = (p % 100);
+            UpdateTime = UtcTime.AddHours(k);
+            UpdateTime = UpdateTime.AddMinutes(m);
         }
     }
 }

@@ -952,7 +952,7 @@
     <value>찾기...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>새로운 데이터 공급자: "WeatherUnderground" 출시 예정.</value>
+    <value>기부금 팩 "날씨 지 하"를 사용 하 여</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>종료 시간:</value>
@@ -1046,7 +1046,13 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· 윈도우 10 빌드 14328, 우리 토스트 업데이 트와
+· 타일 "지 하 날씨" 지금 유효한! 
+· (5 월) 고정 오류가
+· (5 월) Lockscreen 알림을
+
+1.4.16047 표시 하지 않는 모바일 장치에서 발생 하는 문제가 고정:
 · UI 튜닝
 · 작은 버그 수정
  
@@ -1075,5 +1081,14 @@
 · 배경 코딩
  
 감사!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>내일</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· "날씨 지 하" 데이터 소스 사용</value>
   </data>
 </root>

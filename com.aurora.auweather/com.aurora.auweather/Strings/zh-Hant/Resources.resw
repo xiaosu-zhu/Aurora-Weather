@@ -183,6 +183,9 @@
   <data name="DonateOption3.Text" xml:space="preserve">
     <value>· 釘選其他城市的磁貼並自動更新</value>
   </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· 開啓 "Weather Underground" 天氣源</value>
+  </data>
   <data name="DonateRun0.Text" xml:space="preserve">
     <value>需要你的説明...</value>
   </data>
@@ -1057,7 +1060,7 @@
     <value>正在定位...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>即將加入 "WeatherUnderground" 數據源</value>
+    <value>使用捐贈版開啓 "Weather Underground" 天氣源</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>結束時間:</value>
@@ -1126,8 +1129,10 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· UI 微調
-· 少量 Bug 修復</value>
+    <value>· 與 Windows 10 Build 14328 相適應, 微調了通知和磁貼佈局
+· "Weather Underground" 天氣源現已可用!
+· (可能) 修復了偶發的災難性故障
+· (可能) 修復了移動版無法顯示鎖屏通知的問題</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1151,7 +1156,13 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· 與 Windows 10 Build 14328 相適應, 微調了通知和磁貼佈局
+· "Weather Underground" 天氣源現已可用!
+· (可能) 修復了偶發的災難性故障
+· (可能) 修復了移動版無法顯示鎖屏通知的問題
+
+1.4.16047:
 · UI 微調
 · 少量 Bug 修復
       

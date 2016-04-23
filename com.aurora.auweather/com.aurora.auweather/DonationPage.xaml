@@ -44,6 +44,8 @@
             <Run x:Uid="DonateOption2" />
             <LineBreak />
             <Run x:Uid="DonateOption3" />
+                <LineBreak />
+            <Run x:Uid="DonateOption4" />
             </TextBlock>
             <TextBlock x:Name="ConfirmText" Text="Loading..." Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-180,12,12" Style="{ThemeResource BodyTextBlockStyle}" >
             </TextBlock>

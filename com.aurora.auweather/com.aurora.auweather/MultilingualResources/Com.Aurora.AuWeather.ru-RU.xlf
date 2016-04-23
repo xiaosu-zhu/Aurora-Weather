@@ -1259,8 +1259,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Поиск...</target>
         </trans-unit>
         <trans-unit id="DataSourceDetailText.Text" translate="yes" xml:space="preserve">
-          <source>New data provider: "WeatherUnderground" coming soon.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Новый поставщик данных: «WeatherUnderground» скоро.</target>
+          <source>Use Donation Pack to enable "Weather Underground"</source>
+          <target state="translated">Использование пакета пожертвование для включения «Weather Underground»</target>
         </trans-unit>
         <trans-unit id="EndTimeText.Text" translate="yes" xml:space="preserve">
           <source>End Time:</source>
@@ -1351,10 +1351,13 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· UI tuning
-· Little bug fixed</source>
-          <target state="translated">· Пользовательского интерфейса настройки
+          <source>· Compatible with Windows 10 Build 14328, we have updated toast and tile
+· "Weather Underground" now avaliable!
+· (may) Fixed a catastrophic failure
+· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</source>
+          <target state="needs-review-translation">· Пользовательского интерфейса настройки
 · Исправлена маленькая ошибка</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1385,7 +1388,13 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Обновление журнала</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.4.16047:
+          <source>1.5.16040
+· Compatible with Windows 10 Build 14328, we have updated toast and tile
+· "Weather Underground" now avaliable!
+· (may) Fixed a catastrophic failure
+· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications
+
+1.4.16047:
 · UI tuning
 · Little bug fixed
       
@@ -1396,7 +1405,13 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.4.16047:
+          <target state="translated">1.5.16040
+· Совместимость с Windows 10 построить 14328, мы обновили тост и плитка
+· «Погода метро» теперь доступно! 
+· (май) Исправлена катастрофический провал
+· (май) Исправлена проблема возникает на мобильных устройствах, которые не отображают lockscreen уведомления
+
+1.4.16047:
 · Пользовательского интерфейса настройки
 · Исправлена маленькая ошибка
  
@@ -1437,6 +1452,18 @@ Thanks!</source>
 · Кодирования
  
 Спасибо!</target>
+        </trans-unit>
+        <trans-unit id="Today" translate="yes" xml:space="preserve">
+          <source>Today</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Сегодня</target>
+        </trans-unit>
+        <trans-unit id="Tomorrow" translate="yes" xml:space="preserve">
+          <source>Tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Завтра</target>
+        </trans-unit>
+        <trans-unit id="DonateOption4.Text" translate="yes" xml:space="preserve">
+          <source>· Enable the "Weather Underground" data source</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Включите «Weather Underground» источника данных</target>
         </trans-unit>
       </group>
     </body>

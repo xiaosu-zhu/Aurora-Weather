@@ -276,6 +276,10 @@ namespace Com.Aurora.AuWeather
                     DataSourceImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Logos/Caiyun.png"));
                     DataSourceContent.Text = loader.GetString("CaiyunWeather");
                     break;
+                case DataSource.Wunderground:
+                    DataSourceImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Logos/Wunder.png"));
+                    DataSourceContent.Text = string.Empty;
+                    break;
                 default:
                     break;
             }
@@ -737,14 +741,7 @@ namespace Com.Aurora.AuWeather
                 }
                 immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
                     {
-                        var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-                        {
-                            ImmersiveAllIn.Begin();
-
-                            Window.Current.CoreWindow.PointerCursor = null;
-                        }));
-                        await Task.Delay(160);
-                        isImmersiveAllIn = true;
+                        await GotoImmersiveAllin();
                     }, TimeSpan.FromSeconds(1));
             };
             ImmersiveTransAni.Begin();
@@ -776,16 +773,24 @@ namespace Com.Aurora.AuWeather
 
                 }
                 immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
-                    {
-                        var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-                        {
-                            ImmersiveAllIn.Begin();
-                            Window.Current.CoreWindow.PointerCursor = null;
-                        }));
-                        await Task.Delay(160);
-                        isImmersiveAllIn = true;
+                {
+                    await GotoImmersiveAllin();
 
-                    }, TimeSpan.FromSeconds(2));
+                }, TimeSpan.FromSeconds(2));
+            }
+        }
+
+        private async Task GotoImmersiveAllin()
+        {
+            if (isImmersiveMode)
+            {
+                var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                {
+                    ImmersiveAllIn.Begin();
+                    Window.Current.CoreWindow.PointerCursor = null;
+                }));
+                await Task.Delay(160);
+                isImmersiveAllIn = true;
             }
         }
 
@@ -869,14 +874,7 @@ namespace Com.Aurora.AuWeather
             }
             immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
             {
-                var t = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-                {
-                    ImmersiveAllIn.Begin();
-
-                    Window.Current.CoreWindow.PointerCursor = null;
-                }));
-                await Task.Delay(160);
-                isImmersiveAllIn = true;
+                await GotoImmersiveAllin();
             }, TimeSpan.FromSeconds(1));
         }
 

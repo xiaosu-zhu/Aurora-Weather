@@ -952,7 +952,7 @@
     <value>Localisation...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nouveau fournisseur de données: « WeatherUnderground » coming soon.</value>
+    <value>Utilisez le Pack de don pour activer « Weather Underground »</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Heure de fin :</value>
@@ -1046,7 +1046,13 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047 :
+    <value>1.5.16040
+· Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
+· « Weather Underground » maintenant disponible ! 
+· (mai) Correction d'une défaillance catastrophique
+· (mai) Fixe un problème se produit sur les périphériques mobiles qui n'affichent pas les notifications de lockscreen
+
+1.4.16047 :
 · Interface utilisateur tuning
 · Petite corrigé d'un bug
  
@@ -1075,5 +1081,14 @@ y compris mais non limité aux :
 · Codage
  
 Merci !</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Aujourd'hui</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>demain</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Activer la source de données « Weather Underground »</value>
   </data>
 </root>

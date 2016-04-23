@@ -66,6 +66,35 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             }
         }
 
+        protected static WeatherCondition ParseCondition_W(string skycon)
+        {
+            switch (skycon)
+            {
+                case "chanceflurries": return WeatherCondition.snow_flurry;
+                case "chancerain": return WeatherCondition.shower_rain;
+                case "chancesleet": return WeatherCondition.sleet;
+                case "chancesnow": return WeatherCondition.shower_snow;
+                case "chancetstorms": return WeatherCondition.storm;
+                case "clear": return WeatherCondition.sunny;
+                case "cloudy": return WeatherCondition.overcast;
+                case "flurries": return WeatherCondition.snow_flurry;
+                case "fog": return WeatherCondition.foggy;
+                case "hazy": return WeatherCondition.haze;
+                case "mostlycloudy": return WeatherCondition.partly_cloudy;
+                case "mostlysunny": return WeatherCondition.few_clouds;
+                case "partlycloudy": return WeatherCondition.partly_cloudy;
+                case "partlysunny": return WeatherCondition.partly_cloudy;
+                case "sleet": return WeatherCondition.sleet;
+                case "rain": return WeatherCondition.light_rain;
+                case "snow": return WeatherCondition.light_snow;
+                case "sunny": return WeatherCondition.sunny;
+                case "tstorms": return WeatherCondition.thundershower;
+                case "unknown": return WeatherCondition.unknown;
+                default:
+                    return WeatherCondition.unknown;
+            }
+        }
+
         protected static WeatherCondition ParseCondition_C(string skycon)
         {
             //CLEAR_DAY：晴天

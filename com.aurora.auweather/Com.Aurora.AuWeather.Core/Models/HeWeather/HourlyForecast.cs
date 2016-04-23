@@ -5,12 +5,12 @@
 using System;
 using System.Globalization;
 using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
+using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public class HourlyForecast
     {
-
         public DateTime DateTime
         {
             get; private set;
@@ -69,6 +69,16 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 p = 100;
             }
             Pop = p;
+        }
+
+        public HourlyForecast(hourly hour)
+        {
+            var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime = new DateTime(int.Parse(hour.FCTTIME.year), int.Parse(hour.FCTTIME.mon), int.Parse(hour.FCTTIME.mday), int.Parse(hour.FCTTIME.hour), int.Parse(hour.FCTTIME.min), int.Parse(hour.FCTTIME.sec));
+            Humidity = Convert.ToUInt32(float.Parse(hour.humidity));
+            Pop = Convert.ToUInt32(float.Parse(hour.pop));
+            Temprature = Temperature.FromCelsius(float.Parse(hour.temp.metric));
+            Wind = new Wind(Convert.ToUInt32(float.Parse(hour.wspd.metric)), Convert.ToUInt32(float.Parse(hour.wdir.degrees)));
         }
     }
 }

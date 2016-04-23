@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -146,6 +147,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 case DataSource.Caiyun:
                     await FileIOHelper.SaveStringtoStorageAsync(currentId + "_C", resstr);
                     break;
+                case DataSource.Wunderground:
+                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_W", resstr);
+                    break;
                 default:
                     break;
             }
@@ -159,6 +163,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     return await FileIOHelper.ReadStringFromStorageAsync(id + "_H");
                 case DataSource.Caiyun:
                     return await FileIOHelper.ReadStringFromStorageAsync(id + "_C");
+                case DataSource.Wunderground:
+                    return await FileIOHelper.ReadStringFromStorageAsync(id + "_W");
                 default:
                     return null;
             }
@@ -175,6 +181,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public bool IsCurrent = false;
 
         public DateTime LastUpdate { get; set; } = new DateTime(1970, 1, 1);
+        public string ZMW { get; internal set; } = "";
 
         public CitySettingsModel(CityInfo info)
         {
@@ -186,12 +193,25 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public CitySettingsModel()
         {
-            //Use this to Create Default Instance.
+            //Use this to Create Default Instance. Otherwise you can't use reflection.
         }
 
         public void Update()
         {
             LastUpdate = DateTime.Now;
+        }
+
+        internal void RequestZMW(string s)
+        {
+            if (s.IsNullorEmpty())
+            {
+                ZMW = "";
+            }
+            else
+            {
+                ZMW = s;
+            }
+
         }
     }
 }

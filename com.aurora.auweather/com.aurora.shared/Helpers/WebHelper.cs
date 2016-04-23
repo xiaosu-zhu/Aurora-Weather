@@ -145,11 +145,11 @@ namespace Com.Aurora.Shared.Helpers
 
     public static class WundergroundRequestHelper
     {
-        private static readonly string url = "http://api.wunderground.com/api/{0}/geolookup/conditions/forecast/q";
+        private static readonly string url = "http://api.wunderground.com/api/{0}/geolookup/conditions/forecast/hourly/q";
 
-        public static async Task<string> GeoLookup(string key, string country, string city)
+        public static async Task<string> GeoLookup(string key, float lat, float lon)
         {
-            var strURL = string.Format(url, key) + '/' + country + '/' + city + ".json";
+            var strURL = string.Format(url, key) + '/' + lat.ToString() + ',' + lon.ToString() + ".json";
             WebRequest request;
             request = WebRequest.Create(strURL);
             request.Method = "GET";

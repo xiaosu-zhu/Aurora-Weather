@@ -53,8 +53,6 @@
             <Converters:SunRiseAniConverter x:Key="SunRiseAniConverter" />
             <Converters:SunRiseAlignmentConverter x:Key="SunRiseAlignmentConverter" />
             <Converters:SunSetAlignmentConverter x:Key="SunSetAlignmentConverter" />
-            <Converters:SunRiseTextAlignMentConverter x:Key="SunRiseTextAlignMentConverter" />
-            <Converters:SunSetTextAlignMentConverter x:Key="SunSetTextAlignMentConverter" />
             <Converters:MoonPhaseProgressConverter x:Key="MoonPhaseProgressConverter" />
             <Converters:MoonPhaseTextConverter x:Key="MoonPhaseTextConverter" />
             <Converters:VisibilityConverter x:Key="VisibilityConverter" />
@@ -177,154 +175,154 @@
         <Grid.Resources>
             <Storyboard x:Name="TempraturePathAnimation">
                 <PointAnimation Storyboard.TargetName="PathFigure" Storyboard.TargetProperty="StartPoint" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath0,Mode=OneWay,Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath0,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath0,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl1" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath0,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath0, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath0,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath1,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl2" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath1,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath1, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath1,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath2,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl3" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath2,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath2, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath2,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath3,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl4" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath3,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath3, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath3,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath4,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl5" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath4,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath4, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath4,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath5,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl6" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath5,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point1" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath5,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point2" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath5,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <PointAnimation Storyboard.TargetName="BezierControl7" Storyboard.TargetProperty="Point3" 
-                                To="{Binding TempraturePath5, Converter={StaticResource TempraturePathConverter}}" 
+                                To="{x:Bind Context.TempraturePath5,Mode=OneWay, Converter={StaticResource TempraturePathConverter}}" 
                                 Duration="0:0:1" BeginTime="0:0:1.6" EnableDependentAnimation="True">
                     <PointAnimation.EasingFunction>
                         <QuinticEase />
@@ -498,37 +496,37 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse0" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop0, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop0,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse1" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop1, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop1,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse2" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop2, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop2,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse3" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop3, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop3,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse4" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop4, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop4,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempratureEllipse5" Storyboard.TargetProperty="StrokeThickness" Duration="0:0:1" BeginTime="0:0:1.6"
-                                 EnableDependentAnimation="True" To="{Binding Pop5, Converter={StaticResource PopConverter}}">
+                                 EnableDependentAnimation="True" To="{x:Bind Context.Pop5,Mode=OneWay, Converter={StaticResource PopConverter}}">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -551,104 +549,104 @@
                 <FadeInThemeAnimation Storyboard.TargetName="UpdateIndicator" />
             </Storyboard>
             <Storyboard x:Name="DetailTempratureIn">
-                <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{Binding BodyTemprature, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{x:Bind Context.BodyTemprature,Mode=OneWay, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="WaterDropTransAni">
-                <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{Binding Humidity, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Humidity,Mode=OneWay, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="PcpnTransAni">
-                <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{Binding Precipitation, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Precipitation,Mode=OneWay, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="SunRiseAni">
-                <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="SunRiseStrokeLength" To="{Binding SunProgress}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="SunRiseStrokeLength" To="{x:Bind Context.SunProgress,Mode=OneWay}" EnableDependentAnimation="True" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="AQIAni">
-                <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="AqiCircleStorkeLength" To="{Binding Aqi, Converter={StaticResource AqiProgressConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="Page" Storyboard.TargetProperty="AqiCircleStorkeLength" To="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource AqiProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="PM25Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource PM25ProgressConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="PM25Transform" Storyboard.TargetProperty="ScaleX" To="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM25ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="PM10Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource PM10ProgressConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="PM10Transform" Storyboard.TargetProperty="ScaleX" To="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM10ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="SO2Transform" Storyboard.TargetProperty="ScaleX" To="{Binding Aqi, Converter={StaticResource SO2ProgressConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="SO2Transform" Storyboard.TargetProperty="ScaleX" To="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource SO2ProgressConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <ColorAnimation Storyboard.TargetName="AQICircleColor" Storyboard.TargetProperty="Color" To="{Binding Aqi, Converter={StaticResource AqiCircleColorConverter}}" EnableDependentAnimation="True">
+                <ColorAnimation Storyboard.TargetName="AQICircleColor" Storyboard.TargetProperty="Color" To="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource AqiCircleColorConverter}}" EnableDependentAnimation="True">
                     <ColorAnimation.EasingFunction>
                         <QuinticEase />
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
             </Storyboard>
             <Storyboard x:Name="PressureTransAni">
-                <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{Binding Pressure, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{x:Bind Context.Pressure,Mode=OneWay, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="VisTransAni">
-                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="{Binding Visibility, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -818,14 +816,14 @@
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Text">
-                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="{Binding UpdateTime,Converter={StaticResource RefreshCompleteConverter}}" />
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="{x:Bind Context.UpdateTime,Mode=OneWay,Converter={StaticResource RefreshCompleteConverter}}" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
         </Grid.Resources>
         <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
         </ScrollViewer>
-        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{Binding ElementName=ScrollableRoot, Path=VerticalOffset, Converter={StaticResource ScrollViewerConverter}}"
+        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{x:Bind ScrollableRoot.VerticalOffset,Mode=OneWay, Converter={StaticResource ScrollViewerConverter}}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel.ChildrenTransitions>
                 <TransitionCollection>
@@ -838,7 +836,7 @@
                   RelativePanel.AlignTopWithPanel="True" />
             <TextBlock Opacity="1" x:Name="UpdateIndicator" Foreground="White" FontWeight="ExtraLight" FontSize="12" Margin="10" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
-                       Text="{Binding City}" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="ExtraLight"
+                       Text="{x:Bind Context.City,Mode=OneWay}" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="ExtraLight"
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TitleAniTrans" Y="480" />
@@ -846,32 +844,32 @@
             </TextBlock>
             <TextBlock Visibility="Collapsed" x:Name="NowCondition" Opacity="0" RelativePanel.Above="NowTemp" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" 
-                       Text="{Binding Condition, Converter={StaticResource ConditiontoTextConverter}}" 
+                       Text="{x:Bind Context.Condition,Mode=OneWay, Converter={StaticResource ConditiontoTextConverter}}" 
                            HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" FontWeight="ExtraLight">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="ConditionAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
             <StackPanel Visibility="Collapsed" Margin="12" x:Name="HighLowPanel" Orientation="Vertical" Opacity="0" RelativePanel.RightOf="NowCondition" RelativePanel.AlignVerticalCenterWith="NowCondition">
-                <TextBlock x:Name="NowH" Text="{Binding NowH,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
+                <TextBlock x:Name="NowH" Text="{x:Bind Context.NowH,Mode=OneWay,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="White">
                     <TextBlock.RenderTransform >
                         <TranslateTransform x:Name="NowHAniTrans" Y="480" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <TextBlock x:Name="NowL" Text="{Binding NowL,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="#CCF0F0F0}">
+                <TextBlock x:Name="NowL" Text="{x:Bind Context.NowL,Mode=OneWay,Converter={StaticResource TempratureConverterWithDegree}}" FontWeight="ExtraLight" Style="{ThemeResource NormalTextBlockStyle}" Foreground="#CCF0F0F0}">
                     <TextBlock.RenderTransform >
                         <TranslateTransform x:Name="NowLAniTrans" Y="480" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
             </StackPanel>
-            <TextBlock Opacity="0" x:Name="NowTemp" Foreground="White" FontSize="96" Text="{Binding Temprature, Converter={StaticResource TempratureConverterWithoutDegree}}"
+            <TextBlock Opacity="0" x:Name="NowTemp" Foreground="White" FontSize="96" Text="{x:Bind Context.Temprature,Mode=OneWay, Converter={StaticResource TempratureConverterWithoutDegree}}"
                        RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" >
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempAniTrans" Y="480" />
                 </TextBlock.RenderTransform>
             </TextBlock>
             <TextBlock Visibility="Collapsed" x:Name="TempDeg" Opacity="0" FontSize="48" RelativePanel.RightOf="NowTemp" RelativePanel.AlignBottomWith="NowTemp" Margin="0,0,0,12"
-                       Text="{Binding Temprature, Converter={StaticResource TempratureConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}"
+                       Text="{x:Bind Context.Temprature,Mode=OneWay, Converter={StaticResource TempratureConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}"
                        Foreground="#CCF0F0F0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TempDegAniTrans" Y="480" />
@@ -915,7 +913,7 @@
                     <SymbolIcon Symbol="FullScreen" />
                 </Button.Content>
             </Button>
-            <Button x:Name="RefreshButton" Visibility="Collapsed" Click="RefreshButton_Click" Command="{Binding RefreshCommand}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
+            <Button x:Name="RefreshButton" Visibility="Collapsed" Click="RefreshButton_Click" Command="{x:Bind Context.RefreshCommand,Mode=OneWay}" Style="{StaticResource SymbolButton}" Width="48" Foreground="White" Height="48" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,80,0,0">
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="RefreshText" />
                 </ToolTipService.ToolTip>
@@ -923,7 +921,7 @@
                     <SymbolIcon Symbol="Refresh" />
                 </Button.Content>
             </Button>
-            <Button x:Name="AlarmButton" Opacity="0" Visibility="{Binding HadNoAlarms,Converter={StaticResource BooltoVisibilityConverter}}" Margin="64" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+            <Button x:Name="AlarmButton" Opacity="0" Visibility="{x:Bind Context.HadNoAlarms,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" Margin="64" BorderBrush="#80ff3333" Content="灾害预警" Foreground="White" Background="#40ff3333" RelativePanel.Above="CurrentCity" RelativePanel.AlignHorizontalCenterWithPanel="True" >
                 <Button.Flyout>
                     <Flyout>
                         <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -958,9 +956,9 @@
                     <TextBlock RelativePanel.RightOf="Separator1" Margin="8,0,0,32" Opacity="0.6" RelativePanel.AlignBottomWith="CurrentTimeMin" x:Name="CurrentTimeSec" FontSize="72" Text="{x:Bind Context.CurrentTime, Mode=OneWay, Converter={StaticResource ImmersiveSecConverter}}" Visibility="{x:Bind Context.DisableSecond,Mode=OneWay,Converter={StaticResource BooltoVisibilityConverter}}" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" />
                 </RelativePanel>
                 <TextBlock x:Name="ImmersiveTemp" FontSize="96" FontWeight="ExtraLight" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Run Text="{Binding Temprature, Converter={StaticResource TempratureConverterWithDegree}}"/>
+                    <Run Text="{x:Bind Context.Temprature,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}"/>
                 </TextBlock>
-                <TextBlock x:Name="ImmersiveGlance" Text="{Binding Glance}" FontWeight="ExtraLight" Height="40" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="ImmersiveGlance" Text="{x:Bind Context.Glance,Mode=OneWay}" FontWeight="ExtraLight" Height="40" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                 <Button x:Name="ImmersiveMoreButton" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White" Margin="0,0,48,0">
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="MoreText" />
@@ -989,7 +987,7 @@
                     </ToolTipService.ToolTip>
                     <SymbolIcon Symbol="BackToWindow" />
                 </Button>
-                <Button x:Name="ImmersiveRefreshButton" Click="RefreshButton_Click" Grid.RowSpan="5" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
+                <Button x:Name="ImmersiveRefreshButton" Click="RefreshButton_Click" Grid.RowSpan="5" Command="{x:Bind Context.RefreshCommand,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource SymbolButton}" Width="48" Height="48" Foreground="White">
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="RefreshText" />
                     </ToolTipService.ToolTip>
@@ -1057,75 +1055,75 @@
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="HourGrid0" Opacity="0" Height="36" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl1, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl1.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour0" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour0, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour0,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse0" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         </Ellipse>
                         <TextBlock x:Name="HourlyTemp0" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp0, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp0,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid1" Opacity="0" Height="36" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl2, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl2.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour1" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour1, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour1,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse1" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp1" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp1, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp1,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid2" Opacity="0" Height="36" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl3, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl3.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour2" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour2, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour2,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse2" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp2" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp2, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp2,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid3" Opacity="0" Height="36" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl4, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl4.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour3" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour3, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour3,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse3" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp3" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp3, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp3,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid4" Opacity="0" Height="36" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl5, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl5.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour4" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour4, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour4,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse4" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp4" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp4, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp4,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
 
                     <Grid x:Name="HourGrid5" Opacity="0" Height="36" Grid.Column="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                         <Grid.RenderTransform>
-                            <TranslateTransform Y="{Binding ElementName=BezierControl6, Path=Point2.Y}" />
+                            <TranslateTransform Y="{x:Bind BezierControl6.Point2.Y,Mode=OneWay}" />
                         </Grid.RenderTransform>
                         <TextBlock x:Name="Hour5" Margin="0,-12,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{ThemeResource NormalTextBlockStyle}"
-                                       Foreground="White" Text="{Binding Hour5, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
+                                       Foreground="White" Text="{x:Bind Context.Hour5,Mode=OneWay, Converter={StaticResource HourMinuteConverter}}" FontSize="12"/>
                         <Ellipse x:Name="TempratureEllipse5" Height="12" Width="12" Stroke="{ThemeResource SystemThemeMainBrush}" Fill="{ThemeResource SystemControlForegroundHighBrush}" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock x:Name="HourlyTemp5" Style="{ThemeResource NormalTextBlockStyle}"
                            VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                           Text="{Binding HourlyTemp5, Converter={StaticResource TempratureConverterWithDegree}}" />
+                           Text="{x:Bind Context.HourlyTemp5,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                     </Grid>
                 </Grid>
 
@@ -1152,9 +1150,9 @@
                                 <CustomControls:ConditionPath x:Name="Forecast0" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu0" 
-                                           Text="{Binding Forecast0H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast0H,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" />
                             <TextBlock x:Name="ForecastCondition01" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition0" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast0L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast0L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="1">
                             <TextBlock x:Uid="NextTomorrowText" x:Name="ForecastDate1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
@@ -1163,48 +1161,48 @@
                                 <CustomControls:ConditionPath x:Name="Forecast1" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition1" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu1" 
-                                           Text="{Binding Forecast1H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{x:Bind Context.Forecast1H,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition11" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition1" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast1L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast1L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="2" >
                             <TextBlock x:Name="ForecastDate2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
-                                           Margin="0,0,0,12" Text="{Binding ForecastDate2, Converter={StaticResource DateTimeConverter}}" Style="{ThemeResource NormalTextBlockStyle}">
+                                           Margin="0,0,0,12" Text="{x:Bind Context.ForecastDate2,Mode=OneWay, Converter={StaticResource DateTimeConverter}}" Style="{ThemeResource NormalTextBlockStyle}">
                             </TextBlock>
                             <Viewbox x:Name="Forecastillu2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate2" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
                                 <CustomControls:ConditionPath x:Name="Forecast2" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition2" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu2" 
-                                           Text="{Binding Forecast2H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{x:Bind Context.Forecast2H,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition21" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition2" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast2L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast2L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="3">
                             <TextBlock x:Name="ForecastDate3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
-                                           Text="{Binding ForecastDate3, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{x:Bind Context.ForecastDate3,Mode=OneWay, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <Viewbox x:Name="Forecastillu3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate3" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
                                 <CustomControls:ConditionPath x:Name="Forecast3" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu3" 
-                                           Text="{Binding Forecast3H, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{x:Bind Context.Forecast3H,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <TextBlock x:Name="ForecastCondition31" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition3" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast3L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast3L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                         <RelativePanel Grid.Column="4">
                             <TextBlock x:Name="ForecastDate4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" 
-                                           Text="{Binding ForecastDate4, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
+                                           Text="{x:Bind Context.ForecastDate4,Mode=OneWay, Converter={StaticResource DateTimeConverter}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}"/>
                             <Viewbox x:Name="Forecastillu4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastDate4" MaxWidth="36" Stretch="Uniform" Margin="0,0,0,12">
                                 <CustomControls:ConditionPath x:Name="Forecast4" />
                             </Viewbox>
                             <TextBlock x:Name="ForecastCondition4" Style="{ThemeResource NormalTextBlockStyle}"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Forecastillu4"
-                                           Text="{Binding Forecast4H, Converter={StaticResource TempratureConverterWithDegree}}" />
+                                           Text="{x:Bind Context.Forecast4H,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" />
                             <TextBlock x:Name="ForecastCondition41" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ForecastCondition4" Foreground="{ThemeResource SystemControlAltLowBrush}" 
-                                           Text="{Binding Forecast4L, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
+                                           Text="{x:Bind Context.Forecast4L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                     </Grid>
                     <RelativePanel x:Name="AQIPanel" RelativePanel.Below="ForecastPanel" Margin="24,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Ellipse Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="2" Height="72" Width="72" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                        <Ellipse x:Name="AQICircle" StrokeThickness="2" Height="72" Width="72" StrokeDashArray="{Binding ElementName=Page, Path=AqiCircleStorkeLength, Converter={StaticResource AqiCircleAniConverter}}" RenderTransformOrigin="0.5,0.5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
+                        <Ellipse x:Name="AQICircle" StrokeThickness="2" Height="72" Width="72" StrokeDashArray="{x:Bind AqiCircleStorkeLength, Converter={StaticResource AqiCircleAniConverter},Mode=OneWay}" RenderTransformOrigin="0.5,0.5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
                             <Ellipse.RenderTransform>
                                 <RotateTransform Angle="-90"/>
                             </Ellipse.RenderTransform>
@@ -1213,8 +1211,8 @@
                             </Ellipse.Stroke>
                         </Ellipse>
                         <Grid RelativePanel.AlignHorizontalCenterWith="AQICircle" RelativePanel.AlignVerticalCenterWith="AQICircle" Height="36" Margin="0,8,0,0">
-                            <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Aqi,Converter={StaticResource AQIQualityConverter}}" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Center" />
-                            <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Aqi,Converter={StaticResource AQIValueConverter}}" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                            <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Context.Aqi,Mode=OneWay,Converter={StaticResource AQIQualityConverter}}" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                            <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Context.Aqi,Mode=OneWay,Converter={StaticResource AQIValueConverter}}" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                         </Grid>
                         <Grid x:Name="AQIDetailGrid" RelativePanel.RightOf="AQICircle" Margin="12,0,20,0" RelativePanel.Above="AQIDetailButton" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                             <Grid.RowDefinitions>
@@ -1227,9 +1225,9 @@
                             </Grid.RowDefinitions>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock Text="PM2.5" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource PM25Converter}}" />
+                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM25Converter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,0,0" Height="4">
                                     <Rectangle.RenderTransform>
                                         <ScaleTransform x:Name="PM25Transform" ScaleX="0" ScaleY="1" />
                                     </Rectangle.RenderTransform>
@@ -1237,9 +1235,9 @@
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" Grid.Row="1">
                                 <TextBlock Text="PM10" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource PM10Converter}}" />
+                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM10Converter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,16,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,16,0" Height="4">
                                     <Rectangle.RenderTransform>
                                         <ScaleTransform x:Name="PM10Transform" ScaleX="0" ScaleY="1" />
                                     </Rectangle.RenderTransform>
@@ -1249,9 +1247,9 @@
                                 <TextBlock Text="SO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
                                     <Run Typography.Variants="Subscript" Text="2" />
                                 </TextBlock>
-                                <TextBlock x:Name="SO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource SO2Converter}}" />
+                                <TextBlock x:Name="SO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource SO2Converter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,0,0" Height="4">
                                     <Rectangle.RenderTransform>
                                         <ScaleTransform x:Name="SO2Transform" ScaleX="0" ScaleY="1" />
                                     </Rectangle.RenderTransform>
@@ -1260,11 +1258,11 @@
                             <Grid x:Name="COGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="3">
                                 <TextBlock Text="CO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
                                 </TextBlock>
-                                <TextBlock x:Name="COText" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource COConverter}}" />
+                                <TextBlock x:Name="COText" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COConverter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,0,0" Height="4">
                                     <Rectangle.RenderTransform>
-                                        <ScaleTransform x:Name="COTransform" ScaleX="{Binding Aqi, Converter={StaticResource COProgressConverter}}" ScaleY="1" />
+                                        <ScaleTransform x:Name="COTransform" ScaleX="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COProgressConverter}}" ScaleY="1" />
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                             </Grid>
@@ -1272,11 +1270,11 @@
                                 <TextBlock Text="NO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
                                 <Run Typography.Variants="Subscript" Text="2" />
                                 </TextBlock>
-                                <TextBlock x:Name="NO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource NO2Converter}}" />
+                                <TextBlock x:Name="NO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2Converter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,0,0" Height="4">
                                     <Rectangle.RenderTransform>
-                                        <ScaleTransform x:Name="NO2Transform" ScaleX="{Binding Aqi, Converter={StaticResource NO2ProgressConverter}}" ScaleY="1" />
+                                        <ScaleTransform x:Name="NO2Transform" ScaleX="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2ProgressConverter}}" ScaleY="1" />
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                             </Grid>
@@ -1284,11 +1282,11 @@
                                 <TextBlock Text="O" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
                                 <Run Typography.Variants="Subscript" Text="3" />
                                 </TextBlock>
-                                <TextBlock x:Name="O3Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Aqi, Converter={StaticResource O3Converter}}" />
+                                <TextBlock x:Name="O3Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3Converter}}" />
                                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,0,0" Height="4" />
-                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{Binding ElementName=AQICircle, Path=Stroke}" Margin="96,0,0,0" Height="4">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0,0.5" Fill="{x:Bind AQICircle.Stroke,Mode=OneWay}" Margin="96,0,0,0" Height="4">
                                     <Rectangle.RenderTransform>
-                                        <ScaleTransform x:Name="O3Transform" ScaleX="{Binding Aqi, Converter={StaticResource O3ProgressConverter}}" ScaleY="1" />
+                                        <ScaleTransform x:Name="O3Transform" ScaleX="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3ProgressConverter}}" ScaleY="1" />
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                             </Grid>
@@ -1347,7 +1345,7 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding BodyTemprature, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
+                            <TextBlock Text="{x:Bind Context.BodyTemprature,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid1" Grid.Row="0" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="WindText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1364,9 +1362,9 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding Wind, Converter={StaticResource WindSpeedConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid1Separator" />
+                            <TextBlock Text="{x:Bind Context.Wind,Mode=OneWay, Converter={StaticResource WindSpeedConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid1Separator" />
                             <TextBlock x:Name="DetailGrid1Separator" Text="|" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
-                            <TextBlock Text="{Binding Wind, Converter={StaticResource WindDirectionConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid1Separator" />
+                            <TextBlock Text="{x:Bind Context.Wind,Mode=OneWay, Converter={StaticResource WindDirectionConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid1Separator" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid2" Grid.Row="1" Height="240" >
                             <TextBlock x:Uid="HumidityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1397,7 +1395,7 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding Humidity, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                            <TextBlock Text="{x:Bind Context.Humidity,Mode=OneWay, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="PrecipitationText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1429,9 +1427,9 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding Precipitation, Converter={StaticResource PrecipitationConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid3Separator" />
+                            <TextBlock Text="{x:Bind Context.Precipitation,Mode=OneWay, Converter={StaticResource PrecipitationConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="DetailGrid3Separator" />
                             <TextBlock x:Name="DetailGrid3Separator" Text="|" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
-                            <TextBlock Text="{Binding Proportion, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid3Separator" />
+                            <TextBlock Text="{x:Bind Context.Proportion,Mode=OneWay, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid3Separator" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="240" >
                             <TextBlock x:Uid="SunProgressText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1442,33 +1440,33 @@
                                             <RectangleGeometry Rect="0,0 512,256" />
                                         </Ellipse.Clip>
                                     </Ellipse>
-                                    <Ellipse x:Name="FillLine" Height="512" Width="512" VerticalAlignment="Top" Stroke="#FFA700" StrokeDashArray="{Binding ElementName=Page, Path=SunRiseStrokeLength, Converter={StaticResource SunRiseAniConverter}}" StrokeThickness="8">
+                                    <Ellipse x:Name="FillLine" Height="512" Width="512" VerticalAlignment="Top" Stroke="#FFA700" StrokeDashArray="{x:Bind SunRiseStrokeLength, Converter={StaticResource SunRiseAniConverter},Mode=OneWay}" StrokeThickness="8">
                                         <Ellipse.Clip>
                                             <RectangleGeometry Rect="0,0 512,256" />
                                         </Ellipse.Clip>
                                     </Ellipse>
-                                    <Path x:Name="SunriseIcon" HorizontalAlignment="{Binding IsNight, Converter={StaticResource SunRiseAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FFEF00" >
+                                    <Path x:Name="SunriseIcon" HorizontalAlignment="{x:Bind Context.IsNight,Mode=OneWay, Converter={StaticResource SunRiseAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FFEF00" >
                                         <Path.Data>
                                             M 64,19.6522L 64,19.6522C 61.1187,19.6522 58.7826,17.3161 58.7826,14.4348L 58.7826,9.2174C 58.7826,6.33609 61.1187,4 64,4L 64,4C 66.8813,4 69.2174,6.33609 69.2174,9.2174L 69.2174,14.4348C 69.2174,17.3161 66.8813,19.6522 64,19.6522 Z M 30.087,24.8696C 30.087,27.7509 27.7509,30.087 24.8696,30.087C 21.9883,30.087 19.6522,27.7509 19.6522,24.8696C 19.6522,21.9883 21.9883,19.6522 24.8696,19.6522C 27.7509,19.6522 30.087,21.9883 30.087,24.8696 Z M 103.13,30.087C 100.249,30.087 97.913,27.7509 97.913,24.8696C 97.913,21.9883 100.249,19.6522 103.13,19.6522C 106.012,19.6522 108.348,21.9883 108.348,24.8696C 108.348,27.7509 106.012,30.087 103.13,30.087 Z M 4.00001,64L 19.6522,64L 19.6522,64C 19.6522,61.1187 17.3161,58.7826 14.4348,58.7826L 9.2174,58.7826C 6.3361,58.7826 4.00001,61.1187 4.00001,64 Z M 24.8696,64L 103.13,64C 103.13,42.3887 85.6113,24.8696 64,24.8696C 42.3887,24.8696 24.8696,42.3887 24.8696,64 Z M 108.348,64L 124,64L 124,64C 124,61.1187 121.664,58.7826 118.783,58.7826L 113.565,58.7826C 110.684,58.7826 108.348,61.1187 108.348,64 Z
                                         </Path.Data>
                                     </Path>
-                                    <Path x:Name="SunsetIcon" HorizontalAlignment="{Binding IsNight, Converter={StaticResource SunSetAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FF5F00" >
+                                    <Path x:Name="SunsetIcon" HorizontalAlignment="{x:Bind Context.IsNight,Mode=OneWay, Converter={StaticResource SunSetAlignmentConverter}}" VerticalAlignment="Bottom" Height="64" Width="128" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Fill="#FF5F00" >
                                         <Path.Data>
                                             F1 M 24.8696,64L 103.13,64C 103.13,42.3887 85.6113,24.8696 64,24.8696C 42.3887,24.8696 24.8696,42.3887 24.8696,64 Z
                                         </Path.Data>
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding SunRiseText, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="8,0,8,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWith="SunProgressBox" >
+                            <TextBlock Text="{x:Bind Context.SunRiseText,Mode=OneWay, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="8,0,8,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWith="SunProgressBox" >
                             </TextBlock>
-                            <TextBlock Text="{Binding SunSetText, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWith="SunProgressBox" >
+                            <TextBlock Text="{x:Bind Context.SunSetText,Mode=OneWay, Converter={StaticResource TimeSpanConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,4,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWith="SunProgressBox" >
                             </TextBlock>
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="MoonPhaseText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Image Stretch="Uniform" Source="{Binding Calendar, Converter={StaticResource MoonPhaseProgressConverter}}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="72">
+                            <Image Stretch="Uniform" Source="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseProgressConverter}}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="72">
                             </Image>
-                            <TextBlock Text="{Binding Calendar, Converter={StaticResource MoonPhaseTextConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                            <TextBlock Text="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseTextConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid6" Grid.Row="3" Height="240" >
                             <TextBlock x:Uid="VisibilityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1496,7 +1494,7 @@
                                     </Ellipse>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding Visibility, Converter={StaticResource VisibilityConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                            <TextBlock Text="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid7" Grid.Row="3" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="PressureText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
@@ -1517,7 +1515,7 @@
                                     </Path>
                                 </Grid>
                             </Viewbox>
-                            <TextBlock Text="{Binding Pressure, Converter={StaticResource PressureConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                            <TextBlock Text="{x:Bind Context.Pressure,Mode=OneWay, Converter={StaticResource PressureConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid8" Grid.Row="3" Grid.Column="2" Visibility="Collapsed" Height="240" />
                         <Grid x:Name="SuggestionPanel" Grid.Row="4" Grid.ColumnSpan="3">
@@ -1533,57 +1531,57 @@
                             <StackPanel Orientation="Vertical" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="ComfortableText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Comf,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Comf,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Comf,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Comf,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="DressingText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Drsg,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Drsg,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Drsg,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Drsg,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="2" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="CWText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Cw,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Cw,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Cw,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Cw,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="SportText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Sport,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Sport,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Sport,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Sport,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="4" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="FluText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Flu,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Flu,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Flu,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Flu,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="5" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="TravelText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Trav,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Trav,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Trav,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Trav,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="6" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="UVText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{Binding Uv,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Uv,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
-                                <TextBlock Text="{Binding Uv,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
+                                <TextBlock Text="{x:Bind Context.Uv,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                         </Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,64,0,0">
-                            <TextBlock VerticalAlignment="Center" Margin="8" x:Uid="DataSourceText" Style="{ThemeResource BodyTextBlockStyle}" FontSize="13.333" />
-                            <Image x:Name="DataSourceImage" VerticalAlignment="Center" Margin="8,8,0,8" Height="32" Width="32" Stretch="UniformToFill" />
-                            <TextBlock x:Name="DataSourceContent" VerticalAlignment="Center" Margin="8" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" FontSize="13.333" />
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8" x:Uid="DataSourceText" Style="{ThemeResource BodyTextBlockStyle}" FontSize="13.333" />
+                            <Image x:Name="DataSourceImage" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,8,0,8" Height="32" Stretch="Uniform" />
+                            <TextBlock x:Name="DataSourceContent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" FontSize="13.333" />
                         </StackPanel>
                     </Grid>
                 </RelativePanel>

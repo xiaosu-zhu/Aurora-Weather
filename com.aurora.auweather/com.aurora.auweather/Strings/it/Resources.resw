@@ -952,7 +952,7 @@
     <value>Individuazione...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nuovo provider di dati: "WeatherUnderground" coming soon.</value>
+    <value>Utilizzare donazione Pack per consentire "Weather Underground"</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Orario di chiusura:</value>
@@ -1046,7 +1046,13 @@
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· Compatibile con Windows 10 Build 14328, ci hanno aggiornato toast e tile
+· "Weather Underground" ora disponibile! 
+piace · (maggio) Risolto un errore irreversibile
+piace · (maggio) Fissa un problema si verifica su dispositivi mobili che non visualizzano notifiche lockscreen
+
+1.4.16047:
 · Interfaccia utente aggiuntiva
 · Piccolo bug fissato
  
@@ -1075,5 +1081,14 @@ piace · Sorteggio/fornire più tempo icona o sfondo
 · Codifica
  
 grazie!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Oggi</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>domani</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Attivare l'origine di dati "Weather Underground"</value>
   </data>
 </root>

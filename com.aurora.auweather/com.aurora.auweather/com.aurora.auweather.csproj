@@ -191,7 +191,10 @@
     <Content Include="Assets\Logos\Caiyun.scale-140.png" />
     <Content Include="Assets\Logos\Caiyun.scale-180.png" />
     <Content Include="Assets\Logos\Caiyun.scale-240.png" />
-    <Content Include="Assets\Logos\Wunder.png" />
+    <Content Include="Assets\Logos\Wunder.scale-100.png" />
+    <Content Include="Assets\Logos\Wunder.scale-140.png" />
+    <Content Include="Assets\Logos\Wunder.scale-180.png" />
+    <Content Include="Assets\Logos\Wunder.scale-240.png" />
     <Content Include="Assets\MonthlyPic\1.scale-100.png" />
     <Content Include="Assets\MonthlyPic\1.scale-140.png" />
     <Content Include="Assets\MonthlyPic\1.scale-180.png" />

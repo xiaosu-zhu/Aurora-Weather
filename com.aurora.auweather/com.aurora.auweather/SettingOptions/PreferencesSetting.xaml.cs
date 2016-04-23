@@ -133,6 +133,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        case DataSource.Caiyun:
                            CaiyunRadio.IsChecked = true;
                            break;
+                       case DataSource.Wunderground:
+                           WundergroundRadio.IsChecked = true;
+                           break;
                        default:
                            HeWeatherRadio.IsChecked = true;
                            break;
@@ -147,10 +150,25 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        RefreshFreq.IsEnabled = false;
                        RefreshFreq.SelectedIndex = 0;
                        LockText.Visibility = Visibility.Visible;
+                       WundergroundRadio.IsEnabled = false;
+                       NeedDonation.Visibility = Visibility.Visible;
                    }
                    CaiyunRadio.Checked += CaiyunRadio_Checked;
                    HeWeatherRadio.Checked += HeWeatherRadio_Checked;
+                   WundergroundRadio.Checked += WundergroundRadio_Checked;
+                   if ((bool)CaiyunRadio.IsChecked || (bool)WundergroundRadio.IsChecked)
+                   {
+                       DisableAlarm();
+                   }
                }));
+        }
+
+        private void DisableAlarm()
+        {
+            EnableAlarm.Toggled -= Bool_Toggled;
+            EnableAlarm.IsOn = false;
+            EnableAlarm.IsEnabled = false;
+            EnableAlarm.Toggled += Bool_Toggled;
         }
 
         private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -309,11 +327,23 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private async void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.Caiyun);
+            DisableAlarm();
         }
 
         private async void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.HeWeather);
+            if (license.IsPurchased)
+            {
+                EnableAlarm.IsEnabled = true;
+                EnableAlarm.IsOn = Context.EnableAlarm;
+            }
+        }
+
+        private async void WundergroundRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            await Context.SetSource(DataSource.Wunderground);
+            DisableAlarm();
         }
     }
 }

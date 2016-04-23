@@ -952,7 +952,7 @@
     <value>Localización de...</value>
   </data>
   <data name="DataSourceDetailText.Text" xml:space="preserve">
-    <value>Nuevo proveedor de datos: "WeatherUnderground" próximamente.</value>
+    <value>Utilizar el paquete de donación para habilitar "Weather Underground"</value>
   </data>
   <data name="EndTimeText.Text" xml:space="preserve">
     <value>Hora de finalización:</value>
@@ -1046,7 +1046,13 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.4.16047:
+    <value>1.5.16040
+· Compatible con Windows 10 construir 14328, actualizado toast y azulejo
+· "El tiempo en el metro" ahora disponible! 
+· (mayo) Fija una falla catastrófica
+· (mayo) Fija un problema ocurre en dispositivos móviles que no muestre notificaciones de lockscreen
+
+1.4.16047:
 · Interfaz de usuario sintonización
 · Pequeño error corregido
  
@@ -1075,5 +1081,14 @@ Incluyendo pero no limitado a:
 · Codificación
  
 ¡ gracias!</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Mañana</value>
+  </data>
+  <data name="DonateOption4.Text" xml:space="preserve">
+    <value>· Habilitar el "Weather Underground" origen de datos</value>
   </data>
 </root>

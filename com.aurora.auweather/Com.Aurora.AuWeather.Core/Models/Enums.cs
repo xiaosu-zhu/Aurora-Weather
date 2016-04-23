@@ -45,5 +45,5 @@ namespace Com.Aurora.AuWeather.Models
 
     public enum RequestedTheme : byte { Default, Auto, Light, Dark };
 
-    public enum DataSource : byte { HeWeather, Caiyun };
+    public enum DataSource : byte { HeWeather, Caiyun, Wunderground };
 }
