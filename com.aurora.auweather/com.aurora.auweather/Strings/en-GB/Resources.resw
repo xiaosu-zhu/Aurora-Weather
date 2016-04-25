@@ -1198,4 +1198,42 @@ Thanks!</value>
   <data name="Tomorrow" xml:space="preserve">
     <value>Tomorrow</value>
   </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>Oops!</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>Something went wrong!( ×ω× )
+Now you can send crash report to developer, and totally help this app get better...
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>May be these info could help you:</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>We will NEVER upload your personal infomation</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>In crash reports, we will log current time, current language, and some environment information, then we will send these strings to server, we WON't log any of your personal information. If you don't want to send reports, just click quit button and nothing happens.</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>What will be sent?</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>Refresh or restart to apply</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>Write your opinion!</value>
+  </data>
 </root>

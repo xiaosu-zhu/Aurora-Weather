@@ -1021,8 +1021,10 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· UI-tuning
-· Kleine Fehler behoben</value>
+    <value>· Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
+· "Weather Underground" jetzt verfügbar! 
+· (Mai) Fixiert einen schwerwiegenden Fehler
+· (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen nicht angezeigt</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1090,5 +1092,43 @@ Danke!</value>
   </data>
   <data name="DonateOption4.Text" xml:space="preserve">
     <value>· Die "Weather Underground" Datenquelle aktivieren</value>
+  </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>Hoppla</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Senden</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>Irgendetwas ging schief! (× Ω ×) 
+Jetzt können Entwickler Absturzbericht schicken und völlig helfen diese app besser werden... 
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>Kann sein, dass diese Informationen Ihnen helfen könnten:</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>Wir werden niemals Ihre persönlichen Daten hochladen.</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>Wir protokolliert in Crash-Berichte, aktuelle Uhrzeit, aktuelle Sprache und einige Umgebungsinformationen, dann senden wir diese Zeichenfolgen Anmeldung an Server wir werden nicht Ihre persönlichen Informationen. Wenn Sie nicht möchten, dass Berichte senden, nur beenden klicken, und nichts geschieht.</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>Was gesendet wird?</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>Refresh oder Neustart anwenden</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>Schreiben Sie Ihre Meinung!</value>
   </data>
 </root>

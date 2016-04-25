@@ -1355,9 +1355,10 @@
 · "Weather Underground" now avaliable!
 · (may) Fixed a catastrophic failure
 · (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</source>
-          <target state="needs-review-translation">· Interface utilisateur tuning
-· Petite corrigé d'un bug</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">· Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
+· « Weather Underground » maintenant disponible ! 
+· (mai) Correction d'une défaillance catastrophique
+· (mai) Fixe un problème se produit sur les périphériques mobiles qui n'affichent pas les notifications de lockscreen</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1464,6 +1465,58 @@ Merci !</target>
         <trans-unit id="DonateOption4.Text" translate="yes" xml:space="preserve">
           <source>· Enable the "Weather Underground" data source</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">· Activer la source de données « Weather Underground »</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.Title" translate="yes" xml:space="preserve">
+          <source>Oops!</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Désolé !</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Quit</source>
+          <target state="translated">Quitter</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Send</source>
+          <target state="translated">Envoi</target>
+        </trans-unit>
+        <trans-unit id="CrashText0.Text" translate="yes" xml:space="preserve">
+          <source>Something went wrong!( ×ω× )
+Now you can send crash report to developer, and totally help this app get better...
+</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Quelque chose a mal tourné ! (Ω ×) 
+Maintenant vous pouvez envoyer le rapport d'accident au développeur et totalement aider ce soft s'améliorent... 
+</target>
+        </trans-unit>
+        <trans-unit id="CrashText1.Text" translate="yes" xml:space="preserve">
+          <source>May be these info could help you:</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Peut-être que ces informations pourraient vous aider :</target>
+        </trans-unit>
+        <trans-unit id="PrivacyText0.Text" translate="yes" xml:space="preserve">
+          <source>We will NEVER upload your personal infomation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous téléchargerons jamais vos renseignements personnels</target>
+        </trans-unit>
+        <trans-unit id="PrivacyText1.Text" translate="yes" xml:space="preserve">
+          <source>In crash reports, we will log current time, current language, and some environment information, then we will send these strings to server, we WON't log any of your personal information. If you don't want to send reports, just click quit button and nothing happens.</source>
+          <target state="translated">Dans les rapports d'incidents, on enregistrera l'heure actuelle, la langue actuelle et quelques informations sur l'environnement, puis nous enverrons ces chaînes au serveur, nous n'enregistrons aucun de vos renseignements personnels. Si vous ne voulez pas envoyer de rapports, juste cliquez sur quitter le bouton et rien ne se passe.</target>
+        </trans-unit>
+        <trans-unit id="WhyButton.Content" translate="yes" xml:space="preserve">
+          <source>What will be sent?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ce qui sera envoyé ?</target>
+        </trans-unit>
+        <trans-unit id="GeneralText.Text" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Général</target>
+        </trans-unit>
+        <trans-unit id="LanguageText.Text" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Langue</target>
+        </trans-unit>
+        <trans-unit id="LanguageChangeText.Text" translate="yes" xml:space="preserve">
+          <source>Refresh or restart to apply</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualisation ou redémarrage d'appliquer</target>
+        </trans-unit>
+        <trans-unit id="ReportBox.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Write your opinion!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Donnez votre avis !</target>
         </trans-unit>
       </group>
     </body>

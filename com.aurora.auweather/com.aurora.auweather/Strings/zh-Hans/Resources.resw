@@ -1193,4 +1193,48 @@
                                 
 希望能够在这里看到你的一份力!</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>明日</value>
+  </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>啊哦!</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>好像有什么不对的样子( ×ω× )
+现在你可以对开发者痛骂一顿, 获得神秘的力量加成...
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>这些信息可能帮助到你:</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>绝不会透露任何个人信息!</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>在崩溃报告里, 我们只会记录崩溃发生的时间, 设备状态, 以及崩溃信息, 之后直接发送到服务器上, 其中不会包含任何个人信息, 如果你不希望发送报告, 请直接点击退出按钮.</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>将要发送什么?</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>通用</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>需要刷新或重启应用</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>写下你的意见!</value>
+  </data>
 </root>

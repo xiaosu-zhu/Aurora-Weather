@@ -72,13 +72,53 @@
                     </StackPanel>
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock x:Name="GeneralTitle" x:Uid="GeneralText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <Grid HorizontalAlignment="Stretch" >
+                            <TextBlock x:Uid="ThemeText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Theme" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector">
+                                        <TextBlock Text="{x:Bind Title}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
+                                <ToggleSwitch x:Name="ThemeasRiseSet" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                            <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock x:Uid="StartTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="StartPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                            <Grid Visibility="Collapsed" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
+                                <TextBlock x:Uid="EndTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="EndPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                            </Grid>
+                        </StackPanel>
+                        <Grid HorizontalAlignment="Stretch" >
+                            <TextBlock x:Uid="LanguageText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="LanguageBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <TextBlock Text="{x:Bind}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <TextBlock x:Uid="LanguageChangeText" x:Name="LanguageChangeText" Visibility="Collapsed" Foreground="Red" Margin="8" FontWeight="Light" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
                             <TextBlock HorizontalAlignment="Left" x:Uid="TempParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Temp" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding Title}" />
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector">
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -87,8 +127,8 @@
                             <TextBlock HorizontalAlignment="Left" x:Uid="WindParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Wind" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding Title}" />
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector" >
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -97,8 +137,8 @@
                             <TextBlock HorizontalAlignment="Left" x:Uid="SpeedParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Speed" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding Title}" />
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector" >
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -107,8 +147,8 @@
                             <TextBlock HorizontalAlignment="Left" x:Uid="LengthParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Length" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding Title}" />
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector" >
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -117,8 +157,8 @@
                             <TextBlock HorizontalAlignment="Left" x:Uid="PressureParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Pressure" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding Title}" />
+                                    <DataTemplate x:DataType="ViewModels:EnumSelector" >
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -205,8 +245,8 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <ComboBox x:Name="Year" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Width="96" MaxWidth="96" Margin="2,12,2,12">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                    <DataTemplate x:DataType="x:String" >
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -214,8 +254,8 @@
                             </TextBox>
                             <ComboBox x:Name="Month" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Width="72" MaxWidth="80" Margin="2,12,2,12">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                    <DataTemplate x:DataType="x:String" >
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -224,8 +264,8 @@
                             </TextBox>
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Day" VerticalAlignment="Center" Width="72" MaxWidth="80" Margin="2,12,2,12">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                    <DataTemplate x:DataType="x:String" >
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -233,23 +273,23 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Hour" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                    <DataTemplate x:DataType="x:String" >
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <TextBlock VerticalAlignment="Center" Text=":" Margin="0,12,0,12" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Minute" VerticalAlignment="Center" Width="72" MaxWidth="72" Margin="12">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                <ComboBox.ItemTemplate >
+                                    <DataTemplate x:DataType="x:String">
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Week" VerticalAlignment="Center" Width="84" MaxWidth="72" Margin="24,12,12,12">
+                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Week" VerticalAlignment="Center" Width="80" MaxWidth="96" Margin="12">
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate >
-                                        <TextBlock Text="{Binding}" />
+                                    <DataTemplate x:DataType="x:String" >
+                                        <TextBlock Text="{x:Bind}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -291,36 +331,12 @@
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="RefreshFreq" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="ViewModels:EnumSelector">
-                                        <TextBlock Text="{Binding Title}" />
+                                        <TextBlock Text="{x:Bind Title}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
-                        <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock x:Uid="ThemeText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Theme" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="ViewModels:EnumSelector">
-                                        <TextBlock Text="{Binding Title}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </Grid>
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                            <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
-                                <ToggleSwitch x:Name="ThemeasRiseSet" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
-                            </Grid>
-                            <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock x:Uid="StartTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TimePicker x:Name="StartPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
-                            </Grid>
-                            <Grid Visibility="Collapsed" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
-                                <TextBlock x:Uid="EndTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TimePicker x:Name="EndPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
-                            </Grid>
-                        </StackPanel>
+
                     </StackPanel>
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel>
@@ -359,10 +375,5 @@
                 <Grid Height="64" />
             </StackPanel>
         </ScrollViewer>
-        <Grid Background="{ThemeResource SystemControlTranslucentHighBrush}" Visibility="{x:Bind WaitingPanel.Visibility,Mode=OneWay}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-        <StackPanel x:Name="WaitingPanel" Visibility="Collapsed" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-            <ProgressRing x:Name="WaitingRing" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Width="32" Margin="8" IsActive="False" />
-            <TextBlock x:Name="WaitingText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Text="Waiting" />
-        </StackPanel>
     </Grid>
 </Page>

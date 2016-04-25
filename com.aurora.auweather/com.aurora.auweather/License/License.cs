@@ -33,14 +33,14 @@ namespace Com.Aurora.AuWeather.License
                 {
                     if (licenseInformation.ProductLicenses[item].IsActive)
                     {
-                        return false;
+                        return true;
                     }
                     else
                     {
                         continue;
                     }
                 }
-                return true;
+                return false;
             }
         }
 

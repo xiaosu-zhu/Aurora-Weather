@@ -58,8 +58,8 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             City = basic.city;
             Country = basic.cnty;
             CityId = basic.id;
-            Latitude = float.Parse(basic.lat);
-            Longitude = float.Parse(basic.lon);
+            Latitude = float.Parse(basic.lat, provider);
+            Longitude = float.Parse(basic.lon, provider);
             UpdateTime = DateTime.ParseExact(basic.update.loc, "yyyy-MM-dd H:mm", provider);
             UtcTime = DateTime.ParseExact(basic.update.utc, "yyyy-MM-dd H:mm", provider);
         }
@@ -75,8 +75,9 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public Location(observation current_observation)
         {
-            Latitude = float.Parse(current_observation.display_location.latitude);
-            Longitude = float.Parse(current_observation.display_location.longitude);
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            Latitude = float.Parse(current_observation.display_location.latitude, provider);
+            Longitude = float.Parse(current_observation.display_location.longitude, provider);
             var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             UtcTime = t.AddSeconds(long.Parse(current_observation.local_epoch));
             var p = int.Parse(current_observation.local_tz_offset);

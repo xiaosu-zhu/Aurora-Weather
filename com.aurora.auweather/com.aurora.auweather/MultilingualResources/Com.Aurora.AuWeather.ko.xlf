@@ -1355,9 +1355,10 @@
 · "Weather Underground" now avaliable!
 · (may) Fixed a catastrophic failure
 · (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</source>
-          <target state="needs-review-translation">· UI 튜닝
-· 작은 버그 수정</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">· 윈도우 10 빌드 14328, 우리 토스트 업데이 트와
+· 타일 "지 하 날씨" 지금 유효한! 
+· (5 월) 고정 오류가
+· (5 월) Lockscreen 알림을 표시 하지 않는 모바일 장치에서 발생 하는 문제 수정</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1464,6 +1465,58 @@ Thanks!</source>
         <trans-unit id="DonateOption4.Text" translate="yes" xml:space="preserve">
           <source>· Enable the "Weather Underground" data source</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">· "날씨 지 하" 데이터 소스 사용</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.Title" translate="yes" xml:space="preserve">
+          <source>Oops!</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">죄송합니다.</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Quit</source>
+          <target state="translated">끝내기</target>
+        </trans-unit>
+        <trans-unit id="CrashDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Send</source>
+          <target state="translated">보내기</target>
+        </trans-unit>
+        <trans-unit id="CrashText0.Text" translate="yes" xml:space="preserve">
+          <source>Something went wrong!( ×ω× )
+Now you can send crash report to developer, and totally help this app get better...
+</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">뭔가 잘못! (Ω ×) 
+지금 당신은 개발자, 충돌 보고서를 보낼 수 있고 완전히이 애플 리 케이이 션을 좀 더 도움이... 
+</target>
+        </trans-unit>
+        <trans-unit id="CrashText1.Text" translate="yes" xml:space="preserve">
+          <source>May be these info could help you:</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">이 정보는 당신을 도울 수 있을 수 있습니다.</target>
+        </trans-unit>
+        <trans-unit id="PrivacyText0.Text" translate="yes" xml:space="preserve">
+          <source>We will NEVER upload your personal infomation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">우리 절대 귀하의 개인 정보를 업로드 합니다.</target>
+        </trans-unit>
+        <trans-unit id="PrivacyText1.Text" translate="yes" xml:space="preserve">
+          <source>In crash reports, we will log current time, current language, and some environment information, then we will send these strings to server, we WON't log any of your personal information. If you don't want to send reports, just click quit button and nothing happens.</source>
+          <target state="translated">충돌 보고서에 우리 현재 시간, 현재 언어, 그리고 몇 가지 환경 정보를 로그 다음 이러한 문자열을 보낼 것입니다 우리가 서버, 우리는 귀하의 개인 정보 로그 하지 않습니다. 보고서를 전송 하지 않으려는 경우 그냥 버튼을 클릭 종료 하 고 아무것도 발생 합니다.</target>
+        </trans-unit>
+        <trans-unit id="WhyButton.Content" translate="yes" xml:space="preserve">
+          <source>What will be sent?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">무엇 전송 됩니다?</target>
+        </trans-unit>
+        <trans-unit id="GeneralText.Text" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">일반</target>
+        </trans-unit>
+        <trans-unit id="LanguageText.Text" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">언어</target>
+        </trans-unit>
+        <trans-unit id="LanguageChangeText.Text" translate="yes" xml:space="preserve">
+          <source>Refresh or restart to apply</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">새로 고침 또는 다시 적용</target>
+        </trans-unit>
+        <trans-unit id="ReportBox.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Write your opinion!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">귀하의 의견 쓰기!</target>
         </trans-unit>
       </group>
     </body>

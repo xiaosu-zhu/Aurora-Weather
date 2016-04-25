@@ -94,12 +94,12 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             SunSet = TimeSpan.Parse(daily_forecast.astro.ss);
             Condition = new DailyCondition(daily_forecast.cond);
             Humidity = uint.Parse(daily_forecast.hum);
-            Precipitation = float.Parse(daily_forecast.pcpn);
+            Precipitation = float.Parse(daily_forecast.pcpn, provider);
             Pop = uint.Parse(daily_forecast.pop);
-            Pressure = Pressure.FromHPa(float.Parse(daily_forecast.pres));
+            Pressure = Pressure.FromHPa(float.Parse(daily_forecast.pres, provider));
             HighTemp = Temperature.FromCelsius(int.Parse(daily_forecast.tmp.max));
             LowTemp = Temperature.FromCelsius(int.Parse(daily_forecast.tmp.min));
-            Visibility = Length.FromKM(float.Parse(daily_forecast.vis));
+            Visibility = Length.FromKM(float.Parse(daily_forecast.vis, provider));
             Wind = new Wind(daily_forecast.wind);
         }
 
@@ -119,7 +119,6 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public DailyForecast(forecastday daily)
         {
-            CultureInfo provider = CultureInfo.InvariantCulture;
             Date = new DateTime(daily.date.year, daily.date.month, daily.date.day);
             Condition = new DailyCondition(daily.icon);
             float m;

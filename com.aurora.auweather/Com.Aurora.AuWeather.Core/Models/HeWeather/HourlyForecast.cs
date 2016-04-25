@@ -51,7 +51,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             DateTime = DateTime.ParseExact(hourly_forecast.date, "yyyy-MM-dd HH:mm", provider);
             Humidity = uint.Parse(hourly_forecast.hum);
             Pop = uint.Parse(hourly_forecast.pop);
-            Pressure = Pressure.FromHPa(float.Parse(hourly_forecast.pres));
+            Pressure = Pressure.FromHPa(float.Parse(hourly_forecast.pres, provider));
             Temprature = Temperature.FromCelsius(int.Parse(hourly_forecast.tmp));
             Wind = new Wind(hourly_forecast.wind);
         }
@@ -73,12 +73,13 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public HourlyForecast(hourly hour)
         {
+            CultureInfo provider = CultureInfo.InvariantCulture;
             var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             DateTime = new DateTime(int.Parse(hour.FCTTIME.year), int.Parse(hour.FCTTIME.mon), int.Parse(hour.FCTTIME.mday), int.Parse(hour.FCTTIME.hour), int.Parse(hour.FCTTIME.min), int.Parse(hour.FCTTIME.sec));
-            Humidity = Convert.ToUInt32(float.Parse(hour.humidity));
+            Humidity = Convert.ToUInt32(float.Parse(hour.humidity, provider));
             Pop = Convert.ToUInt32(float.Parse(hour.pop));
-            Temprature = Temperature.FromCelsius(float.Parse(hour.temp.metric));
-            Wind = new Wind(Convert.ToUInt32(float.Parse(hour.wspd.metric)), Convert.ToUInt32(float.Parse(hour.wdir.degrees)));
+            Temprature = Temperature.FromCelsius(float.Parse(hour.temp.metric, provider));
+            Wind = new Wind(Convert.ToUInt32(float.Parse(hour.wspd.metric, provider)), Convert.ToUInt32(float.Parse(hour.wdir.degrees)));
         }
     }
 }

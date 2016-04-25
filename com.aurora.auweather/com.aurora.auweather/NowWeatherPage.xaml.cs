@@ -223,14 +223,14 @@ namespace Com.Aurora.AuWeather
             Forecast2.SetCondition(Context.Forecast2, Context.IsNight);
             Forecast3.SetCondition(Context.Forecast3, Context.IsNight);
             Forecast4.SetCondition(Context.Forecast4, Context.IsNight);
-            if (Context.Condition == (WeatherCondition.sunny | WeatherCondition.windy
-                | WeatherCondition.calm |
-                WeatherCondition.light_breeze |
-                WeatherCondition.moderate |
-                WeatherCondition.fresh_breeze |
-                WeatherCondition.strong_breeze |
-                WeatherCondition.high_wind |
-                WeatherCondition.gale))
+            if ((Context.Condition == WeatherCondition.sunny) || (Context.Condition == WeatherCondition.windy)
+                || (Context.Condition == WeatherCondition.calm) ||
+                (Context.Condition == WeatherCondition.light_breeze) ||
+                (Context.Condition == WeatherCondition.moderate) ||
+                (Context.Condition == WeatherCondition.fresh_breeze) ||
+                (Context.Condition == WeatherCondition.strong_breeze) ||
+                (Context.Condition == WeatherCondition.high_wind) ||
+                (Context.Condition == WeatherCondition.gale))
             {
                 if (!Context.IsNight)
                 {

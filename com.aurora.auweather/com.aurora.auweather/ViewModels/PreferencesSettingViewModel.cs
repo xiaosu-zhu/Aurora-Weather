@@ -13,6 +13,7 @@ using Windows.Foundation;
 using System.Threading.Tasks;
 using Com.Aurora.Shared.MVVM;
 using Windows.UI.Xaml;
+using Windows.Globalization;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -43,6 +44,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Hour = new FormatList();
                 Minute = new FormatList();
                 Week = new FormatList();
+                Languages = new FormatList();
 
                 Year.AddRange(Preferences.YearFormat);
                 Month.AddRange(Preferences.MonthFormat);
@@ -51,6 +53,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Minute.AddRange(Preferences.MinuteFormat);
                 Week.AddRange(Preferences.WeekFormat);
                 Separator = Preferences.DateSeparator.ToString();
+                Languages.AddRange(ApplicationLanguages.ManifestLanguages);
 
                 Data.SelectedIndex = Data.FindIndex(x =>
                 {
@@ -91,6 +94,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Hour.SelectedIndex = (int)Preferences.HourNumber;
                 Minute.SelectedIndex = (int)Preferences.MinuteNumber;
                 Week.SelectedIndex = (int)Preferences.WeekNumber;
+                Languages.SelectedIndex = Languages.FindIndex(x =>
+                {
+                    return x == ApplicationLanguages.Languages[0];
+                });
 
                 DisableDynamic = Preferences.DisableDynamic;
                 EnableAlarm = Preferences.EnableAlarm;
@@ -210,6 +217,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public PressureList Pressure { get; private set; }
         public ThemeList Theme { get; private set; }
         public RefreshFreqList RefreshFreq { get; private set; }
+        public FormatList Languages { get; private set; }
 
         public FormatList Hour { get; private set; }
         public FormatList Minute { get; private set; }

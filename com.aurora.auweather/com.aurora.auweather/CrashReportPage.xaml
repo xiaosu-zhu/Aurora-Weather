@@ -9,27 +9,22 @@
 
     <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
         <ContentDialog Margin="12,32,12,12" Loaded="CrashDialog_Loaded"
-    x:Name="CrashDialog" IsPrimaryButtonEnabled="True"
-           SecondaryButtonText="Quit" Title="Oops!" PrimaryButtonText="Send">
+    x:Name="CrashDialog" IsPrimaryButtonEnabled="True" x:Uid="CrashDialog">
             <StackPanel Margin="4">
-                <TextBlock TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}">
-        <Run>Something went wrong!</Run><LineBreak/>
-                    <LineBreak/>
-        <Run>Now you can send crash report to developer, and totally help this app get better...</Run><LineBreak/>
+                <TextBlock x:Uid="CrashText0" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}">
                 </TextBlock>
-                <TextBlock Margin="4" TextWrapping="WrapWholeWords" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
-            <Run>May be these info could help you:</Run>
+                <TextBlock x:Uid="CrashText1" Margin="4" TextWrapping="WrapWholeWords" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
                 </TextBlock>
                 <TextBlock Margin="4" x:Name="CrashInfo" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
                 </TextBlock>
-                <Button x:Name="WhyButton" Content="What will be sent?" Style="{ThemeResource TextBlockButtonStyle}" >
+                <TextBox x:Uid="ReportBox" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
+                <Button x:Name="WhyButton" x:Uid="WhyButton" Style="{ThemeResource TextBlockButtonStyle}" >
                     <Button.Flyout>
                         <Flyout>
                             <ScrollViewer>
                                 <StackPanel Margin="4" MaxWidth="384" Orientation="Vertical">
-                                    <TextBlock Margin="4" Text="We will NEVER upload your personal infomation" Foreground="Red" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                                    <TextBlock Margin="8" TextWrapping="WrapWholeWords" Text="In crash reports, we will log current time, current language, and some environment information, 
-then we will send these strings to developer via email directly, we WON't log any of your personal information. If you don't want to send reports, just click quit button and nothing happens." />
+                                    <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="Red" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                    <TextBlock x:Uid="PrivacyText1" Margin="8" TextWrapping="WrapWholeWords" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Flyout>

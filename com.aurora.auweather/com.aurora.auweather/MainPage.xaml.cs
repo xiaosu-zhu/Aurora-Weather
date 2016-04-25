@@ -151,7 +151,7 @@ namespace Com.Aurora.AuWeather
                     return;
                 }
                 MainFrame.GoBack();
-                
+
             }
         }
 

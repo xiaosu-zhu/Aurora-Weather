@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using Com.Aurora.AuWeather.ViewModels;
 using System.Threading.Tasks;
 using Com.Aurora.AuWeather.Models;
+using Windows.Globalization;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -52,6 +53,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Week.ItemsSource = Context.Week;
                    RefreshFreq.ItemsSource = Context.RefreshFreq;
                    Theme.ItemsSource = Context.Theme;
+                   LanguageBox.ItemsSource = Context.Languages;
 
                    Separator0.PlaceholderText = Context.Separator;
                    Separator1.PlaceholderText = Context.Separator;
@@ -93,6 +95,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Week.SelectedIndex = Context.Week.SelectedIndex;
                    Theme.SelectedIndex = Context.Theme.SelectedIndex;
                    RefreshFreq.SelectedIndex = Context.RefreshFreq.SelectedIndex;
+                   LanguageBox.SelectedIndex = Context.Languages.SelectedIndex;
 
                    StartPicker.Time = Context.StartTime;
                    EndPicker.Time = Context.EndTime;
@@ -110,6 +113,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Hour.SelectionChanged += Format_SelectionChanged;
                    Minute.SelectionChanged += Format_SelectionChanged;
                    Week.SelectionChanged += Format_SelectionChanged;
+                   LanguageBox.SelectionChanged += Language_SelectionChanged;
 
                    StartPicker.TimeChanged += StartPicker_TimeChanged;
                    EndPicker.TimeChanged += EndPicker_TimeChanged;
@@ -161,6 +165,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        DisableAlarm();
                    }
                }));
+        }
+
+        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplicationLanguages.PrimaryLanguageOverride = (sender as ComboBox).SelectedItem as string;
+            LanguageChangeText.Visibility = Visibility.Visible;
         }
 
         private void DisableAlarm()
@@ -222,6 +232,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 {
                     Context.SetSeparator(Separator0.Text);
                 }
+                ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
             }
         }
 
@@ -238,6 +249,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 {
                     Context.SetSeparator(Separator1.Text);
                 }
+                ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
             }
         }
 

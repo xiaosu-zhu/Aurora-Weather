@@ -1021,8 +1021,10 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Пользовательского интерфейса настройки
-· Исправлена маленькая ошибка</value>
+    <value>· Совместимость с Windows 10 построить 14328, мы обновили тост и плитка
+· «Погода метро» теперь доступно! 
+· (май) Исправлена катастрофический провал
+· (май) Исправлена проблема возникает на мобильных устройствах, которые не отображают lockscreen уведомления</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1090,5 +1092,43 @@
   </data>
   <data name="DonateOption4.Text" xml:space="preserve">
     <value>· Включите «Weather Underground» источника данных</value>
+  </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>Ой!</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>Что-то пошло не так! (Ω ×) 
+Теперь вы можете отправить отчет аварии для разработчика и полностью помочь этот app лучше... 
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>Может быть, что эти информация может помочь вам:</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>Мы никогда не будем загружать вашу персональную информацию</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>В падениях, мы будет входить текущее время, текущий язык и окружающей среды информацию, то мы отправим эти строки на сервер, мы не войти в любой из вашей личной информации. Если вы не хотите отправлять отчеты, просто бросить кнопку и ничего не происходит.</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>Что будет отправлен?</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>язык</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>Обновления или перезагрузки для применения</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>Напишите Ваше мнение!</value>
   </data>
 </root>

@@ -90,6 +90,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 stopUpdateTimer.Cancel();
             }
+            if (Canvas == null)
+                return;
             Canvas.Paused = false;
         }
 
@@ -681,7 +683,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 stopUpdate();
             }
-            if (EnableDynamic && (condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast))
+            if (EnableDynamic && ((condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast)))
             {
                 smoke.ImmersiveIn();
             }
@@ -699,7 +701,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 stopUpdate();
             }
-            if (EnableDynamic && (condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast))
+            if (EnableDynamic && ((condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast)))
             {
                 var t = Canvas.RunOnGameLoopThreadAsync(async () =>
                  {

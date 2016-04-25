@@ -1090,7 +1090,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).So2 > 2620 ? 1d : (value as AQI).So2 / 2620d;
+            return (value as AQI).So2 > 2620 ? 100d : (value as AQI).So2 / 2.620;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1107,7 +1107,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).No2 > 940 ? 1d : (value as AQI).No2 / 940d;
+            return (value as AQI).No2 > 940 ? 100d : (value as AQI).No2 / 9.4;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1124,7 +1124,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).Co > 60 ? 1d : (value as AQI).Co / 60d;
+            return (value as AQI).Co > 60 ? 100d : (value as AQI).Co / 0.6;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1141,7 +1141,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).O3 > 1200 ? 1d : (value as AQI).O3 / 1200d;
+            return (value as AQI).O3 > 1200 ? 100d : (value as AQI).O3 / 12d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1158,7 +1158,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).Pm25 > 500 ? 1d : (value as AQI).Pm25 / 500d;
+            return (value as AQI).Pm25 > 500 ? 100d : (value as AQI).Pm25 / 5d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -1175,7 +1175,7 @@ namespace Com.Aurora.Shared.Converters
             {
                 return 0d;
             }
-            return (value as AQI).Pm10 > 600 ? 1d : (value as AQI).Pm10 / 600d;
+            return (value as AQI).Pm10 > 600 ? 100d : (value as AQI).Pm10 / 6d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

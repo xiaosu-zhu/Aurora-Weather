@@ -1021,8 +1021,10 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·UI のチューニング
-·小さなバグを修正</value>
+    <value>·Windows 10 ビルド 14328 と互換性のある、我々 がトーストを更新しておりタイルの
+·「天気地下「今利用できる!
+·(5 月)致命的なエラー
+を修正 ·(5 月)固定の lockscreen の通知を表示しないモバイル デバイスで問題が発生します。</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1090,5 +1092,43 @@
   </data>
   <data name="DonateOption4.Text" xml:space="preserve">
     <value>·「天気予報の地下鉄"のデータ ソース有効にする</value>
+  </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>問題が発生しました。</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>終了</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>何かは間違っていた!(× Ω ×)
+今開発者は、クラッシュ レポートを送信し、良くこのアプリを完全に助けることができます.
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>これらの情報はあなたを助けることができる場合があります。</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>決して、お客様の個人情報をアップしていきます</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>クラッシュ レポートでは、我々 は現在の時刻、現在の言語、およびいくつかの環境については、ログオンし、これらの文字列を送信、サーバーに我々 はお客様の個人情報のいずれかを記録されません。レポートを送信しない場合は、終了をクリックしてボタンだけ、何が起こる。</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>何を送信するか。</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>更新または再起動を適用するには</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>あなたの意見を書く!</value>
   </data>
 </root>

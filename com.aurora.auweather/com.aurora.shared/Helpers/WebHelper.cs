@@ -3,11 +3,15 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Com.Aurora.Shared.Extensions;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Networking.Connectivity;
+using Windows.Storage;
+using Windows.Web.Http;
 
 namespace Com.Aurora.Shared.Helpers
 {
@@ -196,6 +200,18 @@ namespace Com.Aurora.Shared.Helpers
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             return internet;
+        }
+
+        public static async Task<IAsyncOperationWithProgress<HttpResponseMessage, HttpProgress>> PostAsync(Uri uri, StorageFile file)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (var content = new HttpBufferContent(await FileIOHelper.GetBuffer(file)))
+                {
+                    var response = client.PostAsync(uri, content);
+                    return response;
+                }
+            }
         }
     }
 }

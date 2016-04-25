@@ -1193,4 +1193,48 @@
                                 
 希望能夠在這裏看到你的一份力!</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>明日</value>
+  </data>
+  <data name="CrashDialog.Title" xml:space="preserve">
+    <value>啊哦!</value>
+  </data>
+  <data name="CrashDialog.SecondaryButtonText" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
+    <value>發送</value>
+  </data>
+  <data name="CrashText0.Text" xml:space="preserve">
+    <value>好像有什麽不對的樣子( ×ω× )
+現在你可以對開發者痛駡一頓, 獲得神秘力量加成...
+</value>
+  </data>
+  <data name="CrashText1.Text" xml:space="preserve">
+    <value>這些信息可能幫助到你:</value>
+  </data>
+  <data name="PrivacyText0.Text" xml:space="preserve">
+    <value>絕不會透露任何個人信息!</value>
+  </data>
+  <data name="PrivacyText1.Text" xml:space="preserve">
+    <value>在崩潰報告里, 我們衹會記錄崩潰發生的時間, 設備狀態, 以及崩潰信息, 之後直接發送到服務器上, 其中不會包含任何個人信息, 如果你不希望發送報告, 請直接點擊退出按鈕.</value>
+  </data>
+  <data name="WhyButton.Content" xml:space="preserve">
+    <value>將要發送什麽?</value>
+  </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>通用</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="LanguageChangeText.Text" xml:space="preserve">
+    <value>需要刷新或重啓應用</value>
+  </data>
+  <data name="ReportBox.PlaceholderText" xml:space="preserve">
+    <value>寫下你的意見!</value>
+  </data>
 </root>

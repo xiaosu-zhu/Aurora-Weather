@@ -204,6 +204,11 @@ namespace Com.Aurora.Shared.Helpers
             await FileIO.WriteBufferAsync(file, buffer);
         }
 
+        public static async Task<IBuffer> GetBuffer(StorageFile file)
+        {
+            return await FileIO.ReadBufferAsync(file);
+        }
+
         /// <summary>
         /// 将文本写入存储目录（覆盖）
         /// </summary>
