@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.Aurora.Shared;
+using System;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -6,7 +7,6 @@ namespace Com.Aurora.AuWeather.Core.CrashReport
 {
     public static class Sender
     {
-        private const string address = "Xiaosu.Zhu@outlook.com";
         public static async Task SendFileEmail(StorageFile attachmentFile, string messageBody = "\n")
         {
             var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
@@ -22,7 +22,7 @@ namespace Com.Aurora.AuWeather.Core.CrashReport
 
                 emailMessage.Attachments.Add(attachment);
             }
-            var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(address);
+            var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(Utils.MAIL_ADDRESS);
             emailMessage.To.Add(emailRecipient);
 
             await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);

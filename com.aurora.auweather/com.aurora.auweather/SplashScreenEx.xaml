@@ -23,17 +23,18 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-
     <Grid Background="{ThemeResource SystemThemeMainBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Canvas Grid.RowSpan="3">
-            <Image x:Name="SplashImage" Source="Assets/SplashScreen.png"/>
-            <ProgressRing Foreground ="White" Name="SplashProgressRing" IsActive="True" Width="32" Height="32" ></ProgressRing>
-        </Canvas>
-        <TextBlock Grid.Row="2" x:Uid="SplashText" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" FontSize="16" />
+        <Grid>
+            <Grid.Background>
+                <ImageBrush AlignmentX="Center" AlignmentY="Center" Stretch="None" ImageSource="/Assets/SplashScreen.png" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ProgressRing Grid.Row="2" Foreground ="White" Name="SplashProgressRing" IsActive="True" Margin="0,0,0,96" Width="32" Height="32" ></ProgressRing>
+            <TextBlock Grid.Row="2" x:Uid="SplashText" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" Margin="0,72,0,96" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" FontSize="16" />
+        </Grid>
     </Grid>
 </Page>

@@ -18,10 +18,10 @@ namespace Com.Aurora.AuWeather.Core.Models
                     freshTime = 29;
                     break;
                 case RefreshState.two:
-                    freshTime = 60;
+                    freshTime = 30;
                     break;
                 case RefreshState.three:
-                    freshTime = 120;
+                    freshTime = 60;
                     break;
                 case RefreshState.four:
                     freshTime = 240;

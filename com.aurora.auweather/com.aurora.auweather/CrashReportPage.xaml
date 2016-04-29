@@ -8,23 +8,37 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-        <ContentDialog Margin="12,32,12,12" Loaded="CrashDialog_Loaded"
+        <ContentDialog Margin="12,32,12,96" Loaded="CrashDialog_Loaded"
     x:Name="CrashDialog" IsPrimaryButtonEnabled="True" x:Uid="CrashDialog">
             <StackPanel Margin="4">
                 <TextBlock x:Uid="CrashText0" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}">
                 </TextBlock>
                 <TextBlock x:Uid="CrashText1" Margin="4" TextWrapping="WrapWholeWords" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
                 </TextBlock>
-                <TextBlock Margin="4" x:Name="CrashInfo" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" >
-                </TextBlock>
+                <TextBlock Margin="4" x:Name="CrashInfo" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
+                <TextBox x:Name="EmailBox" PlaceholderText="Email here" AcceptsReturn="False" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <TextBox x:Uid="ReportBox" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
+                
                 <Button x:Name="WhyButton" x:Uid="WhyButton" Style="{ThemeResource TextBlockButtonStyle}" >
                     <Button.Flyout>
                         <Flyout>
                             <ScrollViewer>
                                 <StackPanel Margin="4" MaxWidth="384" Orientation="Vertical">
-                                    <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="Red" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                    <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="#ff4040" Style="{ThemeResource SubtitleTextBlockStyle}" />
                                     <TextBlock x:Uid="PrivacyText1" Margin="8" TextWrapping="WrapWholeWords" />
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Name="AppProblemButton" Foreground="#ff4040" Style="{ThemeResource TextBlockButtonStyle}" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <ScrollViewer>
+                                <StackPanel Margin="12" Orientation="Vertical">
+                                    <TextBlock MaxWidth="384" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <TextBlock MaxWidth="384" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Flyout>

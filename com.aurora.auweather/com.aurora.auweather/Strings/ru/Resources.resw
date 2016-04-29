@@ -103,7 +103,7 @@
     <value>Экспериментальные функции</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Обратная связь</value>
+    <value>Оценка                         </value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Индекс гриппа:  </value>
@@ -217,10 +217,10 @@
     <value>Не авто обновления</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Два часа</value>
+    <value>Один час</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>Один час</value>
+    <value>30 минут</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Заменить</value>
@@ -1021,10 +1021,9 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Совместимость с Windows 10 построить 14328, мы обновили тост и плитка
-· «Погода метро» теперь доступно! 
-· (май) Исправлена катастрофический провал
-· (май) Исправлена проблема возникает на мобильных устройствах, которые не отображают lockscreen уведомления</value>
+    <value>· Сократите интервал обновления автоматическое фоновое
+· Пользовательский интерфейс и макет повышение
+· В следующей версии будет обновлен макет плитки</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1048,7 +1047,12 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· Сократите интервал обновления автоматическое фоновое
+· Пользовательский интерфейс и макет повышение
+· Макет плитки будут обновлены в следующей версии
+
+1.5.16040
 · Совместимость с Windows 10 построить 14328, мы обновили тост и плитка
 · «Погода метро» теперь доступно! 
 · (май) Исправлена катастрофический провал
@@ -1130,5 +1134,17 @@
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Напишите Ваше мнение!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>Есть проблемы?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>Вы можете попробовать очистить все данные приложения для решения некоторых проблем</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>Подтвердить? Вам нужно перезапустить это</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Очистить все данные</value>
   </data>
 </root>

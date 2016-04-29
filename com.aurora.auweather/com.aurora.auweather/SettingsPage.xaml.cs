@@ -18,7 +18,7 @@ namespace Com.Aurora.AuWeather
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private MainPage baba;
+        private MainPage baba = MainPage.Current;
 
         public SettingsPage()
         {
@@ -28,7 +28,6 @@ namespace Com.Aurora.AuWeather
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            baba = e.Parameter as MainPage;
             Color c;
             SolidColorBrush s;
             if (Context.Theme == ElementTheme.Dark)

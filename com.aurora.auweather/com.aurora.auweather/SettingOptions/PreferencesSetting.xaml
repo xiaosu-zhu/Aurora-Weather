@@ -108,7 +108,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
-                        <TextBlock x:Uid="LanguageChangeText" x:Name="LanguageChangeText" Visibility="Collapsed" Foreground="Red" Margin="8" FontWeight="Light" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="LanguageChangeText" x:Name="LanguageChangeText" Visibility="Collapsed" Foreground="#ff4040" Margin="8" FontWeight="Light" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
                     </StackPanel>
                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -367,12 +367,12 @@
                         <TextBlock x:Uid="LockText" Visibility="Collapsed" x:Name="LockText" Margin="8" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
-                <Grid Height="64" />
+                <Grid Height="96" />
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Padding="12,8,12,0" x:Name="RightScroll" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Enabled">
             <StackPanel x:Name="RightPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Height="64" />
+                <Grid Height="96" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

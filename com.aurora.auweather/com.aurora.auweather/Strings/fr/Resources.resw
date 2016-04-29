@@ -103,7 +103,7 @@
     <value>Fonctionnalités expérimentales</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Commentaires</value>
+    <value>TAUX</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Indice grippe :  </value>
@@ -217,10 +217,10 @@
     <value>Actualisation automatique ne</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Deux heures</value>
+    <value>une heure</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>une heure</value>
+    <value>30 minutes</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Remplacer</value>
@@ -1021,10 +1021,9 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
-· « Weather Underground » maintenant disponible ! 
-· (mai) Correction d'une défaillance catastrophique
-· (mai) Fixe un problème se produit sur les périphériques mobiles qui n'affichent pas les notifications de lockscreen</value>
+    <value>· Raccourcir l'intervalle d'actualisation automatique en arrière-plan
+· Amélioration de l'interface utilisateur et la disposition
+· Présentation de la tuile sera actualisée dans la prochaine version</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1048,7 +1047,12 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· Raccourcir l'intervalle d'actualisation automatique en arrière-plan
+· Amélioration de l'interface utilisateur et la disposition
+· Présentation de la tuile sera actualisée dans la prochaine version
+
+1.5.16040
 · Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
 · « Weather Underground » maintenant disponible ! 
 · (mai) Correction d'une défaillance catastrophique
@@ -1130,5 +1134,17 @@ Maintenant vous pouvez envoyer le rapport d'accident au développeur et totaleme
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Donnez votre avis !</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>Des problèmes ?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>Vous pouvez essayer efface toutes les données d'application pour résoudre certains problèmes</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>Confirmer ? vous devez redémarrer cela</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Effacer toutes les données</value>
   </data>
 </root>

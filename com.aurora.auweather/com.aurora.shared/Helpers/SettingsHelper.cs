@@ -44,6 +44,27 @@ namespace Com.Aurora.Shared.Helpers
         }
 
         /// <summary>
+        /// Clear all Roaming settings. USE IT AT YOUR OWN RISK!
+        /// </summary>
+        /// <returns>Success or not</returns>
+        public static bool ClearAllSettings()
+        {
+            try
+            {
+                ApplicationData.Current.RoamingSettings.Values.Clear();
+                foreach (var container in ApplicationData.Current.RoamingSettings.Containers)
+                {
+                    ApplicationData.Current.RoamingSettings.DeleteContainer(container.Key);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Save/Overwrite a RoamingSetting
         /// </summary>
         /// <param name="key">Setting's Key</param>
@@ -102,6 +123,27 @@ namespace Com.Aurora.Shared.Helpers
                 return ApplicationData.Current.LocalSettings.Values[key];
             }
             return null;
+        }
+
+        /// <summary>
+        /// Clear all Local settings. USE IT AT YOUR OWN RISK!
+        /// </summary>
+        /// <returns>Success or not</returns>
+        public static bool ClearAllSettings()
+        {
+            try
+            {
+                ApplicationData.Current.LocalSettings.Values.Clear();
+                foreach (var container in ApplicationData.Current.LocalSettings.Containers)
+                {
+                    ApplicationData.Current.LocalSettings.DeleteContainer(container.Key);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>

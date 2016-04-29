@@ -211,7 +211,7 @@
     <value>試驗性功能</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>意見反應</value>
+    <value>評價</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>流感指數:  </value>
@@ -325,10 +325,10 @@
     <value>不要自動重新整理</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>兩小時</value>
+    <value>一小時</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>一小時</value>
+    <value>半小時</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>取代</value>
@@ -738,8 +738,11 @@
   <data name="Description" xml:space="preserve">
     <value>極光天氣</value>
   </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>在應用商店評價</value>
+  </data>
   <data name="FeedbackText.Content" xml:space="preserve">
-    <value>評分回饋</value>
+    <value>反饋問題</value>
   </data>
   <data name="HourDes.Text" xml:space="preserve">
     <value>時:</value>
@@ -808,7 +811,11 @@
     <value>有雲</value>
   </data>
   <data name="GlanceFull" xml:space="preserve">
-    <value>{0} {1}, {2}{3}. 明日: {4},{5}.</value>
+    <value>{0} {1}, {2}{3}. 明日: {4}, {5}.</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0}{1}, {2}{3}
+明日: {4}, {5}.</value>
   </data>
   <data name="GlanceSunny0" xml:space="preserve">
     <value>晴朗</value>
@@ -1129,10 +1136,9 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 與 Windows 10 Build 14328 相適應, 微調了通知和磁貼佈局
-· "Weather Underground" 天氣源現已可用!
-· (可能) 修復了偶發的災難性故障
-· (可能) 修復了移動版無法顯示鎖屏通知的問題</value>
+    <value>· 縮短後臺自動刷新間隔
+· 部分 UI 與佈局改進
+· 磁貼佈局將在下個版本改版</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1156,7 +1162,12 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· 縮短後臺自動刷新間隔
+· 部分 UI 與佈局改進
+· 磁貼佈局將在下個版本改版
+
+1.5.16040
 · 與 Windows 10 Build 14328 相適應, 微調了通知和磁貼佈局
 · "Weather Underground" 天氣源現已可用!
 · (可能) 修復了偶發的災難性故障
@@ -1208,6 +1219,15 @@
   <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
     <value>發送</value>
   </data>
+    <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>反饋</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>發送</value>
+  </data>
   <data name="CrashText0.Text" xml:space="preserve">
     <value>好像有什麽不對的樣子( ×ω× )
 現在你可以對開發者痛駡一頓, 獲得神秘力量加成...
@@ -1236,5 +1256,17 @@
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>寫下你的意見!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>還有問題?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>如果一直存在小毛病，你可以試試清除應用數據</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>確認需要清除數據? 你需要重新開啓應用</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>清除所有數據</value>
   </data>
 </root>

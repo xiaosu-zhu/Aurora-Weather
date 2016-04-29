@@ -127,8 +127,8 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Características experimentales</target>
         </trans-unit>
         <trans-unit id="FeedbackButton.Label" translate="yes" xml:space="preserve">
-          <source>Feedback</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Comentarios</target>
+          <source>Rate</source>
+          <target state="translated">Califica</target>
         </trans-unit>
         <trans-unit id="FluText.Text" translate="yes" xml:space="preserve">
           <source>Flu index:  </source>
@@ -279,12 +279,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualización automática no</target>
         </trans-unit>
         <trans-unit id="RefreshState_three" translate="yes" xml:space="preserve">
-          <source>Two hours</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dos horas</target>
+          <source>One hour</source>
+          <target state="translated">Una hora</target>
         </trans-unit>
         <trans-unit id="RefreshState_two" translate="yes" xml:space="preserve">
-          <source>One hour</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Una hora</target>
+          <source>30 Minutes</source>
+          <target state="translated">30 Minutos</target>
         </trans-unit>
         <trans-unit id="Replace_Image" translate="yes" xml:space="preserve">
           <source>Replace</source>
@@ -923,8 +923,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Nube</target>
         </trans-unit>
         <trans-unit id="GlanceFull" translate="yes" xml:space="preserve">
-          <source>{0} {1}, {2}{3}. Tomorrow: {4},{5}.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">{0} {1}, {2} {3}. Mañana: {4}, {5}.</target>
+          <source>{0} {1}, {2}{3}. Tomorrow: {4}, {5}.</source>
+          <target state="translated" state-qualifier="mt-suggestion">{0} {1}, {2} {3}. Mañana: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="GlanceSunny0" translate="yes" xml:space="preserve">
           <source>Clear</source>
@@ -1351,14 +1351,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Compatible with Windows 10 Build 14328, we have updated toast and tile
-· "Weather Underground" now avaliable!
-· (may) Fixed a catastrophic failure
-· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</source>
-          <target state="translated">· Compatible con Windows 10 construir 14328, actualizado toast y azulejo
-· "El tiempo en el metro" ahora disponible! 
-· (mayo) Fija una falla catastrófica
-· (mayo) Fija un problema ocurre en dispositivos móviles que no muestre las notificaciones de lockscreen</target>
+          <source>· Shorten the automatic background refresh interval
+· UI and layout enhancement
+· Tile's layout will be updated in next version</source>
+          <target state="translated">· Acortar el intervalo de actualización de fondo automática
+· Mejora de la interfaz de usuario y el diseño
+· Diseño de la pieza se actualizará en la próxima versión</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1389,7 +1387,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.5.16040
+          <source>1.5.16045
+· Shorten the automatic background refresh interval
+· UI and layout enhancement
+· Tile's layout will be updated in next version
+
+1.5.16040
 · Compatible with Windows 10 Build 14328, we have updated toast and tile
 · "Weather Underground" now avaliable!
 · (may) Fixed a catastrophic failure
@@ -1406,7 +1409,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.5.16040
+          <target state="translated">1.5.16045
+· Acortar el intervalo de actualización de fondo automática
+· Mejora de la interfaz de usuario y el diseño
+· Diseño de la pieza se actualizará en la próxima versión
+
+1.5.16040
 · Compatible con Windows 10 construir 14328, actualizado toast y azulejo
 · "El tiempo en el metro" ahora disponible! 
 · (mayo) Fija una falla catastrófica
@@ -1517,6 +1525,44 @@ Ahora puedes enviar informe de accidente al desarrollador y totalmente ayuda est
         <trans-unit id="ReportBox.PlaceholderText" translate="yes" xml:space="preserve">
           <source>Write your opinion!</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Escribe tu opinión!</target>
+        </trans-unit>
+        <trans-unit id="AppProblemButton.Content" translate="yes" xml:space="preserve">
+          <source>Have problems?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">¿Tiene problemas?</target>
+        </trans-unit>
+        <trans-unit id="AppProblemText.Text" translate="yes" xml:space="preserve">
+          <source>You can try clearing all app data to solve some problems</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Usted puede intentar borrar todos los datos de la aplicación para solucionar algunos problemas</target>
+        </trans-unit>
+        <trans-unit id="ConfirmDeleteText.Text" translate="yes" xml:space="preserve">
+          <source>Confirm? you need to restart this</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">¿Confirmar? tendrá que reiniciar este</target>
+        </trans-unit>
+        <trans-unit id="AppDeleteButton.Content" translate="yes" xml:space="preserve">
+          <source>Clear all data</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Borrar todos los datos</target>
+        </trans-unit>
+        <trans-unit id="LockDetail" translate="yes" xml:space="preserve">
+          <source>{0} {1}, {2}{3}
+Tomorrow: {4}, {5}.</source>
+          <target state="new">{0} {1}, {2}{3}
+Tomorrow: {4}, {5}.</target>
+        </trans-unit>
+        <trans-unit id="RateText.Content" translate="yes" xml:space="preserve">
+          <source>Rate in Windows Store</source>
+          <target state="new">Rate in Windows Store</target>
+        </trans-unit>
+        <trans-unit id="FeedbackDialog.Title" translate="yes" xml:space="preserve">
+          <source>Feedback</source>
+          <target state="new">Feedback</target>
+        </trans-unit>
+        <trans-unit id="FeedbackDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="new">Back</target>
+        </trans-unit>
+        <trans-unit id="FeedbackDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Send</source>
+          <target state="new">Send</target>
         </trans-unit>
       </group>
     </body>

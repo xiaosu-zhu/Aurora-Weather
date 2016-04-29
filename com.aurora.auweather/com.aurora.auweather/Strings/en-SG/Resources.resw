@@ -211,7 +211,7 @@
     <value>Experimental features</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Feedback</value>
+    <value>Rate</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Flu index:  </value>
@@ -325,10 +325,10 @@
     <value>Don't auto-refresh</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Two hours</value>
+    <value>One hour</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>One hour</value>
+    <value>30 Minutes</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Replace</value>
@@ -738,6 +738,9 @@
   <data name="Description" xml:space="preserve">
     <value>Aurora Weather</value>
   </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Rate in Windows Store</value>
+  </data>
   <data name="FeedbackText.Content" xml:space="preserve">
     <value>Feedback</value>
   </data>
@@ -808,7 +811,11 @@
     <value>Cloud</value>
   </data>
   <data name="GlanceFull" xml:space="preserve">
-    <value>{0} {1}, {2}{3}. Tomorrow: {4},{5}.</value>
+    <value>{0} {1}, {2}{3}. Tomorrow: {4}, {5}.</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}, {2}{3}
+Tomorrow: {4}, {5}.</value>
   </data>
   <data name="GlanceSunny0" xml:space="preserve">
     <value>Clear</value>
@@ -1129,10 +1136,9 @@
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Compatible with Windows 10 Build 14328, we have updated toast and tile
-· "Weather Underground" now avaliable!
-· (may) Fixed a catastrophic failure
-· (may) Fixed an issue occurs on mobile devices that don't display lockscreen notifications</value>
+    <value>· Shorten the automatic background refresh interval
+· UI and layout enhancement
+· Tile's layout will be updated in next version</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1156,7 +1162,12 @@
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· Shorten the automatic background refresh interval
+· UI and layout enhancement
+· Tile's layout will be updated in next version
+
+1.5.16040
 · Compatible with Windows 10 Build 14328, we have updated toast and tile
 · "Weather Underground" now avaliable!
 · (may) Fixed a catastrophic failure
@@ -1207,6 +1218,15 @@ Thanks!</value>
   <data name="CrashDialog.PrimaryButtonText" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="CrashText0.Text" xml:space="preserve">
     <value>Something went wrong!( ×ω× )
 Now you can send crash report to developer, and totally help this app get better...
@@ -1235,5 +1255,17 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Write your opinion!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>Have problems?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>You can try clearing all app data to solve some problems</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>Confirm? you need to restart this</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Clear all data</value>
   </data>
 </root>

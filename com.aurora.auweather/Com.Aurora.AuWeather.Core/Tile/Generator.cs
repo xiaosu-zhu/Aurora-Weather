@@ -15,7 +15,6 @@ using NotificationsExtensions.Toasts;
 using Windows.ApplicationModel.Resources;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
 using Windows.Data.Xml.Dom;
-using Com.Aurora.Shared.Helpers;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -31,8 +30,6 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 Visual = new TileVisual()
                 {
-                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
-                    LockDetailedStatus2 = glanceFull,
                     Branding = TileBranding.Auto,
                     DisplayName = currentCity.City,
                     TileMedium = new TileBinding()
@@ -359,9 +356,10 @@ namespace Com.Aurora.AuWeather.Tile
 
             var glance = Glance.GenerateShortDescription(model, isNight);
             var glanceFull = Glance.GenerateGlanceDescription(model, isNight, settings.Preferences.TemperatureParameter, desiredDateTimeinThatRegion);
+            var lockdetial = Glance.GenerateLockDetailDescription(model, isNight, settings.Preferences.TemperatureParameter, desiredDateTimeinThatRegion);
             var noramlTile = GenerateNormalTile(model, isNight, glance, glanceFull, uri, todayIndex, currentCity, settings);
-            var nowTile = GenerateNowTile(model, isNight, uri, glanceFull, todayIndex, currentCity, settings);
-            var forecastTile = GenerateForecastTile(model, isNight, uri, glanceFull, todayIndex, currentCity, settings);
+            var nowTile = GenerateNowTile(model, isNight, uri, glanceFull, lockdetial, todayIndex, currentCity, settings);
+            var forecastTile = GenerateForecastTile(model, isNight, uri, glanceFull, lockdetial, todayIndex, currentCity, settings);
             var list = new List<TileContent>();
             list.Add(nowTile);
             list.Add(noramlTile);
@@ -375,7 +373,7 @@ namespace Com.Aurora.AuWeather.Tile
             return b;
         }
 
-        private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
+        private static TileContent GenerateForecastTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, string lockdetial, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
@@ -385,8 +383,7 @@ namespace Com.Aurora.AuWeather.Tile
                 {
                     DisplayName = currentCity.City,
                     Branding = TileBranding.NameAndLogo,
-                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
-                    LockDetailedStatus2 = glanceFull,
+                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter) + "\r\n" + lockdetial,
                     TileLarge = new TileBinding()
                     {
                         Content = new TileBindingContentAdaptive()
@@ -754,7 +751,7 @@ namespace Com.Aurora.AuWeather.Tile
             return t;
         }
 
-        private static TileContent GenerateNowTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
+        private static TileContent GenerateNowTile(HeWeatherModel model, bool isNight, Uri uri, string glanceFull, string lockdetial, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
@@ -763,8 +760,7 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 Visual = new TileVisual()
                 {
-                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter),
-                    LockDetailedStatus2 = glanceFull,
+                    LockDetailedStatus1 = currentCity.City + "  " + model.NowWeather.Temprature.Actual(settings.Preferences.TemperatureParameter) + "\r\n" + lockdetial,
                     DisplayName = currentCity.City,
                     Branding = TileBranding.NameAndLogo,
                     TileMedium = new TileBinding()

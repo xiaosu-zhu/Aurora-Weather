@@ -41,7 +41,7 @@ namespace Com.Aurora.AuWeather
         /// <summary>
         /// use binary: 1111 1111 to implement every DetailGrid Animation status
         /// </summary>
-        private int detailGridAnimation_FLAG = 0;
+        private byte detailGridAnimation_FLAG = 0;
 
         private Point[] DetailGridPoint = new Point[9];
 
@@ -72,7 +72,7 @@ namespace Com.Aurora.AuWeather
         private ThreadPoolTimer immersiveTimer;
         private bool isImmersiveMode = false;
         private bool isImmersiveAllIn = false;
-        private MainPage baba;
+        private MainPage baba = MainPage.Current;
 
         public NowWeatherPage()
         {
@@ -181,7 +181,6 @@ namespace Com.Aurora.AuWeather
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            baba = e.Parameter as MainPage;
             baba.ChangeColor(Colors.Transparent, Colors.White, new SolidColorBrush(Colors.White));
         }
 
@@ -835,7 +834,7 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void ScrollableRoot_RefreshStart(object sender, Shared.Controls.RefreshStartEventArgs e)
+        private void ScrollableRoot_RefreshStart(object sender, Aurora.Shared.Controls.RefreshStartEventArgs e)
         {
             var loader = new ResourceLoader();
             UpdateIndicator.Text = loader.GetString("RefreshStart");
@@ -907,6 +906,18 @@ namespace Com.Aurora.AuWeather
         {
             var loader = new ResourceLoader();
             UpdateIndicator.Text = loader.GetString("RefreshStart");
+        }
+
+        private void MainCanvas_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if (isImmersiveAllIn || isImmersiveMode)
+            {
+
+            }
+            else
+            {
+                ScrollableRoot.ChangeView(0f, 0f, 1f);
+            }
         }
     }
 }

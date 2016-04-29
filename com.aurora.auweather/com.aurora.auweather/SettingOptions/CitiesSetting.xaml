@@ -308,7 +308,7 @@
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
         </ScrollViewer.Resources>
-        <Grid>
+        <Grid Padding="0,0,0,96">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid MaxWidth="480" HorizontalAlignment="Stretch">
                     <TextBlock x:Uid="LocateOnText" x:Name="LocateOnText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />

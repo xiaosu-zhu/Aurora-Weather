@@ -29,29 +29,30 @@
         </ResourceDictionary>
     </Page.Resources>
     <ScrollViewer Background="{ThemeResource SystemControlForegroundHighBrush}">
-        <StackPanel Padding="0,0,0,32">
-            <Grid HorizontalAlignment="Stretch" Height="512" >
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Assets/Header.png" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" />
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Image Source="/Assets/Square150x150Logo.png" Height="128" Width="128" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="12" Stretch="Uniform" />
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1">
-                    <TextBlock x:Uid="AppNameText" Text="nimaib" Foreground="White" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
-                    <TextBlock x:Name="Version" Loaded="Version_Loaded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
-                </StackPanel>
-                <TextBlock Text="Aurora Studio © 2016" Grid.Row="1" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" />
-            </Grid>
+        <Grid>
+            <StackPanel Padding="0,0,0,96">
+                <Grid HorizontalAlignment="Stretch" Height="512" >
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Assets/Header.png" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" />
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image Source="/Assets/Square150x150Logo.png" Height="128" Width="128" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="12" Stretch="Uniform" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1">
+                        <TextBlock x:Uid="AppNameText" Text="nimaib" Foreground="White" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
+                        <TextBlock x:Name="Version" Loaded="Version_Loaded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
+                    </StackPanel>
+                    <TextBlock Text="Aurora Studio © 2016" Grid.Row="1" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" />
+                </Grid>
 
-            <HyperlinkButton Content="Github" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://github.com/aurora-lzzp/Aurora-Weather" />
-            <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
-                <Button.Flyout>
-                    <Flyout Placement="Full">
-                        <ScrollViewer Padding="12">
-                            <TextBlock MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+                <HyperlinkButton Content="Github" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://github.com/aurora-lzzp/Aurora-Weather" />
+                <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout Placement="Full">
+                            <ScrollViewer Padding="12">
+                                <TextBlock MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -59,76 +60,118 @@ The above copyright notice and this permission notice shall be included in all c
   THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.">
-                            </TextBlock>
-                        </ScrollViewer>
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-            <Button x:Uid="ImproveButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
-                <Button.Flyout>
-                    <Flyout>
-                        <ScrollViewer Padding="12">
-                            <StackPanel Orientation="Vertical" Margin="12">
-                                <TextBlock x:Uid="ImproveDetail" MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </TextBlock>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="ImproveButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <ScrollViewer Padding="12">
+                                <StackPanel Orientation="Vertical" Margin="12">
+                                    <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
+                                    <TextBlock  Margin="8" MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Run Text="************************************************************" />
+                                    <LineBreak />
+                                    <Run Text="*                               Special thanks to                              *" />
+                                    <LineBreak />
+                                    <Run Text="************************************************************" />
+                                    <LineBreak />
+                                    </TextBlock>
+                                    <TextBlock Margin="8" MaxWidth="384" FontSize="15" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                   <Run Text="*启福" />
+                                    <LineBreak />
+                                    <Run Text="*沧" />
+                                    <LineBreak />
+                                    <Run Text="Mario" />
+                                    <LineBreak />
+                                    <Run Text="*裕铭" />
+                                    <LineBreak />
+                                    <Run Text="*卓" />
+                                    </TextBlock>
+                                    <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <ScrollViewer>
+                                <StackPanel MaxWidth="384">
+                                    <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
+                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                    <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
+                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
+                                    </StackPanel>
+                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                    <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
+                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
+                                    </StackPanel>
+                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                    <TextBlock Margin="12,8,12,12" Text="Weather Underground" TextWrapping="WrapWholeWords"/>
+                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                        <Image Height="32" Stretch="Uniform" Source="/Assets/Logos/Wunder.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="WunderGround" NavigateUri="https://www.wunderground.com" Margin="4" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="PhotoCopyright" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel MaxWidth="384">
+                                <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="We're using Images from" TextWrapping="WrapWholeWords"/>
+                                <HyperlinkButton Content="Unsplash" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://unsplash.com/" />
+                                <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="They are licensed under" TextWrapping="WrapWholeWords"/>
+                                <HyperlinkButton Content="CC0 1.0" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="http://creativecommons.org/publicdomain/zero/1.0/" />
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Name="RateButton" x:Uid="RateText" Style="{ThemeResource TextBlockButtonStyle}" Click="RateButton_Click" HorizontalAlignment="Center" Margin="12" />
+                <Button x:Name="FeedbackButton" x:Uid="FeedbackText" Style="{ThemeResource TextBlockButtonStyle}" Click="FeedbackButton_Click" HorizontalAlignment="Center" Margin="12" />
+                <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button.Flyout>
+                        <Flyout Placement="Full">
+                            <ScrollViewer>
+                                <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="384" />
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="AppProblemButton" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ff4040" Style="{ThemeResource TextBlockButtonStyle}" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <ScrollViewer>
+                                <StackPanel Margin="12" Orientation="Vertical">
+                                    <TextBlock MaxWidth="384" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <TextBlock MaxWidth="384" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+            <ContentDialog Margin="12,32,12,96" PrimaryButtonClick="FeedbackDialog_PrimaryButtonClick" SecondaryButtonClick="FeedbackDialog_SecondaryButtonClick"
+    x:Name="FeedbackDialog" IsPrimaryButtonEnabled="True" x:Uid="FeedbackDialog">
+                <StackPanel Margin="4">
+                    <TextBox x:Name="EmailBox" PlaceholderText="Email here" AcceptsReturn="False" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBox x:Uid="FeedbackBox" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
+                </StackPanel>
+            </ContentDialog>
+        </Grid>
 
-                                <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
-                            </StackPanel>
-                        </ScrollViewer>
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-            <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
-                <Button.Flyout>
-                    <Flyout>
-                        <ScrollViewer>
-                            <StackPanel MaxWidth="420">
-                                <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
-                                <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
-                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                    <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
-                                </StackPanel>
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
-                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                    <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
-                                </StackPanel>
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                <TextBlock Margin="12,8,12,12" Text="Weather Underground" TextWrapping="WrapWholeWords"/>
-                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                    <Image Height="32" Stretch="Uniform" Source="/Assets/Logos/Wunder.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="WunderGround" NavigateUri="https://www.wunderground.com" Margin="4" />
-                                </StackPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-            <Button x:Uid="PhotoCopyright" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
-                <Button.Flyout>
-                    <Flyout>
-                        <StackPanel MaxWidth="420">
-                            <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="We're using Images from" TextWrapping="WrapWholeWords"/>
-                            <HyperlinkButton Content="Unsplash" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://unsplash.com/" />
-                            <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="They are licensed under" TextWrapping="WrapWholeWords"/>
-                            <HyperlinkButton Content="CC0 1.0" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="http://creativecommons.org/publicdomain/zero/1.0/" />
-                        </StackPanel>
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-            <Button x:Name="FeedbackButton" x:Uid="FeedbackText" Style="{ThemeResource TextBlockButtonStyle}" Click="FeedbackButton_Click" HorizontalAlignment="Center" Margin="12" />
-            <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button.Flyout>
-                    <Flyout Placement="Full">
-                        <ScrollViewer>
-                            <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="384" />
-                        </ScrollViewer>
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-        </StackPanel>
     </ScrollViewer>
 </Page>

@@ -103,7 +103,7 @@
     <value>試験的な機能</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>フィードバック</value>
+    <value>レート</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>インフルエンザ インデックス:</value>
@@ -217,10 +217,10 @@
     <value>自動更新しません。</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>2 時間</value>
+    <value>1 時間</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>1 時間</value>
+    <value>30 分</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>置換</value>
@@ -1021,10 +1021,9 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·Windows 10 ビルド 14328 と互換性のある、我々 がトーストを更新しておりタイルの
-·「天気地下「今利用できる!
-·(5 月)致命的なエラー
-を修正 ·(5 月)固定の lockscreen の通知を表示しないモバイル デバイスで問題が発生します。</value>
+    <value>·バック グラウンドの自動更新間隔
+を短く ·UI とレイアウトの強化
+·タイルのレイアウトは、次のバージョンで更新されます。</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1048,8 +1047,13 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
-·Windows 10 ビルド 14328 と互換性のある、我々 がトーストを更新しておりタイルの
+    <value>1.5.16045
+·バック グラウンドの自動更新間隔
+を短く ·UI とレイアウトの強化
+·次バージョン
+
+1.5.16040
+のタイルのレイアウトが更新されます ·Windows 10 ビルド 14328 と互換性のある、我々 がトーストを更新しておりタイルの
 ·「天気地下「今利用できる!
 ·(5 月)致命的なエラー
 を修正 ·(5 月)固定 lockscreen 通知
@@ -1130,5 +1134,17 @@
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>あなたの意見を書く!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>問題があるか。</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>いくつかの問題を解決するためにすべてのアプリのデータを消去することを試みることができます。</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>確認か。これを再起動する必要があります。</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>すべてのデータをクリアします。</value>
   </data>
 </root>

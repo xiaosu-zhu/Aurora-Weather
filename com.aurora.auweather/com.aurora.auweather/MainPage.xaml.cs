@@ -26,6 +26,7 @@ namespace Com.Aurora.AuWeather
         private License.License license;
         private ThreadPoolTimer cancelTimer;
         private uint clickCount = 0;
+        public static MainPage Current;
 
         public MainPage()
         {
@@ -34,6 +35,7 @@ namespace Com.Aurora.AuWeather
             {
                 TitleBlock.Visibility = Visibility.Collapsed;
             }
+            Current = this;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             MainFrame.Navigate(typeof(NowWeatherPage), this);
             license = new License.License();
@@ -149,6 +151,16 @@ namespace Com.Aurora.AuWeather
                 {
                     e.Handled = false;
                     return;
+                }
+                if (MainFrame.Content is CitiesPage)
+                {
+                    var loader = new ResourceLoader();
+                    Settings.Icon = new SymbolIcon(Symbol.Setting);
+                    Cities.Icon = new SymbolIcon(Symbol.World);
+                    Settings.Label = loader.GetString("Settings");
+                    Cities.Label = loader.GetString("Cities");
+                    Refresh.Label = loader.GetString("Refresh");
+                    Refresh.IsEnabled = true;
                 }
                 MainFrame.GoBack();
 

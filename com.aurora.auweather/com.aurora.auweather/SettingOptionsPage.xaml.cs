@@ -123,7 +123,7 @@ namespace Com.Aurora.AuWeather
         internal void ReloadTheme()
         {
             Context.ReloadTheme();
-            ((Window.Current.Content as Frame).Content as MainPage).ReloadTheme();
+            MainPage.Current.ReloadTheme();
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)

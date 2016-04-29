@@ -103,7 +103,7 @@
     <value>Funzionalità sperimentali</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Commenti e suggerimenti</value>
+    <value>TASSO</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Indice di influenza:  </value>
@@ -217,10 +217,10 @@
     <value>Aggiornamento automatico non</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Due ore</value>
+    <value>un'ora</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>un'ora</value>
+    <value>30 minuti</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Sostituisci</value>
@@ -1021,10 +1021,9 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Compatibile con Windows 10 Build 14328, ci hanno aggiornato toast e tile
-· "Weather Underground" ora disponibile! 
-piace · (maggio) Risolto un errore irreversibile
-piace · (maggio) Fissa un problema si verifica su dispositivi mobili che non visualizzano le notifiche di lockscreen</value>
+    <value>· Accorciare l'intervallo di aggiornamento automatico in background
+piace · Miglioramento dell'interfaccia utente e layout
+piace · Layout del riquadro verrà aggiornato nella prossima versione</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1048,7 +1047,12 @@ piace · (maggio) Fissa un problema si verifica su dispositivi mobili che non vi
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· Accorciare l'intervallo di aggiornamento automatico in background
+piace · Miglioramento dell'interfaccia utente e layout
+piace · Layout del riquadro verrà aggiornato nella prossima versione
+
+1.5.16040
 · Compatibile con Windows 10 Build 14328, ci hanno aggiornato toast e tile
 · "Weather Underground" ora disponibile! 
 piace · (maggio) Risolto un errore irreversibile
@@ -1130,5 +1134,17 @@ Ora è possibile inviare il report dei crash allo sviluppatore e totalmente aiut
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Scrivi la tua opinione!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>Hanno problemi?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>Si può provare a cancellare tutti i dati dell'app per risolvere alcuni problemi</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>Confermare? è necessario riavviare questo</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Cancellare tutti i dati</value>
   </data>
 </root>

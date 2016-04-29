@@ -27,6 +27,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="96" />
             </Grid.RowDefinitions>
             <TextBlock x:Uid="DonationTitle" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="8"/>
             <TextBlock Grid.Row="1" Style="{ThemeResource BodyTextBlockStyle}" Margin="8" >

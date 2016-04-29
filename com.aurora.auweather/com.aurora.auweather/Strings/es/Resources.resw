@@ -103,7 +103,7 @@
     <value>Funciones experimentales</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Comentarios</value>
+    <value>tasa</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Índice de gripe:  </value>
@@ -217,10 +217,10 @@
     <value>Actualización automática no</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Dos horas</value>
+    <value>una hora</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>una hora</value>
+    <value>30 minutos</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Reemplazar</value>
@@ -1021,10 +1021,9 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Compatible con Windows 10 construir 14328, actualizado toast y azulejo
-· "El tiempo en el metro" ahora disponible! 
-· (mayo) Fija una falla catastrófica
-· (mayo) Fija un problema ocurre en dispositivos móviles que no muestre las notificaciones de lockscreen</value>
+    <value>· Acortar el intervalo de actualización de fondo automática
+· Mejora de la interfaz de usuario y el diseño
+· Diseño de la pieza se actualizará en la próxima versión</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1048,7 +1047,12 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
+    <value>1.5.16045
+· Acortar el intervalo de actualización de fondo automática
+· Mejora de la interfaz de usuario y el diseño
+· Diseño de la pieza se actualizará en la próxima versión
+
+1.5.16040
 · Compatible con Windows 10 construir 14328, actualizado toast y azulejo
 · "El tiempo en el metro" ahora disponible! 
 · (mayo) Fija una falla catastrófica
@@ -1130,5 +1134,17 @@ Ahora puedes enviar informe de accidente al desarrollador y totalmente ayuda est
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Escribe tu opinión!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>¿Tiene problemas?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>Usted puede intentar borrar todos los datos de la aplicación para solucionar algunos problemas</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>¿Confirmar? tendrá que reiniciar este</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Borrar todos los datos</value>
   </data>
 </root>

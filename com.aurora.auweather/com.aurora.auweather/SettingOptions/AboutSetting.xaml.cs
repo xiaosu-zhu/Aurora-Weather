@@ -3,10 +3,14 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Com.Aurora.AuWeather.Models.Settings;
+using Com.Aurora.Shared;
+using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -49,7 +53,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
+        private async void RateButton_Click(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=" + Windows.ApplicationModel.Package.Current.Id.FamilyName));
         }
@@ -61,7 +65,80 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:Xiaosu.Zhu@outlook.com"));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:" + Utils.MAIL_ADDRESS));
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            switch (ConfirmDelete.Visibility)
+            {
+                case Visibility.Visible:
+                    RoamingSettingsHelper.ClearAllSettings();
+                    LocalSettingsHelper.ClearAllSettings();
+                    App.Current.Exit();
+                    break;
+                case Visibility.Collapsed:
+                    ConfirmDelete.Visibility = Visibility.Visible;
+                    DeleteButton.Content = "OK!";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReportBox.Text = string.Empty;
+            EmailBox.Text = string.Empty;
+            await FeedbackDialog.ShowAsync();
+        }
+
+        private async void FeedbackDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            try
+            {
+                var log = await FileIOHelper.CreateCacheFileAsync(Guid.NewGuid().ToString() + "_Feedback");
+                if (!ReportBox.Text.IsNullorEmpty())
+                {
+                    await FileIO.AppendTextAsync(log, "User Voice = " + ReportBox.Text + Environment.NewLine);
+                    if (!EmailBox.Text.IsNullorEmpty())
+                    {
+                        if (new EmailAddressAttribute().IsValid(EmailBox.Text))
+                        {
+                            await FileIO.AppendTextAsync(log, "Email = " + EmailBox.Text + Environment.NewLine);
+                            var fileBytes = await FileIOHelper.GetBytesAsync(log);
+                            WebHelper.UploadFilesToServer(new Uri(Utils.UPLOAD_CRASH), null, log.Name, "application/octet-stream", fileBytes);
+                        }
+                        else
+                        {
+                            EmailBox.PlaceholderText = "Invalid Email address!";
+                            await FeedbackDialog.ShowAsync();
+                        }
+
+                    }
+                    else
+                    {
+                        EmailBox.PlaceholderText = "Invalid Email address!";
+                        await FeedbackDialog.ShowAsync();
+                    }
+                }
+                else
+                {
+                    ReportBox.PlaceholderText = "Input some opinion";
+                    await FeedbackDialog.ShowAsync();
+                }
+                
+            }
+            catch (Exception)
+            {
+                FeedbackDialog.PrimaryButtonText = "Failed";
+                await FeedbackDialog.ShowAsync();
+            }
+        }
+
+        private void FeedbackDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            FeedbackDialog.Hide();
         }
     }
 }

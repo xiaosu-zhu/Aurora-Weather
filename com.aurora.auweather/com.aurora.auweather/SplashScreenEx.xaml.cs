@@ -30,43 +30,17 @@ namespace Com.Aurora.AuWeather
     /// </summary>
     public sealed partial class SplashScreenEx : Page
     {
-        internal Rect splashImageRect; // Rect to store splash screen image coordinates.
-        private SplashScreen splash; // Variable to hold the splash screen object.
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame rootFrame;
         private string args;
         private ThreadPoolTimer timer;
 
-        public SplashScreenEx(SplashScreen splashscreen, string args)
+        public SplashScreenEx(SplashScreen splash, string args)
         {
             this.InitializeComponent();
-            Window.Current.SizeChanged += new WindowSizeChangedEventHandler(Splash_OnResize);
-
-            splash = splashscreen;
-            if (splash != null)
-            {
-                splash.Dismissed += new TypedEventHandler<SplashScreen, object>(DismissedEventHandler);
-
-                splashImageRect = splash.ImageLocation;
-                PositionImage();
-                PositionRing();
-            }
+            splash.Dismissed += DismissedEventHandler;
             this.args = args;
             rootFrame = new Frame();
-        }
-
-        private void PositionRing()
-        {
-            SplashProgressRing.SetValue(Canvas.LeftProperty, splashImageRect.X + (splashImageRect.Width * 0.5) - (SplashProgressRing.Width * 0.5));
-            SplashProgressRing.SetValue(Canvas.TopProperty, (splashImageRect.Y + splashImageRect.Height + splashImageRect.Height * 0.1) + 16);
-        }
-
-        private void PositionImage()
-        {
-            SplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-            SplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
-            SplashImage.Height = splashImageRect.Height;
-            SplashImage.Width = splashImageRect.Width;
         }
 
         private async void DismissedEventHandler(SplashScreen sender, object args)
@@ -163,23 +137,18 @@ namespace Com.Aurora.AuWeather
                                             string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
                                             if (resstr.IsNullorEmpty())
                                             {
-                                                await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                                                {
-                                                    var loader = new ResourceLoader();
-                                                    var d = new MessageDialog(loader.GetString("Network_Error"));
-                                                    d.Title = loader.GetString("Error");
-                                                    d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
-                                                    await d.ShowAsync();
-                                                }));
+                                                SplashComplete(null, AsyncStatus.Completed);
                                             }
-
-                                            var task = ThreadPool.RunAsync(async (m) =>
+                                            else
                                             {
-                                                m.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                                await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr, settings.Preferences.DataSource);
-                                                settings.Cities.LocatedCity.Update();
-                                                settings.Cities.Save();
-                                            });
+                                                var task = ThreadPool.RunAsync(async (m) =>
+                                                {
+                                                    m.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                                                    await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr, settings.Preferences.DataSource);
+                                                    settings.Cities.LocatedCity.Update();
+                                                    settings.Cities.Save();
+                                                });
+                                            }
                                         }
                                         else
                                         {
@@ -251,24 +220,21 @@ namespace Com.Aurora.AuWeather
                     string resstr = await Request.GetRequest(settings, settings.Cities.SavedCities[settings.Cities.CurrentIndex]);
                     if (resstr.IsNullorEmpty())
                     {
-                        await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
-                        {
-                            var loader = new ResourceLoader();
-                            var d = new MessageDialog(loader.GetString("Network_Error"));
-                            d.Title = loader.GetString("Error");
-                            d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
-                            await d.ShowAsync();
-                        }));
+                        SplashComplete(null, AsyncStatus.Completed);
                     }
-                    var task = ThreadPool.RunAsync(async (work) =>
+                    else
                     {
-                        work.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                        if (resstr == null)
-                            return;
-                        await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr, settings.Preferences.DataSource);
-                        settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
-                        settings.Cities.Save();
-                    });
+                        var task = ThreadPool.RunAsync(async (work) =>
+                        {
+                            work.Completed = new AsyncActionCompletedHandler(SplashComplete);
+                            if (resstr == null)
+                                return;
+                            await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr, settings.Preferences.DataSource);
+                            settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
+                            settings.Cities.Save();
+                        });
+                    }
+
 
                 }
                 else
@@ -378,16 +344,6 @@ namespace Com.Aurora.AuWeather
         {
             rootFrame.Navigate(typeof(MainPage));
             Window.Current.Content = rootFrame;
-        }
-
-        private void Splash_OnResize(object sender, WindowSizeChangedEventArgs e)
-        {
-            if (splash != null)
-            {
-                splashImageRect = splash.ImageLocation;
-                PositionImage();
-                PositionRing();
-            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

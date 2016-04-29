@@ -31,7 +31,7 @@ namespace Com.Aurora.AuWeather
     /// </summary>
     public sealed partial class CitiesPage : Page
     {
-        private MainPage baba;
+        private MainPage baba = MainPage.Current;
         private bool isEditMode;
         private License.License license;
 
@@ -79,14 +79,22 @@ namespace Com.Aurora.AuWeather
                  var accessStatus = await Geolocator.RequestAccessAsync();
                  if (accessStatus == GeolocationAccessStatus.Allowed)
                  {
-                     var _geolocator = new Geolocator();
-                     var pos = await _geolocator.GetGeopositionAsync();
-                     if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
-                         CalcPosition(pos, citys);
-                     else
+                     try
+                     {
+                         var _geolocator = new Geolocator();
+                         var pos = await _geolocator.GetGeopositionAsync();
+                         if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
+                             CalcPosition(pos, citys);
+                         else
+                         {
+                             FailtoPos();
+                         }
+                     }
+                     catch (Exception)
                      {
                          FailtoPos();
                      }
+                     
                  }
                  else
                  {
@@ -153,7 +161,6 @@ namespace Com.Aurora.AuWeather
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            baba = e.Parameter as MainPage;
             Color c;
             SolidColorBrush s;
             if (Context.Theme == ElementTheme.Dark)

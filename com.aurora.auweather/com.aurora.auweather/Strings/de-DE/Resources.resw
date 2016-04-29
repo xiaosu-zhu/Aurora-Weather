@@ -103,7 +103,7 @@
     <value>Experimentelle Features</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>Feedback</value>
+    <value>ZINS</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>Grippe-Index:  </value>
@@ -217,10 +217,10 @@
     <value>Nicht automatisch aktualisieren</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>Zwei Stunden</value>
+    <value>Eine Stunde</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>Eine Stunde</value>
+    <value>30 Minuten</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>Ersetzen</value>
@@ -1021,10 +1021,9 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
-· "Weather Underground" jetzt verfügbar! 
-· (Mai) Fixiert einen schwerwiegenden Fehler
-· (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen nicht angezeigt</value>
+    <value>· Verkürzung des Intervalls für die automatische Hintergrund
+· Verbesserung der Benutzeroberfläche und Layout
+· Fliese-Layout wird in der nächsten Version aktualisiert</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1048,8 +1047,13 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
-· Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
+    <value>1.5.16045
+· Verkürzung des Intervalls für die automatische Hintergrund
+· Verbesserung der Benutzeroberfläche und Layout
+· Fliese Layouts werden in der nächsten Version
+
+1.5.16040
+aktualisiert · Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
 · "Weather Underground" jetzt verfügbar! 
 · (Mai) Fixiert einen schwerwiegenden Fehler
 · (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen
@@ -1130,5 +1134,17 @@ Jetzt können Entwickler Absturzbericht schicken und völlig helfen diese app be
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>Schreiben Sie Ihre Meinung!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>Haben Sie Probleme?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>Sie können versuchen, löschen alle app-Daten, um einige Probleme zu lösen</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>Bestätigen? müssen Sie diese neu starten</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>Alle Daten löschen</value>
   </data>
 </root>

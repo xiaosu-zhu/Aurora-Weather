@@ -379,6 +379,12 @@ namespace Com.Aurora.Shared.Controls
         // Using a DependencyProperty as the backing store for IndicatorDisplayMode.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IndicatorDisplayModeProperty =
             DependencyProperty.Register("IndicatorDisplayMode", typeof(IndicatorDisplayMode), typeof(PulltoRefresh), new PropertyMetadata(IndicatorDisplayMode.Header));
+
+        public void ChangeView(float v1, float v2, float v3)
+        {
+            if (Main != null)
+                Main.ChangeView(v1, v2, v3);
+        }
     }
 
     public enum IndicatorDisplayMode { Header, Overlay };

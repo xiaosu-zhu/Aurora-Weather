@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Shared;
 using Com.Aurora.Shared.Extensions;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,15 @@ namespace Com.Aurora.Shared.Helpers
         }
 
 
-        public static async Task<StorageFile> AppendLogtoCacheAsync(Exception exception, string name = "crashLOG")
+        public static async Task<StorageFile> CreateCacheFileAsync(string name)
+        {
+            var cache = ApplicationData.Current.LocalCacheFolder;
+            var log = await cache.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
+            await FileIO.AppendTextAsync(log, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
+            return log;
+        }
+
+        public static async Task<StorageFile> AppendLogtoCacheAsync(CrashLog exception, string name = "crashLOG")
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
             var log = await cache.CreateFileAsync(name, CreationCollisionOption.OpenIfExists);
@@ -57,6 +66,24 @@ namespace Com.Aurora.Shared.Helpers
             return log;
         }
 
+
+        public static async Task DeleteLogAsync(string fileName = "crashLOG")
+        {
+            try
+            {
+                var cache = ApplicationData.Current.LocalCacheFolder;
+                var log = await cache.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+                if (log != null)
+                {
+                    await log.DeleteAsync();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
         public static async Task<IReadOnlyList<StorageFile>> GetFilesFromAssetsAsync(string path)
         {
             StorageFolder installedLocation = Windows.ApplicationModel.Package.Current.InstalledLocation;
@@ -72,6 +99,42 @@ namespace Com.Aurora.Shared.Helpers
                 return null;
             }
 
+        }
+
+        /// <summary>
+        /// Returns byte array from StorageFile. Author : Farhan Ghumra
+        /// </summary>
+        public async static Task<byte[]> GetBytesAsync(StorageFile file)
+        {
+            byte[] fileBytes = null;
+            using (var stream = await file.OpenReadAsync())
+            {
+                fileBytes = new byte[stream.Size];
+                using (var reader = new DataReader(stream))
+                {
+                    await reader.LoadAsync((uint)stream.Size);
+                    reader.ReadBytes(fileBytes);
+                }
+            }
+
+            return fileBytes;
+        }
+
+        /// <summary>
+        /// Writes string to stream. Author : Farhan Ghumra
+        /// </summary>
+        public static void WriteToStream(Stream s, string txt)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(txt);
+            s.Write(bytes, 0, bytes.Length);
+        }
+
+        /// <summary>
+        /// Writes byte array to stream. Author : Farhan Ghumra
+        /// </summary>
+        public static void WriteToStream(Stream s, byte[] bytes)
+        {
+            s.Write(bytes, 0, bytes.Length);
         }
 
 
@@ -117,6 +180,7 @@ namespace Com.Aurora.Shared.Helpers
             }
 
         }
+
 
         public static async Task<StorageFile> GetFileFromLocalAsync(string name)
         {

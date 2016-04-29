@@ -2,6 +2,7 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.Shared;
 using Com.Aurora.Shared.Helpers;
 using System;
 using Windows.ApplicationModel;
@@ -41,14 +42,14 @@ namespace Com.Aurora.AuWeather
             e.Handled = true;
             if (e.Exception.HResult == -2147418113)
             {
-                await FileIOHelper.AppendLogtoCacheAsync(e.Exception);
+                await FileIOHelper.AppendLogtoCacheAsync(new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message));
                 return;
             }
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 Window.Current.Content = null;
                 var f = new Frame();
-                f.Navigate(typeof(CrashReportPage), e);
+                f.Navigate(typeof(CrashReportPage), new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message));
                 Window.Current.Content = f;
 
             }));

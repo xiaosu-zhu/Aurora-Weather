@@ -103,7 +103,7 @@
     <value>실험적 기능</value>
   </data>
   <data name="FeedbackButton.Label" xml:space="preserve">
-    <value>피드백</value>
+    <value>비율</value>
   </data>
   <data name="FluText.Text" xml:space="preserve">
     <value>독감 인덱스:  </value>
@@ -217,10 +217,10 @@
     <value>자동 새로 고침을 하지</value>
   </data>
   <data name="RefreshState_three" xml:space="preserve">
-    <value>2 시간</value>
+    <value>1시간</value>
   </data>
   <data name="RefreshState_two" xml:space="preserve">
-    <value>1시간</value>
+    <value>30분</value>
   </data>
   <data name="Replace_Image" xml:space="preserve">
     <value>바꾸기</value>
@@ -1021,10 +1021,9 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 윈도우 10 빌드 14328, 우리 토스트 업데이 트와
-· 타일 "지 하 날씨" 지금 유효한! 
-· (5 월) 고정 오류가
-· (5 월) Lockscreen 알림을 표시 하지 않는 모바일 장치에서 발생 하는 문제 수정</value>
+    <value>· 
+는 자동 백그라운드 새로 고침 간격을 단축 · UI 및 레이아웃 향상
+· 타일의 레이아웃 다음 버전에서 업데이트 될 것입니다.</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1048,8 +1047,13 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16040
-· 윈도우 10 빌드 14328, 우리 토스트 업데이 트와
+    <value>1.5.16045
+· 
+는 자동 백그라운드 새로 고침 간격을 단축 · UI 및 레이아웃 향상
+· 타일의 레이아웃 다음 버전
+
+1.5.16040
+에서에서 업데이트 될 것입니다 · 윈도우 10 빌드 14328, 우리 토스트 업데이 트와
 · 타일 "지 하 날씨" 지금 유효한! 
 · (5 월) 고정 오류가
 · (5 월) Lockscreen 알림을
@@ -1130,5 +1134,17 @@
   </data>
   <data name="ReportBox.PlaceholderText" xml:space="preserve">
     <value>귀하의 의견 쓰기!</value>
+  </data>
+  <data name="AppProblemButton.Content" xml:space="preserve">
+    <value>문제가 있나요?</value>
+  </data>
+  <data name="AppProblemText.Text" xml:space="preserve">
+    <value>몇 가지 문제를 해결 하기 위해 모든 응용 프로그램 데이터를 삭제를 시도할 수 있습니다.</value>
+  </data>
+  <data name="ConfirmDeleteText.Text" xml:space="preserve">
+    <value>확인? 이 다시 시작 해야</value>
+  </data>
+  <data name="AppDeleteButton.Content" xml:space="preserve">
+    <value>모든 데이터 삭제</value>
   </data>
 </root>

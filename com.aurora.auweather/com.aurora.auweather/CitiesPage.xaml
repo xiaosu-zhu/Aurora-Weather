@@ -914,7 +914,7 @@
             <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
             <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
         </CommandBar>
-        <GridView ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
+        <GridView Padding="0,0,0,64" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
                     <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -823,7 +823,7 @@
         <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
         </ScrollViewer>
-        <RelativePanel PointerMoved="MainCanvas_PointerMoved" x:Name="MainCanvas" Height="{x:Bind ScrollableRoot.VerticalOffset,Mode=OneWay, Converter={StaticResource ScrollViewerConverter}}"
+        <RelativePanel PointerMoved="MainCanvas_PointerMoved" PointerReleased="MainCanvas_PointerReleased" x:Name="MainCanvas" Height="{x:Bind ScrollableRoot.VerticalOffset,Mode=OneWay, Converter={StaticResource ScrollViewerConverter}}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel.ChildrenTransitions>
                 <TransitionCollection>
@@ -1128,7 +1128,7 @@
                 </Grid>
 
                 <RelativePanel Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="WeatherPanel" RelativePanel.Below="TempraturePath" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
-                               Margin="0,-4,0,0" Padding="0,0,0,64">
+                               Margin="0,-4,0,0" Padding="0,0,0,96">
                     <RelativePanel.ChildrenTransitions>
                         <TransitionCollection>
                             <EntranceThemeTransition/>
@@ -1291,7 +1291,7 @@
                         </Grid.ColumnDefinitions>
                         <RelativePanel x:Name="DetailGrid0" Grid.Row="0" Height="240" >
                             <TextBlock x:Uid="BodyTempText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="15" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Fill>
@@ -1322,7 +1322,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid1" Grid.Row="0" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="WindText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="64">
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="12,64,12,64">
                                 <Grid>
                                     <Rectangle StrokeThickness="0" Width="4" Height="34" RadiusX="2" RadiusY="2" Fill="{ThemeResource SystemControlAltMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" />
                                     <Path VerticalAlignment="Center" HorizontalAlignment="Center" Width="64" Height="64" Fill="{ThemeResource SystemBackgroundHighBrush}" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="0">
@@ -1341,7 +1341,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid2" Grid.Row="1" Height="240" >
                             <TextBlock x:Uid="HumidityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Fill>
@@ -1372,7 +1372,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid3" Grid.Row="1" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="PrecipitationText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Fill>
@@ -1406,7 +1406,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid4" Grid.Row="2" Height="240" >
                             <TextBlock x:Uid="SunProgressText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" x:Name="SunProgressBox" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,64,0,64">
+                            <Viewbox Stretch="Uniform" x:Name="SunProgressBox" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="4,64,4,64">
                                 <Grid Height="320" Width="640" >
                                     <Ellipse Height="512" Width="512" VerticalAlignment="Top" Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="8">
                                         <Ellipse.Clip>
@@ -1437,13 +1437,13 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid5" Grid.Row="2" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="MoonPhaseText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Image Stretch="Uniform" Source="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseProgressConverter}}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="72">
+                            <Image Stretch="Uniform" Source="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseProgressConverter}}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64">
                             </Image>
                             <TextBlock Text="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseTextConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid6" Grid.Row="3" Height="240" >
                             <TextBlock x:Uid="VisibilityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Ellipse Height="60" Width="60" Fill="#80BBBBBB">
                                         <Ellipse.RenderTransform>
@@ -1471,7 +1471,7 @@
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid7" Grid.Row="3" Grid.Column="1" Height="240" >
                             <TextBlock x:Uid="PressureText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="64" >
+                            <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlAltMediumBrush}" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Path.Data>

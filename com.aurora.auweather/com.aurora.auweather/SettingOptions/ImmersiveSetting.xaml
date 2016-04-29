@@ -37,7 +37,7 @@
     <Pivot x:Name="Root" Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <PivotItem x:Uid="Sunny" Header="Sunny">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -70,7 +70,7 @@
         </PivotItem>
         <PivotItem x:Uid="Starry" Header="Starry">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -103,7 +103,7 @@
         </PivotItem>
         <PivotItem x:Uid="Cloudy" Header="Cloudy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -136,7 +136,7 @@
         </PivotItem>
         <PivotItem x:Uid="Overcast" Header="Overcast">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.OvercastState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -169,7 +169,7 @@
         </PivotItem>
         <PivotItem x:Uid="Rainny" Header="Rainny">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -202,7 +202,7 @@
         </PivotItem>
         <PivotItem x:Uid="Snowy" Header="Snowy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -235,7 +235,7 @@
         </PivotItem>
         <PivotItem x:Uid="Foggy" Header="Foggy">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -268,7 +268,7 @@
         </PivotItem>
         <PivotItem x:Uid="Haze" Header="Haze">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
                     <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
                         <ToggleSwitch IsOn="{x:Bind Context.HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />

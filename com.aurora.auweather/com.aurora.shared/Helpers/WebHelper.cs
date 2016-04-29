@@ -4,6 +4,7 @@
 
 using Com.Aurora.Shared.Extensions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -213,5 +214,108 @@ namespace Com.Aurora.Shared.Helpers
                 }
             }
         }
+
+
+        /// <summary>
+        /// Creates HTTP POST request & uploads database to server. Author : Farhan Ghumra
+        /// </summary>
+        public static void UploadFilesToServer(Uri uri, Dictionary<string, string> data, string fileName, string fileContentType, byte[] fileData)
+        {
+            string boundary = "----------" + Guid.NewGuid().ToString();
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+            httpWebRequest.ContentType = "multipart/form-data; boundary=" + boundary;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.BeginGetRequestStream((result) =>
+            {
+                try
+                {
+                    HttpWebRequest request = (HttpWebRequest)result.AsyncState;
+                    using (Stream requestStream = request.EndGetRequestStream(result))
+                    {
+                        WriteMultipartForm(requestStream, boundary, data, fileName, fileContentType, fileData);
+                    }
+                    request.BeginGetResponse(async a =>
+                    {
+                        try
+                        {
+                            var response = request.EndGetResponse(a);
+                            var responseStream = response.GetResponseStream();
+                            using (var sr = new StreamReader(responseStream))
+                            {
+                                using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
+                                {
+                                    string responseString = streamReader.ReadToEnd();
+                                    //responseString is depend upon your web service.
+                                    if (responseString == "Success")
+                                    {
+                                        await FileIOHelper.DeleteLogAsync(fileName);
+                                    }
+                                    else
+                                    {
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            
+                        }
+                    }, null);
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }, httpWebRequest);
+        }
+
+        /// <summary>
+        /// Writes multi part HTTP POST request. Author : Farhan Ghumra
+        /// </summary>
+        private static void WriteMultipartForm(Stream s, string boundary, Dictionary<string, string> data, string fileName, string fileContentType, byte[] fileData)
+        {
+            /// The first boundary
+            byte[] boundarybytes = Encoding.UTF8.GetBytes("--" + boundary + "\r\n");
+            /// the last boundary.
+            byte[] trailer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "–-\r\n");
+            /// the form data, properly formatted 
+            /// Content-Disposition: form-data; name="text1" 
+            string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
+            /// the form-data file upload, properly formatted
+            /// Content-Disposition: form-data; name="userfile1"; filename="E:/s" 
+            /// Content-Type: application/octet-stream 
+            string fileheaderTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\";\r\nContent-Type: {2}\r\n\r\n";
+
+            /// Added to track if we need a CRLF or not.
+            bool bNeedsCRLF = false;
+
+            if (data != null)
+            {
+                foreach (string key in data.Keys)
+                {
+                    /// if we need to drop a CRLF, do that.
+                    if (bNeedsCRLF)
+                        FileIOHelper.WriteToStream(s, "\r\n");
+
+                    /// Write the boundary.
+                    FileIOHelper.WriteToStream(s, boundarybytes);
+
+                    /// Write the key.
+                    FileIOHelper.WriteToStream(s, string.Format(formdataTemplate, key, data[key]));
+                    bNeedsCRLF = true;
+                }
+            }
+
+            /// If we don't have keys, we don't need a crlf.
+            if (bNeedsCRLF)
+                FileIOHelper.WriteToStream(s, "\r\n");
+
+            FileIOHelper.WriteToStream(s, boundarybytes);
+            FileIOHelper.WriteToStream(s, string.Format(fileheaderTemplate, "file", fileName, fileContentType));
+            /// Write the file data to the stream.
+            FileIOHelper.WriteToStream(s, fileData);
+            FileIOHelper.WriteToStream(s, trailer);
+        }
+
     }
 }
