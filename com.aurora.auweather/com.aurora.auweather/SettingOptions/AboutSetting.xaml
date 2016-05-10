@@ -52,7 +52,7 @@
                     <Button.Flyout>
                         <Flyout Placement="Full">
                             <ScrollViewer Padding="12">
-                                <TextBlock MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+                                <TextBlock MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -70,27 +70,8 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         <Flyout>
                             <ScrollViewer Padding="12">
                                 <StackPanel Orientation="Vertical" Margin="12">
-                                    <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                     <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
-                                    <TextBlock  Margin="8" MaxWidth="384" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <Run Text="************************************************************" />
-                                    <LineBreak />
-                                    <Run Text="*                               Special thanks to                              *" />
-                                    <LineBreak />
-                                    <Run Text="************************************************************" />
-                                    <LineBreak />
-                                    </TextBlock>
-                                    <TextBlock Margin="8" MaxWidth="384" FontSize="15" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                   <Run Text="*启福" />
-                                    <LineBreak />
-                                    <Run Text="*沧" />
-                                    <LineBreak />
-                                    <Run Text="Mario" />
-                                    <LineBreak />
-                                    <Run Text="*裕铭" />
-                                    <LineBreak />
-                                    <Run Text="*卓" />
-                                    </TextBlock>
                                     <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
                                 </StackPanel>
                             </ScrollViewer>
@@ -101,7 +82,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                     <Button.Flyout>
                         <Flyout>
                             <ScrollViewer>
-                                <StackPanel MaxWidth="384">
+                                <StackPanel MaxWidth="320">
                                     <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
                                     <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
                                     <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
@@ -130,7 +111,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 <Button x:Uid="PhotoCopyright" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout>
-                            <StackPanel MaxWidth="384">
+                            <StackPanel MaxWidth="320">
                                 <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="We're using Images from" TextWrapping="WrapWholeWords"/>
                                 <HyperlinkButton Content="Unsplash" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://unsplash.com/" />
                                 <TextBlock HorizontalAlignment="Center" Margin="12,8,12,12" Text="They are licensed under" TextWrapping="WrapWholeWords"/>
@@ -145,7 +126,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                     <Button.Flyout>
                         <Flyout Placement="Full">
                             <ScrollViewer>
-                                <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="384" />
+                                <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
                             </ScrollViewer>
                         </Flyout>
                     </Button.Flyout>
@@ -155,9 +136,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         <Flyout>
                             <ScrollViewer>
                                 <StackPanel Margin="12" Orientation="Vertical">
-                                    <TextBlock MaxWidth="384" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <TextBlock MaxWidth="384" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
+                                    <TextBlock MaxWidth="320" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <TextBlock MaxWidth="320" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <Button HorizontalAlignment="Center" Foreground="White" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Flyout>
@@ -166,9 +147,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
             </StackPanel>
             <ContentDialog Margin="12,32,12,96" PrimaryButtonClick="FeedbackDialog_PrimaryButtonClick" SecondaryButtonClick="FeedbackDialog_SecondaryButtonClick"
     x:Name="FeedbackDialog" IsPrimaryButtonEnabled="True" x:Uid="FeedbackDialog">
-                <StackPanel Margin="4">
-                    <TextBox x:Name="EmailBox" PlaceholderText="Email here" AcceptsReturn="False" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <TextBox x:Uid="FeedbackBox" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
+                <StackPanel>
+                    <TextBox x:Name="EmailBox" Width="288" PlaceholderText="Email here" AcceptsReturn="False" Margin="16,4,16,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBox x:Uid="FeedbackBox" Width="288" x:Name="ReportBox" AcceptsReturn="True" Margin="16,4,16,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
                 </StackPanel>
             </ContentDialog>
         </Grid>

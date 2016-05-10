@@ -157,7 +157,7 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    public class BooltoVisibilityConverter : IValueConverter
+    public class BoolNottoVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -182,15 +182,23 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
-    public class ReverseBoolConverter : IValueConverter
+    public class BooltoVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
             {
-                return true;
+                return Visibility.Collapsed;
             }
-            return !(bool)value;
+            var b = (bool)value;
+            if (b)
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -199,4 +207,62 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 
+    public class ReverseBoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is bool)
+            {
+                return !(bool)value;
+            }
+            return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            if (value is bool)
+            {
+                return !(bool)value;
+            }
+            return true;
+        }
+    }
+    public class ThemeColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is SolidColorBrush)
+            {
+                var b = value as SolidColorBrush;
+                return new SolidColorBrush(Pallette.RGBtoL(b.Color) <= 127 ? Colors.White : Colors.Black);
+            }
+            else if (value is Color)
+            {
+                var b = (Color)value;
+                return new SolidColorBrush(Pallette.RGBtoL(b) <= 127 ? Colors.White : Colors.Black);
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class UintToDoubleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is uint)
+                return System.Convert.ToDouble((uint)value);
+            return 0d;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            if (value is double)
+                return System.Convert.ToUInt32((double)value);
+            return 0u;
+        }
+    }
 }

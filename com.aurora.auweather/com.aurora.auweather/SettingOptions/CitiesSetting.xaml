@@ -316,7 +316,7 @@
                     <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Click="LocateDenied_Click" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                     <Button x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Style="{ThemeResource TextBlockButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CheckLocateAccessButton_Click" Margin="8,8,48,8" />
                 </Grid>
-                <RelativePanel PointerPressed="LocatePanel_PointerPressed" PointerEntered="LocatePanel_PointerEntered" PointerExited="LocatePanel_PointerExited" PointerReleased="LocatePanel_PointerReleased" Margin="8,0,8,0" MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <RelativePanel Background="{ThemeResource SystemControlTranslucentAltHighBrush}" PointerPressed="LocatePanel_PointerPressed" PointerEntered="LocatePanel_PointerEntered" PointerExited="LocatePanel_PointerExited" PointerReleased="LocatePanel_PointerReleased" Margin="8,0,8,0" MaxWidth="480" x:Name="LocatePanel" Visibility="Collapsed" Height="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <RelativePanel.Resources>
                         <Storyboard x:Name="Press">
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Background">
@@ -362,7 +362,7 @@
                         </AutoSuggestBox.ItemTemplate>
                     </AutoSuggestBox>
                 </Grid>
-                <ListView MaxWidth="480" x:Name="CitiesList" SelectionMode="None" IsItemClickEnabled="True" ItemClick="CitiesList_ItemClick" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="0,8,0,8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView MaxWidth="480" x:Name="CitiesList" AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" DragItemsCompleted="CitiesList_DragItemsCompleted" SelectionMode="None" IsItemClickEnabled="True" ItemClick="CitiesList_ItemClick" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" Margin="0,8,0,8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:CitySettingsViewModel">
                             <Grid Margin="0,4,0,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

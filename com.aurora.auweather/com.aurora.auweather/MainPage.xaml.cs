@@ -18,15 +18,23 @@ using Windows.UI.ViewManagement;
 using System.Threading.Tasks;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
+using System.Collections.Generic;
+using Com.Aurora.AuWeather.CustomControls;
 
 namespace Com.Aurora.AuWeather
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, IThemeble
     {
         private License.License license;
         private ThreadPoolTimer cancelTimer;
         private uint clickCount = 0;
         public static MainPage Current;
+
+        private static PathIcon cityIcon = new PathIcon
+        {
+            Data = BindingHelper.StringToPath("F1 M 39.7971,9.99986C 39.7971, 13.2018 37.2022, 15.7967 34.0003, 15.7967C 30.7984, 15.7967 28.2035, 13.2018 28.2035, 9.99986C 28.2035, 6.79795 30.7984, 4.20304 34.0003, 4.20304C 37.2022, 4.20304 39.7971,6.79795 39.7971, 9.99986 Z M 34, 2.60895C 33.5201, 2.60895 33.1301, 2.21995 33.1301, 1.73914L 33.1301, 0.870157C 33.1301, 0.390177 33.5201, 0.000204086 34, 0.000204086C 34.48, 0.000204086 34.87,0.390177 34.87, 0.870157L 34.87, 1.73914C 34.87, 2.21995 34.48, 2.60895 34, 2.60895 Z M 26.609, 10C 26.609, 10.48 26.22, 10.87 25.739, 10.87L 24.87, 10.87C 24.3901, 10.87 24.0001, 10.48 24.0001,10C 24.0001, 9.52002 24.3901, 9.13002 24.87, 9.13002L 25.739, 9.13002C 26.22, 9.13002 26.609, 9.52002 26.609, 10 Z M 34.0001, 17.3911C 34.4801, 17.3911 34.8701, 17.78 34.8701, 18.261L 34.8701,19.13C 34.8701, 19.61 34.4801, 20 34.0001, 20C 33.5201, 20 33.1301, 19.61 33.1301, 19.13L 33.1301, 18.261C 33.1301, 17.78 33.5201, 17.3911 34.0001, 17.3911 Z M 41.3912, 9.99996C 41.3912, 9.51998 41.7802,9.12998 42.261, 9.12998L 43.13, 9.12998C 43.61, 9.12998 44, 9.51998 44, 9.99996C 44, 10.4799 43.61, 10.8699 43.13, 10.8699L 42.261, 10.8699C 41.7802, 10.8699 41.3912, 10.4799 41.3912, 9.99996 Z M 28.3481,3.47843C 28.3481, 3.95844 27.9591, 4.34841 27.4781, 4.34841C 26.9982, 4.34841 26.6092, 3.95844 26.6092, 3.47843C 26.6092, 2.99845 26.9982, 2.60848 27.4781, 2.60848C 27.9591, 2.60848 28.3481, 2.99845 28.3481,3.47843 Z M 27.4786, 15.652C 27.9586, 15.652 28.3486, 16.0409 28.3486, 16.5219C 28.3486, 17.0019 27.9586, 17.3909 27.4786, 17.3909C 26.9987, 17.3909 26.6087, 17.0019 26.6087, 16.5219C 26.6087, 16.0409 26.9987,15.652 27.4786, 15.652 Z M 39.6522, 16.5214C 39.6522, 16.0414 40.0412, 15.6514 40.5222, 15.6514C 41.0021, 15.6514 41.3911, 16.0414 41.3911, 16.5214C 41.3911, 17.0014 41.0021, 17.3914 40.5222, 17.3914C 40.0412,17.3914 39.6522, 17.0014 39.6522, 16.5214 Z M 40.5217, 4.34784C 40.0417, 4.34784 39.6517, 3.95886 39.6517, 3.47788C 39.6517, 2.9979 40.0417, 2.60891 40.5217, 2.60891C 41.0017, 2.60891 41.3916, 2.9979 41.3916,3.47788C 41.3916, 3.95886 41.0017, 4.34784 40.5217, 4.34784 Z "),
+        };
+        private bool nowPanel_Open;
 
         public MainPage()
         {
@@ -104,7 +112,7 @@ namespace Com.Aurora.AuWeather
             Cities.Label = loader.GetString("Cities");
             Refresh.Label = loader.GetString("Refresh");
             PaneList.SelectionChanged -= PaneList_SelectionChanged;
-            PaneList.SelectedIndex = 2;
+            PaneList.SelectedIndex = 3;
             PaneList.SelectionChanged += PaneList_SelectionChanged;
         }
 
@@ -116,11 +124,11 @@ namespace Com.Aurora.AuWeather
             }
             if (page == typeof(CitiesPage))
             {
-                PaneList.SelectedIndex = 1;
+                PaneList.SelectedIndex = 2;
             }
             if (page == typeof(SettingsPage))
             {
-                PaneList.SelectedIndex = 2;
+                PaneList.SelectedIndex = 3;
             }
         }
 
@@ -205,13 +213,13 @@ namespace Com.Aurora.AuWeather
             else
             {
                 var loader = new ResourceLoader();
-                if (PaneList.SelectedIndex == 2)
+                if (PaneList.SelectedIndex == 3)
                 {
                     PaneList_SelectionChanged(null, null);
                 }
                 else
                 {
-                    PaneList.SelectedIndex = 2;
+                    PaneList.SelectedIndex = 3;
                 }
                 Refresh.Visibility = Visibility.Collapsed;
                 Settings.Icon = new SymbolIcon(Symbol.Setting);
@@ -219,6 +227,8 @@ namespace Com.Aurora.AuWeather
                 Settings.Label = loader.GetString("Settings");
                 Cities.Label = loader.GetString("Cities");
                 Refresh.Label = loader.GetString("Refresh");
+                Today.Icon = cityIcon;
+                Today.Label = loader.GetString("Now");
             }
         }
 
@@ -231,13 +241,15 @@ namespace Com.Aurora.AuWeather
             else
             {
                 var loader = new ResourceLoader();
-                PaneList.SelectedIndex = 1;
+                PaneList.SelectedIndex = 2;
                 Settings.Icon = new SymbolIcon(Symbol.Add);
                 Cities.Icon = new SymbolIcon(Symbol.Edit);
                 Cities.Label = loader.GetString("Edit");
                 Refresh.Label = loader.GetString("Refresh");
                 Settings.Label = loader.GetString("Add");
                 Refresh.Visibility = Visibility.Visible;
+                Today.Icon = cityIcon;
+                Today.Label = loader.GetString("Now");
                 if (!license.IsPurchased)
                 {
                     Refresh.IsEnabled = false;
@@ -304,18 +316,33 @@ namespace Com.Aurora.AuWeather
 
         internal void ReCalcPaneFormat()
         {
-            var i = PaneList.SelectedIndex;
-            PaneList.SelectionChanged -= PaneList_SelectionChanged;
-            this.DataContext = null;
-            DateNowConverter.Refresh();
-            this.DataContext = new MainPageViewModel();
-            PaneList.SelectedIndex = i;
-            PaneList.SelectionChanged += PaneList_SelectionChanged;
+            var p = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+             {
+                 var i = PaneList.SelectedIndex;
+                 PaneList.SelectionChanged -= PaneList_SelectionChanged;
+                 DataContext = null;
+                 DateNowConverter.Refresh();
+                 DataContext = new MainPageViewModel();
+                 PaneList.SelectedIndex = i;
+                 PaneList.SelectionChanged += PaneList_SelectionChanged;
+             }));
         }
 
         private void Today_Click(object sender, RoutedEventArgs e)
         {
             var loader = new ResourceLoader();
+            if (MainFrame.Content is NowWeatherPage)
+            {
+                PaneList.SelectedIndex = 1;
+                Today.Icon = cityIcon;
+                Today.Label = loader.GetString("Now");
+            }
+            else
+            {
+                PaneList.SelectedIndex = 0;
+                Today.Icon = new SymbolIcon(Symbol.View);
+                Today.Label = loader.GetString("Details");
+            }
             Settings.Icon = new SymbolIcon(Symbol.Setting);
             Cities.Icon = new SymbolIcon(Symbol.World);
             Settings.Label = loader.GetString("Settings");
@@ -323,7 +350,6 @@ namespace Com.Aurora.AuWeather
             Refresh.Label = loader.GetString("Refresh");
             Refresh.Visibility = Visibility.Visible;
             Refresh.IsEnabled = true;
-            PaneList.SelectedIndex = 0;
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -359,11 +385,6 @@ namespace Com.Aurora.AuWeather
             {
                 Settings.IsEnabled = false;
             }
-        }
-
-        private async void Like_Click(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=" + Windows.ApplicationModel.Package.Current.Id.FamilyName));
         }
 
         private void PaneList_Loaded(object sender, RoutedEventArgs e)
@@ -446,6 +467,174 @@ namespace Com.Aurora.AuWeather
             {
                 ShowUpdateDetailAni.Begin();
             }
+        }
+
+        private void NowPanel_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            NowPanelPointerIn.Begin();
+        }
+
+        private void NowPanel_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            NowPanelPointerOut.Begin();
+        }
+
+        private void NowPanel_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if (nowPanel_Open)
+            {
+                NowPanelClose.Begin();
+            }
+            else
+            {
+                NowPanelOpen.Begin();
+            }
+            nowPanel_Open = !nowPanel_Open;
+        }
+
+        private void NowPanel_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            NowPanelPointerClick.Begin();
+        }
+
+        private void NowPanelClose_Completed(object sender, object e)
+        {
+            CitiesPanel.Visibility = Visibility.Collapsed;
+        }
+
+        internal void SetCitiesPanel(ICollection<CitySettingsViewModel> cities, int currentIndex)
+        {
+            CitiesPanel.SelectionChanged -= CitiesPanel_SelectionChanged;
+            CitiesPanel.ItemsSource = cities;
+            foreach (var item in cities)
+            {
+                var b = new AppBarButton
+                {
+                    Icon = new SymbolIcon(Symbol.Globe),
+                    Label = item.City,
+                    Name = item.Id
+                };
+                b.Click += B_Click;
+                ActionBar.SecondaryCommands.Add(b);
+            }
+            CitiesPanel.SelectedIndex = currentIndex;
+
+            CitiesPanel.SelectionChanged += CitiesPanel_SelectionChanged;
+
+        }
+
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            var s = SettingsModel.Get();
+            var l = new List<CitySettingsViewModel>();
+            l.AddRange(CitiesPanel.ItemsSource as ICollection<CitySettingsViewModel>);
+            var index = l.FindIndex(x =>
+            {
+                return x.Id == (sender as AppBarButton).Name;
+            });
+            CitiesPanel.SelectionChanged -= CitiesPanel_SelectionChanged;
+            CitiesPanel.SelectedIndex = index;
+            CitiesPanel.SelectionChanged += CitiesPanel_SelectionChanged;
+            s.Cities.CurrentIndex = s.Cities.EnableLocate ? index - 1 : index;
+            s.Cities.Save();
+            MainFrame.Navigate(typeof(NowWeatherPage));
+        }
+
+        private void CitiesPanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var s = SettingsModel.Get();
+            var l = new List<CitySettingsViewModel>();
+            l.AddRange(CitiesPanel.ItemsSource as ICollection<CitySettingsViewModel>);
+            var index = l.FindIndex(x =>
+            {
+                return x.Id == (CitiesPanel.SelectedItem as CitySettingsViewModel).Id;
+            });
+            s.Cities.CurrentIndex = s.Cities.EnableLocate ? index - 1 : index;
+            s.Cities.Save();
+            if (MainFrame.Content is NowWeatherPage)
+            {
+                MainFrame.Navigate(typeof(NowWeatherPage));
+            }
+        }
+
+        internal void SetIndex(int currentIndex)
+        {
+            if (CitiesPanel.Items.Count > currentIndex)
+            {
+                CitiesPanel.SelectedIndex = currentIndex;
+            }
+        }
+
+        private void Root_PaneClosed(SplitView sender, object args)
+        {
+            NowPanelClose.Begin();
+            NowPanelPointerOut.Begin();
+            nowPanel_Open = false;
+        }
+
+        public void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            if (MainFrame.Content is IThemeble)
+            {
+                (MainFrame.Content as IThemeble).ChangeThemeColor(color);
+            }
+        }
+
+        private void MainFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            if (App.MainColor.A > 0)
+                if (MainFrame.Content is IThemeble)
+                {
+                    (MainFrame.Content as IThemeble).ChangeThemeColor(App.MainColor);
+                }
         }
     }
 }

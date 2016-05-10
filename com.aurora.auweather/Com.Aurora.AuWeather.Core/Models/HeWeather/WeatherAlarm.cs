@@ -21,7 +21,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 }
                 i++;
             }
-            throw new ArgumentException();
+            throw new ArgumentException("Value can't be null.");
         }
         private static WeatherAlarmLevel ParseLevel(string alarm_s)
         {
@@ -34,7 +34,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 }
                 i++;
             }
-            throw new ArgumentException();
+            throw new ArgumentException("Value can't be null.");
         }
 
         public WeatherAlarmLevel Level
@@ -63,10 +63,18 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             {
                 return;
             }
-            Level = ParseLevel(alarm.level);
-            Type = ParseType(alarm.type);
-            Title = alarm.title;
-            Text = alarm.txt;
+            try
+            {
+                Level = ParseLevel(alarm.level);
+                Type = ParseType(alarm.type);
+                Title = alarm.title;
+                Text = alarm.txt;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
         }
     }
 }

@@ -98,7 +98,14 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             {
                 case DataSource.HeWeather:
                     var he = HeWeatherContract.Generate(resstr);
-                    return new HeWeatherModel(he);
+                    try
+                    {
+                        return new HeWeatherModel(he);
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
                 case DataSource.Caiyun:
                     var cai = CaiyunContract.Generate(resstr);
                     return new HeWeatherModel(cai.now, cai.forecast);
@@ -113,7 +120,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
         public HeWeatherModel(HeWeatherContract heweathercontract)
         {
             if (heweathercontract == null)
-                throw new ArgumentException();
+                throw new ArgumentException("Value can't be null.");
             Status = ParseStatus(heweathercontract.status);
             Aqi = new AQI(heweathercontract.aqi);
             DailyForecast = GenerateDailyForecast(heweathercontract.daily_forecast);
@@ -169,7 +176,8 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                     List<WeatherAlarm> _alarms = new List<WeatherAlarm>();
                     foreach (var alarm in alarms)
                     {
-                        _alarms.Add(new WeatherAlarm(alarm));
+                        if (!alarm.title.IsNullorEmpty())
+                            _alarms.Add(new WeatherAlarm(alarm));
                     }
                     return _alarms.ToArray();
                 }

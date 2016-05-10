@@ -20,6 +20,10 @@ using Windows.System.Threading;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
 using Com.Aurora.AuWeather.Core.Models;
+using Com.Aurora.AuWeather.ViewModels;
+using Com.Aurora.AuWeather.CustomControls;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -28,7 +32,7 @@ namespace Com.Aurora.AuWeather
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SplashScreenEx : Page
+    public sealed partial class SplashScreenEx : Page, IThemeble
     {
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame rootFrame;
@@ -41,6 +45,19 @@ namespace Com.Aurora.AuWeather
             splash.Dismissed += DismissedEventHandler;
             this.args = args;
             rootFrame = new Frame();
+            rootFrame.Navigated += RootFrame_Navigated1;
+        }
+
+        private void RootFrame_Navigated1(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            if (rootFrame.Content is IThemeble)
+            {
+                if (App.MainColor.A > 0)
+                    if (rootFrame.Content is IThemeble)
+                    {
+                        (rootFrame.Content as IThemeble).ChangeThemeColor(App.MainColor);
+                    }
+            }
         }
 
         private async void DismissedEventHandler(SplashScreen sender, object args)
@@ -53,7 +70,17 @@ namespace Com.Aurora.AuWeather
             {
                 settings.Preferences.EnableAlarm = false;
                 settings.Preferences.EnableEveryDay = false;
-                settings.Preferences.Set(RefreshState.one);
+                settings.Preferences.Set(60);
+            }
+            if (settings.Preferences.MainColor.A > 0)
+            {
+                App.MainColor = settings.Preferences.MainColor;
+                await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                {
+                    App.ChangeThemeColor(settings.Preferences.MainColor);
+                    ChangeThemeColor(settings.Preferences.MainColor);
+                }));
+
             }
             if (!settings.Inited)
             {
@@ -342,8 +369,32 @@ namespace Com.Aurora.AuWeather
 
         void DismissExtendedSplash()
         {
+            if (Window.Current.Content == rootFrame)
+            {
+                return;
+            }
+            rootFrame.Navigated += RootFrame_Navigated;
             rootFrame.Navigate(typeof(MainPage));
             Window.Current.Content = rootFrame;
+        }
+
+        private void RootFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            if (rootFrame.Content is MainPage)
+            {
+                var s = SettingsModel.Get();
+                var c = s.Cities.SavedCities;
+                List<CitySettingsViewModel> l = new List<CitySettingsViewModel>();
+                if (s.Cities.EnableLocate && s.Cities.LocatedCity != null)
+                {
+                    l.Add(new CitySettingsViewModel(s.Cities.LocatedCity.City, s.Cities.LocatedCity.Id, s.Cities.LocatedCity.IsCurrent));
+                }
+                foreach (var item in c)
+                {
+                    l.Add(new CitySettingsViewModel(item.City, item.Id, item.IsCurrent));
+                }
+                ((rootFrame.Content) as MainPage).SetCitiesPanel(l, (s.Cities.EnableLocate && s.Cities.LocatedCity != null) ? s.Cities.CurrentIndex + 1 : s.Cities.CurrentIndex);
+            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -353,6 +404,58 @@ namespace Com.Aurora.AuWeather
                 timer.Cancel();
                 timer = null;
             }
+        }
+
+        public void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
         }
     }
 }

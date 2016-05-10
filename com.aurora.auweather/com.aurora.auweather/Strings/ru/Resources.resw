@@ -94,7 +94,7 @@
     <value>Динамическая Погода</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Предупреждение о стихийных бедствиях</value>
+    <value>Предупреждение о стихийных бедствиях метеорологических</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>Прогноз погоды</value>
@@ -169,7 +169,7 @@
     <value>Текущая погода</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>Сейчас</value>
+    <value>Сведения</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>Оплатить что вы хотите</value>
@@ -943,7 +943,7 @@
     <value>Обновление</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>Сейчас</value>
+    <value>Сведения</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>Управление городами</value>
@@ -1021,9 +1021,10 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Сократите интервал обновления автоматическое фоновое
-· Пользовательский интерфейс и макет повышение
-· В следующей версии будет обновлен макет плитки</value>
+    <value>· Вы можете настроить цвета акцент теперь (только тогда, когда параметр Тема «Следить система»)
+· Добавлены обновления анимации
+· Вы можете настроить макет теперь
+· Страница Подробности Улучшено</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1047,7 +1048,22 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· Вы можете настроить цвета акцент теперь (только тогда, когда параметр Тема «Следить система»)
+· Добавлены обновления анимации
+· Вы можете настроить макет теперь
+· Подробности страница улучшение
+
+1.5.16054
+· Отрегулировать настройки
+
+1.5.16052
+· фиксированной проблемы, вызванные региона форматах
+
+1.5.16050
+· Страница добавлена
+
+1.5.16045
 · Сократите интервал обновления автоматическое фоновое
 · Пользовательский интерфейс и макет повышение
 · Макет плитки будут обновлены в следующей версии
@@ -1146,5 +1162,123 @@
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>Очистить все данные</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}, {2} {3}
+завтра: {4}, {5}.</value>
+  </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Ставка в магазине Windows</value>
+  </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>Обратная связь</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>Pcpn. вероятность для {0} дней</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>Осадков для {0} дней</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>Температура для {0} дней</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>Видимость для {0} дней</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Сведения</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>Pcpn. вероятность для {0} часов</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>Температура для {0} часов</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>Пользовательские ящик фон</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>Контрастный цвет</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>Пользовательский макет</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>Выбрать изображение</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>Макет</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>Выбрать цвет</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>Система контрастного цвета</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>Установка будильника</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>Предупреждение о стихийных бедствиях метеорологических</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>Посмотреть лунный календарь</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>Влажность</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>Вероятность осадков</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>Осадки</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>Видимость</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Ветер шкала</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>Направление Ветра</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>Атом давление</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>Компактный формат</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>Выберите, что нужно показать</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>Прогноз</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>ИКВ</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>Сведения</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>Предложения</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>Сейчас Погода Панель Ущипнуть</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>Некоторые языка необходимо установить языковой пакет</value>
+  </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· Настройка макета</value>
   </data>
 </root>

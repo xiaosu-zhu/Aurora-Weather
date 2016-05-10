@@ -10,6 +10,8 @@
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Com.Aurora.AuWeather.CustomControls"
+    xmlns:converters="using:Com.Aurora.Shared.Converters"
     Unloaded="Page_Unloaded"
     SizeChanged="Page_SizeChanged"
     RequestedTheme="{x:Bind Context.Theme1,Mode=OneWay}"
@@ -29,6 +31,13 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:BoolNottoVisibilityConverter x:Key="BoolNottoVisibilityConverter" />
+            <converters:BooltoVisibilityConverter x:Key="BooltoVisibility" />
+            <converters:FreqConverter x:Key="FreqConverter" />
+            <converters:UintToDoubleConverter x:Key="UintToDoubleConverter" />
+            <converters:NowStyleMinConverter x:Key="NowStyleMinConverter" />
+            <converters:NowStyleMaxConverter x:Key="NowStyleMaxConverter" />
+            <converters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -37,7 +46,7 @@
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1040" />
+                        <AdaptiveTrigger MinWindowWidth="1024" />
                     </VisualState.StateTriggers>
                     <Storyboard >
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootColumn1" Storyboard.TargetProperty="Width">
@@ -61,7 +70,7 @@
             <StackPanel x:Name="LeftPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="DataSourceTitle" x:Uid="DataSourceText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="DataSourceTitle" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" x:Uid="DataSourceText" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <TextBlock x:Uid="DataSourceAlertText" VerticalAlignment="Center" Margin="12,0,12,0" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                         <StackPanel Orientation="Vertical" Margin="12" HorizontalAlignment="Stretch">
                             <RadioButton x:Uid="HeWeatherRadio" x:Name="HeWeatherRadio" Margin="8" />
@@ -70,9 +79,9 @@
                         </StackPanel>
                         <TextBlock x:Uid="DataSourceDetailText" x:Name="NeedDonation" Visibility="Collapsed" Margin="8" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" />
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+                    <Grid Height="1" Margin="-12,0,-12,0" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="GeneralTitle" x:Uid="GeneralText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="GeneralTitle" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" x:Uid="GeneralText" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid HorizontalAlignment="Stretch" >
                             <TextBlock x:Uid="ThemeText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Theme" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
@@ -83,23 +92,37 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                            <Grid Visibility="Collapsed" x:Name="AutoThemeSwitch" HorizontalAlignment="Stretch">
+                        <StackPanel Visibility="Collapsed" x:Name="AutoThemeSwitch" Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="ThemeasRiseSetText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="Wrap" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
-                                <ToggleSwitch x:Name="ThemeasRiseSet" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                <TextBlock x:Uid="ThemeasDetailText" TextWrapping="WrapWholeWords" Margin="8,24,8,8" VerticalAlignment="Bottom" FontWeight="Light" HorizontalAlignment="Left" FontSize="12" />
+                                <ToggleSwitch x:Name="ThemeasRiseSet" IsOn="{x:Bind Context.ThemeasRiseSet,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
-                            <Grid Visibility="Collapsed" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
+                            <Grid Visibility="{x:Bind ThemeasRiseSet.IsOn,Converter={StaticResource BoolNottoVisibilityConverter},Mode=OneWay}" x:Name="StartThemeSwitch" HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="StartTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TimePicker x:Name="StartPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="StartPicker" Time="{x:Bind Context.StartTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
-                            <Grid Visibility="Collapsed" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
+                            <Grid Visibility="{x:Bind ThemeasRiseSet.IsOn,Converter={StaticResource BoolNottoVisibilityConverter},Mode=OneWay}" x:Name="EndThemeSwitch" HorizontalAlignment="Stretch">
                                 <TextBlock x:Uid="EndTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TimePicker x:Name="EndPicker" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="EndPicker" Time="{x:Bind Context.EndTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                         </StackPanel>
+                        <Grid x:Name="AccentColorGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" >
+                            <TextBlock x:Uid="MainColorText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                            <Button Style="{ThemeResource FullWidthButton}" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8">
+                                <Button.Content>
+                                    <Grid x:Name="PickedColorGrid" Width="48" Height="24" Background="{x:Bind Context.MainColor,Mode=OneWay}" />
+                                </Button.Content>
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <controls:ColorPicker x:Name="ColorPicker" Picked="{x:Bind Context.MainColor,Mode=TwoWay}" x:Uid="ColorPicker" MaxWidth="320" ColorPicked="ColorPicker_ColorPicked" ColorGridHeight="24" ColorGridWidth="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Colors="0xfff44336,0xffe91e63,0xff9c27b0,0xff673ab7,0xff3f51b5,0xff2196f3,0xff03a9f4,0xff00bcd4,0xff009688,0xff4caf50,0xff8bc34a,0xffcddc39,0xffff5722,0xffffc107,0xffff9800,0xffff5722,0xff795548,0xff9e9e9e,0xff607d8b" />
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+                        </Grid>
                         <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock x:Uid="LanguageText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock x:Uid="LanguageText" Margin="8" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                            <TextBlock FontWeight="Light" x:Uid="LanguageAlarmText" TextWrapping="WrapWholeWords" Margin="8,28,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="12"/>
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="LanguageBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="x:String">
@@ -109,10 +132,61 @@
                             </ComboBox>
                         </Grid>
                         <TextBlock x:Uid="LanguageChangeText" x:Name="LanguageChangeText" Visibility="Collapsed" Foreground="#ff4040" Margin="8" FontWeight="Light" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <Button x:Uid="CustomLayoutButton" x:Name="CustomLayout" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button.Flyout>
+                                <Flyout Placement="Full">
+                                    <StackPanel MaxWidth="320" Orientation="Vertical" >
+                                        <TextBlock x:Uid="ToggleNowPanelText" Margin="8" FontSize="20" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Grid Width="256" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{x:Bind NowPanelSlider.Value,Mode=OneWay}" Margin="24" Background="{ThemeResource SystemControlHighlightAccentBrush}">
+                                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <TextBlock x:Name="NowPanelCity" Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="City" FontSize="16" FontWeight="ExtraLight" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <TextBlock x:Name="NowPanelCondition" FontWeight="ExtraLight" Text="Sunny" FontSize="12" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                            <TextBlock x:Name="NowPanelHigh"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="24" FontWeight="ExtraLight" FontSize="6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            <TextBlock x:Name="NowPanelLow"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="16" FontWeight="ExtraLight" FontSize="6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            <TextBlock x:Name="NowPanelLowTemp"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Text="22" FontWeight="ExtraLight" FontSize="12" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                    <TextBlock x:Name="NowPanelTemp"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="22" FontWeight="ExtraLight" FontSize="22" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <StackPanel Orientation="Vertical" Margin="16" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                                <TextBlock x:Uid="HeightText" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                <Slider x:Name="NowPanelSlider" Value="{x:Bind Context.NowPanelHeight,Mode=TwoWay,Converter={StaticResource UintToDoubleConverter}}" Margin="8" HorizontalAlignment="Stretch" Height="384" VerticalAlignment="Stretch" Orientation="Vertical" Minimum="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource NowStyleMinConverter}}" Maximum="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource NowStyleMaxConverter}}" StepFrequency="1" SnapsTo="StepValues" />
+                                                <TextBlock Text="{x:Bind NowPanelSlider.Value,Mode=OneWay}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="LowNowPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <ToggleSwitch x:Name="NowStyleSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.IsNowPanelLowStyle,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
+                                        </Grid>
+                                        <TextBlock x:Uid="ToggleVisibilityText" Margin="8" FontSize="20" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="ForecastPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <ToggleSwitch Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.ForecastHide,Converter={StaticResource ReverseBoolConverter},Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
+                                        </Grid>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="AQIPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <ToggleSwitch Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.AQIHide,Converter={StaticResource ReverseBoolConverter},Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
+                                        </Grid>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="DetailsPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <ToggleSwitch Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.DetailsHide,Converter={StaticResource ReverseBoolConverter},Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
+                                        </Grid>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="SuggestsPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <ToggleSwitch Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.SuggestHide,Converter={StaticResource ReverseBoolConverter},Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+                    <Grid Height="1" Margin="-12,0,-12,0" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="ConvertTitle" x:Uid="DanweiText" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <Grid Margin="12" HorizontalAlignment="Stretch">
                             <TextBlock HorizontalAlignment="Left" x:Uid="TempParText" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" SelectionChanged="Enum_SelectionChanged" x:Name="Temp" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="120">
@@ -164,10 +238,13 @@
                             </ComboBox>
                         </Grid>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+
+                </StackPanel>
+                <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid x:Name="niubi" Margin="-12,0,-12,0" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid HorizontalAlignment="Stretch">
-                            <TextBlock x:Name="FormatTitle" x:Uid="FormatText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                            <TextBlock x:Name="FormatTitle" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" x:Uid="FormatText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                             <Button x:Name="AboutFormatButton" x:Uid="DescripButton" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" >
                                 <Button.Flyout>
                                     <Flyout>
@@ -250,7 +327,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <TextBox x:Name="Separator0" Background="{ThemeResource SystemControlTranslucentHighBrush}" BorderBrush="Transparent" BorderThickness="0" TextChanged="Separator0_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
+                            <TextBox x:Name="Separator0" PlaceholderText="{x:Bind Context.Separator,Mode=OneWay}" Text="{x:Bind Context.Separator,Mode=TwoWay}" Background="{ThemeResource SystemControlTranslucentHighBrush}" BorderBrush="Transparent" BorderThickness="0" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
                             </TextBox>
                             <ComboBox x:Name="Month" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Width="72" MaxWidth="80" Margin="2,12,2,12">
                                 <ComboBox.ItemTemplate>
@@ -259,7 +336,7 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <TextBox x:Name="Separator1" Background="{ThemeResource SystemControlTranslucentHighBrush}" BorderBrush="Transparent" BorderThickness="0" TextChanged="Separator1_TextChanged" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
+                            <TextBox x:Name="Separator1" PlaceholderText="{x:Bind Context.Separator,Mode=OneWay}" Text="{x:Bind Context.Separator,Mode=TwoWay}" Background="{ThemeResource SystemControlTranslucentHighBrush}" BorderBrush="Transparent" BorderThickness="0" MaxLength="1" VerticalAlignment="Center" MinWidth="32" Width="32" Margin="0,12,0,12">
 
                             </TextBox>
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="Day" VerticalAlignment="Center" Width="72" MaxWidth="80" Margin="2,12,2,12">
@@ -297,71 +374,73 @@
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="UseWeekText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="UseWeekDay" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="UseWeekDay" IsOn="{x:Bind Context.UseWeekDay,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="Showtt" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="Showtt" IsOn="{x:Bind Context.Showtt,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="LunarText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="UseLunar" IsOn="{x:Bind Context.UseLunarCalendar,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel x:Name="RightPanelChild" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid x:Name="niubi" Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+                    <Grid Height="1" Margin="-12,0,-12,0" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="WeatherTitle" x:Uid="ToastText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="WeatherTitle" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" x:Uid="ToastText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableEveryDay" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableEveryDay" IsOn="{x:Bind Context.EnableEveryDay,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
+                            <Grid x:Name="SetTimeGrid" Visibility="{x:Bind EnableEveryDay.IsOn,Converter={StaticResource BooltoVisibility},Mode=OneWay}" HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="SetTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <TimePicker x:Name="EveyDayPicker" Time="{x:Bind Context.NoteTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableAlarm" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableAlarm" IsOn="{x:Bind Context.EnableAlarm,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
-                                <ToggleSwitch x:Name="EnablePulltoRefresh" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,24,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
+                                <ToggleSwitch x:Name="EnablePulltoRefresh" IsOn="{x:Bind Context.EnablePulltoRefresh,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
-
-                        <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock x:Uid="RefreshFreqText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="RefreshFreq" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="ViewModels:EnumSelector">
-                                        <TextBlock Text="{x:Bind Title}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </Grid>
-
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="RefreshFreqText" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock x:Name="RefreshFreq" Text="{x:Bind RefreshFreqSlider.Value,Mode=OneWay,Converter={StaticResource FreqConverter}}" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            </Grid>
+                            <Slider Minimum="30" Maximum="240" StepFrequency="30" SnapsTo="StepValues" Value="{x:Bind Context.RefreshFreq,Mode=TwoWay,Converter={StaticResource UintToDoubleConverter}}" x:Name="RefreshFreqSlider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8" >
+                            </Slider>
+                        </StackPanel>
                     </StackPanel>
-                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
+                    <Grid Height="1" Margin="-12,0,-12,0" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel>
-                        <TextBlock x:Name="ImmersiveTitle" x:Uid="ImmersiveText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Name="ImmersiveTitle" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" x:Uid="ImmersiveText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" FontWeight="Light" Style="{ThemeResource SubtitleTextBlockStyle}" />
                         <StackPanel HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="AlwaysShowText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="AlwaysShowBackground" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="AlwaysShowBackground" IsOn="{x:Bind Context.AlwaysShowBackground,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="FullScreenText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableFullScreen" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableFullScreen" IsOn="{x:Bind Context.EnableFullScreen,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowSecondText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableSecond" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="EnableSecond" IsOn="{x:Bind Context.EnableSecond,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ShowttText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="ShowImmersivett" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <ToggleSwitch x:Name="ShowImmersivett" IsOn="{x:Bind Context.ShowImmersivett,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="DisableDynamicText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="8,24,8,8" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
-                                <ToggleSwitch x:Name="DisableDynamic" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                                <TextBlock x:Uid="DisableDynamicDescripText" HorizontalAlignment="Left" Margin="8,24,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
+                                <ToggleSwitch x:Name="DisableDynamic" IsOn="{x:Bind Context.DisableDynamic,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
                         <TextBlock x:Uid="LockText" Visibility="Collapsed" x:Name="LockText" Margin="8" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />

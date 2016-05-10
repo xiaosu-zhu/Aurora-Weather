@@ -28,8 +28,9 @@ namespace Com.Aurora.AuWeather.Models
             set
             {
                 if (value < -90 || value > 90)
-                    throw new ArgumentException();
-                latitude = value;
+                    latitude = 0;
+                else
+                    latitude = value;
             }
         }
 

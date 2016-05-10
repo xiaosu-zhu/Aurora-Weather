@@ -94,7 +94,7 @@
     <value>동적 날씨</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>재해 경고</value>
+    <value>기상 재해 경고</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>매일 날씨</value>
@@ -169,7 +169,7 @@
     <value>현재 날씨</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>지금</value>
+    <value>세부 정보</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>당신이 원하는 지불</value>
@@ -943,7 +943,7 @@
     <value>새로 고침</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>지금</value>
+    <value>세부 정보</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>도시 관리</value>
@@ -1021,9 +1021,10 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 
-는 자동 백그라운드 새로 고침 간격을 단축 · UI 및 레이아웃 향상
-· 타일의 레이아웃 다음 버전에서 업데이트 될 것입니다.</value>
+    <value>· 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
+· 새로 고침 애니메이션
+를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
+· 세부 정보 페이지 개선</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1047,7 +1048,22 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
+· 새로 고침 애니메이션
+를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
+· 세부 정보 페이지 향상 된
+
+1.5.16054
+· 기본 설정
+
+1.5.16052
+조정 지역 형식
+
+1.5.16050
+에 의해 발생 하는 문제를 해결 하는 · · 세부 내용 페이지 추가
+
+1.5.16045
 · 
 는 자동 백그라운드 새로 고침 간격을 단축 · UI 및 레이아웃 향상
 · 타일의 레이아웃 다음 버전
@@ -1146,5 +1162,123 @@
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>모든 데이터 삭제</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}, {2} {3}
+내일: {4}, {5}.</value>
+  </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Windows 스토어에서</value>
+  </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>피드백</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>뒤로</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>보내기</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>{0} 일에 대 한 확률 Pcpn입니다.</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>{0} 일 강수량</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>{0} 일에 대 한 온도</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>{0} 일에 대 한 가시성</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>세부 정보</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>{0} 시간에 대 한 확률 Pcpn입니다.</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>{0} 시간에 대 한 온도</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>사용자 지정 서랍 배경</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>강조 색</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>사용자 지정 레이아웃</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>이미지 선택</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>레이아웃</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>색 선택</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>시스템 테마 컬러</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>설정된 알람 시간</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>기상 재해 경고</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>음력 달력 보기</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>습도</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>강 수 확률</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>강 수</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>표시 유형</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>바람 규모</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>바람의 방향</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>원자 압력</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>컴팩트한 레이아웃</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>표시 선택</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>예측</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>AQI</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>세부 정보</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>추천</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>이제 날씨 패널 조정</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>height</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>일부 언어에서는 언어 팩을 설치 해야</value>
+  </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· 레이아웃 사용자 지정</value>
   </data>
 </root>

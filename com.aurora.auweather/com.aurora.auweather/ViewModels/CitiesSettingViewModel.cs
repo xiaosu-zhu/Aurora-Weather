@@ -34,12 +34,14 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool? m_islocatedcurrent;
         private List<CitySettingsModel> newlist;
         private ElementTheme theme;
+        private object lockable;
 
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
         public event EventHandler<FetchDataCompleteEventArgs> LocateComplete;
 
         public CitiesSettingViewModel()
         {
+            lockable = new object();
             var p = Preferences.Get();
             Theme = p.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
@@ -245,6 +247,30 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+        internal int GetIndex()
+        {
+            return (Cities.EnableLocate && Cities.LocatedCity != null) ? Cities.CurrentIndex + 1 : Cities.CurrentIndex;
+        }
+
+        internal ICollection<CitySettingsViewModel> GetCities()
+        {
+            var c = Cities.SavedCities;
+            List<CitySettingsViewModel> l = new List<CitySettingsViewModel>();
+            if (Cities.EnableLocate && Cities.LocatedCity != null)
+            {
+                l.Add(new CitySettingsViewModel(Cities.LocatedCity.City, Cities.LocatedCity.Id, Cities.LocatedCity.IsCurrent));
+            }
+            if (!c.IsNullorEmpty())
+            {
+                foreach (var item in c)
+                {
+                    l.Add(new CitySettingsViewModel(item.City, item.Id, item.IsCurrent));
+                }
+            }
+
+            return l;
+        }
+
         internal void DeleteCity(CitySettingsViewModel citySettingsViewModel)
         {
             newlist = new List<CitySettingsModel>();
@@ -277,19 +303,23 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync((work) =>
             {
-                if (Array.Exists(Cities.SavedCities, x =>
-            {
-                return x.Id == cityInfo.Id;
-            }))
+                lock (lockable)
                 {
-                    return;
-                }
-                else
-                {
-                    newlist = new List<CitySettingsModel>();
-                    newlist.AddRange(Cities.SavedCities);
-                    newlist.Add(new CitySettingsModel(cityInfo));
-                    Cities.Save(newlist.ToArray());
+                    newlist = null;
+                    if (Array.Exists(Cities.SavedCities, x =>
+                    {
+                        return x.Id == cityInfo.Id;
+                    }))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        newlist = new List<CitySettingsModel>();
+                        newlist.AddRange(Cities.SavedCities);
+                        newlist.Add(new CitySettingsModel(cityInfo));
+                        Cities.Save(newlist.ToArray());
+                    }
                 }
             });
             task.Completed = new AsyncActionCompletedHandler(AddCityComplete);
@@ -299,29 +329,50 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync((work) =>
             {
-                var result = cities.Find(x =>
+                lock (lockable)
                 {
-                    return x.City == queryText;
-                });
-                if (result != null)
-                {
-                    if (Array.Exists(Cities.SavedCities, x =>
+                    newlist = null;
+                    var result = cities.Find(x =>
                     {
-                        return x.Id == result.Id;
-                    }))
+                        return x.City == queryText;
+                    });
+                    if (result != null)
                     {
-                        return;
-                    }
-                    else
-                    {
-                        newlist = new List<CitySettingsModel>();
-                        newlist.AddRange(Cities.SavedCities);
-                        newlist.Add(new CitySettingsModel(result));
-                        Cities.Save(newlist.ToArray());
+                        if (Array.Exists(Cities.SavedCities, x =>
+                        {
+                            return x.Id == result.Id;
+                        }))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            newlist = new List<CitySettingsModel>();
+                            newlist.AddRange(Cities.SavedCities);
+                            newlist.Add(new CitySettingsModel(result));
+                            Cities.Save(newlist.ToArray());
+                        }
                     }
                 }
             });
             task.Completed = new AsyncActionCompletedHandler(AddCityComplete);
+        }
+
+        internal void ReArrange()
+        {
+            var list = new List<CitySettingsModel>();
+            foreach (var item in Info)
+            {
+                list.Add(Array.Find(Cities.SavedCities, x =>
+                {
+                    return x.Id == item.Id;
+                }));
+            }
+            Cities.CurrentIndex = list.FindIndex(x =>
+            {
+                return x.IsCurrent;
+            });
+            Cities.Save(list.ToArray());
         }
 
         private async void AddCityComplete(IAsyncAction asyncInfo, AsyncStatus asyncStatus)

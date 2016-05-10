@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.Shared.Extensions;
+using System.Globalization;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -116,13 +117,13 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Country = info.cnty;
             Province = info.prov;
             Id = info.id;
+            CultureInfo provider = CultureInfo.InvariantCulture;
             float lat;
-            if (float.TryParse(info.lat, out lat))
+            if (float.TryParse(info.lat, NumberStyles.Any, provider, out lat))
             {
                 float lon;
-                if (float.TryParse(info.lon, out lon))
+                if (float.TryParse(info.lon, NumberStyles.Any, provider, out lon))
                 {
-
                     FuckingshitLocation(ref lat, ref lon, Country);
                     this.Location = new Models.Location(lat, lon);
                 }

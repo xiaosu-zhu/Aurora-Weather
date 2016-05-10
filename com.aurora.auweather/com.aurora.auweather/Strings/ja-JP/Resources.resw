@@ -94,7 +94,7 @@
     <value>動的な天候</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>災害警告</value>
+    <value>気象災害の警告</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>毎日の天気</value>
@@ -169,7 +169,7 @@
     <value>現在の天気</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>NOW</value>
+    <value>詳細</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>何をしたいを支払い</value>
@@ -943,7 +943,7 @@
     <value>最新の情報に更新</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>NOW</value>
+    <value>詳細</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>都市管理</value>
@@ -1021,9 +1021,10 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·バック グラウンドの自動更新間隔
-を短く ·UI とレイアウトの強化
-·タイルのレイアウトは、次のバージョンで更新されます。</value>
+    <value>·今 (テーマ設定は「フォロー システム」) 場合にのみアクセント カラーをカスタマイズできます
+·追加更新アニメーション
+·レイアウトをカスタマイズすることができます今
+·改善の詳細ページ</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1047,7 +1048,22 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+·今 (テーマ設定は「フォロー システム」) 場合にのみアクセント カラーをカスタマイズできます
+·追加更新アニメーション
+·レイアウトをカスタマイズすることができます今
+·詳細ページは改良された
+
+1.5.16054
+·調整設定
+
+1.5.16052
+· 地域形式
+
+1.5.16050
+によって引き起こされる問題を修正 ·詳細ページ追加
+
+1.5.16045
 ·バック グラウンドの自動更新間隔
 を短く ·UI とレイアウトの強化
 ·次バージョン
@@ -1146,5 +1162,123 @@
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>すべてのデータをクリアします。</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}、{2} {3}
+明日: {4}、{5}。</value>
+  </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Windows ストアの率</value>
+  </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>{0} 日間確率 Pcpn。</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>{0} 日間降水量</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>{0} 日間温度</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>{0} 日分の可視性</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>{0} 時間確率 Pcpn。</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>{0} 時間温度</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>カスタム引き出しの背景</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>強調色</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>ユーザー設定レイアウト</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>イメージを選ぶ</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>レイアウト</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>色の選択</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>システムのアクセント カラー</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>アラームの設定時間</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>気象災害の警告</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>旧暦を表示します。</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>湿度</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>降水確率</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>降水量</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>可視性</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>風スケール</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>風の方向</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>原子圧力</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>コンパクト レイアウト</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>表示する内容を選択します。</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>予測</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>AQI</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>提案</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>今天気パネル微調整</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>高さ</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>いくつかの言語では、言語パックをインストールする必要があります。</value>
+  </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>·レイアウトをカスタマイズします。</value>
   </data>
 </root>

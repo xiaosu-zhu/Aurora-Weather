@@ -94,7 +94,7 @@
     <value>Dynamisches Wetter</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Katastrophe-Warnung</value>
+    <value>Meteorologischen Katastrophen-Warnung</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>Tägliche Wetter</value>
@@ -169,7 +169,7 @@
     <value>Aktuelles Wetter</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>JETZT</value>
+    <value>Details</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>Bezahlen, was Sie wollen</value>
@@ -943,7 +943,7 @@
     <value>Aktualisieren</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>JETZT</value>
+    <value>Details</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>Städte-Managment</value>
@@ -1021,9 +1021,10 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Verkürzung des Intervalls für die automatische Hintergrund
-· Verbesserung der Benutzeroberfläche und Layout
-· Fliese-Layout wird in der nächsten Version aktualisiert</value>
+    <value>· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
+· Hinzugefügt aktualisieren Animation
+· Sie können Layout anpassen jetzt
+· Detailseite verbessert</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1047,7 +1048,22 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
+· Hinzugefügt aktualisieren Animation
+· Sie können Layout anpassen jetzt
+· Informationen Seite verbesserte
+
+1.5.16054
+· 
+
+1.5.16052
+-Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
+
+1.5.16050
+· Detailseite hinzugefügt
+
+1.5.16045
 · Verkürzung des Intervalls für die automatische Hintergrund
 · Verbesserung der Benutzeroberfläche und Layout
 · Fliese Layouts werden in der nächsten Version
@@ -1146,5 +1162,123 @@ Jetzt können Entwickler Absturzbericht schicken und völlig helfen diese app be
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>Alle Daten löschen</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}, {2} {3}
+Morgen: {4}, {5}.</value>
+  </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Rate im Windows Store</value>
+  </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Senden</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>Pcpn. Wahrscheinlichkeit für {0} Tage</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>Niederschläge für {0} Tage</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>Temperatur für {0} Tage</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>Sichtbarkeit für {0} Tage</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>Pcpn. Wahrscheinlichkeit stundenlang {0}</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>Temperatur stundenlang {0}</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>Benutzerdefinierte Schublade Hintergrund</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>Akzentfarbe</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>Benutzerdefiniertes Layout</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>Wählen Sie Bild</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>Eine Farbe auswählen</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>System-Akzentfarbe</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>Eingestellten Weckzeit</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>Meteorologischen Katastrophen-Warnung</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>Karte-Mondkalender</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>Luftfeuchtigkeit</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>Wahrscheinlichkeit der Niederschläge</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>Niederschlag</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>Sichtbarkeit</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Wind-Skala</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>Windrichtung</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>Atom-Druck</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>Kompakte layout</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>Auswählen der zu zeigen</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>Prognose</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>AQI</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>Anregungen</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>Jetzt Wetter Panel zwicken</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>Höhe</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>Einige Sprache müssen Sie Sprachpaket installieren</value>
+  </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· Layout anpassen</value>
   </data>
 </root>

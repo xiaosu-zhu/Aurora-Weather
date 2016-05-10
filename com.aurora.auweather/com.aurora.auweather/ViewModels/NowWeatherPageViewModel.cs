@@ -27,6 +27,12 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
 
         #region private members
+        internal DataSource source;
+        private bool forecastHide;
+        private bool aqiHide;
+        private bool detailsHide;
+        private bool suggestsHide;
+        private double scrollableRootPaddingHeader;
         private Temperature temprature;
         private Temperature bodyTemprature;
         private Temperature nowH;
@@ -109,7 +115,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private bool isNight;
         private bool isSummer;
-        private KeyValuePair<string, string> storedDatas;
+        private string storedDatas;
         private SettingsModel settings;
         private CalendarInfo calendar;
         private ThreadPoolTimer currentTimer;
@@ -126,6 +132,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool disableSecond;
 
         private bool hadNoAlarms = true;
+        private bool isNowPanelLow;
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1162,9 +1169,90 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SetProperty(ref disableSecond, value);
             }
         }
+        public bool HadNoAlarms
+        {
+            get
+            {
+                return hadNoAlarms;
+            }
+
+            set
+            {
+                SetProperty(ref hadNoAlarms, value);
+            }
+        }
+
+        public bool ForecastHide
+        {
+            get
+            {
+                return forecastHide;
+            }
+            set
+            {
+                SetProperty(ref forecastHide, value);
+            }
+        }
+        public bool AQIHide
+        {
+            get
+            {
+                return aqiHide;
+            }
+            set
+            {
+                SetProperty(ref aqiHide, value);
+            }
+        }
+        public bool DetailsHide
+        {
+            get
+            {
+                return detailsHide;
+            }
+            set
+            {
+                SetProperty(ref detailsHide, value);
+            }
+        }
+        public bool SuggestsHide
+        {
+            get
+            {
+                return suggestsHide;
+            }
+            set
+            {
+                SetProperty(ref suggestsHide, value);
+            }
+        }
+
+        public double ScrollableRootPaddingHeader
+        {
+            get
+            {
+                return scrollableRootPaddingHeader;
+            }
+            set
+            {
+                SetProperty(ref scrollableRootPaddingHeader, value);
+            }
+        }
+
+        public bool IsNowPanelLow
+        {
+            get
+            {
+                return isNowPanelLow;
+            }
+            set
+            {
+                SetProperty(ref isNowPanelLow, value);
+            }
+        }
 
         public ObservableCollection<WeatherAlarmViewModel> Alarms = new ObservableCollection<WeatherAlarmViewModel>();
-        internal DataSource source;
+
         #endregion
         #region events
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
@@ -1184,18 +1272,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        public bool HadNoAlarms
-        {
-            get
-            {
-                return hadNoAlarms;
-            }
 
-            set
-            {
-                SetProperty(ref hadNoAlarms, value);
-            }
-        }
 
         public void RefreshAsync()
         {
@@ -1213,8 +1290,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 ReadSettings();
                 Theme = settings.Preferences.GetTheme();
+                ForecastHide = settings.Preferences.ForecastHide;
+                AQIHide = settings.Preferences.AQIHide;
+                DetailsHide = settings.Preferences.DetailsHide;
+                SuggestsHide = settings.Preferences.SuggestHide;
+                ScrollableRootPaddingHeader = settings.Preferences.NowPanelHeight * 2d - 144d;
+                IsNowPanelLow = settings.Preferences.IsNowPanelLowStyle;
             }
-            catch (ArgumentNullException)
+            catch (NullReferenceException)
             {
                 var taskkkk = ThreadPool.RunAsync(async (work) =>
                 {
@@ -1229,7 +1312,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 try
                 {
-                    storedDatas = default(KeyValuePair<string, string>);
+                    storedDatas = string.Empty;
                     source = settings.Preferences.DataSource;
                     await FetchDataAsync();
                     if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
@@ -1250,8 +1333,16 @@ namespace Com.Aurora.AuWeather.ViewModels
                         Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
                         if (settings.Preferences.EnableEveryDay)
                         {
-                            var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                            Sender.CreateScheduledToastNotification(await Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                            var shu = settings.Preferences.NoteTime.TotalHours;
+                            var tomorrow8 = DateTime.Now.Hour > shu ? (DateTime.Today.AddDays(1)).AddHours(shu) : (DateTime.Today.AddHours(shu));
+                            try
+                            {
+                                Sender.CreateScheduledToastNotification(await Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)), tomorrow8, "EveryDayToast");
+                            }
+                            catch (Exception)
+                            {
+
+                            }
                         }
                         if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                         {
@@ -1273,14 +1364,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         return;
                     }
-                    await Core.Models.BGTask.RegBGTask(settings.Preferences.RefreshFrequency);
+                    var lic = new License.License();
+                    await Core.Models.BGTask.RegBGTask(settings.Preferences.RefreshFrequency, lic.IsPurchased);
                     InitialViewModel();
                 }));
             });
         }
-
-
-
 
         private void GenerateGlance()
         {
@@ -1309,9 +1398,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 try
                 {
-                    if (!storedDatas.Equals(default(KeyValuePair<string, string>)))
+                    if (!storedDatas.IsNullorEmpty())
                     {
-                        resstr = storedDatas.Value;
+                        resstr = storedDatas;
                         fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                         return;
                     }
@@ -1383,9 +1472,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             var g = glance;
             glance = null;
             Glance = g;
-            var c = currentCity;
-            currentCity = null;
-            City = c;
+            City = currentCityModel.City;
             EnableDynamic = !settings.Preferences.DisableDynamic;
             EnablePulltoRefresh = settings.Preferences.EnablePulltoRefresh;
             SetNow();
@@ -1502,7 +1589,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 pathResults.Add(fetchresult.HourlyForecast[i + nowHourIndex].Temprature.Celsius);
             }
-            var min = 0f;
+            var min = pathResults[0];
             var max = min;
             foreach (var data in pathResults)
             {
@@ -1690,13 +1777,13 @@ namespace Com.Aurora.AuWeather.ViewModels
         private async Task SearchExistingDataAsync()
         {
             var currentTime = DateTime.Now;
-            if ((currentTime - currentCityModel.LastUpdate).TotalMinutes < 30)
+            if ((currentTime - currentCityModel.LastUpdate).TotalMinutes < settings.Preferences.RefreshFrequency)
             {
                 try
                 {
                     var data = await settings.Cities.ReadDataAsync(currentCityModel.Id, settings.Preferences.DataSource);
                     if (data != null)
-                        storedDatas = new KeyValuePair<string, string>(currentCityModel.Id, data);
+                        storedDatas = data;
                 }
                 catch (Exception)
                 {
@@ -1718,43 +1805,15 @@ namespace Com.Aurora.AuWeather.ViewModels
             VisibilityConverter.ChangeParameter(settings.Preferences.LengthParameter);
             ImmersiveHourConverter.ChangeParameter(settings.Preferences.GetImmersiveHourFormat());
             ImmersiveMinConverter.ChangeParameter(settings.Preferences.GetImmersiveMinFormat());
+            ScrollViewerConverter.WeatherCanvasHeight = settings.Preferences.NowPanelHeight * 2;
+            FontSizeConverter.FIXED_TITLE_FONTSIZE = (ScrollViewerConverter.WeatherCanvasHeight - 192) / 648 * 60 + 48;
         }
 
         private void ReadSettings()
         {
             settings = SettingsModel.Get();
-
-            if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
-            {
-                try
-                {
-                    currentCityModel = settings.Cities.LocatedCity;
-                    currentCity = currentCityModel.City;
-                }
-                catch (Exception)
-                {
-                    throw new ArgumentNullException();
-                }
-            }
-            else if (settings.Cities.CurrentIndex != -1)
-            {
-                try
-                {
-                    currentCityModel = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
-                    currentCity = currentCityModel.City;
-                }
-                catch (Exception)
-                {
-                    throw new ArgumentNullException();
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
+            currentCityModel = settings.Cities.GetCurrentCity();
             InitialConverterParameter(settings);
         }
     }
-
-
 }

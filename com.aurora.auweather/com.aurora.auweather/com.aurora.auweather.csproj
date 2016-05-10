@@ -441,11 +441,16 @@
     <Compile Include="CrashReportPage.xaml.cs">
       <DependentUpon>CrashReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ColorPicker.xaml.cs" />
     <Compile Include="CustomControls\ConditionPath.xaml.cs">
       <DependentUpon>ConditionPath.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\IThemeble.cs" />
     <Compile Include="CustomControls\WeatherCanvas.xaml.cs">
       <DependentUpon>WeatherCanvas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DonationPage.xaml.cs">
       <DependentUpon>DonationPage.xaml</DependentUpon>
@@ -494,6 +499,7 @@
     <Compile Include="ViewModels\CitiesPageViewModel.cs" />
     <Compile Include="ViewModels\CitiesSettingViewModel.cs" />
     <Compile Include="ViewModels\ConditionPathViewModel.cs" />
+    <Compile Include="ViewModels\DetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Events\FetchDataCompleteEventHandler.cs" />
     <Compile Include="ViewModels\Events\LocationUpdateEventArgs.cs" />
     <Compile Include="ViewModels\Events\TimeUpdatedEventArgs.cs" />
@@ -606,11 +612,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomControls\ConditionPath.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\WeatherCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

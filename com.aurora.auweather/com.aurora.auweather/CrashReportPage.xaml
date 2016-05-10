@@ -23,7 +23,7 @@
                     <Button.Flyout>
                         <Flyout>
                             <ScrollViewer>
-                                <StackPanel Margin="4" MaxWidth="384" Orientation="Vertical">
+                                <StackPanel Margin="4" MaxWidth="320" Orientation="Vertical">
                                     <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="#ff4040" Style="{ThemeResource SubtitleTextBlockStyle}" />
                                     <TextBlock x:Uid="PrivacyText1" Margin="8" TextWrapping="WrapWholeWords" />
                                 </StackPanel>
@@ -36,9 +36,9 @@
                         <Flyout>
                             <ScrollViewer>
                                 <StackPanel Margin="12" Orientation="Vertical">
-                                    <TextBlock MaxWidth="384" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <TextBlock MaxWidth="384" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
+                                    <TextBlock MaxWidth="320" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <TextBlock MaxWidth="320" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                    <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" Foreground="White" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Flyout>

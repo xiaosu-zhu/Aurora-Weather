@@ -2,8 +2,9 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.CustomControls;
 using Com.Aurora.AuWeather.Shared;
-using Com.Aurora.Shared.Helpers;
+using Com.Aurora.Shared;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -13,6 +14,7 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
@@ -22,6 +24,8 @@ namespace Com.Aurora.AuWeather
     /// </summary>
     sealed partial class App : Application
     {
+        public static Color MainColor { get; internal set; } = Colors.Transparent;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -34,24 +38,22 @@ namespace Com.Aurora.AuWeather
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
         }
 
         private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            var log = new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message);
             e.Handled = true;
             if (e.Exception.HResult == -2147418113)
             {
-                await FileIOHelper.AppendLogtoCacheAsync(new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message));
                 return;
             }
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
                 Window.Current.Content = null;
                 var f = new Frame();
-                f.Navigate(typeof(CrashReportPage), new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message));
+                f.Navigate(typeof(CrashReportPage), log);
                 Window.Current.Content = f;
-
             }));
         }
 
@@ -153,6 +155,7 @@ namespace Com.Aurora.AuWeather
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
         }
 
         /// <summary>
@@ -177,6 +180,62 @@ namespace Com.Aurora.AuWeather
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        public static void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (App.Current.Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (App.Current.Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (App.Current.Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (App.Current.Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (App.Current.Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((App.Current.Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            if ((Window.Current.Content is Frame) && (Window.Current.Content as Frame).Content is IThemeble)
+            {
+                ((Window.Current.Content as Frame).Content as IThemeble).ChangeThemeColor(color);
+            }
         }
     }
 }

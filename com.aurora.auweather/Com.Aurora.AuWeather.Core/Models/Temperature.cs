@@ -112,5 +112,34 @@ namespace Com.Aurora.AuWeather.Models
                     return Celsius.ToString("0") + '°';
             }
         }
+
+        public double ActualDouble(TemperatureParameter parameter)
+        {
+            switch (parameter)
+            {
+                case TemperatureParameter.Celsius:
+                    return Celsius;
+                case TemperatureParameter.Fahrenheit:
+                    return Fahrenheit;
+                case TemperatureParameter.Kelvin:
+                    return Kelvin;
+                default:
+                    return Celsius;
+            }
+        }
+
+        public static string GetFormat(TemperatureParameter parameter)
+        {
+            switch (parameter)
+            {
+                case TemperatureParameter.Celsius:
+                case TemperatureParameter.Fahrenheit:
+                    return "°";
+                case TemperatureParameter.Kelvin:
+                    return "K";
+                default:
+                    return "°";
+            }
+        }
     }
 }

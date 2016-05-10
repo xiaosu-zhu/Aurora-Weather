@@ -32,9 +32,9 @@
             <Converters:ConditiontoTextConverter x:Key="ConditiontoTextConverter" />
             <Converters:shiliubijiuConverter x:Key="shiliubijiuConverter" />
             <Converters:UpdateTimeConverter x:Key="DateTimeConverter" />
-            <Converters:BooltoVisibilityConverter x:Key="BooltoVisibilityConverter" />
+            <Converters:BoolNottoVisibilityConverter x:Key="BoolNottoVisibilityConverter" />
             <Converters:ReverseBoolConverter x:Key="ReverseConverter" />
-            <Converters:BooltoVisibilityConverter x:Key="BooltoVisiConverter" />
+            <Converters:ThemeColorConverter x:Key="ThemeColorConverter" />
             <Style x:Key="DropDownCommandBar" TargetType="CommandBar">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -829,49 +829,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style TargetType="GridViewItem" x:Key="GeneralGridViewItemStyle">
-                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
-                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-                <Setter Property="TabNavigation" Value="Local"/>
-                <Setter Property="IsHoldingEnabled" Value="True"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="8"/>
-                <Setter Property="MinWidth" Value="{ThemeResource GridViewItemMinWidth}"/>
-                <Setter Property="MinHeight" Value="{ThemeResource GridViewItemMinHeight}"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="GridViewItem">
-                            <ListViewItemPresenter
-            ContentTransitions="{TemplateBinding ContentTransitions}"
-            SelectionCheckMarkVisualEnabled="True"
-            CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
-            CheckBoxBrush="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-            DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}"
-            DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
-            FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}"
-            FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"
-            PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
-            PointerOverBackground="Transparent"
-            PointerOverForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-            SelectedBackground="{ThemeResource SystemControlHighlightAccentBrush}"
-            SelectedForeground="{ThemeResource SystemControlForegroundAccentBrush}"
-            SelectedPointerOverBackground="{ThemeResource SystemControlHighlightListAccentMediumBrush}"
-            PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
-            SelectedPressedBackground="{ThemeResource SystemControlHighlightListAccentHighBrush}"
-            DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
-            DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
-            ReorderHintOffset="{ThemeResource GridViewItemReorderHintThemeOffset}"
-            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-            ContentMargin="{TemplateBinding Padding}"
-            CheckMode="Overlay"/>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
         </ResourceDictionary>
     </Page.Resources>
@@ -906,10 +863,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock x:Uid="CitiesText" x:Name="TitleText" Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
+        <Grid x:Name="HeaderGrid" Background="{ThemeResource SystemControlHighlightAccentBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <TextBlock x:Uid="CitiesText" x:Name="TitleText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}"  Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
-        <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemBackgroundHighBrush}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}">
+        <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemControlHighlightAccentBrush}" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" />
             <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
             <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
@@ -917,15 +874,15 @@
         <GridView Padding="0,0,0,64" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel Background="{ThemeResource SystemThemeMainBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RelativePanel Background="{ThemeResource SystemControlHighlightAccentBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Image Stretch="UniformToFill" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
-                        <Grid Visibility="{x:Bind Updated, Converter={StaticResource BooltoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
+                        <Grid Visibility="{x:Bind Updated, Converter={StaticResource BoolNottoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
-                            <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BooltoVisiConverter},Mode=OneWay,FallbackValue=Collapsed}" />
+                            <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BoolNottoVisibilityConverter},Mode=OneWay,FallbackValue=Collapsed}" />
                         </Grid>
                         <ScrollViewer MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
                             <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

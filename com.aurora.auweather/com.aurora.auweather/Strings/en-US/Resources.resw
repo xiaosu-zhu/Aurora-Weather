@@ -186,6 +186,9 @@
   <data name="DonateOption4.Text" xml:space="preserve">
     <value>· Enable the "Weather Underground" data source</value>
   </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· Customize layout</value>
+  </data>
   <data name="DonateRun0.Text" xml:space="preserve">
     <value>Need your help ...</value>
   </data>
@@ -202,7 +205,10 @@
     <value>Dynamic weather</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Disaster warning</value>
+    <value>Meteorological disaster warning</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>Meteorological disaster warning</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>Daily weather</value>
@@ -277,7 +283,7 @@
     <value>Current weather</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>Now</value>
+    <value>Details</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>Pay what you want</value>
@@ -1058,7 +1064,7 @@ Tomorrow: {4}, {5}.</value>
     <value>Refresh</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>Now</value>
+    <value>Details</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>Cities Managment</value>
@@ -1136,9 +1142,10 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Shorten the automatic background refresh interval
-· UI and layout enhancement
-· Tile's layout will be updated in next version</value>
+    <value>· You can customize accent color now(only when the theme setting is "Follow system")
+· Added refresh animation
+· You can customize layout now
+· Details page improved</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1162,7 +1169,22 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· You can customize accent color now(only when the theme setting is "Follow system")
+· Added refresh animation
+· You can customize layout now
+· Details page improved
+
+1.5.16054
+· Adjusted preference settings
+
+1.5.16052
+· fixed the issue caused by region formats
+
+1.5.16050
+· Details page added
+
+1.5.16045
 · Shorten the automatic background refresh interval
 · UI and layout enhancement
 · Tile's layout will be updated in next version
@@ -1267,5 +1289,101 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>Clear all data</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>Pcpn. Probability for {0} days</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>Precipitation for {0} days</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>Temperature for {0} days</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>Visibility for {0} days</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>Pcpn. Probability for {0} hours</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>Temperature for {0} hours</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>Custom Drawer Background</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>Accent Color</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>Custom Layout</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>Pick Image</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>Pick a color</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>System accent color</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>Set alarm time</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>Show Lunar Calendar</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>Humidity</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>Probability of precipitation</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>Precipitation</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>Visibility</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Wind Scale</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>Wind Direction</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>Atom Pressure</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>Compact layout</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>Choose what to show</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>AQI</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>Now weather panel tweak</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>Some language requires you to install language pack</value>
   </data>
 </root>

@@ -24,7 +24,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource SystemThemeMainBrush}">
+    <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
@@ -245,7 +245,7 @@
                             <RowDefinition Height="4*" />
                         </Grid.RowDefinitions>
                         <TextBlock x:Uid="WelcomeText" Loaded="TextBlock_Loaded" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Frame Grid.Row="1" x:Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <Frame Grid.Row="1" x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <AppBarButton Click="CompleteButton_Click" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" Width="48" Height="48" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="CompleteButton" >
                             <SymbolIcon Symbol="Forward" />
                         </AppBarButton>

@@ -7,12 +7,13 @@ using Com.Aurora.Shared.Helpers;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
     public class Preferences
     {
-        public TemperatureParameter TemperatureParameter { get; private set; } = TemperatureParameter.Fahrenheit;
+        public TemperatureParameter TemperatureParameter { get; private set; } = TemperatureParameter.Celsius;
         public PressureParameter PressureParameter { get; private set; } = PressureParameter.Atm;
         public LengthParameter LengthParameter { get; private set; } = LengthParameter.KM;
         public SpeedParameter SpeedParameter { get; private set; } = SpeedParameter.KMPH;
@@ -21,18 +22,24 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public DataSource DataSource { get; private set; } = DataSource.HeWeather;
 
         public bool EnableEveryDay { get; set; } = false;
-        public RefreshState RefreshFrequency { get; private set; } = RefreshState.one;
+        public uint RefreshFrequency { get; set; } = 90;
+        public uint NowPanelHeight { get; set; } = 320;
         public RequestedTheme Theme { get; private set; } = RequestedTheme.Auto;
 
         public bool DisableDynamic { get; set; } = false;
         public bool EnableImmersiveSecond { get; set; } = false;
-        public bool UseLunarCalendarPrimary { get; set; } = false;
+        public bool UseLunarCalendarPrimary { get; set; } = true;
         public bool EnableAlarm { get; set; } = false;
         public bool UseWeekDayforForecast { get; set; } = false;
         public bool EnablePulltoRefresh { get; set; } = false;
         public bool AlwaysShowBackground { get; set; } = false;
         public bool ThemeasRiseSet { get; set; } = true;
         public bool EnableFullScreen { get; set; } = false;
+        public bool IsNowPanelLowStyle { get; set; } = false;
+        public bool ForecastHide { get; set; } = false;
+        public bool AQIHide { get; set; } = false;
+        public bool DetailsHide { get; set; } = false;
+        public bool SuggestHide { get; set; } = false;
 
         public readonly string[] YearFormat = new string[] { " ", "yy", "yyyy" };
         public readonly string[] MonthFormat = new string[] { " ", "M", "MM" };
@@ -52,15 +59,25 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public uint DecorateNumber { get; set; } = 0;
         public bool ShowImmersivett { get; set; } = false;
 
+        public Color MainColor { get; set; } = Colors.Transparent;
+
         public TimeSpan StartTime { get; set; } = new TimeSpan(19, 30, 0);
         public TimeSpan EndTime { get; set; } = new TimeSpan(7, 30, 0);
-        
+        public TimeSpan NoteTime { get; set; } = new TimeSpan(7, 30, 0);
+
+        private static DateTime themeTime = new DateTime(1970, 1, 1);
+        private static TimeSpan setTime = new TimeSpan(19, 30, 0);
+        private static TimeSpan riseTime = new TimeSpan(7, 30, 0);
 
         public static Preferences Get()
         {
             Preferences ins;
             var container = RoamingSettingsHelper.GetContainer("Preferences");
             container.ReadGroupSettings(out ins);
+            if (ins.Theme != RequestedTheme.Default)
+            {
+                ins.MainColor = Colors.Transparent;
+            }
             return ins;
         }
 
@@ -98,9 +115,13 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     var c = Cities.Get();
                     if (c.EnableLocate && c.LocatedCity != null && c.LocatedCity.Longitude != 0 && c.LocatedCity.Latitude != 0)
                     {
-                        var start = SunRiseSet.GetRise(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
-                        var end = SunRiseSet.GetSet(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
-                        if (DateTime.Now > (DateTime.Today + start) && DateTime.Now < (DateTime.Today + end))
+                        if ((DateTime.Now - themeTime).TotalDays > 0.5)
+                        {
+                            riseTime = SunRiseSet.GetRise(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
+                            setTime = SunRiseSet.GetSet(new Location(c.LocatedCity.Latitude, c.LocatedCity.Longitude), DateTime.Now);
+                            themeTime = DateTime.Now;
+                        }
+                        if (DateTime.Now > (DateTime.Today + riseTime) && DateTime.Now < (DateTime.Today + setTime))
                         {
                             return ElementTheme.Light;
                         }
@@ -111,7 +132,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     }
                     else
                     {
-                        if (DateTime.Now > (DateTime.Today.AddHours(7.5)) && DateTime.Now < (DateTime.Today.AddHours(19.5)))
+                        if (DateTime.Now > (DateTime.Today + riseTime) && DateTime.Now < (DateTime.Today + setTime))
                         {
                             return ElementTheme.Light;
                         }
@@ -155,31 +176,42 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             WindParameter = w;
         }
-        public void Set(RefreshState r)
+        public void Set(uint r)
         {
             RefreshFrequency = r;
         }
         public void Set(RequestedTheme r)
         {
             Theme = r;
+            if (Theme != RequestedTheme.Default)
+            {
+                MainColor = Colors.Transparent;
+            }
         }
         public async Task Set(DataSource d)
         {
             DataSource = d;
-            switch (d)
+            try
             {
-                case DataSource.HeWeather:
-                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
-                    break;
-                case DataSource.Caiyun:
-                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_C");
-                    break;
-                case DataSource.Wunderground:
-                    await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_W");
-                    break;
-                default:
-                    break;
+                switch (d)
+                {
+                    case DataSource.HeWeather:
+                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
+                        break;
+                    case DataSource.Caiyun:
+                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_C");
+                        break;
+                    case DataSource.Wunderground:
+                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_W");
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception)
+            {
+            }
+            
         }
 
 

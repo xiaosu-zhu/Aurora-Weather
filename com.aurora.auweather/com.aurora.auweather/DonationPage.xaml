@@ -20,24 +20,19 @@
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="96" />
-            </Grid.RowDefinitions>
-            <TextBlock x:Uid="DonationTitle" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="8"/>
-            <TextBlock Grid.Row="1" Style="{ThemeResource BodyTextBlockStyle}" Margin="8" >
+
+    <ScrollViewer Background="{ThemeResource SystemControlForegroundHighBrush}">
+        <Grid>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock x:Uid="DonationTitle" Text="nimabi" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="8"/>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="8" >
             <Run x:Uid="DonateRun0" />
             <LineBreak />
             <Run x:Uid="DonateRun1" />
             <LineBreak />
             <Run x:Uid="DonateRun2" />
-            </TextBlock>
-            <TextBlock Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Margin="12">
+                </TextBlock>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="12">
             <Run x:Uid="DonateOption0" />
             <LineBreak />
             <Run x:Uid="DonateOption1" />
@@ -47,15 +42,19 @@
             <Run x:Uid="DonateOption3" />
                 <LineBreak />
             <Run x:Uid="DonateOption4" />
-            </TextBlock>
-            <TextBlock x:Name="ConfirmText" Text="Loading..." Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-180,12,12" Style="{ThemeResource BodyTextBlockStyle}" >
-            </TextBlock>
-            <TextBlock Grid.Row="3" x:Name="DollarText" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,-132,12,12" Style="{ThemeResource BodyTextBlockStyle}" FontSize="16" >
-            </TextBlock>
-            <Slider MaxWidth="480" IsEnabled="False" x:Name="PurchaseSlider" IsThumbToolTipEnabled="False" Maximum="6" StepFrequency="1" Minimum="0" SnapsTo="StepValues" Value="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="12,-56,12,12" />
-            <Button IsEnabled="False" x:Name="PurchaseButton" x:Uid="PurchaseButton" Click="PurchaseButton_Click" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <ProgressRing Visibility="Collapsed" IsActive="False" x:Name="PurchaseRing" Margin="12,12,12,-32" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Grid x:Name="LoadingPanel" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
+                    <LineBreak />
+            <Run x:Uid="DonateOption5" />
+                </TextBlock>
+                <TextBlock x:Name="ConfirmText" Text="Loading..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="24,72,24,24" Style="{ThemeResource BodyTextBlockStyle}" >
+                </TextBlock>
+                <TextBlock x:Name="DollarText" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="24,48,24,24" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="18" >
+                </TextBlock>
+                <Slider MaxWidth="480" IsEnabled="False" x:Name="PurchaseSlider" IsThumbToolTipEnabled="False" Maximum="12" StepFrequency="1" Minimum="0" SnapsTo="StepValues" Value="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="24" />
+                <Button IsEnabled="False" FontSize="22" Padding="12" FontWeight="Light" x:Name="PurchaseButton" x:Uid="PurchaseButton" Click="PurchaseButton_Click" Margin="24" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                <ProgressRing Visibility="Collapsed" IsActive="False" x:Name="PurchaseRing" Margin="12" Height="36" Width="36" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Grid Height="96" />
+            </StackPanel>
+            <Grid x:Name="LoadingPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
                 <ProgressRing IsActive="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="48" x:Name="LoadingRing" />
             </Grid>
         </Grid>

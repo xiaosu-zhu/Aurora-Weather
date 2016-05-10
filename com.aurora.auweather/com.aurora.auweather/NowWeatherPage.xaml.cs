@@ -2,16 +2,15 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Com.Aurora.AuWeather.CustomControls;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
-using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -25,25 +24,19 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Com.Aurora.AuWeather
 {
-    public sealed partial class NowWeatherPage : Page
+    public sealed partial class NowWeatherPage : Page, IThemeble
     {
         private const double FENGCHE_ZHUANSU = 0.1396263377777778;
-        private const int WEATHERCANVAS_HEADEROFFSET = 528;
-        private const int FIXED_TITLE_FONTSIZE = 96;
-        private const int WEATHER_BEZIER_SCROLLOFFSET = 200;
         private const int NORMAL_SIZE_WIDTH = 720;
-        private const int WIDE_SIZE_WIDTH = 864;
-        private double verticalOffset;
-        private double actualWidth;
-        private bool isAnimating = false;
-        private bool animated = false;
+        private const int WIDE_SIZE_WIDTH = 1024;
+        private bool loaded = false;
         private bool isFadeOut = false;
         /// <summary>
         /// use binary: 1111 1111 to implement every DetailGrid Animation status
         /// </summary>
-        private byte detailGridAnimation_FLAG = 0;
+        private bool[] detailGridAnimation_FLAG = new bool[7] { false, false, false, false, false, false, false };
 
-        private Point[] DetailGridPoint = new Point[9];
+        private double[] DetailGridPoint = new double[8];
 
         public double SunRiseStrokeLength
         {
@@ -89,7 +82,7 @@ namespace Com.Aurora.AuWeather
 
         private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
         {
-            detailGridAnimation_FLAG -= 16;
+            detailGridAnimation_FLAG[4] = false;
             DetailGrid4Play();
             baba.ReloadTheme();
             if (e.IsDayNightChanged)
@@ -190,33 +183,11 @@ namespace Com.Aurora.AuWeather
             this.Page_Unloaded(null, null);
         }
 
-        private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
+        private void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
             var loader = new ResourceLoader();
-            detailGridAnimation_FLAG = 0;
-            CalcDetailGridPosition();
-            isAnimating = true;
-            animated = true;
-            ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             UpdateIndicator.Text = loader.GetString("RefreshComplete");
-            TempraturePathAnimation.Completed += (s, v) =>
-            {
-                isAnimating = false;
-                RefreshCompleteAni.Begin();
-            };
-            TempraturePathAnimation.Begin();
-            AQIAni.Begin();
-            if (rootIsWideState)
-            {
-                DetailGrid0Play();
-                DetailGrid1Play();
-                DetailGrid2Play();
-                DetailGrid3Play();
-                DetailGrid4Play();
-                DetailGrid6Play();
-                DetailGrid7Play();
-                DetailGrid8Play();
-            }
+            LoadingDot.IsActive = false;
             Forecast0.SetCondition(Context.Forecast0, Context.IsNight);
             Forecast1.SetCondition(Context.Forecast1, Context.IsNight);
             Forecast2.SetCondition(Context.Forecast2, Context.IsNight);
@@ -253,17 +224,9 @@ namespace Com.Aurora.AuWeather
             {
                 AQIPanel.Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                AQIPanel.Visibility = Visibility.Visible;
-            }
             if (Context.Comf == null && Context.Cw == null && Context.Drsg == null)
             {
                 SuggestionPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                SuggestionPanel.Visibility = Visibility.Visible;
             }
             switch (Context.source)
             {
@@ -282,22 +245,50 @@ namespace Com.Aurora.AuWeather
                 default:
                     break;
             }
+            baba.ChangeCondition(Context.Condition, Context.IsNight, Context.City, Context.NowL, Context.NowH);
+            ScrollableRoot.RefreshComplete();
+        }
+
+
+        private async void LoadingDot_DotFinish(object sender, EventArgs e)
+        {
+            TempraturePathAnimation.Completed += (s, v) =>
+            {
+                RefreshCompleteAni.Begin();
+            };
+            TempraturePathAnimation.Begin();
+            AQIAni.Begin();
+            if (rootIsWideState)
+            {
+                DetailGrid0Play();
+                DetailGrid1Play();
+                DetailGrid2Play();
+                DetailGrid3Play();
+                DetailGrid4Play();
+                DetailGrid6Play();
+                DetailGrid7Play();
+            }
+            for (int i = 0; i < detailGridAnimation_FLAG.Length; i++)
+            {
+                detailGridAnimation_FLAG[i] = false;
+            }
+            CalcDetailGridPosition();
+            loaded = true;
+            ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             if (Context.AlwaysShowBackground)
             {
                 WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
             }
-            baba.ChangeCondition(Context.Condition, Context.IsNight, Context.City, Context.NowL, Context.NowH);
-            await Task.Delay(1000);
-            ScrollableRoot.RefreshComplete();
+            LoadingDot.Visibility = Visibility.Collapsed;
         }
 
         #region DetailGrid Animation
         private void DetailGrid0Play()
         {
-            if ((detailGridAnimation_FLAG & 1) == 0)
+            if (!detailGridAnimation_FLAG[0])
             {
                 DetailTempratureIn.Begin();
-                detailGridAnimation_FLAG++;
+                detailGridAnimation_FLAG[0] = true;
             }
         }
         private void DetailGrid1Play()
@@ -306,7 +297,7 @@ namespace Com.Aurora.AuWeather
             {
                 return;
             }
-            if ((detailGridAnimation_FLAG & 2) == 0)
+            if (!detailGridAnimation_FLAG[1])
             {
                 if (fengcheTimer != null)
                 {
@@ -324,184 +315,68 @@ namespace Com.Aurora.AuWeather
                                                                          }));
 
                                   }, TimeSpan.FromMilliseconds(16));
-                detailGridAnimation_FLAG += 2;
+                detailGridAnimation_FLAG[1] = true;
             }
         }
         private void DetailGrid2Play()
         {
-            if ((detailGridAnimation_FLAG & 4) == 0)
+            if (!detailGridAnimation_FLAG[2])
             {
                 WaterDropTransAni.Begin();
-                detailGridAnimation_FLAG += 4;
+                detailGridAnimation_FLAG[2] = true;
             }
         }
         private void DetailGrid3Play()
         {
-            if ((detailGridAnimation_FLAG & 8) == 0)
+            if (!detailGridAnimation_FLAG[3])
             {
                 PcpnTransAni.Begin();
-                detailGridAnimation_FLAG += 8;
+                detailGridAnimation_FLAG[3] = true;
             }
         }
         private void DetailGrid4Play()
         {
-            if ((detailGridAnimation_FLAG & 16) == 0)
+            if (!detailGridAnimation_FLAG[4])
             {
                 SunRiseAni.Begin();
-                detailGridAnimation_FLAG += 16;
+                detailGridAnimation_FLAG[4] = true;
             }
         }
         private void DetailGrid6Play()
         {
-            if ((detailGridAnimation_FLAG & 32) == 0)
+            if (!detailGridAnimation_FLAG[5])
             {
                 VisTransAni.Begin();
-                detailGridAnimation_FLAG += 32;
+                detailGridAnimation_FLAG[5] = true;
             }
         }
         private void DetailGrid7Play()
         {
-            if ((detailGridAnimation_FLAG & 64) == 0)
+            if (!detailGridAnimation_FLAG[6])
             {
                 PressureTransAni.Begin();
-                detailGridAnimation_FLAG += 64;
-            }
-        }
-        private void DetailGrid8Play()
-        {
-            if ((detailGridAnimation_FLAG & 128) == 0)
-            {
-                detailGridAnimation_FLAG += 128;
+                detailGridAnimation_FLAG[6] = true;
             }
         }
         #endregion
-
-        #region Hold Bezier
         private void RelativePanel_LayoutUpdated(object sender, object e)
         {
-            if (actualWidth != ScrollableRoot.ActualWidth || isAnimating || BezierControl3.Point3.X == 0)
-            {
-                actualWidth = ScrollableRoot.ActualWidth;
-                SetPathPoint1(BezierControl1, actualWidth, 1f / 21f);
-                SetPathPoint2(BezierControl1, actualWidth, 2f / 21f);
-                SetPathPoint3(BezierControl1, actualWidth, 3f / 21f);
-                SetPathPoint1(BezierControl2, actualWidth, 4f / 21f);
-                SetPathPoint2(BezierControl2, actualWidth, 5f / 21f);
-                SetPathPoint3(BezierControl2, actualWidth, 6f / 21f);
-                SetPathPoint1(BezierControl3, actualWidth, 7f / 21f);
-                SetPathPoint2(BezierControl3, actualWidth, 8f / 21f);
-                SetPathPoint3(BezierControl3, actualWidth, 9f / 21f);
-                SetPathPoint1(BezierControl4, actualWidth, 10f / 21f);
-                SetPathPoint2(BezierControl4, actualWidth, 11f / 21f);
-                SetPathPoint3(BezierControl4, actualWidth, 12f / 21f);
-                SetPathPoint1(BezierControl5, actualWidth, 13f / 21f);
-                SetPathPoint2(BezierControl5, actualWidth, 14f / 21f);
-                SetPathPoint3(BezierControl5, actualWidth, 15f / 21f);
-                SetPathPoint1(BezierControl6, actualWidth, 16f / 21f);
-                SetPathPoint2(BezierControl6, actualWidth, 17f / 21f);
-                SetPathPoint3(BezierControl6, actualWidth, 18f / 21f);
-                SetPathPoint1(BezierControl7, actualWidth, 19f / 21f);
-                SetPathPoint2(BezierControl7, actualWidth, 20f / 21f);
-                SetPathPoint3(BezierControl7, actualWidth, 1);
-                SetEndPoint(endPoint1, actualWidth);
-            }
 
-            if (verticalOffset != ScrollableRoot.VerticalOffset && ScrollableRoot.VerticalOffset < 536)
+            var v = ScrollableRoot.VerticalOffset;
+            if (v < 536)
             {
-                verticalOffset = ScrollableRoot.VerticalOffset;
-                var offset = verticalOffset > WEATHERCANVAS_HEADEROFFSET ? WEATHERCANVAS_HEADEROFFSET : verticalOffset;
-                offset /= WEATHERCANVAS_HEADEROFFSET;
-                offset = EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
-                NowTemp.FontSize = FIXED_TITLE_FONTSIZE - 48 * offset;
-                var horizotaloffset = ButtonOffset.Visibility == Visibility.Visible ? 72 : 0;
-                TempAniTrans.X = -(actualWidth - NowTemp.ActualWidth - horizotaloffset - 32) * offset / 2;
-                if (verticalOffset > 2 && !isFadeOut)
+                if (v > 2 && !isFadeOut)
                 {
                     isFadeOut = true;
                     TempratureOut.Begin();
                 }
-                else if (verticalOffset < 2 && isFadeOut)
+                else if (v < 2 && isFadeOut)
                 {
                     isFadeOut = false;
                     TempratureIn.Begin();
                 }
-                ScrollPathPoint(verticalOffset);
             }
         }
-
-        private void SetEndPoint(LineSegment endPoint1, double actualWidth)
-        {
-            var p = endPoint1.Point;
-            p.X = actualWidth;
-            endPoint1.Point = p;
-        }
-        private void SetPathPoint1(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point1;
-            p.X = actualWidth * v;
-            control.Point1 = p;
-        }
-        private void SetPathPoint2(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point2;
-            p.X = actualWidth * v;
-            control.Point2 = p;
-        }
-        private void SetPathPoint3(BezierSegment control, double actualWidth, float v)
-        {
-            var p = control.Point3;
-            p.X = actualWidth * v;
-            control.Point3 = p;
-        }
-        #endregion
-
-        #region Scroll Bezier
-        private void ScrollPathPoint(double verticalOffset)
-        {
-            var offset = verticalOffset > WEATHER_BEZIER_SCROLLOFFSET ? WEATHER_BEZIER_SCROLLOFFSET : verticalOffset;
-            offset = -64 * (1 - offset / WEATHER_BEZIER_SCROLLOFFSET);
-            double[] results = new double[] { Context.TempraturePath0 * offset, Context.TempraturePath1 * offset, Context.TempraturePath2 * offset,
-                Context.TempraturePath3 * offset, Context.TempraturePath4 * offset, Context.TempraturePath5 * offset };
-            CalculateY0(offset, PathFigure, results[0]);
-            CalculateY1(offset, BezierControl1, results[0]);
-            CalculateY2(offset, BezierControl2, results[0], results[1]);
-            CalculateY2(offset, BezierControl3, results[1], results[2]);
-            CalculateY2(offset, BezierControl4, results[2], results[3]);
-            CalculateY2(offset, BezierControl5, results[3], results[4]);
-            CalculateY2(offset, BezierControl6, results[4], results[5]);
-            CalculateY1(offset, BezierControl7, results[5]);
-        }
-        private void CalculateY0(double offset, PathFigure pathFigure, double result)
-        {
-            var p = pathFigure.StartPoint;
-            p.Y = result;
-            pathFigure.StartPoint = p;
-        }
-        private void CalculateY1(double offset, BezierSegment control, double result)
-        {
-            var p = control.Point1;
-            p.Y = result;
-            control.Point1 = p;
-            p = control.Point2;
-            p.Y = result;
-            control.Point2 = p;
-            p = control.Point3;
-            p.Y = result;
-            control.Point3 = p;
-        }
-        private void CalculateY2(double offset, BezierSegment control, double result1, double result2)
-        {
-            var p = control.Point1;
-            p.Y = result1;
-            control.Point1 = p;
-            p = control.Point2;
-            p.Y = result2;
-            control.Point2 = p;
-            p = control.Point3;
-            p.Y = result2;
-            control.Point3 = p;
-        }
-        #endregion
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -521,6 +396,7 @@ namespace Com.Aurora.AuWeather
                 fengcheTimer.Cancel();
                 fengcheTimer = null;
             }
+            LoadingDot.IsActive = false;
         }
 
         #region DetailsPanel Change Layout
@@ -534,6 +410,7 @@ namespace Com.Aurora.AuWeather
             {
                 DetailsPanelGotoWideState();
             }
+            CalcDetailGridPosition();
         }
 
         private void DetailsPanelGotoNormalState()
@@ -569,60 +446,65 @@ namespace Com.Aurora.AuWeather
 
         private void CalcDetailGridPosition()
         {
-            DetailGridPoint[0] = DetailGrid0.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[1] = DetailGrid1.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[2] = DetailGrid2.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[3] = DetailGrid3.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[4] = DetailGrid4.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[5] = DetailGrid5.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[6] = DetailGrid6.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[7] = DetailGrid7.GetPositioninParent(ScrollableRoot);
-            DetailGridPoint[8] = DetailGrid8.GetPositioninParent(ScrollableRoot);
-            for (int i = 0; i < DetailGridPoint.Length; i++)
+            var headerHeight = WeatherCanvas.ActualHeight + Forecast0.ActualHeight + AQIPanel.ActualHeight;
+            if (DetailsPanelIsNormalState)
             {
-                DetailGridPoint[i].Y += ScrollableRoot.VerticalOffset;
+                DetailGridPoint[0] = headerHeight;
+                DetailGridPoint[1] = DetailGridPoint[0];
+                DetailGridPoint[2] = DetailGridPoint[0] + DetailGrid0.ActualHeight;
+                DetailGridPoint[3] = DetailGridPoint[2];
+                DetailGridPoint[4] = DetailGridPoint[2] + DetailGrid2.ActualHeight;
+                DetailGridPoint[5] = DetailGridPoint[4];
+                DetailGridPoint[6] = DetailGridPoint[4] + DetailGrid4.ActualHeight;
+                DetailGridPoint[7] = DetailGridPoint[6];
+            }
+            else
+            {
+                DetailGridPoint[0] = headerHeight;
+                DetailGridPoint[1] = DetailGridPoint[0];
+                DetailGridPoint[2] = DetailGridPoint[0];
+                DetailGridPoint[3] = DetailGridPoint[0] + DetailGrid0.ActualHeight;
+                DetailGridPoint[4] = DetailGridPoint[3];
+                DetailGridPoint[5] = DetailGridPoint[3];
+                DetailGridPoint[6] = DetailGridPoint[3] + DetailGrid3.ActualHeight;
+                DetailGridPoint[7] = DetailGridPoint[6];
             }
         }
 
         private void ScrollableRoot_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            CalcDetailGridPosition();
-            DetailGridPlay(ScrollableRoot.ActualHeight + ScrollableRoot.VerticalOffset - 240);
+            DetailGridPlay(ScrollableRoot.VerticalOffset + 480);
         }
 
         private void DetailGridPlay(double offsetProgress)
         {
-            if (offsetProgress > DetailGridPoint[0].Y)
+            if (offsetProgress > DetailGridPoint[0])
             {
                 DetailGrid0Play();
             }
-            if (offsetProgress > DetailGridPoint[1].Y)
+            if (offsetProgress > DetailGridPoint[1])
             {
                 DetailGrid1Play();
             }
-            if (offsetProgress > DetailGridPoint[2].Y)
+            if (offsetProgress > DetailGridPoint[2])
             {
                 DetailGrid2Play();
             }
-            if (offsetProgress > DetailGridPoint[3].Y)
+            if (offsetProgress > DetailGridPoint[3])
             {
                 DetailGrid3Play();
             }
-            if (offsetProgress > DetailGridPoint[4].Y)
+            if (offsetProgress > DetailGridPoint[4])
             {
                 DetailGrid4Play();
             }
-            if (offsetProgress > DetailGridPoint[6].Y)
+            if (offsetProgress > DetailGridPoint[6])
             {
                 DetailGrid6Play();
             }
-            if (offsetProgress > DetailGridPoint[7].Y)
+            if (offsetProgress > DetailGridPoint[7])
             {
                 DetailGrid7Play();
-            }
-            if (offsetProgress > DetailGridPoint[8].Y)
-            {
-                DetailGrid8Play();
             }
         }
 
@@ -635,7 +517,6 @@ namespace Com.Aurora.AuWeather
             }
             else if ((Window.Current.Content as Frame).ActualWidth < WIDE_SIZE_WIDTH)
             {
-                ScrollViewerConverter.isLargeMode = true;
                 RootGotoNormalState();
             }
             else if ((Window.Current.Content as Frame).ActualWidth >= WIDE_SIZE_WIDTH && !rootIsWideState)
@@ -657,8 +538,6 @@ namespace Com.Aurora.AuWeather
                 LargeModeSubPanel.Content = null;
                 WeatherPanel.Children.Add(DetailsPanel);
             }
-            if (ScrollViewerConverter.isLargeMode)
-                ScrollViewerConverter.isLargeMode = false;
             UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, Colors.White);
         }
 
@@ -680,16 +559,15 @@ namespace Com.Aurora.AuWeather
                 c = (Color)Resources["SystemBaseHighColor"];
             }
             UIHelper.ChangeTitlebarButtonColor(Colors.Transparent, c);
-            ScrollViewerConverter.isLargeMode = true;
             rootIsWideState = true;
             WeatherPanel.Children.Remove(DetailsPanel);
             LargeModeSubPanel.Content = DetailsPanel;
-            if (animated)
+            if (loaded)
             {
                 if (fengcheTimer != null)
                 {
                     fengcheTimer.Cancel();
-                    detailGridAnimation_FLAG -= 2;
+                    detailGridAnimation_FLAG[1] = false;
                 }
                 DetailGrid0Play();
                 DetailGrid1Play();
@@ -698,7 +576,6 @@ namespace Com.Aurora.AuWeather
                 DetailGrid4Play();
                 DetailGrid6Play();
                 DetailGrid7Play();
-                DetailGrid8Play();
             }
         }
 
@@ -747,7 +624,7 @@ namespace Com.Aurora.AuWeather
             if (fengcheTimer != null)
             {
                 fengcheTimer.Cancel();
-                detailGridAnimation_FLAG -= 2;
+                detailGridAnimation_FLAG[1] = false;
             }
             await Task.Delay(1000);
             if (!Context.AlwaysShowBackground)
@@ -804,7 +681,7 @@ namespace Com.Aurora.AuWeather
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             ImmersiveHeightBack.From = MainCanvas.ActualHeight;
             ImmersiveWidthBack.From = MainCanvas.ActualWidth;
-            ImmersiveHeightBack.To = 640 - ScrollableRoot.VerticalOffset < 160 ? 160 : 640 - ScrollableRoot.VerticalOffset;
+            ImmersiveHeightBack.To = ScrollViewerConverter.WeatherCanvasHeight - ScrollableRoot.VerticalOffset < 160 ? 160 : ScrollViewerConverter.WeatherCanvasHeight - ScrollableRoot.VerticalOffset;
             ImmersiveWidthBack.To = rootIsWideState ? Root.ActualWidth / 2 : Root.ActualWidth;
             App.Current.Resuming -= Current_Resuming;
             ImmersiveBackAni.Completed += (s, args) =>
@@ -919,5 +796,58 @@ namespace Com.Aurora.AuWeather
                 ScrollableRoot.ChangeView(0f, 0f, 1f);
             }
         }
+
+        public void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+        }
+
     }
 }

@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using Com.Aurora.Shared.MVVM;
 using Windows.UI.Xaml;
 using Windows.Globalization;
+using Windows.UI;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Media;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -26,7 +30,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             Preferences = Preferences.Get();
             Theme1 = Preferences.GetTheme();
-            var task = ThreadPool.RunAsync((work) =>
+            var task = ThreadPool.RunAsync(async (work) =>
             {
                 work.Completed = new AsyncActionCompletedHandler(WorkComplete);
 
@@ -37,7 +41,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Length = new LengthList();
                 Pressure = new PressureList();
                 Theme = new ThemeList();
-                RefreshFreq = new RefreshFreqList();
                 Year = new FormatList();
                 Month = new FormatList();
                 Day = new FormatList();
@@ -83,10 +86,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     return (RequestedTheme)x.Value == Preferences.Theme;
                 });
-                RefreshFreq.SelectedIndex = RefreshFreq.FindIndex(x =>
-                {
-                    return (RefreshState)x.Value == Preferences.RefreshFrequency;
-                });
+
+                RefreshFreq = Preferences.RefreshFrequency;
 
                 Year.SelectedIndex = (int)Preferences.YearNumber;
                 Month.SelectedIndex = (int)Preferences.MonthNumber;
@@ -98,22 +99,41 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     return x == ApplicationLanguages.Languages[0];
                 });
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                {
+                    DisableDynamic = Preferences.DisableDynamic;
+                    EnableAlarm = Preferences.EnableAlarm;
+                    EnableSecond = Preferences.EnableImmersiveSecond;
+                    UseWeekDay = Preferences.UseWeekDayforForecast;
+                    UseLunarCalendar = Preferences.UseLunarCalendarPrimary;
+                    Showtt = Preferences.DecorateNumber == 1;
+                    ShowImmersivett = Preferences.ShowImmersivett;
+                    EnableEveryDay = Preferences.EnableEveryDay;
+                    EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
+                    ThemeasRiseSet = Preferences.ThemeasRiseSet;
+                    EnableFullScreen = Preferences.EnableFullScreen;
+                    AlwaysShowBackground = Preferences.AlwaysShowBackground;
 
-                DisableDynamic = Preferences.DisableDynamic;
-                EnableAlarm = Preferences.EnableAlarm;
-                EnableSecond = Preferences.EnableImmersiveSecond;
-                UseWeekDay = Preferences.UseWeekDayforForecast;
-                UseLunarCalendar = Preferences.UseLunarCalendarPrimary;
-                Showtt = Preferences.DecorateNumber == 1;
-                ShowImmersivett = Preferences.ShowImmersivett;
-                EnableEveryDay = Preferences.EnableEveryDay;
-                EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
-                ThemeasRiseSet = Preferences.ThemeasRiseSet;
-                EnableFullScreen = Preferences.EnableFullScreen;
-                AlwaysShowBackground = Preferences.AlwaysShowBackground;
+                    StartTime = Preferences.StartTime;
+                    EndTime = Preferences.EndTime;
+                    NoteTime = Preferences.NoteTime;
 
-                StartTime = Preferences.StartTime;
-                EndTime = Preferences.EndTime;
+                    NowPanelHeight = Preferences.NowPanelHeight;
+                    IsNowPanelLowStyle = Preferences.IsNowPanelLowStyle;
+                    ForecastHide = Preferences.ForecastHide;
+                    AQIHide = Preferences.AQIHide;
+                    DetailsHide = Preferences.DetailsHide;
+                    SuggestHide = Preferences.SuggestHide;
+                    if (Preferences.MainColor.A == 0)
+                    {
+                        MainColor = new SolidColorBrush((Color)App.Current.Resources["SystemAccentColor"]);
+                    }
+                    else
+                    {
+                        MainColor = new SolidColorBrush(Preferences.MainColor);
+                    }
+
+                }));
             });
         }
 
@@ -124,6 +144,32 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
         public EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
+
+
+        private uint refresFreq;
+        private TimeSpan startTime;
+        private TimeSpan endTime;
+        private TimeSpan noteTime;
+        private string separator;
+        private bool disableDynamic;
+        private bool enableAlarm;
+        private bool enableSecond;
+        private bool useWeekDay;
+        private bool useLunarCalendar;
+        private bool showtt;
+        private bool showImmersivett;
+        private bool enableEveryDay;
+        private bool enablePulltoRefresh;
+        private SolidColorBrush mainColor;
+        private bool themeasRiseSet;
+        private bool enableFullScreen;
+        private bool alwaysShowBackground;
+        private uint nowPanelHeight;
+        private bool isNowPanelLowStyle;
+        private bool forecastHide;
+        private bool aqiHide;
+        private bool detailsHide;
+        private bool suggestHide;
 
         private void OnFetchDataComplete()
         {
@@ -186,10 +232,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 Preferences.Set((PressureParameter)value);
             }
-            else if (value is RefreshState)
-            {
-                Preferences.Set((RefreshState)value);
-            }
             else if (value is RequestedTheme)
             {
                 Preferences.Set((RequestedTheme)value);
@@ -202,13 +244,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             Preferences.Save();
         }
 
-        internal void SetSeparator(string text)
-        {
-            if (text.Length > 0)
-                Preferences.DateSeparator = text[0];
-            SaveAll();
-        }
-
         public DataList Data { get; private set; }
         public TemperatureList Temperature { get; private set; }
         public WindList Wind { get; private set; }
@@ -216,9 +251,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public LengthList Length { get; private set; }
         public PressureList Pressure { get; private set; }
         public ThemeList Theme { get; private set; }
-        public RefreshFreqList RefreshFreq { get; private set; }
         public FormatList Languages { get; private set; }
-
         public FormatList Hour { get; private set; }
         public FormatList Minute { get; private set; }
         public FormatList Year { get; private set; }
@@ -226,29 +259,267 @@ namespace Com.Aurora.AuWeather.ViewModels
         public FormatList Day { get; private set; }
         public FormatList Week { get; private set; }
 
-        public TimeSpan StartTime { get; internal set; }
-        public TimeSpan EndTime { get; internal set; }
-
-        public string Separator { get; internal set; }
-        public bool DisableDynamic { get; private set; }
-        public bool EnableAlarm { get; private set; }
-        public bool EnableSecond { get; private set; }
-        public bool UseWeekDay { get; private set; }
-        public bool UseLunarCalendar { get; private set; }
-        public bool Showtt { get; private set; }
-        public bool ShowImmersivett { get; private set; }
-        public bool EnableEveryDay { get; private set; }
-        public bool EnablePulltoRefresh { get; private set; }
-
-        internal async Task RegBG()
+        public uint RefreshFreq
         {
-            await Core.Models.BGTask.RegBGTask(Preferences.RefreshFrequency);
+            get
+            {
+                return refresFreq;
+            }
+            set
+            {
+                SetProperty(ref refresFreq, value);
+                Preferences.Set(value);
+                Preferences.Save();
+                RegBG();
+            }
+        }
+        public TimeSpan StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+            set
+            {
+                SetProperty(ref startTime, value);
+                Preferences.StartTime = value;
+                Preferences.Save();
+                ReloadTheme();
+                SettingOptionsPage.Current.ReloadTheme();
+            }
+        }
+        public TimeSpan EndTime
+        {
+            get
+            {
+                return endTime;
+            }
+            set
+            {
+                SetProperty(ref endTime, value);
+                Preferences.EndTime = value;
+                Preferences.Save();
+                ReloadTheme();
+                SettingOptionsPage.Current.ReloadTheme();
+            }
+        }
+        public TimeSpan NoteTime
+        {
+            get
+            {
+                return noteTime;
+            }
+            set
+            {
+                SetProperty(ref noteTime, value);
+                Preferences.NoteTime = value;
+                Preferences.Save();
+            }
+        }
+        public string Separator
+        {
+            get
+            {
+                return separator;
+            }
+            set
+            {
+                if (value.Length > 0)
+                {
+                    if (Preferences.DateSeparator != value[0])
+                    {
+                        Preferences.DateSeparator = value[0];
+                        SetProperty(ref separator, value[0].ToString());
+                        SaveAll();
+                        MainPage.Current.ReCalcPaneFormat();
+                    }
+                }
+            }
+        }
+        public bool DisableDynamic
+        {
+            get
+            {
+                return disableDynamic;
+            }
+            set
+            {
+                SetProperty(ref disableDynamic, value);
+                Preferences.DisableDynamic = value;
+                Preferences.Save();
+            }
+        }
+        public bool EnableAlarm
+        {
+            get
+            {
+                return enableAlarm;
+            }
+            set
+            {
+                SetProperty(ref enableAlarm, value);
+                Preferences.EnableAlarm = value;
+                Preferences.Save();
+            }
+        }
+        public bool EnableSecond
+        {
+            get
+            {
+                return enableSecond;
+            }
+            set
+            {
+                SetProperty(ref enableSecond, value);
+                Preferences.EnableImmersiveSecond = value;
+                Preferences.Save();
+            }
+        }
+        public bool UseWeekDay
+        {
+            get
+            {
+                return useWeekDay;
+            }
+            set
+            {
+                SetProperty(ref useWeekDay, value);
+                Preferences.UseWeekDayforForecast = value;
+                Preferences.Save();
+            }
+        }
+        public bool UseLunarCalendar
+        {
+            get
+            {
+                return useLunarCalendar;
+            }
+            set
+            {
+                if (useLunarCalendar != value)
+                {
+                    SetProperty(ref useLunarCalendar, value);
+                    Preferences.UseLunarCalendarPrimary = value;
+                    Preferences.Save();
+                    MainPage.Current.ReCalcPaneFormat();
+                }
+            }
+        }
+        public bool Showtt
+        {
+            get
+            {
+                return showtt;
+            }
+            set
+            {
+                if (showtt != value)
+                {
+                    SetProperty(ref showtt, value);
+                    Preferences.DecorateNumber = value ? 1u : 0u;
+                    Preferences.Save();
+                    MainPage.Current.ReCalcPaneFormat();
+                }
+            }
+        }
+        public bool ShowImmersivett
+        {
+            get
+            {
+                return showImmersivett;
+            }
+            set
+            {
+                SetProperty(ref showImmersivett, value);
+                Preferences.ShowImmersivett = value;
+                Preferences.Save();
+            }
+        }
+        public bool EnableEveryDay
+        {
+            get
+            {
+                return enableEveryDay;
+            }
+            set
+            {
+                SetProperty(ref enableEveryDay, value);
+                Preferences.EnableEveryDay = value;
+                Preferences.Save();
+            }
+        }
+        public bool EnablePulltoRefresh
+        {
+            get
+            {
+                return enablePulltoRefresh;
+            }
+            set
+            {
+                SetProperty(ref enablePulltoRefresh, value);
+                Preferences.EnablePulltoRefresh = value;
+                Preferences.Save();
+            }
+        }
+        public SolidColorBrush MainColor
+        {
+            get
+            {
+                return mainColor;
+            }
+            set
+            {
+                SetProperty(ref mainColor, value);
+            }
+        }
+        public bool ThemeasRiseSet
+        {
+            get
+            {
+                return themeasRiseSet;
+            }
+            set
+            {
+                SetProperty(ref themeasRiseSet, value);
+                Preferences.ThemeasRiseSet = value;
+                Preferences.Save();
+                ReloadTheme();
+                SettingOptionsPage.Current.ReloadTheme();
+            }
+        }
+        public bool EnableFullScreen
+        {
+            get
+            {
+                return enableFullScreen;
+            }
+            set
+            {
+                SetProperty(ref enableFullScreen, value);
+                Preferences.EnableFullScreen = value;
+                Preferences.Save();
+            }
         }
 
-        public bool ThemeasRiseSet { get; internal set; }
-        public bool EnableFullScreen { get; internal set; }
-        public bool AlwaysShowBackground { get; internal set; }
+        internal void SetColor(Color transparent)
+        {
+            Preferences.MainColor = transparent;
+            Preferences.Save();
+        }
 
+        public bool AlwaysShowBackground
+        {
+            get
+            {
+                return alwaysShowBackground;
+            }
+            set
+            {
+                SetProperty(ref alwaysShowBackground, value);
+                Preferences.AlwaysShowBackground = value;
+                Preferences.Save();
+            }
+        }
         public ElementTheme Theme1
         {
             get
@@ -262,82 +533,89 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal void Settt(bool isOn)
+        public uint NowPanelHeight
         {
-            Showtt = isOn;
-            if (isOn)
+            get
             {
-                Preferences.DecorateNumber = 1;
+                return nowPanelHeight;
             }
-            else
+            set
             {
-                Preferences.DecorateNumber = 0;
+                SetProperty(ref nowPanelHeight, value);
+                Preferences.NowPanelHeight = value;
+                Preferences.Save();
             }
-            SaveAll();
+        }
+        public bool IsNowPanelLowStyle
+        {
+            get
+            {
+                return isNowPanelLowStyle;
+            }
+            set
+            {
+                SetProperty(ref isNowPanelLowStyle, value);
+                Preferences.IsNowPanelLowStyle = value;
+                Preferences.Save();
+            }
+        }
+        public bool ForecastHide
+        {
+            get
+            {
+                return forecastHide;
+            }
+            set
+            {
+                SetProperty(ref forecastHide, value);
+                Preferences.ForecastHide = value;
+                Preferences.Save();
+            }
+        }
+        public bool AQIHide
+        {
+            get
+            {
+                return aqiHide;
+            }
+            set
+            {
+                SetProperty(ref aqiHide, value);
+                Preferences.AQIHide = value;
+                Preferences.Save();
+            }
+        }
+        public bool DetailsHide
+        {
+            get
+            {
+                return detailsHide;
+            }
+            set
+            {
+                SetProperty(ref detailsHide, value);
+                Preferences.DetailsHide = value;
+                Preferences.Save();
+            }
+        }
+        public bool SuggestHide
+        {
+            get
+            {
+                return suggestHide;
+            }
+            set
+            {
+                SetProperty(ref suggestHide, value);
+                Preferences.SuggestHide = value;
+                Preferences.Save();
+            }
         }
 
-        internal void SetBool(string name, bool isOn)
+        internal async void RegBG()
         {
-            switch (name)
-            {
-                case "UseWeekDay":
-                    Preferences.UseWeekDayforForecast = isOn;
-                    UseWeekDay = isOn;
-                    break;
-                case "EnableEveryDay":
-                    Preferences.EnableEveryDay = isOn;
-                    EnableEveryDay = isOn;
-                    break;
-                case "EnableAlarm":
-                    Preferences.EnableAlarm = isOn;
-                    EnableAlarm = isOn;
-                    break;
-                case "EnableSecond":
-                    Preferences.EnableImmersiveSecond = isOn;
-                    EnableSecond = isOn;
-                    break;
-                case "ShowImmersivett":
-                    Preferences.ShowImmersivett = isOn;
-                    ShowImmersivett = isOn;
-                    break;
-                case "DisableDynamic":
-                    Preferences.DisableDynamic = isOn;
-                    DisableDynamic = isOn;
-                    break;
-                case "EnablePulltoRefresh":
-                    Preferences.EnablePulltoRefresh = isOn;
-                    EnablePulltoRefresh = isOn;
-                    break;
-                case "ThemeasRiseSet":
-                    Preferences.ThemeasRiseSet = isOn;
-                    ThemeasRiseSet = isOn;
-                    break;
-                case "EnableFullScreen":
-                    Preferences.EnableFullScreen = isOn;
-                    EnableFullScreen = isOn;
-                    break;
-                case "AlwaysShowBackground":
-                    Preferences.AlwaysShowBackground = isOn;
-                    AlwaysShowBackground = isOn;
-                    break;
-                default:
-                    break;
-            }
-            SaveAll();
-        }
-
-        internal void SetEnd(TimeSpan newTime)
-        {
-            EndTime = newTime;
-            Preferences.EndTime = newTime;
-            SaveAll();
-        }
-
-        internal void SetStart(TimeSpan newTime)
-        {
-            StartTime = newTime;
-            Preferences.StartTime = newTime;
-            SaveAll();
+            var lic = new License.License();
+            await Core.Models.BGTask.RegBGTask(Preferences.RefreshFrequency, lic.IsPurchased);
         }
 
         internal async Task SetSource(DataSource caiyun)
@@ -346,6 +624,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             SaveAll();
         }
     }
+
+
+
 
     public class FormatList : List<string>
     {
@@ -420,18 +701,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         public LengthList()
         {
             foreach (LengthParameter item in Enum.GetValues(typeof(LengthParameter)))
-            {
-                Add(new EnumSelector(item, item.GetDisplayName()));
-            }
-        }
-        public int SelectedIndex { get; internal set; } = 0;
-    }
-
-    public class RefreshFreqList : List<EnumSelector>
-    {
-        public RefreshFreqList()
-        {
-            foreach (RefreshState item in Enum.GetValues(typeof(RefreshState)))
             {
                 Add(new EnumSelector(item, item.GetDisplayName()));
             }

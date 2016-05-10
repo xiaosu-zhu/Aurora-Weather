@@ -16,17 +16,26 @@ namespace Com.Aurora.AuWeather.ViewModels
     {
         public Pane PaneList { get; set; } = new Pane();
         private ElementTheme theme;
+        private CalendarInfo calendar;
 
         public MainPageViewModel()
         {
             var p = Preferences.Get();
             Theme = p.GetTheme();
+            Calendar = p.UseLunarCalendarPrimary ? new CalendarInfo() : null;
         }
 
         public CalendarInfo Calendar
         {
-            get; set;
-        } = new CalendarInfo();
+            get
+            {
+                return calendar;
+            }
+            set
+            {
+                SetProperty(ref calendar, value);
+            }
+        }
 
         public ElementTheme Theme
         {
@@ -54,6 +63,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             Add(new PaneOption(Symbol.Street, loader.GetString("Now"), typeof(NowWeatherPage)));
+            Add(new PaneOption(Symbol.View, loader.GetString("Details"), typeof(DetailsPage)));
             Add(new PaneOption(Symbol.World, loader.GetString("Cities"), typeof(CitiesPage)));
             Add(new PaneOption(Symbol.Setting, loader.GetString("Settings"), typeof(SettingsPage)));
         }

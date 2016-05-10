@@ -23,7 +23,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{ThemeResource SystemThemeMainBrush}">
+    <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
         <Grid>
             <Grid.Background>
                 <ImageBrush AlignmentX="Center" AlignmentY="Center" Stretch="None" ImageSource="/Assets/SplashScreen.png" />

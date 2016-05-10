@@ -90,4 +90,269 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="local2:GraphBox" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:GraphBox">
+                    <Grid
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" MinHeight="24" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" MinWidth="24" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="16" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords" x:Name="Title" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" x:Name="Y0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" x:Name="Y1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" x:Name="Y2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" x:Name="Y3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" x:Name="Y4" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Viewbox HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5" Stretch="Fill">
+                            <Grid Width="512" Height="512">
+                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke0}" StrokeThickness="8" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" UseLayoutRounding="True">
+                                    <Path.Data>
+                                        <GeometryGroup>
+                                            <PathGeometry>
+                                                <PathGeometry.Figures>
+                                                    <PathFigureCollection>
+                                                        <PathFigure x:Name="PathFigure0" IsClosed="False">
+                                                            <PathFigure.Segments>
+                                                                <PathSegmentCollection>
+                                                                </PathSegmentCollection>
+                                                            </PathFigure.Segments>
+                                                        </PathFigure>
+                                                    </PathFigureCollection>
+                                                </PathGeometry.Figures>
+                                            </PathGeometry>
+                                        </GeometryGroup>
+                                    </Path.Data>
+                                </Path>
+                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke1}" x:Name="SubPath" StrokeThickness="8" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" UseLayoutRounding="True">
+                                    <Path.Data>
+                                        <GeometryGroup>
+                                            <PathGeometry>
+                                                <PathGeometry.Figures>
+                                                    <PathFigureCollection>
+                                                        <PathFigure x:Name="PathFigure1" IsClosed="False">
+                                                            <PathFigure.Segments>
+                                                                <PathSegmentCollection>
+                                                                </PathSegmentCollection>
+                                                            </PathFigure.Segments>
+                                                        </PathFigure>
+                                                    </PathFigureCollection>
+                                                </PathGeometry.Figures>
+                                            </PathGeometry>
+                                        </GeometryGroup>
+                                    </Path.Data>
+                                </Path>
+                            </Grid>
+                        </Viewbox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local2:LoadingDot" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:LoadingDot">
+                    <StackPanel x:Name="Root" Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Storyboard x:Name="Start">
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans0" Storyboard.TargetProperty="ScaleX" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans0" Storyboard.TargetProperty="ScaleY" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.16" Storyboard.TargetName="Trans1" Storyboard.TargetProperty="ScaleX" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.16" Storyboard.TargetName="Trans1" Storyboard.TargetProperty="ScaleY" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.32" Storyboard.TargetName="Trans2" Storyboard.TargetProperty="ScaleX" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.32" Storyboard.TargetName="Trans2" Storyboard.TargetProperty="ScaleY" >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="1.33" >
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.28" Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Name="Loading">
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans0" Storyboard.TargetProperty="TranslateY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.28" Value="-32" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.92" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BounceEase Bounces="3" Bounciness="2"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:2.56" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.16" Storyboard.TargetName="Trans1" Storyboard.TargetProperty="TranslateY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.44" Value="-32" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2.08" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BounceEase Bounces="3" Bounciness="2"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:2.72" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" BeginTime="0:0:0.32" Storyboard.TargetName="Trans2" Storyboard.TargetProperty="TranslateY">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.96" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.6" Value="-32" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2.24" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BounceEase Bounces="3" Bounciness="2"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:2.88" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Name="Finish">
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans0" Storyboard.TargetProperty="TranslateY">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.28" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans1" Storyboard.TargetProperty="TranslateY">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.16" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.28" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Trans2" Storyboard.TargetProperty="TranslateY">
+                                    <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.32" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.96" Value="-32">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuinticEase />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.28" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="Root" Storyboard.TargetProperty="Height">
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:1.28" x:Name="RootHeightOut" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.92" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseIn"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </StackPanel.Resources>
+                        <Ellipse Fill="{TemplateBinding Foreground}" x:Name="Ellipse0" RenderTransformOrigin="0.5,0.5" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8,0,8,0" >
+                            <Ellipse.RenderTransform>
+                                <CompositeTransform x:Name="Trans0" ScaleX="0" ScaleY="0" />
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                        <Ellipse Fill="{TemplateBinding Foreground}" x:Name="Ellipse1" RenderTransformOrigin="0.5,0.5" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8,0,8,0" >
+                            <Ellipse.RenderTransform>
+                                <CompositeTransform x:Name="Trans1" ScaleX="0" ScaleY="0" />
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                        <Ellipse Fill="{TemplateBinding Foreground}" x:Name="Ellipse2" RenderTransformOrigin="0.5,0.5" Width="{TemplateBinding DotWidth}" Height="{TemplateBinding DotHeight}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8,0,8,0" >
+                            <Ellipse.RenderTransform>
+                                <CompositeTransform x:Name="Trans2" ScaleX="0" ScaleY="0" />
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

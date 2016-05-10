@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.Storage;
+using Windows.UI;
 
 namespace Com.Aurora.Shared.Helpers
 {
@@ -253,6 +254,10 @@ namespace Com.Aurora.Shared.Helpers
             {
                 container.Values[key] = ((Enum)value).ToString();
             }
+            else if (value is Color)
+            {
+                container.Values[key] = ((Color)value).A + ":|:" + ((Color)value).R + ":|:" + ((Color)value).G + ":|:" + ((Color)value).B;
+            }
             else
             {
                 container.Values[key] = value;
@@ -295,6 +300,15 @@ namespace Com.Aurora.Shared.Helpers
                             member.SetValue(obj, DateTime.FromBinary((long)l));
                         }
 
+                    }
+                    else if (member.PropertyType == typeof(Color))
+                    {
+                        var s = (string)DirectRead(member.Name, mainContainer);
+                        if (!s.IsNullorEmpty())
+                        {
+                            var sarray = s.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                            member.SetValue(obj, Color.FromArgb(byte.Parse(sarray[0]), byte.Parse(sarray[1]), byte.Parse(sarray[2]), byte.Parse(sarray[3])));
+                        }
                     }
                     // Holy shit! WinRT's type is really different from the legacy type.
                     else if (member.PropertyType.GetTypeInfo().IsEnum)

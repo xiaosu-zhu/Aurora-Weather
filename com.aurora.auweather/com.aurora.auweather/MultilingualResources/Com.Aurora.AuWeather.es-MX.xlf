@@ -115,8 +115,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo dinámico</target>
         </trans-unit>
         <trans-unit id="EnableAlarmText.Text" translate="yes" xml:space="preserve">
-          <source>Disaster warning</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Atención de desastres</target>
+          <source>Meteorological disaster warning</source>
+          <target state="translated">ADVERTENCIA de desastres meteorológicos</target>
         </trans-unit>
         <trans-unit id="EnableEveryText.Text" translate="yes" xml:space="preserve">
           <source>Daily weather</source>
@@ -215,8 +215,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo actual</target>
         </trans-unit>
         <trans-unit id="NowButton.Label" translate="yes" xml:space="preserve">
-          <source>Now</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ahora</target>
+          <source>Details</source>
+          <target state="translated">Detalles</target>
         </trans-unit>
         <trans-unit id="Obtain" translate="yes" xml:space="preserve">
           <source>Pay what you want</source>
@@ -1247,8 +1247,8 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Actualizar</target>
         </trans-unit>
         <trans-unit id="NowText.Text" translate="yes" xml:space="preserve">
-          <source>Now</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ahora</target>
+          <source>Details</source>
+          <target state="translated">Detalles</target>
         </trans-unit>
         <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
           <source>Cities Managment</source>
@@ -1351,12 +1351,14 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Shorten the automatic background refresh interval
-· UI and layout enhancement
-· Tile's layout will be updated in next version</source>
-          <target state="translated">· Acortar el intervalo de actualización de fondo automática
-· Mejora de la interfaz de usuario y el diseño
-· Diseño de la pieza se actualizará en la próxima versión</target>
+          <source>· You can customize accent color now(only when the theme setting is "Follow system")
+· Added refresh animation
+· You can customize layout now
+· Details page improved</source>
+          <target state="translated">· Usted puede personalizar el color de acento ahora (sólo cuando el tema es "Sistema de seguimiento")
+· Añadida actualización animación
+· Usted puede personalizar la presentación ahora
+· Página de información mejorado</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1387,7 +1389,22 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.5.16045
+          <source>1.5.16055
+· You can customize accent color now(only when the theme setting is "Follow system")
+· Added refresh animation
+· You can customize layout now
+· Details page improved
+
+1.5.16054
+· Adjusted preference settings
+
+1.5.16052
+· fixed the issue caused by region formats
+
+1.5.16050
+· Details page added
+
+1.5.16045
 · Shorten the automatic background refresh interval
 · UI and layout enhancement
 · Tile's layout will be updated in next version
@@ -1409,7 +1426,22 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.5.16045
+          <target state="translated">1.5.16055
+· Usted puede personalizar el color de acento ahora (sólo cuando el tema es "Sistema de seguimiento")
+· Añadida actualización animación
+· Usted puede personalizar la presentación ahora
+· Detalles página mejorada
+
+1.5.16054
+· Ajustar la configuración de preferencias
+
+1.5.16052
+· ha solucionado el problema causado por formatos de región
+
+1.5.16050
+· Página de información añadido
+
+1.5.16045
 · Acortar el intervalo de actualización de fondo automática
 · Mejora de la interfaz de usuario y el diseño
 · Diseño de la pieza se actualizará en la próxima versión
@@ -1545,24 +1577,160 @@ Ahora puedes enviar informe de accidente al desarrollador y totalmente ayuda est
         <trans-unit id="LockDetail" translate="yes" xml:space="preserve">
           <source>{0} {1}, {2}{3}
 Tomorrow: {4}, {5}.</source>
-          <target state="new">{0} {1}, {2}{3}
-Tomorrow: {4}, {5}.</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">{0} {1}, {2} {3}
+mañana: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="RateText.Content" translate="yes" xml:space="preserve">
           <source>Rate in Windows Store</source>
-          <target state="new">Rate in Windows Store</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tasa en Windows Store</target>
         </trans-unit>
         <trans-unit id="FeedbackDialog.Title" translate="yes" xml:space="preserve">
           <source>Feedback</source>
-          <target state="new">Feedback</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Comentarios</target>
         </trans-unit>
         <trans-unit id="FeedbackDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
           <source>Back</source>
-          <target state="new">Back</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Atrás</target>
         </trans-unit>
         <trans-unit id="FeedbackDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Send</source>
-          <target state="new">Send</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Envía</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsPop" translate="yes" xml:space="preserve">
+          <source>Pcpn. Probability for {0} days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Pcpn. probabilidad de {0} días</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsPrep" translate="yes" xml:space="preserve">
+          <source>Precipitation for {0} days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Precipitación para {0} días</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsTemp" translate="yes" xml:space="preserve">
+          <source>Temperature for {0} days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Temperatura para {0} días</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsVis" translate="yes" xml:space="preserve">
+          <source>Visibility for {0} days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Visibilidad para {0} días</target>
+        </trans-unit>
+        <trans-unit id="Details" translate="yes" xml:space="preserve">
+          <source>Details</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Detalles</target>
+        </trans-unit>
+        <trans-unit id="HourlyDetailsPop" translate="yes" xml:space="preserve">
+          <source>Pcpn. Probability for {0} hours</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Pcpn. probabilidad de {0} horas</target>
+        </trans-unit>
+        <trans-unit id="HourlyDetailsTemperature" translate="yes" xml:space="preserve">
+          <source>Temperature for {0} hours</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Temperatura durante horas {0}</target>
+        </trans-unit>
+        <trans-unit id="DrawerText.Text" translate="yes" xml:space="preserve">
+          <source>Custom Drawer Background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Fondo de cajón personalizado</target>
+        </trans-unit>
+        <trans-unit id="MainColorText.Text" translate="yes" xml:space="preserve">
+          <source>Accent Color</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Acento de Color</target>
+        </trans-unit>
+        <trans-unit id="CustomLayoutButton.Content" translate="yes" xml:space="preserve">
+          <source>Custom Layout</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Diseño personalizado</target>
+        </trans-unit>
+        <trans-unit id="PickImageButton.Content" translate="yes" xml:space="preserve">
+          <source>Pick Image</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Elegir imagen</target>
+        </trans-unit>
+        <trans-unit id="LayoutText.Text" translate="yes" xml:space="preserve">
+          <source>Layout</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Diseño</target>
+        </trans-unit>
+        <trans-unit id="ColorPicker.Title" translate="yes" xml:space="preserve">
+          <source>Pick a color</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Elegir un color</target>
+        </trans-unit>
+        <trans-unit id="ColorPicker.AccentColorTitle" translate="yes" xml:space="preserve">
+          <source>System accent color</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Color de acento del sistema</target>
+        </trans-unit>
+        <trans-unit id="SetTimeText.Text" translate="yes" xml:space="preserve">
+          <source>Set alarm time</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tiempo de alarma</target>
+        </trans-unit>
+        <trans-unit id="AlarmButton.Content" translate="yes" xml:space="preserve">
+          <source>Meteorological disaster warning</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ADVERTENCIA de desastres meteorológicos</target>
+        </trans-unit>
+        <trans-unit id="LunarText.Text" translate="yes" xml:space="preserve">
+          <source>Show Lunar Calendar</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ver calendario Lunar</target>
+        </trans-unit>
+        <trans-unit id="Hum" translate="yes" xml:space="preserve">
+          <source>Humidity</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Humedad</target>
+        </trans-unit>
+        <trans-unit id="Pop" translate="yes" xml:space="preserve">
+          <source>Probability of precipitation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Probabilidad de precipitación</target>
+        </trans-unit>
+        <trans-unit id="Pcpn" translate="yes" xml:space="preserve">
+          <source>Precipitation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Precipitación</target>
+        </trans-unit>
+        <trans-unit id="Vis" translate="yes" xml:space="preserve">
+          <source>Visibility</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Visibilidad</target>
+        </trans-unit>
+        <trans-unit id="Scale" translate="yes" xml:space="preserve">
+          <source>Wind Scale</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Escala de viento</target>
+        </trans-unit>
+        <trans-unit id="Dir" translate="yes" xml:space="preserve">
+          <source>Wind Direction</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dirección del viento</target>
+        </trans-unit>
+        <trans-unit id="Pres" translate="yes" xml:space="preserve">
+          <source>Atom Pressure</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Presión de átomo</target>
+        </trans-unit>
+        <trans-unit id="LowNowPanelText.Text" translate="yes" xml:space="preserve">
+          <source>Compact layout</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Diseño compacto</target>
+        </trans-unit>
+        <trans-unit id="ToggleVisibilityText.Text" translate="yes" xml:space="preserve">
+          <source>Choose what to show</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Elegir qué Mostrar</target>
+        </trans-unit>
+        <trans-unit id="ForecastPanelText.Text" translate="yes" xml:space="preserve">
+          <source>Forecast</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pronóstico</target>
+        </trans-unit>
+        <trans-unit id="AQIPanelText.Text" translate="yes" xml:space="preserve">
+          <source>AQI</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">AQI</target>
+        </trans-unit>
+        <trans-unit id="DetailsPanelText.Text" translate="yes" xml:space="preserve">
+          <source>Details</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Detalles</target>
+        </trans-unit>
+        <trans-unit id="SuggestsPanelText.Text" translate="yes" xml:space="preserve">
+          <source>Suggestions</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Sugerencias</target>
+        </trans-unit>
+        <trans-unit id="ToggleNowPanelText.Text" translate="yes" xml:space="preserve">
+          <source>Now weather panel tweak</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ahora tweak de panel de tiempo</target>
+        </trans-unit>
+        <trans-unit id="HeightText.Text" translate="yes" xml:space="preserve">
+          <source>Height</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Alto</target>
+        </trans-unit>
+        <trans-unit id="LanguageAlarmText.Text" translate="yes" xml:space="preserve">
+          <source>Some language requires you to install language pack</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Un lenguaje requiere instalar paquete de idioma</target>
+        </trans-unit>
+        <trans-unit id="DonateOption5.Text" translate="yes" xml:space="preserve">
+          <source>· Customize layout</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">· Personalizar diseño</target>
         </trans-unit>
       </group>
     </body>

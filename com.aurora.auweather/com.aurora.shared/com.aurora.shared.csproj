@@ -110,6 +110,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GraphBox.cs" />
+    <Compile Include="Controls\LoadingDot.cs" />
     <Compile Include="Controls\PulltoRefresh.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="CrashLog.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
+    <Compile Include="Pallette.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />

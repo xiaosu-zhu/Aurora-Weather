@@ -52,15 +52,9 @@ namespace Com.Aurora.AuWeather
                         {
                             await FileIO.AppendTextAsync(crashLOG, "Email = " + EmailBox.Text + Environment.NewLine);
                         }
-                        else
-                        {
-                            EmailBox.Text = "Invalid Email address!";
-                            await CrashDialog.ShowAsync();
-                        }
-                        var fileBytes = await FileIOHelper.GetBytesAsync(crashLOG);
-                        WebHelper.UploadFilesToServer(new Uri(Utils.UPLOAD_CRASH), null, crashLOG.Name, "application/octet-stream", fileBytes);
                     }
-
+                    var fileBytes = await FileIOHelper.GetBytesAsync(crashLOG);
+                    WebHelper.UploadFilesToServer(new Uri(Utils.UPLOAD_CRASH), null, crashLOG.Name, "application/octet-stream", fileBytes);
                 }
                 catch (Exception)
                 {

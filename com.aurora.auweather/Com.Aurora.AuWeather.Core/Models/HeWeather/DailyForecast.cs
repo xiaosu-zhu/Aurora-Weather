@@ -122,11 +122,12 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             Date = new DateTime(daily.date.year, daily.date.month, daily.date.day);
             Condition = new DailyCondition(daily.icon);
             float m;
-            if (float.TryParse(daily.high.celsius, out m))
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            if (float.TryParse(daily.high.celsius, NumberStyles.Any, provider, out m))
             {
                 HighTemp = Temperature.FromCelsius(m);
             }
-            if (float.TryParse(daily.low.celsius, out m))
+            if (float.TryParse(daily.low.celsius, NumberStyles.Any, provider, out m))
             {
                 LowTemp = Temperature.FromCelsius(m);
             }

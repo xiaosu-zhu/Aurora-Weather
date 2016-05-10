@@ -2,6 +2,8 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
+
 namespace Com.Aurora.AuWeather.Models
 {
     public class Pressure
@@ -79,6 +81,23 @@ namespace Com.Aurora.AuWeather.Models
             Pressure p = new Pressure();
             p.CmHg = hpa;
             return p;
+        }
+
+        public double ActualDouble(PressureParameter pressureParameter)
+        {
+            switch (pressureParameter)
+            {
+                case PressureParameter.Atm:
+                    return Atm;
+                case PressureParameter.Hpa:
+                    return HPa;
+                case PressureParameter.Torr:
+                    return Torr;
+                case PressureParameter.CmHg:
+                    return CmHg;
+                default:
+                    return 0d;
+            }
         }
     }
 }

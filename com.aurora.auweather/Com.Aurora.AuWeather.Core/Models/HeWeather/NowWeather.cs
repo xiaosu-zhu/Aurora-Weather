@@ -5,6 +5,7 @@
 using Com.Aurora.AuWeather.Core.Models.Caiyun.JsonContract;
 using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 using System;
+using System.Globalization;
 
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
@@ -52,19 +53,20 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             {
                 return;
             }
+            CultureInfo provider = CultureInfo.InvariantCulture;
             Now = new NowCondition(now.cond);
             int fl;
-            if (int.TryParse(now.fl, out fl))
+            if (int.TryParse(now.fl, NumberStyles.Any, provider, out fl))
                 BodyTemprature = Temperature.FromCelsius(fl);
             float pcpn;
-            if (float.TryParse(now.pcpn, out pcpn))
+            if (float.TryParse(now.pcpn, NumberStyles.Any, provider, out pcpn))
                 Precipitation = pcpn;
-            if (float.TryParse(now.vis, out pcpn))
+            if (float.TryParse(now.vis, NumberStyles.Any, provider, out pcpn))
                 Visibility = Length.FromKM(pcpn);
             Wind = new Wind(now.wind);
-            if (float.TryParse(now.pres, out pcpn))
+            if (float.TryParse(now.pres, NumberStyles.Any, provider, out pcpn))
                 Pressure = Pressure.FromHPa(pcpn);
-            if (int.TryParse(now.tmp, out fl))
+            if (int.TryParse(now.tmp, NumberStyles.Any, provider, out fl))
                 Temprature = Temperature.FromCelsius(fl);
         }
 
@@ -85,25 +87,25 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
                 return;
             }
             Now = new NowCondition(current_observation);
+            CultureInfo provider = CultureInfo.InvariantCulture;
             float i;
             Temprature = Temperature.FromCelsius(current_observation.temp_c);
-            if (float.TryParse(current_observation.feelslike_c, out i))
+            if (float.TryParse(current_observation.feelslike_c, NumberStyles.Any, provider, out i))
             {
                 BodyTemprature = Temperature.FromCelsius(i);
             }
-            float f;
-            if (float.TryParse(current_observation.precip_today_metric, out f))
+            if (float.TryParse(current_observation.precip_today_metric, NumberStyles.Any, provider, out i))
             {
-                Precipitation = f;
+                Precipitation = i;
             }
-            if (float.TryParse(current_observation.visibility_km, out f))
+            if (float.TryParse(current_observation.visibility_km, NumberStyles.Any, provider, out i))
             {
-                Visibility = Length.FromKM(f);
+                Visibility = Length.FromKM(i);
             }
             Wind = new Wind(Convert.ToUInt32(current_observation.wind_kph), Convert.ToUInt32(current_observation.wind_degrees));
-            if (float.TryParse(current_observation.pressure_mb, out f))
+            if (float.TryParse(current_observation.pressure_mb, NumberStyles.Any, provider, out i))
             {
-                Pressure = Pressure.FromHPa(f);
+                Pressure = Pressure.FromHPa(i);
             }
         }
     }

@@ -10,6 +10,10 @@ using Com.Aurora.AuWeather.ViewModels;
 using System.Threading.Tasks;
 using Com.Aurora.AuWeather.Models;
 using Windows.Globalization;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+using Com.Aurora.AuWeather.CustomControls;
+using System;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -18,7 +22,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class PreferencesSetting : Page
+    public sealed partial class PreferencesSetting : Page, IThemeble
     {
         private bool rootIsWideState;
         private License.License license;
@@ -51,36 +55,8 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Hour.ItemsSource = Context.Hour;
                    Minute.ItemsSource = Context.Minute;
                    Week.ItemsSource = Context.Week;
-                   RefreshFreq.ItemsSource = Context.RefreshFreq;
                    Theme.ItemsSource = Context.Theme;
                    LanguageBox.ItemsSource = Context.Languages;
-
-                   Separator0.PlaceholderText = Context.Separator;
-                   Separator1.PlaceholderText = Context.Separator;
-
-                   UseWeekDay.IsOn = Context.UseWeekDay;
-                   Showtt.IsOn = Context.Showtt;
-                   EnableSecond.IsOn = Context.EnableSecond;
-                   ShowImmersivett.IsOn = Context.ShowImmersivett;
-                   DisableDynamic.IsOn = Context.DisableDynamic;
-                   EnableEveryDay.IsOn = Context.EnableEveryDay;
-                   EnableAlarm.IsOn = Context.EnableAlarm;
-                   EnablePulltoRefresh.IsOn = Context.EnablePulltoRefresh;
-                   ThemeasRiseSet.IsOn = Context.ThemeasRiseSet;
-                   EnableFullScreen.IsOn = Context.EnableFullScreen;
-                   AlwaysShowBackground.IsOn = Context.AlwaysShowBackground;
-
-                   UseWeekDay.Toggled += Bool_Toggled;
-                   Showtt.Toggled += Showtt_Toggled;
-                   EnableSecond.Toggled += Bool_Toggled;
-                   ShowImmersivett.Toggled += Bool_Toggled;
-                   DisableDynamic.Toggled += Bool_Toggled;
-                   EnableEveryDay.Toggled += Bool_Toggled;
-                   EnableAlarm.Toggled += Bool_Toggled;
-                   EnablePulltoRefresh.Toggled += Bool_Toggled;
-                   ThemeasRiseSet.Toggled += ThemeasRiseSet_Toggled;
-                   EnableFullScreen.Toggled += Bool_Toggled;
-                   AlwaysShowBackground.Toggled += Bool_Toggled;
 
                    Temp.SelectedIndex = Context.Temperature.SelectedIndex;
                    Wind.SelectedIndex = Context.Wind.SelectedIndex;
@@ -94,11 +70,10 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Minute.SelectedIndex = Context.Minute.SelectedIndex;
                    Week.SelectedIndex = Context.Week.SelectedIndex;
                    Theme.SelectedIndex = Context.Theme.SelectedIndex;
-                   RefreshFreq.SelectedIndex = Context.RefreshFreq.SelectedIndex;
+                   RefreshFreqSlider.Value = Context.RefreshFreq;
                    LanguageBox.SelectedIndex = Context.Languages.SelectedIndex;
-
-                   StartPicker.Time = Context.StartTime;
-                   EndPicker.Time = Context.EndTime;
+                   var span = TimeSpan.FromMinutes(Context.RefreshFreq);
+                   RefreshFreq.Text = span.TotalHours + " hours";
 
                    Temp.SelectionChanged += Enum_SelectionChanged;
                    Wind.SelectionChanged += Enum_SelectionChanged;
@@ -106,7 +81,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Length.SelectionChanged += Enum_SelectionChanged;
                    Pressure.SelectionChanged += Enum_SelectionChanged;
                    Theme.SelectionChanged += Theme_SelectionChanged;
-                   RefreshFreq.SelectionChanged += Enum_SelectionChanged;
                    Year.SelectionChanged += Format_SelectionChanged;
                    Month.SelectionChanged += Format_SelectionChanged;
                    Day.SelectionChanged += Format_SelectionChanged;
@@ -115,18 +89,13 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    Week.SelectionChanged += Format_SelectionChanged;
                    LanguageBox.SelectionChanged += Language_SelectionChanged;
 
-                   StartPicker.TimeChanged += StartPicker_TimeChanged;
-                   EndPicker.TimeChanged += EndPicker_TimeChanged;
-
                    if (Context.Theme.SelectedIndex == 1)
                    {
                        AutoThemeSwitch.Visibility = Visibility.Visible;
-                       if (!Context.ThemeasRiseSet)
-                       {
-                           StartThemeSwitch.Visibility = Visibility.Visible;
-                           EndThemeSwitch.Visibility = Visibility.Visible;
-                       }
-
+                   }
+                   if (Context.Theme.SelectedIndex == 0)
+                   {
+                       AccentColorGrid.Visibility = Visibility.Visible;
                    }
 
                    switch ((DataSource)Context.Data[Context.Data.SelectedIndex].Value)
@@ -147,15 +116,21 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
                    if (!license.IsPurchased)
                    {
-                       EnableEveryDay.IsOn = false;
                        EnableEveryDay.IsEnabled = false;
-                       EnableAlarm.IsOn = false;
                        EnableAlarm.IsEnabled = false;
-                       RefreshFreq.IsEnabled = false;
-                       RefreshFreq.SelectedIndex = 0;
+                       RefreshFreq.Text = "N/A";
+                       RefreshFreqSlider.IsEnabled = false;
                        LockText.Visibility = Visibility.Visible;
                        WundergroundRadio.IsEnabled = false;
                        NeedDonation.Visibility = Visibility.Visible;
+                       Context.EnableEveryDay = false;
+                       Context.EnableAlarm = false;
+                       Context.NowPanelHeight = 640;
+                       Context.AQIHide = false;
+                       Context.DetailsHide = false;
+                       Context.ForecastHide = false;
+                       Context.SuggestHide = false;
+                       CustomLayout.IsEnabled = false;
                    }
                    CaiyunRadio.Checked += CaiyunRadio_Checked;
                    HeWeatherRadio.Checked += HeWeatherRadio_Checked;
@@ -175,16 +150,17 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void DisableAlarm()
         {
-            EnableAlarm.Toggled -= Bool_Toggled;
+            //EnableAlarm.Toggled -= Bool_Toggled;
             EnableAlarm.IsOn = false;
             EnableAlarm.IsEnabled = false;
-            EnableAlarm.Toggled += Bool_Toggled;
+            //EnableAlarm.Toggled += Bool_Toggled;
         }
 
         private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Context.SetEnumValue(((sender as ComboBox).SelectedItem as EnumSelector).Value);
-            if ((RequestedTheme)(((sender as ComboBox).SelectedItem as EnumSelector).Value) == Models.RequestedTheme.Auto)
+            var theme = ((sender as ComboBox).SelectedItem as EnumSelector).Value;
+            Context.SetEnumValue(theme);
+            if ((RequestedTheme)theme == Models.RequestedTheme.Auto)
             {
                 AutoThemeSwitch.Visibility = Visibility.Visible;
                 if (!Context.ThemeasRiseSet)
@@ -192,12 +168,21 @@ namespace Com.Aurora.AuWeather.SettingOptions
                     StartThemeSwitch.Visibility = Visibility.Visible;
                     EndThemeSwitch.Visibility = Visibility.Visible;
                 }
+                AccentColorGrid.Visibility = Visibility.Collapsed;
             }
             else
             {
                 AutoThemeSwitch.Visibility = Visibility.Collapsed;
                 StartThemeSwitch.Visibility = Visibility.Collapsed;
                 EndThemeSwitch.Visibility = Visibility.Collapsed;
+                if ((RequestedTheme)theme == Models.RequestedTheme.Default)
+                {
+                    AccentColorGrid.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    AccentColorGrid.Visibility = Visibility.Collapsed;
+                }
             }
             Context.ReloadTheme();
             (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
@@ -210,47 +195,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
             ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
         }
 
-        private async void Enum_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Enum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Context.SetEnumValue(((sender as ComboBox).SelectedItem as EnumSelector).Value);
-            if ((((sender as ComboBox).SelectedItem as EnumSelector).Value) is RefreshState)
-            {
-                await Context.RegBG();
-            }
-        }
-
-        private void Separator0_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (Separator1.Text != Separator0.Text)
-            {
-                Separator1.Text = Separator0.Text;
-                if (Separator0.Text.Length == 0)
-                {
-                    Context.SetSeparator(Separator0.PlaceholderText);
-                }
-                else
-                {
-                    Context.SetSeparator(Separator0.Text);
-                }
-                ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
-            }
-        }
-
-        private void Separator1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (Separator0.Text != Separator1.Text)
-            {
-                Separator0.Text = Separator1.Text;
-                if (Separator1.Text.Length == 0)
-                {
-                    Context.SetSeparator(Separator1.PlaceholderText);
-                }
-                else
-                {
-                    Context.SetSeparator(Separator1.Text);
-                }
-                ((Window.Current.Content as Frame).Content as MainPage).ReCalcPaneFormat();
-            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -262,33 +209,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             base.OnNavigatedFrom(e);
             Context.SaveAll();
-        }
-
-        private void Showtt_Toggled(object sender, RoutedEventArgs e)
-        {
-            Context.Settt(Showtt.IsOn);
-        }
-
-        private void Bool_Toggled(object sender, RoutedEventArgs e)
-        {
-            Context.SetBool((sender as ToggleSwitch).Name, (sender as ToggleSwitch).IsOn);
-        }
-
-        private void ThemeasRiseSet_Toggled(object sender, RoutedEventArgs e)
-        {
-            Context.SetBool("ThemeasRiseSet", (sender as ToggleSwitch).IsOn);
-            if ((sender as ToggleSwitch).IsOn)
-            {
-                StartThemeSwitch.Visibility = Visibility.Collapsed;
-                EndThemeSwitch.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                StartThemeSwitch.Visibility = Visibility.Visible;
-                EndThemeSwitch.Visibility = Visibility.Visible;
-            }
-            Context.ReloadTheme();
-            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
         }
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -322,20 +242,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
             }
         }
 
-        private void StartPicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-            Context.SetStart(e.NewTime);
-            Context.ReloadTheme();
-            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
-        }
-
-        private void EndPicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-            Context.SetEnd(e.NewTime);
-            Context.ReloadTheme();
-            (((this.Parent as Frame).Parent as Grid).Parent as SettingOptionsPage).ReloadTheme();
-        }
-
         private async void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.Caiyun);
@@ -356,6 +262,101 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             await Context.SetSource(DataSource.Wunderground);
             DisableAlarm();
+        }
+
+        private void ColorPicker_ColorPicked(object sender, ColorPickedEventArgs e)
+        {
+            PickedColorGrid.Background = new SolidColorBrush(e.Color);
+            if (e.IsSystemAccent)
+            {
+                Context.SetColor(Colors.Transparent);
+                App.ChangeThemeColor((Color)App.Current.Resources["SystemAccentColor"]);
+                App.MainColor = (Color)App.Current.Resources["SystemAccentColor"];
+            }
+            else
+            {
+                Context.SetColor(e.Color);
+                App.ChangeThemeColor(e.Color);
+                App.MainColor = e.Color;
+            }
+        }
+
+        public void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+        }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if ((sender as ToggleSwitch).IsOn)
+            {
+                NowPanelSlider.Minimum = 96;
+                NowPanelSlider.Maximum = 256;
+                NowPanelSlider.Value = 144;
+                NowPanelCity.Visibility = Visibility.Collapsed;
+                NowPanelHigh.Visibility = Visibility.Collapsed;
+                NowPanelLow.Visibility = Visibility.Collapsed;
+                NowPanelLowTemp.Visibility = Visibility.Visible;
+                NowPanelTemp.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                NowPanelSlider.Minimum = 144;
+                NowPanelSlider.Maximum = 420;
+                NowPanelSlider.Value = 256;
+                NowPanelCity.Visibility = Visibility.Visible;
+                NowPanelHigh.Visibility = Visibility.Visible;
+                NowPanelLow.Visibility = Visibility.Visible;
+                NowPanelLowTemp.Visibility = Visibility.Collapsed;
+                NowPanelTemp.Visibility = Visibility.Visible;
+            }
         }
     }
 }

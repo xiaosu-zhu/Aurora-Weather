@@ -14,12 +14,12 @@ namespace Com.Aurora.AuWeather.License
 #if DEBUG
         public static readonly string[] DonationPack = new string[]
         {
-            "1","2","1","2","1","2","1"
+            "1","2","1","2","1","2","1","1","2","1","2","1","2","1"
         };
 #else
         public static readonly string[] DonationPack = new string[]
         {
-            "Donation0","Donation1","Donation2","Donation3","Donation4","Donation5","Donation6"
+            "Donation0","Donation1","Donation2","Donation3","Donation4","Donation5","Donation6", "Donation7","Donation8","Donation9","Donation10","Donation11","Donation12","Donation13"
         };
 #endif
         private LicenseInformation licenseInformation;

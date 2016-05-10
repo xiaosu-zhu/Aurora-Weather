@@ -23,7 +23,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Converters:BooltoVisibilityConverter x:Key="BooltoVisibility" />
+            <Converters:ThemeColorConverter x:Key="ThemeColorConverter" />
+            <Converters:BoolNottoVisibilityConverter x:Key="BooltoVisibility" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -38,7 +39,7 @@
         <ViewModels:SettingsViewModel x:Name="Context"/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource SystemBackgroundHighBrush}"> 
+    <Grid Background="{ThemeResource SystemBackgroundHighBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="Wide">
@@ -58,10 +59,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Background="{ThemeResource SystemBackgroundHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock x:Uid="SettingsText" Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
+        <Grid x:Name="HeaderGrid" Background="{ThemeResource SystemControlHighlightAccentBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <TextBlock x:Uid="SettingsText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}" Style="{ThemeResource TitleTextBlockStyle}" x:Name="PageTitle" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
-        <Button x:Uid="DonateButton" x:Name="DonateButton" FontWeight="Normal" Foreground="#DC3E00" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        <Button x:Uid="DonateButton" x:Name="DonateButton" FontWeight="Normal" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
         <ListView x:Name="SettingsList" Grid.Row="2" ItemsSource="{Binding SettingsList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SettingsList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:SettingOption">

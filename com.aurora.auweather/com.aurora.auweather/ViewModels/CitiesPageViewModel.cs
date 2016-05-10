@@ -282,6 +282,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                     if (!resstr.IsNullorEmpty())
                     {
                         var weather = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                        if (weather == null || weather.DailyForecast == null || weather.HourlyForecast == null)
+                        {
+                            return;
+                        }
                         var utcOffset = weather.Location.UpdateTime - weather.Location.UtcTime;
                         var current = DateTimeHelper.ReviseLoc(utcOffset);
                         var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
@@ -347,6 +351,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (item.data != null && item.data.Length > 31)
                 {
                     var weather = HeWeatherModel.Generate(item.data, settings.Preferences.DataSource);
+                    if (weather == null || weather.DailyForecast == null || weather.HourlyForecast == null)
+                        return;
                     await itemInit(item, weather);
                     item.Updated = true;
                     item.Succeed = true;
@@ -394,6 +400,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (item.data != null && item.data.Length > 31)
                 {
                     var weather = HeWeatherModel.Generate(item.data, settings.Preferences.DataSource);
+                    if (weather == null || weather.DailyForecast == null || weather.HourlyForecast == null)
+                    {
+                        return;
+                    }
                     await itemInit(item, weather);
                     item.Updated = true;
                     item.Succeed = false;

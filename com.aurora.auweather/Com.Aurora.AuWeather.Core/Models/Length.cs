@@ -2,6 +2,8 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
+
 namespace Com.Aurora.AuWeather.Models
 {
     public class Length
@@ -79,6 +81,40 @@ namespace Com.Aurora.AuWeather.Models
             var m = new Length();
             m.NM = l;
             return m;
+        }
+
+        public double ActualDouble(LengthParameter lengthParameter)
+        {
+            switch (lengthParameter)
+            {
+                case LengthParameter.KM:
+                    return KM;
+                case LengthParameter.M:
+                    return M;
+                case LengthParameter.Mile:
+                    return Mile;
+                case LengthParameter.NM:
+                    return NM;
+                default:
+                    return 0d;
+            }
+        }
+
+        public static string GetFormat(LengthParameter lengthParameter)
+        {
+            switch (lengthParameter)
+            {
+                case LengthParameter.KM:
+                    return "km";
+                case LengthParameter.M:
+                    return "m";
+                case LengthParameter.Mile:
+                    return "mi";
+                case LengthParameter.NM:
+                    return "nm";
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

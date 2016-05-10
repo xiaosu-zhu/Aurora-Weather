@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
 using Windows.System.Threading;
+using Windows.UI.Xaml.Data;
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -67,6 +68,7 @@ namespace Com.Aurora.Shared.Controls
             RefreshStartAni = Root.Resources["RefreshStart"] as Storyboard;
             RefreshCompleteAni = Root.Resources["RefreshComplete"] as Storyboard;
             Main.ViewChanged += Main_ViewChanged;
+            Root.Loaded += Root_Loaded1;
 
             if (ForceEnabled || InteractionHelper.HaveTouchCapabilities() || Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
@@ -77,7 +79,6 @@ namespace Com.Aurora.Shared.Controls
                 Root.PointerCanceled += Root_PointerReleased;
                 Root.PointerCaptureLost += Root_PointerReleased;
                 Root.PointerExited += Root_PointerReleased;
-                Main.LayoutUpdated += Main_LayoutUpdated;
                 Main.VerticalScrollMode = ScrollMode.Disabled;
                 Main.PointerWheelChanged += Main_PointerWheelChanged;
             }
@@ -86,8 +87,16 @@ namespace Com.Aurora.Shared.Controls
                 Main.VerticalScrollMode = ScrollMode.Enabled;
                 Indicator.Visibility = Visibility.Collapsed;
                 Main.ManipulationMode = ManipulationModes.None;
-                Main.LayoutUpdated += Main_LayoutUpdated;
             }
+        }
+
+        private void Root_Loaded1(object sender, RoutedEventArgs e)
+        {
+            var bind = new Binding();
+            bind.Source = Main;
+            bind.Mode = BindingMode.TwoWay;
+            bind.Path = new PropertyPath("VerticalOffset");
+            BindingOperations.SetBinding(this, VerticalOffsetProperty, bind);
         }
 
         private void Main_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
@@ -107,11 +116,6 @@ namespace Com.Aurora.Shared.Controls
             var wheeldelta = ptrpr.MouseWheelDelta;
             var offset = Main.VerticalOffset - wheeldelta;
             Main.ChangeView(0, offset, 1);
-        }
-
-        private void Main_LayoutUpdated(object sender, object e)
-        {
-            VerticalOffset = Main.VerticalOffset;
         }
 
         private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -272,6 +276,7 @@ namespace Com.Aurora.Shared.Controls
             //IndicatorFixed.Height = IndicatorHeight;
             (IndicatorOverlayIn.Children[0] as DoubleAnimation).To = TriggerOffset;
             //(IndicatorOverlayOut.Children[0] as DoubleAnimation).To = 0;
+
         }
 
         public bool ForceEnabled
@@ -295,7 +300,6 @@ namespace Com.Aurora.Shared.Controls
                 p.Root.PointerCanceled += p.Root_PointerReleased;
                 p.Root.PointerCaptureLost += p.Root_PointerReleased;
                 p.Root.PointerExited += p.Root_PointerReleased;
-                p.Main.LayoutUpdated += p.Main_LayoutUpdated;
                 p.Main.PointerPressed += p.Root_PointerPressed;
                 p.Main.VerticalScrollMode = ScrollMode.Disabled;
                 p.Main.PointerWheelChanged += p.Main_PointerWheelChanged;

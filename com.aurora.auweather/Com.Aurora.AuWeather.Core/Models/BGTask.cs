@@ -9,26 +9,9 @@ namespace Com.Aurora.AuWeather.Core.Models
     {
         private const string BACKGROUND_ENTRY = "Com.Aurora.AuWeather.Background.BackgroundTask";
         private const string BACKGROUND_NAME = "Aurora Weather";
-        public async static Task RegBGTask(RefreshState frequency)
+        public async static Task RegBGTask(uint frequency, bool isEnabled)
         {
-            uint freshTime;
-            switch (frequency)
-            {
-                case RefreshState.one:
-                    freshTime = 29;
-                    break;
-                case RefreshState.two:
-                    freshTime = 30;
-                    break;
-                case RefreshState.three:
-                    freshTime = 60;
-                    break;
-                case RefreshState.four:
-                    freshTime = 240;
-                    break;
-                default:
-                    return;
-            }
+            uint freshTime = frequency;
             string entryPoint = BACKGROUND_ENTRY;
             string taskName = BACKGROUND_NAME;
             var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
@@ -42,7 +25,7 @@ namespace Com.Aurora.AuWeather.Core.Models
                         t.Value.Unregister(true);
                     }
                 }
-                if (freshTime == 29)
+                if (freshTime < 30 || !isEnabled)
                 {
                     return;
                 }

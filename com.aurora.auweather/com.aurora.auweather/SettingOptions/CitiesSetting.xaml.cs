@@ -13,6 +13,9 @@ using Windows.Devices.Geolocation;
 using Windows.System.Threading;
 using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.AuWeather.Models.HeWeather;
+using Com.Aurora.AuWeather.CustomControls;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -21,7 +24,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class CitiesSetting : Page
+    public sealed partial class CitiesSetting : Page, IThemeble
     {
         private Geolocator _geolocator;
         private Geoposition pos;
@@ -196,12 +199,30 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             Context.ChangePosition(LocateOnSwitch.IsOn);
             await AccesstoLocate();
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             ClearSelect();
             Context.DeleteCity((sender as Button).DataContext as CitySettingsViewModel);
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void ClearSelect()
@@ -217,12 +238,28 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             ClearSelect();
             Context.SetCurrent((sender as ToggleButton).DataContext as CitySettingsViewModel);
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LocatedStar_Click(object sender, RoutedEventArgs e)
         {
             ClearSelect();
             Context.SetCurrent_Locate();
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private async void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -254,6 +291,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 // Use args.QueryText to determine what to do.
                 Context.AddCity(args.QueryText);
             }
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
@@ -268,6 +313,15 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             ClearSelect();
             Context.SetCurrent(e.ClickedItem as CitySettingsViewModel);
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LocatePanel_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -279,6 +333,15 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             ClearSelect();
             Context.SetCurrent_Locate();
+            try
+            {
+                MainPage.Current.SetCitiesPanel(Context.GetCities(), Context.GetIndex());
+            }
+            catch (Exception)
+            {
+
+            }
+
             Release.Begin();
         }
 
@@ -295,6 +358,63 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private async void CheckLocateAccessButton_Click(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-location"));
+        }
+
+        private void CitiesList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            Context.ReArrange();
+        }
+
+        public void ChangeThemeColor(Color color)
+        {
+            var color1 = Color.FromArgb(Convert.ToByte(color.A * 0.9), color.R, color.G, color.B);
+            var color2 = Color.FromArgb(Convert.ToByte(color.A * 0.6), color.R, color.G, color.B);
+            var color3 = Color.FromArgb(Convert.ToByte(color.A * 0.8), color.R, color.G, color.B);
+            (Resources["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            (Resources["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            (Resources["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            (Resources["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            (Resources["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            (Resources["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            (Resources["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            (Resources["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Light"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlBackgroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlDisabledAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlForegroundAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltAccentBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentHighBrush"] as SolidColorBrush).Color = color1;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentLowBrush"] as SolidColorBrush).Color = color2;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightAltListAccentMediumBrush"] as SolidColorBrush).Color = color3;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentHighBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentLowBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHighlightListAccentMediumBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemControlHyperlinkTextBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
+            ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
         }
     }
 }

@@ -22,10 +22,16 @@ namespace Com.Aurora.AuWeather.Models
             s.Cities = Cities.Get();
             s.Immersive = Immersive.Get();
             s.Preferences = Preferences.Get();
-            var init = LocalSettingsHelper.ReadSettingsValue("Inited");
+            var init = RoamingSettingsHelper.ReadSettingsValue("Inited");
             if (init == null)
             {
-                s.Inited = false;
+                init = LocalSettingsHelper.ReadSettingsValue("Inited");
+                if (init == null)
+                    s.Inited = false;
+                else
+                {
+                    s.Inited = (bool)init;
+                }
             }
             else
             {
@@ -41,7 +47,7 @@ namespace Com.Aurora.AuWeather.Models
                  Cities.Save();
                  Immersive.Save();
                  Preferences.Save();
-                 LocalSettingsHelper.WriteSettingsValue("Inited", Inited);
+                 RoamingSettingsHelper.WriteSettingsValue("Inited", Inited);
              });
         }
 

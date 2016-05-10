@@ -94,7 +94,7 @@
     <value>Tiempo dinámico</value>
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Atención de desastres</value>
+    <value>ADVERTENCIA de desastres meteorológicos</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>Diario tiempo</value>
@@ -169,7 +169,7 @@
     <value>Tiempo actual</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>Ahora</value>
+    <value>Datos de</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>Pagar lo que quieras</value>
@@ -943,7 +943,7 @@
     <value>Actualización</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>Ahora</value>
+    <value>Datos de</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>Gestión de ciudades</value>
@@ -1021,9 +1021,10 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Acortar el intervalo de actualización de fondo automática
-· Mejora de la interfaz de usuario y el diseño
-· Diseño de la pieza se actualizará en la próxima versión</value>
+    <value>· Usted puede personalizar el color de acento ahora (sólo cuando el tema es "Sistema de seguimiento")
+· Añadida actualización animación
+· Usted puede personalizar la presentación ahora
+· Página de información mejorado</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1047,7 +1048,22 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· Usted puede personalizar el color de acento ahora (sólo cuando el tema es "Sistema de seguimiento")
+· Añadida actualización animación
+· Usted puede personalizar la presentación ahora
+· Detalles página mejorada
+
+1.5.16054
+· Ajustar la configuración de preferencias
+
+1.5.16052
+· ha solucionado el problema causado por formatos de región
+
+1.5.16050
+· Página de información añadido
+
+1.5.16045
 · Acortar el intervalo de actualización de fondo automática
 · Mejora de la interfaz de usuario y el diseño
 · Diseño de la pieza se actualizará en la próxima versión
@@ -1146,5 +1162,123 @@ Ahora puedes enviar informe de accidente al desarrollador y totalmente ayuda est
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>Borrar todos los datos</value>
+  </data>
+  <data name="LockDetail" xml:space="preserve">
+    <value>{0} {1}, {2} {3}
+mañana: {4}, {5}.</value>
+  </data>
+  <data name="RateText.Content" xml:space="preserve">
+    <value>Tasa en Windows Store</value>
+  </data>
+  <data name="FeedbackDialog.Title" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="FeedbackDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Atrás</value>
+  </data>
+  <data name="FeedbackDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>Pcpn. probabilidad de {0} días</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>Precipitación para {0} días</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>Temperatura para {0} días</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>Visibilidad para {0} días</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Datos de</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>Pcpn. probabilidad de {0} horas</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>Temperatura durante horas {0}</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>Fondo de cajón personalizado</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>Acento de Color</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>Diseño personalizado</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>Elegir imagen</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>Diseño</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>Elegir un color</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>Color de acento del sistema</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>Tiempo de alarma</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>ADVERTENCIA de desastres meteorológicos</value>
+  </data>
+  <data name="LunarText.Text" xml:space="preserve">
+    <value>Ver calendario Lunar</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>Humedad</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>Probabilidad de precipitación</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>Precipitación</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>Visibilidad</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Escala de viento</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>Dirección del viento</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>Presión de átomo</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>Diseño compacto</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>Elegir qué Mostrar</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>Pronóstico</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>AQI</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>Datos de</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>Sugerencias</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>Ahora tweak de panel de tiempo</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>Un lenguaje requiere instalar paquete de idioma</value>
+  </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· Personalizar diseño</value>
   </data>
 </root>

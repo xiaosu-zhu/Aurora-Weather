@@ -7,6 +7,7 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.Shared.Extensions;
+using Com.Aurora.Shared.Helpers;
 using System;
 using System.Text;
 using Windows.ApplicationModel.Resources;
@@ -216,41 +217,20 @@ namespace Com.Aurora.Shared.Converters
 
     public class TemraturePathConverter : IValueConverter
     {
-        private const float _factor = -64;
+        private const float _factor = -32;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var p = int.Parse((string)parameter);
+            p *= 10;
             if (value == null)
             {
-                return new Point(0, 0);
+                return new Point(p, 0);
             }
             if (value is float)
             {
-                Point? point = new Point(0, (float)value * _factor);
-                return point;
+                return new Point(p, (float)value * _factor);
             }
-            return new Point(0, 0);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class TempraturePathEndConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null)
-            {
-                return new Point(0, 0);
-            }
-            switch ((string)parameter)
-            {
-                case "0": return new Point(0, (double)value);
-                case "1": return new Point(((Size)value).Width, ((Size)value).Height);
-                default: return new Point(0, 0);
-            }
+            return new Point(p, 0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -313,18 +293,14 @@ namespace Com.Aurora.Shared.Converters
 
     public class ScrollViewerConverter : IValueConverter
     {
-        public static bool isLargeMode = false;
+        public static double WeatherCanvasHeight = 640d;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null)
             {
-                return 640d;
+                return WeatherCanvasHeight;
             }
-            if (isLargeMode)
-                return 640 - (double)value < 160 ? 160d : 640 - (double)value;
-            else
-                return 640 - (double)value < 112 ? 112d : 640 - (double)value;
-
+            return WeatherCanvasHeight - (double)value < 160 ? 160d : WeatherCanvasHeight - (double)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -847,7 +823,7 @@ namespace Com.Aurora.Shared.Converters
                 var calendar = value as CalendarInfo;
                 return ("农历 " + calendar.LunarYearSexagenary + "年" + calendar.LunarMonthText + "月" + calendar.LunarDayText + "    " + calendar.SolarTermStr).Trim();
             }
-            return "...";
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -905,17 +881,17 @@ namespace Com.Aurora.Shared.Converters
                 case AQIQuality.unknown:
                     return Color.FromArgb(255, 240, 240, 240);
                 case AQIQuality.one:
-                    return Color.FromArgb(255, 54, 204, 0);
+                    return Pallette.Green;
                 case AQIQuality.two:
-                    return Color.FromArgb(255, 134, 134, 0);
+                    return Pallette.Teal;
                 case AQIQuality.three:
-                    return Color.FromArgb(255, 204, 204, 0);
+                    return Pallette.Lime;
                 case AQIQuality.four:
-                    return Color.FromArgb(255, 255, 134, 0);
+                    return Pallette.Amber;
                 case AQIQuality.five:
-                    return Color.FromArgb(255, 255, 51, 0);
+                    return Pallette.DeepOrange;
                 case AQIQuality.six:
-                    return Color.FromArgb(255, 255, 0, 0);
+                    return Pallette.Red;
                 default:
                     return Color.FromArgb(255, 240, 240, 240);
             }
@@ -1504,6 +1480,113 @@ namespace Com.Aurora.Shared.Converters
                 default:
                     return new SolidColorBrush(Colors.Black);
             }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FontSizeConverter : IValueConverter
+    {
+        public static double FIXED_TITLE_FONTSIZE = 96;
+        private const int WEATHERCANVAS_HEADEROFFSET = 528;
+        public static double offset = 0;
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+                return null;
+            var verticalOffset = (double)value;
+            offset = verticalOffset > WEATHERCANVAS_HEADEROFFSET ? WEATHERCANVAS_HEADEROFFSET : verticalOffset;
+            offset /= WEATHERCANVAS_HEADEROFFSET;
+            offset = EasingHelper.QuinticEase(Windows.UI.Xaml.Media.Animation.EasingMode.EaseOut, offset);
+            var k = FIXED_TITLE_FONTSIZE - FIXED_TITLE_FONTSIZE / 2 * offset;
+            if (k < 48d)
+                return 48d;
+            else
+            {
+                return k;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class FreqConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is double)
+            {
+                return ((double)value / 60).ToString("0.#") + (" hours");
+            }
+            return "...";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class NowStyleMinConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is bool)
+            {
+                if ((bool)value)
+                {
+                    return 96d;
+                }
+                else
+                {
+                    return 192d;
+                }
+            }
+            return 192d;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class NowStyleMaxConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is bool)
+            {
+                if ((bool)value)
+                {
+                    return 256d;
+                }
+                else
+                {
+                    return 420d;
+                }
+            }
+            return 420d;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ScrollablePaddingWideConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is double)
+            {
+                return (double)value - 48d;
+            }
+            return 444d;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

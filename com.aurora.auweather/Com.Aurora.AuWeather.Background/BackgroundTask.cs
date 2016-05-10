@@ -52,14 +52,27 @@ namespace Com.Aurora.AuWeather.Background
             if (!resstr.IsNullorEmpty())
             {
                 var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
+                {
+                    return;
+                }
                 var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
                 var current = DateTimeHelper.ReviseLoc(utcOffset);
                 Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
 
                 if (settings.Preferences.EnableEveryDay)
                 {
-                    var tomorrow8 = DateTime.Now.Hour > 8 ? (DateTime.Today.AddDays(1)).AddHours(8) : (DateTime.Today.AddHours(8));
-                    Sender.CreateScheduledToastNotification(await (Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset))), DateTimeHelper.ReviseLoc(tomorrow8, utcOffset), "EveryDayToast");
+                    var shu = settings.Preferences.NoteTime.TotalHours;
+                    var tomorrow8 = DateTime.Now.Hour > shu ? (DateTime.Today.AddDays(1)).AddHours(shu) : (DateTime.Today.AddHours(shu));
+                    try
+                    {
+                        Sender.CreateScheduledToastNotification(await (Generator.CreateToast(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset))), tomorrow8, "EveryDayToast");
+
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
                 }
                 if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
                 {

@@ -34,270 +34,305 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Pivot x:Name="Root" Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Pivot x:Name="Root" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <PivotItem x:Uid="Sunny" Header="Sunny">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.SunnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="SunnyLocalGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image x:Name="SunnyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="SunnyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="SunnyButton" Click="Button_Click" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SunnyList">
+                <ListView.Header>
+                    <StackPanel Orientation="Vertical" Margin="12,0,12,0" >
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.SunnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.SunnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.Footer>
+                    <StackPanel Margin="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="SunnyLocalGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Image x:Name="SunnyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="SunnyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="SunnyButton" Click="Button_Click" IsEnabled="{x:Bind Context.SunnyState,Mode=OneWay,Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Starry" Header="Starry">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.StarryShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="StarryLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="StarryLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="StarryLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="StarryButton" Click="Button_Click" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="StarryList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.StarryState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.StarryShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.Footer>
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="0,0,0,96" x:Name="StarryLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="StarryLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="StarryLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="StarryButton" Click="Button_Click" IsEnabled="{Binding StarryState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Cloudy" Header="Cloudy">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.CloudyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="CloudyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="CloudyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="CloudyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="CloudyButton" Click="Button_Click" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CloudyList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.CloudyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.CloudyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.Footer>
+                    <StackPanel Margin="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="CloudyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="CloudyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="CloudyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="CloudyButton" Click="Button_Click" IsEnabled="{Binding CloudyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </PivotItem>
         <PivotItem x:Uid="Overcast" Header="Overcast">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.OvercastState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.OvercastShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="OvercastList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="OvercastLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="OvercastLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="OvercastLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="OvercastButton" Click="Button_Click" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="OvercastList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.OvercastState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.OvercastShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackPanel Padding="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="OvercastLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="OvercastLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="OvercastLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="OvercastButton" Click="Button_Click" IsEnabled="{Binding OvercastState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Rainny" Header="Rainny">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.RainnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="RainnyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="RainnyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="RainnyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="RainnyButton" Click="Button_Click" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RainnyList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.RainnyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.RainnyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackPanel Padding="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="RainnyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="RainnyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="RainnyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="RainnyButton" Click="Button_Click" IsEnabled="{Binding RainnyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Snowy" Header="Snowy">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.SnowyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="SnowyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="SnowyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="SnowyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="SnowyButton" Click="Button_Click" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SnowyList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.SnowyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.SnowyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackPanel Padding="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="SnowyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="SnowyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="SnowyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="SnowyButton" Click="Button_Click" IsEnabled="{Binding SnowyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Foggy" Header="Foggy">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.FoggyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="FoggyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="FoggyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="FoggyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="FoggyButton" Click="Button_Click" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="FoggyList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.FoggyState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.FoggyShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackPanel Padding="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="FoggyLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="FoggyLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="FoggyLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="FoggyButton" Click="Button_Click" IsEnabled="{Binding FoggyState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+            </ListView>
         </PivotItem>
         <PivotItem x:Uid="Haze" Header="Haze">
-            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel Padding="0,0,0,96" Orientation="Vertical">
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <Grid Margin="12,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
-                        <ToggleSwitch IsOn="{x:Bind Context.HazeShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
-                    <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="ViewModels:BackgroundSelector">
-                                <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
-                                    <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Grid x:Name="HazeLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
-                        <Image x:Name="HazeLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
-                        <Button Click="LocalButton_Click" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="HazeLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
-                            <Button.Content>
-                                <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <Button x:Name="HazeButton" Click="Button_Click" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12,12,12,64" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </StackPanel>
-            </ScrollViewer>
+            <ListView SelectionChanged="List_SelectionChanged" ItemContainerStyle="{ThemeResource ImmersiveItemStyle}" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="HazeList">
+                <ListView.Header>
+                    <StackPanel Margin="12,0,12,0" Orientation="Vertical">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="NoBGText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.HazeState, Converter={StaticResource ImmersiveStatetoSwitchConverter},Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock x:Uid="ShuffleText" Margin="8" VerticalAlignment="Center" />
+                            <ToggleSwitch IsOn="{x:Bind Context.HazeShuffle,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:BackgroundSelector">
+                        <Grid MaxWidth="720" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Source="{x:Bind Thumbnail,Mode=OneWay}" Stretch="UniformToFill" />
+                            <TextBlock HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Bottom" Margin="8" FontSize="12" Text="{x:Bind Title,Mode=OneWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackPanel Padding="0,0,0,96" Orientation="Vertical">
+                        <Grid x:Name="HazeLocalGrid" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Stretch">
+                            <Image x:Name="HazeLocal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="720" Stretch="UniformToFill" Margin="16" />
+                            <Button Click="LocalButton_Click" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" x:Name="HazeLocalButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" >
+                                <Button.Content>
+                                    <SymbolIcon Height="64" Width="64" Symbol="Cancel" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="HazeButton" Click="Button_Click" IsEnabled="{Binding HazeState, Converter={StaticResource ImmersiveStatetoEnableConverter}}" Height="36" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </ListView.Footer>
+            </ListView>
         </PivotItem>
     </Pivot>
 </Page>

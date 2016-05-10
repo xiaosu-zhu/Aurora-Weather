@@ -186,6 +186,9 @@
   <data name="DonateOption4.Text" xml:space="preserve">
     <value>· 開啓 "Weather Underground" 天氣源</value>
   </data>
+  <data name="DonateOption5.Text" xml:space="preserve">
+    <value>· 自定義佈局</value>
+  </data>
   <data name="DonateRun0.Text" xml:space="preserve">
     <value>需要你的説明...</value>
   </data>
@@ -203,6 +206,9 @@
   </data>
   <data name="EnableAlarmText.Text" xml:space="preserve">
     <value>氣象災害預警</value>
+  </data>
+  <data name="AlarmButton.Content" xml:space="preserve">
+    <value>災害預警</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
     <value>每日天氣提醒</value>
@@ -277,7 +283,7 @@
     <value>當前天氣</value>
   </data>
   <data name="NowButton.Label" xml:space="preserve">
-    <value>剛剛</value>
+    <value>詳情</value>
   </data>
   <data name="Obtain" xml:space="preserve">
     <value>Pay what you want</value>
@@ -1058,7 +1064,7 @@
     <value>刷新</value>
   </data>
   <data name="NowText.Text" xml:space="preserve">
-    <value>剛剛</value>
+    <value>詳情</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
     <value>城市管理</value>
@@ -1082,7 +1088,7 @@
     <value>需要定位，否則使用默認值 19:30~7:30</value>
   </data>
   <data name="ThemeasRiseSetText.Text" xml:space="preserve">
-    <value>暗色時間跟隨日落/日出</value>
+    <value>日落而暗，日出而亮</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>更新</value>
@@ -1136,9 +1142,10 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 縮短後臺自動刷新間隔
-· 部分 UI 與佈局改進
-· 磁貼佈局將在下個版本改版</value>
+    <value>· 由於系統限制, 現在只有主題設置為 "跟隨系統" 才能修改強調色
+· 加入初始化動畫
+· 調整部分佈局, 現在你可以自定義佈局
+· 補充詳情頁信息</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1162,7 +1169,22 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16045
+    <value>1.5.16055
+· 由於系統限制, 現在只有主題設置為 "跟隨系統" 才能修改強調色
+· 加入初始化動畫
+· 調整部分佈局, 現在你可以自定義佈局
+· 補充詳情頁信息
+
+1.5.16054
+· 調整偏好設置
+
+1.5.16052
+· 修復了某些區域的數值格式導致的崩溃问题
+
+1.5.16050
+· 加入天氣詳情頁
+
+1.5.16045
 · 縮短後臺自動刷新間隔
 · 部分 UI 與佈局改進
 · 磁貼佈局將在下個版本改版
@@ -1268,5 +1290,101 @@
   </data>
   <data name="AppDeleteButton.Content" xml:space="preserve">
     <value>清除所有數據</value>
+  </data>
+  <data name="DailyDetailsPop" xml:space="preserve">
+    <value>未來{0}天降水概率</value>
+  </data>
+  <data name="DailyDetailsPrep" xml:space="preserve">
+    <value>未來{0}天降水量</value>
+  </data>
+  <data name="DailyDetailsTemp" xml:space="preserve">
+    <value>未來{0}天氣溫</value>
+  </data>
+  <data name="DailyDetailsVis" xml:space="preserve">
+    <value>未來{0}天能見度</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳情</value>
+  </data>
+  <data name="HourlyDetailsPop" xml:space="preserve">
+    <value>未來{0}小时降水概率</value>
+  </data>
+  <data name="HourlyDetailsTemperature" xml:space="preserve">
+    <value>未來{0}小时氣溫</value>
+  </data>
+  <data name="DrawerText.Text" xml:space="preserve">
+    <value>自定义抽屉背景</value>
+  </data>
+  <data name="MainColorText.Text" xml:space="preserve">
+    <value>強調色</value>
+  </data>
+  <data name="CustomLayoutButton.Content" xml:space="preserve">
+    <value>自定義佈局</value>
+  </data>
+  <data name="PickImageButton.Content" xml:space="preserve">
+    <value>選取圖像</value>
+  </data>
+  <data name="LayoutText.Text" xml:space="preserve">
+    <value>佈局</value>
+  </data>
+  <data name="ColorPicker.Title" xml:space="preserve">
+    <value>選取顏色</value>
+  </data>
+  <data name="ColorPicker.AccentColorTitle" xml:space="preserve">
+    <value>系統主題色</value>
+  </data>
+  <data name="SetTimeText.Text" xml:space="preserve">
+    <value>設定提醒時間</value>
+  </data>
+    <data name="LunarText.Text" xml:space="preserve">
+    <value>顯示農曆</value>
+  </data>
+  <data name="Hum" xml:space="preserve">
+    <value>相對濕度</value>
+  </data>
+  <data name="Pop" xml:space="preserve">
+    <value>降水概率</value>
+  </data>
+  <data name="Pcpn" xml:space="preserve">
+    <value>降水量</value>
+  </data>
+  <data name="Vis" xml:space="preserve">
+    <value>能見度</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>風力</value>
+  </data>
+  <data name="Dir" xml:space="preserve">
+    <value>風向</value>
+  </data>
+  <data name="Pres" xml:space="preserve">
+    <value>氣壓</value>
+  </data>
+  <data name="LowNowPanelText.Text" xml:space="preserve">
+    <value>精簡佈局</value>
+  </data>
+  <data name="ToggleVisibilityText.Text" xml:space="preserve">
+    <value>選擇要顯示的項目</value>
+  </data>
+  <data name="ForecastPanelText.Text" xml:space="preserve">
+    <value>預報</value>
+  </data>
+  <data name="AQIPanelText.Text" xml:space="preserve">
+    <value>空氣質量</value>
+  </data>
+  <data name="DetailsPanelText.Text" xml:space="preserve">
+    <value>詳細信息</value>
+  </data>
+  <data name="SuggestsPanelText.Text" xml:space="preserve">
+    <value>生活建議</value>
+  </data>
+  <data name="ToggleNowPanelText.Text" xml:space="preserve">
+    <value>動態天氣面板調整</value>
+  </data>
+  <data name="HeightText.Text" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="LanguageAlarmText.Text" xml:space="preserve">
+    <value>某些語言需要安裝對應語言包才能顯示</value>
   </data>
 </root>

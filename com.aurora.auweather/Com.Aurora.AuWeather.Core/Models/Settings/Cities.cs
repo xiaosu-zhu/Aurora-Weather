@@ -104,6 +104,31 @@ namespace Com.Aurora.AuWeather.Models.Settings
             SaveCities(container);
         }
 
+        public CitySettingsModel GetCurrentCity()
+        {
+            if (EnableLocate && CurrentIndex == -1 && LocatedCity != null)
+            {
+                return LocatedCity;
+            }
+            else if (EnableLocate && CurrentIndex == -1 && LocatedCity == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (!EnableLocate && CurrentIndex == -1 && !SavedCities.IsNullorEmpty())
+            {
+                CurrentIndex = 0;
+                return SavedCities[CurrentIndex];
+            }
+            else if (!SavedCities.IsNullorEmpty() && CurrentIndex >= 0 && SavedCities.Length > CurrentIndex)
+            {
+                return SavedCities[CurrentIndex];
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
         private void SaveCities(Windows.Storage.ApplicationDataContainer container)
         {
             int i = 0;
@@ -139,20 +164,28 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public async Task SaveDataAsync(string currentId, string resstr, DataSource source)
         {
-            switch (source)
+            try
             {
-                case DataSource.HeWeather:
-                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_H", resstr);
-                    break;
-                case DataSource.Caiyun:
-                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_C", resstr);
-                    break;
-                case DataSource.Wunderground:
-                    await FileIOHelper.SaveStringtoStorageAsync(currentId + "_W", resstr);
-                    break;
-                default:
-                    break;
+                switch (source)
+                {
+                    case DataSource.HeWeather:
+                        await FileIOHelper.SaveStringtoStorageAsync(currentId + "_H", resstr);
+                        break;
+                    case DataSource.Caiyun:
+                        await FileIOHelper.SaveStringtoStorageAsync(currentId + "_C", resstr);
+                        break;
+                    case DataSource.Wunderground:
+                        await FileIOHelper.SaveStringtoStorageAsync(currentId + "_W", resstr);
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         public async Task<string> ReadDataAsync(string id, DataSource dataSource)

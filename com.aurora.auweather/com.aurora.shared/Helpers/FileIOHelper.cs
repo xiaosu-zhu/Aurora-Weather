@@ -59,7 +59,8 @@ namespace Com.Aurora.Shared.Helpers
                 sb.Append(i + Environment.NewLine);
             }
             sb.Append("Error Code = " + exception.HResult.ToHexString() + Environment.NewLine);
-            sb.Append("Exception = " + exception.ToString() + Environment.NewLine);
+            sb.Append("Exception = " + exception.Exception + Environment.NewLine);
+            sb.Append("Message = " + exception.Message + Environment.NewLine);
             sb.Append("StackTrace = " + exception.StackTrace + Environment.NewLine);
             sb.Append("Source = " + exception.Source + Environment.NewLine);
             await FileIO.AppendTextAsync(log, sb.ToString());
@@ -234,7 +235,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<string> ReadStringFromAssetsAsync(string fileName)
         {
             if (fileName == null)
-                throw new ArgumentException();
+                return null;
             StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" + fileName));
             return await FileIO.ReadTextAsync(sFile);
         }
@@ -260,8 +261,8 @@ namespace Com.Aurora.Shared.Helpers
         /// <param name="buffer">要存储的缓冲区</param>
         public static async Task SaveBuffertoStorageAsync(string fileName, IBuffer buffer)
         {
-            if (fileName == null)
-                throw new ArgumentException();
+            if (fileName.IsNullorEmpty())
+                throw new ArgumentException("fileName can't be null or empty");
             var storeFolder = ApplicationData.Current.LocalFolder;
             var file = await storeFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
@@ -281,8 +282,8 @@ namespace Com.Aurora.Shared.Helpers
         /// <returns></returns>
         public static async Task SaveStringtoStorageAsync(string fileName, string content)
         {
-            if (fileName == null)
-                throw new ArgumentException();
+            if (fileName.IsNullorEmpty())
+                throw new ArgumentException("fileName can't be null or empty");
             var storeFolder = ApplicationData.Current.LocalFolder;
             var file = await storeFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, content);
@@ -290,8 +291,8 @@ namespace Com.Aurora.Shared.Helpers
 
         public static async Task RemoveLocalFilesWithKeywordAsync(string key)
         {
-            if (key == null)
-                throw new ArgumentException();
+            if (key.IsNullorEmpty())
+                throw new ArgumentException("Keyword can't be null or empty");
             var storeFolder = ApplicationData.Current.LocalFolder;
             var files = await storeFolder.GetFilesAsync();
             foreach (var file in files)
@@ -311,7 +312,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<IBuffer> ReadBufferFromStorageAsync(string fileName)
         {
             if (fileName == null)
-                throw new ArgumentException();
+                return null;
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile file = await storageFolder.GetFileAsync(fileName);
 
@@ -321,7 +322,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<string> ReadStringFromStorageAsync(string fileName)
         {
             if (fileName == null)
-                throw new ArgumentException();
+                return null;
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile file = await storageFolder.GetFileAsync(fileName);
             return await FileIO.ReadTextAsync(file);
@@ -366,7 +367,7 @@ namespace Com.Aurora.Shared.Helpers
         public static async Task<IBuffer> ReadBufferFromAssetsAsync(string fileName)
         {
             if (fileName == null)
-                throw new ArgumentException();
+                return null;
             StorageFile sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" + fileName));
             return await FileIO.ReadBufferAsync(sFile);
         }
