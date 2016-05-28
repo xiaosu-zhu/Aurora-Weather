@@ -9,9 +9,14 @@ using Com.Aurora.AuWeather.ViewModels.Events;
 using Com.Aurora.Shared.Converters;
 using Com.Aurora.Shared.Helpers;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.Devices.Input;
+using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.System.Threading;
+using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -120,17 +125,10 @@ namespace Com.Aurora.AuWeather
                  var loader = new ResourceLoader();
                  var d = new MessageDialog(e.Message);
                  d.Title = loader.GetString("Error");
-                 if (e.Message == loader.GetString("Cities_null"))
-                 {
-                     d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
-                 }
-                 else
-                 {
-                     d.Commands.Add(new UICommand(loader.GetString("Refresh"), new UICommandInvokedHandler(DataFailed_Refresh)));
-                     d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
-                 }
+                 d.Commands.Add(new UICommand(loader.GetString("Setting"), new UICommandInvokedHandler(NavigateToSettings)));
                  d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                  d.CancelCommandIndex = 1;
+                 d.DefaultCommandIndex = 0;
                  await d.ShowAsync();
              }));
         }
@@ -183,7 +181,7 @@ namespace Com.Aurora.AuWeather
             this.Page_Unloaded(null, null);
         }
 
-        private void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
+        private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
             var loader = new ResourceLoader();
             UpdateIndicator.Text = loader.GetString("RefreshComplete");
@@ -247,6 +245,53 @@ namespace Com.Aurora.AuWeather
             }
             baba.ChangeCondition(Context.Condition, Context.IsNight, Context.City, Context.NowL, Context.NowH);
             ScrollableRoot.RefreshComplete();
+            try
+            {
+                if (UserProfilePersonalizationSettings.IsSupported() && Context.SetWallPaper)
+                {
+                    var file = await FileIOHelper.GetFilebyUriAsync(await Context.GetCurrentBackgroundAsync());
+                    var lFile = await FileIOHelper.CreateWallPaperFileAsync(Guid.NewGuid().ToString() + ".png");
+                    var d = PointerDevice.GetPointerDevices();
+                    var m = d.ToArray();
+                    var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+                    var size = new Size(m[0].PhysicalDeviceRect.Width, m[0].PhysicalDeviceRect.Height);
+                    var ratio = size.Height / size.Width;
+                    size.Height *= scaleFactor;
+                    size.Width *= scaleFactor;
+                    var cropSize = new Size();
+                    double scale;
+                    var startPoint = new Point();
+                    using (var stream = await file.OpenReadAsync())
+                    {
+                        var bitmap = new BitmapImage();
+                        await bitmap.SetSourceAsync(stream);
+                        var width = bitmap.PixelWidth;
+                        var height = bitmap.PixelHeight;
+                        var center = new Point(width / 2, height / 2);
+                        if (width * ratio >= height)
+                        {
+                            cropSize.Width = height / ratio;
+                            cropSize.Height = height;
+                            scale = size.Height / height;
+                        }
+                        else
+                        {
+                            cropSize.Width = width;
+                            cropSize.Height = width * ratio;
+                            scale = size.Width / width;
+                        }
+
+                        startPoint.X = center.X - cropSize.Width / 2;
+                        startPoint.Y = center.Y - cropSize.Height / 2;
+                    }
+                    await ImagingHelper.CropandScaleAsync(file, lFile, startPoint, cropSize, scale);
+                    var uc = await ImagingHelper.SetWallpaperAsync(lFile);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
         }
 
 
@@ -277,9 +322,10 @@ namespace Com.Aurora.AuWeather
             ScrollableRoot.ViewChanged += ScrollableRoot_ViewChanged;
             if (Context.AlwaysShowBackground)
             {
-                WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
+                WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackgroundAsync());
             }
             LoadingDot.Visibility = Visibility.Collapsed;
+            BlurSwitch.IsOn = Context.AlwaysBlur;
         }
 
         #region DetailGrid Animation
@@ -627,10 +673,11 @@ namespace Com.Aurora.AuWeather
                 detailGridAnimation_FLAG[1] = false;
             }
             await Task.Delay(1000);
-            if (!Context.AlwaysShowBackground)
-            {
-                WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackground());
-            }
+            WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackgroundAsync());
+            //UserProfilePersonalizationSettings profileSettings = UserProfilePersonalizationSettings.Current;
+            // Only support files stored in local folder
+
+
         }
 
         private void MainCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -705,10 +752,7 @@ namespace Com.Aurora.AuWeather
             };
             ImmersiveBackAni.Begin();
             isImmersiveMode = false;
-            if (!Context.AlwaysShowBackground)
-            {
-                WeatherCanvas.ImmersiveOut();
-            }
+            WeatherCanvas.ImmersiveOut(!Context.AlwaysShowBackground);
         }
 
         private void ScrollableRoot_RefreshStart(object sender, Aurora.Shared.Controls.RefreshStartEventArgs e)
@@ -716,22 +760,6 @@ namespace Com.Aurora.AuWeather
             var loader = new ResourceLoader();
             UpdateIndicator.Text = loader.GetString("RefreshStart");
             Context.RefreshAsync();
-        }
-
-        private void AQIDetailButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (O3Grid.Visibility == Visibility.Collapsed)
-            {
-                O3Grid.Visibility = Visibility.Visible;
-                NO2Grid.Visibility = Visibility.Visible;
-                COGrid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                O3Grid.Visibility = Visibility.Collapsed;
-                NO2Grid.Visibility = Visibility.Collapsed;
-                COGrid.Visibility = Visibility.Collapsed;
-            }
         }
 
         private void Flyout_Opened(object sender, object e)
@@ -849,5 +877,36 @@ namespace Com.Aurora.AuWeather
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
         }
 
+        private void AQIDetailButton_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if (O3Grid.Visibility == Visibility.Collapsed)
+            {
+                O3Grid.Visibility = Visibility.Visible;
+                NO2Grid.Visibility = Visibility.Visible;
+                COGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                O3Grid.Visibility = Visibility.Collapsed;
+                NO2Grid.Visibility = Visibility.Collapsed;
+                COGrid.Visibility = Visibility.Collapsed;
+            }
+            AQIDetailButtonIn.Begin();
+        }
+
+        private void AQIDetailButton_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            AQIDetailButtonIn.Begin();
+        }
+
+        private void AQIDetailButton_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            AQIDetailButtonNormal.Begin();
+        }
+
+        private void AQIDetailButton_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            AQIDetailButtonPress.Begin();
+        }
     }
 }

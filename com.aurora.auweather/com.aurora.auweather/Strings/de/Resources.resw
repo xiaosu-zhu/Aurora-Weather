@@ -93,11 +93,8 @@
   <data name="DynamicText.Text" xml:space="preserve">
     <value>Dynamisches Wetter</value>
   </data>
-  <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Meteorologischen Katastrophen-Warnung</value>
-  </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Tägliche Wetter</value>
+    <value>Wetter-Alarm</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Experimentelle Features</value>
@@ -1021,10 +1018,8 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
-· Hinzugefügt aktualisieren Animation
-· Sie können Layout anpassen jetzt
-· Detailseite verbessert</value>
+    <value>Der Datenanbieter HeWeather vor kurzem instabil ist, können Sie vorübergehend zu anderen Daten-Provider ***
+wechseln · Verbesserte Wetter-Alarm-Popups</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1048,42 +1043,53 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16055
-· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
+    <value>1.6.16054
+· Wetter-Alarm verbessert Toast
+
+1.6.16050
+· Jetzt Sie, lichtdurchlässige Fliesen
+wählen können · Fliesen-Layoutanpassung
+
+1.5.16059
+· Behobene Probleme in den Einstellungen Seite
+· Versuchen, aktuelle BG als Lockscreen wallpaper
+
+1.5.16055
+· Sie können Akzentfarbe jetzt (nur wenn die Designeinstellung "Follow-System")
 · Hinzugefügt aktualisieren Animation
-· Sie können Layout anpassen jetzt
-· Informationen Seite verbesserte
+· Sie können Layout jetzt
+· Details Seite verbesserte
 
 1.5.16054
 · 
 
 1.5.16052
--Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
+Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
 
 1.5.16050
-· Detailseite hinzugefügt
+· Seite "Details" hinzugefügt
 
 1.5.16045
-· Verkürzung des Intervalls für die automatische Hintergrund
-· Verbesserung der Benutzeroberfläche und Layout
-· Fliese Layouts werden in der nächsten Version
+· Kürzen Sie das Aktualisierungsintervall automatisch im Hintergrund
+· UI und Layout Verbesserung
+· Der Kachel-Layout aktualisiert werden, in der nächsten Version
 
 1.5.16040
-aktualisiert · Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
+· Kompatibel mit Windows 10 bauen 14328, haben wir aktualisiert Toast und Fliesen-
 · "Weather Underground" jetzt verfügbar! 
-· (Mai) Fixiert einen schwerwiegenden Fehler
-· (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen
+· (Mai) Fixiert einen Totalausfall
+· (Mai) Festen ein Problem tritt auf, auf mobilen Geräten, die Lockscreen Benachrichtigungen
 
-1.4.16047 nicht angezeigt:
-· UI-tuning
+1.4.16047 anzeigen nicht:
+· UI tuning
 · Kleine Fehler behoben
  
 1.4.16046:
-· Update-Log Added
-· Sie können swipe Informationen über das Update löschen
+· Update-Log hinzugefügt
+· Sie streichen können details zu das Update löschen
 · Partikel-System Oberflächen aktualisiert
 · Partikel-System Verbesserung
-· Blitz-Generator-Erweiterung
+· Blitz-Generator Erweiterung
   </value>
   </data>
   <data name="ContactButton.Content" xml:space="preserve">
@@ -1280,5 +1286,71 @@ Morgen: {4}, {5}.</value>
   </data>
   <data name="DonateOption5.Text" xml:space="preserve">
     <value>· Layout anpassen</value>
+  </data>
+  <data name="SetWallPaperText.Text" xml:space="preserve">
+    <value>Auto set aktuelle BG als Lockscreen wallpaper</value>
+  </data>
+  <data name="SetWallPaperFalseText.Text" xml:space="preserve">
+    <value>Experimentelle und kann nicht wirksam</value>
+  </data>
+  <data name="TransparentTileText.Text" xml:space="preserve">
+    <value>Transluzente Fliese zu aktivieren</value>
+  </data>
+  <data name="TransparentTileFalseText.Text" xml:space="preserve">
+    <value>Auf dem desktop-Plattform aktiviert nicht</value>
+  </data>
+  <data name="SunRise" xml:space="preserve">
+    <value>Sonne aufgehen</value>
+  </data>
+  <data name="SunSet" xml:space="preserve">
+    <value>Sonnenuntergang</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Standort</value>
+  </data>
+  <data name="UtcOffset" xml:space="preserve">
+    <value>UTC-offset</value>
+  </data>
+  <data name="EnableAlarm.Content" xml:space="preserve">
+    <value>Unwetter-alarm</value>
+  </data>
+  <data name="MorningAlarm.Content" xml:space="preserve">
+    <value>Morgen-alarm</value>
+  </data>
+  <data name="EveningAlarm.Content" xml:space="preserve">
+    <value>Abend-alarm</value>
+  </data>
+  <data name="ToastGale" xml:space="preserve">
+    <value>Gale wird morgen sein werden.</value>
+  </data>
+  <data name="ToastRain" xml:space="preserve">
+    <value>werden morgen Starkregen</value>
+  </data>
+  <data name="ToastThunder" xml:space="preserve">
+    <value>werden morgen Donner</value>
+  </data>
+  <data name="ToastHail" xml:space="preserve">
+    <value>Hagel wird morgen sein werden.</value>
+  </data>
+  <data name="ToastSnow" xml:space="preserve">
+    <value>starker Schneefall wird morgen sein werden.</value>
+  </data>
+  <data name="ToastFreeze" xml:space="preserve">
+    <value>wird Regen Morgen Einfrieren</value>
+  </data>
+  <data name="ToastSand" xml:space="preserve">
+    <value>Sand wird morgen sein werden.</value>
+  </data>
+  <data name="ToastHot" xml:space="preserve">
+    <value>Morgen wird heiß</value>
+  </data>
+  <data name="ToastCold" xml:space="preserve">
+    <value>wird morgen kalt sein</value>
+  </data>
+  <data name="Known" xml:space="preserve">
+    <value>Ich weiß</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Schließen</value>
   </data>
 </root>

@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="BackgroundTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToastHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Aurora.AuWeather.Core\Com.Aurora.AuWeather.Core.csproj">

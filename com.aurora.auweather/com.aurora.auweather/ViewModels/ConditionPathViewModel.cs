@@ -48,6 +48,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             "ms-appx:///Assets/Tile/Hot.png",
             //cold 16
             "ms-appx:///Assets/Tile/Cold.png",
+            //moderate 17
+            "ms-appx:///Assets/Tile/Moderate.png"
         };
         #endregion
 
@@ -96,12 +98,14 @@ namespace Com.Aurora.AuWeather.ViewModels
                     SetThunderShower();
                     break;
                 case WeatherCondition.light_rain:
-                case WeatherCondition.moderate_rain:
                     SetRain(0);
+                    break;
+                case WeatherCondition.moderate_rain:
+                    SetRain(1);
                     break;
                 case WeatherCondition.heavy_rain:
                 case WeatherCondition.extreme_rain:
-                    SetRain(1);
+                    SetRain(2);
                     break;
                 case WeatherCondition.drizzle_rain:
                     SetRain(0);
@@ -109,7 +113,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 case WeatherCondition.storm_rain:
                 case WeatherCondition.heavy_storm_rain:
                 case WeatherCondition.severe_storm_rain:
-                    SetRain(1);
+                    SetRain(2);
                     break;
                 case WeatherCondition.freezing_rain:
                     SetSnowRain();
@@ -186,9 +190,13 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void SetRain(int v)
         {
-            if (v > 0)
+            if (v > 1)
             {
                 Source = new BitmapImage(new System.Uri(conditionEnums[8]));
+            }
+            else if (v > 0)
+            {
+                Source = new BitmapImage(new System.Uri(conditionEnums[17]));
             }
             else
             {

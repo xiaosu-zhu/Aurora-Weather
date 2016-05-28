@@ -12,6 +12,11 @@ namespace Com.Aurora.AuWeather.Models
 {
     public class Location
     {
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", Latitude > 0 ? Latitude.ToString("0.0") + "° N" : Latitude < 0 ? (-Latitude).ToString("0.0") + "° S" : "0.0°", Longitude > 0 ? Longitude.ToString("0.0") + "° E" : Longitude < 0 ? (-Longitude).ToString("0.0") + "° W" : "0.0°");
+        }
+
         private float latitude;
         private float longitude;
 

@@ -39,9 +39,9 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Image Source="/Assets/Square150x150Logo.png" Height="128" Width="128" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="12" Stretch="Uniform" />
+                    <Image Source="/Assets/Square150x150Logo.png" Height="192" Width="192" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="12" Stretch="Uniform" />
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1">
-                        <TextBlock x:Uid="AppNameText" Text="nimaib" Foreground="White" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
+                        <TextBlock x:Uid="AppNameText" Foreground="White" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
                         <TextBlock x:Name="Version" Loaded="Version_Loaded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
                     </StackPanel>
                     <TextBlock Text="Aurora Studio © 2016" Grid.Row="1" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" />
@@ -51,15 +51,31 @@
                 <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout Placement="Full">
-                            <ScrollViewer Padding="12">
-                                <TextBlock MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+                            <ScrollViewer>
+                                <TextBlock MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="----------------------------------------------------&#x000A;                   Com.Aurora.AuWeather&#x000A;&#x000A;The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x000A;
   THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.">
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&#x000A;----------------------------------------------------&#x000A;
+                       Com.Aurora.Shared&#x000A;&#x000A;The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x000A;
+  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&#x000A;----------------------------------------------------&#x000A;
+                          Com.Aurora.Core&#x000A;&#x000A;The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x000A;
+  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&#x000A;">
                                 </TextBlock>
                             </ScrollViewer>
                         </Flyout>
@@ -148,8 +164,8 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
             <ContentDialog Margin="12,32,12,96" PrimaryButtonClick="FeedbackDialog_PrimaryButtonClick" SecondaryButtonClick="FeedbackDialog_SecondaryButtonClick"
     x:Name="FeedbackDialog" IsPrimaryButtonEnabled="True" x:Uid="FeedbackDialog">
                 <StackPanel>
-                    <TextBox x:Name="EmailBox" Width="288" PlaceholderText="Email here" AcceptsReturn="False" Margin="16,4,16,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <TextBox x:Uid="FeedbackBox" Width="288" x:Name="ReportBox" AcceptsReturn="True" Margin="16,4,16,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
+                    <TextBox x:Name="EmailBox" Width="312" PlaceholderText="Email here" AcceptsReturn="False" Margin="4,16,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <TextBox x:Uid="FeedbackBox" Width="312" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
                 </StackPanel>
             </ContentDialog>
         </Grid>

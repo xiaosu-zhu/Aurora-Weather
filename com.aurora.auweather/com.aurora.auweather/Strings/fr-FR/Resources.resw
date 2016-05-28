@@ -93,11 +93,8 @@
   <data name="DynamicText.Text" xml:space="preserve">
     <value>Météo dynamique</value>
   </data>
-  <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Avertissement en cas de catastrophe météorologique</value>
-  </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Météo quotidienne</value>
+    <value>Alertes météo</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Fonctionnalités expérimentales</value>
@@ -1021,10 +1018,8 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Vous pouvez personnaliser la couleur d'accentuation maintenant (uniquement lorsque le paramètre de thème est « Système de suivi »)
-· Ajout d'animation rafraîchissement
-· Vous pouvez personnaliser la disposition maintenant
-· Page de détails amélioré</value>
+    <value>Le fournisseur de données HeWeather est instable récemment, vous pouvez basculer temporairement aux autres fournisseurs de données ***
+· Toasts d’alarme météo améliorée</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1048,9 +1043,20 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16055
-· Vous pouvez personnaliser la couleur d'accentuation maintenant (uniquement lorsque le paramètre de thème est « Système de suivi »)
-· Ajout d'animation rafraîchissement
+    <value>1.6.16054
+· Améliorée d’alarme météo Toaste
+
+1.6.16050
+· Maintenant vous pouvez choisir des carreaux translucides
+· Réglage de la mise en page
+
+1.5.16059
+de tuiles · Correction de problèmes dans les paramètres de la page
+· Essayez de définir BG actuel comme lockscreen wallpaper
+
+1.5.16055
+· Vous pouvez personnaliser la couleur d’accentuation maintenant (uniquement lorsque le paramètre de thème est « Système de suivi »)
+· Ajout d’animation rafraîchissement
 · Vous pouvez personnaliser la disposition maintenant
 · Détails page améliorée
 
@@ -1064,19 +1070,19 @@
 · Détails page ajoutée
 
 1.5.16045
-· Raccourcir l'intervalle d'actualisation automatique en arrière-plan
-· Amélioration de l'interface utilisateur et la disposition
+· Raccourcir l’intervalle d’actualisation automatique en arrière-plan
+· Amélioration de l’interface utilisateur et la disposition
 · Présentation de la tuile sera actualisée dans la prochaine version
 
 1.5.16040
 · Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
 · « Weather Underground » maintenant disponible ! 
-· (mai) Correction d'une défaillance catastrophique
-· (mai) Fixe un problème se produit sur les périphériques mobiles qui n'affichent pas les notifications de lockscreen
+· (mai) Correction d’une défaillance catastrophique
+· (mai) Fixe un problème se produit sur les périphériques mobiles qui n’affichent pas les notifications de lockscreen
 
 1.4.16047 :
 · Interface utilisateur tuning
-· Petite corrigé d'un bug
+· Petite corrigé d’un bug
  
 1.4.16046 :
 · Journal de mise à jour ajoutée
@@ -1280,5 +1286,71 @@ demain: {4}, {5}.</value>
   </data>
   <data name="DonateOption5.Text" xml:space="preserve">
     <value>· Personnaliser la mise en page</value>
+  </data>
+  <data name="SetWallPaperText.Text" xml:space="preserve">
+    <value>Auto la valeur actuelle BG comme fond d’écran du lockscreen</value>
+  </data>
+  <data name="SetWallPaperFalseText.Text" xml:space="preserve">
+    <value>Expérimental et ne peut pas prendre effet</value>
+  </data>
+  <data name="TransparentTileText.Text" xml:space="preserve">
+    <value>Activez la tuile translucide</value>
+  </data>
+  <data name="TransparentTileFalseText.Text" xml:space="preserve">
+    <value>Pas activé sur la plate-forme de bureau</value>
+  </data>
+  <data name="SunRise" xml:space="preserve">
+    <value>Lever du soleil</value>
+  </data>
+  <data name="SunSet" xml:space="preserve">
+    <value>Coucher du soleil</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lieu</value>
+  </data>
+  <data name="UtcOffset" xml:space="preserve">
+    <value>Décalage UTC</value>
+  </data>
+  <data name="EnableAlarm.Content" xml:space="preserve">
+    <value>Alarme de temps violent</value>
+  </data>
+  <data name="MorningAlarm.Content" xml:space="preserve">
+    <value>Dispositif de réveil</value>
+  </data>
+  <data name="EveningAlarm.Content" xml:space="preserve">
+    <value>Alarme de soirée</value>
+  </data>
+  <data name="ToastGale" xml:space="preserve">
+    <value>sera gale demain</value>
+  </data>
+  <data name="ToastRain" xml:space="preserve">
+    <value>sera demain une pluie battante</value>
+  </data>
+  <data name="ToastThunder" xml:space="preserve">
+    <value>sera demain à tonnerre</value>
+  </data>
+  <data name="ToastHail" xml:space="preserve">
+    <value>sera demain je vous salue</value>
+  </data>
+  <data name="ToastSnow" xml:space="preserve">
+    <value>aura de fortes chutes de neige demain</value>
+  </data>
+  <data name="ToastFreeze" xml:space="preserve">
+    <value>va être la pluie verglaçante demain</value>
+  </data>
+  <data name="ToastSand" xml:space="preserve">
+    <value>sera demain sable</value>
+  </data>
+  <data name="ToastHot" xml:space="preserve">
+    <value>va faire chaud demain</value>
+  </data>
+  <data name="ToastCold" xml:space="preserve">
+    <value>sera froid demain</value>
+  </data>
+  <data name="Known" xml:space="preserve">
+    <value>Je sais</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Faire disparaître</value>
   </data>
 </root>

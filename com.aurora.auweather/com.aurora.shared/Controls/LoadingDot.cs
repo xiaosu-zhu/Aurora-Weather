@@ -118,7 +118,7 @@ namespace Com.Aurora.Shared.Controls
                     if (dot.loading.RepeatBehavior == RepeatBehavior.Forever)
                     {
                         var l = dot.loading.GetCurrentTime();
-                        await Task.Delay(TimeSpan.FromSeconds(2.88) - l);
+                        await Task.Delay(l.Milliseconds < 2.88 ? (TimeSpan.FromSeconds(2.88) - l) : TimeSpan.FromMilliseconds(0));
                         dot.loading.RepeatBehavior = new RepeatBehavior(0);
                     }
                     else

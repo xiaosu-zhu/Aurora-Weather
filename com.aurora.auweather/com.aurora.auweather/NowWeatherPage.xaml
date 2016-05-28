@@ -321,43 +321,43 @@
                     </PointAnimation.EasingFunction>
                 </PointAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourlyTemp0" Storyboard.TargetProperty="Opacity" 
-                                 To="1" EnableDependentAnimation="True">
+                                 To="1" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid0" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.08" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.08" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid1" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.16" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.16" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid2" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.24" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.24" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid3" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.32" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.32" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid4" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.4" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.4" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="HourGrid5" Storyboard.TargetProperty="Opacity" 
-                                 To="1" BeginTime="0:0:0.48" EnableDependentAnimation="True">
+                                 To="1" BeginTime="0:0:0.48" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -399,43 +399,43 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TitleAniTrans" Storyboard.TargetProperty="Y" 
-                                 To="0" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="ConditionAniTrans" Storyboard.TargetProperty="Y" 
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="ConditionLowAniTrans" Storyboard.TargetProperty="Y" 
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempAniTrans" Storyboard.TargetProperty="Y"
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="TempDegAniTrans" Storyboard.TargetProperty="Y"
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowHAniTrans" Storyboard.TargetProperty="Y"
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="NowLAniTrans" Storyboard.TargetProperty="Y"
-                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                                 To="0" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -461,42 +461,42 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Bind Context.IsNowPanelLow,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" />
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="CurrentCity" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="AlarmButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1.6" To="1" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="AlarmButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1.6" To="1" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="NowCondition" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="NowConditionLow" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="NowConditionLow" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.16" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="NowTemp" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="NowTemp" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="TempDeg" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="HighLowPanel" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:0.24" Duration="0:0:1.6" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -555,21 +555,21 @@
                 <FadeInThemeAnimation Storyboard.TargetName="UpdateIndicator" />
             </Storyboard>
             <Storyboard x:Name="DetailTempratureIn">
-                <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{x:Bind Context.BodyTemprature,Mode=OneWay, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="ClipTransAni" Storyboard.TargetProperty="Y" To="{x:Bind Context.BodyTemprature,Mode=OneWay, Converter={StaticResource BodyTempratureAniConverter}}" EnableDependentAnimation="False" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="WaterDropTransAni">
-                <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Humidity,Mode=OneWay, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="WaterDropTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Humidity,Mode=OneWay, Converter={StaticResource HumidityAniConverter}}" EnableDependentAnimation="False" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="PcpnTransAni">
-                <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Precipitation,Mode=OneWay, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="PcpnTrans" Storyboard.TargetProperty="Y" To="{x:Bind Context.Precipitation,Mode=OneWay, Converter={StaticResource PcpnTransAniConverter}}" EnableDependentAnimation="False" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -610,49 +610,49 @@
                 </ColorAnimation>
             </Storyboard>
             <Storyboard x:Name="PressureTransAni">
-                <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{x:Bind Context.Pressure,Mode=OneWay, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="PressureTrans" Storyboard.TargetProperty="Angle" To="{x:Bind Context.Pressure,Mode=OneWay, Converter={StaticResource PressureAniConverter}}" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
             <Storyboard x:Name="VisTransAni">
-                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse0" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.16" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse1" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.32" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse2" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.48" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleX" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="vissubellipse3" Storyboard.TargetProperty="ScaleY" From="0" To="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityAniConverter}}" Duration="0:0:0.8" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -712,7 +712,7 @@
                 <FadeOutThemeAnimation Storyboard.TargetName="NowConditionLow" />
                 <FadeOutThemeAnimation Storyboard.TargetName="NowTemp" />
                 <FadeOutThemeAnimation Storyboard.TargetName="TempDeg" />
-                <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True" BeginTime="0:0:1.8" >
+                <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="False" BeginTime="0:0:1.8" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -769,7 +769,7 @@
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Visibility" >
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.64" EnableDependentAnimation="True" >
+                <DoubleAnimation Storyboard.TargetName="ImmersiveDetailsPanel" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.64" EnableDependentAnimation="False" >
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -813,7 +813,7 @@
                 <FadeInThemeAnimation Storyboard.TargetName="ImmersiveRefreshButton" />
             </Storyboard>
             <Storyboard x:Name="RefreshCompleteAni">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UpdateIndicator" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="False">
                     <DiscreteDoubleKeyFrame KeyTime="0" Value="1" >
                     </DiscreteDoubleKeyFrame>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.64" Value="0" >
@@ -833,6 +833,21 @@
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.64" Value="{x:Bind Context.UpdateTime,Mode=OneWay,Converter={StaticResource RefreshCompleteConverter}}" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
+            <Storyboard x:Name="AQIDetailButtonIn">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AQIDetailButton" Storyboard.TargetProperty="Background">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlTranslucentHighBrush}" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="AQIDetailButtonNormal">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AQIDetailButton" Storyboard.TargetProperty="Background">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlAltHighBrush}" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="AQIDetailButtonPress">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AQIDetailButton" Storyboard.TargetProperty="Background">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemTranslucentAltHighBrush}" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
         </Grid.Resources>
         <ScrollViewer x:Name="LargeModeSubPanel" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Grid.Column="1" Visibility="Collapsed">
 
@@ -844,7 +859,7 @@
                     <EntranceThemeTransition/>
                 </TransitionCollection>
             </RelativePanel.ChildrenTransitions>
-            <CustomControls:WeatherCanvas x:Name="WeatherCanvas" EnableDynamic="{x:Bind Context.EnableDynamic,Mode=OneWay}"
+            <CustomControls:WeatherCanvas x:Name="WeatherCanvas" EnableDynamic="{x:Bind Context.EnableDynamic,Mode=OneWay}" EnableBGBlur="{x:Bind Context.AlwaysBlur,Mode=OneWay}"
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
@@ -914,7 +929,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock x:Uid="BlurBGText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ToggleSwitch x:Name="BlurSwitch" IsOn="{x:Bind Context.AlwaysBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                             </StackPanel>
                             <Button Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource PivotTitleContentControlStyle}" Background="{ThemeResource SystemControlTranslucentHighBrush}" >
                                 <Button.Content>
@@ -998,7 +1013,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <TextBlock x:Uid="BlurBGText" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <ToggleSwitch IsOn="{x:Bind Path=WeatherCanvas.EnableBGBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ToggleSwitch IsOn="{x:Bind Context.AlwaysBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>
                         </Flyout>
@@ -1019,7 +1034,7 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <controls:LoadingDot x:Name="LoadingDot" Foreground="White" IsActive="True" DotFinish="LoadingDot_DotFinish" DotHeight="20" DotWidth="20" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+            <controls:LoadingDot x:Name="LoadingDot" Foreground="White" IsActive="True" DotFinish="LoadingDot_DotFinish" DotHeight="16" DotWidth="16" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
         </RelativePanel>
 
         <ptr:PulltoRefresh x:Name="ScrollableRoot" ForceEnabled="{x:Bind Context.EnablePulltoRefresh, Mode=OneWay}" RefreshStart="ScrollableRoot_RefreshStart" Padding="0,128,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
@@ -1224,7 +1239,7 @@
                                            Text="{x:Bind Context.Forecast4L,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Margin="0,0,0,12" Style="{ThemeResource NormalTextBlockStyle}" />
                         </RelativePanel>
                     </Grid>
-                    <RelativePanel x:Name="AQIPanel" Visibility="{x:Bind Context.AQIHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" RelativePanel.Below="ForecastPanel" Margin="24,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <RelativePanel x:Name="AQIPanel" Visibility="{x:Bind Context.AQIHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" RelativePanel.Below="ForecastPanel" Margin="24,0,0,24" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Ellipse Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="2" Height="72" Width="72" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                         <Ellipse x:Name="AQICircle" StrokeThickness="2" Height="72" Width="72" StrokeDashArray="{x:Bind AqiCircleStorkeLength, Converter={StaticResource AqiCircleAniConverter},Mode=OneWay}" RenderTransformOrigin="0.5,0.5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
                             <Ellipse.RenderTransform>
@@ -1238,61 +1253,78 @@
                             <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Context.Aqi,Mode=OneWay,Converter={StaticResource AQIQualityConverter}}" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Center" />
                             <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Context.Aqi,Mode=OneWay,Converter={StaticResource AQIValueConverter}}" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                         </Grid>
-                        <Grid x:Name="AQIDetailGrid" RelativePanel.RightOf="AQICircle" Margin="12,0,20,0" RelativePanel.Above="AQIDetailButton" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid HorizontalAlignment="Stretch" >
-                                <TextBlock Text="PM2.5" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM25Converter}}" />
-                                <ProgressBar x:Name="PM25Bar" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
-
+                        <StackPanel x:Name="AQIDetailGrid" RelativePanel.RightOf="AQICircle" Margin="12,0,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="PM2.5" Margin="0" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <ProgressBar Grid.Column="1" x:Name="PM25Bar" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
+                                <TextBlock Grid.Column="2" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM25Converter}}" />
                             </Grid>
-                            <Grid HorizontalAlignment="Stretch" Grid.Row="1">
-                                <TextBlock Text="PM10" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <TextBlock Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM10Converter}}" />
-                                <ProgressBar x:Name="PM10Bar" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
-
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="PM10" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Margin="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource PM10Converter}}" />
+                                <ProgressBar x:Name="PM10Bar" Grid.Column="1" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
                             </Grid>
-                            <Grid HorizontalAlignment="Stretch" Grid.Row="2">
-                                <TextBlock Text="SO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="SO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <Run Typography.Variants="Subscript" Text="2" />
                                 </TextBlock>
-                                <TextBlock x:Name="SO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource SO2Converter}}" />
-                                <ProgressBar x:Name="SO2Bar" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
-
+                                <TextBlock x:Name="SO2Text" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource SO2Converter}}" />
+                                <ProgressBar x:Name="SO2Bar" Grid.Column="1" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
                             </Grid>
-                            <Grid x:Name="COGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="3">
-                                <TextBlock Text="CO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <Grid x:Name="COGrid" Visibility="Collapsed" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="CO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 </TextBlock>
-                                <TextBlock x:Name="COText" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COConverter}}" />
-                                <ProgressBar x:Name="COBar" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
+                                <TextBlock x:Name="COText" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COConverter}}" />
+                                <ProgressBar x:Name="COBar" Grid.Column="1" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource COProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
                             </Grid>
-                            <Grid x:Name="NO2Grid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="4">
-                                <TextBlock Text="NO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <Grid x:Name="NO2Grid" Visibility="Collapsed" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="NO" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 <Run Typography.Variants="Subscript" Text="2" />
                                 </TextBlock>
-                                <TextBlock x:Name="NO2Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2Converter}}" />
-                                <ProgressBar x:Name="NO2Bar" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2ProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
+                                <TextBlock x:Name="NO2Text" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2Converter}}" />
+                                <ProgressBar x:Name="NO2Bar" Grid.Column="1" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource NO2ProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
                             </Grid>
-                            <Grid x:Name="O3Grid" Visibility="Collapsed" HorizontalAlignment="Stretch" Grid.Row="5">
-                                <TextBlock Text="O" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <Grid x:Name="O3Grid" Visibility="Collapsed" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="56" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="O" Style="{ThemeResource NormalTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 <Run Typography.Variants="Subscript" Text="3" />
                                 </TextBlock>
-                                <TextBlock x:Name="O3Text" Margin="52,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3Converter}}" />
-                                <ProgressBar x:Name="O3Bar" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3ProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlTranslucentHighBrush}" Margin="96,0,16,0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
+                                <TextBlock x:Name="O3Text" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3Converter}}" />
+                                <ProgressBar x:Name="O3Bar" Grid.Column="1" Value="{x:Bind Context.Aqi,Mode=OneWay, Converter={StaticResource O3ProgressConverter}}" IsIndeterminate="False" Background="{ThemeResource SystemControlAltHighBrush}" Margin="12" Height="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Bind AQICircle.Stroke,Mode=OneWay}" />
                             </Grid>
+                        </StackPanel>
+                        <Grid x:Name="AQIDetailButton" Margin="8" Background="{ThemeResource SystemControlAltHighBrush}" PointerReleased="AQIDetailButton_PointerReleased" PointerPressed="AQIDetailButton_PointerPressed" PointerEntered="AQIDetailButton_PointerEntered" PointerExited="AQIDetailButton_PointerExited" RelativePanel.AlignHorizontalCenterWith="AQIDetailGrid" RelativePanel.AlignLeftWith="AQIDetailGrid" RelativePanel.AlignRightWith="AQIDetailGrid" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="AQIDetailGrid">
+                            <TextBlock x:Uid="DetailsPanelText" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" Margin="8,2,8,2"/>
                         </Grid>
-                        <Button x:Name="AQIDetailButton" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{ThemeResource TextBlockButtonStyle}" Click="AQIDetailButton_Click" RelativePanel.RightOf="AQICircle" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="48" >
-                            <Button.Content>
-                                <SymbolIcon HorizontalAlignment="Center" VerticalAlignment="Center" Symbol="More" />
-                            </Button.Content>
-                        </Button>
                     </RelativePanel>
                     <Grid x:Name="DetailsPanel" SizeChanged="Grid_SizeChanged" RelativePanel.Below="AQIPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Grid.ChildrenTransitions>

@@ -90,9 +90,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             {
                 stopUpdateTimer.Cancel();
             }
-            if (Canvas == null)
-                return;
-            Canvas.Paused = false;
+            if (Canvas != null)
+                Canvas.Paused = false;
         }
 
         private void stopUpdate()
@@ -104,7 +103,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             if (!EnableDynamic)
                 stopUpdateTimer = ThreadPoolTimer.CreateTimer((x) =>
                 {
-                    Canvas.Paused = true;
+                    if (Canvas != null)
+                        Canvas.Paused = true;
                 }, TimeSpan.FromMilliseconds(2100));
         }
 
@@ -166,82 +166,75 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             if (Canvas == null)
                 return;
-            try
+            var size = Canvas.Size.ToVector2();
+            var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
+            if ((!isRain) && isNight)
             {
-                backBlur.update(Canvas.Size.ToVector2());
-                var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
-                if (isRain || isThunder)
+                var k = Canvas.Size.Height * Canvas.Size.Width;
+                if (star.ActiveParticles.Count < 1e-4 * k)
                 {
-                    if (rainLevel != RainLevel.shower)
+                    CreateStar(size);
+                }
+            }
+            star.Update(elapsedTime);
+            if (isThunder || isHaze || isFog || isCloudy)
+            {
+                timeToCreate -= elapsedTime;
+                CreateSmoke(size);
+                if (timeToCreate < 0)
+                {
+                    timeToCreate = Tools.RandomBetween(5, 7);
+                    if (isThunder)
                     {
-                        CreateRain();
+                        thunderGen.Generate(size);
                     }
-                    else
+                }
+            }
+            smoke.Update(elapsedTime, size);
+            thunderGen.Update(elapsedTime, size);
+
+
+            backBlur.update(size);
+            if (isRain || isThunder)
+            {
+                if (rainLevel != RainLevel.shower)
+                {
+                    CreateRain(size);
+                }
+                else
+                {
+                    timeToCreateRain -= elapsedTime;
+                    if (timeToCreateRain < 0)
                     {
-                        timeToCreateRain -= elapsedTime;
-                        if (timeToCreateRain < 0)
+                        if (timeToCreateRain > -Tools.RandomBetween(7, 15))
+                            CreateRain(size);
+                        else
                         {
-                            if (timeToCreateRain > -Tools.RandomBetween(7, 15))
-                                CreateRain();
-                            else
-                            {
-                                timeToCreateRain = Tools.RandomBetween(2, 15);
-                            }
+                            timeToCreateRain = Tools.RandomBetween(2, 15);
                         }
                     }
                 }
-
-
-                if ((!isRain) && isNight)
-                {
-                    var k = Canvas.Size.Height * Canvas.Size.Width;
-                    if (star.ActiveParticles.Count < 1e-4 * k)
-                    {
-                        CreateStar();
-                    }
-                }
-
-                if (isThunder || isHaze || isFog || isCloudy)
-                {
-                    timeToCreate -= elapsedTime;
-                    CreateSmoke();
-                    if (timeToCreate < 0)
-                    {
-                        timeToCreate = Tools.RandomBetween(5, 7);
-                        if (isThunder)
-                        {
-                            thunderGen.Generate(Canvas.Size.ToVector2());
-                        }
-                    }
-                }
-                rain.Update(elapsedTime, Canvas.Size.ToVector2());
-                star.Update(elapsedTime);
-                smoke.Update(elapsedTime, Canvas.Size.ToVector2());
-                thunderGen.Update(elapsedTime, Canvas.Size.ToVector2());
-                if (isSunny)
-                    sun.Update();
             }
-            catch (Exception)
-            {
+            rain.Update(elapsedTime, size);
 
-            }
+            if (isSunny)
+                sun.Update();
+
         }
 
-        private void CreateSmoke()
+        private void CreateSmoke(Vector2 size)
         {
 
-            smoke.AddParticles(Canvas.Size.ToVector2());
+            smoke.AddParticles(size);
         }
 
-        private void CreateRain()
+        private void CreateRain(Vector2 size)
         {
-            Vector2 size = Canvas.Size.ToVector2();
             rain.AddRainDrop(size);
         }
 
-        private void CreateStar()
+        private void CreateStar(Vector2 size)
         {
-            Vector2 size = Canvas.Size.ToVector2();
             var where = new Vector2(Tools.RandomBetween(0, size.X), Tools.RandomBetween(0, size.Y * 0.65f));
             star.AddParticles(where);
         }
@@ -422,6 +415,8 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
                     await smoke.LoadSurfaceAsync(Canvas, 2);
@@ -435,6 +430,8 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
                     await smoke.LoadSurfaceAsync(Canvas, 2);
@@ -449,6 +446,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = true;
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
                     await rain.LoadSurfaceAsync(Canvas);
@@ -475,6 +474,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             isRain = true;
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
                     await rain.LoadSurfaceAsync(Canvas);
@@ -506,6 +507,8 @@ namespace Com.Aurora.AuWeather.CustomControls
         {
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
                 {
                     await rain.LoadSurfaceAsync(Canvas);
@@ -520,6 +523,8 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void SetShower()
         {
+            if (Canvas == null)
+                return;
             if (EnableDynamic)
             {
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
@@ -535,6 +540,8 @@ namespace Com.Aurora.AuWeather.CustomControls
 
         private void SetCloudy(byte v)
         {
+            if (Canvas == null)
+                return;
             if (EnableDynamic)
             {
                 var task = Canvas.RunOnGameLoopThreadAsync(async () =>
@@ -565,6 +572,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             SetSunnyBG();
             if (EnableDynamic)
             {
+                if (Canvas == null)
+                    return;
                 if (isSunny)
                 {
                     var task = Canvas.RunOnGameLoopThreadAsync(async () =>
@@ -667,18 +676,21 @@ namespace Com.Aurora.AuWeather.CustomControls
             continueUpdate();
             if (uri == null)
             {
-                backBlur.ImmersiveOut();
+                backBlur.ImmersiveOut(false);
                 return;
             }
-            var task = Canvas.RunOnGameLoopThreadAsync(async () =>
-                        {
-                            using (var stream = await FileIOHelper.ReadRandomAccessStreamByUriAsync(uri))
-                            {
-                                await backBlur.LoadSurfaceAsync(Canvas, stream);
-                            }
-                            backBlur.ImmersiveIn();
-
-                        });
+            if (Canvas != null)
+            {
+                var task = Canvas.RunOnGameLoopThreadAsync(async () =>
+                {
+                    using (var stream = await FileIOHelper.ReadRandomAccessStreamByUriAsync(uri))
+                    {
+                        if (Canvas != null)
+                            await backBlur.LoadSurfaceAsync(Canvas, stream);
+                    }
+                    backBlur.ImmersiveIn();
+                });
+            }
             if (!EnableBGBlur)
             {
                 stopUpdate();
@@ -689,12 +701,14 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
         }
 
-        internal void ImmersiveOut()
+        internal void ImmersiveOut(bool fadeOut)
         {
             continueUpdate();
+            if (Canvas == null)
+                return;
             var task = Canvas.RunOnGameLoopThreadAsync(() =>
             {
-                backBlur.ImmersiveOut();
+                backBlur.ImmersiveOut(fadeOut);
 
             });
             if (!EnableBGBlur)
@@ -703,6 +717,8 @@ namespace Com.Aurora.AuWeather.CustomControls
             }
             if (EnableDynamic && ((condition == WeatherCondition.cloudy) || (condition == WeatherCondition.few_clouds) || (condition == WeatherCondition.partly_cloudy) || (condition == WeatherCondition.overcast)))
             {
+                if (Canvas == null)
+                    return;
                 var t = Canvas.RunOnGameLoopThreadAsync(async () =>
                  {
                      await Task.Delay(1280);

@@ -19,7 +19,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
 
         public override string ToString()
         {
-            return this.City;
+             return Province.IsNullorEmpty() ? City : (Province + " - " + City);
         }
 
         public string City

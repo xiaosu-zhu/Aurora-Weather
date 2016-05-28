@@ -538,6 +538,10 @@
     <Content Include="Assets\Tile\Hot.scale-140.png" />
     <Content Include="Assets\Tile\Hot.scale-180.png" />
     <Content Include="Assets\Tile\Hot.scale-240.png" />
+    <Content Include="Assets\Tile\Moderate.scale-100.png" />
+    <Content Include="Assets\Tile\Moderate.scale-140.png" />
+    <Content Include="Assets\Tile\Moderate.scale-180.png" />
+    <Content Include="Assets\Tile\Moderate.scale-240.png" />
     <Content Include="Assets\Tile\Moon Cloud Rain.scale-100.png" />
     <Content Include="Assets\Tile\Moon Cloud Rain.scale-140.png" />
     <Content Include="Assets\Tile\Moon Cloud Rain.scale-180.png" />

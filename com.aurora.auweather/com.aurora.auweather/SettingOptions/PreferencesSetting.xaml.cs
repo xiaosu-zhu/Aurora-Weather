@@ -125,7 +125,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
                        NeedDonation.Visibility = Visibility.Visible;
                        Context.EnableEveryDay = false;
                        Context.EnableAlarm = false;
-                       Context.NowPanelHeight = 640;
+                       Context.EnableEvening = false;
+                       Context.EnableMorning = false;
+                       Context.NowPanelHeight = 320;
                        Context.AQIHide = false;
                        Context.DetailsHide = false;
                        Context.ForecastHide = false;
@@ -135,10 +137,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
                    CaiyunRadio.Checked += CaiyunRadio_Checked;
                    HeWeatherRadio.Checked += HeWeatherRadio_Checked;
                    WundergroundRadio.Checked += WundergroundRadio_Checked;
-                   if ((bool)CaiyunRadio.IsChecked || (bool)WundergroundRadio.IsChecked)
-                   {
-                       DisableAlarm();
-                   }
                }));
         }
 
@@ -146,14 +144,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             ApplicationLanguages.PrimaryLanguageOverride = (sender as ComboBox).SelectedItem as string;
             LanguageChangeText.Visibility = Visibility.Visible;
-        }
-
-        private void DisableAlarm()
-        {
-            //EnableAlarm.Toggled -= Bool_Toggled;
-            EnableAlarm.IsOn = false;
-            EnableAlarm.IsEnabled = false;
-            //EnableAlarm.Toggled += Bool_Toggled;
         }
 
         private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -245,23 +235,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private async void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.Caiyun);
-            DisableAlarm();
         }
 
         private async void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.HeWeather);
-            if (license.IsPurchased)
-            {
-                EnableAlarm.IsEnabled = true;
-                EnableAlarm.IsOn = Context.EnableAlarm;
-            }
         }
 
         private async void WundergroundRadio_Checked(object sender, RoutedEventArgs e)
         {
             await Context.SetSource(DataSource.Wunderground);
-            DisableAlarm();
         }
 
         private void ColorPicker_ColorPicked(object sender, ColorPickedEventArgs e)

@@ -404,6 +404,16 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+        internal void ShowAssets(CurrentImmersiveList currentImmersiveList)
+        {
+            if (currentImmersiveList == null)
+                return;
+            foreach (var item in currentImmersiveList)
+            {
+                item.State = ImmersiveBackgroundState.Assets;
+            }
+        }
+
         private void OnSetLocalComplete(string title)
         {
             this.SetLocalComplete?.Invoke(this, new FetchDataCompleteEventArgs(title));
@@ -419,6 +429,16 @@ namespace Com.Aurora.AuWeather.ViewModels
             else
             {
                 localFile = await FileIOHelper.GetFilebyUriAsync(uri);
+            }
+        }
+
+        internal void HideAssets(CurrentImmersiveList currentImmersiveList)
+        {
+            if (currentImmersiveList == null)
+                return;
+            foreach (var item in currentImmersiveList)
+            {
+                item.State = ImmersiveBackgroundState.Local;
             }
         }
 
@@ -470,33 +490,41 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal void DeleteLocal(int title)
+        internal async Task DeleteLocal(int title)
         {
             switch (title)
             {
                 case 0:
                     SunnyState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Sunny");
                     break;
                 case 1:
                     StarryState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Starry");
                     break;
                 case 2:
                     CloudyState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Cloudy");
                     break;
                 case 3:
                     OvercastState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Overcast");
                     break;
                 case 4:
                     RainnyState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Rainny");
                     break;
                 case 5:
                     SnowyState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Snowy");
                     break;
                 case 6:
                     FoggyState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Foggy");
                     break;
                 case 7:
                     HazeState = ImmersiveBackgroundState.Assets;
+                    await immersive.RemoveLocal("Haze");
                     break;
                 default:
                     break;
@@ -539,12 +567,26 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
     }
 
-    public class BackgroundSelector
+    public class BackgroundSelector : ViewModelBase
     {
+        private ImmersiveBackgroundState i;
+
         public BackgroundSelector(Uri path, string title)
         {
             Path = path;
             Title = "Photo by " + title;
+        }
+
+        public ImmersiveBackgroundState State
+        {
+            get
+            {
+                return i;
+            }
+            set
+            {
+                SetProperty(ref i, value);
+            }
         }
 
         public Uri Path { get; set; }

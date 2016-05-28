@@ -15,6 +15,7 @@ using NotificationsExtensions.Toasts;
 using Windows.ApplicationModel.Resources;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
 using Windows.Data.Xml.Dom;
+using Com.Aurora.Shared.Extensions;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -24,7 +25,7 @@ namespace Com.Aurora.AuWeather.Tile
         {
             var ctosConverter = new ConditiontoTextConverter();
             var ctoiConverter = new ConditiontoImageConverter();
-
+            var loader = new ResourceLoader();
             #region
             TileContent NowContent = new TileContent()
             {
@@ -40,19 +41,19 @@ namespace Com.Aurora.AuWeather.Tile
                             {
                                 Source = new TileImageSource(uri.ToString()),
                             },
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileText(),
                                 new TileText()
-            {
-                Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
-                Align = TileTextAlign.Center
-            },
+                                {
+                                    Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
+                                    Align = TileTextAlign.Center
+                                },
 
 
             new TileText()
@@ -77,19 +78,13 @@ namespace Com.Aurora.AuWeather.Tile
                         Branding = TileBranding.NameAndLogo,
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                                        {
-                                new TileText()
-                                                {
-                                                    Text = currentCity.City,
-                                                    Align = TileTextAlign.Auto,
-                                                    Style = TileTextStyle.Caption
-                                                },
                                 new TileGroup()
                                 {
                                     Children=
@@ -99,18 +94,41 @@ namespace Com.Aurora.AuWeather.Tile
                                             Weight = 1,
                                             Children =
                                             {
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex].Date.ToString("ddd"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
+                                                },
                                                 new TileImage()
                                                 {
                                                     Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(model.NowWeather.Now.Condition,null,isNight,null))
-                                                }
+                                                },
+                                                new TileText()
+                                                {
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
+                                                },
                                             }
                                         },
                                         new TileSubgroup()
                                         {
-                                            Weight = 3,
+                                            Weight = 2,
                                             TextStacking = TileTextStacking.Center,
                                             Children =
                                             {
+                                                new TileText()
+                                                {
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Center
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
+                                                },
+
                                                 new TileText()
                                                 {
                                                     Text = model.DailyForecast[todayIndex].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
@@ -119,7 +137,7 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
+                                                    Text = model.DailyForecast[todayIndex].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
                                                     Style = TileTextStyle.CaptionSubtle,
                                                     Align = TileTextAlign.Center
                                                 }
@@ -127,10 +145,45 @@ namespace Com.Aurora.AuWeather.Tile
                                         },
                                         new TileSubgroup()
                                         {
-                                            Weight = 3,
+                                            Weight = 1,
+                                            Children =
+                                            {
+                                                new TileText()
+                                                {
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = loader.GetString("Scale"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = loader.GetString("Hum"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                            }
+                                        },
+                                        new TileSubgroup()
+                                        {
+                                            Weight = 2,
                                             TextStacking = TileTextStacking.Center,
                                             Children =
                                             {
+                                                new TileText()
+                                                {
+
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Left
+                                                },
                                                 new TileText()
                                                 {
                                                     Text = model.NowWeather.Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
@@ -140,12 +193,18 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
+
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Left
+                                                },
+                                                new TileText()
+                                                {
                                                     Text = model.DailyForecast[todayIndex].Humidity.ToString() + "%",
                                                     Align = TileTextAlign.Left,
                                                     Style = TileTextStyle.Caption
-                                                }
+                                                },
                                             }
-                                        }
+                                        },
                                     }
                                 }
                                        },
@@ -159,24 +218,20 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
-                                new TileText()
-                                {
-
-                                },
                                             new TileGroup()
                                             {
                                              Children =
                                              {
                                                  new TileSubgroup()
                                         {
-                                            Weight = 1,
+                                            Weight = 30,
                                             Children =
                                             {
                                                 new TileImage()
@@ -187,66 +242,79 @@ namespace Com.Aurora.AuWeather.Tile
                                         },
                                         new TileSubgroup()
                                         {
-                                            Weight = 3,
                                             TextStacking = TileTextStacking.Center,
                                             Children =
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                                    Align = TileTextAlign.Center,
+                                                    Text = model.DailyForecast[todayIndex].Date.ToString("ddd"),
+                                                    Style = TileTextStyle.Base
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString() + '~' + model.DailyForecast[todayIndex].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
+                                                    Align = TileTextAlign.Auto,
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
-                                                    Style = TileTextStyle.CaptionSubtle,
-                                                    Align = TileTextAlign.Center
+                                                     Text = glanceFull,
+                                                     Align = TileTextAlign.Auto,
+                                                     Style = TileTextStyle.CaptionSubtle,
+                                                     Wrap = true
                                                 }
                                             }
                                         },
-                                        new TileSubgroup()
-                                        {
-                                            Weight = 2,
-                                            TextStacking = TileTextStacking.Center,
-                                            Children =
-                                            {
-                                                new TileText()
-                                                {
-                                                    Text = model.NowWeather.Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
-                                                    model.NowWeather.Wind.Speed.DanWei(settings.Preferences.SpeedParameter),
-                                                    Align = TileTextAlign.Left,
-                                                    Style = TileTextStyle.Caption
-                                                },
-                                                new TileText()
-                                                {
-                                                    Text = model.DailyForecast[todayIndex].Humidity.ToString() + "%",
-                                                    Align = TileTextAlign.Left,
-                                                    Style = TileTextStyle.Caption
-                                                }
-                                            }
-                                        }
                                             },
                                            },
                                             new TileText(),
                                             new TileGroup()
                                             {
-                                                Children =
+                                             Children =
+                                             {
+                                                 new TileSubgroup()
+                                        {
+                                            Weight = 30,
+                                            Children =
+                                            {
+                                                new TileImage()
                                                 {
-                                                    new TileSubgroup()
-                                                    {
-                                                        TextStacking = TileTextStacking.Bottom,
-                                                        Children =
-                                                        {
-                                      new TileText()
-                                      {
-                                         Text = glanceFull,
-                                         Align = TileTextAlign.Auto,
-                                         Style = TileTextStyle.CaptionSubtle,
-                                         Wrap = true
-                                      }
-                                                        }
-                                                    }
+                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(model.NowWeather.Now.Condition,null,isNight,null))
+                                                },
+                                            }
+                                        },
+                                        new TileSubgroup()
+                                        {
+                                            TextStacking = TileTextStacking.Center,
+                                            Children =
+                                            {
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
+                                                    Style = TileTextStyle.Base
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex + 1].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString() + '~' + model.DailyForecast[todayIndex + 1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
+                                                    Align = TileTextAlign.Auto,
+                                                    Style = TileTextStyle.Caption
+                                                },
+                                                new TileText()
+                                                {
+                                                     Text = loader.GetString("Scale")+": "+model.DailyForecast[todayIndex+1].Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
+                                                    model.DailyForecast[todayIndex+1].Wind.Speed.DanWei(settings.Preferences.SpeedParameter),
+                                                     Align = TileTextAlign.Auto,
+                                                     Style = TileTextStyle.CaptionSubtle,
+                                                },
+                                                new TileText()
+                                                {
+                                                     Text = loader.GetString("Hum")+": "+model.DailyForecast[todayIndex+1].Humidity.ToString() + "%",
+                                                     Align = TileTextAlign.Auto,
+                                                     Style = TileTextStyle.CaptionSubtle,
+                                                     Wrap = true
+                                                }
+                                            }
+                                        },
                                                 }
                                             }
 
@@ -388,11 +456,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileText(),
@@ -573,11 +641,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileText()
@@ -609,11 +677,11 @@ namespace Com.Aurora.AuWeather.Tile
 
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileGroup()
@@ -729,13 +797,149 @@ namespace Com.Aurora.AuWeather.Tile
             return forecaset;
         }
 
+
+        public static string[] CalculateWeatherAlarm(HeWeatherModel model, CitySettingsModel currentCityModel, SettingsModel settings, DateTime desiredDateTimeinThatRegion)
+        {
+            var l = new ResourceLoader();
+            var todayIndex = Array.FindIndex(model.DailyForecast, x =>
+            {
+                return x.Date.Date == desiredDateTimeinThatRegion.Date;
+            });
+            var hourIndex = Array.FindIndex(model.HourlyForecast, x =>
+            {
+                return (x.DateTime - desiredDateTimeinThatRegion).TotalSeconds > 0;
+            });
+            if (todayIndex < 0)
+            {
+                todayIndex = 0;
+            }
+            if (hourIndex < 0)
+            {
+                hourIndex = 0;
+            }
+            List<string> str = new List<string>();
+            var ctos = new ConditiontoTextConverter();
+            switch (model.DailyForecast[todayIndex + 1].Condition.DayCond)
+            {
+                case WeatherCondition.gale:
+                case WeatherCondition.strong_gale:
+                case WeatherCondition.storm:
+                case WeatherCondition.violent_storm:
+                case WeatherCondition.hurricane:
+                case WeatherCondition.tornado:
+                case WeatherCondition.tropical_storm:
+                    str.Add(currentCityModel.City + l.GetString("ToastGale"));
+                    break;
+                case WeatherCondition.heavy_shower_rain:
+                    str.Add(currentCityModel.City + l.GetString("ToastRain"));
+                    break;
+                case WeatherCondition.thundershower:
+                case WeatherCondition.heavy_thunderstorm:
+                    str.Add(currentCityModel.City + l.GetString("ToastThunder"));
+                    break;
+                case WeatherCondition.hail:
+                    str.Add(currentCityModel.City + l.GetString("ToastHail"));
+                    break;
+                case WeatherCondition.heavy_rain:
+                case WeatherCondition.extreme_rain:
+                case WeatherCondition.storm_rain:
+                case WeatherCondition.heavy_storm_rain:
+                case WeatherCondition.severe_storm_rain:
+                    str.Add(currentCityModel.City + l.GetString("ToastRain"));
+                    break;
+                case WeatherCondition.freezing_rain:
+                    str.Add(currentCityModel.City + l.GetString("ToastFreeze"));
+                    break;
+                case WeatherCondition.heavy_snow:
+                case WeatherCondition.snowstorm:
+                    str.Add(currentCityModel.City + l.GetString("ToastSnow"));
+                    break;
+                case WeatherCondition.volcanic_ash:
+                case WeatherCondition.duststorm:
+                case WeatherCondition.sandstorm:
+                    str.Add(currentCityModel.City + l.GetString("ToastSand"));
+                    break;
+                default:
+                    break;
+            }
+            if (str.IsNullorEmpty())
+            {
+                switch (model.DailyForecast[todayIndex + 1].Condition.NightCond)
+                {
+                    case WeatherCondition.gale:
+                    case WeatherCondition.strong_gale:
+                    case WeatherCondition.storm:
+                    case WeatherCondition.violent_storm:
+                    case WeatherCondition.hurricane:
+                    case WeatherCondition.tornado:
+                    case WeatherCondition.tropical_storm:
+                        str.Add(currentCityModel.City + l.GetString("ToastGale"));
+                        break;
+                    case WeatherCondition.heavy_shower_rain:
+                        str.Add(currentCityModel.City + l.GetString("ToastRain"));
+                        break;
+                    case WeatherCondition.thundershower:
+                    case WeatherCondition.heavy_thunderstorm:
+                        str.Add(currentCityModel.City + l.GetString("ToastThunder"));
+                        break;
+                    case WeatherCondition.hail:
+                        str.Add(currentCityModel.City + l.GetString("ToastHail"));
+                        break;
+                    case WeatherCondition.heavy_rain:
+                    case WeatherCondition.extreme_rain:
+                    case WeatherCondition.storm_rain:
+                    case WeatherCondition.heavy_storm_rain:
+                    case WeatherCondition.severe_storm_rain:
+                        str.Add(currentCityModel.City + l.GetString("ToastRain"));
+                        break;
+                    case WeatherCondition.freezing_rain:
+                        str.Add(currentCityModel.City + l.GetString("ToastFreeze"));
+                        break;
+                    case WeatherCondition.heavy_snow:
+                    case WeatherCondition.snowstorm:
+                        str.Add(currentCityModel.City + l.GetString("ToastSnow"));
+                        break;
+                    case WeatherCondition.volcanic_ash:
+                    case WeatherCondition.duststorm:
+                    case WeatherCondition.sandstorm:
+                        str.Add(currentCityModel.City + l.GetString("ToastSand"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (str.IsNullorEmpty())
+            {
+                if ((((model.DailyForecast[todayIndex + 1].LowTemp + model.DailyForecast[todayIndex + 1].HighTemp) / 2).Celsius - ((model.DailyForecast[todayIndex].LowTemp + model.DailyForecast[todayIndex].HighTemp) / 2).Celsius) > 8)
+                {
+                    str.Add(currentCityModel.City + l.GetString("ToastHot"));
+                }
+                else if ((((model.DailyForecast[todayIndex + 1].LowTemp + model.DailyForecast[todayIndex + 1].HighTemp) / 2).Celsius - ((model.DailyForecast[todayIndex].LowTemp + model.DailyForecast[todayIndex].HighTemp) / 2).Celsius) < -8)
+                {
+                    str.Add(currentCityModel.City + l.GetString("ToastCold"));
+                }
+            }
+            if (!str.IsNullorEmpty())
+            {
+                str.Add(ctos.Convert(model.DailyForecast[todayIndex + 1].Condition.DayCond, null, null, null) + "  " + model.DailyForecast[todayIndex + 1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString() + "~" + model.DailyForecast[todayIndex + 1].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString());
+            }
+            return str.ToArray();
+        }
+
         public static ToastContent CreateAlertToast(HeWeatherModel fetchresult, CitySettingsModel currentCityModel)
         {
+            var lo = new ResourceLoader();
+            var action = new ToastActionsCustom();
+            var button = new ToastButton(lo.GetString("Known"), "Today_Alert_Dismiss");
+            button.ActivationType = ToastActivationType.Background;
+            action.Buttons.Add(button);
+            action.Buttons.Add(new ToastButtonDismiss(lo.GetString("Dismiss")));
             var alarm = fetchresult.Alarms[0];
             ToastContent t = new ToastContent()
             {
                 Scenario = ToastScenario.Reminder,
                 Launch = currentCityModel.Id,
+                Actions = action,
                 Visual = new ToastVisual()
                 {
                     TitleText = new ToastText()
@@ -745,6 +949,35 @@ namespace Com.Aurora.AuWeather.Tile
                     BodyTextLine1 = new ToastText()
                     {
                         Text = alarm.Text
+                    }
+                }
+            };
+            return t;
+        }
+
+
+        public static ToastContent CreateAlarmToast(string[] str, CitySettingsModel currentCityModel)
+        {
+            var lo = new ResourceLoader();
+            var action = new ToastActionsCustom();
+            var button = new ToastButton(lo.GetString("Known"), "Today_Alarm_Dismiss");
+            button.ActivationType = ToastActivationType.Background;
+            action.Buttons.Add(button);
+            action.Buttons.Add(new ToastButtonDismiss(lo.GetString("Okay")));
+            ToastContent t = new ToastContent()
+            {
+                Scenario = ToastScenario.Reminder,
+                Launch = currentCityModel.Id,
+                Actions = action,
+                Visual = new ToastVisual()
+                {
+                    TitleText = new ToastText()
+                    {
+                        Text = str[0]
+                    },
+                    BodyTextLine1 = new ToastText()
+                    {
+                        Text = str[1]
                     }
                 }
             };
@@ -767,11 +1000,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileText(),
@@ -813,11 +1046,11 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
                             {
                                 new TileText(),
@@ -880,111 +1113,142 @@ namespace Com.Aurora.AuWeather.Tile
                     },
                     TileWide = new TileBinding()
                     {
+                        DisplayName = currentCity.City,
+                        Branding = TileBranding.NameAndLogo,
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = uri == null ? null : new TileBackgroundImage()
+                            BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
                                 Overlay = 70
-                            },
+                            }),
                             Children =
-                            {
+                                       {
                                 new TileGroup()
                                 {
                                     Children=
                                     {
                                         new TileSubgroup()
                                         {
-                                            TextStacking = TileTextStacking.Top,
-                                            Weight =1,
+                                            Weight = 1,
                                             Children =
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Today"),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
+                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
+                                                },
+                                                new TileImage()
+                                                {
+                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(model.DailyForecast[todayIndex+1].Condition.DayCond,null,isNight,null))
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
                                                 },
                                             }
                                         },
                                         new TileSubgroup()
                                         {
-                                            Weight = 1,
+                                            Weight = 2,
                                             TextStacking = TileTextStacking.Center,
                                             Children =
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex].HighTemp.Actual(settings.Preferences.TemperatureParameter),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
-                                                },
-                                                new TileText()
-                                                {
-                                                    Text = model.DailyForecast[todayIndex].LowTemp.Actual(settings.Preferences.TemperatureParameter),
                                                     Style = TileTextStyle.CaptionSubtle,
                                                     Align = TileTextAlign.Center
                                                 },
-                                            }
-                                        },
-                                        new TileSubgroup()
-                                        {
-                                            Weight = 1,
-                                            TextStacking = TileTextStacking.Top,
-                                            Children =
-                                            {
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Tomorrow"),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
+                                                    Text = (string)ctosConverter.Convert(model.DailyForecast[todayIndex+1].Condition.DayCond,null,null,null),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
                                                 },
-                                                new TileText()
-                                                {
-                                                    Text = (string)ctosConverter.Convert(isNight? model.DailyForecast[todayIndex+1].Condition.NightCond:model.DailyForecast[todayIndex+1].Condition.DayCond,null,null,null),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
-                                                },
-                                            }
-                                        },
-                                        new TileSubgroup()
-                                        {
-                                            Weight = 1,
-                                            TextStacking = TileTextStacking.Center,
-                                            Children =
-                                            {
-                                                new TileText()
-                                                {
-                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
-                                                },
-                                                new TileText()
-                                                {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter),
-                                                    Style = TileTextStyle.CaptionSubtle,
-                                                    Align = TileTextAlign.Center
-                                                },
-                                            }
-                                        },
 
-                                    }
-                                },
-                                new TileText()
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.Caption
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter).ToString(),
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Center
+                                                }
+                                            }
+                                        },
+                                        new TileSubgroup()
                                         {
-                                            Text = glanceFull,
-                                            Wrap = true,
-                                            Style = TileTextStyle.CaptionSubtle
-                                        }
-                            }
+                                            Weight = 1,
+                                            Children =
+                                            {
+                                                new TileText()
+                                                {
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = loader.GetString("Scale"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = loader.GetString("Hum"),
+                                                    Align = TileTextAlign.Center,
+                                                    Style = TileTextStyle.CaptionSubtle
+                                                },
+                                            }
+                                        },
+                                        new TileSubgroup()
+                                        {
+                                            Weight = 2,
+                                            TextStacking = TileTextStacking.Center,
+                                            Children =
+                                            {
+                                                new TileText()
+                                                {
+
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Left
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex+1].Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
+                                                    model.NowWeather.Wind.Speed.DanWei(settings.Preferences.SpeedParameter),
+                                                    Align = TileTextAlign.Left,
+                                                    Style = TileTextStyle.Caption
+                                                },
+                                                new TileText()
+                                                {
+
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                                    Align = TileTextAlign.Left
+                                                },
+                                                new TileText()
+                                                {
+                                                    Text = model.DailyForecast[todayIndex+1].Humidity.ToString() + "%",
+                                                    Align = TileTextAlign.Left,
+                                                    Style = TileTextStyle.Caption
+                                                },
+                                            }
+                                        },
+                                    }
+                                }
+                                       },
                         }
-                    }
+                    },
                 }
             };
             return now;

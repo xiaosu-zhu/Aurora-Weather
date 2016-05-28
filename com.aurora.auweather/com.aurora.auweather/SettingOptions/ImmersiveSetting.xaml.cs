@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using Com.Aurora.AuWeather.ViewModels;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -84,7 +85,13 @@ namespace Com.Aurora.AuWeather.SettingOptions
                       Root.SelectionChanged -= Root_SelectionChanged;
                       foreach (var item in Context.CurrentList)
                       {
-                          item.Thumbnail = new BitmapImage(item.Path);
+                          try
+                          {
+                              item.Thumbnail = new BitmapImage(item.Path);
+                          }
+                          catch (Exception)
+                          {
+                          }
                       }
                       switch (Root.SelectedIndex)
                       {
@@ -210,7 +217,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void ShowList(ListView list, Image image, Grid grid, Button button)
         {
-            list.Visibility = Visibility.Visible;
+            Context.ShowAssets(list.ItemsSource as CurrentImmersiveList);
             grid.Visibility = Visibility.Collapsed;
             image.Source = null;
             button.Content = loader.GetString("Add_Image");
@@ -225,7 +232,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                 image.Source = bitmap;
             }
             grid.Visibility = Visibility.Visible;
-            list.Visibility = Visibility.Collapsed;
+            Context.HideAssets(list.ItemsSource as CurrentImmersiveList);
             button.Content = loader.GetString("Replace_Image");
         }
 
@@ -260,6 +267,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            await Context.DeleteLocal(Root.SelectedIndex);
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation =
@@ -277,10 +285,11 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         }
 
-        private void LocalButton_Click(object sender, RoutedEventArgs e)
+        private async void LocalButton_Click(object sender, RoutedEventArgs e)
         {
-            ((((sender as Button).Parent as Grid).Parent as StackPanel).Children[1] as ListView).SelectedIndex = 0;
-            Context.DeleteLocal(Root.SelectedIndex);
+            //((Root.SelectedItem as PivotItem).Content as ListView).SelectedIndex = 0;
+            //((((sender as Button).Parent as Grid).Parent as StackPanel).Children[1] as ListView).SelectedIndex = 0;
+            await Context.DeleteLocal(Root.SelectedIndex);
         }
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)

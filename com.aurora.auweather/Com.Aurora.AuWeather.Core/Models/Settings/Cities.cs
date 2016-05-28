@@ -99,7 +99,14 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             else
             {
-                container.DeleteContainer("Locate");
+                try
+                {
+                    container.DeleteContainer("Locate");
+                }
+                catch (Exception)
+                {
+                }
+                
             }
             SaveCities(container);
         }

@@ -357,7 +357,7 @@
                         </AutoSuggestBox.Transitions>
                         <AutoSuggestBox.ItemTemplate>
                             <DataTemplate x:DataType="Models:CityInfo">
-                                <TextBlock Margin="8" Text="{Binding City}" />
+                                <TextBlock Margin="8" Text="{x:Bind}" />
                             </DataTemplate>
                         </AutoSuggestBox.ItemTemplate>
                     </AutoSuggestBox>

@@ -50,11 +50,7 @@ namespace Com.Aurora.AuWeather
             var t = ThreadPool.RunAsync(async (w) =>
             {
                 var c = Convert.ToUInt64(RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce"));
-#if DEBUG
-                if (true)
-#else
                 if (c < SystemInfoHelper.GetPackageVersionNum())
-#endif
                 {
                     RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", SystemInfoHelper.GetPackageVersionNum());
                     await Task.Delay(1000);

@@ -126,6 +126,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\EasingHelper.cs" />
     <Compile Include="Helpers\FileIOHelper.cs" />
+    <Compile Include="Helpers\ImagingHelper.cs" />
     <Compile Include="Helpers\InteractionHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\PinYinHelper.cs" />

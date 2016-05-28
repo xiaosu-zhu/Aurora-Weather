@@ -109,14 +109,20 @@ namespace Com.Aurora.AuWeather.ViewModels
                     Showtt = Preferences.DecorateNumber == 1;
                     ShowImmersivett = Preferences.ShowImmersivett;
                     EnableEveryDay = Preferences.EnableEveryDay;
+                    EnableMorning = Preferences.EnableMorning;
+                    EnableEvening = Preferences.EnableEvening;
                     EnablePulltoRefresh = Preferences.EnablePulltoRefresh;
                     ThemeasRiseSet = Preferences.ThemeasRiseSet;
                     EnableFullScreen = Preferences.EnableFullScreen;
                     AlwaysShowBackground = Preferences.AlwaysShowBackground;
+                    SetWallPaper = Preferences.SetWallPaper;
+                    TransparentTile = Preferences.TransparentTile;
+                    AlwaysBlur = Preferences.AlwaysBlur;
 
                     StartTime = Preferences.StartTime;
                     EndTime = Preferences.EndTime;
-                    NoteTime = Preferences.NoteTime;
+                    MorningTime = Preferences.MorningNoteTime;
+                    EveningTime = Preferences.EveningNoteTime;
 
                     NowPanelHeight = Preferences.NowPanelHeight;
                     IsNowPanelLowStyle = Preferences.IsNowPanelLowStyle;
@@ -149,7 +155,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private uint refresFreq;
         private TimeSpan startTime;
         private TimeSpan endTime;
-        private TimeSpan noteTime;
+        private TimeSpan eveningNoteTime;
         private string separator;
         private bool disableDynamic;
         private bool enableAlarm;
@@ -159,6 +165,10 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool showtt;
         private bool showImmersivett;
         private bool enableEveryDay;
+
+        private bool enableMorning;
+        private bool enableEvening;
+
         private bool enablePulltoRefresh;
         private SolidColorBrush mainColor;
         private bool themeasRiseSet;
@@ -170,6 +180,10 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool aqiHide;
         private bool detailsHide;
         private bool suggestHide;
+        private bool setWallPaper;
+        private bool transparentTile;
+        private bool alwaysBlur;
+        private TimeSpan morningNoteTime;
 
         private void OnFetchDataComplete()
         {
@@ -303,16 +317,29 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SettingOptionsPage.Current.ReloadTheme();
             }
         }
-        public TimeSpan NoteTime
+        public TimeSpan MorningTime
         {
             get
             {
-                return noteTime;
+                return morningNoteTime;
             }
             set
             {
-                SetProperty(ref noteTime, value);
-                Preferences.NoteTime = value;
+                SetProperty(ref morningNoteTime, value);
+                Preferences.MorningNoteTime = value;
+                Preferences.Save();
+            }
+        }
+        public TimeSpan EveningTime
+        {
+            get
+            {
+                return eveningNoteTime;
+            }
+            set
+            {
+                SetProperty(ref eveningNoteTime, value);
+                Preferences.EveningNoteTime = value;
                 Preferences.Save();
             }
         }
@@ -444,8 +471,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref enableEveryDay, value);
-                Preferences.EnableEveryDay = value;
-                Preferences.Save();
             }
         }
         public bool EnablePulltoRefresh
@@ -611,6 +636,80 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Preferences.Save();
             }
         }
+
+        public bool SetWallPaper
+        {
+            get
+            {
+                return setWallPaper;
+            }
+            set
+            {
+                SetProperty(ref setWallPaper, value);
+                Preferences.SetWallPaper = value;
+                Preferences.Save();
+            }
+        }
+
+        public bool TransparentTile
+        {
+            get
+            {
+                return transparentTile;
+            }
+            set
+            {
+                SetProperty(ref transparentTile, value);
+                Preferences.TransparentTile = value;
+                Preferences.Save();
+            }
+        }
+
+        public bool AlwaysBlur
+        {
+            get
+            {
+                return alwaysBlur;
+            }
+
+            set
+            {
+                SetProperty(ref alwaysBlur, value);
+                Preferences.AlwaysBlur = value;
+                Preferences.Save();
+            }
+        }
+
+        public bool EnableMorning
+        {
+            get
+            {
+                return enableMorning;
+            }
+
+            set
+            {
+                SetProperty(ref enableMorning, value);
+                Preferences.EnableMorning = value;
+                Preferences.Save();
+            }
+        }
+
+        public bool EnableEvening
+        {
+            get
+            {
+                return enableEvening;
+            }
+
+            set
+            {
+                SetProperty(ref enableEvening, value);
+                Preferences.EnableEvening = value;
+                Preferences.Save();
+            }
+        }
+
 
         internal async void RegBG()
         {

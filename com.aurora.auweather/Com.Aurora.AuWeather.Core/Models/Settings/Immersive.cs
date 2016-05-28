@@ -21,7 +21,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         private const string foggy = "Background\\Foggy";
         private const string haze = "Background\\Haze";
 
-        private const string local = "l.png";
+        private const string local = "l";
 
         public ImmersiveBackgroundState Sunny { get; set; }
         public ImmersiveBackgroundState Cloudy { get; set; }
@@ -138,35 +138,62 @@ namespace Com.Aurora.AuWeather.Models.Settings
                     Sunny = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(sunny, file, local);
                 case "Starry":
-
                     Starry = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(starry, file, local);
                 case "Cloudy":
-
                     Cloudy = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(cloudy, file, local);
                 case "Overcast":
-
                     Overcast = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(overcast, file, local);
                 case "Rainny":
-
                     Rainny = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(rainny, file, local);
                 case "Snowy":
-
                     Snowy = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(snowy, file, local);
                 case "Foggy":
-
                     Foggy = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(foggy, file, local);
                 case "Haze":
-
                     Haze = ImmersiveBackgroundState.Local;
                     return await FileIOHelper.SaveFiletoLocalAsync(haze, file, local);
                 default:
                     return null;
+            }
+        }
+
+
+        public async Task RemoveLocal(string title)
+        {
+            switch (title)
+            {
+                case "Sunny":
+                    await FileIOHelper.RemoveFileFromLocalAsync(sunny, local);
+                    break;
+                case "Starry":
+                    await FileIOHelper.RemoveFileFromLocalAsync(starry, local);
+                    break;
+                case "Cloudy":
+                    await FileIOHelper.RemoveFileFromLocalAsync(cloudy, local);
+                    break;
+                case "Overcast":
+                    await FileIOHelper.RemoveFileFromLocalAsync(overcast, local);
+                    break;
+                case "Rainny":
+                    await FileIOHelper.RemoveFileFromLocalAsync(rainny, local);
+                    break;
+                case "Snowy":
+                    await FileIOHelper.RemoveFileFromLocalAsync(snowy, local);
+                    break;
+                case "Foggy":
+                    await FileIOHelper.RemoveFileFromLocalAsync(foggy, local);
+                    break;
+                case "Haze":
+                    await FileIOHelper.RemoveFileFromLocalAsync(haze, local);
+                    break;
+                default:
+                    return;
             }
         }
 
@@ -348,6 +375,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             return uri;
         }
+
 
         public void Pick(string name, int number)
         {

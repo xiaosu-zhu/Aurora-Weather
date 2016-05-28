@@ -114,13 +114,9 @@
           <source>Dynamic weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">동적 날씨</target>
         </trans-unit>
-        <trans-unit id="EnableAlarmText.Text" translate="yes" xml:space="preserve">
-          <source>Meteorological disaster warning</source>
-          <target state="translated">기상 재해 경고</target>
-        </trans-unit>
         <trans-unit id="EnableEveryText.Text" translate="yes" xml:space="preserve">
-          <source>Daily weather</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">매일 날씨</target>
+          <source>Weather alarms</source>
+          <target state="translated">날씨 경보</target>
         </trans-unit>
         <trans-unit id="ExperimentalText.Text" translate="yes" xml:space="preserve">
           <source>Experimental features</source>
@@ -1351,14 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">전체 화면</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· You can customize accent color now(only when the theme setting is "Follow system")
-· Added refresh animation
-· You can customize layout now
-· Details page improved</source>
-          <target state="translated">· 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
-· 새로 고침 애니메이션
-를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
-· 세부 정보 페이지 개선</target>
+          <source>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
+· Improved weather alarm toasts</source>
+          <target state="translated">데이터 공급자 HeWeather 최근 안정, 전환할 수 있습니다 일시적으로 다른 데이터 공급자 * * *
+· 향상 된 날씨 경보 토스트</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1389,7 +1381,18 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">업데이트 로그</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.5.16055
+          <source>1.6.16054
+· Improved weather alarm toasts
+
+1.6.16050
+· Now you can choose translucent tiles
+· Tile layout adjustment
+
+1.5.16059
+· Fixed issues in settings page
+· Try to set current BG as lockscreen wallpaper
+
+1.5.16055
 · You can customize accent color now(only when the theme setting is "Follow system")
 · Added refresh animation
 · You can customize layout now
@@ -1426,7 +1429,18 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.5.16055
+          <target state="translated">1.6.16054
+· 날씨 경보 개선
+
+1.6.16050
+· 토스트 반투명 타일
+를 선택할 수 있습니다 이제 · 바둑판식 배열 레이아웃 조정
+
+1.5.16059
+· 설정에서 고정된 문제 페이지
+· 현재 BG lockscreen 설정 하려고 벽지
+
+1.5.16055
 · 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
 · 새로 고침 애니메이션
 를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
@@ -1731,6 +1745,94 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="DonateOption5.Text" translate="yes" xml:space="preserve">
           <source>· Customize layout</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">· 레이아웃 사용자 지정</target>
+        </trans-unit>
+        <trans-unit id="SetWallPaperText.Text" translate="yes" xml:space="preserve">
+          <source>Auto set current BG as lockscreen wallpaper</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">자동 설정 현재 BG lockscreen 벽지</target>
+        </trans-unit>
+        <trans-unit id="SetWallPaperFalseText.Text" translate="yes" xml:space="preserve">
+          <source>Experimental and may not take effect</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">실험 및 적용 되지 않을 수 있습니다</target>
+        </trans-unit>
+        <trans-unit id="TransparentTileText.Text" translate="yes" xml:space="preserve">
+          <source>Enable translucent tile</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">반투명 타일 사용</target>
+        </trans-unit>
+        <trans-unit id="TransparentTileFalseText.Text" translate="yes" xml:space="preserve">
+          <source>Not enabled on the desktop platform</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">데스크톱 플랫폼에서 사용할 수 없습니다.</target>
+        </trans-unit>
+        <trans-unit id="SunRise" translate="yes" xml:space="preserve">
+          <source>Sun rise</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">일출</target>
+        </trans-unit>
+        <trans-unit id="SunSet" translate="yes" xml:space="preserve">
+          <source>Sun set</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">태양이 세트</target>
+        </trans-unit>
+        <trans-unit id="Location" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Location</target>
+        </trans-unit>
+        <trans-unit id="UtcOffset" translate="yes" xml:space="preserve">
+          <source>Utc offset</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Utc 오프셋</target>
+        </trans-unit>
+        <trans-unit id="EnableAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Severe weather alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">악천후 경보</target>
+        </trans-unit>
+        <trans-unit id="MorningAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Morning alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">아침 알람</target>
+        </trans-unit>
+        <trans-unit id="EveningAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Evening alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">저녁 알람</target>
+        </trans-unit>
+        <trans-unit id="ToastGale" translate="yes" xml:space="preserve">
+          <source>will be gale tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">게 일을 내일 있을 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastRain" translate="yes" xml:space="preserve">
+          <source>will be heavy rain tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">폭우를 내일 있을 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastThunder" translate="yes" xml:space="preserve">
+          <source>will be thunder tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">천둥을 내일 있을 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastHail" translate="yes" xml:space="preserve">
+          <source>will be hail tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">우박을 내일 있을 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastSnow" translate="yes" xml:space="preserve">
+          <source>will be heavy snow tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">내일 눈을 될 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastFreeze" translate="yes" xml:space="preserve">
+          <source>will be Freezing rain tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">내일 비 동결 것 이다</target>
+        </trans-unit>
+        <trans-unit id="ToastSand" translate="yes" xml:space="preserve">
+          <source>will be sand tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">내일 모래 있을 것입니다.</target>
+        </trans-unit>
+        <trans-unit id="ToastHot" translate="yes" xml:space="preserve">
+          <source>will be hot tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">내일 뜨거운 될 것 이다</target>
+        </trans-unit>
+        <trans-unit id="ToastCold" translate="yes" xml:space="preserve">
+          <source>will be cold tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">내일 차가운 것</target>
+        </trans-unit>
+        <trans-unit id="Known" translate="yes" xml:space="preserve">
+          <source>I know</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">알아요</target>
+        </trans-unit>
+        <trans-unit id="Dismiss" translate="yes" xml:space="preserve">
+          <source>Dismiss</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">해제</target>
         </trans-unit>
       </group>
     </body>

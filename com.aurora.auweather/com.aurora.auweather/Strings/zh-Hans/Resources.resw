@@ -204,14 +204,14 @@
   <data name="DynamicText.Text" xml:space="preserve">
     <value>动态天气</value>
   </data>
-  <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>气象灾害预警</value>
+  <data name="EnableAlarm.Content" xml:space="preserve">
+    <value>恶劣天气提醒</value>
   </data>
   <data name="AlarmButton.Content" xml:space="preserve">
     <value>灾害预警</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>每日天气提醒</value>
+    <value>天气提醒</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>试验性功能</value>
@@ -1142,10 +1142,9 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 由于系统限制, 现在只有主题设置为 "跟随系统" 才能修改强调色
-· 加入初始化动画
-· 调整部分布局, 现在你可以自定义布局
-· 补充详情页信息</value>
+    <value>***和风天气近期服务不稳定, 你可以临时换用其他天气源***
+· 改进了天气提醒机制
+· 开发者最近特忙, 可能会减慢更新速度, 敬请谅解</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1169,7 +1168,18 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16055
+    <value>1.6.16054
+· 改进了天气提醒机制
+
+1.6.16050
+· 现在可以设置透明磁贴
+· 磁贴布局调整
+
+1.5.16059
+· 修正设置页面的部分问题
+· 尝试把当前的背景设置为锁屏背景
+
+1.5.16057
 · 由于系统限制, 现在只有主题设置为 "跟随系统" 才能修改强调色
 · 加入初始化动画
 · 调整部分布局, 现在你可以自定义布局
@@ -1386,5 +1396,68 @@
   </data>
   <data name="LanguageAlarmText.Text" xml:space="preserve">
     <value>某些语言需要安装对应语言包才能显示</value>
+  </data>
+  <data name="SetWallPaperText.Text" xml:space="preserve">
+    <value>自动设置为锁屏壁纸</value>
+  </data>
+  <data name="SetWallPaperFalseText.Text" xml:space="preserve">
+    <value>实验中, 不能保证生效</value>
+  </data>
+  <data name="TransparentTileText.Text" xml:space="preserve">
+    <value>使用透明磁贴</value>
+  </data>
+  <data name="TransparentTileFalseText.Text" xml:space="preserve">
+    <value>桌面系统不会生效</value>
+  </data>
+  <data name="SunRise" xml:space="preserve">
+    <value>日出时间</value>
+  </data>
+  <data name="SunSet" xml:space="preserve">
+    <value>日落时间</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="UtcOffset" xml:space="preserve">
+    <value>时差</value>
+  </data>
+  <data name="MorningAlarm.Content" xml:space="preserve">
+    <value>晨间提醒</value>
+  </data>
+  <data name="EveningAlarm.Content" xml:space="preserve">
+    <value>晚间提醒</value>
+  </data>
+  <data name="ToastGale" xml:space="preserve">
+    <value>明日有大风</value>
+  </data>
+  <data name="ToastRain" xml:space="preserve">
+    <value>明日有强降雨</value>
+  </data>
+  <data name="ToastThunder" xml:space="preserve">
+    <value>明日有雷阵雨</value>
+  </data>
+  <data name="ToastHail" xml:space="preserve">
+    <value>明日有冰雹</value>
+  </data>
+  <data name="ToastSnow" xml:space="preserve">
+    <value>明日有强降雪</value>
+  </data>
+  <data name="ToastFreeze" xml:space="preserve">
+    <value>明日有冻雨</value>
+  </data>
+  <data name="ToastSand" xml:space="preserve">
+    <value>明日有沙尘</value>
+  </data>
+  <data name="ToastHot" xml:space="preserve">
+    <value>明日升温</value>
+  </data>
+  <data name="ToastCold" xml:space="preserve">
+    <value>明日降温</value>
+  </data>
+  <data name="Known" xml:space="preserve">
+    <value>知道了</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>忽略</value>
   </data>
 </root>

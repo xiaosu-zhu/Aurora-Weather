@@ -9,6 +9,7 @@ namespace Com.Aurora.AuWeather.Core.Models
     {
         private const string BACKGROUND_ENTRY = "Com.Aurora.AuWeather.Background.BackgroundTask";
         private const string BACKGROUND_NAME = "Aurora Weather";
+        private const string TOAST_HANDLER_ENTRY = "Com.Aurora.AuWeather.Background.ToastHandler";
         public async static Task RegBGTask(uint frequency, bool isEnabled)
         {
             uint freshTime = frequency;
@@ -20,11 +21,22 @@ namespace Com.Aurora.AuWeather.Core.Models
             {
                 foreach (var t in BackgroundTaskRegistration.AllTasks)
                 {
-                    if (t.Value.Name == taskName)
+                    if (t.Value.Name == BACKGROUND_NAME)
                     {
                         t.Value.Unregister(true);
                     }
                 }
+
+
+                BackgroundTaskBuilder builder = new BackgroundTaskBuilder()
+                {
+                    Name = BACKGROUND_NAME,
+                    TaskEntryPoint = TOAST_HANDLER_ENTRY
+                };
+                builder.SetTrigger(new ToastNotificationActionTrigger());
+                BackgroundTaskRegistration toastreg = builder.Register();
+
+
                 if (freshTime < 30 || !isEnabled)
                 {
                     return;

@@ -244,6 +244,51 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public string SunRise
+        {
+            get
+            {
+                return rise;
+            }
+            set
+            {
+                SetProperty(ref rise, value);
+            }
+        }
+        public string SunSet
+        {
+            get
+            {
+                return set;
+            }
+            set
+            {
+                SetProperty(ref set, value);
+            }
+        }
+        public string Location
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                SetProperty(ref location, value);
+            }
+        }
+        public string Offset
+        {
+            get
+            {
+                return offset;
+            }
+            set
+            {
+                SetProperty(ref offset, value);
+            }
+        }
+
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataCompleted;
         public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
 
@@ -258,6 +303,10 @@ namespace Com.Aurora.AuWeather.ViewModels
         private DateTime currenTime;
         private string glance;
         private string pressure;
+        private string rise;
+        private string set;
+        private string offset;
+        private string location;
 
         public DetailsPageViewModel()
         {
@@ -357,12 +406,15 @@ namespace Com.Aurora.AuWeather.ViewModels
                 sunSet = fetchresult.DailyForecast[todayIndex].SunSet;
             }
             City = currentCityModel.City;
-            isNight = CalculateIsNight(CurrentTime, sunRise, sunSet);
+            isNight = WeatherModel.CalculateIsNight(CurrentTime, sunRise, sunSet);
             this.Glance = Models.Glance.GenerateGlanceDescription(fetchresult, isNight, TempratureandDegreeConverter.Parameter, DateTime.Now);
             CityGlance = (City + "  " + Glance);
             Date = CurrentTime.ToString(settings.Preferences.GetDateFormat());
+
             var calendar = new CalendarInfo(CurrentTime);
             var loader = new ResourceLoader();
+
+
             LunarCalendar = settings.Preferences.UseLunarCalendarPrimary ? (("农历 " + calendar.LunarYearSexagenary + "年" + calendar.LunarMonthText + "月" + calendar.LunarDayText + "    " + calendar.SolarTermStr).Trim()) : string.Empty;
             Hum = loader.GetString("Hum") + ": " + fetchresult.HourlyForecast[nowHourIndex].Humidity + "%";
             Pop = loader.GetString("Pop") + ": " + fetchresult.HourlyForecast[nowHourIndex].Pop + "%";
@@ -375,7 +427,24 @@ namespace Com.Aurora.AuWeather.ViewModels
             Dir = loader.GetString("Dir") + ": " + (fetchresult.NowWeather.Wind == null ? "N/A" : d.Convert(fetchresult.NowWeather.Wind, null, null, null));
             var p = new PressureConverter();
             Pressure = loader.GetString("Pres") + ": " + (fetchresult.NowWeather.Pressure == null ? "N/A" : p.Convert(fetchresult.NowWeather.Pressure, null, null, null));
-            CurrentBG = new BitmapImage(await settings.Immersive.GetCurrentBackgroundAsync(fetchresult.NowWeather.Now.Condition, isNight));
+
+            var t = new TimeSpanConverter();
+            SunRise = loader.GetString("SunRise") + ": " + (string)t.Convert(sunRise, null, null, null);
+            SunSet = loader.GetString("SunSet") + ": " + (string)t.Convert(sunSet, null, null, null);
+            this.Location = loader.GetString("Location") + ": " + new Models.Location(currentCityModel.Latitude, currentCityModel.Longitude).ToString();
+            Offset = loader.GetString("UtcOffset") + ": " + t.Convert(utcOffset, null, null, null);
+
+            var uri = await settings.Immersive.GetCurrentBackgroundAsync(fetchresult.NowWeather.Now.Condition, isNight);
+            if (uri != null)
+            {
+                try
+                {
+                    CurrentBG = new BitmapImage(uri);
+                }
+                catch (Exception)
+                {
+                }
+            }
             List<double> doubles0 = new List<double>();
             List<double> doubles1 = new List<double>();
             List<double> doubles2 = new List<double>();
@@ -455,21 +524,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             CurrentTime = DateTimeHelper.ReviseLoc(utcOffset);
         }
 
-        private bool CalculateIsNight(DateTime updateTime, TimeSpan sunRise, TimeSpan sunSet)
-        {
-            var updateMinutes = updateTime.Hour * 60 + updateTime.Minute;
-            if (updateMinutes < sunRise.TotalMinutes)
-            {
-            }
-            else if (updateMinutes >= sunSet.TotalMinutes)
-            {
-            }
-            else
-            {
-                return false;
-            }
-            return true;
-        }
+
 
         private async Task FetchDataAsync()
         {

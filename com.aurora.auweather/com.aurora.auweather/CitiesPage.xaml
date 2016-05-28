@@ -867,9 +867,9 @@
             <TextBlock x:Uid="CitiesText" x:Name="TitleText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}"  Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
         </Grid>
         <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemControlHighlightAccentBrush}" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" />
-            <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" />
-            <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" />
+            <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
+            <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
+            <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
         </CommandBar>
         <GridView Padding="0,0,0,64" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>

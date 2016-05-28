@@ -114,13 +114,9 @@
           <source>Dynamic weather</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Dynamisches Wetter</target>
         </trans-unit>
-        <trans-unit id="EnableAlarmText.Text" translate="yes" xml:space="preserve">
-          <source>Meteorological disaster warning</source>
-          <target state="translated">Meteorologischen Katastrophen-Warnung</target>
-        </trans-unit>
         <trans-unit id="EnableEveryText.Text" translate="yes" xml:space="preserve">
-          <source>Daily weather</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tägliche Wetter</target>
+          <source>Weather alarms</source>
+          <target state="translated">Wetter-Alarm</target>
         </trans-unit>
         <trans-unit id="ExperimentalText.Text" translate="yes" xml:space="preserve">
           <source>Experimental features</source>
@@ -1351,14 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vollbild</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· You can customize accent color now(only when the theme setting is "Follow system")
-· Added refresh animation
-· You can customize layout now
-· Details page improved</source>
-          <target state="translated">· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
-· Hinzugefügt aktualisieren Animation
-· Sie können Layout anpassen jetzt
-· Detailseite verbessert</target>
+          <source>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
+· Improved weather alarm toasts</source>
+          <target state="translated">Der Datenanbieter HeWeather vor kurzem instabil ist, können Sie vorübergehend zu anderen Daten-Provider ***
+wechseln · Verbesserte Wetter-Alarm-Popups</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1389,7 +1381,18 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Update-Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.5.16055
+          <source>1.6.16054
+· Improved weather alarm toasts
+
+1.6.16050
+· Now you can choose translucent tiles
+· Tile layout adjustment
+
+1.5.16059
+· Fixed issues in settings page
+· Try to set current BG as lockscreen wallpaper
+
+1.5.16055
 · You can customize accent color now(only when the theme setting is "Follow system")
 · Added refresh animation
 · You can customize layout now
@@ -1426,42 +1429,53 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.5.16055
-· Sie können anpassen Akzentfarbe jetzt (nur beim Thema "Follow System" spielt im)
+          <target state="translated">1.6.16054
+· Wetter-Alarm verbessert Toast
+
+1.6.16050
+· Jetzt Sie, lichtdurchlässige Fliesen
+wählen können · Fliesen-Layoutanpassung
+
+1.5.16059
+· Behobene Probleme in den Einstellungen Seite
+· Versuchen, aktuelle BG als Lockscreen wallpaper
+
+1.5.16055
+· Sie können Akzentfarbe jetzt (nur wenn die Designeinstellung "Follow-System")
 · Hinzugefügt aktualisieren Animation
-· Sie können Layout anpassen jetzt
-· Informationen Seite verbesserte
+· Sie können Layout jetzt
+· Details Seite verbesserte
 
 1.5.16054
 · 
 
 1.5.16052
--Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
+Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
 
 1.5.16050
-· Detailseite hinzugefügt
+· Seite "Details" hinzugefügt
 
 1.5.16045
-· Verkürzung des Intervalls für die automatische Hintergrund
-· Verbesserung der Benutzeroberfläche und Layout
-· Fliese Layouts werden in der nächsten Version
+· Kürzen Sie das Aktualisierungsintervall automatisch im Hintergrund
+· UI und Layout Verbesserung
+· Der Kachel-Layout aktualisiert werden, in der nächsten Version
 
 1.5.16040
-aktualisiert · Kompatibel mit Windows 10 Build 14328, wir wurden aktualisiert, Toast und Ziegel-
+· Kompatibel mit Windows 10 bauen 14328, haben wir aktualisiert Toast und Fliesen-
 · "Weather Underground" jetzt verfügbar! 
-· (Mai) Fixiert einen schwerwiegenden Fehler
-· (Mai) Festen Auftreten eines Problems auf mobilen Geräten, die Lockscreen Benachrichtigungen
+· (Mai) Fixiert einen Totalausfall
+· (Mai) Festen ein Problem tritt auf, auf mobilen Geräten, die Lockscreen Benachrichtigungen
 
-1.4.16047 nicht angezeigt:
-· UI-tuning
+1.4.16047 anzeigen nicht:
+· UI tuning
 · Kleine Fehler behoben
  
 1.4.16046:
-· Update-Log Added
-· Sie können swipe Informationen über das Update löschen
+· Update-Log hinzugefügt
+· Sie streichen können details zu das Update löschen
 · Partikel-System Oberflächen aktualisiert
 · Partikel-System Verbesserung
-· Blitz-Generator-Erweiterung
+· Blitz-Generator Erweiterung
   </target>
         </trans-unit>
         <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
@@ -1731,6 +1745,94 @@ Morgen: {4}, {5}.</target>
         <trans-unit id="DonateOption5.Text" translate="yes" xml:space="preserve">
           <source>· Customize layout</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">· Layout anpassen</target>
+        </trans-unit>
+        <trans-unit id="SetWallPaperText.Text" translate="yes" xml:space="preserve">
+          <source>Auto set current BG as lockscreen wallpaper</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Auto set aktuelle BG als Lockscreen wallpaper</target>
+        </trans-unit>
+        <trans-unit id="SetWallPaperFalseText.Text" translate="yes" xml:space="preserve">
+          <source>Experimental and may not take effect</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Experimentelle und kann nicht wirksam</target>
+        </trans-unit>
+        <trans-unit id="TransparentTileText.Text" translate="yes" xml:space="preserve">
+          <source>Enable translucent tile</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Transluzente Fliese zu aktivieren</target>
+        </trans-unit>
+        <trans-unit id="TransparentTileFalseText.Text" translate="yes" xml:space="preserve">
+          <source>Not enabled on the desktop platform</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Auf dem desktop-Plattform aktiviert nicht</target>
+        </trans-unit>
+        <trans-unit id="SunRise" translate="yes" xml:space="preserve">
+          <source>Sun rise</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sonne aufgehen</target>
+        </trans-unit>
+        <trans-unit id="SunSet" translate="yes" xml:space="preserve">
+          <source>Sun set</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sonnenuntergang</target>
+        </trans-unit>
+        <trans-unit id="Location" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Standort</target>
+        </trans-unit>
+        <trans-unit id="UtcOffset" translate="yes" xml:space="preserve">
+          <source>Utc offset</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">UTC-offset</target>
+        </trans-unit>
+        <trans-unit id="EnableAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Severe weather alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Unwetter-alarm</target>
+        </trans-unit>
+        <trans-unit id="MorningAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Morning alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Morgen-alarm</target>
+        </trans-unit>
+        <trans-unit id="EveningAlarm.Content" translate="yes" xml:space="preserve">
+          <source>Evening alarm</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Abend-alarm</target>
+        </trans-unit>
+        <trans-unit id="ToastGale" translate="yes" xml:space="preserve">
+          <source>will be gale tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Gale wird morgen sein werden.</target>
+        </trans-unit>
+        <trans-unit id="ToastRain" translate="yes" xml:space="preserve">
+          <source>will be heavy rain tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">werden morgen Starkregen</target>
+        </trans-unit>
+        <trans-unit id="ToastThunder" translate="yes" xml:space="preserve">
+          <source>will be thunder tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">werden morgen Donner</target>
+        </trans-unit>
+        <trans-unit id="ToastHail" translate="yes" xml:space="preserve">
+          <source>will be hail tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Hagel wird morgen sein werden.</target>
+        </trans-unit>
+        <trans-unit id="ToastSnow" translate="yes" xml:space="preserve">
+          <source>will be heavy snow tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">starker Schneefall wird morgen sein werden.</target>
+        </trans-unit>
+        <trans-unit id="ToastFreeze" translate="yes" xml:space="preserve">
+          <source>will be Freezing rain tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">wird Regen Morgen Einfrieren</target>
+        </trans-unit>
+        <trans-unit id="ToastSand" translate="yes" xml:space="preserve">
+          <source>will be sand tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sand wird morgen sein werden.</target>
+        </trans-unit>
+        <trans-unit id="ToastHot" translate="yes" xml:space="preserve">
+          <source>will be hot tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Morgen wird heiß</target>
+        </trans-unit>
+        <trans-unit id="ToastCold" translate="yes" xml:space="preserve">
+          <source>will be cold tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">wird morgen kalt sein</target>
+        </trans-unit>
+        <trans-unit id="Known" translate="yes" xml:space="preserve">
+          <source>I know</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ich weiß</target>
+        </trans-unit>
+        <trans-unit id="Dismiss" translate="yes" xml:space="preserve">
+          <source>Dismiss</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Schließen</target>
         </trans-unit>
       </group>
     </body>

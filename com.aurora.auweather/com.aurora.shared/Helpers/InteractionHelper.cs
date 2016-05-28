@@ -13,5 +13,10 @@ namespace Com.Aurora.Shared.Helpers
             var touch = new TouchCapabilities();
             return touch.TouchPresent > 0;
         }
+
+        public static string CheckDeviceFamily()
+        {
+            return Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily;
+        }
     }
 }

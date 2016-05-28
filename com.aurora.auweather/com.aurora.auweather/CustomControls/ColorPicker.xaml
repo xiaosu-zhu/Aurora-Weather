@@ -22,12 +22,12 @@
         <GridView.Resources>
             <ResourceDictionary>
                 <Storyboard x:Name="ChangeColor">
-                    <ColorAnimation Storyboard.TargetName="Header" Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" EnableDependentAnimation="True">
+                    <ColorAnimation Storyboard.TargetName="Header" Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)" EnableDependentAnimation="False">
                         <ColorAnimation.EasingFunction>
                             <QuinticEase />
                         </ColorAnimation.EasingFunction>
                     </ColorAnimation>
-                    <ColorAnimation Storyboard.TargetName="PickColor" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" EnableDependentAnimation="True">
+                    <ColorAnimation Storyboard.TargetName="PickColor" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" EnableDependentAnimation="False">
                         <ColorAnimation.EasingFunction>
                             <QuinticEase />
                         </ColorAnimation.EasingFunction>
@@ -150,10 +150,10 @@
         <GridView.Header>
             <StackPanel Orientation="Vertical">
                 <Grid x:Name="Header" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <TextBlock Margin="12,24,12,24" x:Name="PickColor" Foreground="White" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock Margin="12,24,12,24" x:Name="PickColor" Foreground="White" Style="{StaticResource TitleTextBlockStyle}" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <TextBlock Margin="12" x:Name="AccentColor" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Margin="12" x:Name="AccentColor" FontWeight="Light" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <Button Click="Button_Click" Style="{ThemeResource FullWidthButton}" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="12">
                         <Button.Content>
                             <Grid Height="24" Width="48" >

@@ -21,7 +21,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Converters:shiliubijiuConverter x:Key="shiliubijiuConverter" />
             <CollectionViewSource x:Key="ForecastSource" x:Name="ForecastSource" Source="{x:Bind Context.Forecasts,Mode=OneWay}" />
         </ResourceDictionary>
     </Page.Resources>
@@ -29,7 +28,75 @@
     <Page.DataContext>
         <ViewModels:DetailsPageViewModel x:Name="Context"/>
     </Page.DataContext>
+
     <GridView Background="{ThemeResource SystemControlForegroundHighBrush}" x:Name="ForecastList" Padding="0,0,0,96" ItemsSource="{x:Bind ForecastSource.View,Mode=OneWay}" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1024" />
+                    </VisualState.StateTriggers>
+                    <Storyboard >
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="City" Storyboard.TargetProperty="FontSize" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="72" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glance" Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondColumn" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThirdRow" Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="auto" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.Column)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <Storyboard >
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="City" Storyboard.TargetProperty="FontSize" >
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="48" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glance" Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="18" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondColumn" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThirdRow" Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="auto" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.Column)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <GridView.Resources>
             <Storyboard x:Name="DetailsIn">
                 <DoubleAnimation Storyboard.TargetName="Header" To="540" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
@@ -69,12 +136,17 @@
                         <QuinticEase/>
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
-                <DoubleAnimation Storyboard.TargetName="DatePanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="1" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="DatePanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="1" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="1" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="1" EnableDependentAnimation="False">
+                    <DoubleAnimation.EasingFunction>
+                        <QuinticEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="1" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -83,6 +155,9 @@
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
@@ -124,12 +199,17 @@
                         <QuinticEase/>
                     </ColorAnimation.EasingFunction>
                 </ColorAnimation>
-                <DoubleAnimation Storyboard.TargetName="DatePanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="0" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="DatePanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="0" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="0" EnableDependentAnimation="True">
+                <DoubleAnimation Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="0" EnableDependentAnimation="False">
+                    <DoubleAnimation.EasingFunction>
+                        <QuinticEase />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="Opacity" Duration="0:0:0.48" To="0" EnableDependentAnimation="False">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -138,6 +218,9 @@
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.48" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DetailsPanel" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.48" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CityInfoPanel" Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.48" Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
@@ -164,20 +247,31 @@
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition x:Name="SecondColumn" Width="auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition x:Name="ThirdRow" Height="*" />
                     </Grid.RowDefinitions>
-                    <StackPanel Visibility="Collapsed" x:Name="DatePanel" Opacity="0" Grid.ColumnSpan="3" Margin="0,32,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical">
-                        <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="4" Text="{x:Bind Context.Date,Mode=OneWay}" x:Name="Date" FontWeight="Light" FontSize="18" />
-                        <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="4" Text="{x:Bind Context.LunarCalendar,Mode=OneWay}" x:Name="LunarDate" FontWeight="Light" FontSize="18" />
-                        <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="4" TextWrapping="WrapWholeWords" x:Name="CityGlacne" Text="{x:Bind Context.CityGlance,Mode=OneWay}" FontWeight="Light" FontSize="18" />
+                    <StackPanel Visibility="Collapsed" x:Name="DatePanel" Opacity="0" Grid.ColumnSpan="2" Margin="0,32,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical">
+                        <TextBlock Text="{x:Bind Context.Date,Mode=OneWay}" TextWrapping="WrapWholeWords" Foreground="White" HorizontalAlignment="Center" Margin="12,12,12,4" x:Name="Date" FontWeight="Light" FontSize="18" />
+                        <TextBlock Text="{x:Bind Context.LunarCalendar,Mode=OneWay}" TextWrapping="WrapWholeWords" Foreground="White" HorizontalAlignment="Center" Margin="12,0,12,4" x:Name="LunarCalendar" FontWeight="Light" FontSize="18" />
+                        <TextBlock Text="{x:Bind Context.CityGlance,Mode=OneWay}" TextWrapping="WrapWholeWords" Foreground="White" HorizontalAlignment="Center" Margin="12,0,12,12" x:Name="CityGlance" FontWeight="Light" FontSize="18" />
                     </StackPanel>
-                    <StackPanel Visibility="Collapsed" x:Name="DetailsPanel" Opacity="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Orientation="Vertical">
+                    <StackPanel Visibility="Collapsed" x:Name="CityInfoPanel" Opacity="0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Orientation="Vertical">
+                        <TextBlock Foreground="White" Margin="4" x:Name="CityInfoText" FontWeight="Light" FontSize="16" >
+                            <LineBreak />
+                            <Run Text="{x:Bind Context.Location,Mode=OneWay}" />
+                            <LineBreak />
+                            <Run Text="{x:Bind Context.SunRise,Mode=OneWay}" />
+                            <LineBreak />
+                            <Run Text="{x:Bind Context.SunSet,Mode=OneWay}" />
+                            <LineBreak />
+                            <Run Text="{x:Bind Context.Offset,Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Visibility="Collapsed" x:Name="DetailsPanel" Opacity="0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Orientation="Vertical">
                         <TextBlock Foreground="White" Margin="4" x:Name="DetailsText" FontWeight="Light" FontSize="16" >
                             <LineBreak />
                             <Run Text="{x:Bind Context.Hum,Mode=OneWay}" />
@@ -195,9 +289,9 @@
                             <Run Text="{x:Bind Context.Dir,Mode=OneWay}" />
                         </TextBlock>
                     </StackPanel>
-                    <TextBlock x:Name="City" Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{x:Bind Context.City,Mode=OneWay}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24" />
-                    <TextBlock x:Name="Glance" Grid.ColumnSpan="3" Grid.RowSpan="2" TextWrapping="WrapWholeWords" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="42,12,12,12" Foreground="White" Text="{x:Bind Context.Glance,Mode=OneWay}" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="16" />
-                    <Button x:Name="Details" Style="{ThemeResource SymbolButton}" Click="Details_Click" Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="36" Width="36" Background="Transparent" Foreground="White" >
+                    <TextBlock x:Name="City" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{x:Bind Context.City,Mode=OneWay}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24" />
+                    <TextBlock x:Name="Glance" Grid.ColumnSpan="2" Grid.RowSpan="3" TextWrapping="WrapWholeWords" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="42,12,12,12" Foreground="White" Text="{x:Bind Context.Glance,Mode=OneWay}" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="16" />
+                    <Button x:Name="Details" Style="{ThemeResource SymbolButton}" Click="Details_Click" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="36" Width="36" Background="Transparent" Foreground="White" >
                         <Button.Content>
                             <SymbolIcon Symbol="More" />
                         </Button.Content>
@@ -205,36 +299,7 @@
                 </Grid>
             </Grid>
         </GridView.Header>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1024" />
-                    </VisualState.StateTriggers>
-                    <Storyboard >
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="City" Storyboard.TargetProperty="FontSize" >
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="72" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glance" Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Normal">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                    <Storyboard >
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="City" Storyboard.TargetProperty="FontSize" >
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="48" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glance" Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="18" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+
         <GridView.ItemTemplate>
             <DataTemplate x:DataType="ViewModels:GraphViewModel" >
                 <controls:GraphBox MaxWidth="480" Margin="4" Background="{ThemeResource SystemBackgroundHighBrush}" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Title="{x:Bind Title}" Values0="{x:Bind Values0}" FormatDecoration="{x:Bind Decorate}"

@@ -14,6 +14,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -1355,6 +1356,59 @@ namespace Com.Aurora.Shared.Converters
             }
         }
     }
+    public class ImmersiveStatetoSelectionConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return ListViewSelectionMode.None;
+            }
+            var v = (ImmersiveBackgroundState)value;
+            switch (v)
+            {
+                case ImmersiveBackgroundState.Assets:
+                case ImmersiveBackgroundState.Local:
+                    return ListViewSelectionMode.Single;
+                case ImmersiveBackgroundState.Transparent:
+                    return ListViewSelectionMode.None;
+                default: return ListViewSelectionMode.None;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ImmersiveStatetoVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return Visibility.Collapsed;
+            }
+            var v = (ImmersiveBackgroundState)value;
+            switch (v)
+            {
+                case ImmersiveBackgroundState.Assets:
+                    return Visibility.Visible;
+                case ImmersiveBackgroundState.Local:
+                    return Visibility.Collapsed;
+                case ImmersiveBackgroundState.Transparent:
+                    return Visibility.Collapsed;
+                default: return Visibility.Collapsed;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ImmersiveStatetoEnableConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -1380,6 +1434,7 @@ namespace Com.Aurora.Shared.Converters
             throw new NotImplementedException();
         }
     }
+
 
     public class shiliubijiuConverter : IValueConverter
     {

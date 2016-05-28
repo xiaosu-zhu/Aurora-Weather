@@ -48,6 +48,25 @@ namespace Com.Aurora.Shared.Helpers
             return log;
         }
 
+
+        public static async Task<StorageFile> CreateWallPaperFileAsync(string name)
+        {
+            var local = ApplicationData.Current.LocalFolder;
+            var folder = await local.CreateFolderAsync("WallPaper", CreationCollisionOption.OpenIfExists);
+            var files = await folder.GetFilesAsync();
+            var fs = files.ToArray();
+            if (!fs.IsNullorEmpty())
+            {
+                foreach (var item in fs)
+                {
+                    await item.DeleteAsync();
+                }
+            }
+            var file = await folder.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
+            //await FileIO.AppendTextAsync(file, "nimabi");
+            return file;
+        }
+
         public static async Task<StorageFile> AppendLogtoCacheAsync(CrashLog exception, string name = "crashLOG")
         {
             var cache = ApplicationData.Current.LocalCacheFolder;
@@ -203,8 +222,19 @@ namespace Com.Aurora.Shared.Helpers
             try
             {
                 var folder = await local.GetFolderAsync(path);
-                var file = await folder.GetFileAsync(fileName);
-                return new Uri("ms-appdata:///local/" + path.Replace("\\", "/") + '/' + file.Name);
+                var files = await folder.GetFilesAsync();
+                var fs = files.ToArray();
+                if (!fs.IsNullorEmpty())
+                {
+                    foreach (var item in fs)
+                    {
+                        if (item.DisplayName == fileName)
+                        {
+                            return new Uri("ms-appdata:///local/" + path.Replace("\\", "/") + '/' + item.Name);
+                        }
+                    }
+                }
+                return null;
             }
             catch (Exception)
             {
@@ -212,14 +242,28 @@ namespace Com.Aurora.Shared.Helpers
             }
         }
 
+
         public static async Task<Uri> SaveFiletoLocalAsync(string path, StorageFile file, string desiredName)
         {
             var local = ApplicationData.Current.LocalFolder;
             try
             {
                 var folder = await local.CreateFolderAsync(path, CreationCollisionOption.OpenIfExists);
-                await file.CopyAsync(folder, desiredName, NameCollisionOption.ReplaceExisting);
-                return new Uri("ms-appdata:///local/" + path.Replace("\\", "/") + '/' + desiredName);
+                await file.CopyAsync(folder, desiredName + file.FileType, NameCollisionOption.ReplaceExisting);
+                return new Uri("ms-appdata:///local/" + path.Replace("\\", "/") + '/' + desiredName + file.FileType);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static async Task<StorageFile> SaveFiletoLocalAsync(StorageFile file, string desiredName)
+        {
+            var local = ApplicationData.Current.LocalFolder;
+            try
+            {
+                return await file.CopyAsync(local, desiredName + file.FileType, NameCollisionOption.ReplaceExisting);
             }
             catch (Exception)
             {
@@ -301,6 +345,33 @@ namespace Com.Aurora.Shared.Helpers
                 {
                     await file.DeleteAsync();
                 }
+            }
+        }
+
+
+        public static async Task RemoveFileFromLocalAsync(string path, string key)
+        {
+            if (key.IsNullorEmpty())
+                throw new ArgumentException("Keyword can't be null or empty");
+            var storeFolder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                var f = await storeFolder.GetFolderAsync(path);
+                var files = await f.GetFilesAsync();
+                var sf = files.ToArray();
+                if (!sf.IsNullorEmpty())
+                {
+                    foreach (var file in sf)
+                    {
+                        if (file.Name.Contains(key))
+                        {
+                            await file.DeleteAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -388,5 +459,6 @@ namespace Com.Aurora.Shared.Helpers
             stream.Seek(0);
             return stream;
         }
+
     }
 }

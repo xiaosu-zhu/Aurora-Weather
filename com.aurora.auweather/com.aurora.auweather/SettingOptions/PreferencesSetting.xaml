@@ -38,6 +38,9 @@
             <converters:NowStyleMinConverter x:Key="NowStyleMinConverter" />
             <converters:NowStyleMaxConverter x:Key="NowStyleMaxConverter" />
             <converters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+            <converters:NullableBooleanToBooleanConverter x:Key="NullableBooleanToBooleanConverter" />
+            <converters:BooleanToNullableBooleanConverter x:Key="BooleanToNullableBooleanConverter" />
+            <converters:BooltoOpacityConverter x:Key="BooltoOpacityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -132,13 +135,18 @@
                             </ComboBox>
                         </Grid>
                         <TextBlock x:Uid="LanguageChangeText" x:Name="LanguageChangeText" Visibility="Collapsed" Foreground="#ff4040" Margin="8" FontWeight="Light" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <Grid HorizontalAlignment="Stretch" >
+                            <TextBlock x:Uid="TransparentTileText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                            <TextBlock x:Uid="TransparentTileFalseText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" />
+                            <ToggleSwitch x:Name="TransparentTile" IsOn="{x:Bind Context.TransparentTile,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                        </Grid>
                         <Button x:Uid="CustomLayoutButton" x:Name="CustomLayout" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button.Flyout>
                                 <Flyout Placement="Full">
                                     <StackPanel MaxWidth="320" Orientation="Vertical" >
                                         <TextBlock x:Uid="ToggleNowPanelText" Margin="8" FontSize="20" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Grid Width="256" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{x:Bind NowPanelSlider.Value,Mode=OneWay}" Margin="24" Background="{ThemeResource SystemControlHighlightAccentBrush}">
+                                            <Grid Width="216" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{x:Bind NowPanelSlider.Value,Mode=OneWay}" Margin="24" Background="{ThemeResource SystemControlHighlightAccentBrush}">
                                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <TextBlock x:Name="NowPanelCity" Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="City" FontSize="16" FontWeight="ExtraLight" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -394,17 +402,23 @@
                                 <TextBlock x:Uid="EnableEveryText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                                 <ToggleSwitch x:Name="EnableEveryDay" IsOn="{x:Bind Context.EnableEveryDay,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
-                            <Grid x:Name="SetTimeGrid" Visibility="{x:Bind EnableEveryDay.IsOn,Converter={StaticResource BooltoVisibility},Mode=OneWay}" HorizontalAlignment="Stretch" >
-                                <TextBlock x:Uid="SetTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <TimePicker x:Name="EveyDayPicker" Time="{x:Bind Context.NoteTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
-                            </Grid>
-                            <Grid HorizontalAlignment="Stretch" >
-                                <TextBlock x:Uid="EnableAlarmText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
-                                <ToggleSwitch x:Name="EnableAlarm" IsOn="{x:Bind Context.EnableAlarm,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
-                            </Grid>
+                            <StackPanel Margin="8" HorizontalAlignment="Stretch" Visibility="{x:Bind EnableEveryDay.IsOn,Converter={StaticResource BooltoVisibility},Mode=OneWay}">
+                                <CheckBox x:Name="MorningAlarm" x:Uid="MorningAlarm" IsChecked="{x:Bind Context.EnableMorning,Mode=TwoWay, Converter={StaticResource NullableBooleanToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <Grid Opacity="{x:Bind MorningPicker.IsEnabled, Converter={StaticResource BooltoOpacityConverter},Mode=OneWay}" x:Name="MorningTimeGrid" HorizontalAlignment="Stretch">
+                                    <TextBlock x:Uid="SetTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                    <TimePicker IsEnabled="{x:Bind MorningAlarm.IsChecked, Converter={StaticResource NullableBooleanToBooleanConverter},Mode=OneWay}" x:Name="MorningPicker" Time="{x:Bind Context.MorningTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                </Grid>
+                                <CheckBox x:Name="EveningAlarm" x:Uid="EveningAlarm" IsChecked="{x:Bind Context.EnableEvening,Mode=TwoWay, Converter={StaticResource NullableBooleanToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <Grid Opacity="{x:Bind EveningPicker.IsEnabled, Converter={StaticResource BooltoOpacityConverter},Mode=OneWay}" x:Name="EveningTimeGrid" HorizontalAlignment="Stretch">
+                                    <TextBlock x:Uid="SetTimeText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                    <TimePicker x:Name="EveningPicker" IsEnabled="{x:Bind EveningAlarm.IsChecked, Converter={StaticResource NullableBooleanToBooleanConverter},Mode=OneWay}" Time="{x:Bind Context.EveningTime,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                                </Grid>
+                                <CheckBox x:Name="EnableAlarm" x:Uid="EnableAlarm" Content="EnableAlarm" IsChecked="{x:Bind Context.EnableAlarm,Mode=TwoWay, Converter={StaticResource NullableBooleanToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                            </StackPanel>
+
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="ForceRefreshText" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                                <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,24,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
+                                <TextBlock x:Uid="ExperimentalText" HorizontalAlignment="Left" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" VerticalAlignment="Bottom" />
                                 <ToggleSwitch x:Name="EnablePulltoRefresh" IsOn="{x:Bind Context.EnablePulltoRefresh,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                         </StackPanel>
@@ -424,6 +438,14 @@
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="AlwaysShowText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                                 <ToggleSwitch x:Name="AlwaysShowBackground" IsOn="{x:Bind Context.AlwaysShowBackground,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="BlurBGText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="AlwaysBlur" IsOn="{x:Bind Context.AlwaysBlur,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Stretch" >
+                                <TextBlock x:Uid="SetWallPaperText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                                <ToggleSwitch x:Name="SetWallPaper" IsOn="{x:Bind Context.SetWallPaper,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                             </Grid>
                             <Grid HorizontalAlignment="Stretch" >
                                 <TextBlock x:Uid="FullScreenText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />

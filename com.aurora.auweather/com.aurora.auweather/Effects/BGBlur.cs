@@ -86,8 +86,9 @@ namespace Com.Aurora.AuWeather.Effects
             nowFrame = 0;
             blurFrame = 0;
             opacity = 0f;
-            canDraw = true;
             isImmersive = true;
+            canDraw = true;
+
         }
 
         internal void BlurIn()
@@ -97,11 +98,15 @@ namespace Com.Aurora.AuWeather.Effects
 
         }
 
-        public void ImmersiveOut()
+        public void ImmersiveOut(bool fadeOut)
         {
-            nowFrame = inFrames;
-            opacity = 1f;
-            isImmersive = false;
+            if (fadeOut)
+            {
+                nowFrame = inFrames;
+                opacity = 1f;
+                isImmersive = false;
+            }
+
         }
 
         public void Draw(CanvasDrawingSession drawingSession)

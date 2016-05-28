@@ -69,8 +69,9 @@ namespace Com.Aurora.AuWeather
             if (!license.IsPurchased)
             {
                 settings.Preferences.EnableAlarm = false;
-                settings.Preferences.EnableEveryDay = false;
-                settings.Preferences.Set(60);
+                settings.Preferences.EnableEvening = false;
+                settings.Preferences.EnableMorning = false;
+                settings.Preferences.Set(240);
             }
             if (settings.Preferences.MainColor.A > 0)
             {
@@ -158,29 +159,7 @@ namespace Com.Aurora.AuWeather
                                         str = null;
                                         result = null;
                                         CalcPosition(pos, citys, settings);
-                                        if ((DateTime.Now - settings.Cities.LocatedCity.LastUpdate).TotalMinutes >= 60)
-                                        {
-                                            CreateTimeOutTimer();
-                                            string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
-                                            if (resstr.IsNullorEmpty())
-                                            {
-                                                SplashComplete(null, AsyncStatus.Completed);
-                                            }
-                                            else
-                                            {
-                                                var task = ThreadPool.RunAsync(async (m) =>
-                                                {
-                                                    m.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                                                    await settings.Cities.SaveDataAsync(settings.Cities.LocatedCity.Id, resstr, settings.Preferences.DataSource);
-                                                    settings.Cities.LocatedCity.Update();
-                                                    settings.Cities.Save();
-                                                });
-                                            }
-                                        }
-                                        else
-                                        {
-                                            SplashComplete(null, AsyncStatus.Completed);
-                                        }
+                                        SplashComplete(null, AsyncStatus.Completed);
                                     });
                                 }
                                 else
@@ -210,8 +189,6 @@ namespace Com.Aurora.AuWeather
                     NavigatetoStart();
                 }
             }
-
-
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
                 List<CityInfo> citys = null;
@@ -241,33 +218,7 @@ namespace Com.Aurora.AuWeather
                     citys.Clear();
                     citys = null;
                 }
-                if ((DateTime.Now - settings.Cities.SavedCities[settings.Cities.CurrentIndex].LastUpdate).TotalMinutes >= 60)
-                {
-                    CreateTimeOutTimer();
-                    string resstr = await Request.GetRequest(settings, settings.Cities.SavedCities[settings.Cities.CurrentIndex]);
-                    if (resstr.IsNullorEmpty())
-                    {
-                        SplashComplete(null, AsyncStatus.Completed);
-                    }
-                    else
-                    {
-                        var task = ThreadPool.RunAsync(async (work) =>
-                        {
-                            work.Completed = new AsyncActionCompletedHandler(SplashComplete);
-                            if (resstr == null)
-                                return;
-                            await settings.Cities.SaveDataAsync(settings.Cities.SavedCities[settings.Cities.CurrentIndex].Id, resstr, settings.Preferences.DataSource);
-                            settings.Cities.SavedCities[settings.Cities.CurrentIndex].Update();
-                            settings.Cities.Save();
-                        });
-                    }
-
-
-                }
-                else
-                {
-                    SplashComplete(null, AsyncStatus.Completed);
-                }
+                SplashComplete(null, AsyncStatus.Completed);
             }
             else
             {
@@ -353,18 +304,17 @@ namespace Com.Aurora.AuWeather
                     settings.Cities.LocatedCity.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
                     settings.Cities.LocatedCity.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
                 }
-                settings.Cities.Save();
-                final = null;
-                citys.Clear();
-                citys = null;
-                return;
             }
-            var p = final.ToArray()[0];
-            p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
-            settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
+            else
+            {
+                var p = final.ToArray()[0];
+                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
+            }
             final = null;
             citys.Clear();
             citys = null;
+            settings.Cities.Save();
         }
 
         void DismissExtendedSplash()

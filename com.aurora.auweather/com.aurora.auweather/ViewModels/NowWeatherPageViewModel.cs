@@ -1080,7 +1080,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal async Task<Uri> GetCurrentBackground()
+        internal async Task<Uri> GetCurrentBackgroundAsync()
         {
             return await settings.Immersive.GetCurrentBackgroundAsync(Condition, IsNight);
         }
@@ -1120,6 +1120,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 enableDynamic = !value;
+                settings = SettingsModel.Get();
                 settings.Preferences.DisableDynamic = !value;
                 SetProperty(ref enableDynamic, value);
                 settings.Preferences.Save();
@@ -1252,6 +1253,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
         public ObservableCollection<WeatherAlarmViewModel> Alarms = new ObservableCollection<WeatherAlarmViewModel>();
+        private bool alwaysBlur;
 
         #endregion
         #region events
@@ -1272,7 +1274,22 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-
+        public bool SetWallPaper { get; internal set; }
+        public bool AlwaysBlur
+        {
+            get
+            {
+                return alwaysBlur;
+            }
+            set
+            {
+                alwaysBlur = value;
+                settings = SettingsModel.Get();
+                settings.Preferences.AlwaysBlur = value;
+                SetProperty(ref alwaysBlur, value);
+                settings.Preferences.Save();
+            }
+        }
 
         public void RefreshAsync()
         {
@@ -1296,6 +1313,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SuggestsHide = settings.Preferences.SuggestHide;
                 ScrollableRootPaddingHeader = settings.Preferences.NowPanelHeight * 2d - 144d;
                 IsNowPanelLow = settings.Preferences.IsNowPanelLowStyle;
+                SetWallPaper = settings.Preferences.SetWallPaper;
+                AlwaysBlur = settings.Preferences.AlwaysBlur;
             }
             catch (NullReferenceException)
             {
@@ -1331,24 +1350,48 @@ namespace Com.Aurora.AuWeather.ViewModels
                             return;
                         }
                         Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
-                        if (settings.Preferences.EnableEveryDay)
+                        if (settings.Preferences.EnableMorning)
                         {
-                            var shu = settings.Preferences.NoteTime.TotalHours;
-                            var tomorrow8 = DateTime.Now.Hour > shu ? (DateTime.Today.AddDays(1)).AddHours(shu) : (DateTime.Today.AddHours(shu));
+                            var shu1 = settings.Preferences.MorningNoteTime.TotalHours;
+
+                            var tomorrow8 = DateTime.Now.Hour > shu1 ? (DateTime.Today.AddDays(1)).AddHours(shu1) : (DateTime.Today.AddHours(shu1));
+
                             try
                             {
-                                Sender.CreateScheduledToastNotification(await Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset)), tomorrow8, "EveryDayToast");
+                                Sender.CreateScheduledToastNotification(await (Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow8, utcOffset))), tomorrow8, "MorningToast");
                             }
                             catch (Exception)
                             {
 
                             }
                         }
-                        if (!fetchresult.Alarms.IsNullorEmpty() && settings.Preferences.EnableAlarm)
+                        if (settings.Preferences.EnableEvening)
                         {
-                            Sender.CreateBadge(Generator.GenerateAlertBadge());
-                            Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel).GetXml());
+                            var shu2 = settings.Preferences.EveningNoteTime.TotalHours;
+                            var tomorrow20 = DateTime.Now.Hour > shu2 ? (DateTime.Today.AddDays(1)).AddHours(shu2) : (DateTime.Today.AddHours(shu2));
+                            try
+                            {
+                                Sender.CreateScheduledToastNotification(await (Generator.CreateToast(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(tomorrow20, utcOffset))), tomorrow20, "EveningToast");
+                            }
+                            catch (Exception)
+                            {
+
+                            }
                         }
+                        if (settings.Preferences.EnableAlarm)
+                        {
+                            if (!fetchresult.Alarms.IsNullorEmpty() && (DateTime.Now - settings.Preferences.LastAlertTime).TotalDays > 1)
+                            {
+                                Sender.CreateBadge(Generator.GenerateAlertBadge());
+                                Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel).GetXml());
+                            }
+                            var str = Generator.CalculateWeatherAlarm(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(DateTime.Now, utcOffset));
+                            if (!str.IsNullorEmpty() && str.Length > 1 && (DateTime.Now - settings.Preferences.LastAlarmTime).TotalDays > 1)
+                            {
+                                Sender.CreateToast(Generator.CreateAlarmToast(str, currentCityModel).GetXml());
+                            }
+                        }
+
                     });
 
                 }
@@ -1501,51 +1544,55 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             // 下面这货是傻逼，只有上帝知道第几个是今天的
             // json 中第一个dailyforecast 是今天的
-
-            if (!IsNight)
+            try
             {
-                Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.DayCond;
-                Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.DayCond;
-                Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.DayCond;
+                if (!IsNight)
+                {
+                    Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.DayCond;
+                    Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.DayCond;
+                    Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.DayCond;
+                    if (fetchresult.DailyForecast.Length > todayIndex + 4)
+                        Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
+                    if (fetchresult.DailyForecast.Length > todayIndex + 5)
+                        Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
+                }
+                else
+                {
+                    Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.NightCond;
+                    Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.NightCond;
+                    Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.NightCond;
+                    if (fetchresult.DailyForecast.Length > todayIndex + 4)
+                        Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
+                    if (fetchresult.DailyForecast.Length > todayIndex + 5)
+                        Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
+                }
+                ForecastDate1 = fetchresult.DailyForecast[todayIndex + 2].Date;
+                ForecastDate2 = fetchresult.DailyForecast[todayIndex + 3].Date;
                 if (fetchresult.DailyForecast.Length > todayIndex + 4)
-                    Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.DayCond;
+                    ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
                 if (fetchresult.DailyForecast.Length > todayIndex + 5)
-                    Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.DayCond;
-            }
-            else
-            {
-                Forecast0 = fetchresult.DailyForecast[todayIndex + 1].Condition.NightCond;
-                Forecast1 = fetchresult.DailyForecast[todayIndex + 2].Condition.NightCond;
-                Forecast2 = fetchresult.DailyForecast[todayIndex + 3].Condition.NightCond;
+                    ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
+                Forecast0H = fetchresult.DailyForecast[todayIndex + 1].HighTemp;
+                Forecast0L = fetchresult.DailyForecast[todayIndex + 1].LowTemp;
+                Forecast1H = fetchresult.DailyForecast[todayIndex + 2].HighTemp;
+                Forecast1L = fetchresult.DailyForecast[todayIndex + 2].LowTemp;
+                Forecast2H = fetchresult.DailyForecast[todayIndex + 3].HighTemp;
+                Forecast2L = fetchresult.DailyForecast[todayIndex + 3].LowTemp;
                 if (fetchresult.DailyForecast.Length > todayIndex + 4)
-                    Forecast3 = fetchresult.DailyForecast[todayIndex + 4].Condition.NightCond;
+                {
+                    Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
+                    Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
+                }
+
                 if (fetchresult.DailyForecast.Length > todayIndex + 5)
-                    Forecast4 = fetchresult.DailyForecast[todayIndex + 5].Condition.NightCond;
+                {
+                    Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
+                    Forecast4L = fetchresult.DailyForecast[todayIndex + 5].LowTemp;
+                }
             }
-            ForecastDate1 = fetchresult.DailyForecast[todayIndex + 2].Date;
-            ForecastDate2 = fetchresult.DailyForecast[todayIndex + 3].Date;
-            if (fetchresult.DailyForecast.Length > todayIndex + 4)
-                ForecastDate3 = fetchresult.DailyForecast[todayIndex + 4].Date;
-            if (fetchresult.DailyForecast.Length > todayIndex + 5)
-                ForecastDate4 = fetchresult.DailyForecast[todayIndex + 5].Date;
-            Forecast0H = fetchresult.DailyForecast[todayIndex + 1].HighTemp;
-            Forecast0L = fetchresult.DailyForecast[todayIndex + 1].LowTemp;
-            Forecast1H = fetchresult.DailyForecast[todayIndex + 2].HighTemp;
-            Forecast1L = fetchresult.DailyForecast[todayIndex + 2].LowTemp;
-            Forecast2H = fetchresult.DailyForecast[todayIndex + 3].HighTemp;
-            Forecast2L = fetchresult.DailyForecast[todayIndex + 3].LowTemp;
-            if (fetchresult.DailyForecast.Length > todayIndex + 4)
+            catch (Exception)
             {
-                Forecast3H = fetchresult.DailyForecast[todayIndex + 4].HighTemp;
-                Forecast3L = fetchresult.DailyForecast[todayIndex + 4].LowTemp;
             }
-
-            if (fetchresult.DailyForecast.Length > todayIndex + 5)
-            {
-                Forecast4H = fetchresult.DailyForecast[todayIndex + 5].HighTemp;
-                Forecast4L = fetchresult.DailyForecast[todayIndex + 5].LowTemp;
-            }
-
         }
 
         private void SetProportion()
@@ -1608,7 +1655,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 pathResults[j] -= avg;
             }
-
+            if (max == min)
+            {
+                max++;
+            }
             TempraturePath0 = pathResults[0] / (max - min);
             TempraturePath1 = pathResults[1] / (max - min);
             TempraturePath2 = pathResults[2] / (max - min);

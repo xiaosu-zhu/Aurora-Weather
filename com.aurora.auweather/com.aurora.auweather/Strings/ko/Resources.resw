@@ -93,11 +93,8 @@
   <data name="DynamicText.Text" xml:space="preserve">
     <value>동적 날씨</value>
   </data>
-  <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>기상 재해 경고</value>
-  </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>매일 날씨</value>
+    <value>날씨 경보</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>실험적 기능</value>
@@ -1021,10 +1018,8 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
-· 새로 고침 애니메이션
-를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
-· 세부 정보 페이지 개선</value>
+    <value>데이터 공급자 HeWeather 최근 안정, 전환할 수 있습니다 일시적으로 다른 데이터 공급자 * * *
+· 향상 된 날씨 경보 토스트</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1048,7 +1043,18 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16055
+    <value>1.6.16054
+· 날씨 경보 개선
+
+1.6.16050
+· 토스트 반투명 타일
+를 선택할 수 있습니다 이제 · 바둑판식 배열 레이아웃 조정
+
+1.5.16059
+· 설정에서 고정된 문제 페이지
+· 현재 BG lockscreen 설정 하려고 벽지
+
+1.5.16055
 · 사용자 지정할 수 있습니다 강조 색 지금 (경우에 테마 설정 "에 따라 시스템")
 · 새로 고침 애니메이션
 를 추가 · 레이아웃을 사용자 지정할 수 있습니다 지금은
@@ -1280,5 +1286,71 @@
   </data>
   <data name="DonateOption5.Text" xml:space="preserve">
     <value>· 레이아웃 사용자 지정</value>
+  </data>
+  <data name="SetWallPaperText.Text" xml:space="preserve">
+    <value>자동 설정 현재 BG lockscreen 벽지</value>
+  </data>
+  <data name="SetWallPaperFalseText.Text" xml:space="preserve">
+    <value>실험 및 적용 되지 않을 수 있습니다</value>
+  </data>
+  <data name="TransparentTileText.Text" xml:space="preserve">
+    <value>반투명 타일 사용</value>
+  </data>
+  <data name="TransparentTileFalseText.Text" xml:space="preserve">
+    <value>데스크톱 플랫폼에서 사용할 수 없습니다.</value>
+  </data>
+  <data name="SunRise" xml:space="preserve">
+    <value>일출</value>
+  </data>
+  <data name="SunSet" xml:space="preserve">
+    <value>태양이 세트</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UtcOffset" xml:space="preserve">
+    <value>Utc 오프셋</value>
+  </data>
+  <data name="EnableAlarm.Content" xml:space="preserve">
+    <value>악천후 경보</value>
+  </data>
+  <data name="MorningAlarm.Content" xml:space="preserve">
+    <value>아침 알람</value>
+  </data>
+  <data name="EveningAlarm.Content" xml:space="preserve">
+    <value>저녁 알람</value>
+  </data>
+  <data name="ToastGale" xml:space="preserve">
+    <value>게 일을 내일 있을 것입니다.</value>
+  </data>
+  <data name="ToastRain" xml:space="preserve">
+    <value>폭우를 내일 있을 것입니다.</value>
+  </data>
+  <data name="ToastThunder" xml:space="preserve">
+    <value>천둥을 내일 있을 것입니다.</value>
+  </data>
+  <data name="ToastHail" xml:space="preserve">
+    <value>우박을 내일 있을 것입니다.</value>
+  </data>
+  <data name="ToastSnow" xml:space="preserve">
+    <value>내일 눈을 될 것입니다.</value>
+  </data>
+  <data name="ToastFreeze" xml:space="preserve">
+    <value>내일 비 동결 것 이다</value>
+  </data>
+  <data name="ToastSand" xml:space="preserve">
+    <value>내일 모래 있을 것입니다.</value>
+  </data>
+  <data name="ToastHot" xml:space="preserve">
+    <value>내일 뜨거운 될 것 이다</value>
+  </data>
+  <data name="ToastCold" xml:space="preserve">
+    <value>내일 차가운 것</value>
+  </data>
+  <data name="Known" xml:space="preserve">
+    <value>알아요</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>해제</value>
   </data>
 </root>

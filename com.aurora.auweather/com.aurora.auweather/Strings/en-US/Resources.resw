@@ -204,14 +204,14 @@
   <data name="DynamicText.Text" xml:space="preserve">
     <value>Dynamic weather</value>
   </data>
-  <data name="EnableAlarmText.Text" xml:space="preserve">
-    <value>Meteorological disaster warning</value>
+  <data name="EnableAlarm.Content" xml:space="preserve">
+    <value>Severe weather alarm</value>
   </data>
   <data name="AlarmButton.Content" xml:space="preserve">
     <value>Meteorological disaster warning</value>
   </data>
   <data name="EnableEveryText.Text" xml:space="preserve">
-    <value>Daily weather</value>
+    <value>Weather alarms</value>
   </data>
   <data name="ExperimentalText.Text" xml:space="preserve">
     <value>Experimental features</value>
@@ -1142,10 +1142,8 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· You can customize accent color now(only when the theme setting is "Follow system")
-· Added refresh animation
-· You can customize layout now
-· Details page improved</value>
+    <value>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
+· Improved weather alarm toasts</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1169,7 +1167,18 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.5.16055
+    <value>1.6.16054
+· Improved weather alarm toasts
+
+1.6.16050
+· Now you can choose translucent tiles
+· Tile layout adjustment
+
+1.5.16059
+· Fixed issues in settings page
+· Try to set current BG as lockscreen wallpaper
+
+1.5.16055
 · You can customize accent color now(only when the theme setting is "Follow system")
 · Added refresh animation
 · You can customize layout now
@@ -1385,5 +1394,68 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="LanguageAlarmText.Text" xml:space="preserve">
     <value>Some language requires you to install language pack</value>
+  </data>
+  <data name="SetWallPaperText.Text" xml:space="preserve">
+    <value>Auto set current BG as lockscreen wallpaper</value>
+  </data>
+  <data name="SetWallPaperFalseText.Text" xml:space="preserve">
+    <value>Experimental and may not take effect</value>
+  </data>
+  <data name="TransparentTileText.Text" xml:space="preserve">
+    <value>Enable translucent tile</value>
+  </data>
+  <data name="TransparentTileFalseText.Text" xml:space="preserve">
+    <value>Not enabled on the desktop platform</value>
+  </data>
+  <data name="SunRise" xml:space="preserve">
+    <value>Sun rise</value>
+  </data>
+  <data name="SunSet" xml:space="preserve">
+    <value>Sun set</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UtcOffset" xml:space="preserve">
+    <value>Utc offset</value>
+  </data>
+  <data name="MorningAlarm.Content" xml:space="preserve">
+    <value>Morning alarm</value>
+  </data>
+  <data name="EveningAlarm.Content" xml:space="preserve">
+    <value>Evening alarm</value>
+  </data>
+  <data name="ToastGale" xml:space="preserve">
+    <value>will be gale tomorrow</value>
+  </data>
+  <data name="ToastRain" xml:space="preserve">
+    <value>will be heavy rain tomorrow</value>
+  </data>
+  <data name="ToastThunder" xml:space="preserve">
+    <value>will be thunder tomorrow</value>
+  </data>
+  <data name="ToastHail" xml:space="preserve">
+    <value>will be hail tomorrow</value>
+  </data>
+  <data name="ToastSnow" xml:space="preserve">
+    <value>will be heavy snow tomorrow</value>
+  </data>
+  <data name="ToastFreeze" xml:space="preserve">
+    <value>will be Freezing rain tomorrow</value>
+  </data>
+  <data name="ToastSand" xml:space="preserve">
+    <value>will be sand tomorrow</value>
+  </data>
+  <data name="ToastHot" xml:space="preserve">
+    <value>will be hot tomorrow</value>
+  </data>
+  <data name="ToastCold" xml:space="preserve">
+    <value>will be cold tomorrow</value>
+  </data>
+  <data name="Known" xml:space="preserve">
+    <value>I know</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
   </data>
 </root>

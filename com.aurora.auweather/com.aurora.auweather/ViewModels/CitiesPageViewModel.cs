@@ -387,7 +387,13 @@ namespace Com.Aurora.AuWeather.ViewModels
             var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
             if (uri != null)
             {
-                item.Background = new BitmapImage(uri);
+                try
+                {
+                    item.Background = new BitmapImage(uri);
+                }
+                catch (Exception)
+                {
+                }
             }
 
             item.data = null;

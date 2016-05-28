@@ -21,7 +21,17 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public DataSource DataSource { get; private set; } = DataSource.HeWeather;
 
-        public bool EnableEveryDay { get; set; } = false;
+        public bool EnableEveryDay
+        {
+            get
+            {
+                return EnableMorning || EnableEvening;
+            }
+        }
+
+        public bool EnableMorning { get; set; } = false;
+        public bool EnableEvening { get; set; } = false;
+
         public uint RefreshFrequency { get; set; } = 90;
         public uint NowPanelHeight { get; set; } = 320;
         public RequestedTheme Theme { get; private set; } = RequestedTheme.Auto;
@@ -40,6 +50,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public bool AQIHide { get; set; } = false;
         public bool DetailsHide { get; set; } = false;
         public bool SuggestHide { get; set; } = false;
+        public bool AlwaysBlur { get; set; } = false;
 
         public readonly string[] YearFormat = new string[] { " ", "yy", "yyyy" };
         public readonly string[] MonthFormat = new string[] { " ", "M", "MM" };
@@ -63,7 +74,12 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public TimeSpan StartTime { get; set; } = new TimeSpan(19, 30, 0);
         public TimeSpan EndTime { get; set; } = new TimeSpan(7, 30, 0);
-        public TimeSpan NoteTime { get; set; } = new TimeSpan(7, 30, 0);
+        public TimeSpan MorningNoteTime { get; set; } = new TimeSpan(7, 30, 0);
+        public TimeSpan EveningNoteTime { get; set; } = new TimeSpan(19, 30, 0);
+        public bool SetWallPaper { get; set; } = false;
+        public bool TransparentTile { get; set; } = false;
+        public DateTime LastAlertTime { get; set; } = new DateTime(1970, 1, 1);
+        public DateTime LastAlarmTime { get; set; } = new DateTime(1970, 1, 1);
 
         private static DateTime themeTime = new DateTime(1970, 1, 1);
         private static TimeSpan setTime = new TimeSpan(19, 30, 0);
@@ -211,7 +227,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             catch (Exception)
             {
             }
-            
+
         }
 
 

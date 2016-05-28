@@ -12,7 +12,7 @@ using Com.Aurora.AuWeather.Core.Models.WunderGround.JsonContract;
 namespace Com.Aurora.AuWeather.Models.HeWeather
 {
     public enum HeWeatherStatus : byte { ok, invalid_key, unknown_city, no_more_requests, no_response, permission_denied };
-    public class HeWeatherModel : WeatherModel
+    public class HeWeatherModel
     {
         public HeWeatherStatus Status
         {

@@ -5,6 +5,7 @@
 using Com.Aurora.AuWeather.CustomControls;
 using Com.Aurora.AuWeather.Shared;
 using Com.Aurora.Shared;
+using Com.Aurora.Shared.Extensions;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -44,7 +45,7 @@ namespace Com.Aurora.AuWeather
         {
             var log = new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message);
             e.Handled = true;
-            if (e.Exception.HResult == -2147418113)
+            if (e.Exception.HResult == -2147418113 || e.Exception.HResult.ToHexString() == "0x80070057")
             {
                 return;
             }
