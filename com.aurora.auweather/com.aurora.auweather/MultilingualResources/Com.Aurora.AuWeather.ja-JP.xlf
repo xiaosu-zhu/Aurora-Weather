@@ -1347,10 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
-· Improved weather alarm toasts</source>
-          <target state="translated">データ プロバイダー HeWeather は最近安定して、一時的に他のデータ プロバイダー * * *
-に切り替えることができます ·改善された気象警報トースト</target>
+          <source>· Fixed a small display issue in details page
+· Added wind speed graph</source>
+          <target state="translated">·詳細に小さな表示問題を修正
+· ページ追加の風の速度グラフ</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1381,7 +1381,18 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">更新ログ</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16054
+          <source>1.6.16062
+· Fixed a small display issue in details page
+· Added wind speed graph
+
+1.6.16058
+· UI Tweaks
+
+1.6.16056
+· Fixed a bug that caused background task can't start
+· Cortana commands will be soon avaliable
+
+1.6.16054
 · Improved weather alarm toasts
 
 1.6.16050
@@ -1429,8 +1440,19 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16054
-·天気アラームを改善乾杯
+          <target state="translated">1.6.16062
+·詳細に小さな表示問題を修正
+· ページ風の速度を追加グラフ
+
+1.6.16058
+·UI 調整
+
+1.6.16056
+·バグを修正、原因のバック グラウンド タスクは
+· を開始できません。Cortana コマンドはすぐに利用可能
+
+1.6.16054
+になる ·天気アラームを改善乾杯
 
 1.6.16050
 ·半透明のタイル
@@ -1833,6 +1855,14 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="Dismiss" translate="yes" xml:space="preserve">
           <source>Dismiss</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">破棄</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsWind" translate="yes" xml:space="preserve">
+          <source>Wind speed for {0} days</source>
+          <target state="new">Wind speed for {0} days</target>
+        </trans-unit>
+        <trans-unit id="HourlyDetailsWind" translate="yes" xml:space="preserve">
+          <source>Wind speed for {0} hours</source>
+          <target state="new">Wind speed for {0} hours</target>
         </trans-unit>
       </group>
     </body>

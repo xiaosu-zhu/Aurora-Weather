@@ -1037,7 +1037,7 @@
             <controls:LoadingDot x:Name="LoadingDot" Foreground="White" IsActive="True" DotFinish="LoadingDot_DotFinish" DotHeight="16" DotWidth="16" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
         </RelativePanel>
 
-        <ptr:PulltoRefresh x:Name="ScrollableRoot" ForceEnabled="{x:Bind Context.EnablePulltoRefresh, Mode=OneWay}" RefreshStart="ScrollableRoot_RefreshStart" Padding="0,128,0,0" IndicatorBackground="Transparent" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
+        <ptr:PulltoRefresh x:Name="ScrollableRoot" ForceEnabled="{x:Bind Context.EnablePulltoRefresh, Mode=OneWay}" RefreshStart="ScrollableRoot_RefreshStart" Padding="0,128,0,0" IndicatorBackground="#44F0F0F0" IndicatorForeground="White" IndicatorDisplayMode="Overlay"
                       HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <RelativePanel>
                 <Grid Height="{x:Bind Context.ScrollableRootPaddingHeader,Mode=OneWay,FallbackValue=492}" x:Name="Header" />
@@ -1346,7 +1346,7 @@
                             <ColumnDefinition x:Name="Column2" Width="auto" />
                         </Grid.ColumnDefinitions>
                         <RelativePanel x:Name="DetailGrid0" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="0" Height="240" >
-                            <TextBlock x:Uid="BodyTempText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="15" />
+                            <TextBlock x:Uid="BodyTempText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="15" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -1377,7 +1377,7 @@
                             <TextBlock Text="{x:Bind Context.BodyTemprature,Mode=OneWay, Converter={StaticResource TempratureConverterWithDegree}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid1" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="0" Grid.Column="1" Height="240" >
-                            <TextBlock x:Uid="WindText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="WindText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="12,64,12,64">
                                 <Grid>
                                     <Rectangle StrokeThickness="0" Width="4" Height="34" RadiusX="2" RadiusY="2" Fill="{ThemeResource SystemControlAltMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" />
@@ -1396,7 +1396,7 @@
                             <TextBlock Text="{x:Bind Context.Wind,Mode=OneWay, Converter={StaticResource WindDirectionConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid1Separator" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid2" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="1" Height="240" >
-                            <TextBlock x:Uid="HumidityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="HumidityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -1427,7 +1427,7 @@
                             <TextBlock Text="{x:Bind Context.Humidity,Mode=OneWay, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid3" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="1" Grid.Column="1" Height="240" >
-                            <TextBlock x:Uid="PrecipitationText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="PrecipitationText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -1461,7 +1461,7 @@
                             <TextBlock Text="{x:Bind Context.Proportion,Mode=OneWay, Converter={StaticResource PercentageConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="4,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="DetailGrid3Separator" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid4" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="2" Height="240" >
-                            <TextBlock x:Uid="SunProgressText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="SunProgressText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" x:Name="SunProgressBox" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="4,64,4,64">
                                 <Grid Height="320" Width="640" >
                                     <Ellipse Height="512" Width="512" VerticalAlignment="Top" Stroke="{ThemeResource SystemControlTranslucentHighLightBrush}" StrokeThickness="8">
@@ -1492,13 +1492,13 @@
                             </TextBlock>
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid5" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="2" Grid.Column="1" Height="240" >
-                            <TextBlock x:Uid="MoonPhaseText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="MoonPhaseText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Image Stretch="Uniform" Source="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseProgressConverter}}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64">
                             </Image>
                             <TextBlock Text="{x:Bind Context.Calendar,Mode=OneWay, Converter={StaticResource MoonPhaseTextConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid6" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="3" Height="240" >
-                            <TextBlock x:Uid="VisibilityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="VisibilityText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Ellipse Height="60" Width="60" Fill="#80BBBBBB">
@@ -1526,7 +1526,7 @@
                             <TextBlock Text="{x:Bind Context.Visibility,Mode=OneWay, Converter={StaticResource VisibilityConverter}}" Style="{ThemeResource NormalTextBlockStyle}" Margin="0,0,0,32" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" />
                         </RelativePanel>
                         <RelativePanel x:Name="DetailGrid7" Visibility="{x:Bind Context.DetailsHide,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Grid.Row="3" Grid.Column="1" Height="240" >
-                            <TextBlock x:Uid="PressureText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundLowBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                            <TextBlock x:Uid="PressureText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" FontSize="15" Margin="0,32,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
                             <Viewbox Stretch="Uniform" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="12,64,12,64" >
                                 <Grid>
                                     <Path Width="64" Height="64" Stroke="{ThemeResource SystemControlAltMediumBrush}" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -1560,49 +1560,49 @@
                             <StackPanel Orientation="Vertical" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="ComfortableText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Comf,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Comf,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Comf,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="DressingText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Drsg,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Drsg,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Drsg,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="2" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="CWText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Cw,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Cw,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Cw,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="SportText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Sport,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Sport,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Sport,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="4" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="FluText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Flu,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Flu,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Flu,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="5" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="TravelText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Trav,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Trav,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Trav,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="6" Margin="24,12,24,12">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock x:Uid="UVText" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
-                                    <TextBlock Text="{x:Bind Context.Uv,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
+                                    <TextBlock Text="{x:Bind Context.Uv,Mode=OneWay,Converter={StaticResource SuggestionBrfConverter}}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="16" />
                                 </StackPanel>
                                 <TextBlock Text="{x:Bind Context.Uv,Mode=OneWay,Converter={StaticResource SuggestionTxtConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" Style="{ThemeResource NormalTextBlockStyle}" />
                             </StackPanel>

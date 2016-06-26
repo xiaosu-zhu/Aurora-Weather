@@ -108,5 +108,20 @@ namespace Com.Aurora.AuWeather.Models
                     return "km/h";
             }
         }
+
+        public double ActualDouble(SpeedParameter speedParameter)
+        {
+            switch (speedParameter)
+            {
+                case SpeedParameter.KMPH:
+                    return KMPH;
+                case SpeedParameter.MPS:
+                    return MPS;
+                case SpeedParameter.Knot:
+                    return Knot;
+                default:
+                    return 0;
+            }
+        }
     }
 }

@@ -4,7 +4,6 @@
 
 using Com.Aurora.AuWeather.CustomControls;
 using Com.Aurora.AuWeather.Shared;
-using Com.Aurora.Shared;
 using Com.Aurora.Shared.Extensions;
 using System;
 using Windows.ApplicationModel;
@@ -17,6 +16,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Linq;
 
 namespace Com.Aurora.AuWeather
 {
@@ -96,6 +96,50 @@ namespace Com.Aurora.AuWeather
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            else if (args.Kind == ActivationKind.VoiceCommand)
+            {
+                var tArgs = args as VoiceCommandActivatedEventArgs;
+                var splash = tArgs.SplashScreen;
+                var arguments = tArgs.Result.Text;
+                //Window.Current.Content = spl;
+                Window.Current.Activate();
+                // Event args can represent many different activation types. 
+                // Cast it so we can get the parameters we care about out.
+                var commandArgs = args as VoiceCommandActivatedEventArgs;
+
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // Get the name of the voice command and the text spoken. 
+                // See VoiceCommands.xml for supported voice commands.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+
+                // commandMode indicates whether the command was entered using speech or text.
+                // Apps should respect text mode by providing silent (text) feedback.
+                string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
+
+            }
+            else if (args.Kind == ActivationKind.Protocol)
+            {
+                // Extract the launch context. In this case, we're just using the destination from the phrase set (passed
+                // along in the background task inside Cortana), which makes no attempt to be unique. A unique id or 
+                // identifier is ideal for more complex scenarios. We let the destination page check if the 
+                // destination trip still exists, and navigate back to the trip list if it doesn't.
+                var commandArgs = args as ProtocolActivatedEventArgs;
+                Windows.Foundation.WwwFormUrlDecoder decoder = new Windows.Foundation.WwwFormUrlDecoder(commandArgs.Uri.Query);
+                var arguments = decoder.GetFirstValueByName("LaunchContext");
+                if (Window.Current.Content == null)
+                {
+                    if (commandArgs.PreviousExecutionState != ApplicationExecutionState.Running)
+                    {
+                        SplashScreenEx extendedSplash = new SplashScreenEx(commandArgs.SplashScreen, arguments);
+                        Window.Current.Content = extendedSplash;
+                    }
+                }
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
+
         }
 
         /// <summary>
@@ -103,8 +147,11 @@ namespace Com.Aurora.AuWeather
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/CortanaCommands.xml"));
+            await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+
             if (Window.Current.Content == null)
             {
                 if (e.PreviousExecutionState != ApplicationExecutionState.Running)
@@ -237,6 +284,17 @@ namespace Com.Aurora.AuWeather
             {
                 ((Window.Current.Content as Frame).Content as IThemeble).ChangeThemeColor(color);
             }
+        }
+        /// <summary>
+        /// Returns the semantic interpretation of a speech result. 
+        /// Returns null if there is no interpretation for that key.
+        /// </summary>
+        /// <param name="interpretationKey">The interpretation key.</param>
+        /// <param name="speechRecognitionResult">The speech recognition result to get the semantic interpretation from.</param>
+        /// <returns></returns>
+        private string SemanticInterpretation(string interpretationKey, Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult)
+        {
+            return speechRecognitionResult.SemanticInterpretation.Properties[interpretationKey].FirstOrDefault();
         }
     }
 }

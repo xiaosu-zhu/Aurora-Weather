@@ -370,10 +370,11 @@
       <ReservedName>오로라 날씨</ReservedName>
       <ReservedName>Погода в Авроре</ReservedName>
       <ReservedName>極光天氣</ReservedName>
+      <ReservedName>オーロラ 天気</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>6727Aurora-ZXS.10476770C0EE5</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH4QMJ9" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH4QMJ9" />
 </StoreAssociation>

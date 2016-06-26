@@ -115,6 +115,7 @@
     <Compile Include="Controls\PulltoRefresh.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="CrashLog.cs" />
+    <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\EnumrableExtesion.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
+    <Compile Include="Helpers\CortanaHelper.cs" />
     <Compile Include="Helpers\Crypto\CryptoHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\EasingHelper.cs" />

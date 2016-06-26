@@ -1018,8 +1018,8 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>데이터 공급자 HeWeather 최근 안정, 전환할 수 있습니다 일시적으로 다른 데이터 공급자 * * *
-· 향상 된 날씨 경보 토스트</value>
+    <value>· 세부 사항에 작은 디스플레이 문제를 해결 페이지
+· 추가 바람 속도 그래프</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1043,7 +1043,18 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· 세부 사항에 작은 디스플레이 문제를 해결 페이지
+· 추가 바람 속도 그래프
+
+1.6.16058
+· UI 조작
+
+1.6.16056
+· 고정 버그 발생된 배경 작업
+· 시작할 수 없습니다. Cortana 명령 곧 유효한
+
+1.6.16054
 · 날씨 경보 개선
 
 1.6.16050

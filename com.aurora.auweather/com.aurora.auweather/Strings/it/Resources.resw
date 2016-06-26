@@ -1018,8 +1018,8 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>Il provider di dati HeWeather è recentemente instabile, è possibile passare temporaneamente ad altri dati provider * * *
-· Migliorato il tempo allarme toast</value>
+    <value>· Risolto un piccolo problema in dettagli pagina
+· Grafico della velocità di vento</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1043,7 +1043,18 @@
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· Risolto un piccolo problema in dettagli pagina
+· Velocità del vento di aggiunto grafico
+
+1.6.16058
+· Interfaccia utente Tweaks
+
+1.6.16056
+· Corretto un bug che attività in background causato Impossibile avviare
+· Comandi di Cortana sarà presto disponibile
+
+1.6.16054
 · Migliorato l'allarme Meteo Brindisi
 
 1.6.16050

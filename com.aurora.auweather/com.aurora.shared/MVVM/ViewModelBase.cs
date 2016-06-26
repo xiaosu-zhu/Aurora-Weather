@@ -27,5 +27,6 @@ namespace Com.Aurora.Shared.MVVM
             }
             return changed;
         }
+
     }
 }

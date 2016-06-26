@@ -142,6 +142,11 @@ namespace Com.Aurora.AuWeather.Tile
             BadgeUpdateManager.CreateBadgeUpdaterForApplication().Update(b);
         }
 
+        public static void ClearBadge()
+        {
+            BadgeUpdateManager.CreateBadgeUpdaterForApplication().Clear();
+        }
+
         public static void CreateBadge(BadgeGlyphNotificationContent badge)
         {
             BadgeNotification b = new BadgeNotification(badge.GetXml());

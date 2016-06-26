@@ -160,5 +160,20 @@ namespace Com.Aurora.AuWeather.Models
                 Speed = Speed.FromKMPH(0);
             }
         }
+
+        public static string GetSpeedFormat(SpeedParameter speedParameter)
+        {
+            switch (speedParameter)
+            {
+                case SpeedParameter.KMPH:
+                    return "km/h";
+                case SpeedParameter.MPS:
+                    return "m/s";
+                case SpeedParameter.Knot:
+                    return "kn";
+                default:
+                    return "";
+            }
+        }
     }
 }

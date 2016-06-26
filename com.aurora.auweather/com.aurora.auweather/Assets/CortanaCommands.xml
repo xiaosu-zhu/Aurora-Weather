@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="zh-cn" Name="AuroraWeatherCommandSet_zh-cn">
+    <CommandPrefix> 极光天气, </CommandPrefix>
+    <Example> 告诉我北京的天气 </Example>
+
+      <Command Name="showWeatherinSomewhere">
+      <Example> 告诉我北京的天气 </Example>
+      <ListenFor> 告诉我{where}的天气 </ListenFor>
+      <Feedback> 这是{where}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="showWeatherinSomewhereShort">
+      <Example> 北京天气如何 </Example>
+      <ListenFor> {where}天气如何 </ListenFor>
+      <Feedback> 这是{where}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showWeatherForecast">
+      <Example> 告诉我明天的天气 </Example>
+      <ListenFor> 告诉我{when}的天气 </ListenFor>
+      <Feedback> 这是{when}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showWeatherForecastShort">
+      <Example> 明天天气如何 </Example>
+      <ListenFor> {when}天气如何 </ListenFor>
+      <Feedback> 这是{when}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="showTemprature">
+      <Example> 今天气温多少 </Example>
+      <ListenFor> {when}气温多少 </ListenFor>
+      <Feedback> 这是{when}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showTempratureinSomeWhere">
+      <Example> 北京气温多少 </Example>
+      <ListenFor> {where}气温多少 </ListenFor>
+      <Feedback> 这是{where}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="askRain">
+      <Example> 今天有雨吗 </Example>
+      <ListenFor> {when}有雨吗 </ListenFor>
+      <Feedback> 这是{when}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="askRaininSomeWhere">
+      <Example> 北京有雨吗 </Example>
+      <ListenFor> {where}有雨吗 </ListenFor>
+      <Feedback> 这是{where}的天气情况: </Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseList Label="where">
+    </PhraseList>
+
+    <PhraseList Label="when">
+      <Item>今天</Item>
+      <Item>明天</Item>
+      <Item>后天</Item>
+      <Item>大后天</Item>
+    </PhraseList>
+
+    <!--PhraseTopic Label="newDestination" Scenario="Search">
+      <Subject>City/State</Subject>
+    </PhraseTopic-->
+  </CommandSet>
+
+  <!-- Other CommandSets for other languages -->
+
+</VoiceCommands>

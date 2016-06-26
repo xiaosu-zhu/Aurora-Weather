@@ -1018,8 +1018,8 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>El proveedor de datos HeWeather es inestable recientemente, usted puede cambiar temporalmente a otros proveedores de datos ***
-· Mejora clima alarma tostadas</value>
+    <value>· Corregido un pequeño problema en detalles página
+· Gráfico de velocidad de viento mayor</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1043,7 +1043,18 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· Corregido un pequeño problema en detalles página
+· Velocidad del viento ha añadido gráfico
+
+1.6.16058
+· Ajustes de interfaz de usuario
+
+1.6.16056
+· Corregido un error en esa tarea de fondo causado no puede iniciar
+· Comandos de Cortana pronto estará disponible
+
+1.6.16054
 · Mejor alarma clima tuesta
 
 1.6.16050

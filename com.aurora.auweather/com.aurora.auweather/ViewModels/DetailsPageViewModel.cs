@@ -450,6 +450,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             List<double> doubles2 = new List<double>();
             List<double> doubles3 = new List<double>();
             List<double> doubles5 = new List<double>();
+            List<double> doubles4 = new List<double>();
             if (!fetchresult.HourlyForecast.IsNullorEmpty())
             {
                 for (int i = nowHourIndex + 1; i < fetchresult.HourlyForecast.Length; i++)
@@ -462,14 +463,22 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         doubles1.Add(fetchresult.HourlyForecast[i].Pop);
                     }
+                    if (fetchresult.HourlyForecast[i].Wind != null)
+                    {
+                        doubles4.Add(fetchresult.HourlyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter));
+                    }
                 }
                 if (!doubles0.IsNullorEmpty() && !doubles1.IsNullorEmpty())
                 {
-                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter)));
+                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999));
                 }
                 if (doubles1 != null && doubles1.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles1, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsPop"), doubles1.Count), "%"));
+                    Forecasts.Add(new GraphViewModel(doubles1, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsPop"), doubles1.Count), "%", 0, 100));
+                }
+                if (doubles4 != null && doubles4.Count > 1)
+                {
+                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000));
                 }
             }
 
@@ -497,22 +506,30 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         doubles5.Add(fetchresult.DailyForecast[i].Visibility.ActualDouble(VisibilityConverter.LengthParameter));
                     }
+                    if (fetchresult.DailyForecast[i].Wind != null)
+                    {
+                        doubles4.Add(fetchresult.DailyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter));
+                    }
                 }
                 if (!doubles0.IsNullorEmpty() && !doubles1.IsNullorEmpty())
                 {
-                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Pallette.Orange), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter)));
+                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Pallette.Orange), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999));
                 }
                 if (doubles2 != null && doubles2.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles2, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPop"), doubles2.Count), "%"));
+                    Forecasts.Add(new GraphViewModel(doubles2, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPop"), doubles2.Count), "%", 0, 100));
                 }
                 if (doubles3 != null && doubles3.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles3, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPrep"), doubles3.Count), "mm"));
+                    Forecasts.Add(new GraphViewModel(doubles3, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPrep"), doubles3.Count), "mm", 0, 100));
                 }
                 if (doubles5 != null && doubles5.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles5, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsVis"), doubles5.Count), Length.GetFormat(VisibilityConverter.LengthParameter)));
+                    Forecasts.Add(new GraphViewModel(doubles5, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsVis"), doubles5.Count), Length.GetFormat(VisibilityConverter.LengthParameter), 0, 1000));
+                }
+                if (doubles4 != null && doubles4.Count > 1)
+                {
+                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000));
                 }
             }
 
@@ -633,91 +650,23 @@ namespace Com.Aurora.AuWeather.ViewModels
 
     class GraphViewModel : ViewModelBase
     {
-        private string title;
-        private DoubleCollection values0;
-        private DoubleCollection values1;
-        private Brush stroke0;
-        private Brush stroke1;
-        private string decorate;
 
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
+        public string Title { get; private set; }
 
-            set
-            {
-                SetProperty(ref title, value);
-            }
-        }
+        public DoubleCollection Values0 { get; private set; }
 
-        public DoubleCollection Values0
-        {
-            get
-            {
-                return values0;
-            }
+        public DoubleCollection Values1 { get; private set; }
 
-            set
-            {
-                SetProperty(ref values0, value);
-            }
-        }
+        public Brush Stroke0 { get; private set; }
 
-        public DoubleCollection Values1
-        {
-            get
-            {
-                return values1;
-            }
+        public Brush Stroke1 { get; private set; }
 
-            set
-            {
-                SetProperty(ref values1, value);
-            }
-        }
+        public string Decorate { get; private set; }
 
-        public Brush Stroke0
-        {
-            get
-            {
-                return stroke0;
-            }
+        public double Minimum { get; private set; }
+        public double Maximum { get; private set; }
 
-            set
-            {
-                SetProperty(ref stroke0, value);
-            }
-        }
-
-        public Brush Stroke1
-        {
-            get
-            {
-                return stroke1;
-            }
-
-            set
-            {
-                SetProperty(ref stroke1, value);
-            }
-        }
-
-        public string Decorate
-        {
-            get
-            {
-                return decorate;
-            }
-            set
-            {
-                SetProperty(ref decorate, value);
-            }
-        }
-
-        public GraphViewModel(ICollection<double> values0, ICollection<double> values1, Brush stroke0, Brush stroke1, string title, string decorate)
+        public GraphViewModel(ICollection<double> values0, ICollection<double> values1, Brush stroke0, Brush stroke1, string title, string decorate, double min, double max)
         {
             if (values0 != null && values0.Count > 0)
             {
@@ -739,6 +688,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             Stroke1 = stroke1;
             Title = title;
             Decorate = decorate;
+            Minimum = min;
+            Maximum = max;
         }
     }
 }

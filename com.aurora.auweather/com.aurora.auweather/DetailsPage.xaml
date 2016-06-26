@@ -302,7 +302,7 @@
 
         <GridView.ItemTemplate>
             <DataTemplate x:DataType="ViewModels:GraphViewModel" >
-                <controls:GraphBox MaxWidth="480" Margin="4" Background="{ThemeResource SystemBackgroundHighBrush}" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Title="{x:Bind Title}" Values0="{x:Bind Values0}" FormatDecoration="{x:Bind Decorate}"
+                <controls:GraphBox MaxWidth="480" Margin="4" Background="{ThemeResource SystemBackgroundHighBrush}" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Title="{x:Bind Title}" Values0="{x:Bind Values0}" FormatDecoration="{x:Bind Decorate}" Minimum="{x:Bind Minimum}" Maximum="{x:Bind Maximum}"
                                        Values1="{x:Bind Values1}" Stroke0="{x:Bind Stroke0}" Stroke1="{x:Bind Stroke1}" SeparatorFill="{ThemeResource SystemControlTranslucentBaseLightBrush}" />
             </DataTemplate>
         </GridView.ItemTemplate>

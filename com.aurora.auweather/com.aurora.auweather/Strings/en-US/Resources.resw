@@ -1142,8 +1142,8 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
-· Improved weather alarm toasts</value>
+    <value>· Fixed a small display issue in details page
+· Added wind speed graph</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1167,7 +1167,18 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· Fixed a small display issue in details page
+· Added wind speed graph
+
+1.6.16058
+· UI Tweaks
+
+1.6.16056
+· Fixed a bug that caused background task can't start
+· Cortana commands will be soon avaliable
+
+1.6.16054
 · Improved weather alarm toasts
 
 1.6.16050
@@ -1311,6 +1322,9 @@ Now you can send crash report to developer, and totally help this app get better
   <data name="DailyDetailsVis" xml:space="preserve">
     <value>Visibility for {0} days</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>Wind speed for {0} days</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -1319,6 +1333,9 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="HourlyDetailsTemperature" xml:space="preserve">
     <value>Temperature for {0} hours</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>Wind speed for {0} hours</value>
   </data>
   <data name="DrawerText.Text" xml:space="preserve">
     <value>Custom Drawer Background</value>

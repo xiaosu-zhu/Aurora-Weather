@@ -286,6 +286,18 @@ namespace Com.Aurora.AuWeather
             {
                 timer.Cancel();
             }
+            var city = Models.Settings.Cities.Get();
+            var cs = new List<string>();
+            if (city.LocatedCity != null && !city.LocatedCity.City.IsNullorEmpty())
+            {
+                cs.Add(city.LocatedCity.City);
+            }
+            if (!city.SavedCities.IsNullorEmpty())
+                cs.AddRange(city.SavedCities.Select((a, b) =>
+                {
+                    return a.City;
+                }));
+            await CortanaHelper.EditPhraseListAsync("AuroraWeatherCommandSet_zh-cn", "where", cs.ToArray());
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
              {
                  DismissExtendedSplash();

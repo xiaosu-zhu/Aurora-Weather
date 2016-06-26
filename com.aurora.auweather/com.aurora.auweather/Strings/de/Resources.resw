@@ -1018,8 +1018,8 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>Der Datenanbieter HeWeather vor kurzem instabil ist, können Sie vorübergehend zu anderen Daten-Provider ***
-wechseln · Verbesserte Wetter-Alarm-Popups</value>
+    <value>· Ein kleines Display Fehler behoben im Detail Seite
+· Zusätzlichen Wind Geschwindigkeitskurve</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1043,7 +1043,18 @@ wechseln · Verbesserte Wetter-Alarm-Popups</value>
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· Ein kleines Display Fehler behoben im Detail Seite
+· Hinzugefügt von Windgeschwindigkeit graph
+
+1.6.16058
+· UI Tweaks
+
+1.6.16056
+· Ein Fehler wurde behoben kann nicht, dass verursacht Hintergrundaufgabe gestartet
+· Cortana Befehle werden in Kürze verfügbar
+
+1.6.16054
 · Wetter-Alarm verbessert Toast
 
 1.6.16050

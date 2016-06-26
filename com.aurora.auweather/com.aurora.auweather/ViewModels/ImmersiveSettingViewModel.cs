@@ -249,6 +249,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref overcastShuffle, value);
+                immersive.OvercastShuffle = value;
+                SaveAll();
             }
         }
 

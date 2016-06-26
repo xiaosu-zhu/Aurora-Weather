@@ -356,10 +356,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                     if (Preferences.DateSeparator != value[0])
                     {
                         Preferences.DateSeparator = value[0];
-                        SetProperty(ref separator, value[0].ToString());
                         SaveAll();
                         MainPage.Current.ReCalcPaneFormat();
                     }
+                    SetProperty(ref separator, value[0].ToString());
                 }
             }
         }

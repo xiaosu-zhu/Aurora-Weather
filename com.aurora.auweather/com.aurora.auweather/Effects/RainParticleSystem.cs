@@ -24,6 +24,7 @@ namespace Com.Aurora.AuWeather.Effects
         private Rect rainBounds;
         private Vector2 rainCenter;
 
+
         /// <summary>
         /// 替换 minNum 和 maxNum，以适应不同窗口尺寸（每像素生成的粒子数量）
         /// </summary>
@@ -224,19 +225,21 @@ namespace Com.Aurora.AuWeather.Effects
         /// <param name="size"></param>
         public void Update(float elapsedTime, Vector2 size)
         {
-            if (surfaceLoaded)
             {
-                for (int i = ActiveParticles.Count - 1; i >= 0; i--)
+                if (surfaceLoaded)
                 {
-                    var p = ActiveParticles[i];
-                    if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
+                    for (int i = ActiveParticles.Count - 1; i >= 0; i--)
                     {
-                        p.Update(elapsedTime);
-                    }
-                    else
-                    {
-                        ActiveParticles.RemoveAt(i);
-                        FreeParticles.Push(p);
+                        var p = ActiveParticles[i];
+                        if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
+                        {
+                            p.Update(elapsedTime);
+                        }
+                        else
+                        {
+                            ActiveParticles.RemoveAt(i);
+                            FreeParticles.Push(p);
+                        }
                     }
                 }
             }
@@ -248,17 +251,19 @@ namespace Com.Aurora.AuWeather.Effects
         /// <param name="size"></param>
         public void AddRainDrop(Vector2 size)
         {
-            if (surfaceLoaded)
             {
-                numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
-                var actualAdd = (int)numParticles;
-                numParticles %= 1;
-                for (int i = 0; i < actualAdd; i++)
+                if (surfaceLoaded)
                 {
-                    Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
-                    float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
-                    InitializeParticle(particle, new Vector2(x, -5));
-                    ActiveParticles.Add(particle);
+                    numParticles += (Tools.RandomBetween(minDensity, maxDensity) * size.X);
+                    var actualAdd = (int)numParticles;
+                    numParticles %= 1;
+                    for (int i = 0; i < actualAdd; i++)
+                    {
+                        Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
+                        float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
+                        InitializeParticle(particle, new Vector2(x, -5));
+                        ActiveParticles.Add(particle);
+                    }
                 }
             }
         }

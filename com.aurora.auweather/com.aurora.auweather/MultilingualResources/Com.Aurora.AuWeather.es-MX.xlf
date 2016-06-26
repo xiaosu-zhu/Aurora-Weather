@@ -1347,10 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>***The data provider HeWeather is recently unstable, you can temporarily switch to other data providers***
-· Improved weather alarm toasts</source>
-          <target state="translated">El proveedor de datos HeWeather es inestable recientemente, usted puede cambiar temporalmente a otros proveedores de datos ***
-· Mejora clima alarma tostadas</target>
+          <source>· Fixed a small display issue in details page
+· Added wind speed graph</source>
+          <target state="translated">· Corregido un pequeño problema en detalles página
+· Gráfico de velocidad de viento mayor</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1381,7 +1381,18 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16054
+          <source>1.6.16062
+· Fixed a small display issue in details page
+· Added wind speed graph
+
+1.6.16058
+· UI Tweaks
+
+1.6.16056
+· Fixed a bug that caused background task can't start
+· Cortana commands will be soon avaliable
+
+1.6.16054
 · Improved weather alarm toasts
 
 1.6.16050
@@ -1429,7 +1440,18 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16054
+          <target state="translated">1.6.16062
+· Corregido un pequeño problema en detalles página
+· Velocidad del viento ha añadido gráfico
+
+1.6.16058
+· Ajustes de interfaz de usuario
+
+1.6.16056
+· Corregido un error en esa tarea de fondo causado no puede iniciar
+· Comandos de Cortana pronto estará disponible
+
+1.6.16054
 · Mejor alarma clima tuesta
 
 1.6.16050
@@ -1833,6 +1855,14 @@ mañana: {4}, {5}.</target>
         <trans-unit id="Dismiss" translate="yes" xml:space="preserve">
           <source>Dismiss</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Descartar</target>
+        </trans-unit>
+        <trans-unit id="DailyDetailsWind" translate="yes" xml:space="preserve">
+          <source>Wind speed for {0} days</source>
+          <target state="new">Wind speed for {0} days</target>
+        </trans-unit>
+        <trans-unit id="HourlyDetailsWind" translate="yes" xml:space="preserve">
+          <source>Wind speed for {0} hours</source>
+          <target state="new">Wind speed for {0} hours</target>
         </trans-unit>
       </group>
     </body>

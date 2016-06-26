@@ -1018,8 +1018,8 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>Le fournisseur de données HeWeather est instable récemment, vous pouvez basculer temporairement aux autres fournisseurs de données ***
-· Toasts d’alarme météo améliorée</value>
+    <value>· Correction d’un problème de petit écran en détails page
+· Graphique de vitesse de vent ajouté</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1043,7 +1043,18 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· Correction d’un problème de petit écran en détails page
+· Vitesse du vent a ajouté graphique
+
+1.6.16058
+· Interface utilisateur Tweaks
+
+1.6.16056
+· Correction d’un bug qui tâche de fond causé ne peut pas démarrer
+· Cortana commandes seront bientôt disponibles
+
+1.6.16054
 · Améliorée d’alarme météo Toaste
 
 1.6.16050

@@ -29,7 +29,7 @@ namespace Com.Aurora.AuWeather.Background
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             var settings = SettingsModel.Get();
 
-            await FileIOHelper.AppendLogtoCacheAsync("Background Task Run Once");
+            //await FileIOHelper.AppendLogtoCacheAsync("Background Task Run Once");
 
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
@@ -50,7 +50,7 @@ namespace Com.Aurora.AuWeather.Background
                 var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                 await Init(settings, currentCity);
             }
-            await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
+            //await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();
         }
 
@@ -169,6 +169,10 @@ namespace Com.Aurora.AuWeather.Background
                     {
                         Sender.CreateBadge(Generator.GenerateAlertBadge());
                         Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCity).GetXml());
+                    }
+                    else
+                    {
+                        Sender.ClearBadge();
                     }
                     var str = Generator.CalculateWeatherAlarm(fetchresult, currentCity, settings, DateTimeHelper.ReviseLoc(DateTime.Now, utcOffset));
                     if (!str.IsNullorEmpty() && str.Length > 1 && (DateTime.Now - settings.Preferences.LastAlarmTime).TotalDays > 1)

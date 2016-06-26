@@ -1018,8 +1018,8 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>データ プロバイダー HeWeather は最近安定して、一時的に他のデータ プロバイダー * * *
-に切り替えることができます ·改善された気象警報トースト</value>
+    <value>·詳細に小さな表示問題を修正
+· ページ追加の風の速度グラフ</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1043,8 +1043,19 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
-·天気アラームを改善乾杯
+    <value>1.6.16062
+·詳細に小さな表示問題を修正
+· ページ風の速度を追加グラフ
+
+1.6.16058
+·UI 調整
+
+1.6.16056
+·バグを修正、原因のバック グラウンド タスクは
+· を開始できません。Cortana コマンドはすぐに利用可能
+
+1.6.16054
+になる ·天気アラームを改善乾杯
 
 1.6.16050
 ·半透明のタイル

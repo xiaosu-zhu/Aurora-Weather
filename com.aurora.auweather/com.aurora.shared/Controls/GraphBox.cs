@@ -49,8 +49,11 @@ namespace Com.Aurora.Shared.Controls
                     min -= min * 0.1;
                     max += max * 0.1;
                 }
+
                 bottom = min - (max - min) * 0.1;
                 top = max + (max - min) * 0.1;
+                bottom = bottom < Minimum ? Minimum : bottom;
+                top = top > Maximum ? Maximum : top;
                 var center = (max + min) / 2;
                 labelStep = (top - bottom) / 4;
             }
@@ -66,6 +69,8 @@ namespace Com.Aurora.Shared.Controls
                 }
                 bottom = min - (max - min) * 0.1;
                 top = max + (max - min) * 0.1;
+                bottom = bottom < Minimum ? Minimum : bottom;
+                top = top > Maximum ? Maximum : top;
                 var center = (max + min) / 2;
                 labelStep = (top - bottom) / 4;
             }
@@ -160,6 +165,41 @@ namespace Com.Aurora.Shared.Controls
             DependencyProperty.Register("Stroke1", typeof(Brush), typeof(GraphBox), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0, 0, 0, 0))));
 
 
+
+        public double Minimum
+        {
+            get { return (double)GetValue(MinimumProperty); }
+            set
+            {
+                if (value > Maximum)
+                {
+                    throw new ArgumentException("Minimum is higher than Maximum.");
+                }
+                SetValue(MinimumProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for Minimum.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MinimumProperty =
+            DependencyProperty.Register("Minimum", typeof(double), typeof(GraphBox), new PropertyMetadata(0d));
+
+        public double Maximum
+        {
+            get { return (double)GetValue(MaximumProperty); }
+            set
+            {
+                if (value < Minimum)
+                {
+                    throw new ArgumentException("Maximum is lower than Minimum.");
+                }
+                SetValue(MaximumProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for Maximum.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MaximumProperty =
+            DependencyProperty.Register("Maximum", typeof(double), typeof(GraphBox), new PropertyMetadata(100d));
+
         public Brush SeparatorFill
         {
             get { return (Brush)GetValue(SeparatorFillProperty); }
@@ -228,8 +268,11 @@ namespace Com.Aurora.Shared.Controls
                     min -= min * 0.1;
                     max += max * 0.1;
                 }
+
                 bottom = min - (max - min) * 0.1;
                 top = max + (max - min) * 0.1;
+                bottom = bottom < box.Minimum ? box.Minimum : bottom;
+                top = top > box.Maximum ? box.Maximum : top;
                 var center = (max + min) / 2;
                 labelStep = (top - bottom) / 4;
             }
@@ -245,6 +288,8 @@ namespace Com.Aurora.Shared.Controls
                 }
                 bottom = min - (max - min) * 0.1;
                 top = max + (max - min) * 0.1;
+                bottom = bottom < box.Minimum ? box.Minimum : bottom;
+                top = top > box.Maximum ? box.Maximum : top;
                 var center = (max + min) / 2;
                 labelStep = (top - bottom) / 4;
             }

@@ -12,11 +12,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Devices.Input;
 using Windows.Foundation;
-using Windows.Graphics.Display;
 using Windows.System.Threading;
-using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -247,13 +244,13 @@ namespace Com.Aurora.AuWeather
             ScrollableRoot.RefreshComplete();
             try
             {
-                if (UserProfilePersonalizationSettings.IsSupported() && Context.SetWallPaper)
+                if (Windows.System.UserProfile.UserProfilePersonalizationSettings.IsSupported() && Context.SetWallPaper)
                 {
                     var file = await FileIOHelper.GetFilebyUriAsync(await Context.GetCurrentBackgroundAsync());
                     var lFile = await FileIOHelper.CreateWallPaperFileAsync(Guid.NewGuid().ToString() + ".png");
-                    var d = PointerDevice.GetPointerDevices();
+                    var d = Windows.Devices.Input.PointerDevice.GetPointerDevices();
                     var m = d.ToArray();
-                    var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+                    var scaleFactor = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
                     var size = new Size(m[0].PhysicalDeviceRect.Width, m[0].PhysicalDeviceRect.Height);
                     var ratio = size.Height / size.Width;
                     size.Height *= scaleFactor;
@@ -325,7 +322,6 @@ namespace Com.Aurora.AuWeather
                 WeatherCanvas.ImmersiveIn(await Context.GetCurrentBackgroundAsync());
             }
             LoadingDot.Visibility = Visibility.Collapsed;
-            BlurSwitch.IsOn = Context.AlwaysBlur;
         }
 
         #region DetailGrid Animation

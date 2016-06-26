@@ -168,58 +168,66 @@ namespace Com.Aurora.AuWeather.CustomControls
                 return;
             var size = Canvas.Size.ToVector2();
             var elapsedTime = (float)args.Timing.ElapsedTime.TotalSeconds;
-            if ((!isRain) && isNight)
+            var u = ThreadPool.RunAsync((a) =>
             {
-                var k = Canvas.Size.Height * Canvas.Size.Width;
-                if (star.ActiveParticles.Count < 1e-4 * k)
+                if ((!isRain) && isNight)
                 {
-                    CreateStar(size);
-                }
-            }
-            star.Update(elapsedTime);
-            if (isThunder || isHaze || isFog || isCloudy)
-            {
-                timeToCreate -= elapsedTime;
-                CreateSmoke(size);
-                if (timeToCreate < 0)
-                {
-                    timeToCreate = Tools.RandomBetween(5, 7);
-                    if (isThunder)
+                    var k = size.X * size.Y;
+                    if (star.ActiveParticles.Count < 1e-4 * k)
                     {
-                        thunderGen.Generate(size);
+                        CreateStar(size);
                     }
                 }
-            }
-            smoke.Update(elapsedTime, size);
-            thunderGen.Update(elapsedTime, size);
+                star.Update(elapsedTime);
+            });
 
-
-            backBlur.update(size);
-            if (isRain || isThunder)
+            var v = ThreadPool.RunAsync((b) =>
             {
-                if (rainLevel != RainLevel.shower)
+                if (isThunder || isHaze || isFog || isCloudy)
                 {
-                    CreateRain(size);
-                }
-                else
-                {
-                    timeToCreateRain -= elapsedTime;
-                    if (timeToCreateRain < 0)
+                    timeToCreate -= elapsedTime;
+                    CreateSmoke(size);
+                    if (timeToCreate < 0)
                     {
-                        if (timeToCreateRain > -Tools.RandomBetween(7, 15))
-                            CreateRain(size);
-                        else
+                        timeToCreate = Tools.RandomBetween(5, 7);
+                        if (isThunder)
                         {
-                            timeToCreateRain = Tools.RandomBetween(2, 15);
+                            thunderGen.Generate(size);
                         }
                     }
                 }
-            }
-            rain.Update(elapsedTime, size);
+                smoke.Update(elapsedTime, size);
+                thunderGen.Update(elapsedTime, size);
+            });
 
-            if (isSunny)
-                sun.Update();
+            var w = ThreadPool.RunAsync((c) =>
+            {
+                backBlur.update(size);
+                if (isSunny)
+                    sun.Update();
+            });
 
+                if (isRain || isThunder)
+                {
+                    if (rainLevel != RainLevel.shower)
+                    {
+                        CreateRain(size);
+                    }
+                    else
+                    {
+                        timeToCreateRain -= elapsedTime;
+                        if (timeToCreateRain < 0)
+                        {
+                            if (timeToCreateRain > -Tools.RandomBetween(7, 15))
+                                CreateRain(size);
+                            else
+                            {
+                                timeToCreateRain = Tools.RandomBetween(2, 15);
+                            }
+                        }
+                    }
+                }
+                rain.Update(elapsedTime, size);
         }
 
         private void CreateSmoke(Vector2 size)

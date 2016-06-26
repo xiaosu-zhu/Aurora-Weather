@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Com.Aurora.Shared.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -118,7 +119,7 @@ namespace Com.Aurora.Shared.Controls
                     if (dot.loading.RepeatBehavior == RepeatBehavior.Forever)
                     {
                         var l = dot.loading.GetCurrentTime();
-                        await Task.Delay(l.Milliseconds < 2.88 ? (TimeSpan.FromSeconds(2.88) - l) : TimeSpan.FromMilliseconds(0));
+                        await Task.Delay(l.Seconds < 2.88 ? (TimeSpan.FromSeconds(2.88) - l) : TimeSpan.FromMilliseconds(0));
                         dot.loading.RepeatBehavior = new RepeatBehavior(0);
                     }
                     else

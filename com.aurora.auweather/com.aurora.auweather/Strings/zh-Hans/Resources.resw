@@ -1142,9 +1142,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>***和风天气近期服务不稳定, 你可以临时换用其他天气源***
-· 改进了天气提醒机制
-· 开发者最近特忙, 可能会减慢更新速度, 敬请谅解</value>
+    <value>· 修正详情曲线细节
+· 加入风速详情曲线</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1168,7 +1167,15 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16054
+    <value>1.6.16062
+· 修正详情曲线细节
+· 加入风速详情曲线
+
+1.6.16056
+· 修复了某些情况下后台服务无法正常运行的问题
+· 即将加入 Cortana 语音命令
+
+1.6.16054
 · 改进了天气提醒机制
 
 1.6.16050
@@ -1313,6 +1320,9 @@
   <data name="DailyDetailsVis" xml:space="preserve">
     <value>未来{0}天能见度</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>未来{0}天风速</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>详情</value>
   </data>
@@ -1321,6 +1331,9 @@
   </data>
   <data name="HourlyDetailsTemperature" xml:space="preserve">
     <value>未来{0}小时气温</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>未来{0}小时风速</value>
   </data>
   <data name="DrawerText.Text" xml:space="preserve">
     <value>自定义抽屉背景</value>

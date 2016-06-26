@@ -1,6 +1,5 @@
 ﻿using System;
 using Com.Aurora.AuWeather.Models;
-using Com.Aurora.AuWeather.Tile;
 using Com.Aurora.Shared.Extensions;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Notifications;

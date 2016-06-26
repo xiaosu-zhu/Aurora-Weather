@@ -1283,7 +1283,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             set
             {
-                alwaysBlur = value;
                 settings = SettingsModel.Get();
                 settings.Preferences.AlwaysBlur = value;
                 SetProperty(ref alwaysBlur, value);
@@ -1384,6 +1383,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                             {
                                 Sender.CreateBadge(Generator.GenerateAlertBadge());
                                 Sender.CreateToast(Generator.CreateAlertToast(fetchresult, currentCityModel).GetXml());
+                            }
+                            else
+                            {
+                                Sender.ClearBadge();
                             }
                             var str = Generator.CalculateWeatherAlarm(fetchresult, currentCityModel, settings, DateTimeHelper.ReviseLoc(DateTime.Now, utcOffset));
                             if (!str.IsNullorEmpty() && str.Length > 1 && (DateTime.Now - settings.Preferences.LastAlarmTime).TotalDays > 1)
