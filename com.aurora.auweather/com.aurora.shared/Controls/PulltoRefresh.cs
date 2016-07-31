@@ -230,7 +230,7 @@ namespace Com.Aurora.Shared.Controls
 
         private void NormallySlide(double delta)
         {
-            Main.ScrollToVerticalOffset(Main.VerticalOffset - delta);
+            Main.ChangeView(Main.HorizontalOffset, Main.VerticalOffset - delta, 1);
         }
 
         private void IndicatorFallback()

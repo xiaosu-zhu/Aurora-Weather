@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.System.Profile;
+using Windows.UI.ViewManagement;
 
 namespace Com.Aurora.Shared.Helpers
 {
-    public class SystemInfoHelper
+    public static class SystemInfoHelper
     {
         public static IEnumerable<string> GetSystemInfo()
         {
@@ -42,5 +43,59 @@ namespace Com.Aurora.Shared.Helpers
         {
             return ((ulong)Package.Current.Id.Version.Major << 32) + ((ulong)Package.Current.Id.Version.Minor << 16) + Package.Current.Id.Version.Build;
         }
+
+
+        public static DeviceFormFactorType GetDeviceFormFactorType()
+
+        {
+
+            switch (AnalyticsInfo.VersionInfo.DeviceFamily)
+
+            {
+
+                case "Windows.Mobile":
+
+                    return DeviceFormFactorType.Phone;
+
+                case "Windows.Desktop":
+
+                    return UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse
+
+                        ? DeviceFormFactorType.Desktop
+
+                        : DeviceFormFactorType.Tablet;
+
+                case "Windows.Universal":
+
+                    return DeviceFormFactorType.IoT;
+
+                case "Windows.Team":
+
+                    return DeviceFormFactorType.SurfaceHub;
+
+                default:
+
+                    return DeviceFormFactorType.Other;
+
+            }
+        }
+    }
+
+    public enum DeviceFormFactorType
+
+    {
+
+        Phone,
+
+        Desktop,
+
+        Tablet,
+
+        IoT,
+
+        SurfaceHub,
+
+        Other
+
     }
 }

@@ -6,24 +6,22 @@ using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Com.Aurora.Shared.Extensions
 {
     public static class EnumrableExtesion
     {
-        public static bool IsNullorEmpty(this ICollection collection)
+        public static bool IsNullorEmpty(this IEnumerable enumerator)
         {
-            return (collection == null || collection.Count == 0);
+            var erator = enumerator.GetEnumerator();
+            erator.MoveNext();
+            return (enumerator == null || erator.Current == null);
         }
 
-        public static bool IsNullorEmpty(this IDictionary list)
+        public static bool IsNullorEmpty<T>(this IEnumerable<T> enumerator)
         {
-            return (list == null || list.Count == 0);
-        }
-
-        public static bool IsNullorEmpty(this Array array)
-        {
-            return (array == null || array.Length == 0);
+            return (enumerator == null || enumerator.Count() == 0);
         }
 
         public static string SelectRandomString(this string[] s)

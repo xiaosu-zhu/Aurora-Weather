@@ -460,5 +460,20 @@ namespace Com.Aurora.Shared.Helpers
             return stream;
         }
 
+        public static async Task<IRandomAccessStream> ToIRandomAccessStreamAsync(byte[] bytestream)
+        {
+
+            InMemoryRandomAccessStream memoryStream = new InMemoryRandomAccessStream();
+
+            DataWriter datawriter = new DataWriter(memoryStream.GetOutputStreamAt(0));
+
+            datawriter.WriteBytes(bytestream);
+
+            await datawriter.StoreAsync();
+
+            memoryStream.Seek(0);
+
+            return memoryStream;
+        }
     }
 }
