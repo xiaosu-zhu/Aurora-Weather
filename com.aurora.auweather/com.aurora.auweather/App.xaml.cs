@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Linq;
+using Windows.System.Threading;
+using Com.Aurora.Shared.Helpers;
 
 namespace Com.Aurora.AuWeather
 {
@@ -62,22 +64,7 @@ namespace Com.Aurora.AuWeather
         {
             base.OnActivated(args);
             {
-                /* mobile 设置状态栏 */
-                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    StatusBar statusBar = StatusBar.GetForCurrentView();
-                    statusBar.ForegroundColor = Colors.White;
-                    ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-                }
-                /* 桌面设置 */
-                var view = ApplicationView.GetForCurrentView();
-                view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-                view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
-                view.TitleBar.BackgroundColor = Colors.Transparent;
-                // button
-                view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+                SetStatusBar();
             }
             if (args.Kind == ActivationKind.ToastNotification)
             {
@@ -93,51 +80,36 @@ namespace Com.Aurora.AuWeather
                         Window.Current.Content = extendedSplash;
                     }
                 }
-                // Ensure the current window is active
-                Window.Current.Activate();
             }
             else if (args.Kind == ActivationKind.VoiceCommand)
             {
                 var tArgs = args as VoiceCommandActivatedEventArgs;
                 var splash = tArgs.SplashScreen;
                 var arguments = tArgs.Result.Text;
-                //Window.Current.Content = spl;
-                Window.Current.Activate();
-                // Event args can represent many different activation types. 
-                // Cast it so we can get the parameters we care about out.
-                var commandArgs = args as VoiceCommandActivatedEventArgs;
-
-                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
-
-                // Get the name of the voice command and the text spoken. 
-                // See VoiceCommands.xml for supported voice commands.
-                string voiceCommandName = speechRecognitionResult.RulePath[0];
-                string textSpoken = speechRecognitionResult.Text;
-
-                // commandMode indicates whether the command was entered using speech or text.
-                // Apps should respect text mode by providing silent (text) feedback.
-                string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
-
-            }
-            else if (args.Kind == ActivationKind.Protocol)
-            {
-                // Extract the launch context. In this case, we're just using the destination from the phrase set (passed
-                // along in the background task inside Cortana), which makes no attempt to be unique. A unique id or 
-                // identifier is ideal for more complex scenarios. We let the destination page check if the 
-                // destination trip still exists, and navigate back to the trip list if it doesn't.
-                var commandArgs = args as ProtocolActivatedEventArgs;
-                Windows.Foundation.WwwFormUrlDecoder decoder = new Windows.Foundation.WwwFormUrlDecoder(commandArgs.Uri.Query);
-                var arguments = decoder.GetFirstValueByName("LaunchContext");
                 if (Window.Current.Content == null)
                 {
-                    if (commandArgs.PreviousExecutionState != ApplicationExecutionState.Running)
+                    if (tArgs.PreviousExecutionState != ApplicationExecutionState.Running)
                     {
-                        SplashScreenEx extendedSplash = new SplashScreenEx(commandArgs.SplashScreen, arguments);
+                        SplashScreenEx extendedSplash = new SplashScreenEx(splash, arguments);
                         Window.Current.Content = extendedSplash;
                     }
                 }
-                // Ensure the current window is active
-                Window.Current.Activate();
+                //Window.Current.Content = spl;
+                //// Event args can represent many different activation types. 
+                //// Cast it so we can get the parameters we care about out.
+                //var commandArgs = args as VoiceCommandActivatedEventArgs;
+
+                //Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                //// Get the name of the voice command and the text spoken. 
+                //// See VoiceCommands.xml for supported voice commands.
+                //string voiceCommandName = speechRecognitionResult.RulePath[0];
+                //string textSpoken = speechRecognitionResult.Text;
+
+                //// commandMode indicates whether the command was entered using speech or text.
+                //// Apps should respect text mode by providing silent (text) feedback.
+                //string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
+
             }
 
         }
@@ -147,10 +119,14 @@ namespace Com.Aurora.AuWeather
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/CortanaCommands.xml"));
-            await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+            var task = ThreadPool.RunAsync(async (x) =>
+            {
+                var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/CortanaCommands.xml"));
+                await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+
+            });
 
             if (Window.Current.Content == null)
             {
@@ -160,6 +136,7 @@ namespace Com.Aurora.AuWeather
                     {
                         Calculator.MainPage m = new Calculator.MainPage();
                         Window.Current.Content = m;
+                        Window.Current.Activate();
                     }
                     else
                     {
@@ -180,30 +157,34 @@ namespace Com.Aurora.AuWeather
 #endif
             if (e.Arguments != "Com.Aurora.AuWeather.Calculator")
             {
-                /* mobile 设置状态栏 */
-                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    StatusBar statusBar = StatusBar.GetForCurrentView();
-                    statusBar.ForegroundColor = Colors.White;
-                    ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-                }
-                /* 桌面设置 */
-                var view = ApplicationView.GetForCurrentView();
-                view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-                view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
-                view.TitleBar.BackgroundColor = Colors.Transparent;
-                // button
-                view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-                view.TitleBar.ButtonForegroundColor = Colors.White;
-                //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
-                //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
-                view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+                SetStatusBar();
             }
-            // Ensure the current window is active
-            Window.Current.Activate();
 
+        }
+
+        private static void SetStatusBar()
+        {
+            /* mobile 设置状态栏 */
+            if (SystemInfoHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                StatusBar statusBar = StatusBar.GetForCurrentView();
+                statusBar.BackgroundOpacity = 0;
+                statusBar.ForegroundColor = Colors.White;
+                ApplicationView.GetForCurrentView()
+                .SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            }
+            /* 桌面设置 */
+            var view = ApplicationView.GetForCurrentView();
+            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+            view.TitleBar.BackgroundColor = Colors.Transparent;
+            // button
+            view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+            view.TitleBar.ButtonForegroundColor = Colors.White;
+            //view.TitleBar.ButtonHoverForegroundColor = Colors.Black;
+            //view.TitleBar.ButtonPressedForegroundColor = Colors.Black;
+            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
         }
 
         /// <summary>

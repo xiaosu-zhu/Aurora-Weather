@@ -24,6 +24,7 @@ using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -38,12 +39,15 @@ namespace Com.Aurora.AuWeather
         internal Frame rootFrame;
         private string args;
         private ThreadPoolTimer timer;
+        private Rect splashImageRect;
 
         public SplashScreenEx(SplashScreen splash, string args)
         {
             this.InitializeComponent();
+            this.splash = splash;
             splash.Dismissed += DismissedEventHandler;
             this.args = args;
+            splashImageRect = splash.ImageLocation;
             rootFrame = new Frame();
             rootFrame.Navigated += RootFrame_Navigated1;
         }
@@ -57,6 +61,60 @@ namespace Com.Aurora.AuWeather
                     {
                         (rootFrame.Content as IThemeble).ChangeThemeColor(App.MainColor);
                     }
+            }
+            PositionImage();
+        }
+
+        private DispatcherTimer showWindowTimer;
+        private SplashScreen splash;
+
+        private void OnShowWindowTimer(object sender, object e)
+        {
+            showWindowTimer.Stop();
+
+            // Activate/show the window, now that the splash image has rendered
+            Window.Current.Activate();
+        }
+
+        private void extendedSplashImage_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            // ImageOpened means the file has been read, but the image hasn't been painted yet.
+            // Start a short timer to give the image a chance to render, before showing the window
+            // and starting the animation.
+            showWindowTimer = new DispatcherTimer();
+            showWindowTimer.Interval = TimeSpan.FromMilliseconds(50);
+            showWindowTimer.Tick += OnShowWindowTimer;
+            showWindowTimer.Start();
+        }
+
+        void PositionImage()
+        {
+            // desktop
+            if (SystemInfoHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Desktop)
+            {
+                extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
+                extendedSplashImage.Height = splashImageRect.Height;
+                extendedSplashImage.Width = splashImageRect.Width;
+            }
+            // mobile
+            else if (SystemInfoHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                // 获取一个值，该值表示每个视图（布局）像素的原始（物理）像素数。
+                double density = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+
+                extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X / density);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y / density);
+                extendedSplashImage.Height = splashImageRect.Height / density;
+                extendedSplashImage.Width = splashImageRect.Width / density;
+            }
+            // xbox等没试过，编不出来
+            else
+            {
+                extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
+                extendedSplashImage.Height = splashImageRect.Height;
+                extendedSplashImage.Width = splashImageRect.Width;
             }
         }
 
@@ -418,6 +476,16 @@ namespace Com.Aurora.AuWeather
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (splash != null)
+            {
+                // Update the coordinates of the splash screen image.
+                splashImageRect = splash.ImageLocation;
+                PositionImage();
+            }
         }
     }
 }

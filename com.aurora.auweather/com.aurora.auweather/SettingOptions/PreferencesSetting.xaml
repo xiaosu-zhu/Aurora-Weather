@@ -430,6 +430,43 @@
                             <Slider Minimum="30" Maximum="240" StepFrequency="30" SnapsTo="StepValues" Value="{x:Bind Context.RefreshFreq,Mode=TwoWay,Converter={StaticResource UintToDoubleConverter}}" x:Name="RefreshFreqSlider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8" >
                             </Slider>
                         </StackPanel>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" Content="Cortana 指令说明" >
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="&quot;极光天气，&quot;" />
+                                        <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="· 今天天气如何？" >
+                                            <LineBreak/>
+                                            <Run Text="· 告诉我今天的天气？" />
+                                            <LineBreak/>
+                                        </TextBlock>
+                                        <TextBlock Text="即将加入" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" >
+                                            <LineBreak/>
+                                        </TextBlock>
+                                        <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Opacity="0.5" Text="· [ 北京 ] 天气如何？" >
+                                            <LineBreak/>
+                                            <Run Text="· 告诉我 [ 北京 ] 的天气？" />
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            <Run Text="· [ 明天 ] 天气如何？" />
+                                            <LineBreak/>
+                                            <Run Text="· 告诉我 [ 明天 ] 的天气？" />
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            <Run Text="· [ 今天 ] 气温多少？" />
+                                            <LineBreak/>
+                                            <Run Text="· [ 北京 ] 气温多少？" />
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            <Run Text="· [ 今天 ] 会下雨吗？" />
+                                            <LineBreak/>
+                                            <Run Text="· [ 北京 ] 会下雨吗？" />
+                                            <LineBreak/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                     </StackPanel>
                     <Grid Height="1" Margin="-12,0,-12,0" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}"/>
                     <StackPanel>

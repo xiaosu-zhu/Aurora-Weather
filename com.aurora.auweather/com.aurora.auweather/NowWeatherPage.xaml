@@ -959,7 +959,7 @@
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" />
                 </Button.Content>
             </Button>
-            <Button x:Name="AlarmButton" x:Uid="AlarmButton" Opacity="0" Visibility="{x:Bind Context.HadNoAlarms,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Margin="64" BorderBrush="#80f44336" Foreground="White" Background="#40ff3333" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
+            <Button x:Name="AlarmButton" x:Uid="AlarmButton" Opacity="0" Visibility="{x:Bind Context.HadNoAlarms,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Margin="64" Padding="8" Foreground="White" Background="#40ff3333" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
                 <Button.Flyout>
                     <Flyout>
                         <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

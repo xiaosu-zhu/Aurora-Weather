@@ -249,9 +249,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
             foreach (CityViewModel item in selectedItems)
             {
-                SecondaryTile s = new SecondaryTile(item.Id, item.City, item.City, item.Id,
-                    TileOptions.CopyOnDeployment | TileOptions.ShowNameOnLogo | TileOptions.ShowNameOnWideLogo,
-                    new Uri("ms-appx:///Assets/Square150x150Logo.png"), new Uri("ms-appx:///Assets/Wide310x150Logo.png"));
+                SecondaryTile s = new SecondaryTile(item.Id, item.City, item.Id, new Uri("ms-appx:///Assets/Square150x150Logo.png"), TileSize.Default);
                 await s.RequestCreateAsync();
                 var index = Array.FindIndex(settings.Cities.SavedCities, x =>
                 {

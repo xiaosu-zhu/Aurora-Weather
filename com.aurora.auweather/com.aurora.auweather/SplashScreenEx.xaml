@@ -10,6 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Unloaded="Page_Unloaded"
+    SizeChanged="Page_SizeChanged"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -24,17 +25,15 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
-        <Grid>
-            <Grid.Background>
-                <ImageBrush AlignmentX="Center" AlignmentY="Center" Stretch="None" ImageSource="/Assets/SplashScreen.png" />
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <ProgressRing Grid.Row="2" Foreground ="White" Name="SplashProgressRing" IsActive="True" Margin="0,0,0,96" Width="32" Height="32" ></ProgressRing>
-            <TextBlock Grid.Row="2" x:Uid="SplashText" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" Margin="0,72,0,96" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" FontSize="16" />
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Canvas Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image ImageOpened="extendedSplashImage_ImageOpened" x:Name="extendedSplashImage" Source="/Assets/SplashScreen.png" Stretch="Uniform"/>
+        </Canvas>
+        <ProgressRing Grid.Row="2" Foreground ="White" Name="SplashProgressRing" IsActive="True" Margin="0,0,0,96" Width="32" Height="32" ></ProgressRing>
+        <TextBlock Grid.Row="2" x:Uid="SplashText" x:Name="SplashWelcome" Foreground="White" HorizontalAlignment="Center" Margin="0,72,0,96" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" FontSize="16" />
     </Grid>
 </Page>
