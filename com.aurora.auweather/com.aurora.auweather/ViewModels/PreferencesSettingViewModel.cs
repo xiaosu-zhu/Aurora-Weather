@@ -118,6 +118,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     SetWallPaper = Preferences.SetWallPaper;
                     TransparentTile = Preferences.TransparentTile;
                     AlwaysBlur = Preferences.AlwaysBlur;
+                    EnableDebug = Preferences.EnableCrashReport;
 
                     StartTime = Preferences.StartTime;
                     EndTime = Preferences.EndTime;
@@ -165,6 +166,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool showtt;
         private bool showImmersivett;
         private bool enableEveryDay;
+        private bool enableDebug;
 
         private bool enableMorning;
         private bool enableEvening;
@@ -676,6 +678,21 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 SetProperty(ref alwaysBlur, value);
                 Preferences.AlwaysBlur = value;
+                Preferences.Save();
+            }
+        }
+
+        public bool EnableDebug
+        {
+            get
+            {
+                return enableDebug;
+            }
+
+            set
+            {
+                SetProperty(ref enableDebug, value);
+                Preferences.EnableCrashReport = value;
                 Preferences.Save();
             }
         }

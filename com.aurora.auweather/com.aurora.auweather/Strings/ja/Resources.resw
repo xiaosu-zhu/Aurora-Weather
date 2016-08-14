@@ -1364,4 +1364,10 @@
   <data name="Dismiss" xml:space="preserve">
     <value>破棄</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>風の速度は {0} 日間</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>{0} 時間の風速</value>
+  </data>
 </root>

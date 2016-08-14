@@ -80,13 +80,13 @@ namespace Com.Aurora.Shared.Converters
             switch (Parameter)
             {
                 case TemperatureParameter.Celsius:
-                    return " C";
+                    return "\u2103";
                 case TemperatureParameter.Fahrenheit:
-                    return " F";
+                    return "\u2109";
                 case TemperatureParameter.Kelvin:
                     return " K";
                 default:
-                    return " C";
+                    return "\u2103";
             }
         }
 
@@ -882,17 +882,17 @@ namespace Com.Aurora.Shared.Converters
                 case AQIQuality.unknown:
                     return Color.FromArgb(255, 240, 240, 240);
                 case AQIQuality.one:
-                    return Pallette.Green;
+                    return Palette.Green;
                 case AQIQuality.two:
-                    return Pallette.Teal;
+                    return Palette.Teal;
                 case AQIQuality.three:
-                    return Pallette.Lime;
+                    return Palette.Lime;
                 case AQIQuality.four:
-                    return Pallette.Amber;
+                    return Palette.Amber;
                 case AQIQuality.five:
-                    return Pallette.DeepOrange;
+                    return Palette.DeepOrange;
                 case AQIQuality.six:
-                    return Pallette.Red;
+                    return Palette.Red;
                 default:
                     return Color.FromArgb(255, 240, 240, 240);
             }
@@ -1650,4 +1650,3 @@ namespace Com.Aurora.Shared.Converters
         }
     }
 }
-

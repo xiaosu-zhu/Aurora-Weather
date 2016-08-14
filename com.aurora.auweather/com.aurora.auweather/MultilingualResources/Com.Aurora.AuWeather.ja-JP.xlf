@@ -1347,10 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed a small display issue in details page
-· Added wind speed graph</source>
-          <target state="translated">·詳細に小さな表示問題を修正
+          <source>· Minor fixes</source>
+          <target state="needs-review-translation">·詳細に小さな表示問題を修正
 · ページ追加の風の速度グラフ</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1381,7 +1381,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">更新ログ</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16062
+          <source>1.6.16080
+· Minor fixes
+
+1.6.16062
 · Fixed a small display issue in details page
 · Added wind speed graph
 
@@ -1440,7 +1443,7 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16062
+          <target state="needs-review-translation">1.6.16062
 ·詳細に小さな表示問題を修正
 · ページ風の速度を追加グラフ
 
@@ -1499,6 +1502,7 @@
 ·パーティクル システム改善
 ·雷ジェネレーター強化
  </target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
           <source>Contact with me</source>
@@ -1858,11 +1862,11 @@ Tomorrow: {4}, {5}.</source>
         </trans-unit>
         <trans-unit id="DailyDetailsWind" translate="yes" xml:space="preserve">
           <source>Wind speed for {0} days</source>
-          <target state="new">Wind speed for {0} days</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">風の速度は {0} 日間</target>
         </trans-unit>
         <trans-unit id="HourlyDetailsWind" translate="yes" xml:space="preserve">
           <source>Wind speed for {0} hours</source>
-          <target state="new">Wind speed for {0} hours</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">{0} 時間の風速</target>
         </trans-unit>
       </group>
     </body>

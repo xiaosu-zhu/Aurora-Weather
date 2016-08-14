@@ -106,6 +106,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" MinWidth="24" />
@@ -126,9 +127,14 @@
                         <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                         <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                         <Grid Height="1" Margin="8" Background="{TemplateBinding SeparatorFill}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                        <Viewbox HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5" Stretch="Fill">
+                        <TextBlock x:Name="X0" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock x:Name="X1" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock x:Name="X2" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock x:Name="X3" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock x:Name="X4" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5" Stretch="Fill">
                             <Grid Width="512" Height="512">
-                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke0}" StrokeThickness="8" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" UseLayoutRounding="True">
+                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke0}" StrokeThickness="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
                                     <Path.Data>
                                         <GeometryGroup>
                                             <PathGeometry>
@@ -146,7 +152,7 @@
                                         </GeometryGroup>
                                     </Path.Data>
                                 </Path>
-                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke1}" x:Name="SubPath" StrokeThickness="8" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" UseLayoutRounding="True">
+                                <Path Width="512" Height="512" Stroke="{TemplateBinding Stroke1}" x:Name="SubPath" StrokeThickness="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
                                     <Path.Data>
                                         <GeometryGroup>
                                             <PathGeometry>
@@ -171,6 +177,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
     <Style TargetType="local2:LoadingDot" >
         <Setter Property="Template">
             <Setter.Value>

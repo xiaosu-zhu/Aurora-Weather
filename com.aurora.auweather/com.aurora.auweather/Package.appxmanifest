@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="6727Aurora-ZXS.3056077AD3591" Publisher="CN=C726CFE3-60F0-4B5C-8D98-3381263565AE" Version="1.6.16062.0" />
+  <Identity Name="6727Aurora-ZXS.3056077AD3591" Publisher="CN=C726CFE3-60F0-4B5C-8D98-3381263565AE" Version="1.6.16080.0" />
   <mp:PhoneIdentity PhoneProductId="964ee7f4-3a32-4ebd-a727-1c804e72b477" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>
-    <PublisherDisplayName>Aurora-ZXS</PublisherDisplayName>
+    <PublisherDisplayName>Aurora-Studio</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -33,20 +33,20 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="Com.Aurora.AuWeather.Background.BackgroundTask">
-          <BackgroundTasks>
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
+        <uap:Extension Category="windows.personalAssistantLaunch" />
+        <uap:Extension Category="windows.appService" EntryPoint="Com.Aurora.AuWeather.Background.CortanaCommandService">
+          <uap:AppService Name="AuroraWeatherCortanaCommandService" />
+        </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="Com.Aurora.AuWeather.Background.ToastHandler">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
         </Extension>
-        <uap:Extension Category="windows.appService" EntryPoint="Com.Aurora.AuWeather.Background.CortanaCommandService">
-          <uap:AppService Name="AuroraWeatherCortanaCommandService" />
-        </uap:Extension>
-        <uap:Extension Category="windows.personalAssistantLaunch" />
+        <Extension Category="windows.backgroundTasks" EntryPoint="Com.Aurora.AuWeather.Background.BackgroundTask">
+          <BackgroundTasks>
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>

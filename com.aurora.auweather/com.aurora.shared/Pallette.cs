@@ -3,7 +3,7 @@ using Windows.UI;
 
 namespace Com.Aurora.Shared
 {
-    public static class Pallette
+    public static class Palette
     {
 
         private static readonly Color[] pallette = new Color[]

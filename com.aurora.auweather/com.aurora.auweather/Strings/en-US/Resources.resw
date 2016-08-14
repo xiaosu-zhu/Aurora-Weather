@@ -1142,8 +1142,7 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Fixed a small display issue in details page
-· Added wind speed graph</value>
+    <value>· Minor fixes</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1167,7 +1166,10 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16062
+    <value>1.6.16080
+· Minor fixes
+
+1.6.16062
 · Fixed a small display issue in details page
 · Added wind speed graph
 

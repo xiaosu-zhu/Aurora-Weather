@@ -863,15 +863,15 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="HeaderGrid" Background="{ThemeResource SystemControlHighlightAccentBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock x:Uid="CitiesText" x:Name="TitleText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}"  Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,12,12" />
-        </Grid>
-        <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemControlHighlightAccentBrush}" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
-            <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
-            <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
-        </CommandBar>
-        <GridView Padding="0,0,0,64" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Margin="12" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
+        <RelativePanel x:Name="HeaderGrid" Background="{ThemeResource SystemControlHighlightAccentBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <CommandBar Style="{ThemeResource DropDownCommandBar}" Background="{ThemeResource SystemControlHighlightAccentBrush}" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}" x:Name="GridViewCommands" Grid.Row="1" Visibility="Collapsed" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                <AppBarButton x:Uid="AddButton" Icon="Add" Label="Add" x:Name="AddButton" Click="AddButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
+                <AppBarButton x:Uid="EditButton" Icon="Edit" Label="Edit" x:Name="EditButton" Click="EditButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
+                <AppBarButton x:Uid="RefreshButton" Icon="Refresh" Label="Refresh" x:Name="RefreshButton" Click="RefreshButton_Click" Foreground="{x:Bind GridViewCommands.Foreground,Mode=OneWay}" />
+            </CommandBar>
+            <TextBlock x:Uid="CitiesText" x:Name="TitleText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}"  Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="12,0,12,12" />
+        </RelativePanel>
+        <GridView ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
                     <RelativePanel Background="{ThemeResource SystemControlHighlightAccentBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -899,6 +899,9 @@
                     </RelativePanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
+            <GridView.Footer >
+                <Grid Height="96" />
+            </GridView.Footer>
         </GridView>
     </Grid>
 </Page>

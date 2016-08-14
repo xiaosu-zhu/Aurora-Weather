@@ -46,5 +46,23 @@ namespace Com.Aurora.Shared.Extensions
         {
             return "0x" + dec.ToString("X8");
         }
+
+        public static string ToString(this int[][] k)
+        {
+            var sb = new StringBuilder();
+            int i = 0;
+            foreach (var row in k)
+            {
+                sb.Append("[" + i + "]: ");
+                foreach (var item in row)
+                {
+                    sb.Append(item.ToString() + ", ");
+                }
+                sb.Remove(sb.Length - 2, 2);
+                sb.Append("\r\n");
+                i++;
+            }
+            return sb.ToString();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Com.Aurora.Shared.Extensions;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,6 +32,11 @@ namespace Com.Aurora.Shared.Controls
             Y2 = GetTemplateChild("Y2") as TextBlock;
             Y3 = GetTemplateChild("Y3") as TextBlock;
             Y4 = GetTemplateChild("Y4") as TextBlock;
+            X0 = GetTemplateChild("X0") as TextBlock;
+            X1 = GetTemplateChild("X1") as TextBlock;
+            X2 = GetTemplateChild("X2") as TextBlock;
+            X3 = GetTemplateChild("X3") as TextBlock;
+            X4 = GetTemplateChild("X4") as TextBlock;
 
             if (Values0 == null || Values0.Count < 1)
             {
@@ -85,6 +91,16 @@ namespace Com.Aurora.Shared.Controls
             Y2.Text = (bottom + 2 * labelStep).ToString("0.0") + FormatDecoration;
             Y3.Text = (bottom + 3 * labelStep).ToString("0.0") + FormatDecoration;
             Y4.Text = (bottom + 4 * labelStep).ToString("0.0") + FormatDecoration;
+
+            if (!XText.IsNullorEmpty())
+            {
+                var xTexts = XText.Split(',');
+                X0.Text = xTexts[0];
+                X1.Text = xTexts[1];
+                X2.Text = xTexts[2];
+                X3.Text = xTexts[3];
+                X4.Text = xTexts[4];
+            }
 
             var actualMin = bottom;
             var actualMax = bottom + 4 * labelStep;
@@ -220,6 +236,20 @@ namespace Com.Aurora.Shared.Controls
         public static readonly DependencyProperty FormatDecorationProperty =
             DependencyProperty.Register("FormateDecoration", typeof(string), typeof(GraphBox), new PropertyMetadata(string.Empty, OnDecorationChanged));
 
+
+
+        public string XText
+        {
+            get { return (string)GetValue(XTextProperty); }
+            set { SetValue(XTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for XText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty XTextProperty =
+            DependencyProperty.Register("XText", typeof(string), typeof(GraphBox), new PropertyMetadata("", OnValuesChanged));
+
+
+
         private static void OnDecorationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var box = d as GraphBox;
@@ -241,6 +271,11 @@ namespace Com.Aurora.Shared.Controls
         private TextBlock Y2;
         private TextBlock Y3;
         private TextBlock Y4;
+        private TextBlock X0;
+        private TextBlock X1;
+        private TextBlock X2;
+        private TextBlock X3;
+        private TextBlock X4;
         private Path SubPath;
 
         private static void OnValuesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -304,6 +339,16 @@ namespace Com.Aurora.Shared.Controls
             box.Y2.Text = (bottom + 2 * labelStep).ToString("0.0") + box.FormatDecoration;
             box.Y3.Text = (bottom + 3 * labelStep).ToString("0.0") + box.FormatDecoration;
             box.Y4.Text = (bottom + 4 * labelStep).ToString("0.0") + box.FormatDecoration;
+
+            if (!box.XText.IsNullorEmpty())
+            {
+                var xTexts = box.XText.Split(',');
+                box.X0.Text = xTexts[0];
+                box.X1.Text = xTexts[1];
+                box.X2.Text = xTexts[2];
+                box.X3.Text = xTexts[3];
+                box.X4.Text = xTexts[4];
+            }
 
             var actualMin = bottom;
             var actualMax = bottom + 4 * labelStep;

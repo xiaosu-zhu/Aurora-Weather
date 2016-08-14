@@ -18,20 +18,18 @@
                 <TextBlock Margin="4" x:Name="CrashInfo" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="12" />
                 <TextBox x:Name="EmailBox" PlaceholderText="Email here" AcceptsReturn="False" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <TextBox x:Uid="ReportBox" x:Name="ReportBox" AcceptsReturn="True" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="96" />
-                
+
                 <Button x:Name="WhyButton" x:Uid="WhyButton" Style="{ThemeResource TextBlockButtonStyle}" >
                     <Button.Flyout>
                         <Flyout>
-                            <ScrollViewer>
-                                <StackPanel Margin="4" MaxWidth="320" Orientation="Vertical">
-                                    <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="#ff4040" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                                    <TextBlock x:Uid="PrivacyText1" Margin="8" TextWrapping="WrapWholeWords" />
-                                </StackPanel>
-                            </ScrollViewer>
+                            <StackPanel Margin="4" MaxWidth="320" Orientation="Vertical">
+                                <TextBlock x:Uid="PrivacyText0" Margin="4" Foreground="#ff4040" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                                <TextBlock x:Uid="PrivacyText1" Margin="8" TextWrapping="WrapWholeWords" />
+                            </StackPanel>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button x:Name="AppProblemButton" Foreground="#ff4040" Style="{ThemeResource TextBlockButtonStyle}" >
+                <Button x:Name="AppProblemButton" x:Uid="AppProblemButton" Foreground="#ff4040" Style="{ThemeResource TextBlockButtonStyle}" >
                     <Button.Flyout>
                         <Flyout>
                             <ScrollViewer>

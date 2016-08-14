@@ -20,6 +20,7 @@ using Windows.UI;
 using Com.Aurora.Shared;
 using Windows.ApplicationModel.Resources;
 using Com.Aurora.AuWeather.LunarCalendar;
+using System.Text;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -307,6 +308,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private string set;
         private string offset;
         private string location;
+        private ThreadPoolTimer currentTimer;
 
         public DetailsPageViewModel()
         {
@@ -379,6 +381,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             UpdateTime = fetchresult.Location.UpdateTime;
             utcOffset = UpdateTime - fetchresult.Location.UtcTime;
             RefreshCurrentTime();
+            CurrentTimeRefreshTask();
             todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
             {
                 return x.Date.Date == CurrentTime.Date;
@@ -445,45 +448,53 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                 }
             }
-            List<double> doubles0 = new List<double>();
-            List<double> doubles1 = new List<double>();
-            List<double> doubles2 = new List<double>();
-            List<double> doubles3 = new List<double>();
-            List<double> doubles5 = new List<double>();
-            List<double> doubles4 = new List<double>();
+            List<KeyValuePair<int, double>> doubles0 = new List<KeyValuePair<int, double>>();
+            List<KeyValuePair<int, double>> doubles1 = new List<KeyValuePair<int, double>>();
+            List<KeyValuePair<int, double>> doubles2 = new List<KeyValuePair<int, double>>();
+            List<KeyValuePair<int, double>> doubles3 = new List<KeyValuePair<int, double>>();
+            List<KeyValuePair<int, double>> doubles5 = new List<KeyValuePair<int, double>>();
+            List<KeyValuePair<int, double>> doubles4 = new List<KeyValuePair<int, double>>();
             if (!fetchresult.HourlyForecast.IsNullorEmpty())
             {
                 for (int i = nowHourIndex + 1; i < fetchresult.HourlyForecast.Length; i++)
                 {
                     if (fetchresult.HourlyForecast[i].Temprature != null)
                     {
-                        doubles0.Add(fetchresult.HourlyForecast[i].Temprature.ActualDouble(TempratureandDegreeConverter.Parameter));
+                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.HourlyForecast[i].Temprature.ActualDouble(TempratureandDegreeConverter.Parameter)));
                     }
                     if (fetchresult.HourlyForecast[i].Pop != default(uint))
                     {
-                        doubles1.Add(fetchresult.HourlyForecast[i].Pop);
+                        doubles1.Add(new KeyValuePair<int, double>(i, fetchresult.HourlyForecast[i].Pop));
                     }
                     if (fetchresult.HourlyForecast[i].Wind != null)
                     {
-                        doubles4.Add(fetchresult.HourlyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter));
+                        doubles4.Add(new KeyValuePair<int, double>(i, fetchresult.HourlyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter)));
                     }
                 }
-                if (!doubles0.IsNullorEmpty() && !doubles1.IsNullorEmpty())
+                var sb = new StringBuilder();
+                if (doubles0 != null && doubles0.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999));
+                    GetHourlyXText(doubles0, sb);
+                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999, sb.ToString()));
                 }
                 if (doubles1 != null && doubles1.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles1, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsPop"), doubles1.Count), "%", 0, 100));
+                    GetHourlyXText(doubles1, sb);
+                    Forecasts.Add(new GraphViewModel(doubles1, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsPop"), doubles1.Count), "%", 0, 100, sb.ToString()));
                 }
                 if (doubles4 != null && doubles4.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000));
+                    GetHourlyXText(doubles4, sb);
+                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("HourlyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000, sb.ToString()));
                 }
             }
 
             doubles0.Clear();
             doubles1.Clear();
+            doubles2.Clear();
+            doubles3.Clear();
+            doubles4.Clear();
+            doubles5.Clear();
 
             if (!fetchresult.DailyForecast.IsNullorEmpty())
             {
@@ -491,54 +502,194 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     if (fetchresult.DailyForecast[i].HighTemp != null && fetchresult.DailyForecast[i].LowTemp != null)
                     {
-                        doubles0.Add(fetchresult.DailyForecast[i].HighTemp.ActualDouble(TempratureandDegreeConverter.Parameter));
-                        doubles1.Add(fetchresult.DailyForecast[i].LowTemp.ActualDouble(TempratureandDegreeConverter.Parameter));
+                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].HighTemp.ActualDouble(TempratureandDegreeConverter.Parameter)));
+                        doubles1.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].LowTemp.ActualDouble(TempratureandDegreeConverter.Parameter)));
                     }
                     if (fetchresult.DailyForecast[i].Pop != default(uint))
                     {
-                        doubles2.Add(fetchresult.DailyForecast[i].Pop);
+                        doubles2.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].Pop));
                     }
                     if (fetchresult.DailyForecast[i].Precipitation != default(float))
                     {
-                        doubles3.Add(fetchresult.DailyForecast[i].Precipitation);
+                        doubles3.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].Precipitation));
                     }
                     if (fetchresult.DailyForecast[i].Visibility != null)
                     {
-                        doubles5.Add(fetchresult.DailyForecast[i].Visibility.ActualDouble(VisibilityConverter.LengthParameter));
+                        doubles5.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].Visibility.ActualDouble(VisibilityConverter.LengthParameter)));
                     }
                     if (fetchresult.DailyForecast[i].Wind != null)
                     {
-                        doubles4.Add(fetchresult.DailyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter));
+                        doubles4.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].Wind.Speed.ActualDouble(WindSpeedConverter.SpeedParameter)));
                     }
                 }
+                var sb = new StringBuilder();
                 if (!doubles0.IsNullorEmpty() && !doubles1.IsNullorEmpty())
                 {
-                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Pallette.Orange), new SolidColorBrush(Pallette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999));
+                    GetDailyXText(doubles0, sb);
+                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Palette.Orange), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999, sb.ToString()));
                 }
                 if (doubles2 != null && doubles2.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles2, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPop"), doubles2.Count), "%", 0, 100));
+                    GetDailyXText(doubles2, sb);
+                    Forecasts.Add(new GraphViewModel(doubles2, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPop"), doubles2.Count), "%", 0, 100, sb.ToString()));
                 }
                 if (doubles3 != null && doubles3.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles3, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPrep"), doubles3.Count), "mm", 0, 100));
+                    GetDailyXText(doubles3, sb);
+                    Forecasts.Add(new GraphViewModel(doubles3, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsPrep"), doubles3.Count), "mm", 0, 100, sb.ToString()));
                 }
                 if (doubles5 != null && doubles5.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles5, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsVis"), doubles5.Count), Length.GetFormat(VisibilityConverter.LengthParameter), 0, 1000));
+                    GetDailyXText(doubles5, sb);
+                    Forecasts.Add(new GraphViewModel(doubles5, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsVis"), doubles5.Count), Length.GetFormat(VisibilityConverter.LengthParameter), 0, 1000, sb.ToString()));
                 }
                 if (doubles4 != null && doubles4.Count > 1)
                 {
-                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Pallette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000));
+                    GetDailyXText(doubles4, sb);
+                    Forecasts.Add(new GraphViewModel(doubles4, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Colors.Transparent), string.Format(loader.GetString("DailyDetailsWind"), doubles4.Count), Wind.GetSpeedFormat(WindSpeedConverter.SpeedParameter), 0, 1000, sb.ToString()));
                 }
             }
 
             OnFetchDataComplete();
         }
 
+        private void GetHourlyXText(List<KeyValuePair<int, double>> list, StringBuilder sb)
+        {
+            sb.Clear();
+            if (list.Count == 2)
+            {
+                sb.Append(' ');
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[0].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[1].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(' ');
+            }
+            else if (list.Count == 3)
+            {
+                sb.Append(' ');
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[0].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[1].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[2].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(' ');
+            }
+            else if (list.Count == 4)
+            {
+                var step = fetchresult.HourlyForecast[list[2].Key].DateTime - fetchresult.HourlyForecast[list[1].Key].DateTime;
+                step = TimeSpan.FromSeconds(step.TotalSeconds / 2);
+                sb.Append((fetchresult.HourlyForecast[list[0].Key].DateTime - step).ToString("H:mm"));
+                sb.Append(',');
+                sb.Append((fetchresult.HourlyForecast[list[1].Key].DateTime - step).ToString("H:mm"));
+                sb.Append(',');
+                sb.Append((fetchresult.HourlyForecast[list[2].Key].DateTime - step).ToString("H:mm"));
+                sb.Append(',');
+                sb.Append((fetchresult.HourlyForecast[list[3].Key].DateTime - step).ToString("H:mm"));
+                sb.Append(',');
+                sb.Append((fetchresult.HourlyForecast[list[3].Key].DateTime + step).ToString("H:mm"));
+            }
+            else
+            {
+                var st = list.Count / 10;
+                sb.Append(fetchresult.HourlyForecast[list[st].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[st * 3].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[st * 4].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[st * 7].Key].DateTime.ToString("H:mm"));
+                sb.Append(',');
+                sb.Append(fetchresult.HourlyForecast[list[st * 9].Key].DateTime.ToString("H:mm"));
+            }
+        }
+
+        private void GetDailyXText(List<KeyValuePair<int, double>> list, StringBuilder sb)
+        {
+            sb.Clear();
+            if (list.Count == 2)
+            {
+                sb.Append(' ');
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[0].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[1].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(' ');
+            }
+            else if (list.Count == 3)
+            {
+                sb.Append(' ');
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[0].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[1].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[2].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(' ');
+            }
+            else if (list.Count == 4)
+            {
+                var step = fetchresult.DailyForecast[list[2].Key].Date - fetchresult.DailyForecast[list[1].Key].Date;
+                step = TimeSpan.FromSeconds(step.TotalSeconds / 2);
+                sb.Append((fetchresult.DailyForecast[list[0].Key].Date - step).ToString("M/dd"));
+                sb.Append(',');
+                sb.Append((fetchresult.DailyForecast[list[1].Key].Date - step).ToString("M/dd"));
+                sb.Append(',');
+                sb.Append((fetchresult.DailyForecast[list[2].Key].Date - step).ToString("M/dd"));
+                sb.Append(',');
+                sb.Append((fetchresult.DailyForecast[list[3].Key].Date - step).ToString("M/dd"));
+                sb.Append(',');
+                sb.Append((fetchresult.DailyForecast[list[3].Key].Date + step).ToString("M/dd"));
+            }
+            else
+            {
+                var st = list.Count / 10;
+                sb.Append(fetchresult.DailyForecast[list[st].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[st * 3].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[st * 4].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[st * 7].Key].Date.ToString("M/dd"));
+                sb.Append(',');
+                sb.Append(fetchresult.DailyForecast[list[st * 9].Key].Date.ToString("M/dd"));
+            }
+        }
+
         private void RefreshCurrentTime()
         {
             CurrentTime = DateTimeHelper.ReviseLoc(utcOffset);
+        }
+
+        public void CurrentTimeRefreshTask()
+        {
+            if (currentTimer != null)
+            {
+                currentTimer.Cancel();
+                currentTimer = null;
+            }
+            var nextupdate = 1.02 - DateTime.Now.Millisecond / 1000d;
+            currentTimer = ThreadPoolTimer.CreateTimer(
+                async (task) =>
+                {
+                    var locTime = DateTimeHelper.ReviseLoc(utcOffset);
+
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                    {
+                        CurrentTime = locTime;
+                    }));
+                }, TimeSpan.FromSeconds(nextupdate),
+            (compelte) =>
+            {
+                CurrentTimeRefreshTask();
+            });
         }
 
 
@@ -666,14 +817,16 @@ namespace Com.Aurora.AuWeather.ViewModels
         public double Minimum { get; private set; }
         public double Maximum { get; private set; }
 
-        public GraphViewModel(ICollection<double> values0, ICollection<double> values1, Brush stroke0, Brush stroke1, string title, string decorate, double min, double max)
+        public string XText { get; private set; }
+
+        public GraphViewModel(ICollection<KeyValuePair<int, double>> values0, ICollection<KeyValuePair<int, double>> values1, Brush stroke0, Brush stroke1, string title, string decorate, double min, double max, string xtext)
         {
             if (values0 != null && values0.Count > 0)
             {
                 this.Values0 = new DoubleCollection();
                 foreach (var v0 in values0)
                 {
-                    Values0.Add(v0);
+                    Values0.Add(v0.Value);
                 }
             }
             if (values1 != null && values1.Count > 0)
@@ -681,7 +834,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 this.Values1 = new DoubleCollection();
                 foreach (var v1 in values1)
                 {
-                    Values1.Add(v1);
+                    Values1.Add(v1.Value);
                 }
             }
             Stroke0 = stroke0;
@@ -690,6 +843,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             Decorate = decorate;
             Minimum = min;
             Maximum = max;
+            XText = xtext;
         }
     }
 }

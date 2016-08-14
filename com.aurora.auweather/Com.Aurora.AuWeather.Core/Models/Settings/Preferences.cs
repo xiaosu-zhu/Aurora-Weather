@@ -80,6 +80,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public bool TransparentTile { get; set; } = false;
         public DateTime LastAlertTime { get; set; } = new DateTime(1970, 1, 1);
         public DateTime LastAlarmTime { get; set; } = new DateTime(1970, 1, 1);
+        public bool EnableCrashReport { get; set; } = false;
 
         private static DateTime themeTime = new DateTime(1970, 1, 1);
         private static TimeSpan setTime = new TimeSpan(19, 30, 0);

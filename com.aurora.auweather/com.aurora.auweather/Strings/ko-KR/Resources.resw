@@ -1364,4 +1364,10 @@
   <data name="Dismiss" xml:space="preserve">
     <value>해제</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>{0} 일에 대 한 풍속</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>{0} 시간에 대 한 풍속</value>
+  </data>
 </root>

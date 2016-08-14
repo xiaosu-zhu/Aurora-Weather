@@ -1142,8 +1142,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正详情曲线细节
-· 加入风速详情曲线</value>
+    <value>· 由于部分代码丢失，因此这次更新隔了很久，非常抱歉！
+· 部分错误修复和布局调整</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1167,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16062
+    <value>1.6.16080
+· 由于部分代码丢失，因此这次更新隔了很久，非常抱歉！
+· 部分错误修复和布局调整
+
+1.6.16062
 · 修正详情曲线细节
 · 加入风速详情曲线
 

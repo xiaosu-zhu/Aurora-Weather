@@ -20,6 +20,8 @@ using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Com.Aurora.Shared;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -133,6 +135,8 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private bool hadNoAlarms = true;
         private bool isNowPanelLow;
+        private SolidColorBrush alarmColor;
+
         #endregion
         #region public binded properties
         public Temperature Temprature
@@ -1290,6 +1294,19 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public SolidColorBrush AlarmColor
+        {
+            get
+            {
+                return alarmColor;
+            }
+
+            set
+            {
+                SetProperty(ref alarmColor, value);
+            }
+        }
+
         public void RefreshAsync()
         {
             Init();
@@ -1536,6 +1553,27 @@ namespace Com.Aurora.AuWeather.ViewModels
                     var a = new WeatherAlarmViewModel(alarm);
                     Alarms.Add(a);
                 }
+                SolidColorBrush p;
+                switch (fetchresult.Alarms[0].Level)
+                {
+                    case WeatherAlarmLevel.blue:
+                        p = new SolidColorBrush(Palette.Blue);
+                        break;
+                    case WeatherAlarmLevel.yellow:
+                        p = new SolidColorBrush(Palette.Yellow);
+                        break;
+                    case WeatherAlarmLevel.orange:
+                        p = new SolidColorBrush(Palette.Orange);
+                        break;
+                    case WeatherAlarmLevel.red:
+                        p = new SolidColorBrush(Palette.Red);
+                        break;
+                    default:
+                        p = new SolidColorBrush(Palette.Gray);
+                        break;
+                }
+                p.Opacity = 0.25;
+                AlarmColor = p;
                 HadNoAlarms = false;
             }
             else

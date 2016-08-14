@@ -140,6 +140,11 @@
                             <TextBlock x:Uid="TransparentTileFalseText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" />
                             <ToggleSwitch x:Name="TransparentTile" IsOn="{x:Bind Context.TransparentTile,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                         </Grid>
+                        <Grid HorizontalAlignment="Stretch" >
+                            <TextBlock Text="When crash, send report" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                            <TextBlock Text="May affect the user experience" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" />
+                            <ToggleSwitch x:Name="EnableDebug" IsOn="{x:Bind Context.EnableDebug,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+                        </Grid>
                         <Button x:Uid="CustomLayoutButton" x:Name="CustomLayout" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button.Flyout>
                                 <Flyout Placement="Full">

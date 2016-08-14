@@ -39,7 +39,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Image Source="/Assets/Square150x150Logo.png" Height="192" Width="192" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="12" Stretch="Uniform" />
+                    <Image Source="/Assets/Square310x310Logo.png" Height="310" Width="310" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" />
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1">
                         <TextBlock x:Uid="AppNameText" Foreground="White" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
                         <TextBlock x:Name="Version" Loaded="Version_Loaded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />

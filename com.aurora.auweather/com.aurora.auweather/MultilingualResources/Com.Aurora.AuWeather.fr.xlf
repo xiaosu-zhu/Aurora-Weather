@@ -1347,10 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Plein écran</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed a small display issue in details page
-· Added wind speed graph</source>
-          <target state="translated">· Correction d’un problème de petit écran en détails page
+          <source>· Minor fixes</source>
+          <target state="needs-review-translation">· Correction d’un problème de petit écran en détails page
 · Graphique de vitesse de vent ajouté</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1381,7 +1381,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Mise à jour Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16062
+          <source>1.6.16080
+· Minor fixes
+
+1.6.16062
 · Fixed a small display issue in details page
 · Added wind speed graph
 
@@ -1440,7 +1443,7 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16062
+          <target state="needs-review-translation">1.6.16062
 · Correction d’un problème de petit écran en détails page
 · Vitesse du vent a ajouté graphique
 
@@ -1499,6 +1502,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 · Amélioration du système de particules
 · Amélioration de générateur de foudre
   </target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
           <source>Contact with me</source>
@@ -1858,11 +1862,11 @@ demain: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="DailyDetailsWind" translate="yes" xml:space="preserve">
           <source>Wind speed for {0} days</source>
-          <target state="new">Wind speed for {0} days</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vitesse du vent pour {0} jours</target>
         </trans-unit>
         <trans-unit id="HourlyDetailsWind" translate="yes" xml:space="preserve">
           <source>Wind speed for {0} hours</source>
-          <target state="new">Wind speed for {0} hours</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vitesse du vent pendant des heures de {0}</target>
         </trans-unit>
       </group>
     </body>

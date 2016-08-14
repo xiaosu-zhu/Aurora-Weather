@@ -1142,8 +1142,8 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正詳情曲綫細節
-· 加入風速詳情曲綫</value>
+    <value>· 由於部分代碼丟失，因此這次更新隔了很久，非常抱歉！
+· 部分錯誤修復和佈局調整</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1167,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16062
+    <value>1.6.16080
+· 由於部分代碼丟失，因此這次更新隔了很久，非常抱歉！
+· 部分錯誤修復和佈局調整
+
+1.6.16062
 · 修正詳情曲綫細節
 · 加入風速詳情曲綫
 

@@ -1364,4 +1364,10 @@ Morgen: {4}, {5}.</value>
   <data name="Dismiss" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>Windgeschwindigkeit für {0} Tage</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>Windgeschwindigkeit für {0} Stunden</value>
+  </data>
 </root>

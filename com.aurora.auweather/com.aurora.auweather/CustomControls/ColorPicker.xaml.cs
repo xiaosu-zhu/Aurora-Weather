@@ -24,7 +24,7 @@ namespace Com.Aurora.AuWeather.CustomControls
             Header.Background = Picked;
             PickColor.Text = Title;
             AccentColor.Text = AccentColorTitle;
-            var lightness = Pallette.RGBtoL(Picked.Color);
+            var lightness = Palette.RGBtoL(Picked.Color);
             PickColor.Foreground = new SolidColorBrush(lightness <= 127 ? Windows.UI.Colors.White : Windows.UI.Colors.Black);
         }
 
@@ -76,7 +76,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 if (picker.Picked == null)
                     return;
                 picker.Header.Background = picker.Picked;
-                var lightness = Pallette.RGBtoL(picker.Picked.Color);
+                var lightness = Palette.RGBtoL(picker.Picked.Color);
                 picker.PickColor.Foreground = new SolidColorBrush(lightness <= 127 ? Windows.UI.Colors.White : Windows.UI.Colors.Black);
             }
         }
@@ -129,7 +129,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             (ChangeColor.Children[0] as ColorAnimation).To = (Color)App.Current.Resources["SystemAccentColor"];
-            var lightness = Pallette.RGBtoL((Color)App.Current.Resources["SystemAccentColor"]);
+            var lightness = Palette.RGBtoL((Color)App.Current.Resources["SystemAccentColor"]);
             (ChangeColor.Children[1] as ColorAnimation).To = lightness <= 127 ? Windows.UI.Colors.White : Windows.UI.Colors.Black;
             ChangeColor.Completed += (s, v) =>
             {
@@ -148,7 +148,7 @@ namespace Com.Aurora.AuWeather.CustomControls
         private void Root_ItemClick(object sender, ItemClickEventArgs e)
         {
             (ChangeColor.Children[0] as ColorAnimation).To = (e.ClickedItem as ColorGrid).Color.Color;
-            var lightness = Pallette.RGBtoL((e.ClickedItem as ColorGrid).Color.Color);
+            var lightness = Palette.RGBtoL((e.ClickedItem as ColorGrid).Color.Color);
             (ChangeColor.Children[1] as ColorAnimation).To = lightness <= 127 ? Windows.UI.Colors.White : Windows.UI.Colors.Black;
             ChangeColor.Completed += (s, v) =>
             {

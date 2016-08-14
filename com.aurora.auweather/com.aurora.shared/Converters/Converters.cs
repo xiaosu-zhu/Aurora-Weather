@@ -234,12 +234,12 @@ namespace Com.Aurora.Shared.Converters
             if (value is SolidColorBrush)
             {
                 var b = value as SolidColorBrush;
-                return new SolidColorBrush(Pallette.RGBtoL(b.Color) <= 127 ? Colors.White : Colors.Black);
+                return new SolidColorBrush(Palette.RGBtoL(b.Color) <= 127 ? Colors.White : Colors.Black);
             }
             else if (value is Color)
             {
                 var b = (Color)value;
-                return new SolidColorBrush(Pallette.RGBtoL(b) <= 127 ? Colors.White : Colors.Black);
+                return new SolidColorBrush(Palette.RGBtoL(b) <= 127 ? Colors.White : Colors.Black);
             }
             return null;
         }

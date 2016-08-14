@@ -1364,4 +1364,10 @@ demain: {4}, {5}.</value>
   <data name="Dismiss" xml:space="preserve">
     <value>Faire disparaître</value>
   </data>
+  <data name="DailyDetailsWind" xml:space="preserve">
+    <value>Vitesse du vent pour {0} jours</value>
+  </data>
+  <data name="HourlyDetailsWind" xml:space="preserve">
+    <value>Vitesse du vent pendant des heures de {0}</value>
+  </data>
 </root>

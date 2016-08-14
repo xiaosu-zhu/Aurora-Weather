@@ -43,6 +43,8 @@ namespace Com.Aurora.AuWeather
             this.Suspending += OnSuspending;
         }
 
+        Models.SettingsModel settings = Models.SettingsModel.Get();
+
         private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var log = new CrashLog(e.Exception.ToString(), e.Exception.HResult, e.Exception.StackTrace, e.Exception.Source, e.Exception.Message);
@@ -51,13 +53,16 @@ namespace Com.Aurora.AuWeather
             {
                 return;
             }
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+            if (settings.Preferences.EnableCrashReport)
             {
-                Window.Current.Content = null;
-                var f = new Frame();
-                f.Navigate(typeof(CrashReportPage), log);
-                Window.Current.Content = f;
-            }));
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+                {
+                    Window.Current.Content = null;
+                    var f = new Frame();
+                    f.Navigate(typeof(CrashReportPage), log);
+                    Window.Current.Content = f;
+                }));
+            }
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
