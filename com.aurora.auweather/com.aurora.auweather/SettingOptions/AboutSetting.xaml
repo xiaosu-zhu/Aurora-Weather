@@ -84,43 +84,39 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 <Button x:Uid="ImproveButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout>
-                            <ScrollViewer Padding="12">
-                                <StackPanel Orientation="Vertical" Margin="12">
-                                    <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
-                                    <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
-                                </StackPanel>
-                            </ScrollViewer>
+                            <StackPanel Orientation="Vertical" Margin="12">
+                                <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
+                                <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
+                            </StackPanel>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
                 <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout>
-                            <ScrollViewer>
-                                <StackPanel MaxWidth="320">
-                                    <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
-                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
-                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                    <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
-                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
-                                    </StackPanel>
-                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                    <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
-                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                        <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
-                                    </StackPanel>
-                                    <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
-                                    <TextBlock Margin="12,8,12,12" Text="Weather Underground" TextWrapping="WrapWholeWords"/>
-                                    <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
-                                        <Image Height="32" Stretch="Uniform" Source="/Assets/Logos/Wunder.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                        <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="WunderGround" NavigateUri="https://www.wunderground.com" Margin="4" />
-                                    </StackPanel>
+                            <StackPanel MaxWidth="320">
+                                <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
+                                <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                    <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
                                 </StackPanel>
-                            </ScrollViewer>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                    <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
+                                </StackPanel>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <TextBlock Margin="12,8,12,12" Text="Weather Underground" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
+                                    <Image Height="32" Stretch="Uniform" Source="/Assets/Logos/Wunder.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="WunderGround" NavigateUri="https://www.wunderground.com" Margin="4" />
+                                </StackPanel>
+                            </StackPanel>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
@@ -150,13 +146,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 <Button x:Uid="AppProblemButton" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ff4040" Style="{ThemeResource TextBlockButtonStyle}" >
                     <Button.Flyout>
                         <Flyout>
-                            <ScrollViewer>
-                                <StackPanel Margin="12" Orientation="Vertical">
-                                    <TextBlock MaxWidth="320" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <TextBlock MaxWidth="320" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                    <Button HorizontalAlignment="Center" Foreground="White" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
-                                </StackPanel>
-                            </ScrollViewer>
+                            <StackPanel Margin="12" Orientation="Vertical">
+                                <TextBlock MaxWidth="320" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                <TextBlock MaxWidth="320" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
+                                <Button HorizontalAlignment="Center" Foreground="White" x:Uid="AppDeleteButton" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
+                            </StackPanel>
                         </Flyout>
                     </Button.Flyout>
                 </Button>

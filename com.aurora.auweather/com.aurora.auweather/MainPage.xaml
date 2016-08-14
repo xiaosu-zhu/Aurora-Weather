@@ -683,9 +683,7 @@
                     <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button.Flyout>
                             <Flyout>
-                                <ScrollViewer>
-                                    <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
-                                </ScrollViewer>
+                                <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
                             </Flyout>
                         </Button.Flyout>
                     </Button>
