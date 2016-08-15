@@ -650,16 +650,16 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             else
             {
-                var st = list.Count / 10;
-                sb.Append(fetchresult.DailyForecast[list[st].Key].Date.ToString("M/dd"));
+                var st = list.Count / 10d;
+                sb.Append(fetchresult.DailyForecast[list[(int)Math.Floor(st)].Key].Date.ToString("M/dd"));
                 sb.Append(',');
-                sb.Append(fetchresult.DailyForecast[list[st * 3].Key].Date.ToString("M/dd"));
+                sb.Append(fetchresult.DailyForecast[list[(int)Math.Floor(st * 3)].Key].Date.ToString("M/dd"));
                 sb.Append(',');
-                sb.Append(fetchresult.DailyForecast[list[st * 4].Key].Date.ToString("M/dd"));
+                sb.Append(fetchresult.DailyForecast[list[(int)Math.Floor(st * 4)].Key].Date.ToString("M/dd"));
                 sb.Append(',');
-                sb.Append(fetchresult.DailyForecast[list[st * 7].Key].Date.ToString("M/dd"));
+                sb.Append(fetchresult.DailyForecast[list[(int)Math.Floor(st * 7)].Key].Date.ToString("M/dd"));
                 sb.Append(',');
-                sb.Append(fetchresult.DailyForecast[list[st * 9].Key].Date.ToString("M/dd"));
+                sb.Append(fetchresult.DailyForecast[list[(int)Math.Floor(st * 9)].Key].Date.ToString("M/dd"));
             }
         }
 

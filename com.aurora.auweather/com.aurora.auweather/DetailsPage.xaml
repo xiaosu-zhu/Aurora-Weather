@@ -481,7 +481,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition x:Name="ThirdRow" Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Height="32" >
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="2">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Light" Foreground="White" Text="{x:Bind Context.CurrentTime, Mode=OneWay}" />
                     </Grid>
                     <StackPanel Visibility="Collapsed" x:Name="DatePanel" Opacity="0" Grid.ColumnSpan="2" Margin="0,32,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical">
