@@ -632,5 +632,10 @@ namespace Com.Aurora.AuWeather
                     (MainFrame.Content as IThemeble).ChangeThemeColor(App.MainColor);
                 }
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://publisher/?name=Aurora-Studio"));
+        }
     }
 }

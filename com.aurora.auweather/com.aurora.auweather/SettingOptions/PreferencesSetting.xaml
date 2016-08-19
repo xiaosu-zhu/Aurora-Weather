@@ -128,8 +128,8 @@
                             <TextBlock FontWeight="Light" x:Uid="LanguageAlarmText" TextWrapping="WrapWholeWords" Margin="8,28,8,8" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="12"/>
                             <ComboBox Background="{ThemeResource SystemControlTranslucentAltAltHighBrush}" BorderBrush="Transparent" BorderThickness="0" x:Name="LanguageBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" >
                                 <ComboBox.ItemTemplate>
-                                    <DataTemplate x:DataType="x:String">
-                                        <TextBlock Text="{x:Bind}" />
+                                    <DataTemplate x:DataType="ViewModels:LanguageViewModel">
+                                        <TextBlock Text="{x:Bind Value}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>

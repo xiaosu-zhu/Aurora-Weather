@@ -127,7 +127,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                     ReportBox.PlaceholderText = "Input some opinion";
                     await FeedbackDialog.ShowAsync();
                 }
-                
+
             }
             catch (Exception)
             {
@@ -139,6 +139,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private void FeedbackDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             FeedbackDialog.Hide();
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/aurora-lzzp/Aurora-Weather"));
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://publisher/?name=Aurora-Studio"));
         }
     }
 }

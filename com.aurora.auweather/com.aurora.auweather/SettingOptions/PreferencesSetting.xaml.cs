@@ -142,7 +142,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
 
         private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplicationLanguages.PrimaryLanguageOverride = (sender as ComboBox).SelectedItem as string;
+            ApplicationLanguages.PrimaryLanguageOverride = ((sender as ComboBox).SelectedItem as LanguageViewModel).Key;
             LanguageChangeText.Visibility = Visibility.Visible;
         }
 

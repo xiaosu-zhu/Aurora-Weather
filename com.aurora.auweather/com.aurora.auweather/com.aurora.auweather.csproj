@@ -105,6 +105,11 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\2048.scale-100.png" />
+    <Content Include="Assets\2048.scale-125.png" />
+    <Content Include="Assets\2048.scale-150.png" />
+    <Content Include="Assets\2048.scale-200.png" />
+    <Content Include="Assets\2048.scale-400.png" />
     <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush.png" />
     <Content Include="Assets\Background\Cloudy\01_Todd Quackenbush_t.png" />
     <Content Include="Assets\Background\Cloudy\02_Paul Csogi.png" />
@@ -279,6 +284,11 @@
     <Content Include="Assets\MoonPhase\moon7.scale-140.png" />
     <Content Include="Assets\MoonPhase\moon7.scale-180.png" />
     <Content Include="Assets\MoonPhase\moon7.scale-240.png" />
+    <Content Include="Assets\Music.scale-100.png" />
+    <Content Include="Assets\Music.scale-125.png" />
+    <Content Include="Assets\Music.scale-150.png" />
+    <Content Include="Assets\Music.scale-200.png" />
+    <Content Include="Assets\Music.scale-400.png" />
     <Content Include="Assets\Particle\rain.png" />
     <Content Include="Assets\Particle\cloud1.png" />
     <Content Include="Assets\Particle\cloud2.png" />
@@ -729,9 +739,15 @@
   <ItemGroup>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de-DE.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-CL.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-ES.xlf" />
-    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-MX.xlf" />
+    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-CL.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
+    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-ES.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
+    <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-MX.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.fr-FR.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.fr.xlf" />

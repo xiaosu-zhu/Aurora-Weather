@@ -47,7 +47,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Hour = new FormatList();
                 Minute = new FormatList();
                 Week = new FormatList();
-                Languages = new FormatList();
+                Languages = new LanguageList(ApplicationLanguages.ManifestLanguages);
 
                 Year.AddRange(Preferences.YearFormat);
                 Month.AddRange(Preferences.MonthFormat);
@@ -56,7 +56,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Minute.AddRange(Preferences.MinuteFormat);
                 Week.AddRange(Preferences.WeekFormat);
                 Separator = Preferences.DateSeparator.ToString();
-                Languages.AddRange(ApplicationLanguages.ManifestLanguages);
 
                 Data.SelectedIndex = Data.FindIndex(x =>
                 {
@@ -97,7 +96,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 Week.SelectedIndex = (int)Preferences.WeekNumber;
                 Languages.SelectedIndex = Languages.FindIndex(x =>
                 {
-                    return x == ApplicationLanguages.Languages[0];
+                    return x.Key == ApplicationLanguages.Languages[0];
                 });
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
@@ -267,7 +266,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public LengthList Length { get; private set; }
         public PressureList Pressure { get; private set; }
         public ThemeList Theme { get; private set; }
-        public FormatList Languages { get; private set; }
+        public LanguageList Languages { get; private set; }
         public FormatList Hour { get; private set; }
         public FormatList Minute { get; private set; }
         public FormatList Year { get; private set; }
@@ -742,7 +741,108 @@ namespace Com.Aurora.AuWeather.ViewModels
     }
 
 
+    public class LanguageList : List<LanguageViewModel>
+    {
+        public int SelectedIndex { get; internal set; } = 0;
+        public LanguageList(IReadOnlyList<string> keys)
+        {
+            foreach (var item in keys)
+            {
+                string value;
+                switch (item)
+                {
+                    case "en-US":
+                        value = "English (United States)";
+                        break;
+                    case "en":
+                        value = "English";
+                        break;
+                    case "en-CA":
+                        value = "English (Canada)";
+                        break;
+                    case "en-GB":
+                        value = "English (United Kingdom)";
+                        break;
+                    case "en-SG":
+                        value = "English (Singapore)";
+                        break;
+                    case "de":
+                        value = "Deutsch";
+                        break;
+                    case "de-DE":
+                        value = "Deutsch (Deutschland)";
+                        break;
+                    case "es":
+                        value = "Español";
+                        break;
+                    case "es-CL":
+                        value = "Español (Chile)";
+                        break;
+                    case "es-ES":
+                        value = "Español (España)";
+                        break;
+                    case "es-MX":
+                        value = "Español (México)";
+                        break;
+                    case "fr":
+                        value = "Français";
+                        break;
+                    case "fr-FR":
+                        value = "Français (France)";
+                        break;
+                    case "it":
+                        value = "Italiano";
+                        break;
+                    case "it-IT":
+                        value = "Italiano (Italia)";
+                        break;
+                    case "ja":
+                        value = "日本語";
+                        break;
+                    case "ja-JP":
+                        value = "日本語 (日本)";
+                        break;
+                    case "ko":
+                        value = "한국어";
+                        break;
+                    case "ko-KR":
+                        value = "한국어";
+                        break;
+                    case "ru":
+                        value = "ру́сский";
+                        break;
+                    case "zh-Hans-CN":
+                        value = "简体中文 (中国)";
+                        break;
+                    case "zh-Hans":
+                        value = "简体中文";
+                        break;
+                    case "zh-Hant":
+                        value = "繁體中文";
+                        break;
+                    case "zh-Hant-TW":
+                        value = "繁體中文 (臺灣)";
+                        break;
+                    default:
+                        value = "";
+                        break;
+                }
+                Add(new LanguageViewModel(item, value));
+            }
+        }
+    }
 
+    public class LanguageViewModel
+    {
+        public LanguageViewModel(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+
+        public string Key { get; set; }
+        public string Value { get; set; }
+    }
 
     public class FormatList : List<string>
     {

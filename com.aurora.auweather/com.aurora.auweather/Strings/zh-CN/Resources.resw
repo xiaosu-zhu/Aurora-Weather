@@ -1142,8 +1142,7 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 由于部分代码丢失，因此这次更新隔了很久，非常抱歉！
-· 部分错误修复和布局调整</value>
+    <value>· 欢迎搜索并下载 Aurora Studio's 2048!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>

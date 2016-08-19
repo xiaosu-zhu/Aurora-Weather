@@ -680,6 +680,14 @@
                     </Grid>
                     <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
                     <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource TitleTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Button Margin="12" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                <Image Height="50" Width="50" Source="/Assets/2048.png" />
+                            </Grid>
+                            <TextBlock Margin="8" Text="2048" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                     <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button.Flyout>
                             <Flyout>

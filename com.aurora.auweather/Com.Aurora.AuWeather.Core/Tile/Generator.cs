@@ -37,10 +37,10 @@ namespace Com.Aurora.AuWeather.Tile
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            PeekImage = uri == null ? null : new TilePeekImage()
+                            PeekImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TilePeekImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
-                            },
+                            }),
                             BackgroundImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TileBackgroundImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
@@ -208,10 +208,10 @@ namespace Com.Aurora.AuWeather.Tile
                                     }
                                 }
                                        },
-                            PeekImage = uri == null ? null : new TilePeekImage()
+                            PeekImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TilePeekImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
-                            }
+                            }),
                         }
                     },
                     TileLarge = new TileBinding()
@@ -319,10 +319,10 @@ namespace Com.Aurora.AuWeather.Tile
                                             }
 
                             },
-                            PeekImage = uri == null ? null : new TilePeekImage()
+                            PeekImage = uri == null ? null : (settings.Preferences.TransparentTile ? null : new TilePeekImage()
                             {
                                 Source = new TileImageSource(uri.ToString()),
-                            }
+                            }),
                         }
                     }
                 }

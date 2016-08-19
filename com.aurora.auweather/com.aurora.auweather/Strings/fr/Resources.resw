@@ -1018,8 +1018,7 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Correction d’un problème de petit écran en détails page
-· Graphique de vitesse de vent ajouté</value>
+    <value>· Nous avons publié de Aurora Studio 2048, Rechercher et de jouer !</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1043,7 +1042,10 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16062
+    <value>1.6.16080
+· Corrections mineures
+
+1.6.16062
 · Correction d’un problème de petit écran en détails page
 · Vitesse du vent a ajouté graphique
 
@@ -1066,7 +1068,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 · Essayez de définir BG actuel comme lockscreen wallpaper
 
 1.5.16055
-· Vous pouvez personnaliser la couleur d’accentuation maintenant (uniquement lorsque le paramètre de thème est « Système de suivi »)
+· Vous pouvez personnaliser la couleur d’accentuation maintenant (uniquement lorsque le paramètre de thème est "Système de suivi")
 · Ajout d’animation rafraîchissement
 · Vous pouvez personnaliser la disposition maintenant
 · Détails page améliorée
@@ -1087,15 +1089,15 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 
 1.5.16040
 · Compatible avec Windows 10 Build 14328, nous ont mis à jour de toast et carrelage
-· « Weather Underground » maintenant disponible ! 
+· « Weather Underground » maintenant disponible ! 
 · (mai) Correction d’une défaillance catastrophique
 · (mai) Fixe un problème se produit sur les périphériques mobiles qui n’affichent pas les notifications de lockscreen
 
-1.4.16047 :
+1.4.16047 :
 · Interface utilisateur tuning
 · Petite corrigé d’un bug
  
-1.4.16046 :
+1.4.16046 :
 · Journal de mise à jour ajoutée
 · Vous pouvez faire glisser pour supprimer la mise à jour en détail
 · Surfaces du système de particules mise à jour de

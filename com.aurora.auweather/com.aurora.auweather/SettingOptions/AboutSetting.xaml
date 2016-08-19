@@ -47,7 +47,31 @@
                     <TextBlock Text="Aurora Studio © 2016" Grid.Row="1" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" />
                 </Grid>
 
-                <HyperlinkButton Content="Github" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" NavigateUri="https://github.com/aurora-lzzp/Aurora-Weather" />
+                <Button Content="Github" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" Click="Button_Click_1" />
+                <Button Content="Made by Aurora Studio" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                            <Image Height="50" Width="50" Source="/Assets/2048.png" />
+                                        </Grid>
+                                        <TextBlock Margin="8" Text="2048" HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                            <Image Height="50" Width="50" Source="/Assets/Music.png" />
+                                        </Grid>
+                                        <TextBlock Margin="8" Text="Music" HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
                 <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout Placement="Full">
@@ -86,6 +110,12 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                                 <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
                                 <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
+                                <TextBlock Margin="8" MaxWidth="320" Text="Special Thanks:" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Margin="8" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                    <Run Text="· " />
+                                    <Bold>David Bianco: </Bold>
+                                    <Run Text="Spanish Translation and some UI improvements" />
+                                </TextBlock>
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>

@@ -1347,10 +1347,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vollbild</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Minor fixes</source>
-          <target state="needs-review-translation">· Ein kleines Display Fehler behoben im Detail Seite
-· Zusätzlichen Wind Geschwindigkeitskurve</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <source>· We've released Aurora Studio's 2048, search and play!</source>
+          <target state="translated">· Wir haben Aurora Studio veröffentlicht 2048, suchen und abspielen!</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1443,7 +1441,10 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="needs-review-translation">1.6.16062
+          <target state="translated">1.6.16080
+· Minor fixes
+
+1.6.16062
 · Ein kleines Display Fehler behoben im Detail Seite
 · Hinzugefügt von Windgeschwindigkeit graph
 
@@ -1502,7 +1503,6 @@ Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
 · Partikel-System Verbesserung
 · Blitz-Generator Erweiterung
   </target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ContactButton.Content" translate="yes" xml:space="preserve">
           <source>Contact with me</source>

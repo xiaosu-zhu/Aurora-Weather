@@ -1018,8 +1018,7 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Исправлена проблема небольшой дисплей в деталях страница
-· Добавлено ветра скорость граф</value>
+    <value>· Мы выпустили Аврора студии 2048, Поиск и играть!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1043,7 +1042,10 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16062
+    <value>1.6.16080
+· Незначительные исправления
+
+1.6.16062
 · Исправлена проблема небольшой дисплей в деталях страница
 · Добавлено скорость ветра графа
 
