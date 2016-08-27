@@ -65,5 +65,15 @@ namespace Com.Aurora.Shared.Helpers
         {
             return random.NextDouble() > 0.5;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="trueRate">0 到 100 间的数，表示返回真的比例</param>
+        /// <returns></returns>
+        public static bool RandomBool(int trueRate)
+        {
+            return random.NextDouble() <= ((double)trueRate / 100);
+        }
     }
 }
