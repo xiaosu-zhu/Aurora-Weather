@@ -141,8 +141,8 @@
                             <ToggleSwitch x:Name="TransparentTile" IsOn="{x:Bind Context.TransparentTile,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                         </Grid>
                         <Grid HorizontalAlignment="Stretch" >
-                            <TextBlock Text="When crash, send report" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
-                            <TextBlock Text="May affect the user experience" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" />
+                            <TextBlock x:Uid="EnableCrash" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" />
+                            <TextBlock x:Uid="EnableCrashDetail" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,28,8,8" TextWrapping="WrapWholeWords" FontWeight="Light" FontSize="12" />
                             <ToggleSwitch x:Name="EnableDebug" IsOn="{x:Bind Context.EnableDebug,Mode=TwoWay}" Style="{ThemeResource NarrowSwitch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8"/>
                         </Grid>
                         <Button x:Uid="CustomLayoutButton" x:Name="CustomLayout" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -162,7 +162,7 @@
                                                             <TextBlock x:Name="NowPanelLowTemp"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BooltoVisibility}}" Text="22" FontWeight="ExtraLight" FontSize="12" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                         </StackPanel>
                                                     </StackPanel>
-                                                    <TextBlock x:Name="NowPanelTemp"  Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="22" FontWeight="ExtraLight" FontSize="22" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock x:Name="NowPanelTemp" Visibility="{x:Bind NowStyleSwitch.IsOn,Mode=OneWay,Converter={StaticResource BoolNottoVisibilityConverter}}" Text="22" FontWeight="ExtraLight" FontSize="22" Margin="4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </StackPanel>
                                             </Grid>
                                             <StackPanel Orientation="Vertical" Margin="16" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -435,11 +435,12 @@
                             <Slider Minimum="30" Maximum="240" StepFrequency="30" SnapsTo="StepValues" Value="{x:Bind Context.RefreshFreq,Mode=TwoWay,Converter={StaticResource UintToDoubleConverter}}" x:Name="RefreshFreqSlider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8" >
                             </Slider>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Margin="8" Content="Cortana 指令说明" >
+                        <Button x:Uid="CortanaCommandsText" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Margin="8">
                             <Button.Flyout>
                                 <Flyout>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="&quot;极光天气，&quot;" />
+                                        <TextBlock x:Uid="CortanaSup" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Light" />
+                                        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="&quot;极光天气，&quot;&#x000A;" />
                                         <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="· 今天天气如何？" >
                                             <LineBreak/>
                                             <Run Text="· 告诉我今天的天气？" />

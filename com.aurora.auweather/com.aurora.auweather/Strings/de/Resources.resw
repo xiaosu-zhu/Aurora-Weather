@@ -1372,4 +1372,40 @@ Morgen: {4}, {5}.</value>
   <data name="HourlyDetailsWind" xml:space="preserve">
     <value>Windgeschwindigkeit für {0} Stunden</value>
   </data>
+  <data name="ThanksButton.Content" xml:space="preserve">
+    <value>Entwickler und Credits</value>
+  </data>
+  <data name="EnableCrash.Text" xml:space="preserve">
+    <value>Bei Abstürzen, senden Sie Bericht</value>
+  </data>
+  <data name="EnableCrashDetail.Text" xml:space="preserve">
+    <value>Die Benutzerfreundlichkeit beeinträchtigen.</value>
+  </data>
+  <data name="MadebyText.Text" xml:space="preserve">
+    <value>Von gemacht</value>
+  </data>
+  <data name="BrandText.Text" xml:space="preserve">
+    <value>Nacht voller Licht.</value>
+  </data>
+  <data name="DevText.Text" xml:space="preserve">
+    <value>Alle Codes und UI/UX Design entstehen durch </value>
+  </data>
+  <data name="DevAfterText.Text" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="DavidBiancoText.Text" xml:space="preserve">
+    <value>Spanisch Übersetzung und einige Verbesserungen an der Benutzeroberfläche.</value>
+  </data>
+  <data name="DevTitle.Text" xml:space="preserve">
+    <value>Entwicklertools</value>
+  </data>
+  <data name="ThanksTitle.Text" xml:space="preserve">
+    <value>Besonderer Dank</value>
+  </data>
+  <data name="CortanaSup.Text" xml:space="preserve">
+    <value>Unterstützt nur Chinesisch</value>
+  </data>
+  <data name="CortanaCommandsText.Content" xml:space="preserve">
+    <value>Cortana Befehle</value>
+  </data>
 </root>

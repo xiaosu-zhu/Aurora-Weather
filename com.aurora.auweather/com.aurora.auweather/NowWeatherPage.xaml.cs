@@ -79,7 +79,7 @@ namespace Com.Aurora.AuWeather
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
             //DataContext = new NowWeatherPageViewModel();
             var loader = new ResourceLoader();
-            UpdateIndicator.Text = loader.GetString("RefreshStart");
+            UpdateIndText.Text = loader.GetString("RefreshStart");
         }
 
         private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
@@ -181,7 +181,7 @@ namespace Com.Aurora.AuWeather
         private async void MModel_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
         {
             var loader = new ResourceLoader();
-            UpdateIndicator.Text = loader.GetString("RefreshComplete");
+            UpdateIndText.Text = loader.GetString("RefreshComplete");
             LoadingDot.IsActive = false;
             Forecast0.SetCondition(Context.Forecast0, Context.IsNight);
             Forecast1.SetCondition(Context.Forecast1, Context.IsNight);
@@ -754,7 +754,7 @@ namespace Com.Aurora.AuWeather
         private void ScrollableRoot_RefreshStart(object sender, Aurora.Shared.Controls.RefreshStartEventArgs e)
         {
             var loader = new ResourceLoader();
-            UpdateIndicator.Text = loader.GetString("RefreshStart");
+            UpdateIndText.Text = loader.GetString("RefreshStart");
             Context.RefreshAsync();
         }
 
@@ -806,7 +806,7 @@ namespace Com.Aurora.AuWeather
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             var loader = new ResourceLoader();
-            UpdateIndicator.Text = loader.GetString("RefreshStart");
+            UpdateIndText.Text = loader.GetString("RefreshStart");
         }
 
         private void MainCanvas_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)

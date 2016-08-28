@@ -1372,4 +1372,40 @@
   <data name="HourlyDetailsWind" xml:space="preserve">
     <value>Скорость ветра для {0} часов</value>
   </data>
+  <data name="ThanksButton.Content" xml:space="preserve">
+    <value>Разработчики и кредиты</value>
+  </data>
+  <data name="EnableCrash.Text" xml:space="preserve">
+    <value>При аварии, отправить отчет</value>
+  </data>
+  <data name="EnableCrashDetail.Text" xml:space="preserve">
+    <value>Может повлиять на взаимодействие с пользователем</value>
+  </data>
+  <data name="MadebyText.Text" xml:space="preserve">
+    <value>Подготовил:</value>
+  </data>
+  <data name="BrandText.Text" xml:space="preserve">
+    <value>Ночь с полным света.</value>
+  </data>
+  <data name="DevText.Text" xml:space="preserve">
+    <value>Все коды и UI/UX дизайн создаются </value>
+  </data>
+  <data name="DevAfterText.Text" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="DavidBiancoText.Text" xml:space="preserve">
+    <value>Испанский перевод и некоторые улучшения пользовательского интерфейса.</value>
+  </data>
+  <data name="DevTitle.Text" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+  <data name="ThanksTitle.Text" xml:space="preserve">
+    <value>Особая благодарность</value>
+  </data>
+  <data name="CortanaSup.Text" xml:space="preserve">
+    <value>Только поддержка китайского</value>
+  </data>
+  <data name="CortanaCommandsText.Content" xml:space="preserve">
+    <value>Команды Cortana</value>
+  </data>
 </root>

@@ -655,7 +655,7 @@
                 <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated"
                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-                <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Style="{StaticResource SymbolButton}" >
+                <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Margin="0,4,0,0" Style="{StaticResource SymbolButton}" >
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="HamOpenText" />
                     </ToolTipService.ToolTip>
@@ -663,8 +663,8 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>
                 </Button>
-                <Grid x:Name="TitleBar" Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                    <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
+                <Grid x:Name="TitleBar" Height="28" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                    <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" Foreground="White" Margin="12,0,0,0" FontSize="13" VerticalAlignment="Center"/>
                 </Grid>
                 <StackPanel ManipulationMode="TranslateX" ManipulationDelta="UpdatePanel_ManipulationDelta" ManipulationCompleted="UpdatePanel_ManipulationCompleted" Visibility="Collapsed" Width="288" x:Name="UpdatePanel" RelativePanel.Below="TitleBar" RelativePanel.AlignRightWithPanel="True" Margin="12" Background="{ThemeResource SystemBackgroundHighBrush}" >
                     <StackPanel.RenderTransform>

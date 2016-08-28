@@ -48,34 +48,10 @@
                 </Grid>
 
                 <Button Content="Github" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" Click="Button_Click_1" />
-                <Button Content="Made by Aurora Studio" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
-                    <Button.Flyout>
-                        <Flyout>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                                            <Image Height="50" Width="50" Source="/Assets/2048.png" />
-                                        </Grid>
-                                        <TextBlock Margin="8" Text="2048" HorizontalAlignment="Center" />
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                                            <Image Height="50" Width="50" Source="/Assets/Music.png" />
-                                        </Grid>
-                                        <TextBlock Margin="8" Text="Music" HorizontalAlignment="Center" />
-                                    </StackPanel>
-                                </Button>
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
                 <Button x:Uid="OpenSourceText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout Placement="Full">
-                            <TextBlock MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="----------------------------------------------------&#x000A;                   Com.Aurora.AuWeather&#x000A;&#x000A;The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
+                            <TextBlock MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="                   Com.Aurora.AuWeather&#x000A;&#x000A;The MIT License&#x000A;&#x000A;Copyright(C) 2016 Aurora Studio&#x000A;&#x000A; 
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -108,13 +84,53 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         <Flyout>
                             <StackPanel Orientation="Vertical" Margin="12">
                                 <TextBlock Margin="8" x:Uid="ImproveDetail" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                <Grid Height="1" Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" />
                                 <Button x:Uid="ContactButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" Style="{ThemeResource TextBlockButtonStyle}" />
-                                <TextBlock Margin="8" MaxWidth="320" Text="Special Thanks:" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="ThanksButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Vertical" Margin="12">
+                                <TextBlock x:Uid="MadebyText" Margin="8" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <TextBlock Margin="8" Text="Aurora Studio" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                    <LineBreak />
+                                    <Run x:Uid="BrandText" FontSize="15" />
+                                </TextBlock>
+                                <Grid Margin="8" Height="8"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                                <Image Height="50" Width="50" Source="/Assets/2048.png" />
+                                            </Grid>
+                                            <TextBlock Margin="8" Text="2048" HorizontalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="12" Click="Button_Click_2">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                                <Image Height="50" Width="50" Source="/Assets/Music.png" />
+                                            </Grid>
+                                            <TextBlock Margin="8" Text="Music" HorizontalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
+                                <TextBlock x:Uid="DevTitle" Margin="8" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Margin="8" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                    <Run Text="· " />
+                                    <Run x:Uid="DevText"/>
+                                    <Bold>Aurora-ZXS</Bold>
+                                    <Run x:Uid="DevAfterText"></Run>
+                                </TextBlock>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
+                                <TextBlock x:Uid="ThanksTitle" Margin="8" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 <TextBlock Margin="8" MaxWidth="320" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
                                     <Run Text="· " />
                                     <Bold>David Bianco: </Bold>
-                                    <Run Text="Spanish Translation and some UI improvements" />
+                                    <Run x:Uid="DavidBiancoText" />
                                 </TextBlock>
                             </StackPanel>
                         </Flyout>
@@ -126,19 +142,19 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                             <StackPanel MaxWidth="320">
                                 <TextBlock Margin="12,8,12,12" Text="百度 APIStore" TextWrapping="WrapWholeWords"/>
                                 <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Baidu Api Store" NavigateUri="http://apistore.baidu.com/" Margin="12,8,12,12" />
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                                 <TextBlock Margin="12,8,12,12" Text="和风天气" TextWrapping="WrapWholeWords"/>
                                 <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
                                     <Image Width="32" Height="32" Stretch="UniformToFill" Source="http://heweather.com/weather/images/logo.jpg" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                     <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="HeWeather" NavigateUri="http://heweather.com/" Margin="4" />
                                 </StackPanel>
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                                 <TextBlock Margin="12,8,12,12" Text="分钟降雨预报由中国气象局和彩云数据联合出品" TextWrapping="WrapWholeWords"/>
                                 <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
                                     <Image Width="32" Height="32" Stretch="UniformToFill" Source="/Assets/Logos/Caiyun.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                     <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="CaiyunApp" NavigateUri="http://caiyunapp.com/" Margin="4" />
                                 </StackPanel>
-                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlAltMediumBrush}"/>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                                 <TextBlock Margin="12,8,12,12" Text="Weather Underground" TextWrapping="WrapWholeWords"/>
                                 <StackPanel Margin="12,8,12,12" Orientation="Horizontal">
                                     <Image Height="32" Stretch="Uniform" Source="/Assets/Logos/Wunder.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />

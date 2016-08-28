@@ -1868,6 +1868,54 @@ demain: {4}, {5}.</target>
           <source>Wind speed for {0} hours</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vitesse du vent pendant des heures de {0}</target>
         </trans-unit>
+        <trans-unit id="ThanksButton.Content" translate="yes" xml:space="preserve">
+          <source>Developers and Credits</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Les développeurs et les crédits</target>
+        </trans-unit>
+        <trans-unit id="EnableCrash.Text" translate="yes" xml:space="preserve">
+          <source>When crash, send report</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Lors de l’écrasement, envoyer le rapport</target>
+        </trans-unit>
+        <trans-unit id="EnableCrashDetail.Text" translate="yes" xml:space="preserve">
+          <source>May affect the user experience</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Peuvent affecter l’expérience utilisateur</target>
+        </trans-unit>
+        <trans-unit id="MadebyText.Text" translate="yes" xml:space="preserve">
+          <source>Made by</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Faite par</target>
+        </trans-unit>
+        <trans-unit id="BrandText.Text" translate="yes" xml:space="preserve">
+          <source>Night with full of light.</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nuit avec plein de lumière.</target>
+        </trans-unit>
+        <trans-unit id="DevText.Text" translate="yes" xml:space="preserve">
+          <source>All the codes and UI/UX design are created by </source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Tous les codes et conception UI/UX sont créés par </target>
+        </trans-unit>
+        <trans-unit id="DevAfterText.Text" translate="yes" xml:space="preserve">
+          <source>.</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">.</target>
+        </trans-unit>
+        <trans-unit id="DavidBiancoText.Text" translate="yes" xml:space="preserve">
+          <source>Spanish Translation and some UI improvements.</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Traduction de l’espagnol et quelques améliorations de l’interface utilisateur.</target>
+        </trans-unit>
+        <trans-unit id="DevTitle.Text" translate="yes" xml:space="preserve">
+          <source>Developer</source>
+          <target state="translated">Developer</target>
+        </trans-unit>
+        <trans-unit id="ThanksTitle.Text" translate="yes" xml:space="preserve">
+          <source>Special Thanks</source>
+          <target state="translated">Remerciements</target>
+        </trans-unit>
+        <trans-unit id="CortanaSup.Text" translate="yes" xml:space="preserve">
+          <source>Only support Chinese</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Seul soutien chinois</target>
+        </trans-unit>
+        <trans-unit id="CortanaCommandsText.Content" translate="yes" xml:space="preserve">
+          <source>Cortana Commands</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Commandes de Cortana</target>
+        </trans-unit>
       </group>
     </body>
   </file>

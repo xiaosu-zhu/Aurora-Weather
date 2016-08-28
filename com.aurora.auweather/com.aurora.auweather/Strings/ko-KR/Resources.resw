@@ -1372,4 +1372,40 @@
   <data name="HourlyDetailsWind" xml:space="preserve">
     <value>{0} 시간에 대 한 풍속</value>
   </data>
+  <data name="ThanksButton.Content" xml:space="preserve">
+    <value>개발자와 크레딧</value>
+  </data>
+  <data name="EnableCrash.Text" xml:space="preserve">
+    <value>때, 충돌 보고서를 보낼</value>
+  </data>
+  <data name="EnableCrashDetail.Text" xml:space="preserve">
+    <value>사용자 경험에 영향을 미칠 수 있습니다.</value>
+  </data>
+  <data name="MadebyText.Text" xml:space="preserve">
+    <value>에 의해</value>
+  </data>
+  <data name="BrandText.Text" xml:space="preserve">
+    <value>전체 빛의 밤입니다.</value>
+  </data>
+  <data name="DevText.Text" xml:space="preserve">
+    <value>모든 코드와 UI/UX 디자인으로 만들어집니다. </value>
+  </data>
+  <data name="DevAfterText.Text" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="DavidBiancoText.Text" xml:space="preserve">
+    <value>스페인어 번역 및 일부 UI 개선</value>
+  </data>
+  <data name="DevTitle.Text" xml:space="preserve">
+    <value>디벨로퍼</value>
+  </data>
+  <data name="ThanksTitle.Text" xml:space="preserve">
+    <value>특별히 감사드리는 분</value>
+  </data>
+  <data name="CortanaSup.Text" xml:space="preserve">
+    <value>중국어 지원</value>
+  </data>
+  <data name="CortanaCommandsText.Content" xml:space="preserve">
+    <value>Cortana 명령</value>
+  </data>
 </root>

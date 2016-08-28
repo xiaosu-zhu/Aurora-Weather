@@ -1480,4 +1480,40 @@
   <data name="Dismiss" xml:space="preserve">
     <value>忽略</value>
   </data>
+  <data name="ThanksButton.Content" xml:space="preserve">
+    <value>開發者和致謝名單</value>
+  </data>
+  <data name="EnableCrash.Text" xml:space="preserve">
+    <value>崩潰時發送報告</value>
+  </data>
+  <data name="EnableCrashDetail.Text" xml:space="preserve">
+    <value>可能會影響用戶體驗</value>
+  </data>
+  <data name="MadebyText.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BrandText.Text" xml:space="preserve">
+    <value>爲你呈現。</value>
+  </data>
+  <data name="DevText.Text" xml:space="preserve">
+    <value>代碼與 UI/UX 設計由 </value>
+  </data>
+  <data name="DevAfterText.Text" xml:space="preserve">
+    <value> 創造。</value>
+  </data>
+  <data name="DavidBiancoText.Text" xml:space="preserve">
+    <value>西班牙語翻譯與少量 UI 改進。</value>
+  </data>
+  <data name="DevTitle.Text" xml:space="preserve">
+    <value>開發者</value>
+  </data>
+  <data name="ThanksTitle.Text" xml:space="preserve">
+    <value>特別感謝</value>
+  </data>
+  <data name="CortanaCommandsText.Content" xml:space="preserve">
+    <value>Cortana 指令</value>
+  </data>
+  <data name="CortanaSup.Text" xml:space="preserve">
+    <value>僅支持簡體中文</value>
+  </data>
 </root>
