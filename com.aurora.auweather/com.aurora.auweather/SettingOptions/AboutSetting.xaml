@@ -136,6 +136,149 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         </Flyout>
                     </Button.Flyout>
                 </Button>
+                <Button Content="Privacy Policy" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12">
+                    <Button.Flyout>
+                        <Flyout Placement="Full">
+                            <RichTextBlock MaxWidth="360" IsTextSelectionEnabled="False" Foreground="#ff808080" Style="{ThemeResource BodyRichTextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Paragraph TextAlignment="Center">
+                                    <Bold>
+                                        <Span Foreground="#ff000000" FontSize="25">隐私政策</Span>
+                                    </Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run FontWeight="Light" Text="Aurora Studio 非常重视你的隐私。此隐私权政策旨在帮助你了解我们会收集哪些数据、为什么收集这些数据以及会利用这些数据做些什么。了解这些内容至关重要，因此我们希望你能抽出时间仔细阅读此政策。"/>
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>简要</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="感谢你使用 Aurora Studio（下称 &quot;极光工作室&quot;）开发的一系列软件。&quot;极光天气&quot;、&quot;极光音乐&quot;、&quot;Aurora Studio's 2048&quot; 均为极光工作室开发并拥有版权的应用软件，在使用上述软件（下称 &quot;应用&quot;）的过程中，我们可能会收集某些用户信息并使用收集到的信息，下面将会对我们的隐私政策作出说明。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>我们收集的信息</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="我们收集信息是为了向所有用户提供更好的服务，在使用应用的过程中，我们会收集以下信息：" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Foreground="#ff000000" Text="· 你的设备信息。" />
+                                    <Run Text="我们会收集你的操作系统及版本号，你的设备名称，你当前的区域语言设置以及设备的制造商信息，并会记录应用本身的运行状况。" />
+                                    <Run Foreground="#ff000000" Text="注意：这些信息仅当应用需要发送崩溃报告时才会收集。" />
+                                    <Run FontWeight="Light" Text="有关我们何时发送报告的说明，请见附录。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Foreground="#ff000000" Text="· 你的个人图片。" />
+                                    <Run Text="我们会收集存储于你当前设备中的某些图片。" />
+                                    <Run Foreground="#ff000000" Text="注意：我们会首先向你征求许可，并由你自己选择要被使用的图片，且可以随时删除收集的副本。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Foreground="#ff000000" Text="· 你的个人音频文件。" />
+                                    <Run Text="我们会收集存储于你当前设备中的某些音频文件。" />
+                                    <Run Foreground="#ff000000" Text="注意：我们会首先向你征求许可，并由你自己选择要被使用的音频文件，且可以随时删除收集的副本。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Foreground="#ff000000" Text="· 你的位置信息。" />
+                                    <Run Text="我们会收集你当前的位置信息，并在未来不定的时间间隔中持续收集。" />
+                                    <Run Foreground="#ff000000" Text="注意：我们会首先向你征求许可，且可以随时停止位置信息的收集。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>我们如何使用收集到的信息</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="我们将会使用收集到的信息来完善你的用户体验，包括但不限于：改善应用质量、提供基础服务以及提升视觉效果。我们还会使用此类信息为你提供个性化内容。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们将会使用收集的" />
+                                    <Run Foreground="#ff000000" Text="设备信息" />
+                                    <Run Text="对应用运行状况进行分析，包括但不限于：跟踪应用使用情况、收集调试信息以及修复应用缺陷。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们将会使用收集的" />
+                                    <Run Foreground="#ff000000" Text="图片" />
+                                    <Run Text="对应用的视觉效果进行变更，例如更换背景、更换个性化素材等。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们将会使用收集的" />
+                                    <Run Foreground="#ff000000" Text="音频" />
+                                    <Run Text="为应用提供基础支持，例如在应用内展示音频信息，并提供播放功能。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们将会使用收集的" />
+                                    <Run Foreground="#ff000000" Text="位置信息" />
+                                    <Run Text="为应用提供基础支持，例如在应用内根据位置信息获取基于位置的天气服务。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>选择权</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="在应用运行期间，我们会持续进行数据收集，" />
+                                    <Run Foreground="#ff000000" Text="但你可以随时终止" />
+                                    <Run Text="。我们已经向你说明了我们意图收集的数据，而你也有权选择去禁止这些行为。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们会在特定的时刻向你说明我们将会收集并发送你的" />
+                                    <Run Foreground="#ff000000" Text="设备信息" />
+                                    <Run Text="，这些说明是清晰的，并在显著位置标明，你可以选择 &quot;不发送&quot; 以禁止收集并发送这些信息。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们会在收集" />
+                                    <Run Foreground="#ff000000" Text="图片" />
+                                    <Run Text="时在显著位置标明这一情况，例如，我们会在 &quot;更换背景&quot; 功能中提供 &quot;自定义&quot; 按钮，点击该按钮，并选择你的个人图片，即表示你已同意向我们提供该图片以供使用，我们对此图片进行的操作包括但不限于：制作副本、修改图片和文件操作。随后你可以进行 &quot;不再使用这个图片&quot; 操作以阻止我们对这张图片的使用。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们会在收集" />
+                                    <Run Foreground="#ff000000" Text="音频文件" />
+                                    <Run Text="时在显著位置标明这一情况，例如，我们会在 &quot;扫描歌曲&quot; 功能中提供 &quot;添加扫描位置&quot; 按钮，点击该按钮，并选择你的个人文件夹，即表示你已同意向我们提供该位置的所有音频文件，我们对这些音频文件进行的操作包括但不限于：制作副本、修改音频信息和文件操作。随后你可以进行 &quot;不再查找这个文件夹&quot; 操作以阻止我们对这个位置所有音频文件的使用。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们会在特定的时刻向你说明我们将会收集你的" />
+                                    <Run Foreground="#ff000000" Text="位置信息" />
+                                    <Run Text="，你会收到操作系统本身提供的位置权限弹出窗口，并能够选择是否对应用授予位置权限。在应用内，我们已于显著位置标明，你可以进行 &quot;禁止使用当前位置&quot; 操作，以阻止我们对位置信息的收集。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>分享的信息</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="在应用运行期间，我们会偶尔挑选一些数据并发送至我们的数据服务器，" />
+                                    <Run Foreground="#ff000000" Text="但你可以随时禁止这一行为" />
+                                    <Run Text="。" />
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="· 我们会在特定的时刻向你说明我们将会收集并发送你的" />
+                                    <Run Foreground="#ff000000" Text="设备信息" />
+                                    <Run Text="，这些说明是清晰的，并在显著位置标明，你可以选择 &quot;不发送&quot; 以禁止收集并发送这些信息。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>隐私权政策适用范围</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="我们的隐私权政策适用于由极光工作室提供的所有应用，但另外设定隐私权政策且未纳入本隐私权政策的服务不在此列。 
+我们的隐私权政策不适用于由其他公司或个人提供的服务，例如在提供天气信息的同时，由于使用了第三方天气服务，而可能访问的其他公司或个人。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>政策的遵守</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="我们会定期检查自己遵守隐私权政策的情况。同时，由于我们在微软应用商店中发布了这些应用，因此我们也处于微软公司的监管之下。如果你认为你的隐私权因我们的应用或服务而受到侵犯，或者你认为我们并未严格遵守本隐私政策，你可以进行投诉。你可以向微软提出投诉，我们在收到投诉后，会尽己所能维护你的隐私权并挽回可能因此受到的损失。" />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5" FontSize="18">
+                                    <Bold>变更</Bold>
+                                </Paragraph>
+                                <Paragraph Margin="0,5,0,5" TextIndent="30">
+                                    <Run Text="我们的隐私权政策随时都可能变更。未经你明确同意，我们不会削减你按照本隐私权政策所应享有的权利。我们会在本页面上发布对隐私权政策所做的任何变更。对于重大变更，我们还会提供更为显著的通知。我们还会将本隐私权政策的旧版本存档，供你查阅。 " />
+                                </Paragraph>
+                                <Paragraph Foreground="#ff000000" Margin="5,10,5,5" FontSize="18">
+                                    <Bold FontWeight="Light">附录</Bold>
+                                </Paragraph>
+                                <Paragraph FontWeight="Light" Margin="0,5,0,5" TextIndent="15">
+                                    <Run Text="1. " />
+                                    <Run Foreground="#ff000000" Text="对应用反馈以及崩溃情况的处理：" />
+                                    <Run Text="我们始终向你提供反馈通道，以便你可以向我们提出改进意见与建议；而应用因自身缺陷等原因造成崩溃时，你也有权利向我们提供改进信息。我们在应用内已提供明确入口以供反馈，例如，你可以进入应用的 &quot;关于&quot; 页面，点击 &quot;反馈&quot; 以进行反馈；而在应用发生崩溃时，我们会向你展示崩溃报告，并提供发送报告的操作，你有权发送这些信息，同时也有权彻底禁用这些操作" />
+                                </Paragraph>
+                            </RichTextBlock>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
                 <Button x:Uid="ProviderText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout>
