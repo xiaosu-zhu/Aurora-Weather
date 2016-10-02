@@ -390,6 +390,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 return (x.DateTime - CurrentTime).TotalSeconds > 0;
             });
+            if (CurrentTime.Hour <= sunRise.Hours)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;

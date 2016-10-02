@@ -91,7 +91,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 </Button>
                 <Button x:Uid="ThanksButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
-                        <Flyout>
+                        <Flyout Placement="Full">
                             <StackPanel Orientation="Vertical" Margin="12">
                                 <TextBlock x:Uid="MadebyText" Margin="8" Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 <TextBlock Margin="8" Text="Aurora Studio" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" >
@@ -136,7 +136,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button Content="Privacy Policy" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12">
+                <Button x:Uid="PrivacyButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12">
                     <Button.Flyout>
                         <Flyout Placement="Full">
                             <RichTextBlock MaxWidth="360" IsTextSelectionEnabled="False" Foreground="#ff808080" Style="{ThemeResource BodyRichTextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >

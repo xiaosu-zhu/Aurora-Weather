@@ -77,8 +77,24 @@ namespace Com.Aurora.AuWeather.Background
 
                 var todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
                 {
-                    return x.Date == current.Date;
+                    return x.Date.Date == current.Date;
                 });
+                var nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
+                {
+                    return (x.DateTime - current).TotalSeconds > 0;
+                });
+                if (current.Hour <= 7)
+                {
+                    todayIndex--;
+                }
+                if (todayIndex < 0)
+                {
+                    todayIndex = 0;
+                }
+                if (nowHourIndex < 0)
+                {
+                    nowHourIndex = 0;
+                }
                 TimeSpan sunRise, sunSet;
                 if (fetchresult.DailyForecast[todayIndex].SunRise == default(TimeSpan) || fetchresult.DailyForecast[todayIndex].SunSet == default(TimeSpan))
                 {

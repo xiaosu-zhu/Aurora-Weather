@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">전체 화면</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· We've released Aurora Studio's 2048, search and play!</source>
-          <target state="translated">· 우리 오로라 스튜디오의 릴리스 했습니다 2048, 검색 및 재생!</target>
+          <source>· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation</source>
+          <target state="translated">· 문제는 터치 스크린에 슬쩍
+· 감속 하는 것은 고정 고정 문제는 일부 장치 이미지 리소스
+를 로드할 수 없습니다 · 고정된 UI 전위</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,15 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">업데이트 로그</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16080
+          <source>1.6.16086
+· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation
+
+1.6.16085
+· Added Privacy Policy
+
+1.6.16080
 · Minor fixes
 
 1.6.16062
@@ -1441,7 +1453,15 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16080
+          <target state="translated">1.6.16086
+· 문제는 터치 스크린에 슬쩍
+· 감속 하는 것은 고정 고정 문제는 일부 장치 이미지 리소스
+를 로드할 수 없습니다 · UI 전위
+
+1.6.16085
+고정 · 추가 개인 정보 보호 정책
+
+1.6.16080
 · 마이너 수정
 
 1.6.16062
@@ -1915,6 +1935,10 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="CortanaCommandsText.Content" translate="yes" xml:space="preserve">
           <source>Cortana Commands</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Cortana 명령</target>
+        </trans-unit>
+        <trans-unit id="PrivacyButton.Content" translate="yes" xml:space="preserve">
+          <source>Privacy Policy</source>
+          <target state="new">Privacy Policy</target>
         </trans-unit>
       </group>
     </body>

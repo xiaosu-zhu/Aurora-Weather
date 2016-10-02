@@ -1193,7 +1193,8 @@ namespace Com.Aurora.Shared.Converters
             }
             try
             {
-                return (((DateTime)value).ToString(DateTimeConverterParameter)).Trim('\n');
+                var strs = (((DateTime)value).ToString(DateTimeConverterParameter + ":mm")).Split(':');
+                return strs[0];
             }
             catch (Exception)
             {
@@ -1228,7 +1229,8 @@ namespace Com.Aurora.Shared.Converters
             }
             try
             {
-                return ((DateTime)value).ToString(DateTimeConverterParameter).Trim('\n');
+                var strs = ((DateTime)value).ToString("H:" + DateTimeConverterParameter).Split(':');
+                return strs[1];
             }
             catch (Exception)
             {

@@ -1018,7 +1018,9 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Hemos lanzado Aurora Studio 2048, buscar y jugar!</value>
+    <value>· Arreglado un problema que pase en la pantalla táctil es lenta
+· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
+· Dislocación de interfaz de usuario fija</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1042,7 +1044,15 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
+    <value>1.6.16086
+· Arreglado un problema que pase en la pantalla táctil es lenta
+· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
+· Fijo de la dislocación de UI
+
+1.6.16085
+· Añadida la política de privacidad
+
+1.6.16080
 · Menor de edad corrige
 
 1.6.16062

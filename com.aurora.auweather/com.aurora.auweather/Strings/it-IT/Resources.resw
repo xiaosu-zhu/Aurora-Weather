@@ -1018,7 +1018,9 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Abbiamo rilasciato di Aurora Studio 2048, cercare e giocare!</value>
+    <value>· Fissa un problema che passare il dito sul touch screen è quello di rallentare
+· Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
+piace · Fissa la dislocazione dell'interfaccia utente</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1042,8 +1044,16 @@
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
-· Correzioni minori
+    <value>1.6.16086
+· Fissa un problema che passare il dito sul touch screen è quello di rallentare
+· Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
+piace · Fissa la dislocazione UI
+
+1.6.16085
+· Aggiunto
+
+1.6.16080
+sulla privacy · Correzioni minori
 
 1.6.16062
 · Risolto un piccolo problema in dettagli pagina

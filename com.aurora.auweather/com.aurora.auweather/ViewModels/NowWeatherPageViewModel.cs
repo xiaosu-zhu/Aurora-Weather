@@ -1754,6 +1754,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 return (x.DateTime - CurrentTime).TotalSeconds > 0;
             });
+            if (currentTime.Hour <= sunRise.Hours)
+            {
+                todayIndex--;
+            }
+            if (currentTime.Hour <= sunRise.Hours)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;

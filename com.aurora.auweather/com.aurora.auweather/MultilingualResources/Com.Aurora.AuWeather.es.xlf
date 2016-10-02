@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· We've released Aurora Studio's 2048, search and play!</source>
-          <target state="translated">· Hemos lanzado Aurora Studio 2048, buscar y jugar!</target>
+          <source>· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation</source>
+          <target state="translated">· Arreglado un problema que pase en la pantalla táctil es lenta
+· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
+· Dislocación de interfaz de usuario fija</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,15 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16080
+          <source>1.6.16086
+· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation
+
+1.6.16085
+· Added Privacy Policy
+
+1.6.16080
 · Minor fixes
 
 1.6.16062
@@ -1441,7 +1453,15 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16080
+          <target state="translated">1.6.16086
+· Arreglado un problema que pase en la pantalla táctil es lenta
+· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
+· Fijo de la dislocación de UI
+
+1.6.16085
+· Añadida la política de privacidad
+
+1.6.16080
 · Menor de edad corrige
 
 1.6.16062
@@ -1908,6 +1928,10 @@ mañana: {4}, {5}.</target>
         <trans-unit id="CortanaCommandsText.Content" translate="yes" xml:space="preserve">
           <source>Cortana Commands</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Comandos de Cortana</target>
+        </trans-unit>
+        <trans-unit id="PrivacyButton.Content" translate="yes" xml:space="preserve">
+          <source>Privacy Policy</source>
+          <target state="new">Privacy Policy</target>
         </trans-unit>
       </group>
     </body>

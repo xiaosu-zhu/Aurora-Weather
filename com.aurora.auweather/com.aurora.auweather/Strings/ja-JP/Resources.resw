@@ -1018,7 +1018,9 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·オーロラ スタジオ リリースしました 2048、検索し、再生!</value>
+    <value>·タッチ スクリーン上を強打する問題は
+· を遅く固定問題を修正いくつかのデバイスは、イメージ リソース
+を読み込むことができません ·固定 UI 転位</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1042,8 +1044,16 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
-·マイナーな修正
+    <value>1.6.16086
+·タッチ スクリーン上を強打する問題は
+· を遅く固定問題を修正いくつかのデバイスは、イメージ リソース
+を読み込むことができません ·固定 UI 転位
+
+1.6.16085
+·プライバシー ポリシー
+
+1.6.16080
+を追加 ·マイナーな修正
 
 1.6.16062
 ·詳細に小さな表示問題を修正

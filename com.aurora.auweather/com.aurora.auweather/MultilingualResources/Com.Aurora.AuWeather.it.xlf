@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Schermo intero</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· We've released Aurora Studio's 2048, search and play!</source>
-          <target state="translated">· Abbiamo rilasciato di Aurora Studio 2048, cercare e giocare!</target>
+          <source>· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation</source>
+          <target state="translated">· Fissa un problema che passare il dito sul touch screen è quello di rallentare
+· Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
+piace · Fissa la dislocazione dell'interfaccia utente</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,15 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Aggiornamento del registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16080
+          <source>1.6.16086
+· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation
+
+1.6.16085
+· Added Privacy Policy
+
+1.6.16080
 · Minor fixes
 
 1.6.16062
@@ -1441,8 +1453,16 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16080
-· Correzioni minori
+          <target state="translated">1.6.16086
+· Fissa un problema che passare il dito sul touch screen è quello di rallentare
+· Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
+piace · Fissa la dislocazione UI
+
+1.6.16085
+· Aggiunto
+
+1.6.16080
+sulla privacy · Correzioni minori
 
 1.6.16062
 · Risolto un piccolo problema in dettagli pagina
@@ -1915,6 +1935,10 @@ domani: {4}, {5}.</target>
         <trans-unit id="CortanaCommandsText.Content" translate="yes" xml:space="preserve">
           <source>Cortana Commands</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Comandi di Cortana</target>
+        </trans-unit>
+        <trans-unit id="PrivacyButton.Content" translate="yes" xml:space="preserve">
+          <source>Privacy Policy</source>
+          <target state="new">Privacy Policy</target>
         </trans-unit>
       </group>
     </body>

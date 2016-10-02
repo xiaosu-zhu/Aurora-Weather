@@ -405,6 +405,10 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 return (x.DateTime - desiredDateTimeinThatRegion).TotalSeconds > 0;
             });
+            if (desiredDateTimeinThatRegion.Hour < 7)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;
@@ -809,6 +813,10 @@ namespace Com.Aurora.AuWeather.Tile
             {
                 return (x.DateTime - desiredDateTimeinThatRegion).TotalSeconds > 0;
             });
+            if (desiredDateTimeinThatRegion.Hour < 7)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;

@@ -472,7 +472,8 @@ namespace Com.Aurora.AuWeather
 
         private void NowPanel_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            NowPanelPointerOut.Begin();
+            if (!nowPanel_Open)
+                NowPanelPointerOut.Begin();
         }
 
         private void NowPanel_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)

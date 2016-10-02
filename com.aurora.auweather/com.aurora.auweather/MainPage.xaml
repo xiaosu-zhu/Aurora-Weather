@@ -565,7 +565,7 @@
             </Storyboard>
             <Storyboard x:Name="NowPanelPointerIn">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPanel" Storyboard.TargetProperty="Background">
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlTranslucentAltBaseLowBrush}" />
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="NowPanelPointerOut">
@@ -575,12 +575,12 @@
             </Storyboard>
             <Storyboard x:Name="NowPanelPointerClick">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPanel" Storyboard.TargetProperty="Background">
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlTranslucentBaseLightBrush}" />
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="NowPanelOpen">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPanel" Storyboard.TargetProperty="Background">
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlTranslucentAltBaseLowBrush}" />
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowArrow" Storyboard.TargetProperty="Glyph">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="&#xE70D;" />
@@ -592,7 +592,7 @@
             </Storyboard>
             <Storyboard Completed="NowPanelClose_Completed" x:Name="NowPanelClose">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPanel" Storyboard.TargetProperty="Background">
-                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlTranslucentAltBaseLowBrush}" />
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowArrow" Storyboard.TargetProperty="Glyph">
                     <DiscreteObjectKeyFrame KeyTime="0" Value="&#xE70E;" />
@@ -621,22 +621,22 @@
                         <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
                     </TextBlock>
                 </StackPanel>
-                <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.Above="NowPanel" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.Above="NowPanel" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:PaneOption">
-                            <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
-                                <SymbolIcon Width="36" Height="36" Symbol="{Binding Symbol}" />
+                            <StackPanel Margin="0,8,0,8" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <SymbolIcon Width="48" Height="48" Symbol="{Binding Symbol}" />
                                 <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <RelativePanel Background="{ThemeResource SystemControlForegroundHighBrush}" PointerPressed="NowPanel_PointerPressed" PointerEntered="NowPanel_PointerEntered" PointerExited="NowPanel_PointerExited" PointerReleased="NowPanel_PointerReleased" x:Name="NowPanel" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
-                    <Viewbox x:Name="NowConditionBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Stretch="Uniform" Margin="18" VerticalAlignment="Center" Height="32" Width="32">
-                        <Controls:ConditionPath HorizontalAlignment="Stretch" Height="54" Width="54" VerticalAlignment="Stretch" x:Name="NowCondition"  />
+                <RelativePanel Padding="0,8,0,8" Background="{ThemeResource SystemControlForegroundHighBrush}" PointerPressed="NowPanel_PointerPressed" PointerEntered="NowPanel_PointerEntered" PointerExited="NowPanel_PointerExited" PointerReleased="NowPanel_PointerReleased" x:Name="NowPanel" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+                    <Viewbox x:Name="NowConditionBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Stretch="Uniform" VerticalAlignment="Center" Height="48" Width="48">
+                        <Controls:ConditionPath Margin="16" HorizontalAlignment="Stretch" Height="54" Width="54" VerticalAlignment="Stretch" x:Name="NowCondition"  />
                     </Viewbox>
-                    <StackPanel RelativePanel.RightOf="NowConditionBox" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Orientation="Vertical" VerticalAlignment="Center" >
-                        <TextBlock x:Name="NowCity" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <StackPanel Margin="8,0,8,0" RelativePanel.RightOf="NowConditionBox" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Orientation="Vertical" VerticalAlignment="Center" >
+                        <TextBlock x:Name="NowCity" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Light"/>
                         <TextBlock x:Name="NowText" Style="{ThemeResource BodyTextBlockStyle}" />
                     </StackPanel>
                     <FontIcon x:Name="NowArrow" FontFamily="Segoe MDL2 Assets" Glyph="&#xE70E;" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="8" />
@@ -655,7 +655,7 @@
                 <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated"
                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-                <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Margin="0,4,0,0" Style="{StaticResource SymbolButton}" >
+                <Button x:Name="Hamburger" Visibility="Collapsed" Foreground="White" Width="48" Height="48" Click="Hamburger_Click" RelativePanel.Below="TitleBar" Style="{StaticResource SymbolButton}" >
                     <ToolTipService.ToolTip>
                         <TextBlock x:Uid="HamOpenText" />
                     </ToolTipService.ToolTip>
@@ -663,8 +663,8 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>
                 </Button>
-                <Grid x:Name="TitleBar" Height="28" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                    <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" Foreground="White" Margin="12,0,0,0" FontSize="13" VerticalAlignment="Center"/>
+                <Grid x:Name="TitleBar" Height="32" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                    <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
                 </Grid>
                 <StackPanel ManipulationMode="TranslateX" ManipulationDelta="UpdatePanel_ManipulationDelta" ManipulationCompleted="UpdatePanel_ManipulationCompleted" Visibility="Collapsed" Width="288" x:Name="UpdatePanel" RelativePanel.Below="TitleBar" RelativePanel.AlignRightWithPanel="True" Margin="12" Background="{ThemeResource SystemBackgroundHighBrush}" >
                     <StackPanel.RenderTransform>
@@ -680,14 +680,6 @@
                     </Grid>
                     <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
                     <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource TitleTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Button Margin="12" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid Margin="8" Height="50" Width="50" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                                <Image Height="50" Width="50" Source="/Assets/2048.png" />
-                            </Grid>
-                            <TextBlock Margin="8" Text="2048" HorizontalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
                     <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button.Flyout>
                             <Flyout>

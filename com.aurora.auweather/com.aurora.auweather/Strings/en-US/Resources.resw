@@ -1142,7 +1142,9 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· We've released Aurora Studio's 2048, search and play!</value>
+    <value>· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1166,7 +1168,15 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
+    <value>1.6.16086
+· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation
+
+1.6.16085
+· Added Privacy Policy
+
+1.6.16080
 · Minor fixes
 
 1.6.16062
@@ -1512,5 +1522,8 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="CortanaSup.Text" xml:space="preserve">
     <value>Only support Chinese</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>Privacy Policy</value>
   </data>
 </root>

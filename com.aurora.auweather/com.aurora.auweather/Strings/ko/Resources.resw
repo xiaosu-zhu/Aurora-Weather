@@ -1018,7 +1018,9 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 우리 오로라 스튜디오의 릴리스 했습니다 2048, 검색 및 재생!</value>
+    <value>· 문제는 터치 스크린에 슬쩍
+· 감속 하는 것은 고정 고정 문제는 일부 장치 이미지 리소스
+를 로드할 수 없습니다 · 고정된 UI 전위</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1042,7 +1044,15 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
+    <value>1.6.16086
+· 문제는 터치 스크린에 슬쩍
+· 감속 하는 것은 고정 고정 문제는 일부 장치 이미지 리소스
+를 로드할 수 없습니다 · UI 전위
+
+1.6.16085
+고정 · 추가 개인 정보 보호 정책
+
+1.6.16080
 · 마이너 수정
 
 1.6.16062

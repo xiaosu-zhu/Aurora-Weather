@@ -58,6 +58,10 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return x.Date.Date == current.Date;
             });
+            if (isNight && current.Hour < 12)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;
@@ -307,6 +311,10 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return x.Date.Date == desiredDate.Date;
             });
+            if (isNight && desiredDate.Hour < 12)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;
@@ -576,6 +584,10 @@ namespace Com.Aurora.AuWeather.Models
             {
                 return x.Date.Date == desiredDate.Date;
             });
+            if (isNight && desiredDate.Hour < 12)
+            {
+                todayIndex--;
+            }
             if (todayIndex < 0)
             {
                 todayIndex = 0;

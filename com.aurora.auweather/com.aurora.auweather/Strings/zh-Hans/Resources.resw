@@ -1142,7 +1142,9 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 欢迎搜索并下载 Aurora Studio's 2048!</value>
+    <value>· 修正了触摸屏下滑动过慢的问题
+· 修正了部分设备无法显示图像资源的问题
+· 修正了部分 UI 错误</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1166,7 +1168,15 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
+    <value>1.6.16086
+· 修正了触摸屏下滑动过慢的问题
+· 修正了部分设备无法显示图像资源的问题
+· 修正了部分 UI 错误
+
+1.6.16085
+· 添加隐私政策
+
+1.6.16080
 · 由于部分代码丢失，因此这次更新隔了很久，非常抱歉！
 · 部分错误修复和布局调整
 
@@ -1511,5 +1521,8 @@
   </data>
   <data name="CortanaSup.Text" xml:space="preserve">
     <value>仅支持中文</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>隐私政策</value>
   </data>
 </root>

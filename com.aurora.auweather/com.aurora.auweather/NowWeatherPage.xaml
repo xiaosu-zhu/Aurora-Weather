@@ -863,8 +863,8 @@
                                           RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
             <Grid Visibility="Collapsed" x:Name="ButtonOffset" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                   RelativePanel.AlignTopWithPanel="True" />
-            <Grid Opacity="1" x:Name="UpdateIndicator" Height="28" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
-                <TextBlock x:Name="UpdateIndText" Foreground="White" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Grid Opacity="1" x:Name="UpdateIndicator" Height="32" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
+                <TextBlock x:Name="UpdateIndText" Foreground="White" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity" 
                        Text="{x:Bind Context.City,Mode=OneWay}" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="ExtraLight"

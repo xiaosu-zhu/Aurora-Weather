@@ -72,12 +72,16 @@ namespace Com.Aurora.Shared.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null)
+            if (value is DateTime)
             {
-                return "...";
+                var dateTime = (DateTime)(value);
+                if (dateTime == default(DateTime) || dateTime == null)
+                {
+                    return "...";
+                }
+                return (dateTime.ToString(Parameter)).Trim('\n');
             }
-            var dateTime = (DateTime)(value);
-            return (dateTime.ToString(Parameter)).Trim('\n');
+            return "...";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -308,7 +312,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if(value is bool)
+            if (value is bool)
             {
                 return ((bool)value ? 1 : 0.5);
             }

@@ -1018,7 +1018,9 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Nous avons publié de Aurora Studio 2048, Rechercher et de jouer !</value>
+    <value>· Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
+· Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
+· Dislocation de l’interface utilisateur fixe</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1042,7 +1044,15 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16080
+    <value>1.6.16086
+· Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
+· Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
+· Fixe la dislocation UI
+
+1.6.16085
+· Ajouté à la politique de confidentialité
+
+1.6.16080
 · Corrections mineures
 
 1.6.16062

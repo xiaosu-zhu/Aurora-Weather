@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· We've released Aurora Studio's 2048, search and play!</source>
-          <target state="translated">·オーロラ スタジオ リリースしました 2048、検索し、再生!</target>
+          <source>· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation</source>
+          <target state="translated">·タッチ スクリーン上を強打する問題は
+· を遅く固定問題を修正いくつかのデバイスは、イメージ リソース
+を読み込むことができません ·固定 UI 転位</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,15 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">更新ログ</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16080
+          <source>1.6.16086
+· Fixed an issue that swipe on touch screen is to slow
+· Fixed an issue that some devices can't load image resources
+· Fixed UI dislocation
+
+1.6.16085
+· Added Privacy Policy
+
+1.6.16080
 · Minor fixes
 
 1.6.16062
@@ -1441,8 +1453,16 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16080
-·マイナーな修正
+          <target state="translated">1.6.16086
+·タッチ スクリーン上を強打する問題は
+· を遅く固定問題を修正いくつかのデバイスは、イメージ リソース
+を読み込むことができません ·固定 UI 転位
+
+1.6.16085
+·プライバシー ポリシー
+
+1.6.16080
+を追加 ·マイナーな修正
 
 1.6.16062
 ·詳細に小さな表示問題を修正
@@ -1915,6 +1935,10 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="CortanaCommandsText.Content" translate="yes" xml:space="preserve">
           <source>Cortana Commands</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Cortana コマンド</target>
+        </trans-unit>
+        <trans-unit id="PrivacyButton.Content" translate="yes" xml:space="preserve">
+          <source>Privacy Policy</source>
+          <target state="new">Privacy Policy</target>
         </trans-unit>
       </group>
     </body>

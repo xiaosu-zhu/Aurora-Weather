@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
 using Windows.System.Threading;
 using Windows.UI.Xaml.Data;
+using Windows.Graphics.Display;
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -69,6 +70,7 @@ namespace Com.Aurora.Shared.Controls
             RefreshCompleteAni = Root.Resources["RefreshComplete"] as Storyboard;
             Main.ViewChanged += Main_ViewChanged;
             Root.Loaded += Root_Loaded1;
+            scaleFactor = 2 * DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
 
             if (ForceEnabled || InteractionHelper.HaveTouchCapabilities() || Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
@@ -198,7 +200,7 @@ namespace Com.Aurora.Shared.Controls
                 }
                 else
                 {
-                    NormallySlide(delta);
+                    NormallySlide(scaleFactor * delta);
                 }
                 e.Handled = true;
             }
@@ -352,7 +354,7 @@ namespace Com.Aurora.Shared.Controls
         }
         // Using a DependencyProperty as the backing store for ElasticFactor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ElasticFactorProperty =
-            DependencyProperty.Register("ElasticFactor", typeof(double), typeof(PulltoRefresh), new PropertyMetadata(0.5));
+            DependencyProperty.Register("ElasticFactor", typeof(double), typeof(PulltoRefresh), new PropertyMetadata(1d));
 
         public SolidColorBrush IndicatorBackground
         {
@@ -383,6 +385,7 @@ namespace Com.Aurora.Shared.Controls
         // Using a DependencyProperty as the backing store for IndicatorDisplayMode.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IndicatorDisplayModeProperty =
             DependencyProperty.Register("IndicatorDisplayMode", typeof(IndicatorDisplayMode), typeof(PulltoRefresh), new PropertyMetadata(IndicatorDisplayMode.Header));
+        private double scaleFactor = 1d;
 
         public void ChangeView(float v1, float v2, float v3)
         {
