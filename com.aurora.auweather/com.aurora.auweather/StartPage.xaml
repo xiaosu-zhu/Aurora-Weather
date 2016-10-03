@@ -10,7 +10,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    RequestedTheme="{x:Bind Theme,Mode=OneWay}">
+    SizeChanged="Page_SizeChanged"
+    Unloaded="Page_Unloaded"
+    xmlns:controls="using:Com.Aurora.AuWeather.CustomControls"
+    RequestedTheme="Default">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -23,241 +26,55 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Storyboard x:Name="GotoPage0">
-                <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-            <Storyboard x:Name="GotoPage1">
-                <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-            <Storyboard x:Name="GotoPage2">
-                <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-            <Storyboard x:Name="GotoPage3">
-                <DoubleAnimation Storyboard.TargetName="Indicator0" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator1" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator2" Storyboard.TargetProperty="StrokeThickness" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="Indicator3" Storyboard.TargetProperty="StrokeThickness" To="4" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid0" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid1" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid2" Storyboard.TargetProperty="Opacity" To="0" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="StartGrid3" Storyboard.TargetProperty="Opacity" To="1" EnableDependentAnimation="True">
-                    <DoubleAnimation.EasingFunction>
-                        <QuinticEase />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-        </Grid.Resources>
-        <TextBlock x:Uid="TitleBlock" x:Name="TitleBlock" FontWeight="Light" Foreground="White" Margin="12,0,0,0" FontSize="12" VerticalAlignment="Center"/>
-        <FlipView Loaded="FlipView_Loaded" x:Name="FlipView" Background="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <FlipView.Items>
-                <FlipViewItem>
-                    <Grid Margin="0,0,0,16" x:Name="StartGrid0" Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="16" x:Uid="Welcome0Text" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                        <Image Grid.Row="1" Margin="64" Source="/Assets/Start/welcome0.png" MaxWidth="480" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <TextBlock Margin="16" x:Uid="Welcome0Detail" TextWrapping="Wrap" Grid.Row="2" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    </Grid>
-                </FlipViewItem>
-                <FlipViewItem>
-                    <Grid Margin="0,0,0,16" x:Name="StartGrid1" Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="16" x:Uid="Welcome1Text" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                        <Image Grid.Row="1" Margin="64" Source="/Assets/Start/welcome1.png" MaxWidth="480" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <TextBlock Margin="16" x:Uid="Welcome1Detail" TextWrapping="Wrap" Grid.Row="2" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    </Grid>
-                </FlipViewItem>
-                <FlipViewItem>
-                    <Grid Margin="0,0,0,16" x:Name="StartGrid2" Opacity="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="16" x:Uid="Welcome2Text" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                        <Image Grid.Row="1" Margin="64" Source="/Assets/Start/welcome2.png" MaxWidth="240" MaxHeight="240" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <TextBlock Margin="16" x:Uid="Welcome2Detail" TextWrapping="Wrap" Grid.Row="2" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    </Grid>
-                </FlipViewItem>
-                <FlipViewItem>
-                    <Grid x:Name="StartGrid3" Opacity="0" Background="{ThemeResource SystemControlForegroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="4*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock x:Uid="WelcomeText" Loaded="TextBlock_Loaded" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Frame Grid.Row="1" x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <AppBarButton Click="CompleteButton_Click" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" Width="48" Height="48" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="CompleteButton" >
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Root">
+        <ScrollViewer Background="{ThemeResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Stretch" Loaded="ScrollViewer_Loaded" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" x:Name="RootScroll">
+            <Grid x:Name="Base" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <Canvas x:Name="BGLayer3" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Source="/Assets/Tile/Snow.png" Stretch="Uniform" Height="65" Width="65" Canvas.Left="994" Canvas.Top="606" />
+                    <Image Source="/Assets/Tile/Sun Cloud.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="1016" Canvas.Top="325" />
+                    <Image Source="/Assets/Tile/Sun.png" Stretch="Uniform" Height="103" Width="103" Canvas.Left="295" Canvas.Top="255" />
+                    <Image Source="/Assets/Tile/Wind.png" Stretch="Uniform" Height="80" Width="80" Canvas.Left="1491" Canvas.Top="969" />
+                </Canvas>
+                <Canvas x:Name="BGLayer2" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Source="/Assets/Tile/Moon.png" Stretch="Uniform" Height="100" Width="100" Canvas.Left="900" Canvas.Top="102" />
+                    <Image Source="/Assets/Tile/Rain.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="666" Canvas.Top="847" />
+                    <Image Source="/Assets/Tile/Small Rain.png" Stretch="Uniform" Height="91" Width="91" Canvas.Left="1290" Canvas.Top="102" />
+                    <Image Source="/Assets/Tile/Snow Rain.png" Stretch="Uniform" Height="94" Width="94" Canvas.Left="815" Canvas.Top="720" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="478" Canvas.Top="270" FontSize="48" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="317" Canvas.Top="32" FontSize="40" />
+                </Canvas>
+                <Canvas x:Name="BGLayer1" Height="1080" Width="1920" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Source="/Assets/Tile/Hot.png" Stretch="Uniform" Height="85" Width="85" Canvas.Left="522" Canvas.Top="657" />
+                    <Image Source="/Assets/Tile/Moderate.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="148" Canvas.Top="79" />
+                    <Image Source="/Assets/Tile/Moon Cloud Rain.png" Stretch="Uniform" Height="87" Width="87" Canvas.Left="1105" Canvas.Top="861" />
+                    <Image Source="/Assets/Tile/Moon Cloud.png" Stretch="Uniform" Height="108" Width="108" Canvas.Left="171" Canvas.Top="884" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="340" Canvas.Top="973" FontSize="60" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="63" Canvas.Top="631" FontSize="72" />
+                </Canvas>
+                <Canvas x:Name="BGLayer0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Source="/Assets/Tile/Cloud.png" Stretch="Uniform" Height="151" Width="151" Canvas.Left="1214" Canvas.Top="271" />
+                    <Image Source="/Assets/Tile/Cold.png" Stretch="Uniform" Height="32" Width="32" Canvas.Left="172" Canvas.Top="757" />
+                    <Image Source="/Assets/Tile/Fog.png" Stretch="Uniform" Height="104" Width="104" Canvas.Left="111" Canvas.Top="399" />
+                    <Image Source="/Assets/Tile/Haze.png" Stretch="Uniform" Height="135" Width="135" Canvas.Left="1509" Canvas.Top="154" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="1121" Canvas.Top="570" FontSize="80" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="540" Canvas.Top="440" FontSize="96" />
+                </Canvas>
+                <Grid Background="#03a9f4" Margin="0,0,-1080,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RootFrame" />
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                    <TextBlock x:Uid="WelcomeText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
+                    <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <Button Click="Button_Click" Height="96" Width="96" Style="{ThemeResource SymbolButton}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" BorderThickness="0" BorderBrush="{x:Null}" Background="{ThemeResource SystemControlForegroundHighBrush}" >
+                        <Button.Content>
                             <SymbolIcon Symbol="Forward" />
-                        </AppBarButton>
-                    </Grid>
-                </FlipViewItem>
-            </FlipView.Items>
-        </FlipView>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="16" >
-            <Ellipse x:Name="Indicator0" Margin="2" Height="8" Width="8" Stroke="White" StrokeThickness="1"/>
-            <Ellipse x:Name="Indicator1" Margin="2" Height="8" Width="8" Stroke="White" StrokeThickness="1"/>
-            <Ellipse x:Name="Indicator2" Margin="2" Height="8" Width="8" Stroke="White" StrokeThickness="1"/>
-            <Ellipse x:Name="Indicator3" Margin="2" Height="8" Width="8" Stroke="White" StrokeThickness="1"/>
-        </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

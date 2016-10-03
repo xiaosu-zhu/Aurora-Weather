@@ -13,8 +13,8 @@ namespace Com.Aurora.AuWeather.Core.Models
         public async static Task RegBGTask(uint frequency, bool isEnabled)
         {
             var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
-                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
+            if (backgroundAccessStatus == BackgroundAccessStatus.AlwaysAllowed ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedSubjectToSystemPolicy)
             {
                 foreach (var t in BackgroundTaskRegistration.AllTasks)
                 {

@@ -12,6 +12,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Composition;
+using Windows.UI.Xaml.Hosting;
+using Com.Aurora.Shared.Extensions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -29,11 +32,19 @@ namespace Com.Aurora.AuWeather
             Theme = p.GetTheme();
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                TitleBlock.Visibility = Visibility.Collapsed;
+                //TitleBlock.Visibility = Visibility.Collapsed;
             }
         }
 
         private ElementTheme theme;
+        private ExpressionAnimation parallaxAnimation0;
+        private ExpressionAnimation parallaxAnimation1;
+        private ExpressionAnimation parallaxAnimation2;
+        private ExpressionAnimation parallaxAnimation3;
+        private ExpressionAnimation parallaxAnimation4;
+        private CompositionPropertySet scrollViewerProperties;
+        private double h = 1920d;
+        private double w = 1080d;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,49 +65,6 @@ namespace Com.Aurora.AuWeather
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            MainFrame.Navigate(typeof(CitiesSetting));
-        }
-
-        private void CompleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if ((MainFrame.Content as CitiesSetting).CheckCompleted())
-            {
-                (MainFrame.Content as CitiesSetting).Complete();
-                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
-            }
-
-        }
-
-        private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var v = sender as FlipView;
-            if (v.SelectedIndex == 0)
-            {
-                GotoPage0.Begin();
-            }
-            if (v.SelectedIndex == 1)
-            {
-                GotoPage1.Begin();
-            }
-            if (v.SelectedIndex == 2)
-            {
-                GotoPage2.Begin();
-            }
-            if (v.SelectedIndex == 3)
-            {
-                GotoPage3.Begin();
-            }
-        }
-
-        private void FlipView_Loaded(object sender, RoutedEventArgs e)
-        {
-            GotoPage0.Begin();
-            FlipView.SelectionChanged += FlipView_SelectionChanged;
         }
 
         public void ChangeThemeColor(Color color)
@@ -149,10 +117,10 @@ namespace Com.Aurora.AuWeather
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["ContentDialogBorderThemeBrush"] as SolidColorBrush).Color = color;
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
-            if (MainFrame.Content is IThemeble)
-            {
-                (MainFrame.Content as IThemeble).ChangeThemeColor(color);
-            }
+            //if (MainFrame.Content is IThemeble)
+            //{
+            //    (MainFrame.Content as IThemeble).ChangeThemeColor(color);
+            //}
         }
 
         private void MainFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
@@ -162,6 +130,114 @@ namespace Com.Aurora.AuWeather
                 {
                     (MainFrame.Content as IThemeble).ChangeThemeColor(App.MainColor);
                 }
+        }
+
+        private void ScrollViewer_Loaded(object sender, RoutedEventArgs e)
+        {
+            Compositor compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+            // 创建驱动视差滚动的表达式动画。
+            parallaxAnimation0 = compositor.CreateExpressionAnimation("MyForeground.Translation.X / MyParallaxRatio");
+            parallaxAnimation1 = compositor.CreateExpressionAnimation("MyForeground.Translation.X / MyParallaxRatio");
+            parallaxAnimation2 = compositor.CreateExpressionAnimation("MyForeground.Translation.X / MyParallaxRatio");
+            parallaxAnimation3 = compositor.CreateExpressionAnimation("MyForeground.Translation.X / MyParallaxRatio");
+            parallaxAnimation4 = compositor.CreateExpressionAnimation("((MyForeground.Translation.X / MyParallaxRatio) + offset)");
+            // 设置对前景对象的引用。
+            scrollViewerProperties = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(RootScroll);
+            parallaxAnimation0.SetReferenceParameter("MyForeground", scrollViewerProperties);
+            parallaxAnimation1.SetReferenceParameter("MyForeground", scrollViewerProperties);
+            parallaxAnimation2.SetReferenceParameter("MyForeground", scrollViewerProperties);
+            parallaxAnimation3.SetReferenceParameter("MyForeground", scrollViewerProperties);
+            parallaxAnimation4.SetReferenceParameter("MyForeground", scrollViewerProperties);
+            // 设置背景对象视差滚动的速度。
+            parallaxAnimation0.SetScalarParameter("MyParallaxRatio", 1f);
+            parallaxAnimation1.SetScalarParameter("MyParallaxRatio", 2f);
+            parallaxAnimation2.SetScalarParameter("MyParallaxRatio", 4f);
+            parallaxAnimation3.SetScalarParameter("MyParallaxRatio", 8f);
+            parallaxAnimation4.SetScalarParameter("MyParallaxRatio", 0.5f);
+            parallaxAnimation4.SetScalarParameter("offset", 3 * (float)ActualWidth);
+
+            var backgroundVisual0 = ElementCompositionPreview.GetElementVisual(BGLayer0);
+            var backgroundVisual1 = ElementCompositionPreview.GetElementVisual(BGLayer1);
+            var backgroundVisual2 = ElementCompositionPreview.GetElementVisual(BGLayer2);
+            var backgroundVisual3 = ElementCompositionPreview.GetElementVisual(BGLayer3);
+            var backgroundVisual4 = ElementCompositionPreview.GetElementVisual(RootFrame);
+            // 对背景对象开始视差动画。
+            backgroundVisual0.StartAnimation("Offset.X", parallaxAnimation0);
+            backgroundVisual1.StartAnimation("Offset.X", parallaxAnimation1);
+            backgroundVisual2.StartAnimation("Offset.X", parallaxAnimation2);
+            backgroundVisual3.StartAnimation("Offset.X", parallaxAnimation3);
+            backgroundVisual4.StartAnimation("Offset.X", parallaxAnimation4);
+            MainFrame.Navigate(typeof(CitiesSetting));
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var width = this.ActualWidth;
+            var height = this.ActualHeight;
+
+            if (parallaxAnimation4 != null)
+                parallaxAnimation4.SetScalarParameter("offset", 3 * (float)width);
+            var verSc = 1.5 * height / h;
+            Base.Width = 2 * width;
+            BGLayer0.Width = 2 * width;
+            BGLayer1.Width = 2 * width;
+            BGLayer2.Width = 2 * width;
+            BGLayer3.Width = 2 * width;
+            var horSc = width / (1.5 * w);
+            BGLayer0.ReplaceElements(horSc, verSc);
+            BGLayer1.ReplaceElements(horSc, verSc);
+            BGLayer2.ReplaceElements(horSc, verSc);
+            BGLayer3.ReplaceElements(horSc, verSc);
+            h = height;
+            w = width;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (parallaxAnimation0 != null)
+            {
+                parallaxAnimation0.Dispose();
+                parallaxAnimation0 = null;
+            }
+            if (parallaxAnimation1 != null)
+            {
+                parallaxAnimation1.Dispose();
+                parallaxAnimation1 = null;
+            }
+            if (parallaxAnimation2 != null)
+            {
+                parallaxAnimation2.Dispose();
+                parallaxAnimation2 = null;
+            }
+            if (parallaxAnimation3 != null)
+            {
+                parallaxAnimation3.Dispose();
+                parallaxAnimation3 = null;
+            }
+            if (parallaxAnimation4 != null)
+            {
+                parallaxAnimation4.Dispose();
+                parallaxAnimation4 = null;
+            }
+            if (scrollViewerProperties != null)
+            {
+                scrollViewerProperties.Dispose();
+                scrollViewerProperties = null;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            if ((MainFrame.Content as CitiesSetting).CheckCompleted())
+
+            {
+
+                (MainFrame.Content as CitiesSetting).Complete();
+
+                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+
+            }
         }
     }
 }

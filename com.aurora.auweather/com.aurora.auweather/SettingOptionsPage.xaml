@@ -74,11 +74,11 @@
         </Grid>
         <StackPanel x:Name="SettingsPanel" Visibility="Collapsed" Grid.Row="1" Background="{ThemeResource SystemBackgroundHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <Button x:Uid="DonateButton" Background="{ThemeResource SystemControlTranslucentAltHighBrush}" Foreground="{ThemeResource SystemControlForegroundAccentBrush}" x:Name="DonateButton" Click="DonateButton_Click" Visibility="{x:Bind Context.IsNotPurchased, Mode=OneWay,Converter={StaticResource BoolNottoVisibility}}" FontWeight="Normal" Style="{ThemeResource PivotTitleContentControlStyle}" Margin="8" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" />
-            <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList"  ItemsSource="{Binding SettingsList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding SettingsList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:SettingOption">
-                        <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
-                            <SymbolIcon Width="36" Height="36" Symbol="{Binding Symbol}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <SymbolIcon Width="48" Height="48" Symbol="{Binding Symbol}" />
                             <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
                         </StackPanel>
                     </DataTemplate>

@@ -11,7 +11,7 @@
     <AssemblyName>Com.Aurora.Shared</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -123,6 +123,7 @@
     <Compile Include="Extensions\IntExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
+    <Compile Include="Extensions\UIElementExtensions.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\CortanaHelper.cs" />
     <Compile Include="Helpers\Crypto\CryptoHelper.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Helpers\SystemInfoHelper.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
+    <Compile Include="Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="MVVM\Events\RefreshCompletedEventArgs.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />

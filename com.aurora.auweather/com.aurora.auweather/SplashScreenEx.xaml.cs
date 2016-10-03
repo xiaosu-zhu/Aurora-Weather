@@ -19,12 +19,10 @@ using System.Linq;
 using Windows.System.Threading;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
-using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
-using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
