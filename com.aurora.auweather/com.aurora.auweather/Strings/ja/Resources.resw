@@ -1259,27 +1259,6 @@
   <data name="LunarText.Text" xml:space="preserve">
     <value>旧暦を表示します。</value>
   </data>
-  <data name="Hum" xml:space="preserve">
-    <value>湿度</value>
-  </data>
-  <data name="Pop" xml:space="preserve">
-    <value>降水確率</value>
-  </data>
-  <data name="Pcpn" xml:space="preserve">
-    <value>降水量</value>
-  </data>
-  <data name="Vis" xml:space="preserve">
-    <value>可視性</value>
-  </data>
-  <data name="Scale" xml:space="preserve">
-    <value>風スケール</value>
-  </data>
-  <data name="Dir" xml:space="preserve">
-    <value>風の方向</value>
-  </data>
-  <data name="Pres" xml:space="preserve">
-    <value>原子圧力</value>
-  </data>
   <data name="LowNowPanelText.Text" xml:space="preserve">
     <value>コンパクト レイアウト</value>
   </data>
@@ -1321,18 +1300,6 @@
   </data>
   <data name="TransparentTileFalseText.Text" xml:space="preserve">
     <value>デスクトップ プラットフォームで有効になっていません。</value>
-  </data>
-  <data name="SunRise" xml:space="preserve">
-    <value>太陽の上昇</value>
-  </data>
-  <data name="SunSet" xml:space="preserve">
-    <value>太陽セット</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>国や地域</value>
-  </data>
-  <data name="UtcOffset" xml:space="preserve">
-    <value>Utc オフセット</value>
   </data>
   <data name="EnableAlarm.Content" xml:space="preserve">
     <value>厳しい気象警報</value>
@@ -1417,5 +1384,41 @@
   </data>
   <data name="CortanaCommandsText.Content" xml:space="preserve">
     <value>Cortana コマンド</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>プライバシーポリシー</value>
+  </data>
+  <data name="Hum.Text" xml:space="preserve">
+    <value>湿度</value>
+  </data>
+  <data name="Pop.Text" xml:space="preserve">
+    <value>降水確率</value>
+  </data>
+  <data name="Pcpn.Text" xml:space="preserve">
+    <value>降水量</value>
+  </data>
+  <data name="Vis.Text" xml:space="preserve">
+    <value>可視性</value>
+  </data>
+  <data name="Scale.Text" xml:space="preserve">
+    <value>風スケール</value>
+  </data>
+  <data name="Dir.Text" xml:space="preserve">
+    <value>風の方向</value>
+  </data>
+  <data name="Pres.Text" xml:space="preserve">
+    <value>原子圧力</value>
+  </data>
+  <data name="SunRise.Text" xml:space="preserve">
+    <value>太陽の上昇</value>
+  </data>
+  <data name="SunSet.Text" xml:space="preserve">
+    <value>太陽セット</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>国や地域</value>
+  </data>
+  <data name="UtcOffset.Text" xml:space="preserve">
+    <value>Utc オフセット</value>
   </data>
 </root>

@@ -489,36 +489,55 @@
                         <TextBlock Text="{x:Bind Context.LunarCalendar,Mode=OneWay}" TextWrapping="WrapWholeWords" Foreground="White" HorizontalAlignment="Center" Margin="12,0,12,4" x:Name="LunarCalendar" FontWeight="Light" FontSize="18" />
                         <TextBlock Text="{x:Bind Context.CityGlance,Mode=OneWay}" TextWrapping="WrapWholeWords" Foreground="White" HorizontalAlignment="Center" Margin="12,0,12,12" x:Name="CityGlance" FontWeight="Light" FontSize="18" />
                     </StackPanel>
-                    <StackPanel Visibility="Collapsed" x:Name="CityInfoPanel" Opacity="0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Orientation="Vertical">
-                        <TextBlock Foreground="White" Margin="4" x:Name="CityInfoText" FontWeight="Light" FontSize="16" >
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Location,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.SunRise,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.SunSet,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Offset,Mode=OneWay}" />
-                        </TextBlock>
-                    </StackPanel>
-                    <StackPanel Visibility="Collapsed" x:Name="DetailsPanel" Opacity="0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Orientation="Vertical">
-                        <TextBlock Foreground="White" Margin="4" x:Name="DetailsText" FontWeight="Light" FontSize="16" >
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Hum,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Pop,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Pcpn,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Vis,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Pressure,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Scale,Mode=OneWay}" />
-                            <LineBreak />
-                            <Run Text="{x:Bind Context.Dir,Mode=OneWay}" />
-                        </TextBlock>
-                    </StackPanel>
+                    <Grid Visibility="Collapsed" x:Name="CityInfoPanel" Opacity="0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Uid="Location" Foreground="White" Margin="0,4,0,4" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="SunRise" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="SunSet" Foreground="White" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="UtcOffset" Foreground="White" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Location,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.SunRise,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.SunSet,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Offset,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                    </Grid>
+                    <Grid Visibility="Collapsed" x:Name="DetailsPanel" Opacity="0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Uid="Hum" Foreground="White" Margin="0,4,0,4" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Pop" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Pcpn" Foreground="White" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Vis" Foreground="White" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Pres" Foreground="White" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Scale" Foreground="White" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock x:Uid="Dir" Foreground="White" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Hum,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Pop,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Pcpn,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Vis,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Pressure,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Scale,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                        <TextBlock Foreground="White" Grid.Column="1" Text="{x:Bind Context.Dir,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="6" Margin="0,4,0,4" FontWeight="Light" FontSize="16" />
+                    </Grid>
                     <TextBlock x:Name="City" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{x:Bind Context.City,Mode=OneWay}" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24" />
                     <TextBlock x:Name="Glance" Grid.ColumnSpan="2" Grid.RowSpan="3" TextWrapping="WrapWholeWords" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="42,12,12,12" Foreground="White" Text="{x:Bind Context.Glance,Mode=OneWay}" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="16" />
                     <Button x:Name="Details" Style="{ThemeResource SymbolButton}" Click="Details_Click" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="36" Width="36" Background="Transparent" Foreground="White" >

@@ -1252,27 +1252,6 @@ mañana: {4}, {5}.</value>
   <data name="LunarText.Text" xml:space="preserve">
     <value>Ver calendario lunar</value>
   </data>
-  <data name="Hum" xml:space="preserve">
-    <value>Humedad</value>
-  </data>
-  <data name="Pop" xml:space="preserve">
-    <value>Probabilidad de precipitaciones</value>
-  </data>
-  <data name="Pcpn" xml:space="preserve">
-    <value>Precipitación</value>
-  </data>
-  <data name="Vis" xml:space="preserve">
-    <value>Visibilidad</value>
-  </data>
-  <data name="Scale" xml:space="preserve">
-    <value>Velocidad del viento</value>
-  </data>
-  <data name="Dir" xml:space="preserve">
-    <value>Dirección del viento</value>
-  </data>
-  <data name="Pres" xml:space="preserve">
-    <value>Presión atmosférica</value>
-  </data>
   <data name="LowNowPanelText.Text" xml:space="preserve">
     <value>Diseño sencillo</value>
   </data>
@@ -1314,18 +1293,6 @@ mañana: {4}, {5}.</value>
   </data>
   <data name="TransparentTileFalseText.Text" xml:space="preserve">
     <value>No habilitado para la versión de Escritorio</value>
-  </data>
-  <data name="SunRise" xml:space="preserve">
-    <value>Salida del sol</value>
-  </data>
-  <data name="SunSet" xml:space="preserve">
-    <value>Puesta del sol</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>Ubicación</value>
-  </data>
-  <data name="UtcOffset" xml:space="preserve">
-    <value>Desplazamiento de UTC</value>
   </data>
   <data name="EnableAlarm.Content" xml:space="preserve">
     <value>Alarma de clima severo</value>
@@ -1410,5 +1377,41 @@ mañana: {4}, {5}.</value>
   </data>
   <data name="CortanaCommandsText.Content" xml:space="preserve">
     <value>Comandos de Cortana</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>Directiva de privacidad</value>
+  </data>
+  <data name="Hum.Text" xml:space="preserve">
+    <value>Humedad</value>
+  </data>
+  <data name="Pop.Text" xml:space="preserve">
+    <value>Probabilidad de precipitación</value>
+  </data>
+  <data name="Pcpn.Text" xml:space="preserve">
+    <value>Precipitación</value>
+  </data>
+  <data name="Vis.Text" xml:space="preserve">
+    <value>Visibilidad</value>
+  </data>
+  <data name="Scale.Text" xml:space="preserve">
+    <value>Escala de viento</value>
+  </data>
+  <data name="Dir.Text" xml:space="preserve">
+    <value>Dirección del viento</value>
+  </data>
+  <data name="Pres.Text" xml:space="preserve">
+    <value>Presión de átomo</value>
+  </data>
+  <data name="SunRise.Text" xml:space="preserve">
+    <value>Sol</value>
+  </data>
+  <data name="SunSet.Text" xml:space="preserve">
+    <value>Puesta de sol</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="UtcOffset.Text" xml:space="preserve">
+    <value>Desplazamiento de UTC</value>
   </data>
 </root>

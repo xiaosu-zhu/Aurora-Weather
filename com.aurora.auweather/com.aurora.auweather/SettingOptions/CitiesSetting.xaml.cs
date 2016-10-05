@@ -267,6 +267,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 var text = sender.Text;
+                text = text.Replace('\'', ' ');
                 await ThreadPool.RunAsync(async (work) =>
                  {
                      var dataset = Context.Search_TextChanged(text);

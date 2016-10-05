@@ -1717,34 +1717,6 @@ mañana: {4}, {5}.</target>
           <source>Show Lunar Calendar</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Ver calendario lunar</target>
         </trans-unit>
-        <trans-unit id="Hum" translate="yes" xml:space="preserve">
-          <source>Humidity</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Humedad</target>
-        </trans-unit>
-        <trans-unit id="Pop" translate="yes" xml:space="preserve">
-          <source>Probability of precipitation</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Probabilidad de precipitaciones</target>
-        </trans-unit>
-        <trans-unit id="Pcpn" translate="yes" xml:space="preserve">
-          <source>Precipitation</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Precipitación</target>
-        </trans-unit>
-        <trans-unit id="Vis" translate="yes" xml:space="preserve">
-          <source>Visibility</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Visibilidad</target>
-        </trans-unit>
-        <trans-unit id="Scale" translate="yes" xml:space="preserve">
-          <source>Wind Scale</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Velocidad del viento</target>
-        </trans-unit>
-        <trans-unit id="Dir" translate="yes" xml:space="preserve">
-          <source>Wind Direction</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dirección del viento</target>
-        </trans-unit>
-        <trans-unit id="Pres" translate="yes" xml:space="preserve">
-          <source>Atom Pressure</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Presión atmosférica</target>
-        </trans-unit>
         <trans-unit id="LowNowPanelText.Text" translate="yes" xml:space="preserve">
           <source>Compact layout</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Diseño sencillo</target>
@@ -1800,22 +1772,6 @@ mañana: {4}, {5}.</target>
         <trans-unit id="TransparentTileFalseText.Text" translate="yes" xml:space="preserve">
           <source>Not enabled on the desktop platform</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">No habilitado para la versión de Escritorio</target>
-        </trans-unit>
-        <trans-unit id="SunRise" translate="yes" xml:space="preserve">
-          <source>Sun rise</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Salida del sol</target>
-        </trans-unit>
-        <trans-unit id="SunSet" translate="yes" xml:space="preserve">
-          <source>Sun set</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Puesta del sol</target>
-        </trans-unit>
-        <trans-unit id="Location" translate="yes" xml:space="preserve">
-          <source>Location</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ubicación</target>
-        </trans-unit>
-        <trans-unit id="UtcOffset" translate="yes" xml:space="preserve">
-          <source>Utc offset</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Desplazamiento de UTC</target>
         </trans-unit>
         <trans-unit id="EnableAlarm.Content" translate="yes" xml:space="preserve">
           <source>Severe weather alarm</source>
@@ -1931,7 +1887,51 @@ mañana: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="PrivacyButton.Content" translate="yes" xml:space="preserve">
           <source>Privacy Policy</source>
-          <target state="new">Privacy Policy</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Directiva de privacidad</target>
+        </trans-unit>
+        <trans-unit id="Hum.Text" translate="yes" xml:space="preserve">
+          <source>Humidity</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Humedad</target>
+        </trans-unit>
+        <trans-unit id="Pop.Text" translate="yes" xml:space="preserve">
+          <source>Probability of precipitation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Probabilidad de precipitación</target>
+        </trans-unit>
+        <trans-unit id="Pcpn.Text" translate="yes" xml:space="preserve">
+          <source>Precipitation</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Precipitación</target>
+        </trans-unit>
+        <trans-unit id="Vis.Text" translate="yes" xml:space="preserve">
+          <source>Visibility</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Visibilidad</target>
+        </trans-unit>
+        <trans-unit id="Scale.Text" translate="yes" xml:space="preserve">
+          <source>Wind Scale</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Escala de viento</target>
+        </trans-unit>
+        <trans-unit id="Dir.Text" translate="yes" xml:space="preserve">
+          <source>Wind Direction</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Dirección del viento</target>
+        </trans-unit>
+        <trans-unit id="Pres.Text" translate="yes" xml:space="preserve">
+          <source>Atom Pressure</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Presión de átomo</target>
+        </trans-unit>
+        <trans-unit id="SunRise.Text" translate="yes" xml:space="preserve">
+          <source>Sun rise</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sol</target>
+        </trans-unit>
+        <trans-unit id="SunSet.Text" translate="yes" xml:space="preserve">
+          <source>Sun set</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Puesta de sol</target>
+        </trans-unit>
+        <trans-unit id="Location.Text" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Ubicación</target>
+        </trans-unit>
+        <trans-unit id="UtcOffset.Text" translate="yes" xml:space="preserve">
+          <source>Utc offset</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Desplazamiento de UTC</target>
         </trans-unit>
       </group>
     </body>

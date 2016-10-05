@@ -1379,25 +1379,25 @@
   <data name="LunarText.Text" xml:space="preserve">
     <value>显示农历</value>
   </data>
-  <data name="Hum" xml:space="preserve">
+  <data name="Hum.Text" xml:space="preserve">
     <value>湿度</value>
   </data>
-  <data name="Pop" xml:space="preserve">
+  <data name="Pop.Text" xml:space="preserve">
     <value>降水概率</value>
   </data>
-  <data name="Pcpn" xml:space="preserve">
+  <data name="Pcpn.Text" xml:space="preserve">
     <value>降水量</value>
   </data>
-  <data name="Vis" xml:space="preserve">
+  <data name="Vis.Text" xml:space="preserve">
     <value>能见度</value>
   </data>
-  <data name="Scale" xml:space="preserve">
+  <data name="Scale.Text" xml:space="preserve">
     <value>风力</value>
   </data>
-  <data name="Dir" xml:space="preserve">
+  <data name="Dir.Text" xml:space="preserve">
     <value>风向</value>
   </data>
-  <data name="Pres" xml:space="preserve">
+  <data name="Pres.Text" xml:space="preserve">
     <value>气压</value>
   </data>
   <data name="LowNowPanelText.Text" xml:space="preserve">
@@ -1439,16 +1439,16 @@
   <data name="TransparentTileFalseText.Text" xml:space="preserve">
     <value>桌面系统不会生效</value>
   </data>
-  <data name="SunRise" xml:space="preserve">
+  <data name="SunRise.Text" xml:space="preserve">
     <value>日出时间</value>
   </data>
-  <data name="SunSet" xml:space="preserve">
+  <data name="SunSet.Text" xml:space="preserve">
     <value>日落时间</value>
   </data>
-  <data name="Location" xml:space="preserve">
+  <data name="Location.Text" xml:space="preserve">
     <value>位置</value>
   </data>
-  <data name="UtcOffset" xml:space="preserve">
+  <data name="UtcOffset.Text" xml:space="preserve">
     <value>时差</value>
   </data>
   <data name="MorningAlarm.Content" xml:space="preserve">

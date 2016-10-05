@@ -1259,27 +1259,6 @@ demain: {4}, {5}.</value>
   <data name="LunarText.Text" xml:space="preserve">
     <value>Afficher le calendrier lunaire</value>
   </data>
-  <data name="Hum" xml:space="preserve">
-    <value>Humidité</value>
-  </data>
-  <data name="Pop" xml:space="preserve">
-    <value>Probabilité de précipitations</value>
-  </data>
-  <data name="Pcpn" xml:space="preserve">
-    <value>Précipitations</value>
-  </data>
-  <data name="Vis" xml:space="preserve">
-    <value>Visibilité</value>
-  </data>
-  <data name="Scale" xml:space="preserve">
-    <value>Échelle de vent</value>
-  </data>
-  <data name="Dir" xml:space="preserve">
-    <value>Direction du vent</value>
-  </data>
-  <data name="Pres" xml:space="preserve">
-    <value>Pression de l'atome</value>
-  </data>
   <data name="LowNowPanelText.Text" xml:space="preserve">
     <value>Agencement compact</value>
   </data>
@@ -1321,18 +1300,6 @@ demain: {4}, {5}.</value>
   </data>
   <data name="TransparentTileFalseText.Text" xml:space="preserve">
     <value>Pas activé sur la plate-forme de bureau</value>
-  </data>
-  <data name="SunRise" xml:space="preserve">
-    <value>Lever du soleil</value>
-  </data>
-  <data name="SunSet" xml:space="preserve">
-    <value>Coucher du soleil</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>Lieu</value>
-  </data>
-  <data name="UtcOffset" xml:space="preserve">
-    <value>Décalage UTC</value>
   </data>
   <data name="EnableAlarm.Content" xml:space="preserve">
     <value>Alarme de temps violent</value>
@@ -1417,5 +1384,41 @@ demain: {4}, {5}.</value>
   </data>
   <data name="CortanaCommandsText.Content" xml:space="preserve">
     <value>Commandes de Cortana</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>politique de confidentialité</value>
+  </data>
+  <data name="Hum.Text" xml:space="preserve">
+    <value>Humidité</value>
+  </data>
+  <data name="Pop.Text" xml:space="preserve">
+    <value>Probabilité de précipitations</value>
+  </data>
+  <data name="Pcpn.Text" xml:space="preserve">
+    <value>Précipitations</value>
+  </data>
+  <data name="Vis.Text" xml:space="preserve">
+    <value>Visibilité</value>
+  </data>
+  <data name="Scale.Text" xml:space="preserve">
+    <value>Échelle de vent</value>
+  </data>
+  <data name="Dir.Text" xml:space="preserve">
+    <value>Direction du vent</value>
+  </data>
+  <data name="Pres.Text" xml:space="preserve">
+    <value>Pression de l’atome</value>
+  </data>
+  <data name="SunRise.Text" xml:space="preserve">
+    <value>Lever du soleil</value>
+  </data>
+  <data name="SunSet.Text" xml:space="preserve">
+    <value>Coucher du soleil</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>Lieu</value>
+  </data>
+  <data name="UtcOffset.Text" xml:space="preserve">
+    <value>Décalage UTC</value>
   </data>
 </root>

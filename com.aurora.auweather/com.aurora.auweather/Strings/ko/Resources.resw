@@ -1259,27 +1259,6 @@
   <data name="LunarText.Text" xml:space="preserve">
     <value>음력 달력 보기</value>
   </data>
-  <data name="Hum" xml:space="preserve">
-    <value>습도</value>
-  </data>
-  <data name="Pop" xml:space="preserve">
-    <value>강 수 확률</value>
-  </data>
-  <data name="Pcpn" xml:space="preserve">
-    <value>강 수</value>
-  </data>
-  <data name="Vis" xml:space="preserve">
-    <value>표시 유형</value>
-  </data>
-  <data name="Scale" xml:space="preserve">
-    <value>바람 규모</value>
-  </data>
-  <data name="Dir" xml:space="preserve">
-    <value>바람의 방향</value>
-  </data>
-  <data name="Pres" xml:space="preserve">
-    <value>원자 압력</value>
-  </data>
   <data name="LowNowPanelText.Text" xml:space="preserve">
     <value>컴팩트한 레이아웃</value>
   </data>
@@ -1321,18 +1300,6 @@
   </data>
   <data name="TransparentTileFalseText.Text" xml:space="preserve">
     <value>데스크톱 플랫폼에서 사용할 수 없습니다.</value>
-  </data>
-  <data name="SunRise" xml:space="preserve">
-    <value>일출</value>
-  </data>
-  <data name="SunSet" xml:space="preserve">
-    <value>태양이 세트</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="UtcOffset" xml:space="preserve">
-    <value>Utc 오프셋</value>
   </data>
   <data name="EnableAlarm.Content" xml:space="preserve">
     <value>악천후 경보</value>
@@ -1417,5 +1384,41 @@
   </data>
   <data name="CortanaCommandsText.Content" xml:space="preserve">
     <value>Cortana 명령</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>개인 정보 보호 정책</value>
+  </data>
+  <data name="Hum.Text" xml:space="preserve">
+    <value>습도</value>
+  </data>
+  <data name="Pop.Text" xml:space="preserve">
+    <value>강 수 확률</value>
+  </data>
+  <data name="Pcpn.Text" xml:space="preserve">
+    <value>강 수</value>
+  </data>
+  <data name="Vis.Text" xml:space="preserve">
+    <value>표시 유형</value>
+  </data>
+  <data name="Scale.Text" xml:space="preserve">
+    <value>바람 규모</value>
+  </data>
+  <data name="Dir.Text" xml:space="preserve">
+    <value>바람의 방향</value>
+  </data>
+  <data name="Pres.Text" xml:space="preserve">
+    <value>원자 압력</value>
+  </data>
+  <data name="SunRise.Text" xml:space="preserve">
+    <value>일출</value>
+  </data>
+  <data name="SunSet.Text" xml:space="preserve">
+    <value>태양이 세트</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UtcOffset.Text" xml:space="preserve">
+    <value>Utc 오프셋</value>
   </data>
 </root>

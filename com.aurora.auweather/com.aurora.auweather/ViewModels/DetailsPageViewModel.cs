@@ -423,23 +423,24 @@ namespace Com.Aurora.AuWeather.ViewModels
 
 
             LunarCalendar = settings.Preferences.UseLunarCalendarPrimary ? (("农历 " + calendar.LunarYearSexagenary + "年" + calendar.LunarMonthText + "月" + calendar.LunarDayText + "    " + calendar.SolarTermStr).Trim()) : string.Empty;
-            Hum = loader.GetString("Hum") + ": " + fetchresult.HourlyForecast[nowHourIndex].Humidity + "%";
-            Pop = loader.GetString("Pop") + ": " + fetchresult.HourlyForecast[nowHourIndex].Pop + "%";
-            Pcpn = loader.GetString("Pcpn") + ": " + fetchresult.NowWeather.Precipitation + "mm";
+            Hum = ": " + fetchresult.HourlyForecast[nowHourIndex].Humidity + "%";
+            Pop = ": " + fetchresult.HourlyForecast[nowHourIndex].Pop + "%";
+            Pcpn = ": " + fetchresult.NowWeather.Precipitation + " mm";
             var v = new VisibilityConverter();
-            Vis = loader.GetString("Vis") + ": " + (fetchresult.NowWeather.Visibility == null ? "N/A" : v.Convert(fetchresult.NowWeather.Visibility, null, null, null));
+            Vis = ": " + (fetchresult.NowWeather.Visibility == null ? "N/A" : v.Convert(fetchresult.NowWeather.Visibility, null, null, null));
             var w = new WindSpeedConverter();
-            Scale = loader.GetString("Scale") + ": " + (fetchresult.NowWeather.Wind == null ? "N/A" : w.Convert(fetchresult.NowWeather.Wind, null, null, null));
+            Scale = ": " + (fetchresult.NowWeather.Wind == null ? "N/A" : w.Convert(fetchresult.NowWeather.Wind, null, null, null));
             var d = new WindDirectionConverter();
-            Dir = loader.GetString("Dir") + ": " + (fetchresult.NowWeather.Wind == null ? "N/A" : d.Convert(fetchresult.NowWeather.Wind, null, null, null));
+            Dir = ": " + (fetchresult.NowWeather.Wind == null ? "N/A" : d.Convert(fetchresult.NowWeather.Wind, null, null, null));
             var p = new PressureConverter();
-            Pressure = loader.GetString("Pres") + ": " + (fetchresult.NowWeather.Pressure == null ? "N/A" : p.Convert(fetchresult.NowWeather.Pressure, null, null, null));
+            Pressure = ": " + (fetchresult.NowWeather.Pressure == null ? "N/A" : p.Convert(fetchresult.NowWeather.Pressure, null, null, null));
 
             var t = new TimeSpanConverter();
-            SunRise = loader.GetString("SunRise") + ": " + (string)t.Convert(sunRise, null, null, null);
-            SunSet = loader.GetString("SunSet") + ": " + (string)t.Convert(sunSet, null, null, null);
-            this.Location = loader.GetString("Location") + ": " + new Models.Location(currentCityModel.Latitude, currentCityModel.Longitude).ToString();
-            Offset = loader.GetString("UtcOffset") + ": " + t.Convert(utcOffset, null, null, null);
+            SunRise = ": " + (string)t.Convert(sunRise, null, null, null);
+            SunSet = ": " + (string)t.Convert(sunSet, null, null, null);
+            this.Location = ": " + new Models.Location(currentCityModel.Latitude, currentCityModel.Longitude).ToString();
+            var off = utcOffset.Hours;
+            Offset = ": UTC" + (off >= 0 ? " +" : " -") + t.Convert(utcOffset, null, null, null);
 
             var uri = await settings.Immersive.GetCurrentBackgroundAsync(fetchresult.NowWeather.Now.Condition, isNight);
             if (uri != null)
