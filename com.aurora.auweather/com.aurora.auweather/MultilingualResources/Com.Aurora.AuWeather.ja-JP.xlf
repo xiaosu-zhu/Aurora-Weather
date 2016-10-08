@@ -1940,6 +1940,14 @@ Tomorrow: {4}, {5}.</source>
           <source>Utc offset</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Utc オフセット</target>
         </trans-unit>
+        <trans-unit id="HumText" translate="yes" xml:space="preserve">
+          <source>Humidity</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">湿度</target>
+        </trans-unit>
+        <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
+          <source>Wind Scale</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">風スケール</target>
+        </trans-unit>
       </group>
     </body>
   </file>

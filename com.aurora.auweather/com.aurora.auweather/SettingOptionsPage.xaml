@@ -77,7 +77,7 @@
             <ListView Loaded="SettingsList_Loaded" x:Name="SettingsList" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding SettingsList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:SettingOption">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                             <SymbolIcon Width="48" Height="48" Symbol="{Binding Symbol}" />
                             <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
                         </StackPanel>

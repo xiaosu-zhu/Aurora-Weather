@@ -1940,6 +1940,14 @@ demain: {4}, {5}.</target>
           <source>Utc offset</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Décalage UTC</target>
         </trans-unit>
+        <trans-unit id="HumText" translate="yes" xml:space="preserve">
+          <source>Humidity</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Humidité</target>
+        </trans-unit>
+        <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
+          <source>Wind Scale</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Échelle de vent</target>
+        </trans-unit>
       </group>
     </body>
   </file>

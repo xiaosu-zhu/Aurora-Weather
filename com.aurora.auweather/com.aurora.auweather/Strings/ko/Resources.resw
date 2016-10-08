@@ -1421,4 +1421,10 @@
   <data name="UtcOffset.Text" xml:space="preserve">
     <value>Utc 오프셋</value>
   </data>
+  <data name="HumText" xml:space="preserve">
+    <value>습도</value>
+  </data>
+  <data name="ScaleText" xml:space="preserve">
+    <value>바람 규모</value>
+  </data>
 </root>

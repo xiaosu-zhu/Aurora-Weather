@@ -1378,6 +1378,9 @@
   <data name="Hum.Text" xml:space="preserve">
     <value>湿度</value>
   </data>
+  <data name="HumText" xml:space="preserve">
+    <value>湿度</value>
+  </data>
   <data name="Pop.Text" xml:space="preserve">
     <value>降水概率</value>
   </data>
@@ -1388,6 +1391,9 @@
     <value>能见度</value>
   </data>
   <data name="Scale.Text" xml:space="preserve">
+    <value>风力</value>
+  </data>
+  <data name="ScaleText" xml:space="preserve">
     <value>风力</value>
   </data>
   <data name="Dir.Text" xml:space="preserve">

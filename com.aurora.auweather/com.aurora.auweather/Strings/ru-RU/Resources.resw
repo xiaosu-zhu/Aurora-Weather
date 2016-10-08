@@ -1421,4 +1421,10 @@
   <data name="UtcOffset.Text" xml:space="preserve">
     <value>Смещение UTC</value>
   </data>
+  <data name="HumText" xml:space="preserve">
+    <value>Влажность</value>
+  </data>
+  <data name="ScaleText" xml:space="preserve">
+    <value>Шкала ветра</value>
+  </data>
 </root>

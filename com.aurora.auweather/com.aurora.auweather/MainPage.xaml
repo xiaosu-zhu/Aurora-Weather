@@ -614,7 +614,7 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
                     </Button.Content>
                 </Button>
-                <StackPanel x:Name="DateTimePanel" Margin="0,216,0,12" Padding="20,8,20,8" Orientation="Vertical">
+                <StackPanel x:Name="DateTimePanel" Margin="0,216,0,12" Padding="56,8,20,8" Orientation="Vertical">
                     <TextBlock PointerReleased="TextBlock_PointerReleased" Style="{ThemeResource HeaderTextBlockStyle}" >
                         <Run FontSize="20" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <LineBreak />

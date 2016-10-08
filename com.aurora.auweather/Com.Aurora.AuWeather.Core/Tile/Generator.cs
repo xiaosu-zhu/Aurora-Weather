@@ -155,7 +155,7 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Scale"),
+                                                    Text = loader.GetString("ScaleText"),
                                                     Align = TileTextAlign.Center,
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
@@ -166,7 +166,7 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Hum"),
+                                                    Text = loader.GetString("HumText"),
                                                     Align = TileTextAlign.Center,
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
@@ -301,14 +301,14 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                     Text = loader.GetString("Scale")+": "+model.DailyForecast[todayIndex+1].Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
+                                                     Text = loader.GetString("ScaleText")+": "+model.DailyForecast[todayIndex+1].Wind.Speed.Actual(settings.Preferences.SpeedParameter) +
                                                     model.DailyForecast[todayIndex+1].Wind.Speed.DanWei(settings.Preferences.SpeedParameter),
                                                      Align = TileTextAlign.Auto,
                                                      Style = TileTextStyle.CaptionSubtle,
                                                 },
                                                 new TileText()
                                                 {
-                                                     Text = loader.GetString("Hum")+": "+model.DailyForecast[todayIndex+1].Humidity.ToString() + "%",
+                                                     Text = loader.GetString("HumText")+": "+model.DailyForecast[todayIndex+1].Humidity.ToString() + "%",
                                                      Align = TileTextAlign.Auto,
                                                      Style = TileTextStyle.CaptionSubtle,
                                                      Wrap = true
@@ -1202,7 +1202,7 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Scale"),
+                                                    Text = loader.GetString("ScaleText"),
                                                     Align = TileTextAlign.Center,
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
@@ -1213,7 +1213,7 @@ namespace Com.Aurora.AuWeather.Tile
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = loader.GetString("Hum"),
+                                                    Text = loader.GetString("HumText"),
                                                     Align = TileTextAlign.Center,
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },

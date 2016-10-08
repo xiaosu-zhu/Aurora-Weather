@@ -1414,4 +1414,10 @@ mañana: {4}, {5}.</value>
   <data name="UtcOffset.Text" xml:space="preserve">
     <value>Desplazamiento de UTC</value>
   </data>
+  <data name="HumText" xml:space="preserve">
+    <value>Humedad</value>
+  </data>
+  <data name="ScaleText" xml:space="preserve">
+    <value>Escala de viento</value>
+  </data>
 </root>

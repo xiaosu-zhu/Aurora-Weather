@@ -87,16 +87,24 @@ namespace Com.Aurora.AuWeather
 
         void PositionImage()
         {
+            var deviceType = SystemInfoHelper.GetDeviceFormFactorType();
             // desktop
-            if (SystemInfoHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Desktop)
+            if (deviceType == DeviceFormFactorType.Desktop)
             {
                 extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
+                extendedSplashImage.Height = splashImageRect.Height;
+                extendedSplashImage.Width = splashImageRect.Width;
+            }
+            else if (deviceType == DeviceFormFactorType.Tablet)
+            {
+                extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
                 extendedSplashImage.Height = splashImageRect.Height;
                 extendedSplashImage.Width = splashImageRect.Width;
             }
             // mobile
-            else if (SystemInfoHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            else if (deviceType == DeviceFormFactorType.Phone)
             {
                 // 获取一个值，该值表示每个视图（布局）像素的原始（物理）像素数。
                 double density = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
@@ -110,7 +118,7 @@ namespace Com.Aurora.AuWeather
             else
             {
                 extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y + 16);
+                extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
                 extendedSplashImage.Height = splashImageRect.Height;
                 extendedSplashImage.Width = splashImageRect.Width;
             }

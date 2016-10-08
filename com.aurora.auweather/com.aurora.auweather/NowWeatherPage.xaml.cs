@@ -242,6 +242,23 @@ namespace Com.Aurora.AuWeather
             }
             baba.ChangeCondition(Context.Condition, Context.IsNight, Context.City, Context.NowL, Context.NowH);
             ScrollableRoot.RefreshComplete();
+            if(LoadingDot.Visibility == Visibility.Collapsed)
+            {
+                TempraturePathAnimation.Completed += (s, v) =>
+                {
+                    RefreshCompleteAni.Begin();
+                };
+                TempraturePathAnimation.Begin();
+                AQIAni.Begin();
+                DetailGrid0Play();
+                DetailGrid1Play();
+                DetailGrid2Play();
+                DetailGrid3Play();
+                DetailGrid4Play();
+                DetailGrid6Play();
+                DetailGrid7Play();
+            }
+
             try
             {
                 if (Windows.System.UserProfile.UserProfilePersonalizationSettings.IsSupported() && Context.SetWallPaper)
