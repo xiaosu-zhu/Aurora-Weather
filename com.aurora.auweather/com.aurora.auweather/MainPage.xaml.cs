@@ -20,6 +20,7 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.CustomControls;
+using Com.Aurora.AuWeather.Tile;
 
 namespace Com.Aurora.AuWeather
 {

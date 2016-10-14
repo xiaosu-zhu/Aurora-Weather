@@ -19,6 +19,7 @@ using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.StartScreen;
 
 namespace Com.Aurora.AuWeather.Background
 {
@@ -50,8 +51,51 @@ namespace Com.Aurora.AuWeather.Background
                 var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                 await Init(settings, currentCity);
             }
+            await UpdateSubTiles(settings);
             //await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();
+        }
+
+        private async Task UpdateSubTiles(SettingsModel settings)
+        {
+            var tiles = await SecondaryTile.FindAllAsync();
+            var list = tiles.ToList();
+            foreach (var item in settings.Cities.SavedCities)
+            {
+                try
+                {
+                    var tile = list.Find(x =>
+                    {
+                        return x.TileId == item.Id;
+                    });
+                    if (tile != null)
+                    {
+                        string resstr = await Request.GetRequest(settings, item);
+                        if (!resstr.IsNullorEmpty())
+                        {
+                            var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                            if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
+                            {
+                                return;
+                            }
+                            var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
+                            var current = DateTimeHelper.ReviseLoc(utcOffset);
+                            try
+                            {
+                                Sender.CreateSubTileNotification(await Generator.CreateAll(item, fetchresult, current), item.Id);
+                            }
+                            catch (Exception)
+                            { }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+
         }
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
@@ -68,48 +112,40 @@ namespace Com.Aurora.AuWeather.Background
                 var current = DateTimeHelper.ReviseLoc(utcOffset);
                 try
                 {
-                    Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, current));
+                    Sender.CreateMainTileQueue(await Generator.CreateAll(currentCity, fetchresult, current));
                 }
                 catch (Exception)
                 {
 
                 }
 
-                var todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
-                {
-                    return x.Date.Date == current.Date;
-                });
-                var nowHourIndex = Array.FindIndex(fetchresult.HourlyForecast, x =>
-                {
-                    return (x.DateTime - current).TotalSeconds > 0;
-                });
-                if (current.Hour <= 7)
-                {
-                    todayIndex--;
-                }
-                if (todayIndex < 0)
-                {
-                    todayIndex = 0;
-                }
-                if (nowHourIndex < 0)
-                {
-                    nowHourIndex = 0;
-                }
-                TimeSpan sunRise, sunSet;
-                if (fetchresult.DailyForecast[todayIndex].SunRise == default(TimeSpan) || fetchresult.DailyForecast[todayIndex].SunSet == default(TimeSpan))
-                {
-                    sunRise = Core.LunarCalendar.SunRiseSet.GetRise(new Models.Location(currentCity.Latitude, currentCity.Longitude), current);
-                    sunSet = Core.LunarCalendar.SunRiseSet.GetSet(new Models.Location(currentCity.Latitude, currentCity.Longitude), current);
-                }
-                else
-                {
-                    sunRise = fetchresult.DailyForecast[todayIndex].SunRise;
-                    sunSet = fetchresult.DailyForecast[todayIndex].SunSet;
-                }
                 try
                 {
                     if (UserProfilePersonalizationSettings.IsSupported() && settings.Preferences.SetWallPaper)
                     {
+                        var todayIndex = Array.FindIndex(fetchresult.DailyForecast, x =>
+                        {
+                            return x.Date.Date == current.Date;
+                        });
+                        if (current.Hour <= 7)
+                        {
+                            todayIndex--;
+                        }
+                        if (todayIndex < 0)
+                        {
+                            todayIndex = 0;
+                        }
+                        TimeSpan sunRise, sunSet;
+                        if (fetchresult.DailyForecast[todayIndex].SunRise == default(TimeSpan) || fetchresult.DailyForecast[todayIndex].SunSet == default(TimeSpan))
+                        {
+                            sunRise = Core.LunarCalendar.SunRiseSet.GetRise(new Models.Location(currentCity.Latitude, currentCity.Longitude), current);
+                            sunSet = Core.LunarCalendar.SunRiseSet.GetSet(new Models.Location(currentCity.Latitude, currentCity.Longitude), current);
+                        }
+                        else
+                        {
+                            sunRise = fetchresult.DailyForecast[todayIndex].SunRise;
+                            sunSet = fetchresult.DailyForecast[todayIndex].SunSet;
+                        }
                         var file = await FileIOHelper.GetFilebyUriAsync(await settings.Immersive.GetCurrentBackgroundAsync(fetchresult.NowWeather.Now.Condition, WeatherModel.CalculateIsNight(current, sunRise, sunSet)));
                         var lFile = await FileIOHelper.CreateWallPaperFileAsync(Guid.NewGuid().ToString() + ".png");
                         var d = PointerDevice.GetPointerDevices();

@@ -1142,9 +1142,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正了触摸屏下滑动过慢的问题
-· 修正了部分设备无法显示图像资源的问题
-· 修正了部分 UI 错误</value>
+    <value>· 修正了钉选的其他城市磁贴的布局，并可以后台更新
+· 重新设计欢迎页</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1168,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· 修正了钉选的其他城市磁贴的布局，并可以后台更新
+· 重新设计欢迎页
+
+1.6.16086
 · 修正了触摸屏下滑动过慢的问题
 · 修正了部分设备无法显示图像资源的问题
 · 修正了部分 UI 错误
@@ -1382,7 +1385,7 @@
   <data name="Hum.Text" xml:space="preserve">
     <value>湿度</value>
   </data>
-    <data name="HumText" xml:space="preserve">
+  <data name="HumText" xml:space="preserve">
     <value>湿度</value>
   </data>
   <data name="Pop.Text" xml:space="preserve">

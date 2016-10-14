@@ -1365,7 +1365,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                             this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                             return;
                         }
-                        Sender.CreateMainTileQueue(await Generator.CreateAll(fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
+                        Sender.CreateMainTileQueue(await Generator.CreateAll(currentCityModel, fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
                         if (settings.Preferences.EnableMorning)
                         {
                             var shu1 = settings.Preferences.MorningNoteTime.TotalHours;

@@ -314,7 +314,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         var glanceFull = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
                         var glance = Glance.GenerateShortDescription(weather, isNight);
                         var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
-                        Sender.CreateSubTileNotification(await Generator.CreateAll(weather, current), item.Id);
+                        Sender.CreateSubTileNotification(await Generator.CreateAll(currentCity, weather, current), item.Id);
                     }
                 });
             }

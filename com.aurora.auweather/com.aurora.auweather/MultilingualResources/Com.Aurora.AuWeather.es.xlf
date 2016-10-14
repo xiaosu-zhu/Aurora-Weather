@@ -1347,12 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Pantalla completa</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that swipe on touch screen is to slow
-· Fixed an issue that some devices can't load image resources
-· Fixed UI dislocation</source>
-          <target state="translated">· Arreglado un problema que pase en la pantalla táctil es lenta
-· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
-· Dislocación de interfaz de usuario fija</target>
+          <source>· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed</source>
+          <target state="translated">· Solucionado un problema que azulejos secundarios no actualización
+· Solucionado un problema de diseño azulejos secundario para ser incorrecto
+· Bienvenidos página reajustado</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualizar registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16086
+          <source>1.6.16100
+· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed
+
+1.6.16086
 · Fixed an issue that swipe on touch screen is to slow
 · Fixed an issue that some devices can't load image resources
 · Fixed UI dislocation
@@ -1453,7 +1458,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16086
+          <target state="translated">1.6.16100
+· Solucionado un problema que azulejos secundarios no actualización
+· Solucionado un problema de diseño azulejos secundario para ser incorrecto
+· Página de bienvenida nuevo diseño
+
+1.6.16086
 · Arreglado un problema que pase en la pantalla táctil es lenta
 · Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
 · Fijo de la dislocación de UI
@@ -1469,7 +1479,7 @@
 · Velocidad del viento ha añadido gráfico
 
 1.6.16058
-· Ajustes de interfaz de usuario
+· Ajustes de interfaz de Usuario
 
 1.6.16056
 · Corregido un error en esa tarea de fondo causado no puede iniciar
@@ -1503,7 +1513,7 @@
 
 1.5.16045
 · Acortar el intervalo de actualización de fondo automática
-· Mejora de la interfaz de usuario y el diseño
+· Mejora de la interfaz de Usuario y el diseño
 · Diseño de la pieza se actualizará en la próxima versión
 
 1.5.16040
@@ -1513,7 +1523,7 @@
 · (mayo) Fija un problema ocurre en dispositivos móviles que no muestre notificaciones de lockscreen
 
 1.4.16047:
-· Interfaz de usuario sintonización
+· Interfaz de Usuario sintonización
 · Pequeño error corregido
  
 1.4.16046:

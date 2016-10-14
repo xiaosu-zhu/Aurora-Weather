@@ -1142,9 +1142,8 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正了觸摸屏下滑動過慢的問題
-· 修正了部分設備無法顯示圖像資源的問題
-· 修正了部分 UI 錯誤</value>
+    <value>· 修正了釘選的其他城市磁貼的佈局，並可以後臺更新
+· 重新設計歡迎頁</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1168,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· 修正了釘選的其他城市磁貼的佈局，並可以後臺更新
+· 重新設計歡迎頁
+
+1.6.16086
 · 修正了觸摸屏下滑動過慢的問題
 · 修正了部分設備無法顯示圖像資源的問題
 · 修正了部分 UI 錯誤

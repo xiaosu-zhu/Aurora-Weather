@@ -395,7 +395,7 @@ namespace Com.Aurora.AuWeather.Tile
             return true;
         }
 
-        public static async Task<List<TileContent>> CreateAll(HeWeatherModel model, DateTime desiredDateTimeinThatRegion)
+        public static async Task<List<TileContent>> CreateAll(CitySettingsModel currentCity, HeWeatherModel model, DateTime desiredDateTimeinThatRegion)
         {
             var todayIndex = Array.FindIndex(model.DailyForecast, x =>
             {
@@ -422,7 +422,6 @@ namespace Com.Aurora.AuWeather.Tile
             var currentTime = desiredDateTimeinThatRegion;
 
             var settings = SettingsModel.Get();
-            var currentCity = settings.Cities.CurrentIndex < 0 ? settings.Cities.LocatedCity : settings.Cities.SavedCities[settings.Cities.CurrentIndex];
             var isNight = CalcIsNight(currentTime, sunRise, sunSet, new Models.Location(currentCity.Latitude, currentCity.Longitude));
             Uri uri = await settings.Immersive.GetCurrentBackgroundAsync(model.NowWeather.Now.Condition, isNight);
 

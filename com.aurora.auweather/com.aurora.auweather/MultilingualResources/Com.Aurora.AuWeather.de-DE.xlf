@@ -1347,12 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vollbild</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that swipe on touch screen is to slow
-· Fixed an issue that some devices can't load image resources
-· Fixed UI dislocation</source>
-          <target state="translated">· Feste, ein Thema, das auf Touchscreen streichen ist zu langsam
-· Ein Problem wurde behoben, dass einige Geräte können nicht geladen werden Bildressourcen
-· Festen UI Luxation</target>
+          <source>· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed</source>
+          <target state="translated">· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
+· Willkommen-Seite neu gestaltet</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Update-Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16086
+          <source>1.6.16100
+· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed
+
+1.6.16086
 · Fixed an issue that swipe on touch screen is to slow
 · Fixed an issue that some devices can't load image resources
 · Fixed UI dislocation
@@ -1453,7 +1458,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16086
+          <target state="translated">1.6.16100
+· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
+· Willkommen-Seite neu gestaltet
+
+1.6.16086
 · Feste, ein Thema, das auf Touchscreen streichen ist zu langsam
 · Ein Problem wurde behoben, dass einige Geräte können nicht geladen werden Bildressourcen
 · Feste UI Luxation

@@ -1018,9 +1018,9 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Fissa un problema che passare il dito sul touch screen è quello di rallentare
-· Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
-piace · Fissa la dislocazione dell'interfaccia utente</value>
+    <value>· Risolto un problema che i riquadri secondari non aggiornano
+· Risolto un problema di layout di quello secondario delle piastrelle per essere errato
+· Pagina di benvenuto ri-progettato</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1044,7 +1044,12 @@ piace · Fissa la dislocazione dell'interfaccia utente</value>
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· Risolto un problema che i riquadri secondari non aggiornano
+· Risolto un problema di layout di quello secondario delle piastrelle per essere errato
+· Pagina di benvenuto ri-progettato
+
+1.6.16086
 · Fissa un problema che passare il dito sul touch screen è quello di rallentare
 · Risolto un problema che alcuni dispositivi non possono caricare risorse immagine
 piace · Fissa la dislocazione UI
@@ -1060,7 +1065,7 @@ sulla privacy · Correzioni minori
 · Velocità del vento di aggiunto grafico
 
 1.6.16058
-· Interfaccia utente Tweaks
+· Interfaccia Utente Tweaks
 
 1.6.16056
 · Corretto un bug che attività in background causato Impossibile avviare
@@ -1094,7 +1099,7 @@ piace · È possibile personalizzare layout ora
 
 1.5.16045
 · Accorciare l'intervallo di aggiornamento automatico in background
-piace · Miglioramento dell'interfaccia utente e layout
+piace · Miglioramento dell'interfaccia Utente e layout
 piace · Layout del riquadro verrà aggiornato nella prossima versione
 
 1.5.16040
@@ -1104,7 +1109,7 @@ piace · (maggio) Risolto un errore irreversibile
 piace · (maggio) Fissa un problema si verifica su dispositivi mobili che non visualizzano notifiche lockscreen
 
 1.4.16047:
-· Interfaccia utente aggiuntiva
+· Interfaccia Utente aggiuntiva
 · Piccolo bug fissato
  
 1.4.16046:

@@ -43,8 +43,8 @@ namespace Com.Aurora.AuWeather
         private ExpressionAnimation parallaxAnimation3;
         private ExpressionAnimation parallaxAnimation4;
         private CompositionPropertySet scrollViewerProperties;
-        private double h = 1920d;
-        private double w = 1080d;
+        private double h = 1080d;
+        private double w = 1920d;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -168,6 +168,7 @@ namespace Com.Aurora.AuWeather
             backgroundVisual3.StartAnimation("Offset.X", parallaxAnimation3);
             backgroundVisual4.StartAnimation("Offset.X", parallaxAnimation4);
             MainFrame.Navigate(typeof(CitiesSetting));
+            IndAni.Begin();
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -177,13 +178,17 @@ namespace Com.Aurora.AuWeather
 
             if (parallaxAnimation4 != null)
                 parallaxAnimation4.SetScalarParameter("offset", 3 * (float)width);
-            var verSc = 1.5 * height / h;
+            var verSc = height / h;
             Base.Width = 2 * width;
             BGLayer0.Width = 2 * width;
             BGLayer1.Width = 2 * width;
             BGLayer2.Width = 2 * width;
             BGLayer3.Width = 2 * width;
-            var horSc = width / (1.5 * w);
+            BGLayer0.Height = height;
+            BGLayer1.Height = height;
+            BGLayer2.Height = height;
+            BGLayer3.Height = height;
+            var horSc = width / w;
             BGLayer0.ReplaceElements(horSc, verSc);
             BGLayer1.ReplaceElements(horSc, verSc);
             BGLayer2.ReplaceElements(horSc, verSc);
@@ -224,6 +229,7 @@ namespace Com.Aurora.AuWeather
                 scrollViewerProperties.Dispose();
                 scrollViewerProperties = null;
             }
+            IndAni.Stop();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

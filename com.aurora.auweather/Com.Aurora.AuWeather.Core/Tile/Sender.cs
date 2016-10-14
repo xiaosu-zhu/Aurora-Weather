@@ -10,6 +10,7 @@ using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using System.Collections.Generic;
 using NotificationsExtensions.Toasts;
+using System.Threading.Tasks;
 
 namespace Com.Aurora.AuWeather.Tile
 {
@@ -55,6 +56,17 @@ namespace Com.Aurora.AuWeather.Tile
 
                 }
             }
+        }
+
+        public static async Task<List<SecondaryTile>> GetSubTiles()
+        {
+            var tiles = await SecondaryTile.FindAllAsync();
+            var p = new List<SecondaryTile>();
+            foreach (var item in tiles)
+            {
+                p.Add(item);
+            }
+            return p;
         }
 
         public static void CreateSubTileNotification(TileContent content, string tileName, TimeSpan duration)

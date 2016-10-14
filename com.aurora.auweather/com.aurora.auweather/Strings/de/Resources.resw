@@ -1018,9 +1018,9 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Feste, ein Thema, das auf Touchscreen streichen ist zu langsam
-· Ein Problem wurde behoben, dass einige Geräte können nicht geladen werden Bildressourcen
-· Festen UI Luxation</value>
+    <value>· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
+· Willkommen-Seite neu gestaltet</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1044,7 +1044,12 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
+· Willkommen-Seite neu gestaltet
+
+1.6.16086
 · Feste, ein Thema, das auf Touchscreen streichen ist zu langsam
 · Ein Problem wurde behoben, dass einige Geräte können nicht geladen werden Bildressourcen
 · Feste UI Luxation

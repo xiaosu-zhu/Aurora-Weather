@@ -1018,9 +1018,9 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
-· Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
-· Dislocation de l’interface utilisateur fixe</value>
+    <value>· Correction d’un problème secondaires tuiles ne mettre à jour
+· Correction d’un problème mise en page que carreaux secondaire pour être incorrect
+· Page d’accueil redessinée</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1044,7 +1044,12 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· Correction d’un problème secondaires tuiles ne mettre à jour
+· Correction d’un problème mise en page que carreaux secondaire pour être incorrect
+· Page d’accueil redessinée
+
+1.6.16086
 · Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
 · Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
 · Fixe la dislocation UI
@@ -1060,7 +1065,7 @@
 · Vitesse du vent a ajouté graphique
 
 1.6.16058
-· Interface utilisateur Tweaks
+· Interface Utilisateur Tweaks
 
 1.6.16056
 · Correction d’un bug qui tâche de fond causé ne peut pas démarrer
@@ -1094,7 +1099,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 
 1.5.16045
 · Raccourcir l’intervalle d’actualisation automatique en arrière-plan
-· Amélioration de l’interface utilisateur et la disposition
+· Amélioration de l’interface Utilisateur et la disposition
 · Présentation de la tuile sera actualisée dans la prochaine version
 
 1.5.16040
@@ -1104,7 +1109,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 · (mai) Fixe un problème se produit sur les périphériques mobiles qui n’affichent pas les notifications de lockscreen
 
 1.4.16047 :
-· Interface utilisateur tuning
+· Interface Utilisateur tuning
 · Petite corrigé d’un bug
  
 1.4.16046 :

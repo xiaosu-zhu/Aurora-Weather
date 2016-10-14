@@ -1347,12 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Plein écran</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that swipe on touch screen is to slow
-· Fixed an issue that some devices can't load image resources
-· Fixed UI dislocation</source>
-          <target state="translated">· Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
-· Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
-· Dislocation de l’interface utilisateur fixe</target>
+          <source>· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed</source>
+          <target state="translated">· Correction d’un problème secondaires tuiles ne mettre à jour
+· Correction d’un problème mise en page que carreaux secondaire pour être incorrect
+· Page d’accueil redessinée</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Mise à jour Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16086
+          <source>1.6.16100
+· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed
+
+1.6.16086
 · Fixed an issue that swipe on touch screen is to slow
 · Fixed an issue that some devices can't load image resources
 · Fixed UI dislocation
@@ -1453,7 +1458,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16086
+          <target state="translated">1.6.16100
+· Correction d’un problème secondaires tuiles ne mettre à jour
+· Correction d’un problème mise en page que carreaux secondaire pour être incorrect
+· Page d’accueil redessinée
+
+1.6.16086
 · Fixe un problème dans lequel glisser sur l’écran tactile est de ralentir le
 · Correction d’un problème que certains appareils ne peut pas charger les ressources d’image
 · Fixe la dislocation UI
@@ -1469,7 +1479,7 @@
 · Vitesse du vent a ajouté graphique
 
 1.6.16058
-· Interface utilisateur Tweaks
+· Interface Utilisateur Tweaks
 
 1.6.16056
 · Correction d’un bug qui tâche de fond causé ne peut pas démarrer
@@ -1503,7 +1513,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 
 1.5.16045
 · Raccourcir l’intervalle d’actualisation automatique en arrière-plan
-· Amélioration de l’interface utilisateur et la disposition
+· Amélioration de l’interface Utilisateur et la disposition
 · Présentation de la tuile sera actualisée dans la prochaine version
 
 1.5.16040
@@ -1513,7 +1523,7 @@ de tuiles · Correction de problèmes dans les paramètres de la page
 · (mai) Fixe un problème se produit sur les périphériques mobiles qui n’affichent pas les notifications de lockscreen
 
 1.4.16047 :
-· Interface utilisateur tuning
+· Interface Utilisateur tuning
 · Petite corrigé d’un bug
  
 1.4.16046 :

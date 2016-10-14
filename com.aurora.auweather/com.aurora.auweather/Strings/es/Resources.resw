@@ -1018,9 +1018,9 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Arreglado un problema que pase en la pantalla táctil es lenta
-· Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
-· Dislocación de interfaz de usuario fija</value>
+    <value>· Solucionado un problema que azulejos secundarios no actualización
+· Solucionado un problema de diseño azulejos secundario para ser incorrecto
+· Bienvenidos página reajustado</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1044,7 +1044,12 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16086
+    <value>1.6.16100
+· Solucionado un problema que azulejos secundarios no actualización
+· Solucionado un problema de diseño azulejos secundario para ser incorrecto
+· Página de bienvenida nuevo diseño
+
+1.6.16086
 · Arreglado un problema que pase en la pantalla táctil es lenta
 · Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
 · Fijo de la dislocación de UI
@@ -1060,7 +1065,7 @@
 · Velocidad del viento ha añadido gráfico
 
 1.6.16058
-· Ajustes de interfaz de usuario
+· Ajustes de interfaz de Usuario
 
 1.6.16056
 · Corregido un error en esa tarea de fondo causado no puede iniciar
@@ -1094,7 +1099,7 @@
 
 1.5.16045
 · Acortar el intervalo de actualización de fondo automática
-· Mejora de la interfaz de usuario y el diseño
+· Mejora de la interfaz de Usuario y el diseño
 · Diseño de la pieza se actualizará en la próxima versión
 
 1.5.16040
@@ -1104,7 +1109,7 @@
 · (mayo) Fija un problema ocurre en dispositivos móviles que no muestre notificaciones de lockscreen
 
 1.4.16047:
-· Interfaz de usuario sintonización
+· Interfaz de Usuario sintonización
 · Pequeño error corregido
  
 1.4.16046:

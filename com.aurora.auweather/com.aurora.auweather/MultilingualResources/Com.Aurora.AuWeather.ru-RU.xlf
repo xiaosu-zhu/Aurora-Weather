@@ -1347,12 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that swipe on touch screen is to slow
-· Fixed an issue that some devices can't load image resources
-· Fixed UI dislocation</source>
-          <target state="translated">· Исправлена, вопрос, который быстро проведите пальцем на сенсорном экране является медленным
-· Исправлена проблема, что некоторые устройства не удается загрузить ресурсы изображений
-· Фиксированный UI вывихов</target>
+          <source>· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed</source>
+          <target state="translated">· Исправлена проблема, что вторичные плитки не обновлять
+· Исправлена проблема, что вторичные плитки макет, чтобы быть неправильно
+· Начальная страница изменена</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Обновление журнала</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16086
+          <source>1.6.16100
+· Fixed an issue that secondary tiles don't update
+· Fixed an issue that secondary tiles' layout to be incorrect
+· Welcome Page Re-designed
+
+1.6.16086
 · Fixed an issue that swipe on touch screen is to slow
 · Fixed an issue that some devices can't load image resources
 · Fixed UI dislocation
@@ -1453,7 +1458,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16086
+          <target state="translated">1.6.16100
+· Исправлена проблема, что вторичные плитки не обновлять
+· Исправлена проблема, что вторичные плитки макет, чтобы быть неправильно
+· Страница приветствия вновь разработанные
+
+1.6.16086
 · Исправлена, вопрос, который быстро проведите пальцем на сенсорном экране является медленным
 · Исправлена проблема, что некоторые устройства не удается загрузить ресурсы изображений
 · Исправлена UI вывиха
@@ -1469,7 +1479,7 @@
 · Добавлено скорость ветра графа
 
 1.6.16058
-· Пользовательский интерфейс настроек
+· Пользовательский Интерфейс настроек
 
 1.6.16056
 · Исправлена ошибка, что вызвало фоновая задача не может начать
@@ -1503,7 +1513,7 @@
 
 1.5.16045
 · Сократите интервал обновления автоматический фоновый
-· Улучшение пользовательского интерфейса и макета
+· Улучшение пользовательского Интерфейса и макета
 · В следующей версии
 
 1.5.16040
@@ -1513,7 +1523,7 @@
 · (май) Исправлена проблема возникает на мобильных устройствах, которые не отображают lockscreen уведомления
 
 1.4.16047:
-· Пользовательский интерфейс настройки
+· Пользовательский Интерфейс настройки
 · Исправлена маленькая ошибка
  
 1.4.16046:
