@@ -28,13 +28,32 @@ namespace Com.Aurora.AuWeather.Tile
             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
         }
 
-        public static void CreateSubTileNotification(TileContent content, string tileName)
+        public static void CreateSubTileNotification(List<TileContent> list, string tileName)
         {
             if (SecondaryTile.Exists(tileName))
             {
-                var notification = new TileNotification(content.GetXml());
                 var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileName);
-                updater.Update(notification);
+                updater.EnableNotificationQueue(true);
+                int i = 0;
+                foreach (var item in list)
+                {
+                    try
+                    {
+                        if (item == null)
+                        {
+                            continue;
+                        }
+                        TileNotification n = new TileNotification(item.GetXml());
+                        n.Tag = i.ToString();
+                        updater.Update(n);
+                        i++;
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+
+                }
             }
         }
 

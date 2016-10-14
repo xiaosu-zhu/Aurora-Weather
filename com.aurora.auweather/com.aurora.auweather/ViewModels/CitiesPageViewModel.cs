@@ -250,6 +250,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             foreach (CityViewModel item in selectedItems)
             {
                 SecondaryTile s = new SecondaryTile(item.Id, item.City, item.Id, new Uri("ms-appx:///Assets/Square150x150Logo.png"), TileSize.Default);
+                var elem = s.VisualElements;
+                elem.ShowNameOnSquare150x150Logo = true;
+                elem.ShowNameOnSquare310x310Logo = true;
+                elem.ShowNameOnWide310x150Logo = true;
+                elem.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.png");
+                elem.Square44x44Logo = new Uri("ms-appx:///Assets/Square44x44Logo.png");
+                elem.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.png");
+                elem.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.png");
                 await s.RequestCreateAsync();
                 var index = Array.FindIndex(settings.Cities.SavedCities, x =>
                 {
@@ -306,7 +314,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         var glanceFull = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
                         var glance = Glance.GenerateShortDescription(weather, isNight);
                         var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
-                        Sender.CreateSubTileNotification(Generator.GenerateNormalTile(weather, isNight, glance, glanceFull, uri, todayIndex, currentCity, settings), item.Id);
+                        Sender.CreateSubTileNotification(await Generator.CreateAll(weather, current), item.Id);
                     }
                 });
             }

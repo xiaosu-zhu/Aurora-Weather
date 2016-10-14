@@ -142,8 +142,12 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                             <RichTextBlock MaxWidth="360" IsTextSelectionEnabled="False" Foreground="#ff808080" Style="{ThemeResource BodyRichTextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                                 <Paragraph TextAlignment="Center">
                                     <Bold>
-                                        <Span Foreground="#ff000000" FontSize="25">隐私政策</Span>
+                                        <Span Foreground="#ff000000" FontSize="40">隐私政策</Span>
                                     </Bold>
+                                </Paragraph>
+                                <Paragraph TextAlignment="Right" FontSize="12" Margin="0,5,0,5">
+                                    <Run Text="更新日期  " />
+                                    <Underline FontWeight="Light" >2016 年 8 月</Underline>
                                 </Paragraph>
                                 <Paragraph Margin="0,5,0,5" TextIndent="30">
                                     <Run FontWeight="Light" Text="Aurora Studio 非常重视你的隐私。此隐私权政策旨在帮助你了解我们会收集哪些数据、为什么收集这些数据以及会利用这些数据做些什么。了解这些内容至关重要，因此我们希望你能抽出时间仔细阅读此政策。"/>

@@ -122,6 +122,7 @@
     <Compile Include="Models\Caiyun\JsonContract\Precipitation.cs" />
     <Compile Include="Models\Caiyun\JsonContract\Result.cs" />
     <Compile Include="Models\Caiyun\JsonContract\Wind.cs" />
+    <Compile Include="Models\CurrentInfo.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Glance.cs" />
     <Compile Include="Models\HeWeather\CityInfo.cs" />
