@@ -86,7 +86,9 @@ namespace Com.Aurora.AuWeather
         {
             if (!detailsIsIn)
             {
-                Header.Height = ActualWidth * 9 / 16;
+                var h = ActualWidth * 9 / 16;
+                h = h > 544 ? 544 : h;
+                Header.Height = h;
             }
         }
 
@@ -95,12 +97,20 @@ namespace Com.Aurora.AuWeather
             if (detailsIsIn)
             {
                 var h = ActualWidth * 9 / 16;
-                h = h > 540 ? 540 : h;
+                h = h > 544 ? 544 : h;
                 HeaderBack.To = h;
                 DetailsOut.Begin();
             }
             else
             {
+                if (ActualWidth > 1024)
+                {
+                    HeaderFor.To = 544;
+                }
+                else
+                {
+                    HeaderFor.To = 640;
+                }
                 DetailsIn.Begin();
             }
             detailsIsIn = !detailsIsIn;
@@ -109,6 +119,14 @@ namespace Com.Aurora.AuWeather
         private void HeaderOverlay_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             Details_Click(null, null);
+        }
+
+        private void ForecastList_Loaded(object sender, RoutedEventArgs e)
+        {
+            var p = Math.Round(ActualWidth / 320);
+            if (p == 0)
+                p = 1;
+            Context.SetPanelWidth(ActualWidth / p);
         }
     }
 }

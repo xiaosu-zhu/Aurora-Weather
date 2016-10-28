@@ -256,7 +256,7 @@
         <ViewModels:DetailsPageViewModel x:Name="Context"/>
     </Page.DataContext>
 
-    <GridView Background="{ThemeResource SystemControlForegroundHighBrush}" Style="{ThemeResource DetailsPageGridView}" x:Name="ForecastList" Padding="0,0,0,96" ItemsSource="{x:Bind ForecastSource.View,Mode=OneWay}" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <GridView Loaded="ForecastList_Loaded" Background="{ThemeResource SystemControlForegroundHighBrush}" Style="{ThemeResource DetailsPageGridView}" x:Name="ForecastList" Padding="0,0,0,96" ItemsSource="{x:Bind ForecastSource.View,Mode=OneWay}" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -326,7 +326,7 @@
         </VisualStateManager.VisualStateGroups>
         <GridView.Resources>
             <Storyboard x:Name="DetailsIn">
-                <DoubleAnimation Storyboard.TargetName="Header" To="540" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
+                <DoubleAnimation x:Name="HeaderFor" Storyboard.TargetName="Header" To="544" Storyboard.TargetProperty="Height" EnableDependentAnimation="True">
                     <DoubleAnimation.EasingFunction>
                         <QuinticEase />
                     </DoubleAnimation.EasingFunction>
@@ -453,7 +453,7 @@
             </Storyboard>
         </GridView.Resources>
         <GridView.Header>
-            <Grid x:Name="Header" MaxHeight="540" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid x:Name="Header" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid x:Name="HeaderBG" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                     <Grid.Background>
                         <ImageBrush ImageSource="{x:Bind Context.CurrentBG,Mode=OneWay}" AlignmentX="Center" AlignmentY="Center" Stretch="UniformToFill"/>
@@ -551,7 +551,7 @@
 
         <GridView.ItemTemplate>
             <DataTemplate x:DataType="ViewModels:GraphViewModel" >
-                <controls:GraphBox MaxWidth="480" Margin="4" Background="{ThemeResource SystemBackgroundHighBrush}" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Title="{x:Bind Title}" Values0="{x:Bind Values0}" FormatDecoration="{x:Bind Decorate}" Minimum="{x:Bind Minimum}" Maximum="{x:Bind Maximum}"
+                <controls:GraphBox MaxWidth="{x:Bind PanelWidth, Mode=OneWay}" Margin="4" Background="{ThemeResource SystemBackgroundHighBrush}" Foreground="{ThemeResource SystemControlHighlightAccentBrush}" Title="{x:Bind Title}" Values0="{x:Bind Values0}" FormatDecoration="{x:Bind Decorate}" Minimum="{x:Bind Minimum}" Maximum="{x:Bind Maximum}"
                                        Values1="{x:Bind Values1}" Stroke0="{x:Bind Stroke0}" XText="{x:Bind XText}"  Stroke1="{x:Bind Stroke1}" SeparatorFill="{ThemeResource SystemControlTranslucentBaseLightBrush}" />
             </DataTemplate>
         </GridView.ItemTemplate>

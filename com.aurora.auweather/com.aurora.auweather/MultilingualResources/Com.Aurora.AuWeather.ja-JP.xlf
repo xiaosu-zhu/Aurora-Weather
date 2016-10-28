@@ -1347,10 +1347,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Minor Fixes
-· Now you can set the immersive mode time out in the custom layout panel</source>
-          <target state="translated">·マイナーな修正
-·今は、カスタム レイアウト パネル没入型モードのタイムアウトを設定できます。</target>
+          <source>10K milestone reached!</source>
+          <target state="translated">10 K のマイルス トーンに到達!</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

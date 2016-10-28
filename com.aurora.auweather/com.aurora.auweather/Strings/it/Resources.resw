@@ -1018,8 +1018,7 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Correzioni minori
-· Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato</value>
+    <value>10K traguardo raggiunto!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>

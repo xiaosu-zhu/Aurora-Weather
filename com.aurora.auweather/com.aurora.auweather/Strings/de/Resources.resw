@@ -1018,8 +1018,7 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Minor Fixes
-· Nun können Sie die immersive Modus Auszeit im Feld benutzerdefinierte Layout einstellen</value>
+    <value>10K Meilenstein erreicht!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>

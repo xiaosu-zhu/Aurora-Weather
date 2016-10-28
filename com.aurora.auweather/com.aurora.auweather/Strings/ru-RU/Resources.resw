@@ -1018,8 +1018,7 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Незначительные исправления
-· Теперь вы можете установить тайм-аут погружения режим в панели макета</value>
+    <value>10K веха достигнута!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>

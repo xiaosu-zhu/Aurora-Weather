@@ -387,5 +387,26 @@ namespace Com.Aurora.AuWeather
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["JumpListDefaultEnabledBackground"] as SolidColorBrush).Color = color;
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
         }
+
+        private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (license.IsPurchased)
+            {
+                Context.Pin(sender as string);
+            }
+            else
+            {
+                MessageDialog p = new MessageDialog("Please donate to unlock this feature.");
+                await p.ShowAsync();
+            }
+        }
+
+        private void GridView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var p = Math.Round(ActualWidth / 320);
+            if (p == 0)
+                p = 1;
+            Context.SetPanelWidth(ActualWidth / p);
+        }
     }
 }

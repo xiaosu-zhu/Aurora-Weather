@@ -1142,8 +1142,7 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 少量错误修复
-· 你可以在 自定义布局 中设置沉浸模式超时时间</value>
+    <value>10K 下载量达成！</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>

@@ -1347,10 +1347,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Plein écran</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Minor Fixes
-· Now you can set the immersive mode time out in the custom layout panel</source>
-          <target state="translated">· Corrections mineures
-· Maintenant, vous pouvez définir le mode immersif time out dans le panneau de disposition personnalisé</target>
+          <source>10K milestone reached!</source>
+          <target state="translated">10K étape franchie !</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

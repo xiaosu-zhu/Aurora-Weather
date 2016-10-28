@@ -1142,8 +1142,7 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Minor Fixes
-· Now you can set the immersive mode time out in the custom layout panel</value>
+    <value>10K milestone reached!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>

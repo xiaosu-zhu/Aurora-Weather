@@ -451,6 +451,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        internal void SetPanelWidth(double v)
+        {
+            foreach (var item in Cities)
+            {
+                item.PanelWidth = v;
+            }
+        }
+
         private void RequireLocationUpdate()
         {
             this.LocationUpdate?.Invoke(this, new LocationUpdateEventArgs());
@@ -459,6 +467,11 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void OnFetchDataFailed()
         {
             this.FetchDataFailed?.Invoke(this, new FetchDataFailedEventArgs("Cities_Null"));
+        }
+
+        internal void Pin(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -481,6 +494,15 @@ namespace Com.Aurora.AuWeather.ViewModels
         public float longitude;
         public float latitude;
         internal string zmw;
+
+        private double panelWidth = 360d;
+
+        public double PanelWidth
+        {
+            get { return panelWidth; }
+            set { SetProperty(ref panelWidth, value); }
+        }
+
 
         public CityViewModel(CitySettingsModel locatedCity)
         {

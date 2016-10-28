@@ -1018,8 +1018,7 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Corrections mineures
-· Maintenant, vous pouvez définir le mode immersif time out dans le panneau de disposition personnalisé</value>
+    <value>10K étape franchie !</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>

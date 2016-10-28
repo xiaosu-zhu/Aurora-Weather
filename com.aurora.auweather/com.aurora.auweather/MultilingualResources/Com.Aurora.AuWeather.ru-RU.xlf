@@ -1347,10 +1347,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Minor Fixes
-· Now you can set the immersive mode time out in the custom layout panel</source>
-          <target state="translated">· Незначительные исправления
-· Теперь вы можете установить тайм-аут погружения режим в панели макета</target>
+          <source>10K milestone reached!</source>
+          <target state="translated">10K веха достигнута!</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>

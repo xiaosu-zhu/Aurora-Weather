@@ -40,10 +40,10 @@
                             <EntranceThemeTransition FromVerticalOffset="0" FromHorizontalOffset="320" IsStaggeringEnabled="True"/>
                         </TransitionCollection>
                     </Canvas.Transitions>
-                    <Image Source="/Assets/Tile/Snow.png" Stretch="Uniform" Height="65" Width="65" Canvas.Left="994" Canvas.Top="606" />
-                    <Image Source="/Assets/Tile/Sun Cloud.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="1016" Canvas.Top="325" />
-                    <Image Source="/Assets/Tile/Sun.png" Stretch="Uniform" Height="103" Width="103" Canvas.Left="295" Canvas.Top="255" />
-                    <Image Source="/Assets/Tile/Wind.png" Stretch="Uniform" Height="80" Width="80" Canvas.Left="1491" Canvas.Top="969" />
+                    <Image Source="/Assets/Tile/Snow.png" Stretch="Uniform" Height="30" Width="30" Canvas.Left="994" Canvas.Top="606" />
+                    <Image Source="/Assets/Tile/Sun Cloud.png" Stretch="Uniform" Height="35" Width="35" Canvas.Left="1016" Canvas.Top="325" />
+                    <Image Source="/Assets/Tile/Sun.png" Stretch="Uniform" Height="50" Width="50" Canvas.Left="295" Canvas.Top="255" />
+                    <Image Source="/Assets/Tile/Wind.png" Stretch="Uniform" Height="40" Width="40" Canvas.Left="1491" Canvas.Top="969" />
                 </Canvas>
                 <Canvas x:Name="BGLayer2" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Canvas.Transitions>
@@ -51,12 +51,12 @@
                             <EntranceThemeTransition FromVerticalOffset="0" FromHorizontalOffset="320" IsStaggeringEnabled="True"/>
                         </TransitionCollection>
                     </Canvas.Transitions>
-                    <Image Source="/Assets/Tile/Moon.png" Stretch="Uniform" Height="100" Width="100" Canvas.Left="900" Canvas.Top="102" />
-                    <Image Source="/Assets/Tile/Rain.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="666" Canvas.Top="847" />
-                    <Image Source="/Assets/Tile/Small Rain.png" Stretch="Uniform" Height="91" Width="91" Canvas.Left="1290" Canvas.Top="102" />
-                    <Image Source="/Assets/Tile/Snow Rain.png" Stretch="Uniform" Height="94" Width="94" Canvas.Left="815" Canvas.Top="720" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="478" Canvas.Top="270" FontSize="48" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="317" Canvas.Top="32" FontSize="40" />
+                    <Image Source="/Assets/Tile/Moon.png" Stretch="Uniform" Height="50" Width="50" Canvas.Left="900" Canvas.Top="102" />
+                    <Image Source="/Assets/Tile/Rain.png" Stretch="Uniform" Height="35" Width="35" Canvas.Left="666" Canvas.Top="847" />
+                    <Image Source="/Assets/Tile/Small Rain.png" Stretch="Uniform" Height="45" Width="45" Canvas.Left="1290" Canvas.Top="102" />
+                    <Image Source="/Assets/Tile/Snow Rain.png" Stretch="Uniform" Height="45" Width="45" Canvas.Left="815" Canvas.Top="720" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="478" Canvas.Top="270" FontSize="24" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome2Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="317" Canvas.Top="32" FontSize="20" />
                 </Canvas>
                 <Canvas x:Name="BGLayer1" Height="1080" Width="1920" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Canvas.Transitions>
@@ -64,12 +64,12 @@
                             <EntranceThemeTransition FromVerticalOffset="0" FromHorizontalOffset="320" IsStaggeringEnabled="True"/>
                         </TransitionCollection>
                     </Canvas.Transitions>
-                    <Image Source="/Assets/Tile/Hot.png" Stretch="Uniform" Height="85" Width="85" Canvas.Left="522" Canvas.Top="657" />
-                    <Image Source="/Assets/Tile/Moderate.png" Stretch="Uniform" Height="71" Width="71" Canvas.Left="148" Canvas.Top="79" />
-                    <Image Source="/Assets/Tile/Moon Cloud Rain.png" Stretch="Uniform" Height="87" Width="87" Canvas.Left="1105" Canvas.Top="861" />
-                    <Image Source="/Assets/Tile/Moon Cloud.png" Stretch="Uniform" Height="108" Width="108" Canvas.Left="171" Canvas.Top="884" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="340" Canvas.Top="973" FontSize="60" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="63" Canvas.Top="631" FontSize="72" />
+                    <Image Source="/Assets/Tile/Hot.png" Stretch="Uniform" Height="40" Width="40" Canvas.Left="522" Canvas.Top="657" />
+                    <Image Source="/Assets/Tile/Moderate.png" Stretch="Uniform" Height="35" Width="35" Canvas.Left="148" Canvas.Top="79" />
+                    <Image Source="/Assets/Tile/Moon Cloud Rain.png" Stretch="Uniform" Height="40" Width="40" Canvas.Left="1105" Canvas.Top="861" />
+                    <Image Source="/Assets/Tile/Moon Cloud.png" Stretch="Uniform" Height="50" Width="50" Canvas.Left="171" Canvas.Top="884" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="340" Canvas.Top="973" FontSize="30" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome1Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="63" Canvas.Top="631" FontSize="36" />
                 </Canvas>
                 <Canvas x:Name="BGLayer0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Canvas.Transitions>
@@ -77,23 +77,23 @@
                             <EntranceThemeTransition FromVerticalOffset="0" FromHorizontalOffset="320" IsStaggeringEnabled="True"/>
                         </TransitionCollection>
                     </Canvas.Transitions>
-                    <Image Source="/Assets/Tile/Cloud.png" Stretch="Uniform" Height="151" Width="151" Canvas.Left="1214" Canvas.Top="271" />
-                    <Image Source="/Assets/Tile/Cold.png" Stretch="Uniform" Height="32" Width="32" Canvas.Left="172" Canvas.Top="757" />
-                    <Image Source="/Assets/Tile/Fog.png" Stretch="Uniform" Height="104" Width="104" Canvas.Left="111" Canvas.Top="399" />
-                    <Image Source="/Assets/Tile/Haze.png" Stretch="Uniform" Height="135" Width="135" Canvas.Left="1509" Canvas.Top="154" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="1121" Canvas.Top="570" FontSize="80" />
-                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="540" Canvas.Top="440" FontSize="96" />
+                    <Image Source="/Assets/Tile/Cloud.png" Stretch="Uniform" Height="75" Width="75" Canvas.Left="1214" Canvas.Top="271" />
+                    <Image Source="/Assets/Tile/Cold.png" Stretch="Uniform" Height="16" Width="16" Canvas.Left="172" Canvas.Top="757" />
+                    <Image Source="/Assets/Tile/Fog.png" Stretch="Uniform" Height="50" Width="50" Canvas.Left="111" Canvas.Top="399" />
+                    <Image Source="/Assets/Tile/Haze.png" Stretch="Uniform" Height="60" Width="60" Canvas.Left="1509" Canvas.Top="154" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Detail" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="1121" Canvas.Top="570" FontSize="40" />
+                    <TextBlock Text="LoremIpsum" x:Uid="Welcome0Text" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="White" Canvas.Left="540" Canvas.Top="440" FontSize="48" />
                 </Canvas>
                 <StackPanel Margin="20" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.5">
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
                 </StackPanel>
                 <StackPanel Margin="20" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" >
                     <StackPanel.Clip>
-                        <RectangleGeometry Rect="180,0,72,36" >
+                        <RectangleGeometry Rect="180,0,72,18" >
                             <RectangleGeometry.Transform>
                                 <TranslateTransform x:Name="StackPanelClip" X="0" Y="0" />
                             </RectangleGeometry.Transform>
@@ -108,22 +108,22 @@
                             </DoubleAnimation>
                         </Storyboard>
                     </StackPanel.Resources>
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
-                    <FontIcon FontSize="36" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
+                    <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
                 </StackPanel>
                 <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}" Margin="0,0,-1080,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RootFrame" />
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
-                    <TextBlock x:Uid="WelcomeText" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
-                    <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    <Button Click="Button_Click" Height="96" Width="96" Style="{ThemeResource SymbolButton}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" BorderThickness="0" BorderBrush="{x:Null}" Background="{ThemeResource SystemTranslucentAltHighBrush}" >
+                <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                    <TextBlock Foreground="White" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="WelcomeText" x:Uid="WelcomeText" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
+                    <Frame RelativePanel.Below="WelcomeText" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="ForwardButton" RelativePanel.AlignRightWithPanel="True" x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <Button x:Name="ForwardButton" Foreground="White" Style="{ThemeResource FullWidthButton}" RelativePanel.AlignBottomWithPanel="True" Click="Button_Click" Height="96" Grid.Column="1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0" BorderBrush="{x:Null}" Background="{ThemeResource SystemTranslucentAltHighBrush}" >
                         <Button.Content>
                             <SymbolIcon Symbol="Forward" />
                         </Button.Content>
                     </Button>
-                </StackPanel>
+                </RelativePanel>
             </Grid>
         </ScrollViewer>
     </Grid>

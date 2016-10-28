@@ -375,6 +375,14 @@ namespace Com.Aurora.AuWeather.ViewModels
             });
         }
 
+        internal void SetPanelWidth(double v)
+        {
+            foreach (var item in Forecasts)
+            {
+                item.PanelWidth = v;
+            }
+        }
+
         private async Task InitialViewModel()
         {
             CurrentTime = DateTime.Now;
@@ -823,6 +831,15 @@ namespace Com.Aurora.AuWeather.ViewModels
         public double Maximum { get; private set; }
 
         public string XText { get; private set; }
+
+
+        private double panelWidth = 480d;
+
+        public double PanelWidth
+        {
+            get { return panelWidth; }
+            set { SetProperty(ref panelWidth, value); }
+        }
 
         public GraphViewModel(ICollection<KeyValuePair<int, double>> values0, ICollection<KeyValuePair<int, double>> values1, Brush stroke0, Brush stroke1, string title, string decorate, double min, double max, string xtext)
         {

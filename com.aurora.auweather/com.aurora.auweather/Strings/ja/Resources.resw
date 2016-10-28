@@ -1018,8 +1018,7 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·マイナーな修正
-·今は、カスタム レイアウト パネル没入型モードのタイムアウトを設定できます。</value>
+    <value>10 K のマイルス トーンに到達!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>

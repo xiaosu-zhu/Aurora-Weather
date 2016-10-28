@@ -871,11 +871,12 @@
             </CommandBar>
             <TextBlock x:Uid="CitiesText" x:Name="TitleText" Foreground="{x:Bind HeaderGrid.Background,Mode=OneWay,Converter={StaticResource ThemeColorConverter}}"  Style="{ThemeResource TitleTextBlockStyle}" FontSize="20" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="12,0,12,12" />
         </RelativePanel>
-        <GridView ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
+        <GridView Loaded="GridView_Loaded" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel Background="{ThemeResource SystemControlHighlightAccentBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="320" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image Stretch="UniformToFill" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" />
+                    <RelativePanel Background="{ThemeResource SystemControlHighlightAccentBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="{x:Bind PanelWidth, Mode=OneWay}" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image Stretch="UniformToFill" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
+                        </Image>
                         <Grid Visibility="{x:Bind Updated, Converter={StaticResource BoolNottoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

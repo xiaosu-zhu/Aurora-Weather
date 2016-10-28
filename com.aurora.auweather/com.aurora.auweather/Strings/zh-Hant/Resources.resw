@@ -1142,8 +1142,7 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 少量錯誤修復
-· 你可以在 自定義佈局 中設置沉浸糢式超時時間</value>
+    <value>10K 下載量達成！</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>

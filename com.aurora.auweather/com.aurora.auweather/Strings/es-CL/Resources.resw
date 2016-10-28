@@ -1018,8 +1018,7 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Menor de edad corrige
-· Ahora puede establecer el modo envolvente tiempo fuera en el panel de diseño personalizado</value>
+    <value>10K hito alcanzado!</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
