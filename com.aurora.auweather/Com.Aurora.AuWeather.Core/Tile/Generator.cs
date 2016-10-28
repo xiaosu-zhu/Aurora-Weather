@@ -16,11 +16,59 @@ using Windows.ApplicationModel.Resources;
 using Com.Aurora.AuWeather.Core.LunarCalendar;
 using Windows.Data.Xml.Dom;
 using Com.Aurora.Shared.Extensions;
+using Windows.UI.StartScreen;
+using Com.Aurora.AuWeather.Core.Models;
+using Com.Aurora.Shared.Helpers;
+using System.Linq;
 
 namespace Com.Aurora.AuWeather.Tile
 {
     public static class Generator
     {
+
+        public static async Task UpdateSubTiles(SettingsModel settings)
+        {
+            var tiles = await SecondaryTile.FindAllForPackageAsync();
+            var list = tiles.ToList();
+            foreach (var item in settings.Cities.SavedCities)
+            {
+                try
+                {
+                    var tile = list.Find(x =>
+                    {
+                        return x.TileId == item.Id;
+                    });
+                    if (tile != null)
+                    {
+                        string resstr = await Request.GetRequest(settings, item);
+                        if (!resstr.IsNullorEmpty())
+                        {
+                            var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                            if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
+                            {
+                                return;
+                            }
+                            var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
+                            var current = DateTimeHelper.ReviseLoc(utcOffset);
+                            try
+                            {
+                                Sender.CreateSubTileNotification(await Generator.CreateAll(item, fetchresult, current), item.Id);
+                            }
+                            catch (Exception)
+                            { }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+
+        }
+
+
         public static TileContent GenerateNormalTile(HeWeatherModel model, bool isNight, string glance, string glanceFull, Uri uri, int todayIndex, CitySettingsModel currentCity, SettingsModel settings)
         {
             var ctosConverter = new ConditiontoTextConverter();

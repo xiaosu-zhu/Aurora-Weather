@@ -1142,9 +1142,8 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Fixed an issue that secondary tiles don't update
-· Fixed an issue that secondary tiles' layout to be incorrect
-· Welcome Page Re-designed</value>
+    <value>· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1168,7 +1167,11 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel
+
+1.6.16100
 · Fixed an issue that secondary tiles don't update
 · Fixed an issue that secondary tiles' layout to be incorrect
 · Welcome Page Re-designed
@@ -1399,7 +1402,7 @@ Now you can send crash report to developer, and totally help this app get better
   <data name="Scale.Text" xml:space="preserve">
     <value>Wind Scale</value>
   </data>
-    <data name="ScaleText" xml:space="preserve">
+  <data name="ScaleText" xml:space="preserve">
     <value>Wind Scale</value>
   </data>
   <data name="Dir.Text" xml:space="preserve">
@@ -1536,5 +1539,8 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>Immersive mode time out, set to 0 will display forever</value>
   </data>
 </root>

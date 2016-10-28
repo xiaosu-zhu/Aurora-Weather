@@ -1347,12 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Schermo intero</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that secondary tiles don't update
-· Fixed an issue that secondary tiles' layout to be incorrect
-· Welcome Page Re-designed</source>
-          <target state="translated">· Risolto un problema che i riquadri secondari non aggiornano
-· Risolto un problema di layout di quello secondario delle piastrelle per essere errato
-· Pagina di benvenuto ri-progettato</target>
+          <source>· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel</source>
+          <target state="translated">· Correzioni minori
+· Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1381,11 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Aggiornamento del registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16100
+          <source>1.6.16101
+· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel
+
+1.6.16100
 · Fixed an issue that secondary tiles don't update
 · Fixed an issue that secondary tiles' layout to be incorrect
 · Welcome Page Re-designed
@@ -1458,7 +1460,11 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16100
+          <target state="translated">1.6.16101
+· Correzioni minori
+· Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato
+
+1.6.16100
 · Risolto un problema che i riquadri secondari non aggiornano
 · Risolto un problema di layout di quello secondario delle piastrelle per essere errato
 · Pagina di benvenuto ri-progettato
@@ -1957,6 +1963,10 @@ domani: {4}, {5}.</target>
         <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
           <source>Wind Scale</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Scala del vento</target>
+        </trans-unit>
+        <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
+          <source>Immersive mode time out, set to 0 will display forever</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Timeout di modalità immersiva, impostato a 0 visualizzerà per sempre</target>
         </trans-unit>
       </group>
     </body>

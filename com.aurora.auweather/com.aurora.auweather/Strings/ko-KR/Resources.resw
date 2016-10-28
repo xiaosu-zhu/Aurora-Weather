@@ -1018,9 +1018,8 @@
     <value>전체 화면</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 문제 해결 보조 타일
-· 업데이트 되지 않습니다 잘못 된
-· 수는 보조 타일의 레이아웃 문제 해결 환영 페이지 다시 디자인</value>
+    <value>· 마이너 수정
+· 이제 사용자 지정 레이아웃 패널에 몰입 모드 시간 초과 설정할 수 있습니다.</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>새로운 오신 버전</value>
@@ -1044,8 +1043,12 @@
     <value>업데이트 로그</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
-· 문제 해결 보조 타일
+    <value>1.6.16101
+· 마이너 수정
+· 이제 사용자 지정 레이아웃 패널
+
+1.6.16100
+에에서 몰입 모드 시간 초과 설정할 수 있습니다 · 문제 해결 보조 타일
 · 업데이트 되지 않습니다 잘못 된
 · 수는 보조 타일의 레이아웃 문제 해결 시작 페이지 다시 디자인 된
 
@@ -1431,5 +1434,8 @@
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>바람 규모</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>몰입 모드 시간 초과, 0로 설정 표시 영원히</value>
   </data>
 </root>

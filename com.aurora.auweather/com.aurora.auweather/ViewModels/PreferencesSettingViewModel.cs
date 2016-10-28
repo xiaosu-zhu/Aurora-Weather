@@ -118,6 +118,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     TransparentTile = Preferences.TransparentTile;
                     AlwaysBlur = Preferences.AlwaysBlur;
                     EnableDebug = Preferences.EnableCrashReport;
+                    ImmersiveTimeout = Preferences.ImmersiveTimeout;
 
                     StartTime = Preferences.StartTime;
                     EndTime = Preferences.EndTime;
@@ -185,6 +186,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private bool transparentTile;
         private bool alwaysBlur;
         private TimeSpan morningNoteTime;
+        private double immerTime;
 
         private void OnFetchDataComplete()
         {
@@ -726,6 +728,18 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public double ImmersiveTimeout
+        {
+            get
+            {
+                return immerTime;
+            }
+            set
+            {
+                SetProperty(ref immerTime, value);
+                Preferences.ImmersiveTimeout = value;
+            }
+        }
 
         internal async void RegBG()
         {

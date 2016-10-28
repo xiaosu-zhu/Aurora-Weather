@@ -1142,8 +1142,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正了钉选的其他城市磁贴的布局，并可以后台更新
-· 重新设计欢迎页</value>
+    <value>· 少量错误修复
+· 你可以在 自定义布局 中设置沉浸模式超时时间</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1167,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· 少量错误修复
+· 你可以在 自定义布局 中设置沉浸模式超时时间
+
+1.6.16100
 · 修正了钉选的其他城市磁贴的布局，并可以后台更新
 · 重新设计欢迎页
 
@@ -1508,7 +1512,7 @@
     <value></value>
   </data>
   <data name="BrandText.Text" xml:space="preserve">
-    <value>为你呈现。</value>
+    <value>为你呈献。</value>
   </data>
   <data name="DevText.Text" xml:space="preserve">
     <value>代码与 UI/UX 设计由 </value>
@@ -1533,5 +1537,8 @@
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
     <value>隐私政策</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>沉浸模式超时时间，0 为一直显示</value>
   </data>
 </root>

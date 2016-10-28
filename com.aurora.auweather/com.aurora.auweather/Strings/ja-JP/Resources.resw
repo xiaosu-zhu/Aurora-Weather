@@ -1018,9 +1018,8 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·問題を修正しましたセカンダリ タイルは
-· を更新しません。不適切な
-· にそのセカンダリ タイルのレイアウトを修正[ようこそ] ページに再設計</value>
+    <value>·マイナーな修正
+·今は、カスタム レイアウト パネル没入型モードのタイムアウトを設定できます。</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1044,8 +1043,12 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
-·問題を修正しましたセカンダリ タイルは
+    <value>1.6.16101
+·マイナーな修正
+·カスタム レイアウト パネル
+
+1.6.16100
+で没入型モードのタイムアウトを置くことができる ·問題を修正しましたセカンダリ タイルは
 · を更新しません。不適切な
 · にそのセカンダリ タイルのレイアウトを修正[ようこそ] ページの再設計された
 
@@ -1431,5 +1434,8 @@
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>風スケール</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>没入型モード時間を 0 に設定するが表示されます永遠に</value>
   </data>
 </root>

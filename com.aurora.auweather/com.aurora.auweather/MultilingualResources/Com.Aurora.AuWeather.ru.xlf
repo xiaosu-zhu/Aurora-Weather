@@ -1347,12 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that secondary tiles don't update
-· Fixed an issue that secondary tiles' layout to be incorrect
-· Welcome Page Re-designed</source>
-          <target state="translated">· Исправлена проблема, что вторичные плитки не обновлять
-· Исправлена проблема, что вторичные плитки макет, чтобы быть неправильно
-· Начальная страница изменена</target>
+          <source>· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel</source>
+          <target state="translated">· Незначительные исправления
+· Теперь вы можете установить тайм-аут погружения режим в панели макета</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1381,11 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Обновление журнала</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16100
+          <source>1.6.16101
+· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel
+
+1.6.16100
 · Fixed an issue that secondary tiles don't update
 · Fixed an issue that secondary tiles' layout to be incorrect
 · Welcome Page Re-designed
@@ -1458,7 +1460,11 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16100
+          <target state="translated">1.6.16101
+· Незначительные исправления
+· Теперь вы можете установить тайм-аут погружения режим макета панели
+
+1.6.16100
 · Исправлена проблема, что вторичные плитки не обновлять
 · Исправлена проблема, что вторичные плитки макет, чтобы быть неправильно
 · Страница приветствия вновь разработанные
@@ -1957,6 +1963,10 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
           <source>Wind Scale</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Шкала ветра</target>
+        </trans-unit>
+        <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
+          <source>Immersive mode time out, set to 0 will display forever</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Погружения режиме время ожидания, установите значение 0, будет отображаться навсегда</target>
         </trans-unit>
       </group>
     </body>

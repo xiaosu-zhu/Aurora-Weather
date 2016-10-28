@@ -1258,6 +1258,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public ObservableCollection<WeatherAlarmViewModel> Alarms = new ObservableCollection<WeatherAlarmViewModel>();
         private bool alwaysBlur;
+        private double immersiveTimeout = 2;
 
         #endregion
         #region events
@@ -1307,6 +1308,18 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public double ImmersiveTimeout
+        {
+            get
+            {
+                return immersiveTimeout;
+            }
+            set
+            {
+                SetProperty(ref immersiveTimeout, value);
+            }
+        }
+
         public void RefreshAsync()
         {
             Init();
@@ -1331,6 +1344,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 IsNowPanelLow = settings.Preferences.IsNowPanelLowStyle;
                 SetWallPaper = settings.Preferences.SetWallPaper;
                 AlwaysBlur = settings.Preferences.AlwaysBlur;
+                ImmersiveTimeout = settings.Preferences.ImmersiveTimeout;
             }
             catch (NullReferenceException)
             {
@@ -1366,6 +1380,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                             return;
                         }
                         Sender.CreateMainTileQueue(await Generator.CreateAll(currentCityModel, fetchresult, DateTimeHelper.ReviseLoc(utcOffset)));
+                        var xiaob = ThreadPool.RunAsync(async (dab) =>
+                        {
+                            await Generator.UpdateSubTiles(settings);
+                        });
                         if (settings.Preferences.EnableMorning)
                         {
                             var shu1 = settings.Preferences.MorningNoteTime.TotalHours;

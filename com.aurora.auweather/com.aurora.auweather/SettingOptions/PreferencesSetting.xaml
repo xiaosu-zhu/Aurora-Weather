@@ -192,6 +192,13 @@
                                             <TextBlock x:Uid="SuggestsPanelText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
                                             <ToggleSwitch Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.SuggestHide,Converter={StaticResource ReverseBoolConverter},Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="16" />
                                         </Grid>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                            <TextBlock x:Uid="ImmersiveTimeOutText" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Center" />
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <Slider Width="240" x:Name="ImmersiveTimeoutSlider" Minimum="0" Maximum="60" StepFrequency="1" Value="{x:Bind Context.ImmersiveTimeout, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8" />
+                                                <TextBlock Text="{x:Bind ImmersiveTimeoutSlider.Value,Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,8,8" />
+                                            </StackPanel>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Flyout>
                             </Button.Flyout>

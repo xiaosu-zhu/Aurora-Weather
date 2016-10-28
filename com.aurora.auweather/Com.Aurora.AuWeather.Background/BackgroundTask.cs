@@ -19,7 +19,6 @@ using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.StartScreen;
 
 namespace Com.Aurora.AuWeather.Background
 {
@@ -51,51 +50,9 @@ namespace Com.Aurora.AuWeather.Background
                 var currentCity = settings.Cities.SavedCities[settings.Cities.CurrentIndex];
                 await Init(settings, currentCity);
             }
-            await UpdateSubTiles(settings);
+            await Generator.UpdateSubTiles(settings);
             //await FileIOHelper.AppendLogtoCacheAsync("Background Task Completed");
             deferral.Complete();
-        }
-
-        private async Task UpdateSubTiles(SettingsModel settings)
-        {
-            var tiles = await SecondaryTile.FindAllAsync();
-            var list = tiles.ToList();
-            foreach (var item in settings.Cities.SavedCities)
-            {
-                try
-                {
-                    var tile = list.Find(x =>
-                    {
-                        return x.TileId == item.Id;
-                    });
-                    if (tile != null)
-                    {
-                        string resstr = await Request.GetRequest(settings, item);
-                        if (!resstr.IsNullorEmpty())
-                        {
-                            var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
-                            if (fetchresult == null || fetchresult.DailyForecast == null || fetchresult.HourlyForecast == null)
-                            {
-                                return;
-                            }
-                            var utcOffset = fetchresult.Location.UpdateTime - fetchresult.Location.UtcTime;
-                            var current = DateTimeHelper.ReviseLoc(utcOffset);
-                            try
-                            {
-                                Sender.CreateSubTileNotification(await Generator.CreateAll(item, fetchresult, current), item.Id);
-                            }
-                            catch (Exception)
-                            { }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-
-                }
-
-            }
-
         }
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)

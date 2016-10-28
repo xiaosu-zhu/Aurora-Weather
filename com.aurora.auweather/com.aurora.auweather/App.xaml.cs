@@ -39,6 +39,7 @@ namespace Com.Aurora.AuWeather
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
+            Windows.System.MemoryManager.TrySetAppMemoryUsageLimit(390);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

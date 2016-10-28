@@ -1018,9 +1018,8 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Solucionado un problema que azulejos secundarios no actualización
-· Solucionado un problema de diseño azulejos secundario para ser incorrecto
-· Bienvenidos página reajustado</value>
+    <value>· Menor de edad corrige
+· Ahora puede establecer el modo envolvente tiempo fuera en el panel de diseño personalizado</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1044,7 +1043,11 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· Menor de edad corrige
+· Ahora puede configurar el modo envolvente tiempo fuera en el panel de diseño personalizado
+
+1.6.16100
 · Solucionado un problema que azulejos secundarios no actualización
 · Solucionado un problema de diseño azulejos secundario para ser incorrecto
 · Página de bienvenida nuevo diseño
@@ -1424,5 +1427,8 @@ mañana: {4}, {5}.</value>
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>Escala de viento</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>Modo de inmersión de tiempo de espera, valor 0 mostrará para siempre</value>
   </data>
 </root>

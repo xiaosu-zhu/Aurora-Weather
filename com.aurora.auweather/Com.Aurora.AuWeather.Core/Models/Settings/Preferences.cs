@@ -34,6 +34,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
 
         public uint RefreshFrequency { get; set; } = 90;
         public uint NowPanelHeight { get; set; } = 320;
+        public double ImmersiveTimeout { get; set; } = 2;
+
         public RequestedTheme Theme { get; private set; } = RequestedTheme.Auto;
 
         public bool DisableDynamic { get; set; } = false;

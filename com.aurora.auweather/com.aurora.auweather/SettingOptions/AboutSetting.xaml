@@ -343,6 +343,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         </Flyout>
                     </Button.Flyout>
                 </Button>
+                <HyperlinkButton MaxWidth="96" NavigateUri="https://embracez.xyz/aurora-studio/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12">
+                    <Image Source="/Assets/QQ_group.png" Stretch="Uniform"/>
+                </HyperlinkButton>
             </StackPanel>
             <ContentDialog Margin="12,32,12,96" PrimaryButtonClick="FeedbackDialog_PrimaryButtonClick" SecondaryButtonClick="FeedbackDialog_SecondaryButtonClick"
     x:Name="FeedbackDialog" IsPrimaryButtonEnabled="True" x:Uid="FeedbackDialog">

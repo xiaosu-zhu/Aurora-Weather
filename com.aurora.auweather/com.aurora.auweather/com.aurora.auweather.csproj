@@ -384,6 +384,7 @@
     <Content Include="Assets\Particle\smoke6.png" />
     <Content Include="Assets\Particle\snow.png" />
     <Content Include="Assets\Particle\star.png" />
+    <Content Include="Assets\QQ_group.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
@@ -877,11 +878,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de-DE.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.de.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.es-CL.xlf">
@@ -904,6 +900,11 @@
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ko.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ru-RU.xlf" />
     <XliffResource Include="MultilingualResources\Com.Aurora.AuWeather.ru.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

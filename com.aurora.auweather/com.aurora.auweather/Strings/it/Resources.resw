@@ -1018,9 +1018,8 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Risolto un problema che i riquadri secondari non aggiornano
-· Risolto un problema di layout di quello secondario delle piastrelle per essere errato
-· Pagina di benvenuto ri-progettato</value>
+    <value>· Correzioni minori
+· Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1044,7 +1043,11 @@
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· Correzioni minori
+· Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato
+
+1.6.16100
 · Risolto un problema che i riquadri secondari non aggiornano
 · Risolto un problema di layout di quello secondario delle piastrelle per essere errato
 · Pagina di benvenuto ri-progettato
@@ -1431,5 +1434,8 @@ domani: {4}, {5}.</value>
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>Scala del vento</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>Timeout di modalità immersiva, impostato a 0 visualizzerà per sempre</value>
   </data>
 </root>

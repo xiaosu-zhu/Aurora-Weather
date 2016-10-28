@@ -669,6 +669,14 @@ namespace Com.Aurora.AuWeather
             {
                 MainCanvas.Width = double.NaN;
                 MainCanvas.Height = double.NaN;
+                if (Context.ImmersiveTimeout == 0)
+                {
+                    if (immersiveTimer != null)
+                    {
+                        immersiveTimer.Cancel();
+                    }
+                    return;
+                }
                 if (immersiveTimer != null)
                 {
                     immersiveTimer.Cancel();
@@ -677,7 +685,7 @@ namespace Com.Aurora.AuWeather
                 immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
                     {
                         await GotoImmersiveAllin();
-                    }, TimeSpan.FromSeconds(1));
+                    }, TimeSpan.FromSeconds(Context.ImmersiveTimeout));
             };
             ImmersiveTransAni.Begin();
             if (fengcheTimer != null)
@@ -703,6 +711,14 @@ namespace Com.Aurora.AuWeather
                     ImmersiveAllBack.Begin();
                     isImmersiveAllIn = false;
                 }
+                if (Context.ImmersiveTimeout == 0)
+                {
+                    if (immersiveTimer != null)
+                    {
+                        immersiveTimer.Cancel();
+                    }
+                    return;
+                }
                 if (immersiveTimer != null)
                 {
                     immersiveTimer.Cancel();
@@ -712,7 +728,7 @@ namespace Com.Aurora.AuWeather
                 {
                     await GotoImmersiveAllin();
 
-                }, TimeSpan.FromSeconds(2));
+                }, TimeSpan.FromSeconds(Context.ImmersiveTimeout));
             }
         }
 
@@ -785,6 +801,14 @@ namespace Com.Aurora.AuWeather
 
         private void Flyout_Closed(object sender, object e)
         {
+            if(Context.ImmersiveTimeout == 0)
+            {
+                if (immersiveTimer != null)
+                {
+                    immersiveTimer.Cancel();
+                }
+                return;
+            }
             if (immersiveTimer != null)
             {
                 immersiveTimer.Cancel();
@@ -792,7 +816,7 @@ namespace Com.Aurora.AuWeather
             immersiveTimer = ThreadPoolTimer.CreateTimer(async (task) =>
             {
                 await GotoImmersiveAllin();
-            }, TimeSpan.FromSeconds(1));
+            }, TimeSpan.FromSeconds(Context.ImmersiveTimeout));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

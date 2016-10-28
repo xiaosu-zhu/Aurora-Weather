@@ -1018,9 +1018,8 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Correction d’un problème secondaires tuiles ne mettre à jour
-· Correction d’un problème mise en page que carreaux secondaire pour être incorrect
-· Page d’accueil redessinée</value>
+    <value>· Corrections mineures
+· Maintenant, vous pouvez définir le mode immersif time out dans le panneau de disposition personnalisé</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1044,7 +1043,11 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· Corrections mineures
+· Maintenant, vous pouvez définir le mode immersif time out dans le panneau de disposition personnalisé
+
+1.6.16100
 · Correction d’un problème secondaires tuiles ne mettre à jour
 · Correction d’un problème mise en page que carreaux secondaire pour être incorrect
 · Page d’accueil redessinée
@@ -1431,5 +1434,8 @@ demain: {4}, {5}.</value>
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>Échelle de vent</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>Immersif mode temporisation, la valeur 0 affiche forever</value>
   </data>
 </root>

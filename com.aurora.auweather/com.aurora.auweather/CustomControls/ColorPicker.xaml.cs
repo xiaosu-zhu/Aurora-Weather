@@ -119,7 +119,7 @@ namespace Com.Aurora.AuWeather.CustomControls
                 foreach (string item in colors)
                 {
                     if (ulong.TryParse(item.Trim().Remove(0, 2), NumberStyles.HexNumber, provider, out value))
-                        list.Add(new ColorGrid(new SolidColorBrush(Windows.UI.Color.FromArgb((byte)((value >> 24) & 0xFF), (byte)((value >> 16) & 0xFF), (byte)((value >> 8) & 0xFF), (byte)((value) & 0xFF))), picker.ColorGridWidth, picker.ColorGridHeight));
+                        list.Add(new ColorGrid(new SolidColorBrush(Color.FromArgb((byte)((value >> 24) & 0xFF), (byte)((value >> 16) & 0xFF), (byte)((value >> 8) & 0xFF), (byte)((value) & 0xFF))), picker.ColorGridWidth, picker.ColorGridHeight));
                 }
                 if (list.Count > 0)
                     picker.Root.ItemsSource = list;

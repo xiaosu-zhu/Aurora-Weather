@@ -1142,8 +1142,8 @@
     <value>開啓全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 修正了釘選的其他城市磁貼的佈局，並可以後臺更新
-· 重新設計歡迎頁</value>
+    <value>· 少量錯誤修復
+· 你可以在 自定義佈局 中設置沉浸糢式超時時間</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>歡迎來到新版本</value>
@@ -1167,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
+    <value>1.6.16101
+· 少量錯誤修復
+· 你可以在 自定義佈局 中設置沉浸糢式超時時間
+
+1.6.16100
 · 修正了釘選的其他城市磁貼的佈局，並可以後臺更新
 · 重新設計歡迎頁
 
@@ -1512,7 +1516,7 @@
     <value></value>
   </data>
   <data name="BrandText.Text" xml:space="preserve">
-    <value>爲你呈現。</value>
+    <value>爲你呈獻。</value>
   </data>
   <data name="DevText.Text" xml:space="preserve">
     <value>代碼與 UI/UX 設計由 </value>
@@ -1537,5 +1541,8 @@
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
     <value>隱私政策</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>沉浸糢式超时时间，0 为一直显示</value>
   </data>
 </root>

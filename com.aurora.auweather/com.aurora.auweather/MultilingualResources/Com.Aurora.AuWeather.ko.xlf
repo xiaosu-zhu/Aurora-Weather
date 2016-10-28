@@ -1347,12 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">전체 화면</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that secondary tiles don't update
-· Fixed an issue that secondary tiles' layout to be incorrect
-· Welcome Page Re-designed</source>
-          <target state="translated">· 문제 해결 보조 타일
-· 업데이트 되지 않습니다 잘못 된
-· 수는 보조 타일의 레이아웃 문제 해결 환영 페이지 다시 디자인</target>
+          <source>· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel</source>
+          <target state="translated">· 마이너 수정
+· 이제 사용자 지정 레이아웃 패널에 몰입 모드 시간 초과 설정할 수 있습니다.</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1381,11 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">업데이트 로그</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16100
+          <source>1.6.16101
+· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel
+
+1.6.16100
 · Fixed an issue that secondary tiles don't update
 · Fixed an issue that secondary tiles' layout to be incorrect
 · Welcome Page Re-designed
@@ -1458,8 +1460,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16100
-· 문제 해결 보조 타일
+          <target state="translated">1.6.16101
+· 마이너 수정
+· 이제 사용자 지정 레이아웃 패널
+
+1.6.16100
+에에서 몰입 모드 시간 초과 설정할 수 있습니다 · 문제 해결 보조 타일
 · 업데이트 되지 않습니다 잘못 된
 · 수는 보조 타일의 레이아웃 문제 해결 시작 페이지 다시 디자인 된
 
@@ -1957,6 +1963,10 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
           <source>Wind Scale</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">바람 규모</target>
+        </trans-unit>
+        <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
+          <source>Immersive mode time out, set to 0 will display forever</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">몰입 모드 시간 초과, 0로 설정 표시 영원히</target>
         </trans-unit>
       </group>
     </body>

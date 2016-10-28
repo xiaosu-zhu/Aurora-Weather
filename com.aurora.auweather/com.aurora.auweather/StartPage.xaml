@@ -95,13 +95,13 @@
                     <StackPanel.Clip>
                         <RectangleGeometry Rect="180,0,72,36" >
                             <RectangleGeometry.Transform>
-                                <TranslateTransform x:Name="Clip" X="0" Y="0" />
+                                <TranslateTransform x:Name="StackPanelClip" X="0" Y="0" />
                             </RectangleGeometry.Transform>
                         </RectangleGeometry>
                     </StackPanel.Clip>
                     <StackPanel.Resources>
                         <Storyboard x:Name="IndAni" RepeatBehavior="Forever" >
-                            <DoubleAnimation Storyboard.TargetName="Clip" Storyboard.TargetProperty="X" From="0" To="-252" Duration="0:0:2.4" EnableDependentAnimation="True">
+                            <DoubleAnimation Storyboard.TargetName="StackPanelClip" Storyboard.TargetProperty="X" From="0" To="-252" Duration="0:0:2.4" EnableDependentAnimation="True">
                                 <DoubleAnimation.EasingFunction>
                                     <QuinticEase />
                                 </DoubleAnimation.EasingFunction>

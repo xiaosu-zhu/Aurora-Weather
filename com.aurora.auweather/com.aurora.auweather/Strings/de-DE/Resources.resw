@@ -1018,9 +1018,8 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
-· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
-· Willkommen-Seite neu gestaltet</value>
+    <value>· Minor Fixes
+· Nun können Sie die immersive Modus Auszeit im Feld benutzerdefinierte Layout einstellen</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1044,8 +1043,12 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16100
-· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+    <value>1.6.16101
+· Minor Fixes
+· Jetzt der immersiven Modus Auszeit im Feld benutzerdefinierte Layout
+
+1.6.16100
+festlegen · Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
 · Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
 · Willkommen-Seite neu gestaltet
 
@@ -1431,5 +1434,8 @@ Morgen: {4}, {5}.</value>
   </data>
   <data name="ScaleText" xml:space="preserve">
     <value>Wind-Skala</value>
+  </data>
+  <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
+    <value>Immersive Modus Timeout auf 0 gesetzt zeigt ewig</value>
   </data>
 </root>

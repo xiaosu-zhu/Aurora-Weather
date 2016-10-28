@@ -1347,12 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vollbild</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue that secondary tiles don't update
-· Fixed an issue that secondary tiles' layout to be incorrect
-· Welcome Page Re-designed</source>
-          <target state="translated">· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
-· Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
-· Willkommen-Seite neu gestaltet</target>
+          <source>· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel</source>
+          <target state="translated">· Minor Fixes
+· Nun können Sie die immersive Modus Auszeit im Feld benutzerdefinierte Layout einstellen</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1381,11 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Update-Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16100
+          <source>1.6.16101
+· Minor Fixes
+· Now you can set the immersive mode time out in the custom layout panel
+
+1.6.16100
 · Fixed an issue that secondary tiles don't update
 · Fixed an issue that secondary tiles' layout to be incorrect
 · Welcome Page Re-designed
@@ -1458,8 +1460,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16100
-· Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
+          <target state="translated">1.6.16101
+· Minor Fixes
+· Jetzt der immersiven Modus Auszeit im Feld benutzerdefinierte Layout
+
+1.6.16100
+festlegen · Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
 · Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
 · Willkommen-Seite neu gestaltet
 
@@ -1957,6 +1963,10 @@ Morgen: {4}, {5}.</target>
         <trans-unit id="ScaleText" translate="yes" xml:space="preserve">
           <source>Wind Scale</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Wind-Skala</target>
+        </trans-unit>
+        <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
+          <source>Immersive mode time out, set to 0 will display forever</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Immersive Modus Timeout auf 0 gesetzt zeigt ewig</target>
         </trans-unit>
       </group>
     </body>
