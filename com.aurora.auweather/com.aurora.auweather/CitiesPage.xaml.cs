@@ -188,16 +188,6 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void RelativePanel_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            ((sender as RelativePanel).Children[2] as ScrollViewer).ChangeView(0, 36, 1);
-        }
-
-        private void RelativePanel_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            ((sender as RelativePanel).Children[2] as ScrollViewer).ChangeView(0, 0, 1);
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (isEditMode)
@@ -403,7 +393,7 @@ namespace Com.Aurora.AuWeather
 
         private void GridView_Loaded(object sender, RoutedEventArgs e)
         {
-            var p = Math.Round(ActualWidth / 320);
+            var p = Math.Round(ActualWidth / 336);
             if (p == 0)
                 p = 1;
             Context.SetPanelWidth(ActualWidth / p);

@@ -422,7 +422,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             City = currentCityModel.City;
             isNight = WeatherModel.CalculateIsNight(CurrentTime, sunRise, sunSet);
-            this.Glance = Models.Glance.GenerateGlanceDescription(fetchresult, isNight, TempratureandDegreeConverter.Parameter, DateTime.Now);
+            this.Glance = Models.Glance.GenerateGlanceDescription(fetchresult, isNight, TemperatureDecoratorConverter.Parameter, DateTime.Now);
             CityGlance = (City + "  " + Glance);
             Date = CurrentTime.ToString(settings.Preferences.GetDateFormat());
 
@@ -473,7 +473,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     if (fetchresult.HourlyForecast[i].Temprature != null)
                     {
-                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.HourlyForecast[i].Temprature.ActualDouble(TempratureandDegreeConverter.Parameter)));
+                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.HourlyForecast[i].Temprature.ActualDouble(TemperatureDecoratorConverter.Parameter)));
                     }
                     if (fetchresult.HourlyForecast[i].Pop != default(uint))
                     {
@@ -488,7 +488,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (doubles0 != null && doubles0.Count > 1)
                 {
                     GetHourlyXText(doubles0, sb);
-                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999, sb.ToString()));
+                    Forecasts.Add(new GraphViewModel(doubles0, null, new SolidColorBrush(Palette.GetRandom()), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("HourlyDetailsTemperature"), doubles0.Count), Temperature.GetFormat(TemperatureDecoratorConverter.Parameter), -280, 9999, sb.ToString()));
                 }
                 if (doubles1 != null && doubles1.Count > 1)
                 {
@@ -515,8 +515,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 {
                     if (fetchresult.DailyForecast[i].HighTemp != null && fetchresult.DailyForecast[i].LowTemp != null)
                     {
-                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].HighTemp.ActualDouble(TempratureandDegreeConverter.Parameter)));
-                        doubles1.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].LowTemp.ActualDouble(TempratureandDegreeConverter.Parameter)));
+                        doubles0.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].HighTemp.ActualDouble(TemperatureDecoratorConverter.Parameter)));
+                        doubles1.Add(new KeyValuePair<int, double>(i, fetchresult.DailyForecast[i].LowTemp.ActualDouble(TemperatureDecoratorConverter.Parameter)));
                     }
                     if (fetchresult.DailyForecast[i].Pop != default(uint))
                     {
@@ -539,7 +539,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (!doubles0.IsNullorEmpty() && !doubles1.IsNullorEmpty())
                 {
                     GetDailyXText(doubles0, sb);
-                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Palette.Orange), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TempratureandDegreeConverter.Parameter), -280, 9999, sb.ToString()));
+                    Forecasts.Add(new GraphViewModel(doubles0, doubles1, new SolidColorBrush(Palette.Orange), new SolidColorBrush(Palette.Cyan), string.Format(loader.GetString("DailyDetailsTemp"), doubles0.Count), Temperature.GetFormat(TemperatureDecoratorConverter.Parameter), -280, 9999, sb.ToString()));
                 }
                 if (doubles2 != null && doubles2.Count > 1)
                 {
@@ -789,7 +789,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialConverterParameter(SettingsModel settings)
         {
-            TempratureandDegreeConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
+            TemperatureDecoratorConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
             DateTimeConverter.ChangeParameter(settings.Preferences.GetForecastFormat());
             var p = settings.Preferences.GetHourlyFormat();
             HourMinuteConverter.ChangeParameter(p);

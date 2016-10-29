@@ -127,6 +127,10 @@ namespace Com.Aurora.AuWeather.Effects
                     // 初始化粒子参数
                     InitializeParticle(particle, where);
                     // 将此粒子加入激活粒子队列
+                    if (ActiveParticles.Capacity <= ActiveParticles.Count)
+                    {
+                        ActiveParticles.Capacity *= 2;
+                    }
                     activeParticles.Add(particle);
                 }
             }
@@ -177,7 +181,11 @@ namespace Com.Aurora.AuWeather.Effects
                 for (int i = activeParticles.Count - 1; i >= 0; i--)
                 {
                     Particle particle = activeParticles[i];
-
+                    if (particle == null)
+                    {
+                        ActiveParticles.RemoveAt(i);
+                        return;
+                    }
                     if (!particle.Update(elapsedTime))
                     {
                         // 如果粒子不再存活，将它去掉

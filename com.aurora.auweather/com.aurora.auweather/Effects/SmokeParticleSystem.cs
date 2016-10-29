@@ -182,6 +182,10 @@ namespace Com.Aurora.AuWeather.Effects
                     InitializeParticle(particle, where);
 
                     // 将此粒子加入激活粒子队列
+                    if (ActiveParticles.Capacity <= ActiveParticles.Count)
+                    {
+                        ActiveParticles.Capacity *= 2;
+                    }
                     ActiveParticles.Add(particle);
                 }
             }
@@ -202,6 +206,10 @@ namespace Com.Aurora.AuWeather.Effects
                 InitializeParticle(particle, where);
 
                 // 将此粒子加入激活粒子队列
+                if (ActiveParticles.Capacity <= ActiveParticles.Count)
+                {
+                    ActiveParticles.Capacity *= 2;
+                }
                 ActiveParticles.Add(particle);
             }
             inited = true;
@@ -219,6 +227,11 @@ namespace Com.Aurora.AuWeather.Effects
                 for (int i = ActiveParticles.Count - 1; i >= 0; i--)
                 {
                     var p = ActiveParticles[i];
+                    if (p == null)
+                    {
+                        ActiveParticles.RemoveAt(i);
+                        return;
+                    }
                     if (p.Position.X < (size.X + (surfacesBounds[p.Key].Width) / 2))
                     {
                         p.Update(elapsedTime);

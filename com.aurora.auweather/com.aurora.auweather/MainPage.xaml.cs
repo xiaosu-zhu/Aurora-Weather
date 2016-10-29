@@ -366,7 +366,7 @@ namespace Com.Aurora.AuWeather
         {
             NowCondition.SetCondition(condition, isNight);
             NowCity.Text = city;
-            var p = TempratureandDegreeConverter.Parameter;
+            var p = TemperatureDecoratorConverter.Parameter;
             NowText.Text = condition.GetDisplayName() + " | " + nowL.Actual(p) + '~' + nowH.Actual(p);
         }
 

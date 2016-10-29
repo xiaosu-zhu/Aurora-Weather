@@ -35,6 +35,8 @@
             <Converters:BoolNottoVisibilityConverter x:Key="BoolNottoVisibilityConverter" />
             <Converters:ReverseBoolConverter x:Key="ReverseConverter" />
             <Converters:ThemeColorConverter x:Key="ThemeColorConverter" />
+            <Converters:TempratureConverterWithoutDecoration x:Key="TemperatureConverter" />
+            <Converters:TempratureConverterWithDegree x:Key="TemperatureWithDegree" />
             <Style x:Key="DropDownCommandBar" TargetType="CommandBar">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -874,9 +876,10 @@
         <GridView Loaded="GridView_Loaded" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel Background="{ThemeResource SystemControlHighlightAccentBrush}" RightTapped="RelativePanel_RightTapped" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited" Width="{x:Bind PanelWidth, Mode=OneWay}" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image Stretch="UniformToFill" Source="{x:Bind Background, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
-                        </Image>
+                    <RelativePanel RightTapped="RelativePanel_RightTapped" Width="360" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <RelativePanel.Background>
+                            <ImageBrush ImageSource="{x:Bind Background, Mode=OneWay}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" />
+                        </RelativePanel.Background>
                         <Grid Visibility="{x:Bind Updated, Converter={StaticResource BoolNottoVisibilityConverter}, Mode=OneWay}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlTranslucentBaseLightBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -885,18 +888,21 @@
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
                             <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BoolNottoVisibilityConverter},Mode=OneWay,FallbackValue=Collapsed}" />
                         </Grid>
-                        <ScrollViewer MaxHeight="72" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Hidden" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
-                            <Grid Margin="0,36,0,0" Background="{ThemeResource SystemControlTranslucentHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="36" />
-                                    <RowDefinition Height="36" />
-                                </Grid.RowDefinitions>
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind City, Mode=OneWay}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind NowCondition, Mode=OneWay, Converter={StaticResource ConditiontoTextConverter}}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" TextTrimming="WordEllipsis" MaxWidth="240" Margin="8,8,8,8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind Glance, Mode=OneWay}" />
-                                <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Margin="8" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Bind LastUpdate, Mode=OneWay, Converter={StaticResource DateTimeConverter}}" />
-                            </Grid>
-                        </ScrollViewer>
+                        <StackPanel RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="#2F000000" Orientation="Vertical">
+                            <TextBlock Margin="8" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="ExtraLight" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind City, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind NowCondition,Mode=OneWay,Converter={StaticResource ConditiontoTextConverter}}" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="ExtraLight" Margin="8,0,8,0" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <TextBlock Margin="8" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="ExtraLight" >
+                                <Run FontSize="46" Text="{x:Bind Temperature, Mode=OneWay,Converter={StaticResource TemperatureConverter}}" />
+                                <Run FontSize="20" Text="{x:Bind Decorator, Mode=OneWay}" />
+                                </TextBlock>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,4,4,4" Text="{x:Bind High,Mode=OneWay,Converter={StaticResource TemperatureWithDegree}}" />
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,4,4" Text="{x:Bind Low,Mode=OneWay,Converter={StaticResource TemperatureWithDegree}}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Foreground="White" Margin="8" MaxLines="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind Glance, Mode=OneWay}" TextTrimming="WordEllipsis" />
+                        </StackPanel>
                     </RelativePanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

@@ -22,6 +22,7 @@ using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Core.Models;
+using Com.Aurora.Shared.Converters;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -370,6 +371,9 @@ namespace Com.Aurora.AuWeather.ViewModels
         private async Task itemInit(CityViewModel item, HeWeatherModel weather)
         {
             item.NowCondition = weather.NowWeather.Now.Condition;
+            item.Temperature = weather.NowWeather.Temprature;
+            string p = TemperatureDecoratorConverter.GetCurrentDeco();
+            item.Decorator = p;
             var utcOffset = weather.Location.UpdateTime - weather.Location.UtcTime;
             var current = DateTimeHelper.ReviseLoc(utcOffset);
             var todayIndex = Array.FindIndex(weather.DailyForecast, x =>
@@ -388,6 +392,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 hourIndex = 0;
             }
+            item.High = weather.DailyForecast[todayIndex].HighTemp;
+            item.Low = weather.DailyForecast[todayIndex].LowTemp;
             var isNight = Generator.CalcIsNight(weather.Location.UpdateTime, weather.DailyForecast[todayIndex].SunRise, weather.DailyForecast[todayIndex].SunSet, new Models.Location(item.latitude, item.longitude));
             item.Glance = Glance.GenerateGlanceDescription(weather, isNight, settings.Preferences.TemperatureParameter, DateTime.Now);
             var uri = await settings.Immersive.GetCurrentBackgroundAsync(weather.NowWeather.Now.Condition, isNight);
@@ -494,8 +500,40 @@ namespace Com.Aurora.AuWeather.ViewModels
         public float longitude;
         public float latitude;
         internal string zmw;
+        private Temperature temp;
 
-        private double panelWidth = 360d;
+        private Temperature high;
+
+        public Temperature High
+        {
+            get { return high; }
+            set { SetProperty(ref high, value); }
+        }
+
+        private Temperature low;
+
+        public Temperature Low
+        {
+            get { return low; }
+            set { SetProperty(ref low, value); }
+        }
+
+
+        public Temperature Temperature
+        {
+            get { return temp; }
+            set { SetProperty(ref temp, value); }
+        }
+
+        private string deco;
+
+        public string Decorator
+        {
+            get { return deco; }
+            set { SetProperty(ref deco, value); }
+        }
+
+        private double panelWidth = 320d;
 
         public double PanelWidth
         {

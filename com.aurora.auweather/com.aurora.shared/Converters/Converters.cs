@@ -167,7 +167,7 @@ namespace Com.Aurora.Shared.Converters
         {
             if (value == null)
             {
-                return Visibility.Visible;
+                return Visibility.Collapsed;
             }
             var b = (bool)value;
             if (b)

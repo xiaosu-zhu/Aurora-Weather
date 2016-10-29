@@ -231,6 +231,11 @@ namespace Com.Aurora.AuWeather.Effects
                     for (int i = ActiveParticles.Count - 1; i >= 0; i--)
                     {
                         var p = ActiveParticles[i];
+                        if (p == null)
+                        {
+                            ActiveParticles.RemoveAt(i);
+                            return;
+                        }
                         if (p.Position.X > 0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2) && p.Position.X <= size.X && p.Position.Y <= size.Y)
                         {
                             p.Update(elapsedTime);
@@ -262,6 +267,10 @@ namespace Com.Aurora.AuWeather.Effects
                         Particle particle = (FreeParticles.Count > 0) ? FreeParticles.Pop() : new Particle();
                         float x = Tools.RandomBetween(0 - size.Y * (float)Math.Tan(1.5708 - (minRotationAngle + maxRotationAngle) / 2), size.X);
                         InitializeParticle(particle, new Vector2(x, -5));
+                        if (ActiveParticles.Capacity <= ActiveParticles.Count)
+                        {
+                            ActiveParticles.Capacity *= 2;
+                        }
                         ActiveParticles.Add(particle);
                     }
                 }

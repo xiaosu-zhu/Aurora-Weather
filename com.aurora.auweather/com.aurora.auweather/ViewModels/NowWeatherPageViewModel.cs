@@ -1911,7 +1911,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void InitialConverterParameter(SettingsModel settings)
         {
-            TempratureandDegreeConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
+            TemperatureDecoratorConverter.ChangeParameter(settings.Preferences.TemperatureParameter);
             DateTimeConverter.ChangeParameter(settings.Preferences.GetForecastFormat());
             var p = settings.Preferences.GetHourlyFormat();
             HourMinuteConverter.ChangeParameter(p);

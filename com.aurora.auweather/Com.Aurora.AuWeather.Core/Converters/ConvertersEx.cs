@@ -31,7 +31,7 @@ namespace Com.Aurora.Shared.Converters
                 return "...";
             }
             var t = (Temperature)value;
-            switch (TempratureandDegreeConverter.Parameter)
+            switch (TemperatureDecoratorConverter.Parameter)
             {
                 case TemperatureParameter.Celsius: return t.Celsius.ToString("0") + 'бу';
                 case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0") + 'бу';
@@ -55,7 +55,7 @@ namespace Com.Aurora.Shared.Converters
                 return "...";
             }
             var t = (Temperature)value;
-            switch (TempratureandDegreeConverter.Parameter)
+            switch (TemperatureDecoratorConverter.Parameter)
             {
                 case TemperatureParameter.Celsius: return t.Celsius.ToString("0");
                 case TemperatureParameter.Fahrenheit: return t.Fahrenheit.ToString("0");
@@ -71,7 +71,7 @@ namespace Com.Aurora.Shared.Converters
     }
 
 
-    public class TempratureandDegreeConverter : IValueConverter
+    public class TemperatureDecoratorConverter : IValueConverter
     {
         public static TemperatureParameter Parameter { get; private set; } = TemperatureParameter.Celsius;
 
@@ -98,6 +98,21 @@ namespace Com.Aurora.Shared.Converters
         public static void ChangeParameter(TemperatureParameter newPar)
         {
             Parameter = newPar;
+        }
+
+        public static string GetCurrentDeco()
+        {
+            switch (Parameter)
+            {
+                case TemperatureParameter.Celsius:
+                    return "\u2103";
+                case TemperatureParameter.Fahrenheit:
+                    return "\u2109";
+                case TemperatureParameter.Kelvin:
+                    return " K";
+                default:
+                    return "\u2103";
+            }
         }
     }
 

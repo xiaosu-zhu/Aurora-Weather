@@ -123,7 +123,7 @@ namespace Com.Aurora.AuWeather
 
         private void ForecastList_Loaded(object sender, RoutedEventArgs e)
         {
-            var p = Math.Round(ActualWidth / 320);
+            var p = Math.Round(ActualWidth / 336);
             if (p == 0)
                 p = 1;
             Context.SetPanelWidth(ActualWidth / p);

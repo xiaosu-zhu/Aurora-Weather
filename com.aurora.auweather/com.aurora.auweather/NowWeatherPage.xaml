@@ -33,7 +33,7 @@
                 <ResourceDictionary Source="Themes/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <CollectionViewSource x:Name="AlarmsSource" Source="{x:Bind Context.Alarms,Mode=OneWay}" />
-            <Converters:TempratureandDegreeConverter x:Key="TempratureConverter" />
+            <Converters:TemperatureDecoratorConverter x:Key="TempratureConverter" />
             <Converters:TempratureConverterWithDegree x:Key="TempratureConverterWithDegree" />
             <Converters:TempratureConverterWithoutDecoration x:Key="TempratureConverterWithoutDegree" />
             <Converters:WindSpeedConverter x:Key="WindSpeedConverter" />
