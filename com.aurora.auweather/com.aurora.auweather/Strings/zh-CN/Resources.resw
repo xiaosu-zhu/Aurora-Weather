@@ -1142,7 +1142,9 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K 下载量达成！</value>
+    <value>· 加快移动版启动速度
+· 更换定位方式
+· 整合「城市概览」页面与「城市管理」页面</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1166,7 +1168,12 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· 加快移动版启动速度
+· 更换定位方式
+· 整合「城市概览」页面与「城市管理」页面
+
+1.6.16101
 · 少量错误修复
 · 你可以在 自定义布局 中设置沉浸模式超时时间
 
@@ -1512,7 +1519,7 @@
     <value>可能会影响用户体验</value>
   </data>
   <data name="MadebyText.Text" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="BrandText.Text" xml:space="preserve">
     <value>为你呈献。</value>
@@ -1543,5 +1550,11 @@
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>沉浸模式超时时间，0 为一直显示</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>我们修改了城市管理的方式</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>请前往「城市概览」页面查看</value>
   </data>
 </root>

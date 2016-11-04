@@ -1018,7 +1018,9 @@
     <value>Pantalla completa</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K hito alcanzado!</value>
+    <value>· Solucionado un problema que causó el inicio de la versión para móviles que se
+demasiado lento · Cambió el método de localización de
+· La página de Resumen de las ciudades se integran con la página de gestión de ciudades</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenido a la nueva versión</value>
@@ -1042,7 +1044,12 @@
     <value>Actualizar registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· Solucionado un problema que causó el inicio de la versión para móviles que se
+demasiado lento · Cambió el método de localización de
+· La página de Resumen de las ciudades se integran con la página de administración de las ciudades
+
+1.6.16101
 · Menor de edad corrige
 · Ahora puede configurar el modo envolvente tiempo fuera en el panel de diseño personalizado
 
@@ -1429,5 +1436,11 @@ mañana: {4}, {5}.</value>
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>Modo de inmersión de tiempo de espera, valor 0 mostrará para siempre</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>Gestión de las ciudades hemos cambiado a otro lugar</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>Por favor ir a la página de ciudades y consulte</value>
   </data>
 </root>

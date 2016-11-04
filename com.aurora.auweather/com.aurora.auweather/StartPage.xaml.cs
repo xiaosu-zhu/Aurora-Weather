@@ -167,7 +167,7 @@ namespace Com.Aurora.AuWeather
             backgroundVisual2.StartAnimation("Offset.X", parallaxAnimation2);
             backgroundVisual3.StartAnimation("Offset.X", parallaxAnimation3);
             backgroundVisual4.StartAnimation("Offset.X", parallaxAnimation4);
-            MainFrame.Navigate(typeof(CitiesSetting));
+            MainFrame.Navigate(typeof(CitiesPage), "nimabi");
             IndAni.Begin();
         }
 
@@ -235,11 +235,11 @@ namespace Com.Aurora.AuWeather
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if ((MainFrame.Content as CitiesSetting).CheckCompleted())
+            if ((MainFrame.Content as CitiesPage).CheckCompleted())
 
             {
 
-                (MainFrame.Content as CitiesSetting).Complete();
+                (MainFrame.Content as CitiesPage).Complete();
 
                 (Window.Current.Content as Frame).Navigate(typeof(MainPage));
 

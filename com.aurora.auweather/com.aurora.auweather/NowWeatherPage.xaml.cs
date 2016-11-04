@@ -82,6 +82,12 @@ namespace Com.Aurora.AuWeather
             UpdateIndText.Text = loader.GetString("RefreshStart");
         }
 
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+        }
+
         private void Context_TimeUpdated(object sender, TimeUpdatedEventArgs e)
         {
             detailGridAnimation_FLAG[4] = false;

@@ -566,6 +566,9 @@
     <Compile Include="SettingOptions\ImmersiveSetting.xaml.cs">
       <DependentUpon>ImmersiveSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingOptions\LocationNote.xaml.cs">
+      <DependentUpon>LocationNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingOptions\PreferencesSetting.xaml.cs">
       <DependentUpon>PreferencesSetting.xaml</DependentUpon>
     </Compile>
@@ -814,6 +817,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingOptions\ImmersiveSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingOptions\LocationNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Полный экран</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>10K milestone reached!</source>
-          <target state="translated">10K веха достигнута!</target>
+          <source>· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page</source>
+          <target state="translated">· Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
+· Изменен метод локация
+· Интегрировать страницу города Обзор с страницу управления городами</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Обновление журнала</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16101
+          <source>1.6.16110
+· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page
+
+1.6.16101
 · Minor Fixes
 · Now you can set the immersive mode time out in the custom layout panel
 
@@ -1458,7 +1467,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16101
+          <target state="translated">1.6.16110
+· Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
+· Изменен метод локация
+· Интегрировать страницу города Обзор с страницу управления городами
+
+1.6.16101
 · Незначительные исправления
 · Теперь вы можете установить тайм-аут погружения режим макета панели
 
@@ -1965,6 +1979,14 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
           <source>Immersive mode time out, set to 0 will display forever</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Погружения режиме время ожидания, установите значение 0, будет отображаться навсегда</target>
+        </trans-unit>
+        <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
+          <source>We've changed cities' management to another place</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Мы изменили управление городов в другое место</target>
+        </trans-unit>
+        <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
+          <source>Please go to Cities Page and check out</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Перейдите на страницу города и проверить</target>
         </trans-unit>
       </group>
     </body>

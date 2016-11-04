@@ -1018,7 +1018,9 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K веха достигнута!</value>
+    <value>· Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
+· Изменен метод локация
+· Интегрировать страницу города Обзор с страницу управления городами</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Добро пожаловать в новые версии</value>
@@ -1042,7 +1044,12 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
+· Изменен метод локация
+· Интегрировать страницу города Обзор с страницу управления городами
+
+1.6.16101
 · Незначительные исправления
 · Теперь вы можете установить тайм-аут погружения режим макета панели
 
@@ -1436,5 +1443,11 @@
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>Погружения режиме время ожидания, установите значение 0, будет отображаться навсегда</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>Мы изменили управление городов в другое место</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>Перейдите на страницу города и проверить</value>
   </data>
 </root>

@@ -106,7 +106,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 catch (Exception)
                 {
                 }
-                
+
             }
             SaveCities(container);
         }
@@ -119,7 +119,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             else if (EnableLocate && CurrentIndex == -1 && LocatedCity == null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Locate city null");
             }
             else if (!EnableLocate && CurrentIndex == -1 && !SavedCities.IsNullorEmpty())
             {
@@ -132,7 +132,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             else
             {
-                throw new NullReferenceException();
+                CurrentIndex = SavedCities.Length - 1;
+                return SavedCities[CurrentIndex];
             }
         }
 
@@ -190,10 +191,31 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
             catch (Exception)
             {
-                
+
             }
-            
+
         }
+
+        public void ChangeCurrent(string args)
+        {
+            var index = Array.FindIndex(SavedCities, x =>
+            {
+                return x.Id == args;
+            });
+            if (index >= 0)
+            {
+                CurrentIndex = index;
+            }
+
+            if (EnableLocate)
+            {
+                if (SavedCities.IsNullorEmpty() || CurrentIndex < 0)
+                {
+                    CurrentIndex = -1;
+                }
+            }
+        }
+
 
         public async Task<string> ReadDataAsync(string id, DataSource dataSource)
         {

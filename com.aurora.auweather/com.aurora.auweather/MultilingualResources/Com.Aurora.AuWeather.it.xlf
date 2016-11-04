@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Schermo intero</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>10K milestone reached!</source>
-          <target state="translated">10K traguardo raggiunto!</target>
+          <source>· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page</source>
+          <target state="translated">· Risolto un problema causato avvio della versione mobile per essere troppo lento
+· Cambiato il metodo di individuazione
+piace · Integrare la pagina Panoramica di città con la pagina di gestione di città</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Aggiornamento del registro</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16101
+          <source>1.6.16110
+· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page
+
+1.6.16101
 · Minor Fixes
 · Now you can set the immersive mode time out in the custom layout panel
 
@@ -1458,7 +1467,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16101
+          <target state="translated">1.6.16110
+· Risolto un problema causato avvio della versione mobile per essere troppo lento
+· Cambiato il metodo di individuazione
+piace · Integrare la pagina Panoramica di città con la pagina di gestione di città
+
+1.6.16101
 · Correzioni minori
 · Ora è possibile impostare il timeout di modalità immersiva nel pannello layout personalizzato
 
@@ -1965,6 +1979,14 @@ domani: {4}, {5}.</target>
         <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
           <source>Immersive mode time out, set to 0 will display forever</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Timeout di modalità immersiva, impostato a 0 visualizzerà per sempre</target>
+        </trans-unit>
+        <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
+          <source>We've changed cities' management to another place</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Abbiamo cambiato gestione citta in un altro posto</target>
+        </trans-unit>
+        <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
+          <source>Please go to Cities Page and check out</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vai alla pagina della città e Scopri</target>
         </trans-unit>
       </group>
     </body>

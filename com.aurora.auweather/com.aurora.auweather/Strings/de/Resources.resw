@@ -1018,7 +1018,9 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K Meilenstein erreicht!</value>
+    <value>· Mobile Version Start werden zu langsam
+· verursacht Fehler behoben Geändert Locating Methode
+· Die Städte-Übersichtsseite mit den Städten Verwaltungsseite zu integrieren</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1042,7 +1044,12 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· Mobile Version Start werden zu langsam
+· verursacht Fehler behoben Geändert Locating Methode
+· Integrieren die Städte-Übersichtsseite mit den Städten Verwaltungsseite
+
+1.6.16101
 · Minor Fixes
 · Jetzt der immersiven Modus Auszeit im Feld benutzerdefinierte Layout
 
@@ -1436,5 +1443,11 @@ Morgen: {4}, {5}.</value>
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>Immersive Modus Timeout auf 0 gesetzt zeigt ewig</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>Wir haben Städte Management an einen anderen Ort geändert.</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>Bitte gehen Sie zur Seite der Städte und check out</value>
   </data>
 </root>

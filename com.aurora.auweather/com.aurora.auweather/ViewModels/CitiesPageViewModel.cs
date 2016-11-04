@@ -20,9 +20,9 @@ using System.Collections.Generic;
 using Com.Aurora.Shared.Extensions;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
-using Com.Aurora.AuWeather.License;
 using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.Shared.Converters;
+using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -34,6 +34,8 @@ namespace Com.Aurora.AuWeather.ViewModels
         public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
 
         public Cities Cities { get; set; } = new Cities();
+
+        public List<CityInfo> cities;
 
         private int currentIndex = -1;
         private ElementTheme theme;
@@ -62,18 +64,21 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
+        public bool EnableLocate { get; private set; }
+
         public CitiesPageViewModel()
         {
             Theme = settings.Preferences.GetTheme();
             if (settings.Cities.EnableLocate)
             {
                 if (settings.Cities.LocatedCity != null)
-                    Cities.Add(new CityViewModel(settings.Cities.LocatedCity));
+                    Cities.Add(new CityViewModel(settings.Cities.LocatedCity, true));
             }
             foreach (var city in settings.Cities.SavedCities)
             {
-                Cities.Add(new CityViewModel(city));
+                Cities.Add(new CityViewModel(city, false));
             }
+            Cities.Add(new CityViewModel());
             if (Cities.IsNullorEmpty())
             {
                 var t = ThreadPool.RunAsync(async (work) =>
@@ -85,19 +90,35 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                await SearchExistingDataAsync();
-
+                var ask = ThreadPool.RunAsync(async (m) =>
+                {
+                    await SearchExistingDataAsync();
+                    var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
+                    var result = JsonHelper.FromJson<CityIdContract>(str);
+                    cities = CityInfo.CreateList(result);
+                    str = null;
+                    result = null;
+                    EnableLocate = settings.Cities.EnableLocate;
+                    RequireLocationUpdate();
+                });
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
                 {
                     await Init();
                     var t = ThreadPool.RunAsync((x) =>
                     {
-                        if (settings.Cities.EnableLocate)
-                            RequireLocationUpdate();
                         Update();
                     });
                 }));
             });
+        }
+
+        ~CitiesPageViewModel()
+        {
+            if (cities != null)
+            {
+                cities.Clear();
+                cities = null;
+            }
         }
 
         internal void DeniePos()
@@ -121,7 +142,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     {
                         var task = ThreadPool.RunAsync(async (work) =>
                         {
-                            string resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude, item.zmw);
+                            string resstr = await Request.GetRequestAsync(settings, item.Id, item.longitude, item.latitude, item.zmw);
                             if (!resstr.IsNullorEmpty())
                             {
                                 item.data = resstr;
@@ -134,7 +155,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                                 {
                                     settings.Cities.SavedCities[index].Update();
                                 }
-                                else
+                                else if (item.Locate == "")
                                 {
                                     settings.Cities.LocatedCity.Update();
                                 }
@@ -159,7 +180,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void UpdateLocation(CityInfo cityInfo)
         {
-            if (cityInfo.Id == settings.Cities.LocatedCity.Id)
+            if (settings.Cities.LocatedCity != null && cityInfo.Id == settings.Cities.LocatedCity.Id)
             {
                 return;
             }
@@ -169,11 +190,11 @@ namespace Com.Aurora.AuWeather.ViewModels
                 if (settings.Cities.LocatedCity != null)
                 {
                     Cities.RemoveAt(0);
-                    Cities.Insert(0, new CityViewModel(c));
+                    Cities.Insert(0, new CityViewModel(c, true));
                 }
                 else
                 {
-                    Cities.Insert(0, new CityViewModel(c));
+                    Cities.Insert(0, new CityViewModel(c, false));
                 }
                 settings.Cities.LocatedCity = c;
                 UpdateLocated();
@@ -284,7 +305,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     catch (Exception)
                     {
-                        resstr = await Request.GetRequest(settings, item.Id, item.longitude, item.latitude, item.zmw);
+                        resstr = await Request.GetRequestAsync(settings, item.Id, item.longitude, item.latitude, item.zmw);
                     }
                     if (!resstr.IsNullorEmpty())
                     {
@@ -325,15 +346,14 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var t = ThreadPool.RunAsync(async (work) =>
             {
-                var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                var param = new string[] { "cityid=" + settings.Cities.LocatedCity.Id };
-                string resstr = await Request.GetRequest(settings, settings.Cities.LocatedCity);
+                string resstr = await Request.GetRequestAsync(settings, settings.Cities.LocatedCity);
                 if (!resstr.IsNullorEmpty())
                 {
                     Cities[0].data = resstr;
                     await settings.Cities.SaveDataAsync(Cities[0].Id, resstr, settings.Preferences.DataSource);
                     settings.Cities.LocatedCity.Update();
                     settings.Cities.Save();
+                    await Complete(Cities[0]);
                 }
             });
         }
@@ -479,6 +499,42 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        internal void ReloadCity()
+        {
+            settings = SettingsModel.Get();
+            Cities.Clear();
+            if (settings.Cities.EnableLocate)
+            {
+                if (settings.Cities.LocatedCity != null)
+                    Cities.Add(new CityViewModel(settings.Cities.LocatedCity, true));
+            }
+            foreach (var city in settings.Cities.SavedCities)
+            {
+                Cities.Add(new CityViewModel(city, false));
+            }
+            Cities.Add(new CityViewModel());
+            if (Cities.IsNullorEmpty())
+            {
+                var t = ThreadPool.RunAsync(async (work) =>
+                {
+                    await Task.Delay(1000);
+                    this.OnFetchDataFailed();
+                });
+                return;
+            }
+            var task = ThreadPool.RunAsync(async (work) =>
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(async () =>
+                {
+                    await Init();
+                    var t = ThreadPool.RunAsync((x) =>
+                    {
+                        Update();
+                    });
+                }));
+            });
+        }
     }
 
     public class Cities : ObservableCollection<CityViewModel>
@@ -501,6 +557,24 @@ namespace Com.Aurora.AuWeather.ViewModels
         public float latitude;
         internal string zmw;
         private Temperature temp;
+
+        private bool empty = false;
+
+        public bool Empty
+        {
+            get { return empty; }
+            set { SetProperty(ref empty, value); }
+        }
+
+
+        private string locate = " ";
+
+        public string Locate
+        {
+            get { return locate; }
+            set { SetProperty(ref locate, value); }
+        }
+
 
         private Temperature high;
 
@@ -542,14 +616,22 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
 
-        public CityViewModel(CitySettingsModel locatedCity)
+        public CityViewModel(CitySettingsModel city, bool isLocate)
         {
-            Id = locatedCity.Id;
-            City = locatedCity.City;
-            LastUpdate = locatedCity.LastUpdate;
-            longitude = locatedCity.Longitude;
-            latitude = locatedCity.Latitude;
-            zmw = locatedCity.ZMW;
+            Id = city.Id;
+            City = city.City;
+            LastUpdate = city.LastUpdate;
+            longitude = city.Longitude;
+            latitude = city.Latitude;
+            zmw = city.ZMW;
+            if (isLocate)
+                Locate = "";
+            Empty = false;
+        }
+
+        public CityViewModel()
+        {
+            Empty = true;
         }
 
         public string City

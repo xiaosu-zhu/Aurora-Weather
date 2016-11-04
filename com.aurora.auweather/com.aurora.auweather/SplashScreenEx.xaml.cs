@@ -23,6 +23,7 @@ using Com.Aurora.AuWeather.ViewModels;
 using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using System.Threading.Tasks;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -152,51 +153,22 @@ namespace Com.Aurora.AuWeather
                 NavigatetoStart();
                 return;
             }
-            if (this.args != "" && this.args != null)
+            if (!this.args.IsNullorEmpty())
             {
-                if (this.args == settings.Cities.LocatedCity.Id)
-                {
-                    settings.Cities.CurrentIndex = -1;
-                }
-                else
-                {
-                    var index = Array.FindIndex(settings.Cities.SavedCities, x =>
-                     {
-                         return x.Id == this.args;
-                     });
-                    if (index >= 0)
-                    {
-                        settings.Cities.CurrentIndex = index;
-                    }
-                }
+                settings.Cities.ChangeCurrent(this.args);
             }
-            if (settings.Cities.EnableLocate)
+            try
             {
-                if (settings.Cities.SavedCities.IsNullorEmpty())
-                {
-                    if (settings.Cities.LocatedCity != null)
-                    {
-                        settings.Cities.CurrentIndex = -1;
-                    }
-                    else
-                    {
-                        NavigatetoStart();
-                    }
-                }
-
-            }
-            else
-            {
-                if (settings.Cities.SavedCities.IsNullorEmpty())
+                if (settings.Cities.GetCurrentCity() == null)
                 {
                     NavigatetoStart();
-                }
-                else if (settings.Cities.CurrentIndex < 0)
-                {
-                    settings.Cities.CurrentIndex = 0;
+                    return;
                 }
             }
+            catch (Exception)
+            {
 
+            }
 
             if (settings.Cities.CurrentIndex == -1 && settings.Cities.EnableLocate)
             {
@@ -218,22 +190,22 @@ namespace Com.Aurora.AuWeather
                                     var t = ThreadPool.RunAsync(async (w) =>
                                     {
                                         var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                                        var result = JsonHelper.FromJson<CityIdContract>(str);
-                                        var citys = CityInfo.CreateList(result);
+                                        var cityids = JsonHelper.FromJson<CityIdContract>(str);
+                                        var citys = CityInfo.CreateList(cityids);
                                         str = null;
-                                        result = null;
-                                        CalcPosition(pos, citys, settings);
-                                        SplashComplete(null, AsyncStatus.Completed);
+                                        cityids = null;
+                                        await CalcPosition(pos, citys, settings);
+                                        GetCityListandCompelte(settings);
                                     });
                                 }
                                 else
                                 {
-                                    SplashComplete(null, AsyncStatus.Completed);
+                                    GetCityListandCompelte(settings);
                                 }
                             }
                             catch (Exception)
                             {
-                                SplashComplete(null, AsyncStatus.Completed);
+                                GetCityListandCompelte(settings);
                             }
 
                         }));
@@ -244,7 +216,7 @@ namespace Com.Aurora.AuWeather
                             settings.Cities.CurrentIndex = 0;
                         else
                         {
-                            SplashComplete(null, AsyncStatus.Completed);
+                            GetCityListandCompelte(settings);
                         }
                     }
                 }
@@ -282,13 +254,28 @@ namespace Com.Aurora.AuWeather
                     citys.Clear();
                     citys = null;
                 }
-                SplashComplete(null, AsyncStatus.Completed);
+                GetCityListandCompelte(settings);
             }
             else
             {
                 NavigatetoStart();
                 return;
             }
+        }
+
+        private void GetCityListandCompelte(SettingsModel settings)
+        {
+            var cs = new List<string>();
+            if (settings.Cities.LocatedCity != null && !settings.Cities.LocatedCity.City.IsNullorEmpty())
+            {
+                cs.Add(settings.Cities.LocatedCity.City);
+            }
+            if (!settings.Cities.SavedCities.IsNullorEmpty())
+                cs.AddRange(settings.Cities.SavedCities.Select((a, b) =>
+                {
+                    return a.City;
+                }));
+            SplashComplete(cs);
         }
 
         private void SetLongTimeTimer()
@@ -303,6 +290,7 @@ namespace Com.Aurora.AuWeather
                 {
                     var loader = new ResourceLoader();
                     SplashWelcome.Text = loader.GetString("LongTime");
+                    CreateTimeOutTimer();
                 }));
             }, TimeSpan.FromMilliseconds(8000));
         }
@@ -323,7 +311,7 @@ namespace Com.Aurora.AuWeather
                     d.Commands.Add(new UICommand(loader.GetString("Quit"), new UICommandInvokedHandler(QuitAll)));
                     await d.ShowAsync();
                 }));
-            }, TimeSpan.FromMilliseconds(35000));
+            }, TimeSpan.FromMilliseconds(7000));
         }
 
         private void QuitAll(IUICommand command)
@@ -344,35 +332,63 @@ namespace Com.Aurora.AuWeather
             }));
         }
 
-        private async void SplashComplete(IAsyncAction asyncInfo, AsyncStatus asyncStatus)
+        private async void SplashComplete(IEnumerable<string> cs)
         {
             if (timer != null)
             {
                 timer.Cancel();
             }
-            var city = Models.Settings.Cities.Get();
-            var cs = new List<string>();
-            if (city.LocatedCity != null && !city.LocatedCity.City.IsNullorEmpty())
+            var task = ThreadPool.RunAsync(async (w) =>
             {
-                cs.Add(city.LocatedCity.City);
-            }
-            if (!city.SavedCities.IsNullorEmpty())
-                cs.AddRange(city.SavedCities.Select((a, b) =>
-                {
-                    return a.City;
-                }));
-            await CortanaHelper.EditPhraseListAsync("AuroraWeatherCommandSet_zh-cn", "where", cs.ToArray());
+                await CortanaHelper.EditPhraseListAsync("AuroraWeatherCommandSet_zh-cn", "where", cs.ToArray());
+            });
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
-             {
-                 DismissExtendedSplash();
-             }));
+            {
+                DismissExtendedSplash();
+            }));
         }
 
-        private void CalcPosition(Geoposition pos, List<CityInfo> citys, SettingsModel settings)
+        private async Task CalcPosition(Geoposition pos, List<CityInfo> citys, SettingsModel settings)
         {
-            var final = Models.Location.GetNearsetLocation(citys,
-                new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-
+            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+            List<CityInfo> final = null;
+            if (ocontract != null)
+                final = citys.FindAll(x =>
+                {
+                    return x.City == ocontract.address.city;
+                });
+            if (final.IsNullorEmpty())
+            {
+                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+                if (acontract != null)
+                    final = citys.FindAll(x =>
+                    {
+                        return x.City == acontract.regeocode.addressComponent.district;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                var id = await Models.Location.ReGeobyIpAsync();
+                if (id != null)
+                    final = citys.FindAll(x =>
+                    {
+                        return x.Id == id.CityId;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                if (settings.Cities.LocatedCity == null)
+                {
+                    FailtoPos();
+                    return;
+                }
+                return;
+            }
+            if (final.IsNullorEmpty())
+            {
+                var near = Models.Location.GetNearsetLocation(citys, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+                final = near.ToList();
+            }
             if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
                 if (settings.Cities.LocatedCity.Latitude == 0)
@@ -391,6 +407,11 @@ namespace Com.Aurora.AuWeather
             citys.Clear();
             citys = null;
             settings.Cities.Save();
+        }
+
+        private void FailtoPos()
+        {
+
         }
 
         void DismissExtendedSplash()

@@ -721,7 +721,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                         return;
                     }
-                    resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
+                    resstr = await Core.Models.Request.GetRequestAsync(settings, currentCityModel);
                     if (resstr.IsNullorEmpty())
                     {
                         await Task.Delay(1000);

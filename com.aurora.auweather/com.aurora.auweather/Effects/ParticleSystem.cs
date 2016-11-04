@@ -129,7 +129,7 @@ namespace Com.Aurora.AuWeather.Effects
                     // 将此粒子加入激活粒子队列
                     if (ActiveParticles.Capacity <= ActiveParticles.Count)
                     {
-                        ActiveParticles.Capacity *= 2;
+                        ActiveParticles.Capacity = ActiveParticles.Count * 2;
                     }
                     activeParticles.Add(particle);
                 }

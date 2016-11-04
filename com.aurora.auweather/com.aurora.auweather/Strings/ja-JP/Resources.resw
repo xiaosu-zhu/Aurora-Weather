@@ -1018,7 +1018,9 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10 K のマイルス トーンに到達!</value>
+    <value>·遅すぎる
+· するモバイル版の起動時の問題を修正検索メソッド
+を変更 ·都市管理ページを統合都市概要ページ</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1042,8 +1044,13 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
-·マイナーな修正
+    <value>1.6.16110
+·遅すぎる
+· するモバイル版の起動時の問題を修正検索メソッド
+を変更 ·都市管理ページ
+
+1.6.16101
+都市概要ページに組み込む ·マイナーな修正
 ·カスタム レイアウト パネル
 
 1.6.16100
@@ -1436,5 +1443,11 @@
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>没入型モード時間を 0 に設定するが表示されます永遠に</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>都市の管理を別の場所に変更しました</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>都市ページでチェック アウトして参照してください。</value>
   </data>
 </root>

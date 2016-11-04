@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vollbild</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>10K milestone reached!</source>
-          <target state="translated">10K Meilenstein erreicht!</target>
+          <source>· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page</source>
+          <target state="translated">· Mobile Version Start werden zu langsam
+· verursacht Fehler behoben Geändert Locating Methode
+· Die Städte-Übersichtsseite mit den Städten Verwaltungsseite zu integrieren</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Update-Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16101
+          <source>1.6.16110
+· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page
+
+1.6.16101
 · Minor Fixes
 · Now you can set the immersive mode time out in the custom layout panel
 
@@ -1458,7 +1467,12 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16101
+          <target state="translated">1.6.16110
+· Mobile Version Start werden zu langsam
+· verursacht Fehler behoben Geändert Locating Methode
+· Integrieren die Städte-Übersichtsseite mit den Städten Verwaltungsseite
+
+1.6.16101
 · Minor Fixes
 · Jetzt der immersiven Modus Auszeit im Feld benutzerdefinierte Layout
 
@@ -1965,6 +1979,14 @@ Morgen: {4}, {5}.</target>
         <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
           <source>Immersive mode time out, set to 0 will display forever</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Immersive Modus Timeout auf 0 gesetzt zeigt ewig</target>
+        </trans-unit>
+        <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
+          <source>We've changed cities' management to another place</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wir haben Städte Management an einen anderen Ort geändert.</target>
+        </trans-unit>
+        <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
+          <source>Please go to Cities Page and check out</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Bitte gehen Sie zur Seite der Städte und check out</target>
         </trans-unit>
       </group>
     </body>

@@ -40,7 +40,7 @@ namespace Com.Aurora.AuWeather.Tile
                     });
                     if (tile != null)
                     {
-                        string resstr = await Request.GetRequest(settings, item);
+                        string resstr = await Request.GetRequestAsync(settings, item);
                         if (!resstr.IsNullorEmpty())
                         {
                             var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);

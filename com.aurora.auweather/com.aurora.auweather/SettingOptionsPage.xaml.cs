@@ -98,7 +98,7 @@ namespace Com.Aurora.AuWeather
                 {
                     PageTitle.Text = loader.GetString("Settings");
                 }
-                MainFrame.Navigate((typeof(CitiesSetting)));
+                MainFrame.Navigate((typeof(LocationNote)));
             }
             else if (curretType == typeof(About))
             {

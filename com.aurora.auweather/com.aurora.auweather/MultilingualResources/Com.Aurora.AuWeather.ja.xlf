@@ -1347,8 +1347,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">全画面表示</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>10K milestone reached!</source>
-          <target state="translated">10 K のマイルス トーンに到達!</target>
+          <source>· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page</source>
+          <target state="translated">·遅すぎる
+· するモバイル版の起動時の問題を修正検索メソッド
+を変更 ·都市管理ページを統合都市概要ページ</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1379,7 +1383,12 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">更新ログ</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16101
+          <source>1.6.16110
+· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page
+
+1.6.16101
 · Minor Fixes
 · Now you can set the immersive mode time out in the custom layout panel
 
@@ -1458,8 +1467,13 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16101
-·マイナーな修正
+          <target state="translated">1.6.16110
+·遅すぎる
+· するモバイル版の起動時の問題を修正検索メソッド
+を変更 ·都市管理ページ
+
+1.6.16101
+都市概要ページに組み込む ·マイナーな修正
 ·カスタム レイアウト パネル
 
 1.6.16100
@@ -1965,6 +1979,14 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="ImmersiveTimeOutText.Text" translate="yes" xml:space="preserve">
           <source>Immersive mode time out, set to 0 will display forever</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">没入型モード時間を 0 に設定するが表示されます永遠に</target>
+        </trans-unit>
+        <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
+          <source>We've changed cities' management to another place</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">都市の管理を別の場所に変更しました</target>
+        </trans-unit>
+        <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
+          <source>Please go to Cities Page and check out</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">都市ページでチェック アウトして参照してください。</target>
         </trans-unit>
       </group>
     </body>

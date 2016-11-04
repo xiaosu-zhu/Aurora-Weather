@@ -76,31 +76,92 @@ namespace Com.Aurora.Shared.Helpers
         /// <returns>请求结果</returns>
         public static async Task<string> RequestIncludeKeyAsync(string url, string[] pars, string apikey)
         {
-            var strURL = url;
-            if (!pars.IsNullorEmpty())
+            try
             {
-                strURL += '?';
-                foreach (var param in pars)
+                var strURL = url;
+                if (!pars.IsNullorEmpty())
                 {
-                    strURL += param + '&';
+                    strURL += '?';
+                    foreach (var param in pars)
+                    {
+                        strURL += param + '&';
+                    }
+                    strURL += "key=" + apikey;
                 }
-                strURL += "key=" + apikey;
+                WebRequest request;
+                request = WebRequest.Create(strURL);
+                request.Method = "GET";
+                WebResponse response;
+                response = await request.GetResponseAsync();
+                Stream s;
+                s = response.GetResponseStream();
+                string StrDate = "";
+                string strValue = "";
+                StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+                while ((StrDate = Reader.ReadLine()) != null)
+                {
+                    strValue += StrDate + "\r\n";
+                }
+                return strValue;
             }
-            WebRequest request;
-            request = WebRequest.Create(strURL);
-            request.Method = "GET";
-            WebResponse response;
-            response = await request.GetResponseAsync();
-            Stream s;
-            s = response.GetResponseStream();
-            string StrDate = "";
-            string strValue = "";
-            StreamReader Reader = new StreamReader(s, Encoding.UTF8);
-            while ((StrDate = Reader.ReadLine()) != null)
+            catch (Exception)
             {
-                strValue += StrDate + "\r\n";
+                return null;
             }
-            return strValue;
+            
+        }
+
+        public static async Task<string> RequestWithFormattedUrlAsync(string requestUrl, string[] v)
+        {
+            try
+            {
+                WebRequest request;
+                request = WebRequest.Create(string.Format(requestUrl, v));
+                request.Method = "GET";
+                WebResponse response;
+                response = await request.GetResponseAsync();
+                Stream s;
+                s = response.GetResponseStream();
+                string StrDate = "";
+                string strValue = "";
+                StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+                while ((StrDate = Reader.ReadLine()) != null)
+                {
+                    strValue += StrDate + "\r\n";
+                }
+                return strValue;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static async Task<string> RequestAsync(string ipUrl)
+        {
+            try
+            {
+                WebRequest request;
+                request = WebRequest.Create(ipUrl);
+                request.Method = "GET";
+                WebResponse response;
+                response = await request.GetResponseAsync();
+                Stream s;
+                s = response.GetResponseStream();
+                string StrDate = "";
+                string strValue = "";
+                StreamReader Reader = new StreamReader(s, Encoding.UTF8);
+                while ((StrDate = Reader.ReadLine()) != null)
+                {
+                    strValue += StrDate + "\r\n";
+                }
+                return strValue;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+           
         }
     }
 
@@ -258,13 +319,13 @@ namespace Com.Aurora.Shared.Helpers
                         }
                         catch (Exception)
                         {
-                            
+
                         }
                     }, null);
                 }
                 catch (Exception)
                 {
-                    
+
                 }
             }, httpWebRequest);
         }

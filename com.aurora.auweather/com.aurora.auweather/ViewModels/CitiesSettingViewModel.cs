@@ -5,7 +5,6 @@
 using Com.Aurora.AuWeather.Models.Settings;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.System.Threading;
 using Com.Aurora.Shared.MVVM;
@@ -15,13 +14,13 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.Devices.Geolocation;
 using Com.Aurora.Shared.Helpers;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using System.Text;
 using System.Text.RegularExpressions;
 using Windows.Foundation;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
+using System.Linq;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -30,7 +29,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         private Models.Settings.Cities Cities;
         private bool enablePosition;
         private CitySettingsModel locatedCity;
-        private List<CityInfo> cities;
+        public List<CityInfo> cities;
         private bool? m_islocatedcurrent;
         private List<CitySettingsModel> newlist;
         private ElementTheme theme;
@@ -61,12 +60,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         Is_Located_Current = true;
                     }
                 }));
-                var data = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                var result = JsonHelper.FromJson<CityIdContract>(data);
-                cities = CityInfo.CreateList(result);
                 OnRefreshComplete();
-                data = null;
-                result = null;
             });
         }
 
@@ -153,9 +147,45 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal async Task CalcPosition(Geoposition pos)
         {
-
-            var final = Models.Location.GetNearsetLocation(cities,
-                new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+            List<CityInfo> final = null;
+            if (ocontract != null)
+                final = cities.FindAll(x =>
+                {
+                    return x.City == ocontract.address.city;
+                });
+            if (final.IsNullorEmpty())
+            {
+                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+                if (acontract != null)
+                    final = cities.FindAll(x =>
+                    {
+                        return x.City == acontract.regeocode.addressComponent.district;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                var id = await Models.Location.ReGeobyIpAsync();
+                if (id != null)
+                    final = cities.FindAll(x =>
+                    {
+                        return x.Id == id.CityId;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                var near = Models.Location.GetNearsetLocation(cities, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+                final = near.ToList();
+            }
+            if (final.IsNullorEmpty())
+            {
+                if (Cities.LocatedCity == null)
+                {
+                    FailtoPos();
+                    return;
+                }
+                return;
+            }
             if (Cities.LocatedCity != null && Cities.LocatedCity.Id == final.ToArray()[0].Id)
             {
                 final = null;
@@ -193,6 +223,11 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }
                 this.OnLocateComplete();
             }));
+        }
+
+        private void FailtoPos()
+        {
+
         }
 
         private void OnLocateComplete()

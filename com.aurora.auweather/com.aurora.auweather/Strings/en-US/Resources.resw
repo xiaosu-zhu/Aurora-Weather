@@ -1142,7 +1142,9 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K milestone reached!</value>
+    <value>· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1166,7 +1168,12 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· Fixed an issue caused mobile version's startup to be too slow
+· Changed Locating method
+· Integrate the Cities Overview page with the Cities Management page
+
+1.6.16101
 · Minor Fixes
 · Now you can set the immersive mode time out in the custom layout panel
 
@@ -1541,5 +1548,11 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>Immersive mode time out, set to 0 will display forever</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>We've changed cities' management to another place</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>Please go to Cities Page and check out</value>
   </data>
 </root>

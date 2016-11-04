@@ -13,11 +13,11 @@ namespace Com.Aurora.AuWeather.Core.Models
 {
     public static class Request
     {
-        public static async Task<string> GetRequest(SettingsModel settings, CitySettingsModel city)
+        public static async Task<string> GetRequestAsync(SettingsModel settings, CitySettingsModel city)
         {
             try
             {
-                return await GetRequest(settings, city.Id, city.Longitude, city.Latitude, city.ZMW);
+                return await GetRequestAsync(settings, city.Id, city.Longitude, city.Latitude, city.ZMW);
             }
             catch (Exception)
             {
@@ -25,7 +25,22 @@ namespace Com.Aurora.AuWeather.Core.Models
             }
         }
 
-        public static async Task<string> GetRequest(SettingsModel settings, string id, float lon, float lat, string zmw)
+        public static async Task<string> RequestbyIpAsync(string ip)
+        {
+            if (WebHelper.IsInternet())
+            {
+                var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
+                var param = new string[] { "cityip=" + ip };
+                var resstr = await BaiduRequestHelper.RequestWithKeyAsync("http://apis.baidu.com/heweather/pro/weather", param, keys[0]);
+                return resstr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static async Task<string> GetRequestAsync(SettingsModel settings, string id, float lon, float lat, string zmw)
         {
             try
             {

@@ -4,17 +4,11 @@
 
 using Com.Aurora.AuWeather.CustomControls;
 using Com.Aurora.AuWeather.Models.HeWeather;
-using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
-using Com.Aurora.AuWeather.Models.Settings;
 using Com.Aurora.AuWeather.ViewModels;
-using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
-using Windows.System.Threading;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -22,6 +16,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
+using Com.Aurora.AuWeather.SettingOptions;
+using Com.Aurora.Shared.Extensions;
+using System.Linq;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -65,43 +63,43 @@ namespace Com.Aurora.AuWeather
 
         private void NavigateToSettings(IUICommand command)
         {
-            baba.Navigate(typeof(SettingsPage));
+            if (baba != null)
+                baba.Navigate(typeof(SettingsPage));
         }
 
-        private async void Context_LocationUpdate(object sender, ViewModels.Events.LocationUpdateEventArgs e)
+        private void Context_LocationUpdate(object sender, ViewModels.Events.LocationUpdateEventArgs e)
         {
-            var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-            var result = JsonHelper.FromJson<CityIdContract>(str);
-            var citys = CityInfo.CreateList(result);
-            str = null;
-            result = null;
             var ui = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
-             {
-                 var accessStatus = await Geolocator.RequestAccessAsync();
-                 if (accessStatus == GeolocationAccessStatus.Allowed)
-                 {
-                     try
-                     {
-                         var _geolocator = new Geolocator();
-                         var pos = await _geolocator.GetGeopositionAsync();
-                         if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
-                             CalcPosition(pos, citys);
-                         else
-                         {
-                             FailtoPos();
-                         }
-                     }
-                     catch (Exception)
-                     {
-                         FailtoPos();
-                     }
+            {
+                if (Context.EnableLocate)
+                {
+                    var accessStatus = await Geolocator.RequestAccessAsync();
+                    if (accessStatus == GeolocationAccessStatus.Allowed)
+                    {
+                        try
+                        {
+                            var _geolocator = new Geolocator();
+                            var pos = await _geolocator.GetGeopositionAsync();
+                            if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
+                                await CalcPosition(pos, Context.cities);
+                            else
+                            {
+                                FailtoPos();
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            FailtoPos();
+                        }
 
-                 }
-                 else
-                 {
-                     DeniePos();
-                 }
-             }));
+                    }
+                    else
+                    {
+                        DeniePos();
+                    }
+                }
+                CityPanel.Navigate(typeof(CitiesSetting), Context.cities);
+            }));
         }
 
         private void FailtoPos()
@@ -114,25 +112,52 @@ namespace Com.Aurora.AuWeather
             Context.DeniePos();
         }
 
-        private void CalcPosition(Geoposition pos, List<CityInfo> citys)
+        private async Task CalcPosition(Geoposition pos, List<CityInfo> citys)
         {
-            var t = ThreadPool.RunAsync(async (work) =>
+            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+            List<CityInfo> final = null;
+            if (ocontract != null)
+                final = Context.cities.FindAll(x =>
+                {
+                    return x.City == ocontract.address.city;
+                });
+            if (final.IsNullorEmpty())
             {
-                var final = Models.Location.GetNearsetLocation(citys,
-                                new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-                 {
-                     var p = final.ToArray()[0];
-                     p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
-                     Context.UpdateLocation(p);
-                     citys.Clear();
-                     citys = null;
-                     final = null;
-                 }));
-            });
+                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+                if (acontract != null)
+                    final = Context.cities.FindAll(x =>
+                    {
+                        return x.City == acontract.regeocode.addressComponent.district;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                var id = await Models.Location.ReGeobyIpAsync();
+                if (id != null)
+                    final = Context.cities.FindAll(x =>
+                    {
+                        return x.Id == id.CityId;
+                    });
+            }
+            if (final.IsNullorEmpty())
+            {
+                var near = Models.Location.GetNearsetLocation(Context.cities, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
+                final = near.ToList();
+            }
+            if (final.IsNullorEmpty())
+            {
+                FailtoPos();
+                return;
+            }
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+            {
+                var p = final.ToArray()[0];
+                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                Context.UpdateLocation(p);
+            }));
         }
 
-        internal void Add()
+        internal async void Add()
         {
             if (isEditMode)
             {
@@ -140,7 +165,8 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
-                baba.NavigatetoSettings(typeof(Models.Settings.Cities));
+                //CityPanel.Width = ActualWidth - 64;
+                await CityDailog.ShowAsync();
             }
         }
 
@@ -150,45 +176,58 @@ namespace Com.Aurora.AuWeather
             {
                 Delete();
                 QuitEditMode();
-                baba.CitiesPageQuitEditMode();
+                if (baba != null)
+                    baba.CitiesPageQuitEditMode();
             }
             else
             {
                 GotoEditMode();
-                baba.CitiesPageGotoEditMode();
+                if (baba != null)
+                    baba.CitiesPageGotoEditMode();
             }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Color c;
-            SolidColorBrush s;
-            if (Context.Theme == ElementTheme.Dark)
+            if (e.Parameter is string)
             {
-                var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
-                c = (Color)d["SystemBaseHighColor"];
-                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
-            }
-            else if (Context.Theme == ElementTheme.Light)
-            {
-                var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
-                c = (Color)d["SystemBaseHighColor"];
-                s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                HeaderGrid.Visibility = Visibility.Collapsed;
+                var length = new GridLength(0);
+                Root.RowDefinitions[0].Height = length;
+                Root.RowDefinitions[1].Height = length;
             }
             else
             {
-                c = (Color)Resources["SystemBaseHighColor"];
-                s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
-            }
-            baba.ChangeColor(Colors.Transparent, c, s);
-            if (!license.IsPurchased)
-            {
-                RefreshButton.IsEnabled = false;
+                Color c;
+                SolidColorBrush s;
+                if (Context.Theme == ElementTheme.Dark)
+                {
+                    var d = this.Resources.ThemeDictionaries["Dark"] as ResourceDictionary;
+                    c = (Color)d["SystemBaseHighColor"];
+                    s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                }
+                else if (Context.Theme == ElementTheme.Light)
+                {
+                    var d = this.Resources.ThemeDictionaries["Light"] as ResourceDictionary;
+                    c = (Color)d["SystemBaseHighColor"];
+                    s = (SolidColorBrush)d["SystemControlForegroundBaseHighBrush"];
+                }
+                else
+                {
+                    c = (Color)Resources["SystemBaseHighColor"];
+                    s = (SolidColorBrush)Resources["SystemControlForegroundBaseHighBrush"];
+                }
+                if (baba != null)
+                    baba.ChangeColor(Colors.Transparent, c, s);
+                if (!license.IsPurchased)
+                {
+                    RefreshButton.IsEnabled = false;
+                }
             }
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (isEditMode)
             {
@@ -196,7 +235,8 @@ namespace Com.Aurora.AuWeather
             }
             else
             {
-                baba.NavigatetoSettings(typeof(Models.Settings.Cities));
+                //CityPanel.Width = ActualWidth - 64;
+                await CityDailog.ShowAsync();
             }
         }
 
@@ -207,7 +247,8 @@ namespace Com.Aurora.AuWeather
             {
                 Delete();
                 QuitEditMode();
-                baba.CitiesPageQuitEditMode();
+                if (baba != null)
+                    baba.CitiesPageQuitEditMode();
             }
             else
             {
@@ -230,7 +271,8 @@ namespace Com.Aurora.AuWeather
             if (isEditMode)
             {
                 QuitEditMode();
-                baba.CitiesPageQuitEditMode();
+                if (baba != null)
+                    baba.CitiesPageQuitEditMode();
             }
             else
             {
@@ -248,7 +290,8 @@ namespace Com.Aurora.AuWeather
             if (isEditMode)
             {
                 QuitEditMode();
-                baba.CitiesPageQuitEditMode();
+                if (baba != null)
+                    baba.CitiesPageQuitEditMode();
             }
             else
             {
@@ -259,7 +302,8 @@ namespace Com.Aurora.AuWeather
         private void RelativePanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             GotoEditMode();
-            baba.CitiesPageGotoEditMode();
+            if (baba != null)
+                baba.CitiesPageGotoEditMode();
         }
 
         private void GotoEditMode()
@@ -304,16 +348,24 @@ namespace Com.Aurora.AuWeather
             }
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            if ((e.ClickedItem as CityViewModel).Empty)
+            {
+                //CityPanel.Width = ActualWidth - 64;
+                await CityDailog.ShowAsync();
+                return;
+            }
             GridView.SelectedIndex = Context.Cities.IndexOf(e.ClickedItem as CityViewModel);
             if (GridView.SelectedIndex == Context.CurrentIndex)
             {
-                baba.Navigate(typeof(NowWeatherPage));
+                if (baba != null)
+                    baba.Navigate(typeof(NowWeatherPage));
                 return;
             }
             Context.ChangeCurrent(GridView.SelectedIndex);
-            baba.Navigate(typeof(NowWeatherPage));
+            if (baba != null)
+                baba.Navigate(typeof(NowWeatherPage));
         }
 
 
@@ -378,6 +430,20 @@ namespace Com.Aurora.AuWeather
             ((Resources.ThemeDictionaries["Dark"] as ResourceDictionary)["SystemThemeMainBrush"] as SolidColorBrush).Color = color;
         }
 
+        internal void Complete()
+        {
+            (CityPanel.Content as CitiesSetting).Complete();
+        }
+
+        internal bool CheckCompleted()
+        {
+            if (CityPanel.Content != null)
+            {
+                return (CityPanel.Content as CitiesSetting).CheckCompleted();
+            }
+            return false;
+        }
+
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
             if (license.IsPurchased)
@@ -397,6 +463,11 @@ namespace Com.Aurora.AuWeather
             if (p == 0)
                 p = 1;
             Context.SetPanelWidth(ActualWidth / p);
+        }
+
+        private void CityDailog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Context.ReloadCity();
         }
     }
 }

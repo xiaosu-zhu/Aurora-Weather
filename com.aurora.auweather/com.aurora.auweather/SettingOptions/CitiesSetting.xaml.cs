@@ -16,6 +16,8 @@ using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -36,6 +38,12 @@ namespace Com.Aurora.AuWeather.SettingOptions
             Context.FetchDataComplete += Context_FetchDataComplete;
             Context.LocateComplete += Context_LocateComplete;
             App.Current.Suspending += Current_Suspending;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Context.cities = e.Parameter as List<CityInfo>;
         }
 
         private void Context_LocateComplete(object sender, FetchDataCompleteEventArgs e)
@@ -72,7 +80,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             }));
         }
 
-        private async System.Threading.Tasks.Task AccesstoLocate()
+        private async Task AccesstoLocate()
         {
             try
             {
@@ -85,15 +93,16 @@ namespace Com.Aurora.AuWeather.SettingOptions
                         try
                         {
                             _geolocator = new Geolocator();
-                            _geolocator.StatusChanged += OnStatusChanged;
+
                             ShowRefreshing();
                             pos = await _geolocator.GetGeopositionAsync();
                             if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
-                                UpdatePosition(pos);
+                                await UpdatePosition(pos);
                             else
                             {
                                 DeniePos();
                             }
+                            _geolocator.StatusChanged += OnStatusChanged;
                         }
                         catch (Exception)
                         {
@@ -133,12 +142,9 @@ namespace Com.Aurora.AuWeather.SettingOptions
             LocatingIn.Begin();
         }
 
-        private void UpdatePosition(Geoposition pos)
+        private async Task UpdatePosition(Geoposition pos)
         {
-            var taks = ThreadPool.RunAsync(async (work) =>
-             {
-                 await Context.CalcPosition(pos);
-             });
+            await Context.CalcPosition(pos);
         }
 
         internal void Complete()
@@ -154,14 +160,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private async void OnStatusChanged(Geolocator sender, StatusChangedEventArgs args)
         {
             var e = args;
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
              {
                  switch (e.Status)
                  {
                      case PositionStatus.Ready:
                          if (!updated && pos != null)
                          {
-                             UpdatePosition(pos);
+                             await UpdatePosition(pos);
                          }
                          break;
                      case PositionStatus.Initializing:

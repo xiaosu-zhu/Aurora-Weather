@@ -269,7 +269,7 @@ namespace Com.Aurora.AuWeather.Effects
                         InitializeParticle(particle, new Vector2(x, -5));
                         if (ActiveParticles.Capacity <= ActiveParticles.Count)
                         {
-                            ActiveParticles.Capacity *= 2;
+                            ActiveParticles.Capacity = ActiveParticles.Count * 2;
                         }
                         ActiveParticles.Add(particle);
                     }

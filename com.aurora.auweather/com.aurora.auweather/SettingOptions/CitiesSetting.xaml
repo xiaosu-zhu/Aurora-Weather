@@ -200,7 +200,7 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    <ScrollViewer Background="{ThemeResource SystemControlForegroundHighBrush}" Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <ScrollViewer Padding="12,8,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <ScrollViewer.Resources>
             <Storyboard x:Name="LocatingIn">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocatePanel" Storyboard.TargetProperty="Visibility">

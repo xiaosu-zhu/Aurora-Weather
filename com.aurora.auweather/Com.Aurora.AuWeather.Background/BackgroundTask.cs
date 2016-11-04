@@ -57,7 +57,7 @@ namespace Com.Aurora.AuWeather.Background
 
         private async Task Init(SettingsModel settings, CitySettingsModel currentCity)
         {
-            string resstr = await Request.GetRequest(settings, currentCity);
+            string resstr = await Request.GetRequestAsync(settings, currentCity);
             if (!resstr.IsNullorEmpty())
             {
                 var fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);

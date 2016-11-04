@@ -1018,7 +1018,9 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>10K étape franchie !</value>
+    <value>· Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
+· Changé la méthode de localisation
+· Intégrer la page vue d’ensemble de villes avec la page de gestion des villes</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1042,7 +1044,12 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
+· Changé la méthode de localisation
+· Intégrer la page vue d’ensemble de villes avec la page de gestion des villes
+
+1.6.16101
 · Corrections mineures
 · Maintenant, vous pouvez définir le mode immersif time out dans le panneau de disposition personnalisé
 
@@ -1436,5 +1443,11 @@ demain: {4}, {5}.</value>
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>Immersif mode temporisation, la valeur 0 affiche forever</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>Nous avons modifié la gestion des villes à un autre endroit</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>Allez sur la Page villes et découvrez</value>
   </data>
 </root>

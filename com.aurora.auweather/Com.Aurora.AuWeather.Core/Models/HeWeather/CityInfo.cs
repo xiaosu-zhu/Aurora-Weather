@@ -92,7 +92,7 @@ namespace Com.Aurora.AuWeather.Models.HeWeather
             if (citys != null && !citys.city_info.IsNullorEmpty())
             {
                 List<CityInfo> c = new List<CityInfo>();
-                c.Capacity = 70000;
+                c.Capacity = 80000;
                 foreach (var city in citys.city_info)
                 {
                     if (city.id.EndsWith("A"))

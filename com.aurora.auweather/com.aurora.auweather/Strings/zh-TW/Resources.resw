@@ -1145,7 +1145,9 @@
     <value>10K 下載量達成！</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
-    <value>歡迎來到新版本</value>
+    <value>· 加快移動版啓動速度
+· 更換定位方式
+· 整合「城市概覽」頁面與「城市管理」頁面</value>
   </data>
   <data name="Calculator" xml:space="preserve">
     <value>單位換算</value>
@@ -1166,7 +1168,12 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16101
+    <value>1.6.16110
+· 加快移動版啓動速度
+· 更換定位方式
+· 整合「城市概覽」頁面與「城市管理」頁面
+
+1.6.16101
 · 少量錯誤修復
 · 你可以在 自定義佈局 中設置沉浸糢式超時時間
 
@@ -1543,5 +1550,11 @@
   </data>
   <data name="ImmersiveTimeOutText.Text" xml:space="preserve">
     <value>沉浸糢式超时时间，0 为一直显示</value>
+  </data>
+  <data name="ChangeCityManage.Text" xml:space="preserve">
+    <value>我們修改了城市管理的方式</value>
+  </data>
+  <data name="GotoCitiesPage.Text" xml:space="preserve">
+    <value>請前往「城市概覽」頁面查看</value>
   </data>
 </root>

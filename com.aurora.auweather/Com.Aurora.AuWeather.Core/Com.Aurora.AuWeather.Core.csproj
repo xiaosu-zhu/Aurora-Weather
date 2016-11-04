@@ -113,6 +113,7 @@
     <Compile Include="LunarCalendar\CalendarInfo.cs" />
     <Compile Include="LunarCalendar\SunRiseSet.cs" />
     <Compile Include="LunarCalendar\SolarTerm.cs" />
+    <Compile Include="Models\Amap\JsonContract\AmapContract.cs" />
     <Compile Include="Models\AQI.cs" />
     <Compile Include="Models\BGTask.cs" />
     <Compile Include="Models\Caiyun\Enums.cs" />
@@ -143,8 +144,10 @@
     <Compile Include="Models\HeWeather\NowWeather.cs" />
     <Compile Include="Models\HeWeather\WeatherAlarm.cs" />
     <Compile Include="Models\HeWeather\WeatherSuggestion.cs" />
+    <Compile Include="Models\IP\IpContract.cs" />
     <Compile Include="Models\Length.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\OpenStreetMap\OpenStreetMapContract.cs" />
     <Compile Include="Models\Pressure.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\SettingsModel.cs" />

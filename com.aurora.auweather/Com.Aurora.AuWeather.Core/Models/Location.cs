@@ -7,6 +7,11 @@ using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Core.Models.Amap.JsonContract;
+using Com.Aurora.AuWeather.Core.Models.IP;
+using Com.Aurora.AuWeather.Core.Models;
+using Com.Aurora.AuWeather.Core.Models.OpenStreetMap;
 
 namespace Com.Aurora.AuWeather.Models
 {
@@ -107,6 +112,41 @@ namespace Com.Aurora.AuWeather.Models
                         orderby CalcDistance(m.Location, source) ascending
                         select m;
             return final;
+        }
+
+        public static async Task<AmapContract> AmapReGeoAsync(double latitude, double longitude)
+        {
+            var requestUrl = "http://restapi.amap.com/v3/geocode/regeo?key={0}&location={1},{2}&radius=1000&extensions=all&batch=false&roadlevel=1";
+            // 高德经纬度颠倒
+            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(requestUrl, new string[] { Key.amap, longitude.ToString("0.######"), latitude.ToString("0.######") });
+            // json 生成类
+            if (result == null)
+                return null;
+            var amapRes = JsonHelper.FromJson<AmapContract>(result);
+            return amapRes;
+        }
+
+        public static async Task<OpenStreetMapContract> OpenMapReGeoAsync(double latitude, double longitude)
+        {
+            var OpenStreetUrl = "http://nominatim.openstreetmap.org/reverse?format=json&accept-language=chinese&lat={0}&lon={1}&zoom=18";
+            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(OpenStreetUrl, new string[] { latitude.ToString("0.######"), longitude.ToString("0.######") });
+            // json 生成类
+            if (result == null)
+                return null;
+            var omapRes = JsonHelper.FromJson<OpenStreetMapContract>(result);
+            return omapRes;
+        }
+
+        public async static Task<HeWeather.Location> ReGeobyIpAsync()
+        {
+            var ipUrl = "http://api.ip138.com/query/?token={0}";
+            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(ipUrl, new string[] { Key.ip138 });
+            if (result == null)
+                return null;
+            var ipRes = JsonHelper.FromJson<IpContract>(result);
+            var city = await Request.RequestbyIpAsync(ipRes.ip);
+            var fetchresult = HeWeatherModel.Generate(city, DataSource.HeWeather);
+            return fetchresult.Location;
         }
     }
 }

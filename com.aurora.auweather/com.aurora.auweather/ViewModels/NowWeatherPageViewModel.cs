@@ -138,6 +138,14 @@ namespace Com.Aurora.AuWeather.ViewModels
         private SolidColorBrush alarmColor;
 
         #endregion
+        private string locate = "  ";
+
+        public string Locate
+        {
+            get { return locate; }
+            set { SetProperty(ref locate, value); }
+        }
+
         #region public binded properties
         public Temperature Temprature
         {
@@ -1485,7 +1493,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                         fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
                         return;
                     }
-                    resstr = await Core.Models.Request.GetRequest(settings, currentCityModel);
+                    resstr = await Core.Models.Request.GetRequestAsync(settings, currentCityModel);
                     if (resstr.IsNullorEmpty())
                     {
                         await Task.Delay(1000);
@@ -1554,6 +1562,10 @@ namespace Com.Aurora.AuWeather.ViewModels
             glance = null;
             Glance = g;
             City = currentCityModel.City;
+            if (settings.Cities.LocatedCity != null && currentCityModel.Id == settings.Cities.LocatedCity.Id)
+            {
+                Locate = "";
+            }
             EnableDynamic = !settings.Preferences.DisableDynamic;
             EnablePulltoRefresh = settings.Preferences.EnablePulltoRefresh;
             SetNow();

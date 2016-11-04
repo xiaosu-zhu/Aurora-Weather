@@ -33,6 +33,7 @@
             <Converters:shiliubijiuConverter x:Key="shiliubijiuConverter" />
             <Converters:UpdateTimeConverter x:Key="DateTimeConverter" />
             <Converters:BoolNottoVisibilityConverter x:Key="BoolNottoVisibilityConverter" />
+            <Converters:BooltoVisibilityConverter x:Key="BooltoVisibilityConverter" />
             <Converters:ReverseBoolConverter x:Key="ReverseConverter" />
             <Converters:ThemeColorConverter x:Key="ThemeColorConverter" />
             <Converters:TempratureConverterWithoutDecoration x:Key="TemperatureConverter" />
@@ -843,6 +844,13 @@
     </Page.Transitions>
 
     <Grid x:Name="Root" Background="{ThemeResource SystemControlForegroundHighBrush}">
+        <Grid.Resources>
+            <Storyboard x:Name="CityPanelIn" >
+                <DoubleAnimation Storyboard.TargetName="CityPanel" Storyboard.TargetProperty="" >
+
+                </DoubleAnimation>
+            </Storyboard>
+        </Grid.Resources>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
@@ -876,7 +884,7 @@
         <GridView Loaded="GridView_Loaded" ItemContainerStyle="{ThemeResource GeneralGridViewItemStyle}" IsMultiSelectCheckBoxEnabled="True" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" SelectedIndex="{x:Bind Context.CurrentIndex,Mode=OneWay}" x:Name="GridView" Grid.Row="2" ItemsSource="{Binding Source={StaticResource GridViewSource}}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:CityViewModel">
-                    <RelativePanel RightTapped="RelativePanel_RightTapped" Width="360" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RelativePanel Width="360" Height="180" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <RelativePanel.Background>
                             <ImageBrush ImageSource="{x:Bind Background, Mode=OneWay}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center" />
                         </RelativePanel.Background>
@@ -888,8 +896,11 @@
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="{x:Bind Updated, Converter={StaticResource ReverseConverter}, Mode=OneWay}"/>
                             <TextBlock x:Uid="UpdateFailedText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Succeed,Converter={StaticResource BoolNottoVisibilityConverter},Mode=OneWay,FallbackValue=Collapsed}" />
                         </Grid>
-                        <StackPanel RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="#2F000000" Orientation="Vertical">
-                            <TextBlock Margin="8" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="ExtraLight" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind City, Mode=OneWay}" />
+                        <StackPanel RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="#7F000000" Orientation="Vertical">
+                            <TextBlock Margin="8" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="ExtraLight" Style="{ThemeResource TitleTextBlockStyle}" >
+                                <Run Text="{x:Bind City, Mode=OneWay}" />
+                                <Run FontFamily="Segoe MDL2 Assets" Text="{x:Bind Locate,Mode=OneWay}" />
+                            </TextBlock>
                             <TextBlock Text="{x:Bind NowCondition,Mode=OneWay,Converter={StaticResource ConditiontoTextConverter}}" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="ExtraLight" Margin="8,0,8,0" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                 <TextBlock Margin="8" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="ExtraLight" >
@@ -903,6 +914,9 @@
                             </StackPanel>
                             <TextBlock Foreground="White" Margin="8" MaxLines="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind Glance, Mode=OneWay}" TextTrimming="WordEllipsis" />
                         </StackPanel>
+                        <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Visibility="{x:Bind Empty,Converter={StaticResource BooltoVisibilityConverter}, Mode=OneWay}">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE109;" FontSize="48" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </Grid>
                     </RelativePanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
@@ -910,5 +924,10 @@
                 <Grid Height="96" />
             </GridView.Footer>
         </GridView>
+        <ContentDialog PrimaryButtonText="Confirm" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
+            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Frame Width="384" x:Name="CityPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </ScrollViewer>
+        </ContentDialog>
     </Grid>
 </Page>
