@@ -21,6 +21,7 @@ using Windows.Foundation;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using System.Linq;
+using Com.Aurora.AuWeather.Models;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -41,11 +42,11 @@ namespace Com.Aurora.AuWeather.ViewModels
         public CitiesSettingViewModel()
         {
             lockable = new object();
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                Cities = Models.Settings.Cities.Get();
+                Cities = SettingsModel.Current.Cities;
                 Info = new CitiesInfo();
                 if (!Cities.SavedCities.IsNullorEmpty())
                     foreach (var city in Cities.SavedCities)

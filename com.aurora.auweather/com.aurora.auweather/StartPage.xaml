@@ -27,8 +27,8 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Root">
-        <ScrollViewer Background="{ThemeResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Stretch" Loaded="ScrollViewer_Loaded" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" x:Name="RootScroll">
-            <Grid x:Name="Base" VerticalAlignment="Stretch">
+        <ScrollViewer IsHorizontalScrollChainingEnabled="True" IsVerticalScrollChainingEnabled="True" Background="{ThemeResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Stretch" Loaded="ScrollViewer_Loaded" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" x:Name="RootScroll">
+            <Grid x:Name="Base">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -115,17 +115,17 @@
                     <FontIcon FontSize="18" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE096;" />
                 </StackPanel>
                 <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}" Margin="0,0,-1080,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="RootFrame" />
-                <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
-                    <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock Foreground="White" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="WelcomeText" x:Uid="WelcomeText" Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12" />
-                        <Frame RelativePanel.Below="WelcomeText" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="ForwardButton" RelativePanel.AlignRightWithPanel="True" x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <Button x:Name="ForwardButton" Foreground="White" Style="{ThemeResource FullWidthButton}" RelativePanel.AlignBottomWithPanel="True" Click="Button_Click" Height="96" Grid.Column="1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0" BorderBrush="{x:Null}" Background="{ThemeResource SystemTranslucentAltHighBrush}" >
-                            <Button.Content>
-                                <SymbolIcon Symbol="Forward" />
-                            </Button.Content>
-                        </Button>
-                    </RelativePanel>
-                </ScrollViewer>
+                <RelativePanel x:Name="WelcomePanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                    <TextBlock Foreground="White" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="WelcomeText" x:Uid="WelcomeText" Style="{ThemeResource HeaderTextBlockStyle}" Margin="12" />
+                    <ScrollViewer Canvas.ZIndex="9999" IsVerticalScrollChainingEnabled="True" HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled" RelativePanel.Below="WelcomeText" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="ForwardButton" RelativePanel.AlignRightWithPanel="True">
+                        <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </ScrollViewer>
+                    <Button x:Name="ForwardButton" Foreground="White" Style="{ThemeResource FullWidthButton}" RelativePanel.AlignBottomWithPanel="True" Click="Button_Click" Height="96" Grid.Column="1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderThickness="0" BorderBrush="{x:Null}" Background="{ThemeResource SystemTranslucentAltHighBrush}" >
+                        <Button.Content>
+                            <SymbolIcon Symbol="Forward" />
+                        </Button.Content>
+                    </Button>
+                </RelativePanel>
             </Grid>
         </ScrollViewer>
     </Grid>

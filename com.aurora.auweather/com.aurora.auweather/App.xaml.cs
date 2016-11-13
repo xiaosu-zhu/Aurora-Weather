@@ -44,7 +44,7 @@ namespace Com.Aurora.AuWeather
             this.Suspending += OnSuspending;
         }
 
-        Models.SettingsModel settings = Models.SettingsModel.Get();
+        Models.SettingsModel settings = Models.SettingsModel.Current;
 
         private async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {

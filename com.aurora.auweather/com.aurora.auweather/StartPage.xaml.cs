@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Composition;
 using Windows.UI.Xaml.Hosting;
 using Com.Aurora.Shared.Extensions;
+using Com.Aurora.AuWeather.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -28,7 +29,7 @@ namespace Com.Aurora.AuWeather
         public StartPage()
         {
             this.InitializeComponent();
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
@@ -195,6 +196,7 @@ namespace Com.Aurora.AuWeather
             BGLayer3.ReplaceElements(horSc, verSc);
             h = height;
             w = width;
+            WelcomePanel.Height = ActualHeight;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

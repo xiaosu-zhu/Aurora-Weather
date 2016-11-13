@@ -2,7 +2,6 @@
 //
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.Shared.Extensions;
 using Com.Aurora.Shared.Helpers;
@@ -16,6 +15,8 @@ namespace Com.Aurora.AuWeather.Models.Settings
     {
         public CitySettingsModel[] SavedCities { get; private set; }
 
+        public LocateRoute[] Routes { get; private set; } = new LocateRoute[4] { LocateRoute.Amap, LocateRoute.Omap, LocateRoute.IP, LocateRoute.unknown };
+
         public int CurrentIndex { get; set; }
 
         public bool EnableLocate { get; set; } = true;
@@ -28,9 +29,11 @@ namespace Com.Aurora.AuWeather.Models.Settings
             {
                 var container = RoamingSettingsHelper.GetContainer("Cities");
                 var subContainer = container.GetContainer("Locate");
+                var enumContainer = container.GetContainer("Routes");
                 c.CurrentIndex = (int)container.Values["CurrentIndex"];
                 c.EnableLocate = (bool)container.Values["EnableLocate"];
                 CitySettingsModel loc;
+                LocateRoute[] r;
 
                 if (subContainer.ReadGroupSettings(out loc))
                 {
@@ -48,6 +51,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                         }
                     }
                 }
+
                 int i = (int)container.Values["Count"];
                 List<CitySettingsModel> cs = new List<CitySettingsModel>();
                 for (int j = 0; j < i; j++)
@@ -64,6 +68,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 {
                     c.SavedCities[c.CurrentIndex].IsCurrent = true;
                 }
+                if (enumContainer.ReadGroupSettings(out r))
+                {
+                    c.Routes = r;
+                }
                 return c;
             }
             catch (Exception)
@@ -74,6 +82,11 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 }
                 return c;
             }
+        }
+
+        public void ChangeRoute(LocateRoute[] locateRoute)
+        {
+            this.Routes = locateRoute;
         }
 
         public void Pick(int index)
@@ -106,6 +119,15 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 catch (Exception)
                 {
                 }
+
+            }
+            var enumContainer = container.GetContainer("Routes");
+            try
+            {
+                enumContainer.WriteGroupSettings(Routes);
+            }
+            catch (Exception)
+            {
 
             }
             SaveCities(container);

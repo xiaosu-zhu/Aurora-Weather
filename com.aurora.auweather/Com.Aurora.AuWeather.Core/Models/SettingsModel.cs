@@ -16,6 +16,8 @@ namespace Com.Aurora.AuWeather.Models
         public Preferences Preferences { get; private set; }
         public bool Inited { get; private set; }
 
+        public static SettingsModel Current = Get();
+
         public static SettingsModel Get()
         {
             var s = new SettingsModel();

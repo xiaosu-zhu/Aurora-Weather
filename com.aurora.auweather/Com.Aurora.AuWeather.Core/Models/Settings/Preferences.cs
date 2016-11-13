@@ -25,7 +25,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
         {
             get
             {
-                return EnableMorning || EnableEvening;
+                return EnableMorning || EnableEvening || EnableAlarm;
             }
         }
 
@@ -131,7 +131,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 }
                 else
                 {
-                    var c = Cities.Get();
+                    var c = SettingsModel.Current.Cities;
                     if (c.EnableLocate && c.LocatedCity != null && c.LocatedCity.Longitude != 0 && c.LocatedCity.Latitude != 0)
                     {
                         if ((DateTime.Now - themeTime).TotalDays > 0.5)

@@ -524,7 +524,7 @@ namespace Com.Aurora.AuWeather
 
         private void B_Click(object sender, RoutedEventArgs e)
         {
-            var s = SettingsModel.Get();
+            var s = SettingsModel.Current;
             var l = new List<CitySettingsViewModel>();
             l.AddRange(CitiesPanel.ItemsSource as ICollection<CitySettingsViewModel>);
             var index = l.FindIndex(x =>
@@ -541,7 +541,7 @@ namespace Com.Aurora.AuWeather
 
         private void CitiesPanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var s = SettingsModel.Get();
+            var s = SettingsModel.Current;
             var l = new List<CitySettingsViewModel>();
             l.AddRange(CitiesPanel.ItemsSource as ICollection<CitySettingsViewModel>);
             var index = l.FindIndex(x =>

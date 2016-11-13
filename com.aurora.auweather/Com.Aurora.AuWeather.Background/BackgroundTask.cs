@@ -27,7 +27,7 @@ namespace Com.Aurora.AuWeather.Background
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-            var settings = SettingsModel.Get();
+            var settings = SettingsModel.Current;
 
             //await FileIOHelper.AppendLogtoCacheAsync("Background Task Run Once");
 

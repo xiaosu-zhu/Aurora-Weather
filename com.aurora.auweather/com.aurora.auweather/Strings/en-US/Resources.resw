@@ -1550,9 +1550,27 @@ Now you can send crash report to developer, and totally help this app get better
     <value>Immersive mode time out, set to 0 will display forever</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>We've changed cities' management to another place</value>
+    <value>Drag to change priority</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>Please go to Cities Page and check out</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Gaode Map reverse-geocoding（China only）</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap reverse-geocoding</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>IP geo-location query</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>Built-in reverse-geocoding</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmButton.PrimaryButtonText" xml:space="preserve">
+    <value>Confirm</value>
   </data>
 </root>

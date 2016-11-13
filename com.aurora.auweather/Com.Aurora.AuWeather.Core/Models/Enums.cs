@@ -46,4 +46,6 @@ namespace Com.Aurora.AuWeather.Models
     public enum RequestedTheme : byte { Default, Auto, Light, Dark };
 
     public enum DataSource : byte { HeWeather, Caiyun, Wunderground };
+
+    public enum LocateRoute : byte { unknown, Amap, Omap, IP, Gmap };
 }

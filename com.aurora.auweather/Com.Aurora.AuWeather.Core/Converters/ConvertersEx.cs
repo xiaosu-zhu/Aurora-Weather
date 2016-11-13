@@ -809,7 +809,7 @@ namespace Com.Aurora.Shared.Converters
     {
         public DateNowConverter()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             format = p.GetDateFormat();
         }
         private static string format = "yyyy-M-d dddd";
@@ -825,7 +825,7 @@ namespace Com.Aurora.Shared.Converters
 
         public static void Refresh()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             format = p.GetDateFormat();
         }
     }

@@ -537,15 +537,15 @@
     <Compile Include="DonationPage.xaml.cs">
       <DependentUpon>DonationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Effects\BGBlur.cs" />
-    <Compile Include="Effects\Particle.cs" />
-    <Compile Include="Effects\ParticleSystem.cs" />
-    <Compile Include="Effects\RainParticleSystem.cs" />
-    <Compile Include="Effects\SmokeParticleSystem.cs" />
-    <Compile Include="Effects\SolarSystem.cs" />
-    <Compile Include="Effects\StarParticleSystem.cs" />
-    <Compile Include="Effects\Thunder.cs" />
-    <Compile Include="Effects\ThunderGenerator.cs" />
+    <Compile Include="CustomControls\Effects\BGBlur.cs" />
+    <Compile Include="CustomControls\Effects\Particle.cs" />
+    <Compile Include="CustomControls\Effects\ParticleSystem.cs" />
+    <Compile Include="CustomControls\Effects\RainParticleSystem.cs" />
+    <Compile Include="CustomControls\Effects\SmokeParticleSystem.cs" />
+    <Compile Include="CustomControls\Effects\SolarSystem.cs" />
+    <Compile Include="CustomControls\Effects\StarParticleSystem.cs" />
+    <Compile Include="CustomControls\Effects\Thunder.cs" />
+    <Compile Include="CustomControls\Effects\ThunderGenerator.cs" />
     <Compile Include="License\License.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -589,6 +589,7 @@
     <Compile Include="ViewModels\Events\LocationUpdateEventArgs.cs" />
     <Compile Include="ViewModels\Events\TimeUpdatedEventArgs.cs" />
     <Compile Include="ViewModels\ImmersiveSettingViewModel.cs" />
+    <Compile Include="ViewModels\LocationNoteViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NowWeatherPageViewModel.cs" />
     <Compile Include="ViewModels\Events\ParameterChangedEventHandler.cs" />

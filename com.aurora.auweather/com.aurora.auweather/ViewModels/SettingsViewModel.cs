@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI;
+using Com.Aurora.AuWeather.Models;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -46,7 +47,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var license = new License.License();
             IsNotPurchased = license.IsPurchased;
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
         }
 
@@ -54,7 +55,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void ReloadTheme()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
         }
     }

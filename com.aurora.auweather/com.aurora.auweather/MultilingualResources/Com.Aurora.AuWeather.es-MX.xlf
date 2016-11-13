@@ -1974,12 +1974,37 @@ mañana: {4}, {5}.</target>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Modo de inmersión de tiempo de espera, valor 0 mostrará para siempre</target>
         </trans-unit>
         <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
-          <source>We've changed cities' management to another place</source>
+          <source>Drag to change priority</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Gestión de las ciudades hemos cambiado a otro lugar</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
           <source>Please go to Cities Page and check out</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Por favor ir a la página de ciudades y consulte</target>
+        </trans-unit>
+        <trans-unit id="LocateRoute_Amap" translate="yes" xml:space="preserve">
+          <source>Gaode Map reverse-geocoding（China only）</source>
+          <target state="new">Gaode Map reverse-geocoding（China only）</target>
+        </trans-unit>
+        <trans-unit id="LocateRoute_Omap" translate="yes" xml:space="preserve">
+          <source>OpenStreetMap reverse-geocoding</source>
+          <target state="new">OpenStreetMap reverse-geocoding</target>
+        </trans-unit>
+        <trans-unit id="LocateRoute_IP" translate="yes" xml:space="preserve">
+          <source>IP geo-location query</source>
+          <target state="new">IP geo-location query</target>
+        </trans-unit>
+        <trans-unit id="LocateRoute_unknown" translate="yes" xml:space="preserve">
+          <source>Built-in reverse-geocoding</source>
+          <target state="new">Built-in reverse-geocoding</target>
+        </trans-unit>
+        <trans-unit id="ConfirmButton.Content" translate="yes" xml:space="preserve">
+          <source>Confirm</source>
+          <target state="new">Confirm</target>
+        </trans-unit>
+        <trans-unit id="ConfirmButton.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Confirm</source>
+          <target state="new">Confirm</target>
         </trans-unit>
       </group>
     </body>

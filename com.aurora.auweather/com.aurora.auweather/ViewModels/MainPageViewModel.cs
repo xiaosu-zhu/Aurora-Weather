@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 using System;
 using Com.Aurora.AuWeather.Models.Settings;
 using Windows.UI.Xaml;
+using Com.Aurora.AuWeather.Models;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -20,7 +21,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public MainPageViewModel()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
             Calendar = p.UseLunarCalendarPrimary ? new CalendarInfo() : null;
         }
@@ -52,7 +53,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void ReloadTheme()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
         }
     }

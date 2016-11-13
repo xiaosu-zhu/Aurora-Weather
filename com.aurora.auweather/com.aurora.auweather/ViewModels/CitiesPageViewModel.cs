@@ -28,7 +28,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 {
     public class CitiesPageViewModel : ViewModelBase
     {
-        private SettingsModel settings = SettingsModel.Get();
+        private SettingsModel settings = SettingsModel.Current;
 
         public event EventHandler<LocationUpdateEventArgs> LocationUpdate;
         public event EventHandler<FetchDataFailedEventArgs> FetchDataFailed;
@@ -93,10 +93,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                 var ask = ThreadPool.RunAsync(async (m) =>
                 {
                     await SearchExistingDataAsync();
-                    var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                    var result = JsonHelper.FromJson<CityIdContract>(str);
+                    var result = JsonHelper.FromJson<CityIdContract>(Key.cityid);
                     cities = CityInfo.CreateList(result);
-                    str = null;
                     result = null;
                     EnableLocate = settings.Cities.EnableLocate;
                     RequireLocationUpdate();
@@ -502,7 +500,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void ReloadCity()
         {
-            settings = SettingsModel.Get();
+            settings = SettingsModel.Current;
             Cities.Clear();
             if (settings.Cities.EnableLocate)
             {

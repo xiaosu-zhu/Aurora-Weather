@@ -153,6 +153,7 @@
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\Settings\About.cs" />
     <Compile Include="Models\Settings\Cities.cs" />
+    <Compile Include="Models\Settings\IAppSettings.cs" />
     <Compile Include="Models\Settings\Immersive.cs" />
     <Compile Include="Models\Settings\Preferences.cs" />
     <Compile Include="Models\Speed.cs" />

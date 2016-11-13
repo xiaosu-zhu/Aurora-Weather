@@ -28,7 +28,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public PreferencesSettingViewModel()
         {
-            Preferences = Preferences.Get();
+            Preferences = SettingsModel.Current.Preferences;
             Theme1 = Preferences.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
@@ -474,6 +474,16 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 SetProperty(ref enableEveryDay, value);
+                if (value)
+                {
+                    
+                }
+                else
+                {
+                    Preferences.EnableMorning = false;
+                    Preferences.EnableEvening = false;
+                    Preferences.EnableAlarm = false;
+                }
             }
         }
         public bool EnablePulltoRefresh

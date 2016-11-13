@@ -338,11 +338,11 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public ImmersiveSettingViewModel()
         {
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
             var task = ThreadPool.RunAsync(async (work) =>
             {
-                immersive = Immersive.Get();
+                immersive = SettingsModel.Current.Immersive;
                 PivotList = new ImmersiveGroup();
                 CurrentList = await CurrentImmersiveList.Get(PivotList[0]);
                 var lUri = await Immersive.GetFileFromLocalAsync(PivotList[0]);

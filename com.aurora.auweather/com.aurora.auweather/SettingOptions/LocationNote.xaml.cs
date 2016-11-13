@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Com.Aurora.AuWeather.ViewModels.Events;
+using Windows.ApplicationModel;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +26,145 @@ namespace Com.Aurora.AuWeather.SettingOptions
     /// </summary>
     public sealed partial class LocationNote : Page
     {
+        private Geolocator _geolocator;
+        private Geoposition pos;
+        private bool updated = false;
+
         public LocationNote()
         {
             this.InitializeComponent();
+            Context.LocateComplete += Context_LocateComplete;
+            App.Current.Suspending += Current_Suspending;
+            Context.FetchDataComplete += Context_FetchDataComplete;
+        }
+
+        private async void Context_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+            {
+                LocateOnSwitch.IsEnabled = true;
+                LocateOnSwitch.IsEnabled = true;
+                await AccesstoLocate();
+            }));
+        }
+
+        private async Task AccesstoLocate()
+        {
+            try
+            {
+                var accessStatus = await Geolocator.RequestAccessAsync();
+                if (accessStatus == GeolocationAccessStatus.Allowed)
+                {
+                    LocateAllowed.Begin();
+                    if (Context.EnableLocation)
+                    {
+                        try
+                        {
+                            _geolocator = new Geolocator();
+                            pos = await _geolocator.GetGeopositionAsync();
+                            if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
+                                await Context.UpdatePosition(pos);
+                            else
+                            {
+                                DeniePos();
+                            }
+                            _geolocator.StatusChanged += OnStatusChanged;
+                        }
+                        catch (Exception)
+                        {
+                            DeniePos();
+                        }
+
+                    }
+                    else
+                    {
+                        HidePos();
+                    }
+
+                }
+                else
+                {
+                    DeniePos();
+                }
+            }
+            catch (Exception)
+            {
+                DeniePos();
+            }
+        }
+
+        private void HidePos()
+        {
+
+        }
+
+        private async void OnStatusChanged(Geolocator sender, StatusChangedEventArgs args)
+        {
+            var e = args;
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+            {
+                switch (e.Status)
+                {
+                    case PositionStatus.Ready:
+                        if (!updated && pos != null)
+                        {
+                            await Context.UpdatePosition(pos);
+                        }
+                        break;
+                    case PositionStatus.Initializing:
+                        if (updated || pos == null)
+                        {
+                            ShowError();
+                        }
+                        break;
+                    case PositionStatus.NoData:
+                    case PositionStatus.Disabled:
+                    case PositionStatus.NotInitialized:
+                    case PositionStatus.NotAvailable:
+                        ShowError();
+                        break;
+                    default:
+                        break;
+                }
+            }));
+        }
+
+        private void ShowError()
+        {
+            LocateDenied.Begin();
+        }
+
+        private void DeniePos()
+        {
+            LocateDenied.Begin();
+        }
+
+        private void Context_LocateComplete(object sender, FetchDataCompleteEventArgs e)
+        {
+            updated = true;
+        }
+
+        private void Current_Suspending(object sender, SuspendingEventArgs e)
+        {
+            Context.SaveAll();
+        }
+
+        private void ListView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            if (args.DropResult == Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move)
+            {
+                Context.ChangeRoute();
+            }
+        }
+
+        private void ListView_Drop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void ListView_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        {
+
         }
     }
 }

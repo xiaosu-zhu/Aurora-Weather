@@ -129,7 +129,7 @@ namespace Com.Aurora.AuWeather
         {
             dismissed = true;
             SetLongTimeTimer();
-            var settings = SettingsModel.Get();
+            var settings = SettingsModel.Current;
             var license = new License.License();
             if (!license.IsPurchased)
             {
@@ -189,10 +189,8 @@ namespace Com.Aurora.AuWeather
                                 {
                                     var t = ThreadPool.RunAsync(async (w) =>
                                     {
-                                        var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                                        var cityids = JsonHelper.FromJson<CityIdContract>(str);
+                                        var cityids = JsonHelper.FromJson<CityIdContract>(Key.cityid);
                                         var citys = CityInfo.CreateList(cityids);
-                                        str = null;
                                         cityids = null;
                                         await CalcPosition(pos, citys, settings);
                                         GetCityListandCompelte(settings);
@@ -234,10 +232,8 @@ namespace Com.Aurora.AuWeather
                     {
                         if (citys == null)
                         {
-                            var str = await FileIOHelper.ReadStringFromAssetsAsync("cityid.txt");
-                            var result = JsonHelper.FromJson<CityIdContract>(str);
+                            var result = JsonHelper.FromJson<CityIdContract>(Key.cityid);
                             citys = CityInfo.CreateList(result);
-                            str = null;
                             result = null;
                         }
                         var tar = citys.Find(x =>
@@ -429,7 +425,7 @@ namespace Com.Aurora.AuWeather
         {
             if (rootFrame.Content is MainPage)
             {
-                var s = SettingsModel.Get();
+                var s = SettingsModel.Current;
                 var c = s.Cities.SavedCities;
                 List<CitySettingsViewModel> l = new List<CitySettingsViewModel>();
                 if (s.Cities.EnableLocate && s.Cities.LocatedCity != null)

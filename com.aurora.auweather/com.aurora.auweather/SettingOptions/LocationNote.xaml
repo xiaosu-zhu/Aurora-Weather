@@ -3,17 +3,95 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Com.Aurora.AuWeather.SettingOptions"
+    xmlns:Converters="using:Com.Aurora.Shared.Converters"
+    xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.DataContext>
+        <ViewModels:LocationNoteViewModel x:Name="Context"/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="../Themes/LightThemeDictionary.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="../Themes/DarkThemeDictionary.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <CollectionViewSource Source="{x:Bind Context.LocationList,Mode=OneWay}" x:Key="LocationList" />
+        </ResourceDictionary>
+    </Page.Resources>
+
     <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled">
-        <RichTextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36" IsTextSelectionEnabled="False">
-            <Paragraph >
-                <Run x:Uid="ChangeCityManage" FontSize="48" FontWeight="ExtraLight" Text="我们修改了城市管理的方式" />
-                <LineBreak />
-                <Run x:Uid="GotoCitiesPage" FontSize="36" Text="请前往「城市概览」页面查看" />
-            </Paragraph>
-        </RichTextBlock>
+        <ScrollViewer.Resources>
+            <Storyboard x:Name="LocateDenied">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateDeniedButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckLocateAccessButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnText" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="LocateAllowed">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateDeniedButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckLocateAccessButton" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnText" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="IsEnabled">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LocateOnSwitch" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </ScrollViewer.Resources>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid MaxWidth="480" HorizontalAlignment="Stretch">
+                <TextBlock x:Uid="LocateOnText" x:Name="LocateOnText" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                <ToggleSwitch IsEnabled="False" x:Name="LocateOnSwitch" Style="{ThemeResource NarrowSwitch}" IsOn="{x:Bind Context.EnableLocation, Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8" OnContent="" OffContent="" />
+                <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
+                <Button x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Style="{ThemeResource TextBlockButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,8,48,8" />
+            </Grid>
+            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12">
+                <Run x:Uid="ChangeCityManage" Text="拖动更换定位方式优先级" />
+            </TextBlock>
+            <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="ViewModels:LocationViewModel">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Route,Mode=OneWay}" FontSize="24" Style="{ThemeResource HeaderTextBlockStyle}" Margin="12,8,12,8" />
+                            <TextBlock Text="{x:Bind City,Mode=OneWay}" FontSize="20" Style="{ThemeResource HeaderTextBlockStyle}" Grid.Row="1" Margin="12,4,12,4"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" Opacity="0.6" Glyph="&#xE700;" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="12" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </ScrollViewer>
 </Page>

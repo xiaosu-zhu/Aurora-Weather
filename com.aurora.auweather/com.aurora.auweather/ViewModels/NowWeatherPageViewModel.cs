@@ -1132,7 +1132,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             set
             {
                 enableDynamic = !value;
-                settings = SettingsModel.Get();
+                settings = SettingsModel.Current;
                 settings.Preferences.DisableDynamic = !value;
                 SetProperty(ref enableDynamic, value);
                 settings.Preferences.Save();
@@ -1296,10 +1296,13 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
             set
             {
-                settings = SettingsModel.Get();
-                settings.Preferences.AlwaysBlur = value;
-                SetProperty(ref alwaysBlur, value);
-                settings.Preferences.Save();
+                if (alwaysBlur != value)
+                {
+                    settings = SettingsModel.Current;
+                    settings.Preferences.AlwaysBlur = value;
+                    SetProperty(ref alwaysBlur, value);
+                    settings.Preferences.Save();
+                }
             }
         }
 
@@ -1940,7 +1943,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void ReadSettings()
         {
-            settings = SettingsModel.Get();
+            settings = SettingsModel.Current;
             currentCityModel = settings.Cities.GetCurrentCity();
             InitialConverterParameter(settings);
         }

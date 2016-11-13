@@ -782,7 +782,7 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         private void ReadSettings()
         {
-            settings = SettingsModel.Get();
+            settings = SettingsModel.Current;
             currentCityModel = settings.Cities.GetCurrentCity();
             InitialConverterParameter(settings);
         }

@@ -14,7 +14,7 @@ namespace Com.Aurora.AuWeather.Background
     {
         private BackgroundTaskDeferral serviceDeferral;
         VoiceCommandServiceConnection voiceServiceConnection;
-        SettingsModel settings = SettingsModel.Get();
+        SettingsModel settings = SettingsModel.Current;
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {

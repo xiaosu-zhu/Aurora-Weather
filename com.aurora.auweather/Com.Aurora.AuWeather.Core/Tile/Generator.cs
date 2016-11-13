@@ -469,7 +469,7 @@ namespace Com.Aurora.AuWeather.Tile
             var sunSet = model.DailyForecast[todayIndex].SunSet;
             var currentTime = desiredDateTimeinThatRegion;
 
-            var settings = SettingsModel.Get();
+            var settings = SettingsModel.Current;
             var isNight = CalcIsNight(currentTime, sunRise, sunSet, new Models.Location(currentCity.Latitude, currentCity.Longitude));
             Uri uri = await settings.Immersive.GetCurrentBackgroundAsync(model.NowWeather.Now.Condition, isNight);
 

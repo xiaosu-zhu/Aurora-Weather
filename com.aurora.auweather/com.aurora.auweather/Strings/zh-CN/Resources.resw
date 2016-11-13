@@ -1552,9 +1552,27 @@
     <value>沉浸模式超时时间，0 为一直显示</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>我们修改了城市管理的方式</value>
+    <value>拖动更换定位方式优先级</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>请前往「城市概览」页面查看</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>高德地图逆地理编码（仅限中国）</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap 逆地理编码</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>IP 地理位置查询</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>内建逆地理编码</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="ConfirmButton.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
   </data>
 </root>

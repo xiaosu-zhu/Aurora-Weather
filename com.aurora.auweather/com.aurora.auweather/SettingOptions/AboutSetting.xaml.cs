@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Com.Aurora.AuWeather.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -26,7 +27,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
         public AboutSetting()
         {
             this.InitializeComponent();
-            var p = Preferences.Get();
+            var p = SettingsModel.Current.Preferences;
             Theme = p.GetTheme();
         }
 

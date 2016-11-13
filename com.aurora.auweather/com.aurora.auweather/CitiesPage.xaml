@@ -924,7 +924,7 @@
                 <Grid Height="96" />
             </GridView.Footer>
         </GridView>
-        <ContentDialog PrimaryButtonText="Confirm" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
+        <ContentDialog x:Uid="ConfirmButton" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Frame Width="384" x:Name="CityPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </ScrollViewer>

@@ -10,7 +10,7 @@ namespace Com.Aurora.AuWeather.Background
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            var settings = SettingsModel.Get();
+            var settings = SettingsModel.Current;
             var details = taskInstance.TriggerDetails as ToastNotificationActionTriggerDetail;
             var arguments = details.Argument;
             var input = details.UserInput;
