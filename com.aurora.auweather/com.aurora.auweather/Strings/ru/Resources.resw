@@ -40,7 +40,7 @@
     <value>Обзор городов</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>Управление городами</value>
+    <value>Поиск менеджмент</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>Облако</value>
@@ -1018,12 +1018,11 @@
     <value>Полный экран</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
-· Изменен метод локация
-· Интегрировать страницу города Обзор с страницу управления городами</value>
+    <value>· Добавлена локация управления
+· Исправлены незначительные ошибки</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
-    <value>Добро пожаловать в новые версии</value>
+    <value>Добро пожаловать к новой версии</value>
   </data>
   <data name="Calculator" xml:space="preserve">
     <value>Конвертер единиц</value>
@@ -1044,7 +1043,11 @@
     <value>Обновление журнала</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· Добавлена локация управления
+· Незначительные ошибки фиксированной
+
+1.6.16110
 · Исправлена проблема, причиной запуска мобильной версии, чтобы быть слишком медленным
 · Изменен метод локация
 · Интегрировать страницу города Обзор с страницу управления городами
@@ -1445,9 +1448,27 @@
     <value>Погружения режиме время ожидания, установите значение 0, будет отображаться навсегда</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>Мы изменили управление городов в другое место</value>
+    <value>Перетащите, чтобы изменить приоритет</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>Перейдите на страницу города и проверить</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Gaode карта реверс geocoding(China only)</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap обратный геокодирование</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>Запрос IP ГЕО расположение</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>Встроенный обратный геокодирование</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Подтверждение</value>
   </data>
 </root>

@@ -33,9 +33,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
         public LocationNote()
         {
             this.InitializeComponent();
-            Context.LocateComplete += Context_LocateComplete;
             App.Current.Suspending += Current_Suspending;
             Context.FetchDataComplete += Context_FetchDataComplete;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Context.SaveAll();
         }
 
         private async void Context_FetchDataComplete(object sender, FetchDataCompleteEventArgs e)

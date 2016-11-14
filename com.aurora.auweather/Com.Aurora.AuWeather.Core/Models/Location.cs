@@ -12,6 +12,7 @@ using Com.Aurora.AuWeather.Core.Models.Amap.JsonContract;
 using Com.Aurora.AuWeather.Core.Models.IP;
 using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.Core.Models.OpenStreetMap;
+using Com.Aurora.Shared.Extensions;
 
 namespace Com.Aurora.AuWeather.Models
 {
@@ -147,6 +148,64 @@ namespace Com.Aurora.AuWeather.Models
             var city = await Request.RequestbyIpAsync(ipRes.ip);
             var fetchresult = HeWeatherModel.Generate(city, DataSource.HeWeather);
             return fetchresult.Location;
+        }
+
+        public async static Task<CityInfo> ReverseGeoCode(float lat, float lon, LocateRoute[] routes, List<CityInfo> citys)
+        {
+            List<CityInfo> final = null;
+
+            foreach (var r in routes)
+            {
+                switch (r)
+                {
+                    case LocateRoute.unknown:
+                        var near = GetNearsetLocation(citys, new Location(lat, lon));
+                        final = near.ToList();
+                        break;
+                    case LocateRoute.Amap:
+                        var acontract = await AmapReGeoAsync(lat, lon);
+                        if (acontract != null)
+                            final = citys.FindAll(x =>
+                            {
+                                return x.City == acontract.regeocode.addressComponent.district;
+                            });
+                        break;
+                    case LocateRoute.Omap:
+                        var ocontract = await OpenMapReGeoAsync(lat, lon);
+                        if (ocontract != null)
+                            final = citys.FindAll(x =>
+                            {
+                                return x.City == ocontract.address.city;
+                            });
+                        break;
+                    case LocateRoute.IP:
+                        var id = await ReGeobyIpAsync();
+                        if (id != null)
+                            final = citys.FindAll(x =>
+                            {
+                                return x.Id == id.CityId;
+                            });
+                        break;
+                    case LocateRoute.Gmap:
+
+                        break;
+                    default:
+                        break;
+                }
+                if (!final.IsNullorEmpty())
+                {
+                    break;
+                }
+            }
+
+            if (!final.IsNullorEmpty())
+            {
+                return final[0];
+            }
+            else
+            {
+                throw new Exception("Locate Failed.");
+            }
         }
     }
 }

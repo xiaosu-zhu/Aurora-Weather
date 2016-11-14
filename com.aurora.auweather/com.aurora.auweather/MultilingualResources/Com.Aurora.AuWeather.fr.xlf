@@ -43,8 +43,8 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Vue d'ensemble de villes</target>
         </trans-unit>
         <trans-unit id="Cities_Management" translate="yes" xml:space="preserve">
-          <source>Cities Managment</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Managment de villes</target>
+          <source>Locating Managment</source>
+          <target state="translated">Localisation de Managment</target>
         </trans-unit>
         <trans-unit id="Cloudy.Header" translate="yes" xml:space="preserve">
           <source>Cloud</source>
@@ -1347,12 +1347,10 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Plein écran</target>
         </trans-unit>
         <trans-unit id="UpdateDetailText.Text" translate="yes" xml:space="preserve">
-          <source>· Fixed an issue caused mobile version's startup to be too slow
-· Changed Locating method
-· Integrate the Cities Overview page with the Cities Management page</source>
-          <target state="translated">· Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
-· Changé la méthode de localisation
-· Intégrer la page vue d’ensemble de villes avec la page de gestion des villes</target>
+          <source>· Added Locating management
+· Minor bugs fixed</source>
+          <target state="translated">· Ajouté la localisation gestion
+· Bugs mineurs corrigés</target>
         </trans-unit>
         <trans-unit id="UpdateTitle.Text" translate="yes" xml:space="preserve">
           <source>Welcome to new version</source>
@@ -1383,7 +1381,11 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Mise à jour Log</target>
         </trans-unit>
         <trans-unit id="UpdateLogText.Text" translate="yes" xml:space="preserve">
-          <source>1.6.16110
+          <source>1.6.16111
+· Added Locating management
+· Minor bugs fixed
+
+1.6.16110
 · Fixed an issue caused mobile version's startup to be too slow
 · Changed Locating method
 · Integrate the Cities Overview page with the Cities Management page
@@ -1467,7 +1469,11 @@
 · Particle System improvement
 · Lightning generator enhancement
   </source>
-          <target state="translated">1.6.16110
+          <target state="translated">1.6.16111
+· Ajouté la localisation gestion
+· Minor bugs fixes
+
+1.6.16110
 · Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
 · Changé la méthode de localisation
 · Intégrer la page vue d’ensemble de villes avec la page de gestion des villes
@@ -1982,8 +1988,7 @@ demain: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="ChangeCityManage.Text" translate="yes" xml:space="preserve">
           <source>Drag to change priority</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous avons modifié la gestion des villes à un autre endroit</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Faites glisser pour modifier la priorité</target>
         </trans-unit>
         <trans-unit id="GotoCitiesPage.Text" translate="yes" xml:space="preserve">
           <source>Please go to Cities Page and check out</source>
@@ -1991,27 +1996,27 @@ demain: {4}, {5}.</target>
         </trans-unit>
         <trans-unit id="LocateRoute_Amap" translate="yes" xml:space="preserve">
           <source>Gaode Map reverse-geocoding（China only）</source>
-          <target state="new">Gaode Map reverse-geocoding（China only）</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Carte de Gaode inverse-geocoding(China only)</target>
         </trans-unit>
         <trans-unit id="LocateRoute_Omap" translate="yes" xml:space="preserve">
           <source>OpenStreetMap reverse-geocoding</source>
-          <target state="new">OpenStreetMap reverse-geocoding</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">OpenStreetMap reverse-geocoding</target>
         </trans-unit>
         <trans-unit id="LocateRoute_IP" translate="yes" xml:space="preserve">
           <source>IP geo-location query</source>
-          <target state="new">IP geo-location query</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Requête de géo-localisation IP</target>
         </trans-unit>
         <trans-unit id="LocateRoute_unknown" translate="yes" xml:space="preserve">
           <source>Built-in reverse-geocoding</source>
-          <target state="new">Built-in reverse-geocoding</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Reverse-geocoding intégré</target>
         </trans-unit>
         <trans-unit id="ConfirmButton.Content" translate="yes" xml:space="preserve">
           <source>Confirm</source>
-          <target state="new">Confirm</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Confirmer</target>
         </trans-unit>
-        <trans-unit id="ConfirmButton.PrimaryButtonText" translate="yes" xml:space="preserve">
+        <trans-unit id="ConfirmDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Confirm</source>
-          <target state="new">Confirm</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Confirmer</target>
         </trans-unit>
       </group>
     </body>

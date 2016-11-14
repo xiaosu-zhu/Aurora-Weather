@@ -40,7 +40,7 @@
     <value>Vue d'ensemble de villes</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>Managment de villes</value>
+    <value>Localisation de Managment</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>Cloud</value>
@@ -1018,9 +1018,8 @@
     <value>Plein écran</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
-· Changé la méthode de localisation
-· Intégrer la page vue d’ensemble de villes avec la page de gestion des villes</value>
+    <value>· Ajouté la localisation gestion
+· Bugs mineurs corrigés</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Bienvenue à la nouvelle version</value>
@@ -1044,7 +1043,11 @@
     <value>Mise à jour Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· Ajouté la localisation gestion
+· Minor bugs fixes
+
+1.6.16110
 · Correction d’un problème provoqué le démarrage de la version mobile d’être trop lent
 · Changé la méthode de localisation
 · Intégrer la page vue d’ensemble de villes avec la page de gestion des villes
@@ -1445,9 +1448,27 @@ demain: {4}, {5}.</value>
     <value>Immersif mode temporisation, la valeur 0 affiche forever</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>Nous avons modifié la gestion des villes à un autre endroit</value>
+    <value>Faites glisser pour modifier la priorité</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>Allez sur la Page villes et découvrez</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Carte de Gaode inverse-geocoding(China only)</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap reverse-geocoding</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>Requête de géo-localisation IP</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>Reverse-geocoding intégré</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Confirmer</value>
   </data>
 </root>

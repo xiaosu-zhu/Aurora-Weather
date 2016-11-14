@@ -37,7 +37,14 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal ObservableCollection<LocationViewModel> LocationList = new ObservableCollection<LocationViewModel>();
 
-        public event EventHandler<FetchDataCompleteEventArgs> LocateComplete;
+        private Models.Location location;
+
+        public Models.Location Location
+        {
+            get { return location; }
+            set { SetProperty(ref location, value); }
+        }
+
 
         public event EventHandler<FetchDataCompleteEventArgs> FetchDataComplete;
 
@@ -74,10 +81,12 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal void SaveAll()
         {
+            settings.Save();
         }
 
         internal async Task UpdatePosition(Geoposition pos)
         {
+            Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
             foreach (var item in LocationList)
             {
                 await item.GetLocation(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
@@ -128,7 +137,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         public LocationViewModel(LocateRoute args)
         {
             this.args = args;
-            Route = LocateRoute.Amap.GetDisplayName();
+            Route = args.GetDisplayName();
         }
 
         public async Task GetLocation(double lat, double lon)

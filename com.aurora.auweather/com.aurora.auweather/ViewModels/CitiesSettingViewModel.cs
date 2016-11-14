@@ -148,48 +148,30 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         internal async Task CalcPosition(Geoposition pos)
         {
-            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-            List<CityInfo> final = null;
-            if (ocontract != null)
-                final = cities.FindAll(x =>
+            try
+            {
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, cities);
+                if (Cities.LocatedCity != null && Cities.LocatedCity.Id == final.Id)
                 {
-                    return x.City == ocontract.address.city;
-                });
-            if (final.IsNullorEmpty())
-            {
-                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-                if (acontract != null)
-                    final = cities.FindAll(x =>
+                    if (Cities.SavedCities.IsNullorEmpty())
                     {
-                        return x.City == acontract.regeocode.addressComponent.district;
-                    });
-            }
-            if (final.IsNullorEmpty())
-            {
-                var id = await Models.Location.ReGeobyIpAsync();
-                if (id != null)
-                    final = cities.FindAll(x =>
+                        Cities.CurrentIndex = -1;
+                    }
+                    Cities.Save();
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                     {
-                        return x.Id == id.CityId;
-                    });
-            }
-            if (final.IsNullorEmpty())
-            {
-                var near = Models.Location.GetNearsetLocation(cities, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-                final = near.ToList();
-            }
-            if (final.IsNullorEmpty())
-            {
-                if (Cities.LocatedCity == null)
-                {
-                    FailtoPos();
+                        LocatedCity = Cities.LocatedCity;
+                        if (Cities.CurrentIndex == -1)
+                        {
+                            Is_Located_Current = true;
+                        }
+                        this.OnLocateComplete();
+                    }));
                     return;
                 }
-                return;
-            }
-            if (Cities.LocatedCity != null && Cities.LocatedCity.Id == final.ToArray()[0].Id)
-            {
-                final = null;
+                var p = final;
+                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                Cities.LocatedCity = new CitySettingsModel(p);
                 if (Cities.SavedCities.IsNullorEmpty())
                 {
                     Cities.CurrentIndex = -1;
@@ -204,26 +186,12 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     this.OnLocateComplete();
                 }));
-                return;
             }
-            var p = final.ToArray()[0];
-            p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
-            Cities.LocatedCity = new CitySettingsModel(p);
-            final = null;
-            if (Cities.SavedCities.IsNullorEmpty())
+            catch (Exception)
             {
-                Cities.CurrentIndex = -1;
+                FailtoPos();
             }
-            Cities.Save();
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
-            {
-                LocatedCity = Cities.LocatedCity;
-                if (Cities.CurrentIndex == -1)
-                {
-                    Is_Located_Current = true;
-                }
-                this.OnLocateComplete();
-            }));
+
         }
 
         private void FailtoPos()

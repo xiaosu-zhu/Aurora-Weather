@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Com.Aurora.AuWeather.SettingOptions;
 using Com.Aurora.Shared.Extensions;
 using System.Linq;
+using Com.Aurora.AuWeather.Models;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -114,47 +115,20 @@ namespace Com.Aurora.AuWeather
 
         private async Task CalcPosition(Geoposition pos, List<CityInfo> citys)
         {
-            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-            List<CityInfo> final = null;
-            if (ocontract != null)
-                final = Context.cities.FindAll(x =>
+            try
+            {
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, citys);
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                 {
-                    return x.City == ocontract.address.city;
-                });
-            if (final.IsNullorEmpty())
-            {
-                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-                if (acontract != null)
-                    final = Context.cities.FindAll(x =>
-                    {
-                        return x.City == acontract.regeocode.addressComponent.district;
-                    });
+                    var p = final;
+                    p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                    Context.UpdateLocation(p);
+                }));
             }
-            if (final.IsNullorEmpty())
-            {
-                var id = await Models.Location.ReGeobyIpAsync();
-                if (id != null)
-                    final = Context.cities.FindAll(x =>
-                    {
-                        return x.Id == id.CityId;
-                    });
-            }
-            if (final.IsNullorEmpty())
-            {
-                var near = Models.Location.GetNearsetLocation(Context.cities, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-                final = near.ToList();
-            }
-            if (final.IsNullorEmpty())
+            catch (Exception)
             {
                 FailtoPos();
-                return;
             }
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
-            {
-                var p = final.ToArray()[0];
-                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
-                Context.UpdateLocation(p);
-            }));
         }
 
         internal async void Add()

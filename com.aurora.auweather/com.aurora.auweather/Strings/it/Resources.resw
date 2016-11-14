@@ -40,7 +40,7 @@
     <value>Panoramica città</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>Città Managment</value>
+    <value>Individuazione di Managment</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>Cloud</value>
@@ -1018,9 +1018,8 @@
     <value>Schermo intero</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Risolto un problema causato avvio della versione mobile per essere troppo lento
-· Cambiato il metodo di individuazione
-piace · Integrare la pagina Panoramica di città con la pagina di gestione di città</value>
+    <value>· Aggiunta gestione individuazione
+piace · Bug minori</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Benvenuti nel nuovo versione</value>
@@ -1044,7 +1043,11 @@ piace · Integrare la pagina Panoramica di città con la pagina di gestione di c
     <value>Aggiornamento del registro</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· Aggiunta gestione individuazione
+piace · Bug minori fisso
+
+1.6.16110
 · Risolto un problema causato avvio della versione mobile per essere troppo lento
 · Cambiato il metodo di individuazione
 piace · Integrare la pagina Panoramica di città con la pagina di gestione di città
@@ -1445,9 +1448,27 @@ domani: {4}, {5}.</value>
     <value>Timeout di modalità immersiva, impostato a 0 visualizzerà per sempre</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>Abbiamo cambiato gestione citta in un altro posto</value>
+    <value>Trascinate per modificare la priorità</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>Vai alla pagina della città e Scopri</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Mappa di Gaode reverse-geocoding(China only)</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap inverso-geocodifica</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>Query di geo-localizzazione IP</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>Built-in retromarcia-geocodifica</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Conferma</value>
   </data>
 </root>

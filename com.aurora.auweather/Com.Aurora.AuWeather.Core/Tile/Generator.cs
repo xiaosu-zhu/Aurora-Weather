@@ -531,11 +531,11 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].Date.ToString("ddd") : "",
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+1].Condition.NightCond:model.DailyForecast[todayIndex+1].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 1 ? new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+1].Condition.NightCond:model.DailyForecast[todayIndex+1].Condition.DayCond,null,isNight,null)) : new TileImageSource(""),
                                                 },
                                             }
                                         },
@@ -547,12 +547,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -565,11 +565,11 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].Date.ToString("ddd") : "",
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+2].Condition.NightCond:model.DailyForecast[todayIndex+2].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 2 ? new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+2].Condition.NightCond:model.DailyForecast[todayIndex+2].Condition.DayCond,null,isNight,null)) : new TileImageSource(""),
                                                 },
                                             }
 
@@ -582,12 +582,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -705,20 +705,18 @@ namespace Com.Aurora.AuWeather.Tile
                                 },
                                 new TileText()
                                 {
-                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
+                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].Date.ToString("ddd") : "",
                                     Align = TileTextAlign.Center
                                 },
                                  new TileText()
-                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter),
-                                                    Style = TileTextStyle.Caption,
-                                                    Align = TileTextAlign.Center
+                                                {
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
+                                                    Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter),
-                                                    Style = TileTextStyle.CaptionSubtle,
-                                                    Align = TileTextAlign.Center
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
+                                                    Style = TileTextStyle.CaptionSubtle
                                                 },
                             }
                         }
@@ -746,11 +744,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].Date.ToString("ddd") : "",
+
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+1].Condition.NightCond:model.DailyForecast[todayIndex+1].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 1 ?  new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight ? model.DailyForecast[todayIndex+1].Condition.NightCond : model.DailyForecast[todayIndex+1].Condition.DayCond, null, isNight, null)) : new TileImageSource(""),
                                                 },
                                             }
                                         },
@@ -762,12 +761,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -779,11 +778,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].Date.ToString("ddd") : "",
+
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+2].Condition.NightCond:model.DailyForecast[todayIndex+2].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 2 ?  new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight ? model.DailyForecast[todayIndex+2].Condition.NightCond : model.DailyForecast[todayIndex+2].Condition.DayCond, null, isNight, null)) : new TileImageSource(""),
                                                 },
                                             }
                                         },
@@ -795,12 +795,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+2].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 2 ? model.DailyForecast[todayIndex+2].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }
@@ -812,11 +812,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].Date.ToString("ddd"),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].Date.ToString("ddd") : "",
+
                                                 },
                                                 new TileImage()
                                                 {
-                                                    Source = new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight?model.DailyForecast[todayIndex+3].Condition.NightCond:model.DailyForecast[todayIndex+3].Condition.DayCond,null,isNight,null)),
+                                                    Source = model.DailyForecast.Length > todayIndex + 3 ?  new TileImageSource("Assets/Tile/" + (string)ctoiConverter.Convert(isNight ? model.DailyForecast[todayIndex+3].Condition.NightCond : model.DailyForecast[todayIndex+3].Condition.DayCond, null, isNight, null)) : new TileImageSource(""),
                                                 },
                                             }
                                         },
@@ -828,12 +829,12 @@ namespace Com.Aurora.AuWeather.Tile
                                             {
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].HighTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.Caption
                                                 },
                                                 new TileText()
                                                 {
-                                                    Text = model.DailyForecast[todayIndex+3].LowTemp.Actual(settings.Preferences.TemperatureParameter),
+                                                    Text = model.DailyForecast.Length > todayIndex + 3 ? model.DailyForecast[todayIndex+3].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
                                                     Style = TileTextStyle.CaptionSubtle
                                                 },
                                             }

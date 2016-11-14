@@ -1067,7 +1067,7 @@
     <value>详情</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>城市管理</value>
+    <value>定位管理</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>正在定位...</value>
@@ -1142,9 +1142,8 @@
     <value>开启全屏</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· 加快移动版启动速度
-· 更换定位方式
-· 整合「城市概览」页面与「城市管理」页面</value>
+    <value>· 增加定位方式管理
+· 少量错误修复</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>欢迎来到新版本</value>
@@ -1168,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· 增加定位方式管理
+· 少量错误修复
+
+1.6.16110
 · 加快移动版启动速度
 · 更换定位方式
 · 整合「城市概览」页面与「城市管理」页面
@@ -1572,7 +1575,7 @@
   <data name="ConfirmButton.Content" xml:space="preserve">
     <value>确定</value>
   </data>
-  <data name="ConfirmButton.PrimaryButtonText" xml:space="preserve">
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>确定</value>
   </data>
 </root>

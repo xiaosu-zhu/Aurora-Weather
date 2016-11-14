@@ -346,63 +346,35 @@ namespace Com.Aurora.AuWeather
 
         private async Task CalcPosition(Geoposition pos, List<CityInfo> citys, SettingsModel settings)
         {
-            var ocontract = await Models.Location.OpenMapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-            List<CityInfo> final = null;
-            if (ocontract != null)
-                final = citys.FindAll(x =>
+            try
+            {
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, citys);
+                if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.Id)
                 {
-                    return x.City == ocontract.address.city;
-                });
-            if (final.IsNullorEmpty())
-            {
-                var acontract = await Models.Location.AmapReGeoAsync(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
-                if (acontract != null)
-                    final = citys.FindAll(x =>
+                    if (settings.Cities.LocatedCity.Latitude == 0)
                     {
-                        return x.City == acontract.regeocode.addressComponent.district;
-                    });
-            }
-            if (final.IsNullorEmpty())
-            {
-                var id = await Models.Location.ReGeobyIpAsync();
-                if (id != null)
-                    final = citys.FindAll(x =>
-                    {
-                        return x.Id == id.CityId;
-                    });
-            }
-            if (final.IsNullorEmpty())
-            {
-                if (settings.Cities.LocatedCity == null)
-                {
-                    FailtoPos();
-                    return;
+                        settings.Cities.LocatedCity.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
+                        settings.Cities.LocatedCity.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
+                    }
                 }
-                return;
-            }
-            if (final.IsNullorEmpty())
-            {
-                var near = Models.Location.GetNearsetLocation(citys, new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude));
-                final = near.ToList();
-            }
-            if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.ToArray()[0].Id)
-            {
-                if (settings.Cities.LocatedCity.Latitude == 0)
+                else
                 {
-                    settings.Cities.LocatedCity.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
-                    settings.Cities.LocatedCity.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
+                    var p = final;
+                    p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                    settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
                 }
             }
-            else
+            catch (Exception)
             {
-                var p = final.ToArray()[0];
-                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
-                settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
+                FailtoPos();
             }
-            final = null;
-            citys.Clear();
-            citys = null;
-            settings.Cities.Save();
+            finally
+            {
+                citys.Clear();
+                citys = null;
+                settings.Cities.Save();
+            }
+
         }
 
         private void FailtoPos()

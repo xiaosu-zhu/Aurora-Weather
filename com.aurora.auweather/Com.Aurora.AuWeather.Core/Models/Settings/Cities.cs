@@ -33,7 +33,6 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 c.CurrentIndex = (int)container.Values["CurrentIndex"];
                 c.EnableLocate = (bool)container.Values["EnableLocate"];
                 CitySettingsModel loc;
-                LocateRoute[] r;
 
                 if (subContainer.ReadGroupSettings(out loc))
                 {
@@ -68,10 +67,14 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 {
                     c.SavedCities[c.CurrentIndex].IsCurrent = true;
                 }
-                if (enumContainer.ReadGroupSettings(out r))
+                int l = (int)enumContainer.Values["Count"];
+                List<LocateRoute> li = new List<LocateRoute>();
+                for (int m = 0; m < l; m++)
                 {
-                    c.Routes = r;
+                    var toure = (LocateRoute)Enum.Parse(typeof(LocateRoute), (string)enumContainer.ReadSettingsValue(m.ToString()));
+                    li.Add(toure);
                 }
+                c.Routes = li.ToArray();
                 return c;
             }
             catch (Exception)
@@ -124,7 +127,23 @@ namespace Com.Aurora.AuWeather.Models.Settings
             var enumContainer = container.GetContainer("Routes");
             try
             {
-                enumContainer.WriteGroupSettings(Routes);
+                if (!Routes.IsNullorEmpty())
+                {
+                    int i = 0;
+                    for (; i < Routes.Length;)
+                    {
+                        try
+                        {
+                            enumContainer.WriteSettingsValue(i.ToString(), Routes[i]);
+                            i++;
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                    }
+                    enumContainer.Values["Count"] = i;
+                }
             }
             catch (Exception)
             {

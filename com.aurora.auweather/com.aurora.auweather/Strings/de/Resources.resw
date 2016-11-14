@@ -40,7 +40,7 @@
     <value>Städte-Übersicht</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>Städte-Managment</value>
+    <value>Suche nach Managment</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>Wolke</value>
@@ -1018,9 +1018,8 @@
     <value>Vollbild</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Mobile Version Start werden zu langsam
-· verursacht Fehler behoben Geändert Locating Methode
-· Die Städte-Übersichtsseite mit den Städten Verwaltungsseite zu integrieren</value>
+    <value>· Hinzugefügt Locating Management
+· Kleinere Bugs behoben</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Willkommen in neuer version</value>
@@ -1044,7 +1043,11 @@
     <value>Update-Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· Hinzugefügt Locating Management
+· Minor bugs fixen
+
+1.6.16110
 · Mobile Version Start werden zu langsam
 · verursacht Fehler behoben Geändert Locating Methode
 · Integrieren die Städte-Übersichtsseite mit den Städten Verwaltungsseite
@@ -1445,9 +1448,27 @@ Morgen: {4}, {5}.</value>
     <value>Immersive Modus Timeout auf 0 gesetzt zeigt ewig</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>Wir haben Städte Management an einen anderen Ort geändert.</value>
+    <value>Ziehen Sie, um Priorität ändern</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>Bitte gehen Sie zur Seite der Städte und check out</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Gaode Karte Reverse-geocoding(China only)</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap rückwärts-Geokodierung</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>IP-Geolocation-Abfrage</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>Integrierte rückwärts-Geokodierung</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Bestätigen</value>
   </data>
 </root>

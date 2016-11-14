@@ -70,13 +70,17 @@
                 <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                 <Button x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Style="{ThemeResource TextBlockButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,8,48,8" />
             </Grid>
-            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12">
-                <Run x:Uid="ChangeCityManage" Text="拖动更换定位方式优先级" />
+            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8">
+                <Run x:Uid="ChangeCityManage" />
+            </TextBlock>
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16">
+                <Run x:Uid="Location" />
+                <Run Text="{x:Bind Context.Location,Mode=OneWay}" />
             </TextBlock>
             <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:LocationViewModel">
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
@@ -85,8 +89,11 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Route,Mode=OneWay}" FontSize="24" Style="{ThemeResource HeaderTextBlockStyle}" Margin="12,8,12,8" />
-                            <TextBlock Text="{x:Bind City,Mode=OneWay}" FontSize="20" Style="{ThemeResource HeaderTextBlockStyle}" Grid.Row="1" Margin="12,4,12,4"/>
+                            <TextBlock Text="{x:Bind Route,Mode=OneWay}" FontSize="24" Style="{ThemeResource HeaderTextBlockStyle}" Margin="8" />
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind City,Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="8"/>
+                                <TextBlock Text="{x:Bind Location,Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="8"/>
+                            </StackPanel>
                             <FontIcon FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" Opacity="0.6" Glyph="&#xE700;" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="12" />
                         </Grid>
                     </DataTemplate>

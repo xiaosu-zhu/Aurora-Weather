@@ -145,7 +145,7 @@
     <value>城市概覽</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>城市管理</value>
+    <value>定位管理</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>雲端</value>
@@ -1145,9 +1145,8 @@
     <value>10K 下載量達成！</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
-    <value>· 加快移動版啓動速度
-· 更換定位方式
-· 整合「城市概覽」頁面與「城市管理」頁面</value>
+    <value>· 增加定位方式管理
+· 少量錯誤修復</value>
   </data>
   <data name="Calculator" xml:space="preserve">
     <value>單位換算</value>
@@ -1168,7 +1167,11 @@
     <value>更新日志</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· 增加定位方式管理
+· 少量錯誤修復
+
+1.6.16110
 · 加快移動版啓動速度
 · 更換定位方式
 · 整合「城市概覽」頁面與「城市管理」頁面
@@ -1572,7 +1575,7 @@
   <data name="ConfirmButton.Content" xml:space="preserve">
     <value>確認</value>
   </data>
-  <data name="ConfirmButton.PrimaryButtonText" xml:space="preserve">
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>確認</value>
   </data>
 </root>

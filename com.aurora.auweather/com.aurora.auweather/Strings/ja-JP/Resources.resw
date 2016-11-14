@@ -40,7 +40,7 @@
     <value>都市概要</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>都市管理</value>
+    <value>管理を検索</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>クラウド</value>
@@ -1018,9 +1018,8 @@
     <value>全画面表示</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>·遅すぎる
-· するモバイル版の起動時の問題を修正検索メソッド
-を変更 ·都市管理ページを統合都市概要ページ</value>
+    <value>·検索管理
+を追加 ·細かなバグ修正</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>ようこそバージョン</value>
@@ -1044,7 +1043,11 @@
     <value>更新ログ</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+·検索管理
+を追加 ·マイナーなバグ修正
+
+1.6.16110
 ·遅すぎる
 · するモバイル版の起動時の問題を修正検索メソッド
 を変更 ·都市管理ページ
@@ -1445,9 +1448,27 @@
     <value>没入型モード時間を 0 に設定するが表示されます永遠に</value>
   </data>
   <data name="ChangeCityManage.Text" xml:space="preserve">
-    <value>都市の管理を別の場所に変更しました</value>
+    <value>優先順位を変更します。</value>
   </data>
   <data name="GotoCitiesPage.Text" xml:space="preserve">
     <value>都市ページでチェック アウトして参照してください。</value>
+  </data>
+  <data name="LocateRoute_Amap" xml:space="preserve">
+    <value>Gaode 地図逆 geocoding(China only)</value>
+  </data>
+  <data name="LocateRoute_Omap" xml:space="preserve">
+    <value>OpenStreetMap 逆ジオコーディング</value>
+  </data>
+  <data name="LocateRoute_IP" xml:space="preserve">
+    <value>IP ジオロケーション クエリ</value>
+  </data>
+  <data name="LocateRoute_unknown" xml:space="preserve">
+    <value>内蔵逆ジオコーディング</value>
+  </data>
+  <data name="ConfirmButton.Content" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
+    <value>確認</value>
   </data>
 </root>

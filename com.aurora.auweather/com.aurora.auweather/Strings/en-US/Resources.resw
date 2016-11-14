@@ -145,7 +145,7 @@
     <value>Cities overview</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>Cities Managment</value>
+    <value>Locating Managment</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>Cloud</value>
@@ -1142,9 +1142,8 @@ Tomorrow: {4}, {5}.</value>
     <value>Full Screen</value>
   </data>
   <data name="UpdateDetailText.Text" xml:space="preserve">
-    <value>· Fixed an issue caused mobile version's startup to be too slow
-· Changed Locating method
-· Integrate the Cities Overview page with the Cities Management page</value>
+    <value>· Added Locating management
+· Minor bugs fixed</value>
   </data>
   <data name="UpdateTitle.Text" xml:space="preserve">
     <value>Welcome to new version</value>
@@ -1168,7 +1167,11 @@ Tomorrow: {4}, {5}.</value>
     <value>Update Log</value>
   </data>
   <data name="UpdateLogText.Text" xml:space="preserve">
-    <value>1.6.16110
+    <value>1.6.16111
+· Added Locating management
+· Minor bugs fixed
+
+1.6.16110
 · Fixed an issue caused mobile version's startup to be too slow
 · Changed Locating method
 · Integrate the Cities Overview page with the Cities Management page
@@ -1570,7 +1573,7 @@ Now you can send crash report to developer, and totally help this app get better
   <data name="ConfirmButton.Content" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="ConfirmButton.PrimaryButtonText" xml:space="preserve">
+  <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>Confirm</value>
   </data>
 </root>

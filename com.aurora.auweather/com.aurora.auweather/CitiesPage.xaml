@@ -844,13 +844,6 @@
     </Page.Transitions>
 
     <Grid x:Name="Root" Background="{ThemeResource SystemControlForegroundHighBrush}">
-        <Grid.Resources>
-            <Storyboard x:Name="CityPanelIn" >
-                <DoubleAnimation Storyboard.TargetName="CityPanel" Storyboard.TargetProperty="" >
-
-                </DoubleAnimation>
-            </Storyboard>
-        </Grid.Resources>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
@@ -924,7 +917,7 @@
                 <Grid Height="96" />
             </GridView.Footer>
         </GridView>
-        <ContentDialog x:Uid="ConfirmButton" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
+        <ContentDialog x:Uid="ConfirmDialog" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Frame Width="384" x:Name="CityPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </ScrollViewer>
