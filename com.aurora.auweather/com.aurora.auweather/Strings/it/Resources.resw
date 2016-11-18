@@ -943,7 +943,7 @@
     <value>Dettagli</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>Città Managment</value>
+    <value>Individuazione di Managment</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>Individuazione...</value>
@@ -1470,5 +1470,8 @@ domani: {4}, {5}.</value>
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>Conferma</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>Provider del servizio di posizione</value>
   </data>
 </root>

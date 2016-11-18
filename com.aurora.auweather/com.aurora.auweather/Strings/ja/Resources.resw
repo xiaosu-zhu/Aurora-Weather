@@ -943,7 +943,7 @@
     <value>詳細</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>都市管理</value>
+    <value>管理を検索</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>探しています.</value>
@@ -1470,5 +1470,8 @@
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>確認します。</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>場所サービス プロバイダー</value>
   </data>
 </root>

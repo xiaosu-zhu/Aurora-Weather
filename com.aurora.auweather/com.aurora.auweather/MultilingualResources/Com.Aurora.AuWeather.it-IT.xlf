@@ -1247,8 +1247,8 @@
           <target state="translated">Dettagli</target>
         </trans-unit>
         <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
-          <source>Cities Managment</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Città Managment</target>
+          <source>Locating Managment</source>
+          <target state="translated">Individuazione di Managment</target>
         </trans-unit>
         <trans-unit id="Locating" translate="yes" xml:space="preserve">
           <source>Locating...</source>
@@ -2017,6 +2017,10 @@ domani: {4}, {5}.</target>
         <trans-unit id="ConfirmDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Confirm</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Conferma</target>
+        </trans-unit>
+        <trans-unit id="LocaterText.Content" translate="yes" xml:space="preserve">
+          <source>Location Service Provider</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Provider del servizio di posizione</target>
         </trans-unit>
       </group>
     </body>

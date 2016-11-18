@@ -1067,7 +1067,7 @@ Tomorrow: {4}, {5}.</value>
     <value>Details</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>Cities Managment</value>
+    <value>Locating Managment</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>Locating...</value>
@@ -1575,5 +1575,8 @@ Now you can send crash report to developer, and totally help this app get better
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>Location Service Provider</value>
   </data>
 </root>

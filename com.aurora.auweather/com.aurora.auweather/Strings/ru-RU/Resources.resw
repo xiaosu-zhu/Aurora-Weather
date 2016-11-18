@@ -943,7 +943,7 @@
     <value>Сведения</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>Управление городами</value>
+    <value>Поиск менеджмент</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>Поиск...</value>
@@ -1470,5 +1470,8 @@
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>Подтверждение</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>Расположение поставщика услуг</value>
   </data>
 </root>

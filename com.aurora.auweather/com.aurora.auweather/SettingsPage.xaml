@@ -67,8 +67,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="ViewModels:SettingOption">
                     <StackPanel Margin="0,8,0,8" Orientation="Horizontal" VerticalAlignment="Center">
-                        <SymbolIcon Width="36" Height="36" Symbol="{Binding Symbol}" />
-                        <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                        <FontIcon Height="48" Width="48" FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind Symbol}" />
+                        <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

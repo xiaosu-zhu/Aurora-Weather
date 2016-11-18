@@ -1247,8 +1247,8 @@
           <target state="translated">세부 정보</target>
         </trans-unit>
         <trans-unit id="CitiesManageText.Text" translate="yes" xml:space="preserve">
-          <source>Cities Managment</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">도시 관리</target>
+          <source>Locating Managment</source>
+          <target state="translated">관리 위치</target>
         </trans-unit>
         <trans-unit id="Locating" translate="yes" xml:space="preserve">
           <source>Locating...</source>
@@ -2017,6 +2017,10 @@ Tomorrow: {4}, {5}.</source>
         <trans-unit id="ConfirmDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Confirm</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">확인</target>
+        </trans-unit>
+        <trans-unit id="LocaterText.Content" translate="yes" xml:space="preserve">
+          <source>Location Service Provider</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">위치 서비스 공급자</target>
         </trans-unit>
       </group>
     </body>

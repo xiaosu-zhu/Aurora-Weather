@@ -35,7 +35,7 @@
                             <StackPanel Margin="12" Orientation="Vertical">
                                 <TextBlock MaxWidth="320" x:Uid="AppProblemText" TextWrapping="WrapWholeWords" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
                                 <TextBlock MaxWidth="320" x:Uid="ConfirmDeleteText" TextWrapping="WrapWholeWords" x:Name="ConfirmDelete" HorizontalAlignment="Center" Visibility="Collapsed" Foreground="#ff4040" Margin="4" Style="{ThemeResource BodyTextBlockStyle}" />
-                                <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" Foreground="White" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="Transparent" BorderThickness="0" />
+                                <Button HorizontalAlignment="Center" x:Uid="AppDeleteButton" Foreground="White" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="8" Background="#ff4040" BorderBrush="{x:Null}" BorderThickness="0" />
                             </StackPanel>
                         </Flyout>
                     </Button.Flyout>

@@ -147,6 +147,7 @@
     <Compile Include="Models\IP\IpContract.cs" />
     <Compile Include="Models\Length.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\OpenStreetMap\OpenCageContract.cs" />
     <Compile Include="Models\OpenStreetMap\OpenStreetMapContract.cs" />
     <Compile Include="Models\Pressure.cs" />
     <Compile Include="Models\Request.cs" />

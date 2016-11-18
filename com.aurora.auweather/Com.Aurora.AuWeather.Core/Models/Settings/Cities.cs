@@ -87,9 +87,10 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
         }
 
-        public void ChangeRoute(LocateRoute[] locateRoute)
+        public void ChangeRoute(LocateRoute[] locateRoute, CityInfo city)
         {
             this.Routes = locateRoute;
+            LocatedCity = new CitySettingsModel(city);
         }
 
         public void Pick(int index)

@@ -943,7 +943,7 @@
     <value>세부 정보</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>도시 관리</value>
+    <value>관리 위치</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>찾기...</value>
@@ -1470,5 +1470,8 @@
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>확인</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>위치 서비스 공급자</value>
   </data>
 </root>

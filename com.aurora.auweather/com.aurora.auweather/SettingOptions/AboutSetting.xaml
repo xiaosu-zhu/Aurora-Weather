@@ -311,6 +311,26 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         </Flyout>
                     </Button.Flyout>
                 </Button>
+                <Button x:Uid="LocaterText" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel MaxWidth="320">
+                                <TextBlock Margin="12,8,12,12" Text="高德地图" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Margin="12,8,12,12" Orientation="Vertical">
+                                    <Image Height="32" Stretch="Uniform" Source="http://lbs.amap.com/wp-content/themes/apiwebsite/images//logo.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="Amap Reverse Geocoding" NavigateUri="http://lbs.amap.com/" Margin="4" />
+                                </StackPanel>
+                                <Grid Height="1" HorizontalAlignment="Stretch" Background="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
+                                <TextBlock Margin="12,8,12,12" Text="OpenCage Data" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Margin="12,8,12,12" Orientation="Vertical">
+                                    <Image Height="32" Stretch="Uniform" Source="https://geocoder.opencagedata.com/assets/silver-on-dark-transparent-a40712b4fc9f50d8e91cae2a7a5258df76cf1e8aa6d736451f44587c1ab652e5.png" Margin="4" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <HyperlinkButton VerticalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}" Content="OpenCage Data Web API" NavigateUri="https://geocoder.opencagedata.com/credits" Margin="4" />
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
                 <Button x:Uid="PhotoCopyright" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Margin="12" >
                     <Button.Flyout>
                         <Flyout>
@@ -343,7 +363,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <HyperlinkButton MaxWidth="200" NavigateUri="https://embracez.xyz/aurora-studio/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12">
+                <HyperlinkButton MaxWidth="250" NavigateUri="https://embracez.xyz/aurora-studio/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12">
                     <Image Source="/Assets/QQ_group.png" Stretch="Uniform"/>
                 </HyperlinkButton>
             </StackPanel>

@@ -1067,7 +1067,7 @@
     <value>詳情</value>
   </data>
   <data name="CitiesManageText.Text" xml:space="preserve">
-    <value>城市管理</value>
+    <value>定位管理</value>
   </data>
   <data name="Locating" xml:space="preserve">
     <value>正在定位...</value>
@@ -1577,5 +1577,8 @@
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>確認</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>位置服務提供方</value>
   </data>
 </root>

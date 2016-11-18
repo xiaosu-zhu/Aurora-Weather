@@ -70,7 +70,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="GridView">
-                            <Border BorderBrush="Transparent"
+                            <Border BorderBrush="{x:Null}"
           Background="{TemplateBinding Background}"
           BorderThickness="0">
                                 <ScrollViewer x:Name="ScrollViewer"

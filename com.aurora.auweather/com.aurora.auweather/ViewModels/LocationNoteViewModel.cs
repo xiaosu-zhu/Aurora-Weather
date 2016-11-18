@@ -84,12 +84,17 @@ namespace Com.Aurora.AuWeather.ViewModels
             settings.Save();
         }
 
-        internal async Task UpdatePosition(Geoposition pos)
+        internal void UpdatePosition(Geoposition pos)
         {
             Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
             foreach (var item in LocationList)
             {
-                await item.GetLocation(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+                var t = ThreadPool.RunAsync(async (wior) =>
+                {
+
+                    await item.GetLocation(pos.Coordinate.Point.Position.Latitude, pos.Coordinate.Point.Position.Longitude);
+
+                });
             }
         }
 
@@ -100,7 +105,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 li.Add(item.args);
             }
-            settings.ChangeRoute(li.ToArray());
+            LocationList[0].City.Location = Location;
+            settings.ChangeRoute(li.ToArray(), LocationList[0].City);
             settings.Save();
         }
     }
@@ -152,18 +158,24 @@ namespace Com.Aurora.AuWeather.ViewModels
                 case LocateRoute.Amap:
                     var acontract = await Models.Location.AmapReGeoAsync(lat, lon);
                     if (acontract != null)
-                        final = LocationNoteViewModel.cities.FindAll(x =>
-                        {
-                            return x.City == acontract.regeocode.addressComponent.district;
-                        });
+                    {
+                        var source = acontract.regeocode.addressComponent.district;
+                        var li = from p in LocationNoteViewModel.cities
+                                 orderby Tools.LevenshteinDistance(p.City, source) ascending
+                                 select p;
+                        final = li.ToList();
+                    }
                     break;
                 case LocateRoute.Omap:
                     var ocontract = await Models.Location.OpenMapReGeoAsync(lat, lon);
-                    if (ocontract != null)
-                        final = LocationNoteViewModel.cities.FindAll(x =>
-                        {
-                            return x.City == ocontract.address.city;
-                        });
+                    if (ocontract != null && !ocontract.results.IsNullorEmpty())
+                    {
+                        var source = ocontract.results[0].components.county;
+                        var li = from p in LocationNoteViewModel.cities
+                                 orderby Tools.LevenshteinDistance(p.City, source) ascending
+                                 select p;
+                        final = li.ToList();
+                    }
                     break;
                 case LocateRoute.IP:
                     var id = await Models.Location.ReGeobyIpAsync();
@@ -177,20 +189,23 @@ namespace Com.Aurora.AuWeather.ViewModels
                 default:
                     throw new NotImplementedException("Google map api not implement");
             }
-            if (final.IsNullorEmpty())
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
-                City = new CityInfo
+                if (final.IsNullorEmpty())
                 {
-                    City = "定位失败",
-                    Location = new Models.Location((float)lat, (float)lon),
-                    Country = "",
-                    Id = "",
-                    Province = ""
-                };
-                return;
-            }
-            City = final[0];
-            Location = City.Location;
+                    City = new CityInfo
+                    {
+                        City = "定位失败",
+                        Location = new Models.Location((float)lat, (float)lon),
+                        Country = "",
+                        Id = "",
+                        Province = ""
+                    };
+                    return;
+                }
+                City = final[0];
+                Location = City.Location;
+            }));
         }
     }
 }

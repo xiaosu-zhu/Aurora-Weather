@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Com.Aurora.AuWeather.ViewModels.Events;
 using Windows.ApplicationModel;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -68,7 +58,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                             _geolocator = new Geolocator();
                             pos = await _geolocator.GetGeopositionAsync();
                             if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
-                                await Context.UpdatePosition(pos);
+                                Context.UpdatePosition(pos);
                             else
                             {
                                 DeniePos();
@@ -106,14 +96,14 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private async void OnStatusChanged(Geolocator sender, StatusChangedEventArgs args)
         {
             var e = args;
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
             {
                 switch (e.Status)
                 {
                     case PositionStatus.Ready:
                         if (!updated && pos != null)
                         {
-                            await Context.UpdatePosition(pos);
+                            Context.UpdatePosition(pos);
                         }
                         break;
                     case PositionStatus.Initializing:

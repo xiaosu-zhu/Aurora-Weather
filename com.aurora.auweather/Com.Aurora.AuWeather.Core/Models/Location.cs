@@ -127,14 +127,14 @@ namespace Com.Aurora.AuWeather.Models
             return amapRes;
         }
 
-        public static async Task<OpenStreetMapContract> OpenMapReGeoAsync(double latitude, double longitude)
+        public static async Task<OpenCageContract> OpenMapReGeoAsync(double latitude, double longitude)
         {
-            var OpenStreetUrl = "http://nominatim.openstreetmap.org/reverse?format=json&accept-language=chinese&lat={0}&lon={1}&zoom=18";
-            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(OpenStreetUrl, new string[] { latitude.ToString("0.######"), longitude.ToString("0.######") });
+            var OpenStreetUrl = "http://api.opencagedata.com/geocode/v1/json?q={0}+{1}&key={2}&language=zh-cn";
+            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(OpenStreetUrl, new string[] { latitude.ToString("0.######"), longitude.ToString("0.######"), Key.OpenCage });
             // json 生成类
             if (result == null)
                 return null;
-            var omapRes = JsonHelper.FromJson<OpenStreetMapContract>(result);
+            var omapRes = JsonHelper.FromJson<OpenCageContract>(result);
             return omapRes;
         }
 
@@ -165,18 +165,24 @@ namespace Com.Aurora.AuWeather.Models
                     case LocateRoute.Amap:
                         var acontract = await AmapReGeoAsync(lat, lon);
                         if (acontract != null)
-                            final = citys.FindAll(x =>
-                            {
-                                return x.City == acontract.regeocode.addressComponent.district;
-                            });
+                        {
+                            var source = acontract.regeocode.addressComponent.district;
+                            var li = from p in citys
+                                     orderby Tools.LevenshteinDistance(p.City, source) ascending
+                                     select p;
+                            final = li.ToList();
+                        }
                         break;
                     case LocateRoute.Omap:
                         var ocontract = await OpenMapReGeoAsync(lat, lon);
-                        if (ocontract != null)
-                            final = citys.FindAll(x =>
-                            {
-                                return x.City == ocontract.address.city;
-                            });
+                        if (ocontract != null && !ocontract.results.IsNullorEmpty())
+                        {
+                            var source = ocontract.results[0].components.county;
+                            var li = from p in citys
+                                     orderby Tools.LevenshteinDistance(p.City, source) ascending
+                                     select p;
+                            final = li.ToList();
+                        }
                         break;
                     case LocateRoute.IP:
                         var id = await ReGeobyIpAsync();

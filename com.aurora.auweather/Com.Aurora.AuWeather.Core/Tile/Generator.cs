@@ -100,7 +100,7 @@ namespace Com.Aurora.AuWeather.Tile
                                 new TileText()
                                 {
                                     Text = (string)ctosConverter.Convert(model.NowWeather.Now.Condition,null,null,null),
-                                    Align = TileTextAlign.Center
+                                    Align = TileTextAlign.Center,
                                 },
 
 
@@ -711,12 +711,14 @@ namespace Com.Aurora.AuWeather.Tile
                                  new TileText()
                                                 {
                                                     Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].HighTemp.Actual(settings.Preferences.TemperatureParameter) : "",
-                                                    Style = TileTextStyle.Caption
+                                                    Style = TileTextStyle.Caption,
+                                    Align = TileTextAlign.Center
                                                 },
                                                 new TileText()
                                                 {
                                                     Text = model.DailyForecast.Length > todayIndex + 1 ? model.DailyForecast[todayIndex+1].LowTemp.Actual(settings.Preferences.TemperatureParameter) : "",
-                                                    Style = TileTextStyle.CaptionSubtle
+                                                    Style = TileTextStyle.CaptionSubtle,
+                                    Align = TileTextAlign.Center
                                                 },
                             }
                         }

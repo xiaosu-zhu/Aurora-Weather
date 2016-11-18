@@ -20,7 +20,6 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.CustomControls;
-using Com.Aurora.AuWeather.Tile;
 
 namespace Com.Aurora.AuWeather
 {
@@ -104,8 +103,8 @@ namespace Com.Aurora.AuWeather
             var loader = new ResourceLoader();
             MainFrame.Navigate(typeof(SettingOptionsPage), option);
             Refresh.Visibility = Visibility.Collapsed;
-            Settings.Icon = new SymbolIcon(Symbol.Setting);
-            Cities.Icon = new SymbolIcon(Symbol.World);
+            (Settings.Icon as FontIcon).Glyph = "\uE713";
+            (Cities.Icon as FontIcon).Glyph = "\uEC06";
             Settings.Label = loader.GetString("Settings");
             Cities.Label = loader.GetString("Cities");
             Refresh.Label = loader.GetString("Refresh");
@@ -161,8 +160,8 @@ namespace Com.Aurora.AuWeather
                 if (MainFrame.Content is CitiesPage)
                 {
                     var loader = new ResourceLoader();
-                    Settings.Icon = new SymbolIcon(Symbol.Setting);
-                    Cities.Icon = new SymbolIcon(Symbol.World);
+                    (Settings.Icon as FontIcon).Glyph = "\uE713";
+                    (Cities.Icon as FontIcon).Glyph = "\uEC06";
                     Settings.Label = loader.GetString("Settings");
                     Cities.Label = loader.GetString("Cities");
                     Refresh.Label = loader.GetString("Refresh");
@@ -220,8 +219,8 @@ namespace Com.Aurora.AuWeather
                     PaneList.SelectedIndex = 3;
                 }
                 Refresh.Visibility = Visibility.Collapsed;
-                Settings.Icon = new SymbolIcon(Symbol.Setting);
-                Cities.Icon = new SymbolIcon(Symbol.World);
+                (Settings.Icon as FontIcon).Glyph = "\uE713";
+                (Cities.Icon as FontIcon).Glyph = "\uEC06";
                 Settings.Label = loader.GetString("Settings");
                 Cities.Label = loader.GetString("Cities");
                 Refresh.Label = loader.GetString("Refresh");
@@ -240,8 +239,8 @@ namespace Com.Aurora.AuWeather
             {
                 var loader = new ResourceLoader();
                 PaneList.SelectedIndex = 2;
-                Settings.Icon = new SymbolIcon(Symbol.Add);
-                Cities.Icon = new SymbolIcon(Symbol.Edit);
+                (Settings.Icon as FontIcon).Glyph = "\uE109";
+                (Cities.Icon as FontIcon).Glyph = "\uE104";
                 Cities.Label = loader.GetString("Edit");
                 Refresh.Label = loader.GetString("Refresh");
                 Settings.Label = loader.GetString("Add");
@@ -258,9 +257,9 @@ namespace Com.Aurora.AuWeather
         internal void CitiesPageQuitEditMode()
         {
             var loader = new ResourceLoader();
-            Cities.Icon = new SymbolIcon(Symbol.Edit);
-            Refresh.Icon = new SymbolIcon(Symbol.Refresh);
-            Settings.Icon = new SymbolIcon(Symbol.Add);
+            (Cities.Icon as FontIcon).Glyph = "\uE104";
+            (Refresh.Icon as FontIcon).Glyph = "\uE1CD";
+            (Settings.Icon as FontIcon).Glyph = "\uE109";
             Cities.Label = loader.GetString("Edit");
             Refresh.Label = loader.GetString("Refresh");
             Settings.Label = loader.GetString("Add");
@@ -282,8 +281,8 @@ namespace Com.Aurora.AuWeather
             if ((PaneList.SelectedItem as PaneOption).Page == typeof(CitiesPage))
             {
                 var loader = new ResourceLoader();
-                Settings.Icon = new SymbolIcon(Symbol.Add);
-                Cities.Icon = new SymbolIcon(Symbol.Edit);
+                (Settings.Icon as FontIcon).Glyph = "\uE109";
+                (Cities.Icon as FontIcon).Glyph = "\uE104";
                 Cities.Label = loader.GetString("Edit");
                 Refresh.Label = loader.GetString("Refresh");
                 Settings.Label = loader.GetString("Add");
@@ -295,8 +294,8 @@ namespace Com.Aurora.AuWeather
             else
             {
                 var loader = new ResourceLoader();
-                Settings.Icon = new SymbolIcon(Symbol.Setting);
-                Cities.Icon = new SymbolIcon(Symbol.World);
+                (Settings.Icon as FontIcon).Glyph = "\uE713";
+                (Cities.Icon as FontIcon).Glyph = "\uEC06";
                 Settings.Label = loader.GetString("Settings");
                 Cities.Label = loader.GetString("Cities");
                 Refresh.Label = loader.GetString("Refresh");
@@ -338,11 +337,15 @@ namespace Com.Aurora.AuWeather
             else
             {
                 PaneList.SelectedIndex = 0;
-                Today.Icon = new SymbolIcon(Symbol.View);
+                Today.Icon = new FontIcon
+                {
+                    Glyph = "\uE81E"
+                };
+
                 Today.Label = loader.GetString("Details");
             }
-            Settings.Icon = new SymbolIcon(Symbol.Setting);
-            Cities.Icon = new SymbolIcon(Symbol.World);
+            (Settings.Icon as FontIcon).Glyph = "\uE713";
+            (Cities.Icon as FontIcon).Glyph = "\uEC06";
             Settings.Label = loader.GetString("Settings");
             Cities.Label = loader.GetString("Cities");
             Refresh.Label = loader.GetString("Refresh");
@@ -373,9 +376,9 @@ namespace Com.Aurora.AuWeather
         internal void CitiesPageGotoEditMode()
         {
             var loader = new ResourceLoader();
-            Cities.Icon = new SymbolIcon(Symbol.Delete);
-            Refresh.Icon = new SymbolIcon(Symbol.Cancel);
-            Settings.Icon = new SymbolIcon(Symbol.Pin);
+            (Cities.Icon as FontIcon).Glyph = "\uE107";
+            (Refresh.Icon as FontIcon).Glyph = "\uE106";
+            (Settings.Icon as FontIcon).Glyph = "\uE718";
             Cities.Label = loader.GetString("Delete");
             Refresh.Label = loader.GetString("Cacel");
             Settings.Label = loader.GetString("Pin");
@@ -509,7 +512,6 @@ namespace Com.Aurora.AuWeather
             {
                 var b = new AppBarButton
                 {
-                    Icon = new SymbolIcon(Symbol.Globe),
                     Label = item.City,
                     Name = item.Id
                 };

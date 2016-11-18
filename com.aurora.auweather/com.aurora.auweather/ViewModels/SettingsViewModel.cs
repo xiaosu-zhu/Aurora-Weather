@@ -65,16 +65,16 @@ namespace Com.Aurora.AuWeather.ViewModels
         public SettingsList()
         {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            Add(new SettingOption(Symbol.Repair, loader.GetString("Preferences"), typeof(Preferences)));
-            Add(new SettingOption(Symbol.BrowsePhotos, loader.GetString("Immersive_Background"), typeof(Immersive)));
-            Add(new SettingOption(Symbol.World, loader.GetString("Cities_Management"), typeof(Models.Settings.Cities)));
-            Add(new SettingOption(Symbol.Page, loader.GetString("About"), typeof(About)));
+            Add(new SettingOption("\uEA86", loader.GetString("Preferences"), typeof(Preferences)));
+            Add(new SettingOption("\uEB9F", loader.GetString("Immersive_Background"), typeof(Immersive)));
+            Add(new SettingOption("\uE707", loader.GetString("Cities_Management"), typeof(Models.Settings.Cities)));
+            Add(new SettingOption("\uE716", loader.GetString("About"), typeof(About)));
         }
     }
 
     internal class SettingOption
     {
-        public Symbol Symbol
+        public string Symbol
         {
             get; set;
         }
@@ -89,7 +89,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             set;
         }
 
-        public SettingOption(Symbol s, string t, Type p)
+        public SettingOption(string s, string t, Type p)
         {
             Symbol = s;
             Title = t;

@@ -868,9 +868,9 @@
             </Grid>
             <TextBlock Visibility="Collapsed" Opacity="0" RelativePanel.Above="NowCondition" Margin="0,0,0,12" Foreground="White" x:Name="CurrentCity"  Style="{StaticResource HeaderTextBlockStyle}" FontWeight="ExtraLight"
                        RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="32" >
-                <Run FontFamily="Segoe MDL2 Assets" Text="  " />
+                <Run FontFamily="Segoe MDL2 Assets" Text="  " FontSize="24" />
                 <Run Text="{x:Bind Context.City,Mode=OneWay}" />
-                <Run FontFamily="Segoe MDL2 Assets" Text="{x:Bind Context.Locate,Mode=OneWay}" />
+                <Run FontFamily="Segoe MDL2 Assets" Text="{x:Bind Context.Locate,Mode=OneWay}" FontSize="24" />
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TitleAniTrans" Y="480" />
                 </TextBlock.RenderTransform>

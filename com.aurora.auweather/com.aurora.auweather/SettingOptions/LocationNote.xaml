@@ -70,17 +70,18 @@
                 <Button x:Uid="LocateDeniedButton" x:Name="LocateDeniedButton" Visibility="Collapsed" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8" />
                 <Button x:Uid="CheckLocateAccessButton" x:Name="CheckLocateAccessButton" Style="{ThemeResource TextBlockButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,8,48,8" />
             </Grid>
-            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8">
+            <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12,8,12,8">
                 <Run x:Uid="ChangeCityManage" />
             </TextBlock>
-            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16">
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
                 <Run x:Uid="Location" />
+                <Run Text=": " />
                 <Run Text="{x:Bind Context.Location,Mode=OneWay}" />
             </TextBlock>
-            <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:LocationViewModel">
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid Background="{ThemeResource SystemControlAltHighBrush}" Padding="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="{x:Null}" BorderThickness="4">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
@@ -89,12 +90,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Route,Mode=OneWay}" FontSize="24" Style="{ThemeResource HeaderTextBlockStyle}" Margin="8" />
+                            <TextBlock Text="{x:Bind Route,Mode=OneWay}" FontSize="20" Style="{ThemeResource HeaderTextBlockStyle}" Margin="8" />
                             <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                <TextBlock Text="{x:Bind City,Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="8"/>
-                                <TextBlock Text="{x:Bind Location,Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" Margin="8"/>
+                                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="8">
+                                    <Run Text="{x:Bind City,Mode=OneWay}" />
+                                    <Run Text="@" />
+                                    <Run Text="{x:Bind Location,Mode=OneWay}" />
+                                </TextBlock>
                             </StackPanel>
-                            <FontIcon FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" Opacity="0.6" Glyph="&#xE700;" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="12" />
+                            <FontIcon FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" Opacity="0.6" Glyph="&#xE700;" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="12,0,12,0" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

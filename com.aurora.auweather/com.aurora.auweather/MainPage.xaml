@@ -484,28 +484,37 @@
         <CommandBar Background="{ThemeResource SystemBackgroundHighBrush}" x:Name="ActionBar"
                             RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" 
                             RelativePanel.AlignRightWithPanel="True">
-            <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Icon="Setting" Click="Settings_Click" >
+            <AppBarButton x:Uid="SettingsButton" x:Name="Settings" Click="Settings_Click" >
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="SettingsText" />
                 </ToolTipService.ToolTip>
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" />
+                </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Icon="Refresh" Click="Refresh_Click">
+            <AppBarButton x:Uid="RefreshButton" x:Name="Refresh" Click="Refresh_Click">
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="RefreshText" />
                 </ToolTipService.ToolTip>
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE1CD;" />
+                </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Icon="World" Width="68" Click="Cities_Click" >
+            <AppBarButton x:Uid="CitiesButton" x:Name="Cities" Width="68" Click="Cities_Click" >
                 <!--Width 68 Height 20-->
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="CitiesText" />
                 </ToolTipService.ToolTip>
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC06;" />
+                </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Uid="NowButton" x:Name="Today" Click="Today_Click">
                 <ToolTipService.ToolTip>
                     <TextBlock x:Uid="NowText" />
                 </ToolTipService.ToolTip>
                 <AppBarButton.Icon>
-                    <SymbolIcon Symbol="View" />
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE81E;" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <CommandBar.SecondaryCommands>
@@ -616,17 +625,17 @@
                 </Button>
                 <StackPanel x:Name="DateTimePanel" Margin="0,216,0,12" Padding="56,8,20,8" Orientation="Vertical">
                     <TextBlock PointerReleased="TextBlock_PointerReleased" Style="{ThemeResource HeaderTextBlockStyle}" >
-                        <Run FontSize="20" Text="{Binding Converter={StaticResource DateNowConverter}}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                        <Run FontSize="20" Text="{x:Bind Context.Date, Converter={StaticResource DateNowConverter}, Mode=OneWay}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <LineBreak />
-                        <Run FontSize="12" Text="{Binding Calendar, Converter={StaticResource LunarCalendarConverter}}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
+                        <Run FontSize="12" Text="{x:Bind Context.Calendar, Converter={StaticResource LunarCalendarConverter}, Mode=OneWay}" Foreground="{ThemeResource SystemControlAltLowBrush}" />
                     </TextBlock>
                 </StackPanel>
                 <ListView Loaded="PaneList_Loaded" x:Name="PaneList" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding PaneList}" SelectionChanged="PaneList_SelectionChanged" RelativePanel.Above="NowPanel" RelativePanel.Below="DateTimePanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="ViewModels:PaneOption">
                             <StackPanel Margin="0,8,0,8" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <SymbolIcon Width="48" Height="48" Symbol="{Binding Symbol}" />
-                                <TextBlock Text="{Binding Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                <FontIcon Height="48" Width="48" FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind Symbol}" />
+                                <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="8,0,8,0" VerticalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -679,14 +688,14 @@
                         </Button>
                     </Grid>
                     <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
-                    <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="11" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <HyperlinkButton NavigateUri="https://embracez.xyz/aurora-studio/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12">
                         <Image Source="/Assets/QQ_group.png" Stretch="Uniform"/>
                     </HyperlinkButton>
                     <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button.Flyout>
                             <Flyout>
-                                <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
+                                <TextBlock x:Uid="UpdateLogText" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
                             </Flyout>
                         </Button.Flyout>
                     </Button>

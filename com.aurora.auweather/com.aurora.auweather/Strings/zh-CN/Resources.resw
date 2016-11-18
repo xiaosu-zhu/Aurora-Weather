@@ -145,7 +145,7 @@
     <value>城市概览</value>
   </data>
   <data name="Cities_Management" xml:space="preserve">
-    <value>城市管理</value>
+    <value>定位管理</value>
   </data>
   <data name="Cloudy.Header" xml:space="preserve">
     <value>云朵</value>
@@ -1577,5 +1577,8 @@
   </data>
   <data name="ConfirmDialog.PrimaryButtonText" xml:space="preserve">
     <value>确定</value>
+  </data>
+  <data name="LocaterText.Content" xml:space="preserve">
+    <value>位置服务提供方</value>
   </data>
 </root>
