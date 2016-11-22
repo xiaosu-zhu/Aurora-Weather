@@ -1542,15 +1542,73 @@ namespace Com.Aurora.Shared.Converters
             switch (v)
             {
                 case WeatherAlarmLevel.blue:
-                    return new SolidColorBrush(Colors.Blue);
+                    return new SolidColorBrush(Palette.Blue);
                 case WeatherAlarmLevel.yellow:
-                    return new SolidColorBrush(Colors.Yellow);
+                    return new SolidColorBrush(Palette.Yellow);
                 case WeatherAlarmLevel.orange:
-                    return new SolidColorBrush(Colors.Orange);
+                    return new SolidColorBrush(Palette.Orange);
                 case WeatherAlarmLevel.red:
-                    return new SolidColorBrush(Colors.Red);
+                    return new SolidColorBrush(Palette.Red);
                 default:
                     return new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class AlarmLeveltoTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return "...";
+            }
+            var v = (WeatherAlarmLevel)value;
+            switch (v)
+            {
+                case WeatherAlarmLevel.blue:
+                    return "蓝色";
+                case WeatherAlarmLevel.yellow:
+                    return "黄色";
+                case WeatherAlarmLevel.orange:
+                    return "橙色";
+                case WeatherAlarmLevel.red:
+                    return "红色";
+                default:
+                    return "...";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class AlarmLeveltoForegroundConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value == null)
+            {
+                return new SolidColorBrush(Colors.Black);
+            }
+            var v = (WeatherAlarmLevel)value;
+            switch (v)
+            {
+                case WeatherAlarmLevel.blue:
+                    return new SolidColorBrush(Colors.White);
+                case WeatherAlarmLevel.yellow:
+                    return new SolidColorBrush(Colors.Black);
+                case WeatherAlarmLevel.orange:
+                    return new SolidColorBrush(Colors.Black);
+                case WeatherAlarmLevel.red:
+                    return new SolidColorBrush(Colors.White);
+                default:
+                    return new SolidColorBrush(Colors.White);
             }
         }
 

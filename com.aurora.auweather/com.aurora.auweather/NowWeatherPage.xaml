@@ -85,6 +85,8 @@
             <Converters:BooltoVisibilityConverter x:Key="BooltoVisibilityConverter" />
             <Converters:RefreshCompleteConverter x:Key="RefreshCompleteConverter" />
             <Converters:AlarmLeveltoColorConverter x:Key="AlarmLeveltoColorConverter" />
+            <Converters:AlarmLeveltoTextConverter x:Key="AlarmLeveltoTextConverter" />
+            <Converters:AlarmLeveltoForegroundConverter x:Key="AlarmLeveltoForegroundConverter" />
             <Converters:FontSizeConverter x:Key="FontSizeConverter" />
             <Converters:UintToDoubleConverter x:Key="UintToDoubleConverter" />
             <Converters:ScrollablePaddingWideConverter x:Key="ScrollablePaddingWideConverter" />
@@ -969,9 +971,18 @@
                         <ListView MaxWidth="400" SelectionMode="None" ItemsSource="{x:Bind AlarmsSource.View, Mode=OneWay}" ItemContainerStyle="{ThemeResource NoneSelectionListStyle}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="ViewModels:WeatherAlarmViewModel">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <Grid Margin="4" BorderThickness="2">
-                                            <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Title,Mode=OneWay}" Foreground="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoColorConverter}}" FontSize="16" />
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Grid Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoColorConverter}}">
+                                                <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoTextConverter}}" Foreground="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoForegroundConverter}}" FontSize="16" />
+                                            </Grid>
+                                            <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlForegroundHighBrush}">
+                                                <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Title,Mode=OneWay}" FontSize="16" />
+                                            </Grid>
                                         </Grid>
                                         <TextBlock Margin="8" Text="{x:Bind Description,Mode=OneWay}" TextWrapping="WrapWholeWords"/>
                                     </StackPanel>
