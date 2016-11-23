@@ -919,7 +919,10 @@
         </GridView>
         <ContentDialog x:Uid="ConfirmDialog" Margin="32" PrimaryButtonClick="CityDailog_PrimaryButtonClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CityDailog" FullSizeDesired="True">
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Frame Width="384" x:Name="CityPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <Grid>
+                    <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Width="32" IsActive="True" x:Name="LoadingRing"/>
+                    <Frame Width="384" x:Name="CityPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Navigated="CityPanel_Navigated"/>
+                </Grid>
             </ScrollViewer>
         </ContentDialog>
     </Grid>

@@ -443,5 +443,11 @@ namespace Com.Aurora.AuWeather
         {
             Context.ReloadCity();
         }
+
+        private void CityPanel_Navigated(object sender, NavigationEventArgs e)
+        {
+            LoadingRing.IsActive = false;
+            LoadingRing.Visibility = Visibility.Collapsed;
+        }
     }
 }

@@ -164,16 +164,19 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                 }
             }
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
+            else
             {
-                foreach (var item in Cities)
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
-                    if (!item.Updated)
+                    foreach (var item in Cities)
                     {
-                        item.Succeed = false;
+                        if (!item.Updated)
+                        {
+                            item.Succeed = false;
+                        }
                     }
-                }
-            }));
+                }));
+            }
         }
 
         internal void UpdateLocation(CityInfo cityInfo)
@@ -442,7 +445,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     await itemInit(item, weather);
                     item.Updated = true;
-                    item.Succeed = false;
+                    item.Succeed = true;
                 }
             }
             if (settings.Cities.EnableLocate && settings.Cities.LocatedCity != null)

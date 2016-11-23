@@ -975,13 +975,13 @@
                                         <Grid Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="auto" />
-                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="280" />
                                             </Grid.ColumnDefinitions>
                                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoColorConverter}}">
-                                                <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoTextConverter}}" Foreground="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoForegroundConverter}}" FontSize="16" />
+                                                <TextBlock Margin="16" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoTextConverter}}" Foreground="{x:Bind Level,Mode=OneWay,Converter={StaticResource AlarmLeveltoForegroundConverter}}" FontSize="16" />
                                             </Grid>
                                             <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource SystemControlForegroundHighBrush}">
-                                                <TextBlock Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Title,Mode=OneWay}" FontSize="16" />
+                                                <TextBlock Margin="16" FontWeight="Light" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Text="{x:Bind Title,Mode=OneWay}" FontSize="16" />
                                             </Grid>
                                         </Grid>
                                         <TextBlock Margin="8" Text="{x:Bind Description,Mode=OneWay}" TextWrapping="WrapWholeWords"/>

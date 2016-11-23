@@ -78,7 +78,7 @@
                 <Run Text=": " />
                 <Run Text="{x:Bind Context.Location,Mode=OneWay}" />
             </TextBlock>
-            <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <ListView AllowDrop="True" CanDragItems="True" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" DragItemsCompleted="ListView_DragItemsCompleted" Drop="ListView_Drop" DropCompleted="ListView_DropCompleted" IsItemClickEnabled="False" ItemContainerStyle="{ThemeResource GeneralListViewItemStyle}" ItemsSource="{Binding Source={StaticResource LocationList}}" Margin="12,12,12,96" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ViewModels:LocationViewModel">
                         <Grid Background="{ThemeResource SystemControlAltHighBrush}" Padding="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="{x:Null}" BorderThickness="4">
