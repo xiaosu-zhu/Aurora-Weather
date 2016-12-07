@@ -22,6 +22,8 @@ using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using System.Linq;
 using Com.Aurora.AuWeather.Models;
+using Com.Aurora.AuWeather.Core.SQL;
+using System.Linq.Expressions;
 
 namespace Com.Aurora.AuWeather.ViewModels
 {
@@ -30,7 +32,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         private Models.Settings.Cities Cities;
         private bool enablePosition;
         private CitySettingsModel locatedCity;
-        public List<CityInfo> cities;
         private bool? m_islocatedcurrent;
         private List<CitySettingsModel> newlist;
         private ElementTheme theme;
@@ -63,15 +64,6 @@ namespace Com.Aurora.AuWeather.ViewModels
                 }));
                 OnRefreshComplete();
             });
-        }
-
-        ~CitiesSettingViewModel()
-        {
-            if (cities != null)
-            {
-                cities.Clear();
-                cities = null;
-            }
         }
 
         internal void SaveAll()
@@ -150,7 +142,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             try
             {
-                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, cities);
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes);
                 if (Cities.LocatedCity != null && Cities.LocatedCity.Id == final.Id)
                 {
                     if (Cities.SavedCities.IsNullorEmpty())
@@ -170,7 +162,8 @@ namespace Com.Aurora.AuWeather.ViewModels
                     return;
                 }
                 var p = final;
-                p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                p.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
+                p.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
                 Cities.LocatedCity = new CitySettingsModel(p);
                 if (Cities.SavedCities.IsNullorEmpty())
                 {
@@ -230,7 +223,7 @@ namespace Com.Aurora.AuWeather.ViewModels
         }
 
 
-        internal List<CityInfo> Search_TextChanged(string text)
+        internal List<City> Search_TextChanged(string text)
         {
             var searcharray = text.Split(' ');
             StringBuilder searchsb = new StringBuilder(@".*");
@@ -240,14 +233,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 searchsb.Append(@".*");
             }
             var pattern = searchsb.ToString();
-            return cities.FindAll(x =>
+            var list = SQLAction.GetAll();
+            return list.FindAll((x) =>
             {
-                if (x.Country == "中国")
-                {
-                    var pin = PinYinHelper.GetPinyin(x.City);
-                    return (Regex.IsMatch(pin, pattern, RegexOptions.IgnoreCase) || Regex.IsMatch(x.City, pattern, RegexOptions.IgnoreCase));
-                }
-                return Regex.IsMatch(x.City, pattern, RegexOptions.IgnoreCase);
+                return x.CountryCode == "CN" ? (Regex.IsMatch(x.CityZh, pattern, RegexOptions.IgnoreCase) || Regex.IsMatch(x.CityEn, pattern, RegexOptions.IgnoreCase)) : Regex.IsMatch(x.CityEn, pattern, RegexOptions.IgnoreCase);
             });
         }
 
@@ -303,7 +292,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal void AddCity(CityInfo cityInfo)
+        internal void AddCity(City cityInfo)
         {
             var task = ThreadPool.RunAsync((work) =>
             {
@@ -336,9 +325,10 @@ namespace Com.Aurora.AuWeather.ViewModels
                 lock (lockable)
                 {
                     newlist = null;
-                    var result = cities.Find(x =>
+                    var list = SQLAction.GetAll();
+                    var result = list.Find((x) =>
                     {
-                        return x.City == queryText;
+                        return x.CountryCode == "CN" ? x.CityZh.Equals(queryText, StringComparison.OrdinalIgnoreCase) : x.CityEn.Equals(queryText, StringComparison.OrdinalIgnoreCase);
                     });
                     if (result != null)
                     {

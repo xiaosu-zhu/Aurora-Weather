@@ -62,6 +62,11 @@ namespace Com.Aurora.AuWeather.SettingOptions
         private void Version_Loaded(object sender, RoutedEventArgs e)
         {
             (sender as TextBlock).Text = SystemInfoHelper.GetPackageVer();
+#if BETA
+            UpdateLog.Text = "You are in BETA version NOW, all the features are unlocked and you should be clear what you are doing. You can contact with developers to quit BETA version. This BETA version is unstable and you MUST be aware of all the consequence that may arise.";
+            UpdateLog.FontSize = 18;
+            UpdateLogButton.Content = "BETA Version Note";
+#endif
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

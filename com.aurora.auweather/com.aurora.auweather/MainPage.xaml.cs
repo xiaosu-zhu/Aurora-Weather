@@ -20,6 +20,7 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.CustomControls;
+using Com.Aurora.AuWeather.Core.SQL;
 
 namespace Com.Aurora.AuWeather
 {
@@ -50,7 +51,24 @@ namespace Com.Aurora.AuWeather
             var t = ThreadPool.RunAsync(async (w) =>
             {
                 var c = Convert.ToUInt64(RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce"));
+#if BETA
+                if (true)
+                {
+                    RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", SystemInfoHelper.GetPackageVersionNum());
+                    await Task.Delay(1000);
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
+                    {
+                        VersionText.Text = SystemInfoHelper.GetPackageVer();
+                        UpdateTitle.Text = "BETA Version Note";
+                        UpdateDetailText.Text = "You are in BETA version NOW, all the features are unlocked and you should be clear what you are doing. You can contact with developers to quit BETA version. This BETA version is unstable and you MUST be aware of all the consequence that may arise.";
+                        UpdateDetailText.FontSize = 18;
+                        UpdateLogButton.Visibility = Visibility.Collapsed;
+                        ShowUpdateDetail();
+                    }));
+                }
+#else
                 if (c < SystemInfoHelper.GetPackageVersionNum())
+
                 //if (true)
                 {
                     RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", SystemInfoHelper.GetPackageVersionNum());
@@ -61,6 +79,7 @@ namespace Com.Aurora.AuWeather
                         ShowUpdateDetail();
                     }));
                 }
+#endif
                 else
                 {
                     HideUpdateButton_Click(null, null);
@@ -513,7 +532,7 @@ namespace Com.Aurora.AuWeather
                 var b = new AppBarButton
                 {
                     Label = item.City,
-                    Name = item.Id
+                    Name = item.Id.IsNullorEmpty() ? item.City : item.Id
                 };
                 b.Click += B_Click;
                 ActionBar.SecondaryCommands.Add(b);

@@ -1577,16 +1577,16 @@ Including but not limited to:
 · Coding
                                 
 Thanks!</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zusammen mit mir machen Sie diese app mehr perfekt! 
+          <target state="translated">Zusammen mit mir machen Sie diese app mehr perfekt! 
  
 Einschließlich aber nicht beschränkt auf:
 
-· UI und Layout Verbesserung
-· Genauere Datenanbieter
-Hinzufügen · Unentschieden/bieten weitere Wetter-Icon oder elektronische
+· Verbesserung der Benutzeroberfläche und das Layout
+· Fügen Sie genauere Daten-Provider
+· Auslosung/bieten weitere Wettersymbol oder Hintergrund-
 · Codierung
  
-Danke!</target>
+vielen Dank!</target>
         </trans-unit>
         <trans-unit id="Today" translate="yes" xml:space="preserve">
           <source>Today</source>

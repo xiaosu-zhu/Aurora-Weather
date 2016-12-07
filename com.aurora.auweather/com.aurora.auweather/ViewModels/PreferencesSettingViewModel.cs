@@ -476,7 +476,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                 SetProperty(ref enableEveryDay, value);
                 if (value)
                 {
-                    
+
                 }
                 else
                 {
@@ -757,9 +757,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             await Core.Models.BGTask.RegBGTask(Preferences.RefreshFrequency, lic.IsPurchased);
         }
 
-        internal async Task SetSource(DataSource caiyun)
+        internal void SetSource(DataSource caiyun)
         {
-            await Preferences.Set(caiyun);
+            Preferences.Set(caiyun);
             SaveAll();
         }
     }

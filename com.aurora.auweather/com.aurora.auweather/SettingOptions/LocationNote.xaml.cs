@@ -63,7 +63,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
                             {
                                 DeniePos();
                             }
-                            _geolocator.StatusChanged += OnStatusChanged;
+                            //_geolocator.StatusChanged += OnStatusChanged;
                         }
                         catch (Exception)
                         {

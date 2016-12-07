@@ -34,9 +34,15 @@ namespace Com.Aurora.Shared.Helpers
 
         public static string GetPackageVer()
         {
+#if BETA
+            return Package.Current.Id.Version.Major.ToString("0") + "." +
+               Package.Current.Id.Version.Minor.ToString("0") + "." +
+               Package.Current.Id.Version.Build.ToString("0")+" - BETA";
+#else
             return Package.Current.Id.Version.Major.ToString("0") + "." +
                Package.Current.Id.Version.Minor.ToString("0") + "." +
                Package.Current.Id.Version.Build.ToString("0");
+#endif
         }
 
         public static ulong GetPackageVersionNum()

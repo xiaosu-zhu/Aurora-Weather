@@ -737,7 +737,7 @@ namespace Com.Aurora.AuWeather.ViewModels
                     }
                     var task = ThreadPool.RunAsync(async (work) =>
                     {
-                        await settings.Cities.SaveDataAsync(currentCityModel.Id, resstr, settings.Preferences.DataSource);
+                        await settings.Cities.SaveDataAsync(currentCityModel.Id.IsNullorEmpty() ? currentCityModel.City : currentCityModel.Id, resstr, settings.Preferences.DataSource);
                         currentCityModel.Update();
                         if (settings.Cities.CurrentIndex != -1)
                         {
@@ -769,7 +769,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 try
                 {
-                    var data = await settings.Cities.ReadDataAsync(currentCityModel.Id, settings.Preferences.DataSource);
+                    var data = await settings.Cities.ReadDataAsync(currentCityModel.Id.IsNullorEmpty() ? currentCityModel.City : currentCityModel.Id, settings.Preferences.DataSource);
                     if (data != null)
                         storedDatas = data;
                 }

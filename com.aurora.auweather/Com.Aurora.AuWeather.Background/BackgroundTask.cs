@@ -189,7 +189,7 @@ namespace Com.Aurora.AuWeather.Background
                         Sender.CreateToast(Generator.CreateAlarmToast(str, currentCity).GetXml());
                     }
                 }
-                await settings.Cities.SaveDataAsync(currentCity.Id, resstr, settings.Preferences.DataSource);
+                await settings.Cities.SaveDataAsync(currentCity.Id.IsNullorEmpty() ? currentCity.City : currentCity.Id, resstr, settings.Preferences.DataSource);
                 currentCity.Update();
                 if (settings.Cities.CurrentIndex != -1)
                 {

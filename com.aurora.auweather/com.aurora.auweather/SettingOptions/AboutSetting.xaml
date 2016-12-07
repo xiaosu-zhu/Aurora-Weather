@@ -345,10 +345,10 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 </Button>
                 <Button x:Name="RateButton" x:Uid="RateText" Style="{ThemeResource TextBlockButtonStyle}" Click="RateButton_Click" HorizontalAlignment="Center" Margin="12" />
                 <Button x:Name="FeedbackButton" x:Uid="FeedbackText" Style="{ThemeResource TextBlockButtonStyle}" Click="FeedbackButton_Click" HorizontalAlignment="Center" Margin="12" />
-                <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Margin="12" x:Uid="UpdateLogButton" x:Name="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button.Flyout>
                         <Flyout Placement="Full">
-                            <TextBlock x:Uid="UpdateLogText" Text="123" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
+                            <TextBlock x:Uid="UpdateLogText" x:Name="UpdateLog" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />
                         </Flyout>
                     </Button.Flyout>
                 </Button>

@@ -680,19 +680,17 @@
                         <TranslateTransform x:Name="UpdatePanelTrans" X="320" />
                     </StackPanel.RenderTransform>
                     <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}" HorizontalAlignment="Stretch">
-                        <TextBlock Foreground="White" x:Uid="UpdateTitle" Margin="12,4,12,4" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" />
+                        <TextBlock Foreground="White" x:Uid="UpdateTitle" x:Name="UpdateTitle" Margin="12,4,12,4" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" />
                         <Button Foreground="White" Click="HideUpdateButton_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4" Style="{ThemeResource TextBlockButtonStyle}">
                             <Button.Content>
                                 <SymbolIcon Symbol="Cancel" />
                             </Button.Content>
                         </Button>
                     </Grid>
-                    <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="14" />
-                    <TextBlock x:Uid="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <HyperlinkButton NavigateUri="https://embracez.xyz/aurora-studio/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12">
-                        <Image Source="/Assets/QQ_group.png" Stretch="Uniform"/>
-                    </HyperlinkButton>
-                    <Button Margin="12" x:Uid="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="VersionText" Margin="12,16,12,12" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Light" FontSize="14" />
+                    <TextBlock x:Uid="UpdateDetailText" x:Name="UpdateDetailText" TextWrapping="WrapWholeWords" Margin="12,16,12,12" FontWeight="Light" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                    <Button Margin="12,16,12,12" x:Uid="UpdateLogButton" x:Name="UpdateLogButton" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button.Flyout>
                             <Flyout>
                                 <TextBlock x:Uid="UpdateLogText" Style="{ThemeResource BodyTextBlockStyle}" Margin="12" TextWrapping="WrapWholeWords" MaxWidth="320" />

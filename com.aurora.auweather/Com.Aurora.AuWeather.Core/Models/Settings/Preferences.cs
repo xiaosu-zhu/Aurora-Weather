@@ -207,30 +207,9 @@ namespace Com.Aurora.AuWeather.Models.Settings
                 MainColor = Colors.Transparent;
             }
         }
-        public async Task Set(DataSource d)
+        public void Set(DataSource d)
         {
             DataSource = d;
-            try
-            {
-                switch (d)
-                {
-                    case DataSource.HeWeather:
-                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_H");
-                        break;
-                    case DataSource.Caiyun:
-                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_C");
-                        break;
-                    case DataSource.Wunderground:
-                        await FileIOHelper.RemoveLocalFilesWithKeywordAsync("_W");
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-            }
-
         }
 
 

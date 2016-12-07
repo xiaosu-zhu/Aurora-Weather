@@ -9,6 +9,7 @@
     xmlns:local="using:Com.Aurora.AuWeather.SettingOptions"
     xmlns:ViewModels="using:Com.Aurora.AuWeather.ViewModels"
     xmlns:Models="using:Com.Aurora.AuWeather.Models.HeWeather"
+    xmlns:SQL="using:Com.Aurora.AuWeather.Core.SQL"
     xmlns:Converters="using:Com.Aurora.Shared.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -356,7 +357,7 @@
                             </TransitionCollection>
                         </AutoSuggestBox.Transitions>
                         <AutoSuggestBox.ItemTemplate>
-                            <DataTemplate x:DataType="Models:CityInfo">
+                            <DataTemplate x:DataType="SQL:City">
                                 <TextBlock Margin="8" Text="{x:Bind}" />
                             </DataTemplate>
                         </AutoSuggestBox.ItemTemplate>

@@ -17,7 +17,7 @@ namespace Com.Aurora.AuWeather.Core.Models
         {
             try
             {
-                return await GetRequestAsync(settings, city.Id, city.Longitude, city.Latitude, city.ZMW);
+                return await GetRequestAsync(settings, city.Id, city.City, city.Longitude, city.Latitude, city.ZMW);
             }
             catch (Exception)
             {
@@ -40,14 +40,23 @@ namespace Com.Aurora.AuWeather.Core.Models
             }
         }
 
-        public static async Task<string> GetRequestAsync(SettingsModel settings, string id, float lon, float lat, string zmw)
+        public static async Task<string> GetRequestAsync(SettingsModel settings, string id, string city, float lon, float lat, string zmw)
         {
             try
             {
                 if (WebHelper.IsInternet())
                 {
                     var keys = Key.key.Split(new string[] { ":|:" }, StringSplitOptions.RemoveEmptyEntries);
-                    var param = new string[] { "cityid=" + id };
+                    string[] param;
+                    if (id.IsNullorEmpty())
+                    {
+                        param = new string[] { "city=" + city };
+                    }
+                    else
+                    {
+                        param = new string[] { "cityid=" + id };
+
+                    }
                     string resstr;
                     switch (settings.Preferences.DataSource)
                     {
@@ -70,12 +79,7 @@ namespace Com.Aurora.AuWeather.Core.Models
                                 resstr = await GeoLookup(lat, lon);
                                 if (resstr.Length < 40)
                                 {
-                                    if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == id)
-                                    {
-                                        settings.Cities.LocatedCity.RequestZMW(resstr);
-                                        zmw = settings.Cities.LocatedCity.ZMW;
-                                    }
-                                    else if (!settings.Cities.SavedCities.IsNullorEmpty())
+                                    if (!settings.Cities.SavedCities.IsNullorEmpty() && !id.IsNullorEmpty())
                                     {
                                         foreach (var item in settings.Cities.SavedCities)
                                         {
@@ -85,6 +89,11 @@ namespace Com.Aurora.AuWeather.Core.Models
                                                 zmw = item.ZMW;
                                             }
                                         }
+                                    }
+                                    else if (settings.Cities.LocatedCity != null)
+                                    {
+                                        settings.Cities.LocatedCity.RequestZMW(resstr);
+                                        zmw = settings.Cities.LocatedCity.ZMW;
                                     }
                                     settings.Cities.Save();
                                     resstr = await WundergroundRequestHelper.GetResult(keys[2], zmw);

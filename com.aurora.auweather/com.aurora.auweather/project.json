@@ -4,7 +4,7 @@
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Win2D.uwp": "1.18.0"
+    "Win2D.uwp": "1.20.0"
   },
   "frameworks": {
     "uap10.0": {}

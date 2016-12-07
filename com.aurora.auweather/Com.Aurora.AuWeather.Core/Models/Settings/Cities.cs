@@ -8,6 +8,7 @@ using Com.Aurora.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Core.SQL;
 
 namespace Com.Aurora.AuWeather.Models.Settings
 {
@@ -87,7 +88,7 @@ namespace Com.Aurora.AuWeather.Models.Settings
             }
         }
 
-        public void ChangeRoute(LocateRoute[] locateRoute, CityInfo city)
+        public void ChangeRoute(LocateRoute[] locateRoute, City city)
         {
             this.Routes = locateRoute;
             LocatedCity = new CitySettingsModel(city);
@@ -287,12 +288,12 @@ namespace Com.Aurora.AuWeather.Models.Settings
         public DateTime LastUpdate { get; set; } = new DateTime(1970, 1, 1);
         public string ZMW { get; internal set; } = "";
 
-        public CitySettingsModel(CityInfo info)
+        public CitySettingsModel(City info)
         {
-            City = info.City;
+            City = info.CountryCode == "CN" ? info.CityZh : info.CityEn;
             Id = info.Id;
-            Longitude = info.Location.Longitude;
-            Latitude = info.Location.Latitude;
+            Longitude = info.Longitude;
+            Latitude = info.Latitude;
         }
 
         public CitySettingsModel()

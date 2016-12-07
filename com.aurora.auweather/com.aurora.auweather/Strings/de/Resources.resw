@@ -1046,84 +1046,64 @@
     <value>1.6.16111
 · Hinzugefügt Locating Management
 · Minor bugs fixen
-
 1.6.16110
 · Mobile Version Start werden zu langsam
 · verursacht Fehler behoben Geändert Locating Methode
 · Integrieren die Städte-Übersichtsseite mit den Städten Verwaltungsseite
-
 1.6.16101
 · Minor Fixes
 · Jetzt der immersiven Modus Auszeit im Feld benutzerdefinierte Layout
-
 1.6.16100
 festlegen · Wurde ein Fehler behoben, die sekundäre Kacheln nicht aktualisieren
 · Ein Problem wurde behoben, dass sekundäre Kacheln Layout zu falschen
 · Willkommen-Seite neu gestaltet
-
 1.6.16086
 · Feste, ein Thema, das auf Touchscreen streichen ist zu langsam
 · Ein Problem wurde behoben, dass einige Geräte können nicht geladen werden Bildressourcen
 · Feste UI Luxation
-
 1.6.16085
 · Datenschutzrichtlinie für
-
 1.6.16080
 hinzugefügt · Minor fixes
-
 1.6.16062
 · Ein kleines Display Fehler behoben im Detail Seite
 · Hinzugefügt von Windgeschwindigkeit graph
-
 1.6.16058
 · UI Tweaks
-
 1.6.16056
 · Ein Fehler wurde behoben kann nicht, dass verursacht Hintergrundaufgabe gestartet
 · Cortana Befehle werden in Kürze verfügbar
-
 1.6.16054
 · Wetter-Alarm verbessert Toast
-
 1.6.16050
 · Jetzt Sie, lichtdurchlässige Fliesen
 wählen können · Fliesen-Layoutanpassung
-
 1.5.16059
 · Behobene Probleme in den Einstellungen Seite
 · Versuchen, aktuelle BG als Lockscreen wallpaper
-
 1.5.16055
 · Sie können Akzentfarbe jetzt (nur wenn die Designeinstellung "Follow-System")
 · Hinzugefügt aktualisieren Animation
 · Sie können Layout jetzt
 · Details Seite verbesserte
-
 1.5.16054
 · 
-
 1.5.16052
 Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
-
 1.5.16050
 · Seite "Details" hinzugefügt
-
 1.5.16045
 · Kürzen Sie das Aktualisierungsintervall automatisch im Hintergrund
 · UI und Layout Verbesserung
 · Der Kachel-Layout aktualisiert werden, in der nächsten Version
-
 1.5.16040
 · Kompatibel mit Windows 10 bauen 14328, haben wir aktualisiert Toast und Fliesen-
 · "Weather Underground" jetzt verfügbar! 
 · (Mai) Fixiert einen Totalausfall
 · (Mai) Festen ein Problem tritt auf, auf mobilen Geräten, die Lockscreen Benachrichtigungen
-
 1.4.16047 anzeigen nicht:
 · UI tuning
 · Kleine Fehler behoben
- 
 1.4.16046:
 · Update-Log hinzugefügt
 · Sie streichen können details zu das Update löschen
@@ -1140,14 +1120,11 @@ Einstellungen angepasst · behoben das Problem verursacht durch Region Formate
   </data>
   <data name="ImproveDetail.Text" xml:space="preserve">
     <value>Zusammen mit mir machen Sie diese app mehr perfekt! 
- 
 Einschließlich aber nicht beschränkt auf:
-
 · UI und Layout Verbesserung
 · Genauere Datenanbieter
 Hinzufügen · Unentschieden/bieten weitere Wetter-Icon oder elektronische
 · Codierung
- 
 Danke!</value>
   </data>
   <data name="Today" xml:space="preserve">

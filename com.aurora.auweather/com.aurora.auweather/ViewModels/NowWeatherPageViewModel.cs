@@ -1486,55 +1486,52 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             await SearchExistingDataAsync();
             string resstr;
-            if (currentCityModel.Id != null)
+            try
             {
-                try
+                if (!storedDatas.IsNullorEmpty())
                 {
-                    if (!storedDatas.IsNullorEmpty())
-                    {
-                        resstr = storedDatas;
-                        fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
-                        return;
-                    }
-                    resstr = await Core.Models.Request.GetRequestAsync(settings, currentCityModel);
-                    if (resstr.IsNullorEmpty())
-                    {
-                        await Task.Delay(1000);
-                        this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
-                        return;
-                    }
+                    resstr = storedDatas;
                     fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
-                    if (fetchresult.Status != HeWeatherStatus.ok)
-                    {
-                        await Task.Delay(1000);
-                        this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
-                        return;
-                    }
-                    var task = ThreadPool.RunAsync(async (work) =>
-                    {
-                        await settings.Cities.SaveDataAsync(currentCityModel.Id, resstr, settings.Preferences.DataSource);
-                        currentCityModel.Update();
-                        if (settings.Cities.CurrentIndex != -1)
-                        {
-                            settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCityModel;
-                        }
-                        else
-                        {
-                            settings.Cities.LocatedCity = currentCityModel;
-                        }
-                        settings.Cities.Save();
-                    });
                     return;
                 }
-                catch (Exception)
+                resstr = await Core.Models.Request.GetRequestAsync(settings, currentCityModel);
+                if (resstr.IsNullorEmpty())
+                {
+                    await Task.Delay(1000);
+                    this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Network_Error"));
+                    return;
+                }
+                fetchresult = HeWeatherModel.Generate(resstr, settings.Preferences.DataSource);
+                if (fetchresult.Status != HeWeatherStatus.ok)
                 {
                     await Task.Delay(1000);
                     this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
                     return;
                 }
-
+                var task = ThreadPool.RunAsync(async (work) =>
+                {
+                    await settings.Cities.SaveDataAsync(currentCityModel.Id.IsNullorEmpty() ? currentCityModel.City : currentCityModel.Id, resstr, settings.Preferences.DataSource);
+                    currentCityModel.Update();
+                    if (settings.Cities.CurrentIndex != -1)
+                    {
+                        settings.Cities.SavedCities[settings.Cities.CurrentIndex] = currentCityModel;
+                    }
+                    else
+                    {
+                        settings.Cities.LocatedCity = currentCityModel;
+                    }
+                    settings.Cities.Save();
+                });
+                return;
             }
-            else throw new NullReferenceException();
+            catch (Exception)
+            {
+                await Task.Delay(1000);
+                this.OnFetchDataFailed(this, new FetchDataFailedEventArgs("Service_Unavailable"));
+                return;
+            }
+
+
         }
 
         private void NotifyParameterChanged(object parameter)
@@ -1913,7 +1910,7 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 try
                 {
-                    var data = await settings.Cities.ReadDataAsync(currentCityModel.Id, settings.Preferences.DataSource);
+                    var data = await settings.Cities.ReadDataAsync(currentCityModel.Id.IsNullorEmpty() ? currentCityModel.City : currentCityModel.Id, settings.Preferences.DataSource);
                     if (data != null)
                         storedDatas = data;
                 }

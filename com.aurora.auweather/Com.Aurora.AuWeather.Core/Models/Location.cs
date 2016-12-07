@@ -13,6 +13,8 @@ using Com.Aurora.AuWeather.Core.Models.IP;
 using Com.Aurora.AuWeather.Core.Models;
 using Com.Aurora.AuWeather.Core.Models.OpenStreetMap;
 using Com.Aurora.Shared.Extensions;
+using Com.Aurora.AuWeather.Core.SQL;
+using System.Linq.Expressions;
 
 namespace Com.Aurora.AuWeather.Models
 {
@@ -88,14 +90,14 @@ namespace Com.Aurora.AuWeather.Models
         /// <param name="source"></param>
         /// <param name="dest"></param>
         /// <returns></returns>
-        public static float CalcDistance(Location source, Location dest)
+        public static float CalcDistance(float lat, float lon, Location dest)
         {
             try
             {
-                var lat1 = Tools.DegreesToRadians(source.Latitude);
+                var lat1 = Tools.DegreesToRadians(lat);
                 var lat2 = Tools.DegreesToRadians(dest.Latitude);
                 var a = lat1 - lat2;
-                var b = Tools.DegreesToRadians(source.Longitude) - Tools.DegreesToRadians(dest.Longitude);
+                var b = Tools.DegreesToRadians(lon) - Tools.DegreesToRadians(dest.Longitude);
                 var s = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) +
                  Math.Cos(lat1) * Math.Cos(lat2) * Math.Pow(Math.Sin(b / 2), 2)));
                 s *= EARTH_RADIUS;
@@ -107,12 +109,21 @@ namespace Com.Aurora.AuWeather.Models
             }
         }
 
-        public static IOrderedEnumerable<CityInfo> GetNearsetLocation(IEnumerable<CityInfo> cities, Location source)
+        public static City GetNearsetLocation(Location source)
         {
-            var final = from m in cities
-                        orderby CalcDistance(m.Location, source) ascending
-                        select m;
-            return final;
+            var list = SQLAction.GetAll();
+            float dis = float.MaxValue;
+            City fi = null;
+            foreach (var item in list)
+            {
+                var cal = CalcDistance(item.Latitude, item.Longitude, source);
+                if (dis > cal)
+                {
+                    dis = cal;
+                    fi = item;
+                }
+            }
+            return fi;
         }
 
         public static async Task<AmapContract> AmapReGeoAsync(double latitude, double longitude)
@@ -150,47 +161,81 @@ namespace Com.Aurora.AuWeather.Models
             return fetchresult.Location;
         }
 
-        public async static Task<CityInfo> ReverseGeoCode(float lat, float lon, LocateRoute[] routes, List<CityInfo> citys)
+        public async static Task<string> HeWeatherGeoLookup(string name)
         {
-            List<CityInfo> final = null;
+            var url = "https://free-api.heweather.com/v5/search?key={0}&city={1}";
+            var result = await ApiRequestHelper.RequestWithFormattedUrlAsync(url, new string[] { Key.ip138, name });
+            if (result == null)
+                return null;
+            var rees = JsonHelper.FromJson<HeWeatherCity>(result);
+            if (!rees.HeWeather5.IsNullorEmpty())
+                return rees.HeWeather5[0].basic.id;
+            else
+            {
+                return "";
+            }
+        }
+
+        public async static Task<City> ReverseGeoCode(float lat, float lon, LocateRoute[] routes)
+        {
+            City final = null;
 
             foreach (var r in routes)
             {
                 switch (r)
                 {
                     case LocateRoute.unknown:
-                        var near = GetNearsetLocation(citys, new Location(lat, lon));
-                        final = near.ToList();
+                        var near = GetNearsetLocation(new Location(lat, lon));
+                        final = near;
                         break;
                     case LocateRoute.Amap:
                         var acontract = await AmapReGeoAsync(lat, lon);
                         if (acontract != null)
                         {
-                            var source = acontract.regeocode.addressComponent.district;
-                            var li = from p in citys
-                                     orderby Tools.LevenshteinDistance(p.City, source) ascending
-                                     select p;
-                            final = li.ToList();
+                            var li = new City
+                            {
+                                CityEn = acontract.regeocode.addressComponent.district,
+                                CityZh = acontract.regeocode.addressComponent.district,
+                                LeaderEn = acontract.regeocode.addressComponent.city,
+                                LeaderZh = acontract.regeocode.addressComponent.city,
+                                CountryCode = "CN",
+                                CountryEn = acontract.regeocode.addressComponent.country,
+                                //Id = await Models.Location.HeWeatherGeoLookup(acontract.regeocode.addressComponent.district),
+                                Latitude = (float)lat,
+                                Longitude = (float)lon,
+                                ProvinceEn = acontract.regeocode.addressComponent.province,
+                                ProvinceZh = acontract.regeocode.addressComponent.province
+                            };
+                            final = li;
                         }
                         break;
                     case LocateRoute.Omap:
                         var ocontract = await OpenMapReGeoAsync(lat, lon);
                         if (ocontract != null && !ocontract.results.IsNullorEmpty())
                         {
-                            var source = ocontract.results[0].components.county;
-                            var li = from p in citys
-                                     orderby Tools.LevenshteinDistance(p.City, source) ascending
-                                     select p;
-                            final = li.ToList();
+                            var li = new City
+                            {
+                                CityEn = ocontract.results[0].components.county,
+                                CityZh = ocontract.results[0].components.county,
+                                LeaderEn = ocontract.results[0].components.region,
+                                LeaderZh = ocontract.results[0].components.region,
+                                CountryCode = ocontract.results[0].components.country_code,
+                                CountryEn = ocontract.results[0].components.country,
+                                //Id = await HeWeatherGeoLookup(ocontract.results[0].components.county),
+                                Latitude = lat,
+                                Longitude = lon,
+                                ProvinceEn = ocontract.results[0].components.state,
+                                ProvinceZh = ocontract.results[0].components.state
+                            };
+                            final = li;
                         }
                         break;
                     case LocateRoute.IP:
                         var id = await ReGeobyIpAsync();
                         if (id != null)
-                            final = citys.FindAll(x =>
-                            {
-                                return x.Id == id.CityId;
-                            });
+                        {
+                            final = SQLAction.Find(id.CityId);
+                        }
                         break;
                     case LocateRoute.Gmap:
 
@@ -198,15 +243,15 @@ namespace Com.Aurora.AuWeather.Models
                     default:
                         break;
                 }
-                if (!final.IsNullorEmpty())
+                if (final != null)
                 {
                     break;
                 }
             }
 
-            if (!final.IsNullorEmpty())
+            if (final != null)
             {
-                return final[0];
+                return final;
             }
             else
             {

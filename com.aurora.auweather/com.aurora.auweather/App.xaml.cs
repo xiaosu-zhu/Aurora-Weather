@@ -69,9 +69,10 @@ namespace Com.Aurora.AuWeather
         protected override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
-            {
-                SetStatusBar();
-            }
+
+            SetStatusBar();
+
+
             if (args.Kind == ActivationKind.ToastNotification)
             {
                 //Get the pre-defined arguments and user inputs from the eventargs;

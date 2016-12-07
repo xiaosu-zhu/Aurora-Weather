@@ -24,6 +24,8 @@ using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Core.SQL;
+using System.Linq.Expressions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -128,6 +130,8 @@ namespace Com.Aurora.AuWeather
         private async void DismissedEventHandler(SplashScreen sender, object args)
         {
             dismissed = true;
+            await SQLAction.CheckDB();
+
             SetLongTimeTimer();
             var settings = SettingsModel.Current;
             var license = new License.License();
@@ -138,6 +142,7 @@ namespace Com.Aurora.AuWeather
                 settings.Preferences.EnableMorning = false;
                 settings.Preferences.Set(240);
             }
+
             if (settings.Preferences.MainColor.A > 0)
             {
                 App.MainColor = settings.Preferences.MainColor;
@@ -189,10 +194,7 @@ namespace Com.Aurora.AuWeather
                                 {
                                     var t = ThreadPool.RunAsync(async (w) =>
                                     {
-                                        var cityids = JsonHelper.FromJson<CityIdContract>(Key.cityid);
-                                        var citys = CityInfo.CreateList(cityids);
-                                        cityids = null;
-                                        await CalcPosition(pos, citys, settings);
+                                        await CalcPosition(pos, settings);
                                         GetCityListandCompelte(settings);
                                     });
                                 }
@@ -225,31 +227,17 @@ namespace Com.Aurora.AuWeather
             }
             else if (settings.Cities.CurrentIndex >= 0 && !settings.Cities.SavedCities.IsNullorEmpty())
             {
-                List<CityInfo> citys = null;
                 foreach (var citty in settings.Cities.SavedCities)
                 {
+
                     if (citty.Latitude == 0 && citty.Longitude == 0)
                     {
-                        if (citys == null)
-                        {
-                            var result = JsonHelper.FromJson<CityIdContract>(Key.cityid);
-                            citys = CityInfo.CreateList(result);
-                            result = null;
-                        }
-                        var tar = citys.Find(x =>
-                        {
-                            return x.Id == citty.Id;
-                        });
-                        citty.Latitude = tar.Location.Latitude;
-                        citty.Longitude = tar.Location.Longitude;
+                        var tar = SQLAction.Find(citty.Id);
+                        citty.Latitude = tar.Latitude;
+                        citty.Longitude = tar.Longitude;
                     }
                 }
                 settings.Cities.Save();
-                if (citys != null)
-                {
-                    citys.Clear();
-                    citys = null;
-                }
                 GetCityListandCompelte(settings);
             }
             else
@@ -344,11 +332,11 @@ namespace Com.Aurora.AuWeather
             }));
         }
 
-        private async Task CalcPosition(Geoposition pos, List<CityInfo> citys, SettingsModel settings)
+        private async Task CalcPosition(Geoposition pos, SettingsModel settings)
         {
             try
             {
-                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, citys);
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes);
                 if (settings.Cities.LocatedCity != null && settings.Cities.LocatedCity.Id == final.Id)
                 {
                     if (settings.Cities.LocatedCity.Latitude == 0)
@@ -360,7 +348,8 @@ namespace Com.Aurora.AuWeather
                 else
                 {
                     var p = final;
-                    p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                    p.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
+                    p.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
                     settings.Cities.LocatedCity = new Models.Settings.CitySettingsModel(p);
                 }
             }
@@ -370,8 +359,6 @@ namespace Com.Aurora.AuWeather
             }
             finally
             {
-                citys.Clear();
-                citys = null;
                 settings.Cities.Save();
             }
 

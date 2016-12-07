@@ -12,12 +12,12 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Geolocation;
 using Windows.System.Threading;
 using Com.Aurora.AuWeather.ViewModels;
-using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.CustomControls;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using Com.Aurora.AuWeather.Core.SQL;
+using Com.Aurora.Shared.Extensions;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -38,12 +38,6 @@ namespace Com.Aurora.AuWeather.SettingOptions
             Context.FetchDataComplete += Context_FetchDataComplete;
             Context.LocateComplete += Context_LocateComplete;
             App.Current.Suspending += Current_Suspending;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Context.cities = e.Parameter as List<CityInfo>;
         }
 
         private void Context_LocateComplete(object sender, FetchDataCompleteEventArgs e)
@@ -272,6 +266,11 @@ namespace Com.Aurora.AuWeather.SettingOptions
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 var text = sender.Text;
+                if (text.IsNullorEmpty())
+                {
+                    sender.ItemsSource = null;
+                    return;
+                }
                 text = text.Replace('\'', ' ');
                 await ThreadPool.RunAsync(async (work) =>
                  {
@@ -290,7 +289,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
             if (args.ChosenSuggestion != null)
             {
                 // User selected an item from the suggestion list, take an action on it here.
-                Context.AddCity((args.ChosenSuggestion as CityInfo));
+                Context.AddCity((args.ChosenSuggestion as City));
             }
             else
             {
@@ -311,7 +310,7 @@ namespace Com.Aurora.AuWeather.SettingOptions
         {
             SearchBox.TextChanged -= SearchBox_TextChanged;
             // Set sender.Text. You can use args.SelectedItem to build your text string.
-            sender.Text = (args.SelectedItem as CityInfo).City;
+            sender.Text = (args.SelectedItem as City).ToString();
             SearchBox.TextChanged += SearchBox_TextChanged;
         }
 

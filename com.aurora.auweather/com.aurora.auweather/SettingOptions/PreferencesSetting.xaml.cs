@@ -232,19 +232,19 @@ namespace Com.Aurora.AuWeather.SettingOptions
             }
         }
 
-        private async void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
+        private void CaiyunRadio_Checked(object sender, RoutedEventArgs e)
         {
-            await Context.SetSource(DataSource.Caiyun);
+            Context.SetSource(DataSource.Caiyun);
         }
 
-        private async void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
+        private void HeWeatherRadio_Checked(object sender, RoutedEventArgs e)
         {
-            await Context.SetSource(DataSource.HeWeather);
+            Context.SetSource(DataSource.HeWeather);
         }
 
-        private async void WundergroundRadio_Checked(object sender, RoutedEventArgs e)
+        private void WundergroundRadio_Checked(object sender, RoutedEventArgs e)
         {
-            await Context.SetSource(DataSource.Wunderground);
+            Context.SetSource(DataSource.Wunderground);
         }
 
         private void ColorPicker_ColorPicked(object sender, ColorPickedEventArgs e)

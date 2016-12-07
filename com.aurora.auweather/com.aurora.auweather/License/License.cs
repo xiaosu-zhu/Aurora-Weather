@@ -29,6 +29,9 @@ namespace Com.Aurora.AuWeather.License
         {
             get
             {
+#if BETA
+                return true;
+#else
                 foreach (var item in DonationPack)
                 {
                     if (licenseInformation.ProductLicenses[item].IsActive)
@@ -41,6 +44,8 @@ namespace Com.Aurora.AuWeather.License
                     }
                 }
                 return false;
+            
+#endif
             }
         }
 

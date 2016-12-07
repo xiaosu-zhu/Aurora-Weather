@@ -371,9 +371,11 @@
       <ReservedName>Погода в Авроре</ReservedName>
       <ReservedName>極光天氣</ReservedName>
       <ReservedName>オーロラ 天気</ReservedName>
+      <ReservedName>Aurora · El Tiempo</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
+    <MainPackageIdentityName>6727Aurora-ZXS.AuroraStudios2048</MainPackageIdentityName>
     <MainPackageIdentityName>6727Aurora-ZXS.10476770C0EE5</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH4QMJ9" />

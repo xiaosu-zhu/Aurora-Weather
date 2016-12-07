@@ -38,8 +38,6 @@ namespace Com.Aurora.AuWeather
         public CitiesPage()
         {
             this.InitializeComponent();
-            Context.LocationUpdate += Context_LocationUpdate;
-            Context.FetchDataFailed += Context_FetchDataFailed;
             license = new License.License();
 
         }
@@ -72,6 +70,8 @@ namespace Com.Aurora.AuWeather
         {
             var ui = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(async () =>
             {
+                CityPanel.Navigate(typeof(CitiesSetting));
+
                 if (Context.EnableLocate)
                 {
                     var accessStatus = await Geolocator.RequestAccessAsync();
@@ -82,7 +82,7 @@ namespace Com.Aurora.AuWeather
                             var _geolocator = new Geolocator();
                             var pos = await _geolocator.GetGeopositionAsync();
                             if ((_geolocator.LocationStatus != PositionStatus.NoData) && (_geolocator.LocationStatus != PositionStatus.NotAvailable) && (_geolocator.LocationStatus != PositionStatus.Disabled))
-                                await CalcPosition(pos, Context.cities);
+                                await CalcPosition(pos);
                             else
                             {
                                 FailtoPos();
@@ -99,7 +99,6 @@ namespace Com.Aurora.AuWeather
                         DeniePos();
                     }
                 }
-                CityPanel.Navigate(typeof(CitiesSetting), Context.cities);
             }));
         }
 
@@ -113,15 +112,16 @@ namespace Com.Aurora.AuWeather
             Context.DeniePos();
         }
 
-        private async Task CalcPosition(Geoposition pos, List<CityInfo> citys)
+        private async Task CalcPosition(Geoposition pos)
         {
             try
             {
-                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes, citys);
+                var final = await Models.Location.ReverseGeoCode((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude, SettingsModel.Current.Cities.Routes);
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, new Windows.UI.Core.DispatchedHandler(() =>
                 {
                     var p = final;
-                    p.Location = new Models.Location((float)pos.Coordinate.Point.Position.Latitude, (float)pos.Coordinate.Point.Position.Longitude);
+                    p.Longitude = (float)pos.Coordinate.Point.Position.Longitude;
+                    p.Latitude = (float)pos.Coordinate.Point.Position.Latitude;
                     Context.UpdateLocation(p);
                 }));
             }

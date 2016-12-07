@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Com.Aurora.AuWeather.Core.SQL;
 using Com.Aurora.AuWeather.Models;
 using Com.Aurora.AuWeather.Models.HeWeather;
 using Com.Aurora.AuWeather.Models.HeWeather.JsonContract;
@@ -32,7 +34,6 @@ namespace Com.Aurora.AuWeather.ViewModels
             }
         }
 
-        internal static List<CityInfo> cities;
         private Models.Settings.Cities settings;
 
         internal ObservableCollection<LocationViewModel> LocationList = new ObservableCollection<LocationViewModel>();
@@ -52,9 +53,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         {
             var task = ThreadPool.RunAsync(async (w) =>
             {
-                var result = JsonHelper.FromJson<CityIdContract>(Key.cityid);
-                cities = CityInfo.CreateList(result);
-                result = null;
                 settings = SettingsModel.Current.Cities;
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
                 {
@@ -71,12 +69,6 @@ namespace Com.Aurora.AuWeather.ViewModels
         private void OnFetchDataComplete()
         {
             FetchDataComplete?.Invoke(this, new FetchDataCompleteEventArgs());
-        }
-
-        ~LocationNoteViewModel()
-        {
-            cities.Clear();
-            cities = null;
         }
 
         internal void SaveAll()
@@ -105,7 +97,8 @@ namespace Com.Aurora.AuWeather.ViewModels
             {
                 li.Add(item.args);
             }
-            LocationList[0].City.Location = Location;
+            LocationList[0].City.Longitude = Location.Longitude;
+            LocationList[0].City.Latitude = Location.Latitude;
             settings.ChangeRoute(li.ToArray(), LocationList[0].City);
             settings.Save();
         }
@@ -129,9 +122,9 @@ namespace Com.Aurora.AuWeather.ViewModels
             set { SetProperty(ref location, value); }
         }
 
-        private CityInfo city;
+        private City city;
 
-        public CityInfo City
+        public City City
         {
             get { return city; }
             set { SetProperty(ref city, value); }
@@ -148,63 +141,84 @@ namespace Com.Aurora.AuWeather.ViewModels
 
         public async Task GetLocation(double lat, double lon)
         {
-            List<CityInfo> final = null;
+            City final = null;
             switch (args)
             {
                 case LocateRoute.unknown:
-                    var near = Models.Location.GetNearsetLocation(LocationNoteViewModel.cities, new Models.Location((float)lat, (float)lon));
-                    final = near.ToList();
+                    var near = Models.Location.GetNearsetLocation(new Models.Location((float)lat, (float)lon));
+                    final = near;
                     break;
                 case LocateRoute.Amap:
                     var acontract = await Models.Location.AmapReGeoAsync(lat, lon);
                     if (acontract != null)
                     {
-                        var source = acontract.regeocode.addressComponent.district;
-                        var li = from p in LocationNoteViewModel.cities
-                                 orderby Tools.LevenshteinDistance(p.City, source) ascending
-                                 select p;
-                        final = li.ToList();
+                        var li = new City
+                        {
+                            CityEn = acontract.regeocode.addressComponent.district,
+                            CityZh = acontract.regeocode.addressComponent.district,
+                            LeaderEn = acontract.regeocode.addressComponent.city,
+                            LeaderZh = acontract.regeocode.addressComponent.city,
+                            CountryCode = "CN",
+                            CountryEn = acontract.regeocode.addressComponent.country,
+                            //Id = await Models.Location.HeWeatherGeoLookup(acontract.regeocode.addressComponent.district),
+                            Latitude = (float)lat,
+                            Longitude = (float)lon,
+                            ProvinceEn = acontract.regeocode.addressComponent.province,
+                            ProvinceZh = acontract.regeocode.addressComponent.province
+                        };
+                        final = li;
                     }
                     break;
                 case LocateRoute.Omap:
                     var ocontract = await Models.Location.OpenMapReGeoAsync(lat, lon);
                     if (ocontract != null && !ocontract.results.IsNullorEmpty())
                     {
-                        var source = ocontract.results[0].components.county;
-                        var li = from p in LocationNoteViewModel.cities
-                                 orderby Tools.LevenshteinDistance(p.City, source) ascending
-                                 select p;
-                        final = li.ToList();
+                        var li = new City
+                        {
+                            CityEn = ocontract.results[0].components.county,
+                            CityZh = ocontract.results[0].components.county,
+                            LeaderEn = ocontract.results[0].components.region,
+                            LeaderZh = ocontract.results[0].components.region,
+                            CountryCode = ocontract.results[0].components.country_code,
+                            CountryEn = ocontract.results[0].components.country,
+                            //Id = await Models.Location.HeWeatherGeoLookup(ocontract.results[0].components.county),
+                            Latitude = (float)lat,
+                            Longitude = (float)lon,
+                            ProvinceEn = ocontract.results[0].components.state,
+                            ProvinceZh = ocontract.results[0].components.state
+                        };
+                        final = li;
                     }
                     break;
                 case LocateRoute.IP:
                     var id = await Models.Location.ReGeobyIpAsync();
                     if (id != null)
-                        final = LocationNoteViewModel.cities.FindAll(x =>
-                        {
-                            return x.Id == id.CityId;
-                        });
+                    {
+                        var f = SQLAction.Find(id.CityId);
+                        if (f != null)
+                            final = f;
+                    }
                     break;
                 case LocateRoute.Gmap:
-                default:
                     throw new NotImplementedException("Google map api not implement");
             }
+
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(() =>
             {
-                if (final.IsNullorEmpty())
+                if (final == null)
                 {
-                    City = new CityInfo
+                    City = new City
                     {
-                        City = "定位失败",
-                        Location = new Models.Location((float)lat, (float)lon),
-                        Country = "",
+                        CityEn = "定位失败",
+                        Latitude = (float)lat,
+                        Longitude = (float)lon,
+                        CountryCode = "",
                         Id = "",
-                        Province = ""
                     };
                     return;
                 }
-                City = final[0];
-                Location = City.Location;
+                City = final;
+                Location = new Models.Location(City.Latitude, City.Longitude);
             }));
         }
     }

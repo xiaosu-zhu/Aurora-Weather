@@ -1046,84 +1046,64 @@
     <value>1.6.16111
 · Añadido localización gestión
 · Menor de los errores fijos
-
 1.6.16110
 · Solucionado un problema que causó el inicio de la versión para móviles que se
 demasiado lento · Cambió el método de localización de
 · La página de Resumen de las ciudades se integran con la página de administración de las ciudades
-
 1.6.16101
 · Menor de edad corrige
 · Ahora puede configurar el modo envolvente tiempo fuera en el panel de diseño personalizado
-
 1.6.16100
 · Solucionado un problema que azulejos secundarios no actualización
 · Solucionado un problema de diseño azulejos secundario para ser incorrecto
 · Página de bienvenida nuevo diseño
-
 1.6.16086
 · Arreglado un problema que pase en la pantalla táctil es lenta
 · Solucionado un problema que algunos dispositivos no pueden cargar recursos de imagen
 · Fijo de la dislocación de UI
-
 1.6.16085
 · Añadida la política de privacidad
-
 1.6.16080
 · Menor de edad corrige
-
 1.6.16062
 · Corregido un pequeño problema en detalles página
 · Velocidad del viento ha añadido gráfico
-
 1.6.16058
 · Ajustes de interfaz de Usuario
-
 1.6.16056
 · Corregido un error en esa tarea de fondo causado no puede iniciar
 · Comandos de Cortana pronto estará disponible
-
 1.6.16054
 · Mejor alarma clima tuesta
-
 1.6.16050
 · Ahora usted puede elegir teja translucida
 · Baldosas ajuste de diseño
-
 1.5.16059
 · Problemas en configuración de página
 · Trate de ajustar el actual BG como lockscreen wallpaper
-
 1.5.16055
 · Usted puede personalizar el color de acento ahora (sólo cuando el tema es "Sistema de seguimiento")
 · Añadida actualización animación
 · Usted puede personalizar la presentación ahora
 · Detalles página mejorada
-
 1.5.16054
 · Ajustar la configuración de preferencias
-
 1.5.16052
 · ha solucionado el problema causado por formatos de región
-
 1.5.16050
 · Página de información añadido
-
 1.5.16045
 · Acortar el intervalo de actualización de fondo automática
 · Mejora de la interfaz de Usuario y el diseño
 · Diseño de la pieza se actualizará en la próxima versión
-
 1.5.16040
 · Compatible con Windows 10 construir 14328, actualizado toast y azulejo
 · "El tiempo en el metro" ahora disponible! 
 · (mayo) Fija una falla catastrófica
 · (mayo) Fija un problema ocurre en dispositivos móviles que no muestre notificaciones de lockscreen
-
 1.4.16047:
 · Interfaz de Usuario sintonización
 · Pequeño error corregido
- 
 1.4.16046:
 · Registro de actualización añadido
 · Usted puede deslizar eliminar la actualización de detalles
@@ -1141,7 +1121,6 @@ demasiado lento · Cambió el método de localización de
   <data name="ImproveDetail.Text" xml:space="preserve">
     <value>¡Juntos podemos hacer esta Aplicación perfecta! Aguardo sugerencias para: · Diseño (UI) / Interfaz de usuario. · Agregar proovedores de datos meteorológicos más precisos. · Íconos meteorológicos y Fondos. 
 · Codificación.
- 
 ¡Gracias!</value>
   </data>
   <data name="Today" xml:space="preserve">
