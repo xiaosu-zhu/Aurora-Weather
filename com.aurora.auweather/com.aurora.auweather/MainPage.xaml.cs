@@ -20,7 +20,6 @@ using Com.Aurora.AuWeather.Models;
 using Com.Aurora.Shared.Extensions;
 using System.Collections.Generic;
 using Com.Aurora.AuWeather.CustomControls;
-using Com.Aurora.AuWeather.Core.SQL;
 
 namespace Com.Aurora.AuWeather
 {
@@ -52,7 +51,7 @@ namespace Com.Aurora.AuWeather
             {
                 var c = Convert.ToUInt64(RoamingSettingsHelper.ReadSettingsValue("MeetDataSourceOnce"));
 #if BETA
-                if (true)
+                if (c < SystemInfoHelper.GetPackageVersionNum())
                 {
                     RoamingSettingsHelper.WriteSettingsValue("MeetDataSourceOnce", SystemInfoHelper.GetPackageVersionNum());
                     await Task.Delay(1000);
